@@ -21,7 +21,7 @@
   "group": "THREAD",
   "item": "L hip pitch cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -39,7 +39,7 @@
   "group": "THREAD",
   "item": "L hip pitch cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -57,7 +57,7 @@
   "group": "THREAD",
   "item": "L knee cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -75,7 +75,7 @@
   "group": "THREAD",
   "item": "L knee cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -105,7 +105,7 @@
   "group": "THREAD",
   "item": "L hip pitch cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -123,7 +123,7 @@
   "group": "THREAD",
   "item": "L hip pitch cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -177,7 +177,7 @@
   "group": "THREAD",
   "item": "L knee cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -195,7 +195,7 @@
   "group": "THREAD",
   "item": "L knee cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -321,7 +321,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -339,7 +339,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -357,7 +357,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 2",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -375,7 +375,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 3",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -393,7 +393,7 @@
   "group": "THREAD",
   "item": "L ankle pitch cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -411,7 +411,7 @@
   "group": "THREAD",
   "item": "L ankle pitch cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -435,7 +435,7 @@
   "group": "THREAD",
   "item": "L ankle pitch cradle screw horn face 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -453,7 +453,7 @@
   "group": "THREAD",
   "item": "L ankle pitch cradle screw horn face 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -615,7 +615,7 @@
   "group": "THREAD",
   "item": "L ankle pitch fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -633,7 +633,7 @@
   "group": "THREAD",
   "item": "L ankle pitch fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -651,7 +651,7 @@
   "group": "THREAD",
   "item": "L ankle pitch fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -669,7 +669,7 @@
   "group": "THREAD",
   "item": "L ankle pitch fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -819,7 +819,7 @@
   "group": "THREAD",
   "item": "R hip pitch cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -837,7 +837,7 @@
   "group": "THREAD",
   "item": "R hip pitch cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -855,7 +855,7 @@
   "group": "THREAD",
   "item": "R knee cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -873,7 +873,7 @@
   "group": "THREAD",
   "item": "R knee cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -903,7 +903,7 @@
   "group": "THREAD",
   "item": "R hip pitch cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -921,7 +921,7 @@
   "group": "THREAD",
   "item": "R hip pitch cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -975,7 +975,7 @@
   "group": "THREAD",
   "item": "R knee cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -993,7 +993,7 @@
   "group": "THREAD",
   "item": "R knee cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -1119,7 +1119,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -1137,7 +1137,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -1155,7 +1155,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 2",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -1173,7 +1173,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 3",
   "status": "PASS",
-  "detail": "M2 flat x 6: bites 3.0 mm"
+  "detail": "M3 flat x 6: bites 2.3 mm"
  },
  {
   "group": "ACCESS",
@@ -1191,7 +1191,7 @@
   "group": "THREAD",
   "item": "R ankle pitch cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1209,7 +1209,7 @@
   "group": "THREAD",
   "item": "R ankle pitch cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1233,7 +1233,7 @@
   "group": "THREAD",
   "item": "R ankle pitch cradle screw horn face 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1251,7 +1251,7 @@
   "group": "THREAD",
   "item": "R ankle pitch cradle screw horn face 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1413,7 +1413,7 @@
   "group": "THREAD",
   "item": "R ankle pitch fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -1431,7 +1431,7 @@
   "group": "THREAD",
   "item": "R ankle pitch fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -1449,7 +1449,7 @@
   "group": "THREAD",
   "item": "R ankle pitch fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -1467,7 +1467,7 @@
   "group": "THREAD",
   "item": "R ankle pitch fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M3 x 8: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -1617,7 +1617,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1635,7 +1635,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1653,7 +1653,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1671,7 +1671,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1701,7 +1701,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -1719,7 +1719,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -1737,7 +1737,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw horn face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1755,7 +1755,7 @@
   "group": "THREAD",
   "item": "L hip yaw cradle screw horn face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1773,7 +1773,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -1791,7 +1791,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -1809,7 +1809,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw horn face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1827,7 +1827,7 @@
   "group": "THREAD",
   "item": "R hip yaw cradle screw horn face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2037,7 +2037,7 @@
   "group": "THREAD",
   "item": "L hip roll cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2055,7 +2055,7 @@
   "group": "THREAD",
   "item": "L hip roll cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2073,7 +2073,7 @@
   "group": "THREAD",
   "item": "R hip roll cradle screw rear face 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2091,7 +2091,7 @@
   "group": "THREAD",
   "item": "R hip roll cradle screw rear face 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 8: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2121,7 +2121,7 @@
   "group": "THREAD",
   "item": "L hip roll cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2139,7 +2139,7 @@
   "group": "THREAD",
   "item": "L hip roll cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2193,7 +2193,7 @@
   "group": "THREAD",
   "item": "R hip roll cradle screw near 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2211,7 +2211,7 @@
   "group": "THREAD",
   "item": "R hip roll cradle screw near 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -3499,6 +3499,18 @@
  },
  {
   "group": "PATH",
+  "item": "head: mouth roof",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "head: jaw",
   "status": "PASS",
   "detail": ""
@@ -4046,6 +4058,18 @@
  {
   "group": "ALL",
   "item": "part jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part mouth roof",
   "status": "PASS",
   "detail": ""
  }

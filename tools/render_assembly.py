@@ -36,7 +36,7 @@ VIEW = dict(thigh=(235, 20), shin=(235, 20), shoe=(40, -25), leg=(235, 15), body
 class Scene:
     """One MuJoCo model with a body per item (a part, or a screw), moved by its mocap position, hidden far away."""
 
-    def __init__(self, spec, extra=''):
+    def __init__(self, spec, extra='', visual=None, asset=''):
         self.spec = spec
         self.B = A.Build(spec)
         self.items = {}                            # item -> list of (mesh verts, faces, colour)
@@ -77,10 +77,11 @@ class Scene:
                 gs += f'<geom type="mesh" mesh="m{k}" rgba="{" ".join(f"{c:.3f}" for c in RP.rgba(col))}"/>'
                 k += 1
             bodies.append(f'<body name="b{bi}" mocap="true">{gs}</body>')
+        visual = visual or """<visual><global offwidth="1600" offheight="1600"/><headlight ambient=".42 .42 .42" diffuse=".45 .45 .45" specular=".1 .1 .1"/>
+<quality shadowsize="0"/></visual><worldbody><light directional="true" diffuse=".35 .35 .35" specular=".2 .2 .2" dir="-0.6 -0.3 -1" castshadow="false"/></worldbody>"""
         xml = f"""<mujoco><compiler meshdir="{tmp}"/>
-<visual><global offwidth="1600" offheight="1600"/><headlight ambient=".42 .42 .42" diffuse=".45 .45 .45" specular=".1 .1 .1"/>
-<quality shadowsize="0"/></visual><asset>{''.join(assets)}</asset>
-<worldbody><light directional="true" diffuse=".35 .35 .35" specular=".2 .2 .2" dir="-0.6 -0.3 -1" castshadow="false"/>
+{visual}<asset>{asset}{''.join(assets)}</asset>
+<worldbody>
 {''.join(bodies)}{extra}</worldbody></mujoco>"""
         path = os.path.join(tmp, 'scene.xml')
         open(path, 'w').write(xml)

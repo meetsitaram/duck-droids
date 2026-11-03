@@ -57,7 +57,7 @@ def leg_parts(s):
         (f'{s} hip roll lid', 'P', lid(r)),
         (f'{s} hip roll bearing', 'B', races(r)),
         (f'{s} hip roll horn', 'B', [f'{s}_hip_roll flange']),
-        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{r} horn boss shoulder',
+        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{r} horn boss shoulder',
                                     f'{p} horn boss shoulder']),
         (f'{s} thigh frame', 'P', [f'{s} thigh plate'] + tray(p) + tray(k)),
         (f'{s} hip pitch servo', 'B', [f'{s}_hip_pitch actuator (buy) STS3215_C044']),
@@ -69,9 +69,9 @@ def leg_parts(s):
         (f'{s} hip pitch horn', 'B', [f'{s}_hip_pitch flange']),
         (f'{s} knee horn', 'B', [f'{s}_knee flange']),
         (f'{s} thigh cover', 'P', [f'{s} thigh cover']),
-        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle stub',
+        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin rib', f'{s} shin gusset', f'{s} shin collar 0', f'{s} shin collar 1', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle stub',
                             f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -']),
-        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) XC330_M288', f'{s} ankle rear boss']),
+        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', f'{s} ankle rear boss']),
         (f'{s} ankle lid', 'P', [f'{a} cradle horn face']),
         (f'{s} ankle horn', 'B', [f'{s}_ankle_pitch flange']),
         (f'{s} ankle bearing inner', 'B', [f'{s} ankle bearing inner race']),
@@ -83,7 +83,7 @@ def leg_parts(s):
 
 
 PARTS = leg_parts('L') + leg_parts('R') + [
-    ('chassis', 'P', ['top plate', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
+    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
                       'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post']
      + tray('L hip yaw') + tray('R hip yaw')),
     ('battery', 'B', ['battery 2S 800 mAh']),
@@ -115,15 +115,17 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head roll horn', 'B', ['head_roll flange']),
     ('head frame', 'P', ['head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'camera mount',
                          'L head hinge boss', 'R head hinge boss', 'lower shell', 'lower shell post', 'lower shell beam',
-                         'upper bill', 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
+                         'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +',
                          'beak cradle end -', 'beak cradle side +']),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288']),
     ('beak lid', 'P', ['beak cradle horn face']),
     ('Pi Zero 2 W', 'B', ['Pi Zero 2 W']),
     ('camera', 'B', ['camera']),
-    ('hood', 'P', ['head']),
+    ('hood', 'P', ['head', 'upper bill']),
     ('jaw', 'P', ['jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot']),
+    ('jaw soft insert', 'P', ['jaw soft']),
+    ('mouth roof', 'P', ['mouth roof']),
 ]
 
 
@@ -150,7 +152,7 @@ def sections():
         ]), dict(key=f'shin_{s}', title=f'The {nm} shin', on=[], steps=[
             ('The shin', [(f'{s} shin', None)], []),
             ('Plug in the cable, slide in the ankle servo', [(f'{s} ankle servo', IN)], []),
-            ('Screws: 4 flat-head into the rear boss, 2 at the far end', [], [rf'^{s} ankle boss screw', rf'^{a} cradle screw rear']),
+            ('Screws: 4 flat-head into the rear horn, 2 at the far end', [], [rf'^{s} ankle boss screw', rf'^{a} cradle screw rear']),
             ('The lid, 2 screws', [(f'{s} ankle lid', IN)], [rf'^{a} cradle screw horn']),
             ('Press the small bearing onto the stub', [(f'{s} ankle bearing inner', OUT)], []),
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),
@@ -215,7 +217,8 @@ def sections():
         ('Its lid, 2 screws', [('beak lid', NEG(Y))], [r'^beak cradle screw horn']),
         ('Pi and camera', [('Pi Zero 2 W', NEG(Z)), ('camera', NEG(X))], []),
         ('The hood, down over the frame', [('hood', NEG(Z))], []),
-        ('The jaw, up under the hood', [('jaw', Z)], []),
+        ('Glue in the soft mouth roof', [('mouth roof', Z)], []),
+        ('The jaw, with its soft insert glued in, up under the hood', [('jaw soft insert', Z), ('jaw', Z)], []),
         ('The hinge screws hold the jaw and the hood', [], [r'^[LR] hinge screw']),
     ])]
     return out

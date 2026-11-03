@@ -1,5 +1,5 @@
 {
- "_about": "Feetech STS3215 serial-bus servos, the servo of the LeRobot SO-101 arm (TheRobotStudio/SO-ARM100, Apache-2.0). Body size from SO-101's sts3215_03a_v1 mesh (45.4 x 24.8 x 39.6 mm with the horn; 45.2 x 24.7 x 35 mm body per retailers), mass 55 g. Torques from retailer listings (robotshop, core-electronics, eckstein), not an official datasheet: confirm before ordering. 'C018' is the 12 V, 1:345 version (30 kg.cm stall, 10 kg.cm rated, 0.222 s/60 deg); 'C001' the 7.4 V, 1:345 version (19.5 kg.cm stall at 7.4 V, 6.5 rated, 0.238 s/60 deg). 'box' is the body (x along the case length, output shaft axis along z, shaft offset 'shaft_x' from the case centre); the output horn adds 4.6 mm on the shaft side (that is the mesh's whole 39.6 mm less the 35 mm body; through the shaft, its 20 mm disc tops out 1.55 mm over the far part of the case's face and its centre screw 3.05 mm, the face stepping down 2.5 mm round the horn; spec/robot.py BEARINGS sets the real stack). Joint dynamics (armature, damping, friction) are Open Duck Mini v2 identification of the STS3215 (Open_Duck_Playground joints_properties.xml, Apache-2.0; kp 17.8, forcerange 3.35 N m there). C044 (1:191) and C046 (1:147) are the SO-101 leader arm's lower-ratio 7.4 V versions (same case and mass); their torque, speed, armature and damping are SCALED from the C001 by gear ratio (torque / r, speed x r, armature and damping / r^2), not measured: confirm before ordering. XL330_M288: ROBOTIS Dynamixel XL330-M288-T (e-manual: 34 x 20 x 26 mm, 18 g, 0.52 N m stall and 103 rpm at 5 V, 1:288.35); rated torque about a third of stall (an estimate); armature, damping and friction from microduck's identified 'chosen_actuator' (pollen-robotics/microduck_rl joints_properties.xml, Apache-2.0); shaft_x an estimate: confirm on ROBOTIS's drawing. 'bus' says which serial bus a servo sits on: Feetech and Dynamixel need separate adapters and supply rails (7.4 V and 5 V). XC330_M288: ROBOTIS XC330-M288-T, the XL330's case (20 x 34 x 26 mm) at 23 g with 0.93 N m stall and 81 rpm at 5 V (besomi, generationrobots listings; robotshop says 65 rpm): confirm on the e-manual; dynamics copied from the XL330 (an estimate). Mounting (2026-11-02): STS3215 case screws M2x6 self-tapping on the horn and rear faces, M3x6 into both horns (4 each, the rear horn on the passive rear shaft: no idler bearing needed); XL/XC330 M2x6 tap into the horns (rear boss too), M2x8 tap through the case's 4 frame holes. Prices: STS3215-C044 ~$24 (openelab) / ~$14 (Alibaba, SO-ARM100 BOM); XL330-M288-T ~$24; XC330-M288-T ~$103 (robotshop). The C044's stall torque is listed at 27.4 kg.cm on openelab, against 10.8 scaled here from the C001: confirm on the Feetech datasheet before relying on either.",
+ "_about": "Feetech STS3215 serial-bus servos, the servo of the LeRobot SO-101 arm (TheRobotStudio/SO-ARM100, Apache-2.0). Body size from SO-101's sts3215_03a_v1 mesh (45.4 x 24.8 x 39.6 mm with the horn; 45.2 x 24.7 x 35 mm body per retailers), mass 55 g. Torques from retailer listings (robotshop, core-electronics, eckstein), not an official datasheet: confirm before ordering. 'C018' is the 12 V, 1:345 version (30 kg.cm stall, 10 kg.cm rated, 0.222 s/60 deg); 'C001' the 7.4 V, 1:345 version (19.5 kg.cm stall at 7.4 V, 6.5 rated, 0.238 s/60 deg). 'box' is the body (x along the case length, output shaft axis along z, shaft offset 'shaft_x' from the case centre); the output horn adds 4.6 mm on the shaft side (that is the mesh's whole 39.6 mm less the 35 mm body; through the shaft, its 20 mm disc tops out 1.55 mm over the far part of the case's face and its centre screw 3.05 mm, the face stepping down 2.5 mm round the horn; spec/robot.py BEARINGS sets the real stack). Joint dynamics (armature, damping, friction) are Open Duck Mini v2 identification of the STS3215 (Open_Duck_Playground joints_properties.xml, Apache-2.0; kp 17.8, forcerange 3.35 N m there). C044 (1:191) and C046 (1:147) are the SO-101 leader arm's lower-ratio 7.4 V versions (same case and mass); their torque, speed, armature and damping are SCALED from the C001 by gear ratio (torque / r, speed x r, armature and damping / r^2), not measured: confirm before ordering. XL330_M288: ROBOTIS Dynamixel XL330-M288-T (e-manual: 34 x 20 x 26 mm, 18 g, 0.52 N m stall and 103 rpm at 5 V, 1:288.35); rated torque about a third of stall (an estimate); armature, damping and friction from microduck's identified 'chosen_actuator' (pollen-robotics/microduck_rl joints_properties.xml, Apache-2.0); shaft_x an estimate: confirm on ROBOTIS's drawing. 'bus' says which serial bus a servo sits on: Feetech and Dynamixel need separate adapters and supply rails (7.4 V and 5 V). XC330_M288: ROBOTIS XC330-M288-T, the XL330's case (20 x 34 x 26 mm) at 23 g with 0.93 N m stall and 81 rpm at 5 V (besomi, generationrobots listings; robotshop says 65 rpm): confirm on the e-manual; dynamics copied from the XL330 (an estimate). Mounting (2026-11-02): STS3215 case screws M2x6 self-tapping on the horn and rear faces, M3x6 into both horns (4 each, the rear horn on the passive rear shaft: no idler bearing needed); XL/XC330 M2x6 tap into the horns (rear boss too), M2x8 tap through the case's 4 frame holes. Prices: STS3215-C044 ~$24 (openelab) / ~$14 (Alibaba, SO-ARM100 BOM); XL330-M288-T ~$24; XC330-M288-T ~$103 (robotshop). The C044's stall torque is listed at 27.4 kg.cm on openelab, against 10.8 scaled here from the C001: confirm on the Feetech datasheet before relying on either. 'steps' (2026-11-03): the STS3215 case's real shape as boxes, from sections of SO-101's mesh: (u from the case's middle toward its far end), half width or null for the whole width, (a from the middle toward the horn face).",
  "STS3215_C018": {
   "box": [
    0.0452,
@@ -68,7 +68,54 @@
   "horn_centre_screw": "M3 x 6",
   "rear_horn": true,
   "horn_r": 0.01,
-  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide"
+  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide",
+  "steps": [
+   [
+    [
+     -0.0226,
+     0.0226
+    ],
+    null,
+    [
+     -0.01405,
+     0.01485
+    ]
+   ],
+   [
+    [
+     -0.0015,
+     0.0226
+    ],
+    null,
+    [
+     0.0148,
+     0.01735
+    ]
+   ],
+   [
+    [
+     0.004,
+     0.0226
+    ],
+    null,
+    [
+     -0.01555,
+     -0.014
+    ]
+   ],
+   [
+    [
+     0.0075,
+     0.0175
+    ],
+    0.0092,
+    [
+     -0.01735,
+     -0.0155
+    ]
+   ]
+  ],
+  "horn_stack_real": 0.00305
  },
  "STS3215_C001": {
   "box": [
@@ -79,9 +126,9 @@
   "shaft_x": 0.0125,
   "horn_h": 0.0046,
   "mass": 0.055,
-  "rated_nm": 0.64,
+  "rated_nm": 0.49,
   "peak_nm": 1.91,
-  "noload_rads": 4.4,
+  "noload_rads": 5.4,
   "volts": 7.4,
   "gear": 345.0,
   "armature_kgm2": 0.028,
@@ -138,7 +185,54 @@
   "horn_centre_screw": "M3 x 6",
   "rear_horn": true,
   "horn_r": 0.01,
-  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide"
+  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide",
+  "steps": [
+   [
+    [
+     -0.0226,
+     0.0226
+    ],
+    null,
+    [
+     -0.01405,
+     0.01485
+    ]
+   ],
+   [
+    [
+     -0.0015,
+     0.0226
+    ],
+    null,
+    [
+     0.0148,
+     0.01735
+    ]
+   ],
+   [
+    [
+     0.004,
+     0.0226
+    ],
+    null,
+    [
+     -0.01555,
+     -0.014
+    ]
+   ],
+   [
+    [
+     0.0075,
+     0.0175
+    ],
+    0.0092,
+    [
+     -0.01735,
+     -0.0155
+    ]
+   ]
+  ],
+  "horn_stack_real": 0.00305
  },
  "STS3215_C044": {
   "box": [
@@ -149,9 +243,9 @@
   "shaft_x": 0.0125,
   "horn_h": 0.0046,
   "mass": 0.055,
-  "rated_nm": 0.35,
-  "peak_nm": 1.06,
-  "noload_rads": 7.9,
+  "rated_nm": 0.88,
+  "peak_nm": 2.69,
+  "noload_rads": 9.0,
   "volts": 7.4,
   "gear": 191.0,
   "armature_kgm2": 0.0086,
@@ -208,7 +302,54 @@
   "horn_centre_screw": "M3 x 6",
   "rear_horn": true,
   "horn_r": 0.01,
-  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide"
+  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide",
+  "steps": [
+   [
+    [
+     -0.0226,
+     0.0226
+    ],
+    null,
+    [
+     -0.01405,
+     0.01485
+    ]
+   ],
+   [
+    [
+     -0.0015,
+     0.0226
+    ],
+    null,
+    [
+     0.0148,
+     0.01735
+    ]
+   ],
+   [
+    [
+     0.004,
+     0.0226
+    ],
+    null,
+    [
+     -0.01555,
+     -0.014
+    ]
+   ],
+   [
+    [
+     0.0075,
+     0.0175
+    ],
+    0.0092,
+    [
+     -0.01735,
+     -0.0155
+    ]
+   ]
+  ],
+  "horn_stack_real": 0.00305
  },
  "STS3215_C046": {
   "box": [
@@ -219,9 +360,9 @@
   "shaft_x": 0.0125,
   "horn_h": 0.0046,
   "mass": 0.055,
-  "rated_nm": 0.27,
-  "peak_nm": 0.81,
-  "noload_rads": 10.3,
+  "rated_nm": 0.47,
+  "peak_nm": 1.41,
+  "noload_rads": 11.1,
   "volts": 7.4,
   "gear": 147.0,
   "armature_kgm2": 0.0051,
@@ -278,7 +419,54 @@
   "horn_centre_screw": "M3 x 6",
   "rear_horn": true,
   "horn_r": 0.01,
-  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide"
+  "mount_source": "Feetech STS3215 STEP (SO-ARM100/STEP/SO100/STS3215_03a.step): holes read from its cylinder entities; screws from the LeRobot SO-101 assembly guide",
+  "steps": [
+   [
+    [
+     -0.0226,
+     0.0226
+    ],
+    null,
+    [
+     -0.01405,
+     0.01485
+    ]
+   ],
+   [
+    [
+     -0.0015,
+     0.0226
+    ],
+    null,
+    [
+     0.0148,
+     0.01735
+    ]
+   ],
+   [
+    [
+     0.004,
+     0.0226
+    ],
+    null,
+    [
+     -0.01555,
+     -0.014
+    ]
+   ],
+   [
+    [
+     0.0075,
+     0.0175
+    ],
+    0.0092,
+    [
+     -0.01735,
+     -0.0155
+    ]
+   ]
+  ],
+  "horn_stack_real": 0.00305
  },
  "XL330_M288": {
   "box": [
@@ -381,5 +569,57 @@
   "rear_horn": true,
   "horn_r": 0.008,
   "mount_source": "XL330 mesh (microduck_rl assets/xl330.stl, measured only): horn holes on 6 mm radius both ends; 4 frame holes through the case parallel to the shaft at +/-15 mm along, +/-8 mm across; screws from ROBOTIS box contents (6 x M2x6 TAP horn, 10 x M2x8 TAP frame)"
- }
+ },
+ "HD1910_C001": {
+  "box": [
+   0.034,
+   0.02,
+   0.023
+  ],
+  "shaft_x": 0.0075,
+  "horn_h": 0.003,
+  "mass": 0.021,
+  "rated_nm": 0.363,
+  "peak_nm": 1.47,
+  "noload_rads": 11.9,
+  "volts": 7.4,
+  "gear": 320.0,
+  "armature_kgm2": 0.0022,
+  "damping_nms": 0.053,
+  "friction_nm": 0.0048,
+  "bus": "feetech_scs",
+  "case_screw": "M2 x 8 tap (in the servo box)",
+  "case_pilot_d": 0.002,
+  "case_holes_through": [
+   [
+    0.015,
+    0.008
+   ],
+   [
+    0.015,
+    -0.008
+   ],
+   [
+    -0.015,
+    0.008
+   ],
+   [
+    -0.015,
+    -0.008
+   ]
+  ],
+  "horn_screw": "M2 x 6 tap (in the servo box)",
+  "horn_hole_d": 0.0016,
+  "horn_hole_r": 0.006,
+  "horn_hole_deg": [
+   0,
+   90,
+   180,
+   270
+  ],
+  "rear_horn": true,
+  "horn_r": 0.008,
+  "mount_source": "FEETECH wiki's HD-1910-C001 drawing (case 34 x 20 x 23, shaft 7.5 off centre, 29 across both horns, horn 16 dia, horn holes 1.6 on a 12 circle, case holes 30 x 16). Torque, speed and current: the seller's sheet copied in LuwuDynamics/xgoduck_hardware docs/BOM.md, at 7.4 V, +/- 10 %; the maker's wiki lists 9 kg cm at 4.8 V and 10 at 6 V, so it may be lower. Armature: the XL330's scaled by gear ratio squared; damping and friction: the XL330's. These three are estimates, for a coreless motor they may not fit"
+ },
+ "_sources": "Read 2026-11-03. XL330-M288 and XC330-M288: ROBOTIS e-Manual (emanual.robotis.com/docs/en/dxl/x/xl330-m288/), official: 3.7-6.0 V, 5.0 recommended; at 5 V 0.52 and 0.93 N m, 103 and 81 rpm; at 6 V 0.60 and 1.10 N m. STS3215-C001: feetechrc.com via search, 19.5 kg.cm and 52 rpm at 7.4 V; 5 kg.cm rated on a retailer. STS3215-C044: retailers only (Seeed, openelab, rcdrone): 27.4 kg.cm stall, 9 rated, 86 rpm at 7.4 V; WowRobo says about 16 kg.cm. No Feetech page found: 'core motor', so not the C001's motor geared down, and the old values scaled from the C001 were wrong by 2.5 x. STS3215-C046: retailers only: 14.4 kg.cm, 4.8 rated, 106 rpm. STS3215-C018, measured independently (robonine.com): about 35 kg.cm at 12 V; consistent to about 15 kg.cm in motion; overload protection cuts output to about 20 % under prolonged load; backlash 0.57-0.87 deg. The C044 and C046's armature and damping are still scaled from the C001 by gear ratio, which a different motor makes doubtful: measure them."
 }

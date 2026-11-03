@@ -19,7 +19,7 @@ RIGID = ('struct', 'actuator')
 PLATE_DIMS = {'x': (0, (1, 2)), 'y': (1, (0, 2)), 'z': (2, (0, 1))}   # a plate's axis, its outline's dims
 
 def load(path=None):
-    return json.load(open(path or os.path.join(ROOT, 'spec', 'robot.json'), encoding='utf-8'))
+    return json.load(open(path or os.path.join(ROOT, 'spec', 'robot.json' if os.environ.get('MILLI_RECIPE', 'hybrid') == 'hybrid' else f"robot_{os.environ['MILLI_RECIPE']}.json"), encoding='utf-8'))
 
 
 # ---------------------------------------------------------------- lofts
@@ -188,6 +188,11 @@ def mesh_of(g):
         T[:3, 3] = g['c']
         m.apply_transform(T)
         return m
+    if k == 'stepbox':                                    # a union of boxes: a servo case's real shape
+        import manifold3d as mf
+        ms = [mf.Manifold.cube([float(h - l) for l, h in zip(*b)]).translate([float(v) for v in b[0]]) for b in g['boxes']]
+        out = mf.Manifold.batch_boolean(ms, mf.OpType.Add).to_mesh()
+        return trimesh.Trimesh(np.asarray(out.vert_properties[:, :3], float), np.asarray(out.tri_verts, int))
     if k == 'rbox':
         f = g['fillet']
         half = np.array(g['size']) / 2 - f
@@ -306,6 +311,11 @@ def inside(g, p):
         t = d @ a
         rr = np.linalg.norm(d - np.outer(t, a), axis=1)
         return (np.abs(t) <= g['h'] / 2) & (rr <= g['r'])
+    if k == 'stepbox':
+        hit = np.zeros(len(p), bool)
+        for lo, hi in g['boxes']:
+            hit |= np.all((p >= np.array(lo)) & (p <= np.array(hi)), axis=1)
+        return hit
     if k == 'rbox':
         half = np.array(g['size']) / 2 - g['fillet']
         q = np.maximum(np.abs(p - g['c']) - half, 0)

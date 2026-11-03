@@ -162,8 +162,9 @@ class Builder:
     # -- shapes
     def loft(self, g):
         li = self.f.loftFeatures.createInput(NEW)
+        along_x = g.get('along') == 'x'                  # sections stacked along x: local (x, y, z) is world (z, y, x)
         for s in g['sections']:
-            pl = self.plane_at('z', s['z'])
+            pl = self.plane_at('x' if along_x else 'z', s['z'])
             sk = self.sketch(pl, g['name'])
             pts = []
             m = 24
@@ -172,7 +173,7 @@ class Builder:
                 c, si = math.cos(t), math.sin(t)
                 x = s['cx'] + s['a'] * math.copysign(abs(c) ** (2 / s['n']), c)
                 y = s['cy'] + s['b'] * math.copysign(abs(si) ** (2 / s['n']), si)
-                pts.append(sk.modelToSketchSpace(P((x, y, s['z']))))
+                pts.append(sk.modelToSketchSpace(P((s['z'], y, x) if along_x else (x, y, s['z']))))
             sp = sk.sketchCurves.sketchFittedSplines.add(coll(pts))
             sp.isClosed = True
             li.loftSections.add(sk.profiles.item(0))
@@ -347,7 +348,17 @@ class Builder:
         lines.addByTwoPoints(prev.endSketchPoint, first.startSketchPoint)
         return self.extrude(sk, [sk.profiles.item(0)], AX['x'], g['t'], g['name']).bodies.item(0)
 
+    def plate(self, g):
+        """A convex polygon extruded along its axis, from y0 by t. Points: axis 'y' (x, z), 'x' (y, z), 'z' (x, y)."""
+        axis = g.get('axis', 'y')
+        at = {'y': lambda u, v: (u, g['y0'], v), 'x': lambda u, v: (g['y0'], u, v), 'z': lambda u, v: (u, v, g['y0'])}[axis]
+        sk = self.sketch(self.plane_at(axis, g['y0']), g['name'])
+        pts = [sk.modelToSketchSpace(P(at(u, v))) for u, v in g['pts']]
+        for i in range(len(pts)):
+            sk.sketchCurves.sketchLines.addByTwoPoints(pts[i], pts[(i + 1) % len(pts)])
+        return self.extrude(sk, [sk.profiles.item(0)], AX[axis], g['t'], g['name']).bodies.item(0)
+
     def build(self, g):
-        body = getattr(self, {'loft': 'loft', 'ellipsoid': 'ellipsoid', 'cyl': 'cyl', 'rbox': 'rbox',
+        body = getattr(self, {'loft': 'loft', 'ellipsoid': 'ellipsoid', 'cyl': 'cyl', 'rbox': 'rbox', 'plate': 'plate',
                               'capsule': 'capsule', 'revolve': 'revolve', 'prism': 'prism'}[g['kind']])(g)
         return body
