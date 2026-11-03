@@ -570,5 +570,56 @@
   "horn_r": 0.008,
   "mount_source": "XL330 mesh (microduck_rl assets/xl330.stl, measured only): horn holes on 6 mm radius both ends; 4 frame holes through the case parallel to the shaft at +/-15 mm along, +/-8 mm across; screws from ROBOTIS box contents (6 x M2x6 TAP horn, 10 x M2x8 TAP frame)"
  },
+ "HD1910_C001": {
+  "box": [
+   0.034,
+   0.02,
+   0.023
+  ],
+  "shaft_x": 0.0075,
+  "horn_h": 0.003,
+  "mass": 0.021,
+  "rated_nm": 0.363,
+  "peak_nm": 1.47,
+  "noload_rads": 11.9,
+  "volts": 7.4,
+  "gear": 320.0,
+  "armature_kgm2": 0.0022,
+  "damping_nms": 0.053,
+  "friction_nm": 0.0048,
+  "bus": "feetech_scs",
+  "case_screw": "M2 x 8 tap (in the servo box)",
+  "case_pilot_d": 0.002,
+  "case_holes_through": [
+   [
+    0.015,
+    0.008
+   ],
+   [
+    0.015,
+    -0.008
+   ],
+   [
+    -0.015,
+    0.008
+   ],
+   [
+    -0.015,
+    -0.008
+   ]
+  ],
+  "horn_screw": "M2 x 6 tap (in the servo box)",
+  "horn_hole_d": 0.0016,
+  "horn_hole_r": 0.006,
+  "horn_hole_deg": [
+   0,
+   90,
+   180,
+   270
+  ],
+  "rear_horn": true,
+  "horn_r": 0.008,
+  "mount_source": "FEETECH wiki's HD-1910-C001 drawing (case 34 x 20 x 23, shaft 7.5 off centre, 29 across both horns, horn 16 dia, horn holes 1.6 on a 12 circle, case holes 30 x 16). Torque, speed and current: the seller's sheet copied in LuwuDynamics/xgoduck_hardware docs/BOM.md, at 7.4 V, +/- 10 %; the maker's wiki lists 9 kg cm at 4.8 V and 10 at 6 V, so it may be lower. Armature: the XL330's scaled by gear ratio squared; damping and friction: the XL330's. These three are estimates, for a coreless motor they may not fit"
+ },
  "_sources": "Read 2026-11-03. XL330-M288 and XC330-M288: ROBOTIS e-Manual (emanual.robotis.com/docs/en/dxl/x/xl330-m288/), official: 3.7-6.0 V, 5.0 recommended; at 5 V 0.52 and 0.93 N m, 103 and 81 rpm; at 6 V 0.60 and 1.10 N m. STS3215-C001: feetechrc.com via search, 19.5 kg.cm and 52 rpm at 7.4 V; 5 kg.cm rated on a retailer. STS3215-C044: retailers only (Seeed, openelab, rcdrone): 27.4 kg.cm stall, 9 rated, 86 rpm at 7.4 V; WowRobo says about 16 kg.cm. No Feetech page found: 'core motor', so not the C001's motor geared down, and the old values scaled from the C001 were wrong by 2.5 x. STS3215-C046: retailers only: 14.4 kg.cm, 4.8 rated, 106 rpm. STS3215-C018, measured independently (robonine.com): about 35 kg.cm at 12 V; consistent to about 15 kg.cm in motion; overload protection cuts output to about 20 % under prolonged load; backlash 0.57-0.87 deg. The C044 and C046's armature and damping are still scaled from the C001 by gear ratio, which a different motor makes doubtful: measure them."
 }

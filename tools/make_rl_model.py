@@ -36,7 +36,9 @@ JOINT = {'L_hip_yaw': ('left_hip_yaw', -1), 'R_hip_yaw': ('right_hip_yaw', -1), 
          'head_yaw': ('head_yaw', 1), 'head_roll': ('head_roll', -1)}
 ORDER = ['L_hip_yaw', 'neck_pitch', 'R_hip_yaw']   # the trunk's children, in the trainer's joint order
 ROOT_Z = 0.17                                      # the root body's height: about the trunk's middle
-KP = {'STS3215_C001': 17.8, 'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52}
+KP = {'STS3215_C001': 17.8, 'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52,
+      # an estimate: the STS3215's gain by gear ratio, at the position gain XGO-Duck's runtime starts from (5 against a Feetech default of 32). Measure it
+      'HD1910_C001': 17.8 * 320 / 345 * 5 / 32}
 # An SO-101 pair has 7 C001, 2 C044 and 3 C046. The C046s stay at the hip yaws, and the 2 C044s go to the knees, the legs' fastest joints
 # in the C044 policy's walk (4.8 rad/s RMS). The same case throughout, so only the servo's numbers change.
 SALVAGE = {f'{s}_{j}': 'STS3215_C001' for s in 'LR' for j in ('hip_roll', 'hip_pitch', 'ankle_pitch')}
