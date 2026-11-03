@@ -1,5 +1,6 @@
-"""milli as a robot for the microduck_rl trainer: python tools/make_rl_model.py OUT_DIR
+"""milli as a robot for the microduck_rl trainer: python tools/make_rl_model.py OUT_DIR [--salvage]
 
+--salvage: the servos from a dismantled SO-101 pair (SALVAGE below), to find out if they can walk, before the spec changes.
 Writes OUT_DIR/milli.xml, one mesh per link, and home.json. Follows that trainer's conventions, so its rewards, symmetry and
 observations apply: microduck's link, joint, site and sensor names, its joint directions and joint order, the beak locked.
 
@@ -33,7 +34,10 @@ JOINT = {'L_hip_yaw': ('left_hip_yaw', -1), 'R_hip_yaw': ('right_hip_yaw', -1), 
          'head_yaw': ('head_yaw', 1), 'head_roll': ('head_roll', -1)}
 ORDER = ['L_hip_yaw', 'neck_pitch', 'R_hip_yaw']   # the trunk's children, in the trainer's joint order
 ROOT_Z = 0.17                                      # the root body's height: about the trunk's middle
-KP = {'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52}
+KP = {'STS3215_C001': 17.8, 'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52}
+# An SO-101 pair has 7 C001, 2 C044 and 3 C046. The C046s stay at the hip yaws, and the 2 C044s go to the knees, the legs' fastest joints
+# in the C044 policy's walk (4.8 rad/s RMS). The same case throughout, so only the servo's numbers change.
+SALVAGE = {f'{s}_{j}': 'STS3215_C001' for s in 'LR' for j in ('hip_roll', 'hip_pitch', 'ankle_pitch')}
 AXIS = {'x': np.array([1, 0, 0]), 'y': np.array([0, 1, 0]), 'z': np.array([0, 0, 1])}
 
 
@@ -66,6 +70,9 @@ def main():
     out = sys.argv[1]
     os.makedirs(os.path.join(out, 'meshes'), exist_ok=True)
     spec = G.load()
+    if '--salvage' in sys.argv:
+        for j in spec['joints']:
+            j['act'] = SALVAGE.get(j['name'], j['act'])
     S = C.Solids(spec)
     R = G.Robot(spec)
     inert = MM.link_inertials(spec, S)

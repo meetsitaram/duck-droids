@@ -4,11 +4,16 @@ A small open biped built to look like Pollen Robotics' microduck, from servos yo
 knees and ankles, ROBOTIS Dynamixel XC330s and XL330s at the neck and head. One Python spec generates the shapes, the checks,
 the pictures and the parts list. milli is not made by or connected with Pollen Robotics.
 
+![milli walking in MuJoCo under a policy still in training, drifting round in a circle](docs/images/walk/milli_walk.gif)
+
+milli under a trained policy in MuJoCo ([MP4, 12 s, sharper](docs/images/walk/milli_walk.mp4)). This is simulation only, part way through
+training (iteration 1750 of 3000). It stays up, but told to walk straight at 0.3 m/s, this robot circles, turning about 310 degrees in 10 s.
+[Train it yourself](docs/TRAINING.md).
+
 ![milli being built, then walking and moving its head](docs/images/assembly/milli_build.gif)
 
-The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement is an
-animation from the leg's kinematics, tested for joint limits and collisions. It is not yet a physics simulation or a trained
-walk.
+The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement in this one is an
+animation from the leg's kinematics, tested for joint limits and collisions, not a physics simulation or a trained walk.
 
 ## Status
 
@@ -21,8 +26,8 @@ A design, not yet built. Nothing here has been printed or tested on real parts. 
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.
 - **Foot switches:** a microswitch in each shoe, as an input to a walking policy, as Open Duck Mini's.
 - **Printable parts:** STLs with their screw holes in [prints/](prints/README.md). Strength so far is a hand estimate: print one joint first.
-- **Open:** wiring, speaker and microphone, the rod from the beak servo to the jaw, the Fusion model, and a walking
-  simulation. Walking is untested.
+- **Open:** wiring, speaker and microphone, the rod from the beak servo to the jaw, the Fusion model, and a walk that goes
+  straight. Walking is in training, in simulation only.
 
 ## Build it
 

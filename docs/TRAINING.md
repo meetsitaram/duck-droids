@@ -1,30 +1,80 @@
 # Training milli to walk
 
-Uses [microduck_rl](https://github.com/pollen-robotics/microduck_rl), Pollen's trainer (mjlab, MuJoCo Warp, PPO; Apache-2.0 code), in a local copy at
-`C:\Users\PC\projects\milli-rl`, branch `milli`. Its meshes are CC BY-NC-SA, so that copy stays off this repo.
+Uses [microduck_rl](https://github.com/pollen-robotics/microduck_rl), Pollen's trainer (mjlab, MuJoCo Warp, PPO). Its code is Apache-2.0 and its meshes are CC BY-NC-SA, so
+this repo doesn't include a copy: [trainer/milli_trainer.patch](../trainer/milli_trainer.patch) adds milli to it, and milli's model is generated from this repo's spec.
+
+## Where it stands
+
+**Not walking straight yet.** Results from the checkpoint at iteration 2000 of 3000, told to walk straight ahead at 0.3 m/s for 8 s, 128 robots, randomization on and pushes off:
+
+| Measure | Result |
+|---|---|
+| Stayed up | 100 % |
+| Start-to-end speed, median | 0.24 m/s |
+| Turning, median robot | 0.29 rad/s (about 17 deg/s) |
+| Turning, 90th percentile | 0.68 rad/s |
+
+This is simulation only, and nothing has run on a real robot. An earlier check, at iteration 750, had the hip yaw servos at stall a third of the time.
 
 ## Set it up
 
-1. Clone microduck_rl next to this repo, and add `robot/milli_constants.py`, `tasks/milli_velocity_env_cfg.py` and the task's registration.
-2. Make its environment with `uv sync` (Python 3.12). On Windows that installs a CPU-only PyTorch, so replace it:
+You need an NVIDIA GPU (the scripts ask for `cuda:0`), Python 3.12 and [uv](https://docs.astral.sh/uv/). The steps below were tested on Windows with an RTX 5090, apart from the fresh `uv sync`, which an earlier setup ran.
+
+1. Clone the trainer next to this repo, at the commit the patch was made against, and apply the patch:
+
+```bash
+git clone https://github.com/pollen-robotics/microduck_rl ../microduck_rl
+```
+
+```bash
+git -C ../microduck_rl checkout bae39f5
+```
+
+```bash
+git -C ../microduck_rl apply --ignore-whitespace "$PWD/trainer/milli_trainer.patch"
+```
+
+2. Make the trainer's environment, and activate it. Use the activated environment's commands from here on, as `uv run` can put the CPU-only PyTorch back:
+
+```bash
+cd ../microduck_rl
+```
+
+```bash
+uv sync
+```
+
+```bash
+source .venv/bin/activate
+```
+
+On Windows, use `.venv\Scripts\activate`. `uv sync` installs a CPU-only PyTorch there, so replace it:
 
 ```bash
 uv pip install "torch==2.9.1" --reinstall-package torch --index-url https://download.pytorch.org/whl/cu128
 ```
 
-3. Generate milli's model into the trainer, from whichever branch's design you want. Rerun this after any design change:
+3. In another terminal, in this repo, generate milli's two models into the trainer. The trainer won't import without both. This needs a Python with numpy, scipy, trimesh, manifold3d, mujoco, Pillow, imageio and imageio-ffmpeg. Rerun it after any design change:
 
 ```bash
-python tools/make_rl_model.py ../milli-rl/src/mjlab_microduck/robot/milli
+python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli
+```
+
+```bash
+python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli_salvage --salvage
 ```
 
 ## Check before a long run
 
-`scripts/milli_sanity.py`, in the trainer: resets 256 robots and holds still with zero actions. Soles on the floor, none fall in 2 s. A smoke test only proves the code runs.
+In the trainer. This resets 256 robots and holds still with zero actions: soles on the floor, and few or none falling in 2 s.
+
+```bash
+PYTHONUTF8=1 python scripts/milli_sanity.py
+```
 
 ## Train
 
-Smoke test first, then the run (RTX 5090, 4096 robots). `WANDB_MODE=offline` keeps the logs local.
+Smoke test first, which only proves the code runs. Then the full run: 4096 robots, 3000 iterations, about 75 minutes alone on an RTX 5090. `WANDB_MODE=offline` keeps the logs local.
 
 ```bash
 WANDB_MODE=offline PYTHONUTF8=1 train Mjlab-Velocity-Flat-Milli --env.scene.num-envs 64 --agent.max_iterations 5
@@ -35,6 +85,30 @@ WANDB_MODE=offline PYTHONUTF8=1 train Mjlab-Velocity-Flat-Milli --env.scene.num-
 ```
 
 Checkpoints go to `logs/rsl_rl/milli/`, every 250 iterations.
+
+`Mjlab-Velocity-Flat-Milli-Salvage` trains the same recipe on the servos of a dismantled SO-101 pair: C046 at the hip yaws, C044 at the knees, C001 at hip roll, hip pitch and ankle. Its checkpoints go to `logs/rsl_rl/milli_salvage/`. That run hasn't been tested for walking yet.
+
+## Test a checkpoint
+
+Don't judge from the training reward. In the trainer, this runs fixed commands and reports survival, speed, each servo's load and speed, and each robot's real path and turning. It uses the latest checkpoint unless you name one. Add `--salvage` for the salvage task:
+
+```bash
+PYTHONUTF8=1 python scripts/milli_eval.py --envs 512
+```
+
+The per-robot numbers matter: mean speed in the body's frame counts walking in a circle as speed, and left and right turners cancel in an average.
+
+## See the walk
+
+Record a walk in the trainer, then render it from this repo in milli's colours, in MuJoCo's classic blue scene:
+
+```bash
+PYTHONUTF8=1 python scripts/milli_eval.py --envs 64 --only "forward 0.3" --seconds 12 --traj walk.npz
+```
+
+```bash
+python tools/render_walk.py ../microduck_rl/walk.npz walk.mp4
+```
 
 ## What's different from microduck's recipe
 
