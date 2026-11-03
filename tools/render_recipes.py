@@ -58,7 +58,7 @@ def main():
     print('pixels per metre, by height and width, each recipe:', [round(s) for s in scales])
     assert max(scales) / min(scales) < 1.06, 'the picture and the spec disagree'
     H = max(b['h'] for b in bots)
-    W = sum(b['w'] for b in bots) + GAP * 3 + 120
+    W = sum(b['w'] for b in bots) + GAP * len(bots) + 120
     top, under = 70, 330
     C_ = Image.new('RGB', (W, top + H + under), BG)
     D = ImageDraw.Draw(C_)
