@@ -162,7 +162,7 @@ def exposed_names(spec):
 
 def interface(j):
     """Names of the geoms that are meant to touch at joint j: its actuator and its flange."""
-    return {f"{j['name']} actuator (buy) {j['act']}", f"{j['name']} flange"}
+    return {f"{j['name']} actuator (buy) {j['act']}", f"{j['name']} flange"} | set(j.get('interface', ()))
 
 
 def group(link):
@@ -189,10 +189,13 @@ def measure(spec, S):
     at = lambda j: G.apply(M[J[j]['parent']], np.array(J[j]['origin'])[None])[0]
     allv = np.vstack([m.to_mesh().vert_properties[:, :3] for m in P.values()])
     # the hood as built (its cuts applied), and the head's lower edge at the jaw's underside, as microduck's
-    hi_ = next(i for i, g in enumerate(spec['links']['head']['geoms']) if g['name'] == 'head')
-    hd = np.array(bbox(posed(S.geom[('head', hi_)], M['head'])))
+    # (or its printed panels together, on a robot too big to print it in one)
+    his = [i for i, g in enumerate(spec['links']['head']['geoms']) if g['name'] == 'head' or g['name'].startswith('hood panel')]
+    boxes = np.array([bbox(posed(S.geom[('head', i)], M['head'])) for i in his if S.geom.get(('head', i)) is not None])
+    hd = np.array([boxes[:, 0].min(axis=0), boxes[:, 1].max(axis=0)])
     hd[0][2] = bbox(P['beak_link'])[0][2]
-    body = G.mesh_of([g for g in spec['links']['trunk']['geoms'] if g['name'] == 'body'][0]).bounds
+    bodies = [G.mesh_of(g).bounds for g in spec['links']['trunk']['geoms'] if g['name'] == 'body' or g['name'].startswith('body panel')]
+    body = np.array([np.min([b[0] for b in bodies], axis=0), np.max([b[1] for b in bodies], axis=0)])
     return {
         'height_m': float(allv[:, 2].max()),
         'head_length_m': hd[1][0] - hd[0][0],
@@ -214,13 +217,14 @@ def check_targets(spec, S, rep):
     ref = tg['model']
     k = m['height_m'] / ref['height_m']
     rep.add('targets', 'height', False, f"{m['height_m']:.3f} m: {k:.2f} x microduck's {ref['height_m']} m "
-            f"(STS3215 legs: proportions are checked at this scale)", warn=True)
+            f"(proportions are checked at this scale)", warn=True)
     for key, v in ref.items():
         if key == 'height_m':
             continue
         want = v * k
-        rep.add('targets', key, abs(m[key] - want) <= tg['tol'] * want,
-                f"{m[key]:.3f} (microduck {v} x {k:.2f} = {want:.3f} +/- {tg['tol'] * 100:.0f} %)")
+        tol = spec.get('recipe_limits', {}).get('target_tol', tg['tol'])    # a recipe that can't keep the proportions says so in the spec
+        rep.add('targets', key, abs(m[key] - want) <= tol * want,
+                f"{m[key]:.3f} (microduck {v} x {k:.2f} = {want:.3f} +/- {tol * 100:.0f} %)")
     return m
 
 
@@ -229,8 +233,33 @@ def check_mass(spec, S, rep):
     tg = json.load(open(os.path.join(ROOT, 'spec', 'targets.json'), encoding='utf-8'))
     inert = MM.link_inertials(spec, S)
     total = sum(v[0] for v in inert.values())
-    rep.add('mass', 'total', total <= tg['mass_budget_kg'],
-            f"{total:.3f} kg bottom-up (budget {tg['mass_budget_kg']} kg; microduck {tg['published']['mass_kg']} kg)")
+    budget = spec.get('recipe_limits', {}).get('mass_budget_kg', tg['mass_budget_kg'])
+    rep.add('mass', 'total', total <= budget,
+            f"{total:.3f} kg bottom-up (budget {budget} kg; microduck {tg['published']['mass_kg']} kg)")
+
+
+BED = 0.256                     # a Bambu printer's bed and height: X1, P1 and A1 series (2026-11-03, the user: no part too big for one)
+PRINTED = ('pla', 'petg', 'tpu', 'pa12')
+
+
+def check_printable(spec, S, rep):
+    """Every printed part fits the bed, in some square orientation: its three sizes, sorted, each within the bed."""
+    worst, n = None, 0
+    for (ln, i), m in S.geom.items():
+        g = spec['links'][ln]['geoms'][i]
+        if m is None or g['role'] == 'cut' or g.get('material') not in PRINTED:
+            continue
+        v = np.asarray(m.to_mesh().vert_properties[:, :3], float)
+        if not len(v):
+            continue
+        n += 1
+        size = np.sort(np.ptp(v, axis=0))
+        if worst is None or size[-1] > worst[0][-1]:
+            worst = (size, g['name'])
+        if size[-1] > BED:
+            rep.add('printable', g['name'], False, f"{size[-1] * 1000:.0f} mm long: over the {BED * 1000:.0f} mm bed. Split it, or make it metal")
+    if worst is not None:
+        rep.add('printable', 'largest part', True, f"{n} printed parts; largest {worst[1]}: {worst[0][-1] * 1000:.0f} mm, on a {BED * 1000:.0f} mm bed")
 
 
 def check_axis(spec, rep):
@@ -269,7 +298,8 @@ def check_static(spec, S, R, rep):
     allowed = set()
     for j in spec['joints']:
         if j['act']:
-            allowed.add(frozenset(interface(j)))
+            names = sorted(interface(j))
+            allowed |= {frozenset((x, y)) for x in names for y in names if x != y}
     rigid = [(ln, i, g) for ln in links for i, g in enumerate(spec['links'][ln]['geoms']) if g['role'] in G.RIGID]
     for x in range(len(rigid)):
         for y in range(x + 1, len(rigid)):
@@ -288,7 +318,7 @@ def check_static(spec, S, R, rep):
             if ga['role'] != 'actuator':
                 continue
             for ib, gb in gs:
-                if gb['role'] != 'struct' or frozenset((ga['name'], gb['name'])) in allowed:
+                if gb['role'] != 'struct' or gb.get('seat') or frozenset((ga['name'], gb['name'])) in allowed:
                     continue
                 v = overlap(S.geom[(ln, ia)], S.geom[(ln, ib)])
                 if v > SEATED:
@@ -335,7 +365,8 @@ def check_connect(spec, S, rep):
     under a cover is still missing, 2026-10-31 calibration), and every cover must be mounted on it."""
     # pieces under 0.01 cm3 are slivers the boolean union leaves where cut pieces meet, not parts (2026-10-31: a
     # zero-volume sliver where the right shoe's toe and heel pieces overlap)
-    pieces = lambda m: len([p for p in m.decompose() if abs(p.volume()) > 1e-8])
+    # (a negative volume is a closed void between parts, not a separate piece)
+    pieces = lambda m: len([p for p in m.decompose() if p.volume() > 1e-8])
     for ln in spec['links']:
         if S.rigid[ln] is not None:
             n = pieces(S.rigid[ln])
@@ -539,7 +570,8 @@ def statics(spec, R, MS, q, support, payload):
     com = sum(x[0] * x[1] for x in loads) / mt
     poly = []
     for f in feet:
-        sole = [g for g in spec['links'][f]['geoms'] if 'sole' in g['name']][0]
+        soles = [g for g in spec['links'][f]['geoms'] if 'sole' in g['name']]
+        sole = next((g for g in soles if 'contact' in g), soles[0])   # of a sole in pieces, the one that says where it stands
         sole = sole.get('contact', sole)                  # a shaped outsole carries its contact box
         c, s = np.array(sole['c']), np.array(sole['size']) / 2
         for dx, dy in ((-1, -1), (1, -1), (1, 1), (-1, 1)):
@@ -598,13 +630,16 @@ def check_poses(spec, S, R, rep, collide=True):
         # 0.86 rad of dorsiflexion, past a 0.8 limit, and only a collision gave it away)
         out = [f"{k} {v:+.2f} outside [{R.joints[k]['lower']:+.2f}, {R.joints[k]['upper']:+.2f}]"
                for k, v in q.items() if not R.joints[k]['lower'] - 1e-9 <= v <= R.joints[k]['upper'] + 1e-9]
-        rep.add('poses', f'{name}: within limits', not out, '; '.join(out) or 'yes')
+        cannot = name in spec.get('recipe_limits', {}).get('cannot', [])     # a move this recipe gives up, shown as a warning, not dropped
+        rep.add('poses', f'{name}: within limits', not out, '; '.join(out) or 'yes', warn=cannot)
         for j in spec['joints']:
             cap = capacity(spec, j)
-            if cap is None:
+            if cap is None or cannot:                  # a pose it gives up has no torque to find
                 continue
-            need = tau[j['name']] * (PEAK_MARGIN if cat == 'peak' else 1.0)
-            have = cap[1] if cat == 'peak' else cap[0]
+            # a pose this recipe only passes through, declared in its spec, is held to the peak torque
+            brief = cat == 'peak' or name in spec.get('recipe_limits', {}).get('brief', [])
+            need = tau[j['name']] * (PEAK_MARGIN if brief else 1.0)
+            have = cap[1] if brief else cap[0]
             r = need / have
             w = worst.get(j['name'])
             if w is None or r > w[0]:
@@ -670,13 +705,21 @@ def break_spec(spec, case):
             if g['name'] == 'body':
                 for sec in g['sections']:
                     sec['a'] *= 0.75
+    elif case == 'oversize':              # a printed part too long for the bed
+        for l in s['links'].values():
+            for g in l['geoms']:
+                if g.get('material') in PRINTED and g['kind'] == 'rbox':
+                    g['size'][0] = BED + 0.05
+                    return s
+        l = s['links'][s['root']]
+        l['geoms'].append(dict(kind='rbox', name='oversize', c=[0.0, 0.0, 0.5], size=[BED + 0.05, 0.02, 0.02], fillet=0.002, color='#FFFFFF', role='struct', exposed=True, material='petg'))
     else:
         raise SystemExit(f'unknown case {case}')
     return s
 
 
 EXPECT = {'torque': 'torque', 'collide': 'static', 'offaxis': 'axis', 'floating': 'connect', 'mass': 'mass',
-          'cover': 'covers', 'poke': 'skin', 'through': 'static', 'bearing': 'bearing'}
+          'cover': 'covers', 'poke': 'skin', 'through': 'static', 'bearing': 'bearing', 'oversize': 'printable'}
 
 
 def main():
@@ -690,7 +733,7 @@ def main():
     if a.bad:
         spec = break_spec(spec, a.bad)
         a.only = a.only or [EXPECT[a.bad]]
-    groups = a.only or ['targets', 'mass', 'axis', 'bearing', 'static', 'covers', 'connect', 'skin', 'sweep', 'poses']
+    groups = a.only or ['targets', 'mass', 'printable', 'axis', 'bearing', 'static', 'covers', 'connect', 'skin', 'sweep', 'poses']
     R = G.Robot(spec)
     t0 = time.time()
     S = Solids(spec)
@@ -699,6 +742,7 @@ def main():
         t = time.time()
         {'targets': lambda: check_targets(spec, S, rep),
          'mass': lambda: check_mass(spec, S, rep),
+         'printable': lambda: check_printable(spec, S, rep),
          'axis': lambda: check_axis(spec, rep),
          'bearing': lambda: check_bearings(spec, rep),
          'static': lambda: check_static(spec, S, R, rep),

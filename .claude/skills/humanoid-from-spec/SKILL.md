@@ -8,7 +8,7 @@ description: Design and build a humanoid robot, or a look-alike of a reference r
 This is the method behind echo (github.com/meetsitaram/echo). echo is a 1.727 m, 29-joint humanoid built to Figure 03's published
 specs and look, with an Asimov 1-style internal layout and off-the-shelf RobStride actuators. Start from that repo:
 its tools read `spec/robot.json` and work for any robot described the same way. "Make it yours" below lists what is
-echo-specific. milli (github.com/meetsitaram/milli), a 0.31 m microduck look-alike on Feetech STS3215 and ROBOTIS
+echo-specific. milli (github.com/meetsitaram/duck-droids), a 0.31 m microduck look-alike on Feetech STS3215 and ROBOTIS
 XL330 servos, was forked from echo and added the method for matching a robot whose own model is available:
 `references/matching-a-reference-robot.md`, round by round.
 
@@ -109,6 +109,8 @@ to be a grey knit hood with a black visor, visible only in a close-up.
   idler the other, bridged clear of the case's swept reach), or a thin bearing round the horn, on the joint's axis, as
   microduck's (slice the reference through each joint's axis to see which). A post has to clear the case's corners whatever
   the range, so on a small robot it shows; a bearing never sweeps.
+- **Calculate a mechanism before offering it, from the range the motion really uses.** Compare joint strength with robots of the same class, read from their own models, by weight x leg length.
+- **Look for proven examples before picking a mechanism.** A neat calculation isn't evidence. Search for who has used that drive, bearing or material at this size and load, and name them when proposing it. If none turn up, say so, as it's a warning sign and the user's call. (A roller-chain knee on a large robot passed its torque numbers; a search only found chain on small robots, with larger machines using linkages, cables or belts. Search again when the size changes: what works at one scale may have no precedent at another.)
 - **Torque.** Size each joint with the task poses in step 4, not by feel. Trade capability for looks only knowingly
   and with the user: echo took smaller elbow motors to match Figure's arms, at 3 kg continuous instead of 20.
 - **Credit references.** Note the licence of every robot you borrow from. Asimov 1 is CERN-OHL-S-2.0 hardware and
@@ -210,6 +212,21 @@ Put the new model in a review page (the web viewer, with movies and renders) and
 Then commit and push, with the README video re-rendered and every quoted number copied from the reports. Add a
 `LESSONS.md` row for each issue the round hit and how it was fixed. Never publish the reference robot's frames,
 panels made from them, raw motion captures or anyone's trademark.
+
+## Before you call it buildable
+
+Checks that pass mean only what they test. Collision and fit checks say nothing about whether a part can be printed, or holds. Say so to the user, and before a design counts as ready, have these:
+
+- **Bought parts at their real shape:** sections of the maker's mesh, not a bounding box (steps, bosses and lumps change what a seat can be).
+- **Every screw in the spec:** size, length, position, direction. Parts held by nothing show up.
+- **The build order as data**, with paths: each part slides in without cutting what's already on; a key reaches each screw at that moment; the thread bites something; the head clamps something (milli's `tools/assembly.py`).
+- **Per printed part, not per link:** one piece without bought parts in it; walls at the printer's minimum; fits the bed; exported with its holes, hollow where it is hollow (`tools/buildable.py`, `tools/export_prints.py`).
+- **A load estimate through each section on the load path**, at a landing's load, against the material across its layers. A hand estimate finds weak parts; it doesn't replace FEA or a test.
+- **Limits scaled to the robot:** a volume limit from a 1.7 m robot hides real collisions on a 0.3 m one.
+- **Sim results sanity-checked:** the floor carries the weight, the whole robot collides, inherited tools have really run on this robot, each joint's speed is under its actuator's, and every sim parameter's source (measured, scaled, copied, guessed) is written down.
+- **One joint printed and assembled** with real parts before buying the rest.
+
+Each of these has a `--bad` case. When a look-alike's reference does something odd, check that before "fixing" it.
 
 ## Each round
 

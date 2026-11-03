@@ -9,7 +9,7 @@ Watch each animation, then do the same. Parts: [BOM.md](../BOM.md). The right si
 
 ## 0. Before you start
 
-1. **Print everything** (list in the BOM). Before printing all of it, test: a horn in a bearing, a bearing in a lid's seat, and a servo in a tray.
+1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
 2. **Set each servo's ID on its own**, before any are chained: Feetech 1-8, Dynamixel 1-7, on their separate buses. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **One thing the pictures leave out:** the STS3215's face steps down 2.5 mm round its horn, and each lid's floor fills that step.
@@ -38,11 +38,11 @@ Then the same for the right side, mirrored.
 
 ![2. Shins and ankles](images/assembly/shin_L.gif)
 
-> ⚠ The rear-boss screws go in before the bearing: the bearing covers them.
+> ⚠ The rear-horn screws go in before the bearing: the bearing covers them.
 
 1. The shin
 2. Plug in the cable, slide in the ankle servo
-3. Screws: 4 flat-head into the rear boss, 2 at the far end
+3. Screws: 4 flat-head into the rear horn, 2 at the far end
 4. The lid, 2 screws
 5. Press the small bearing onto the stub
 6. Horn on, servo at mid-range
@@ -158,8 +158,9 @@ Then the same for the right side, mirrored.
 6. Its lid, 2 screws
 7. Pi and camera
 8. The hood, down over the frame
-9. The jaw, up under the hood
-10. The hinge screws hold the jaw and the hood
+9. Glue in the soft mouth roof
+10. The jaw, with its soft insert glued in, up under the hood
+11. The hinge screws hold the jaw and the hood
 
 ## Not in this guide yet
 

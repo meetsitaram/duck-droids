@@ -371,7 +371,7 @@ def run(test=False):
         for items, _, _ in mv:
             for n in items:
                 if len(items) == 1 and n in sc.B.parts and any('actuator (buy)' in g for g in sc.B.parts[n]['geoms']):
-                    tinted[n] = (FEETECH if n[2:].startswith(('hip', 'knee')) else DYNAMIXEL, nframes)
+                    tinted[n] = (FEETECH if any('STS3215' in g for g in sc.B.parts[n]['geoms']) else DYNAMIXEL, nframes)
         for k in range(PER_BEAT):
             t = min(1.0, k / max(1, PER_BEAT - 2))
             e = t * t * (3 - 2 * t)
