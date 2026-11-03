@@ -57,10 +57,10 @@ index 0000000..6fa4c5a
 +    print(" ", show(s))
 diff --git a/scripts/milli_eval.py b/scripts/milli_eval.py
 new file mode 100644
-index 0000000..e819256
+index 0000000..88a52bb
 --- /dev/null
 +++ b/scripts/milli_eval.py
-@@ -0,0 +1,164 @@
+@@ -0,0 +1,179 @@
 +"""Can milli walk on these servos? Runs a checkpoint through fixed commands, with the training's randomization on, and reports.
 +
 +  python scripts/milli_eval.py [CHECKPOINT.pt] [--envs 512] [--video OUT.mp4]
@@ -95,15 +95,18 @@ index 0000000..e819256
 +ap.add_argument("--video")
 +ap.add_argument("--out", default="milli_eval.json")
 +ap.add_argument("--salvage", action="store_true", help="the model on a dismantled SO-101 pair's servos")
++ap.add_argument("--recipe", default="hybrid", help="the servo recipe: hybrid or dynamixel")
 +ap.add_argument("--only", help="run this one test, e.g. 'forward 0.3', and record its walk")
 +ap.add_argument("--seconds", type=float, default=SECONDS)
 +ap.add_argument("--traj", help="save the recorded walk (a robot still up at the end), for milli's tools/render_walk.py")
++ap.add_argument("--nudge", action="append", default=[], help="a real force on the trunk during the run: 'seconds,forward N,left N,duration', in the body's frame; repeatable")
 +ap.add_argument("--straightest", action="store_true", help="record the robot that turned least: for a picture, not a measure of the policy")
 +a = ap.parse_args()
 +WALK = a.only or "forward 0.3"
 +TESTS = [t for t in TESTS if not a.only or t[0] == a.only]
-+TASK = "Mjlab-Velocity-Flat-Milli-Salvage" if a.salvage else "Mjlab-Velocity-Flat-Milli"
-+NAME = "milli_salvage" if a.salvage else "milli"
++NUDGES = [tuple(float(v) for v in n.split(",")) for n in a.nudge]
++TASK = "Mjlab-Velocity-Flat-Milli-Salvage" if a.salvage else "Mjlab-Velocity-Flat-Milli" + ("" if a.recipe == "hybrid" else "-" + a.recipe.capitalize())
++NAME = "milli_salvage" if a.salvage else "milli" + ("" if a.recipe == "hybrid" else "_" + a.recipe)
 +ck = a.ckpt
 +if not ck:
 +    runs = sorted(glob.glob(f"logs/rsl_rl/{NAME}/*"), key=os.path.getmtime)
@@ -145,11 +148,22 @@ index 0000000..e819256
 +    n = int(a.seconds / dt)
 +    skip = int(SKIP / dt)
 +    up = torch.ones(a.envs, dtype=torch.bool, device="cuda:0")
-+    vel, tq, qd, qs, xy = [], [], [], [], []
++    vel, tq, qd, qs, xy, fs = [], [], [], [], [], []
++    trunk = int(robot.indexing.body_ids[robot.find_bodies("trunk_base")[0][0]])
 +    for t in range(n):
 +        twist.vel_command_b[:, 0], twist.vel_command_b[:, 1], twist.vel_command_b[:, 2] = vx, vy, wz
 +        with torch.no_grad():
 +            act = policy(obs)
++        F = torch.zeros((a.envs, 3), device="cuda:0")
++        for t0, fx, fy, d_ in NUDGES:
++            if t0 <= t * dt < t0 + d_:
++                q = robot.data.root_link_quat_w
++                yaw = torch.atan2(2 * (q[:, 0] * q[:, 3] + q[:, 1] * q[:, 2]), 1 - 2 * (q[:, 2] ** 2 + q[:, 3] ** 2))
++                F[:, 0] = fx * torch.cos(yaw) - fy * torch.sin(yaw)
++                F[:, 1] = fx * torch.sin(yaw) + fy * torch.cos(yaw)
++        if NUDGES:
++            base.sim.data.xfrc_applied[:, trunk, :3] = F
++        fs.append(F.cpu().numpy())
 +        obs, _, dones, _ = env.step(act)
 +        up &= ~base.termination_manager.terminated
 +        if t >= skip:
@@ -187,9 +201,10 @@ index 0000000..e819256
 +    if label == WALK:
 +        keep = int(np.where(m)[0][np.argmin(turn)]) if a.straightest and m.any() else int(np.argmax(m))
 +        video_q = np.array(qs)[:, keep]
++        video_f = np.array(fs)[:, keep]
 +        print(f"recorded robot {keep}: turning {V[:, keep, 2].mean():+.2f} rad/s" + (f", the straightest of {int(m.sum())}" if a.straightest else ""))
 +if a.traj:
-+    np.savez(a.traj, q=video_q, names=np.array(names), dt=dt, root_z=home["root_z"])
++    np.savez(a.traj, q=video_q, force=video_f, names=np.array(names), dt=dt, root_z=home["root_z"])
 +    print(a.traj)
 +if a.only:
 +    json.dump(dict(checkpoint=ck, tests=results), open(a.out, "w"), indent=1)
@@ -225,6 +240,43 @@ index 0000000..e819256
 +        F.append(r.render().copy())
 +    imageio.mimsave(a.video, F, fps=int(round(1 / dt)), codec="libx264", quality=7, macro_block_size=1)
 +    print(a.video)
+diff --git a/scripts/milli_ground_check.py b/scripts/milli_ground_check.py
+new file mode 100644
+index 0000000..6d3d0c5
+--- /dev/null
++++ b/scripts/milli_ground_check.py
+@@ -0,0 +1,31 @@
++"""Before a long run of a floor task: reset, hold zero actions, and print where each kind of spawn settles. python scripts/milli_ground_check.py TASK"""
++import sys
++
++import torch
++
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.envs import ManagerBasedRlEnv
++from mjlab.tasks.registry import load_env_cfg
++
++cfg = load_env_cfg(sys.argv[1])
++cfg.scene.num_envs = 256
++cfg.events.pop("push_robot", None)
++cfg.curriculum.pop("push_magnitude", None)
++env = ManagerBasedRlEnv(cfg=cfg, device="cuda:0")
++env.reset()
++r = env.scene["robot"]
++print("names", list(r.joint_names))
++a = torch.zeros((env.num_envs, env.action_manager.total_action_dim), device=env.device)
++z0 = r.data.root_link_pos_w[:, 2].clone()
++up0 = -r.data.projected_gravity_b[:, 2].clone()
++print("spawn z mean/min/max", [round(v, 3) for v in (z0.mean().item(), z0.min().item(), z0.max().item())])
++for t in range(100):
++    env.step(a)
++z = r.data.root_link_pos_w[:, 2]
++up = -r.data.projected_gravity_b[:, 2]
++for lab, m in (("spawned upright", up0 > 0.8), ("spawned tipped", up0.abs() <= 0.8), ("spawned inverted", up0 < -0.8)):
++    if m.any():
++        print(f"{lab}: {int(m.sum())} robots; after 2 s z {z[m].mean().item():.3f} (min {z[m].min().item():.3f}, max {z[m].max().item():.3f}), up {up[m].mean().item():+.2f}, moved {(z[m] - z0[m]).abs().mean().item() * 100:.1f} cm")
++print("max joint speed", round(r.data.joint_vel.abs().max().item(), 1), "nan", bool(torch.isnan(r.data.joint_pos).any()))
++print("rewards", list(cfg.rewards)[:40])
++print("events", list(cfg.events))
 diff --git a/scripts/milli_sanity.py b/scripts/milli_sanity.py
 new file mode 100644
 index 0000000..c2d076c
@@ -265,12 +317,140 @@ index 0000000..c2d076c
 +print("joint friction", np.round(env.sim.mj_model.dof_frictionloss[6:9], 3), "damping", np.round(env.sim.mj_model.dof_damping[6:9], 3))
 +print("actor obs", env.observation_manager.group_obs_dim)
 +print("events", list(cfg.events))
+diff --git a/scripts/milli_skill_eval.py b/scripts/milli_skill_eval.py
+new file mode 100644
+index 0000000..a007bb8
+--- /dev/null
++++ b/scripts/milli_skill_eval.py
+@@ -0,0 +1,122 @@
++"""Can milli get back up, or roll over its head? Runs a floor task's checkpoint from each start and counts real successes, with the training's randomization on.
++
++  python scripts/milli_skill_eval.py standup|roulade [CHECKPOINT.pt] [--envs 256] [--seconds 8] [--trajdir DIR]
++
++Success at the end of the run: upright within 20 deg and the root within 15 % of standing height; for the roll, also a full forward turn on the way.
++A training reward cannot say this. --trajdir saves one successful robot from each start, for milli's tools/render_walk.py and tools/check_motion.py.
++"""
++import argparse
++import glob
++import json
++import math
++import os
++from dataclasses import asdict
++
++import numpy as np
++import torch
++
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.envs import ManagerBasedRlEnv
++from mjlab.rl import RslRlVecEnvWrapper
++from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
++from mjlab_microduck.tasks import mdp as microduck_mdp
++
++ap = argparse.ArgumentParser()
++ap.add_argument("skill", choices=("standup", "roulade"))
++ap.add_argument("ckpt", nargs="?")
++ap.add_argument("--envs", type=int, default=256)
++ap.add_argument("--seconds", type=float, default=8.0)
++ap.add_argument("--settle", type=float, default=1.5, help="seconds lying on the floor, servos holding, before the policy starts (stand-up only)")
++ap.add_argument("--trajdir")
++ap.add_argument("--out")
++ap.add_argument("--recipe", default="hybrid", help="the servo recipe: hybrid or dynamixel")
++a = ap.parse_args()
++SUFFIX, TAG = ("", "") if a.recipe == "hybrid" else ("-" + a.recipe.capitalize(), a.recipe + "_")
++TASK = {"standup": "Mjlab-StandUp-Flat-Milli", "roulade": "Mjlab-Roulade-Flat-Milli"}[a.skill] + SUFFIX
++NAME = f"milli_{TAG}{a.skill}"
++STARTS = {"standup": {"face down": dict(face_down_prob=1.0, face_up_prob=0.0, sitting_prob=0.0, standing_prob=0.0),
++                      "face up": dict(face_down_prob=0.0, face_up_prob=1.0, sitting_prob=0.0, standing_prob=0.0),
++                      "sitting": dict(face_down_prob=0.0, face_up_prob=0.0, sitting_prob=1.0, standing_prob=0.0)},
++          "roulade": {"standing": dict(standing_prob=1.0, midroll_prob=0.0)}}[a.skill]
++EVENT = {"standup": "set_ground_state", "roulade": "set_roulade_state"}[a.skill]
++STAND_Z = {"hybrid": 0.172, "dynamixel": 0.170, "feetech": 0.170}[a.recipe]
++ck = a.ckpt
++if not ck:
++    runs = sorted(glob.glob(f"logs/rsl_rl/{NAME}/*"), key=os.path.getmtime)
++    ck = sorted(glob.glob(runs[-1] + "/model_*.pt"), key=lambda p: int(p.split("_")[-1][:-3]))[-1]
++print("checkpoint", ck)
++results = dict(checkpoint=ck, starts={})
++home = json.load(open("src/mjlab_microduck/robot/" + ("milli_contact" if a.recipe == "hybrid" else f"milli_{a.recipe}_contact") + "/home.json"))
++servo_of = {j: k for k, s in home["servos"].items() for j in s["joints"]}
++env = runner = policy = None
++for label, probs in STARTS.items():
++    cfg = load_env_cfg(TASK)
++    cfg.scene.num_envs = a.envs
++    cfg.events.pop("push_robot", None)
++    cfg.curriculum = {}
++    cfg.episode_length_s = 1000.0
++    cfg.events[EVENT].params.update(probs)
++    if env is None:
++        env = RslRlVecEnvWrapper(ManagerBasedRlEnv(cfg=cfg, device="cuda:0"), clip_actions=load_rl_cfg(TASK).clip_actions)
++        runner = load_runner_cls(TASK)(env, asdict(load_rl_cfg(TASK)), device="cuda:0")
++        runner.load(ck, map_location="cuda:0")
++        policy = runner.get_inference_policy(device="cuda:0")
++    base = env.unwrapped
++    base.event_manager.get_term_cfg(EVENT).params.update(probs)
++    robot = base.scene["robot"]
++    obs, _ = env.reset()
++    dt = base.step_dt
++    n = int(a.seconds / dt)
++    # a fall ends on the floor, and a reset's pose can start in the air: servos hold the pose until it lies still, and only then does the policy get it
++    if a.skill == "standup":
++        term = base.action_manager.get_term(base.action_manager.active_terms[0])
++        hold = (robot.data.joint_pos[:, term.target_ids] - term.offset) / term.scale
++        for _ in range(int(a.settle / dt)):
++            obs, _, _, _ = env.step(hold)
++    start_z = float(torch.median(robot.data.root_link_pos_w[:, 2] - base.scene.env_origins[:, 2]))
++    start_up = float(torch.median(-robot.data.projected_gravity_b[:, 2]))
++    start_speed = float(torch.median(torch.linalg.norm(robot.data.root_link_lin_vel_w, dim=1)))
++    alive = torch.ones(a.envs, dtype=torch.bool, device="cuda:0")
++    qs, tq, risen_at = [], [], torch.full((a.envs,), float("nan"), device="cuda:0")
++    best_turn = torch.zeros(a.envs, device="cuda:0")
++    for t in range(n):
++        with torch.no_grad():
++            act = policy(obs)
++        obs, _, _, _ = env.step(act)
++        alive &= ~base.termination_manager.terminated
++        up = -robot.data.projected_gravity_b[:, 2]
++        z = robot.data.root_link_pos_w[:, 2] - base.scene.env_origins[:, 2]
++        ok = (up > math.cos(math.radians(20))) & ((z - STAND_Z).abs() < 0.15 * STAND_Z)
++        risen_at = torch.where(torch.isnan(risen_at) & ok, torch.full_like(risen_at, t * dt), risen_at)
++        if a.skill == "roulade":
++            _, max_accum, _ = microduck_mdp._roulade_state(base)
++            best_turn = torch.maximum(best_turn, max_accum)
++        qs.append(np.concatenate([(robot.data.root_link_pos_w - base.scene.env_origins).cpu().numpy(), robot.data.root_link_quat_w.cpu().numpy(), robot.data.joint_pos.cpu().numpy()], axis=1))
++        tq.append(robot.data.actuator_force.cpu().numpy())
++    win = ok & alive
++    if a.skill == "roulade":
++        win &= best_turn >= 0.9 * 2 * math.pi
++    TQ = np.abs(np.array(tq))
++    names = list(robot.joint_names)
++    motors = list(robot.actuator_names)            # actuator_force's order, not joint_pos's
++    limit = np.array([home["servos"][servo_of[j]]["peak_nm"] for j in motors])
++    row = dict(success=float(win.float().mean()), alive=float(alive.float().mean()), median_time_s=float(np.nanmedian(risen_at[win].cpu().numpy())) if win.any() else None,
++               start=dict(z=start_z, up=start_up, speed=start_speed),
++               at_stall={j: float((TQ[:, :, i] > 0.98 * limit[i]).mean()) for i, j in enumerate(motors)})
++    if a.skill == "roulade":
++        row["best_turn_deg_median"] = float(torch.median(best_turn).item() * 180 / math.pi)
++    # is a joint limit what stops it? Time pressed against each joint's range (the training's 0.9 soft limit), to decide whether the design should change
++    Q = np.array(qs)[:, :, 7:]
++    lim = robot.data.soft_joint_pos_limits[0].cpu().numpy()
++    row["at_joint_limit"] = {j: float(((Q[:, :, i] < lim[i, 0] + 0.03) | (Q[:, :, i] > lim[i, 1] - 0.03)).mean()) for i, j in enumerate(names)}
++    results["starts"][label] = row
++    pressed = sorted(row["at_joint_limit"].items(), key=lambda kv: -kv[1])[:4]
++    print("           most at joint limit " + ", ".join(f"{k} {v * 100:.0f}%" for k, v in pressed))
++    worst = sorted(row["at_stall"].items(), key=lambda kv: -kv[1])[:3]
++    print(f"{label:10s} from z {start_z:.3f} up {start_up:+.2f} speed {start_speed:.3f}: success {row['success'] * 100:5.1f} %  time {row['median_time_s']}  " +(f"best turn {row.get('best_turn_deg_median', 0):.0f} deg  " if a.skill == "roulade" else "") + "most at stall " + ", ".join(f"{k} {v * 100:.0f}%" for k, v in worst))
++    if a.trajdir:
++        os.makedirs(a.trajdir, exist_ok=True)
++        i = int(torch.nonzero(win)[0]) if win.any() else 0
++        np.savez(os.path.join(a.trajdir, f"{a.skill}_{label.replace(' ', '_')}.npz"), q=np.array(qs)[:, i], names=np.array(names), dt=dt, won=bool(win.any()))
++if a.out:
++    json.dump(results, open(a.out, "w"), indent=1)
 diff --git a/src/mjlab_microduck/robot/milli_constants.py b/src/mjlab_microduck/robot/milli_constants.py
 new file mode 100644
-index 0000000..857612f
+index 0000000..0c01bff
 --- /dev/null
 +++ b/src/mjlab_microduck/robot/milli_constants.py
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,68 @@
 +"""milli (github.com/meetsitaram/open-micro-duck), on this trainer: the model is generated by milli's tools/make_rl_model.py into robot/milli/."""
 +import json
 +import os
@@ -279,15 +459,23 @@ index 0000000..857612f
 +import mujoco
 +from mjlab.actuator.dc_actuator import DcMotorActuatorCfg
 +from mjlab.entity import EntityArticulationInfoCfg, EntityCfg
++from mjlab.utils.spec_config import CollisionCfg
 +
 +from mjlab_microduck.robot.microduck_constants import FULL_COLLISION
 +
 +_ROBOT = Path(os.path.dirname(__file__))
 +
 +
-+def make_milli_robot_cfg(folder: str = "milli") -> EntityCfg:
-+    """A generated model's folder: `milli`, or `milli_salvage` (the servos of a dismantled SO-101 pair)."""
++def make_milli_robot_cfg(folder: str = "milli", collisions=(FULL_COLLISION,), stronger=None) -> EntityCfg:
++    """A generated model's folder: `milli`, or `milli_salvage` (the servos of a dismantled SO-101 pair). stronger: {joint: stall N m}, a what-if, with the gain scaled alike."""
 +    home = json.load(open(_ROBOT / folder / "home.json"))
++    stronger = stronger or {}
++    groups = []
++    for s in home["servos"].values():
++        rest = [j for j in s["joints"] if j not in stronger]
++        if rest:
++            groups.append(dict(s, joints=rest))
++        groups += [dict(s, joints=[j], kp=s["kp"] * stronger[j] / s["peak_nm"], peak_nm=stronger[j]) for j in s["joints"] if j in stronger]
 +    # Each servo model its own numbers (generated from milli's spec/actuators.json): position gain, stall torque, no-load speed.
 +    # Joint damping, friction and armature are in milli.xml. The 15-30 ms delay is microduck's, kept as an estimate of a serial
 +    # bus at 50 Hz: measure it on the real STS3215s.
@@ -298,7 +486,7 @@ index 0000000..857612f
 +            joint_pos=home["joint_pos"],
 +            joint_vel={".*": 0.0},
 +        ),
-+        collisions=(FULL_COLLISION,),
++        collisions=collisions,
 +        articulation=EntityArticulationInfoCfg(
 +            actuators=tuple(
 +                DcMotorActuatorCfg(
@@ -311,7 +499,7 @@ index 0000000..857612f
 +                    delay_min_lag=3,
 +                    delay_max_lag=6,
 +                )
-+                for s in home["servos"].values()
++                for s in groups
 +            ),
 +            soft_joint_pos_limit_factor=0.9,
 +        ),
@@ -320,15 +508,26 @@ index 0000000..857612f
 +
 +MILLI_ROBOT_CFG = make_milli_robot_cfg()
 +MILLI_SALVAGE_ROBOT_CFG = make_milli_robot_cfg("milli_salvage")
++# for tasks where the body meets the floor. Self-collision on, as without it a policy learned to rise by passing its feet through each other and its hips through the trunk:
++# contype 3, conaffinity 2 meets the floor (1) and the robot; a shoe's hull, contype 2, meets only the robot. Pairs whose hulls touch where the parts don't are excluded in milli.xml
++_CONTACT = (CollisionCfg(geom_names_expr=(".*_collision",), contype={r".*_foot_hull_collision$": 2, ".*_collision": 3}, conaffinity=2, condim=FULL_COLLISION.condim, priority=FULL_COLLISION.priority, friction=FULL_COLLISION.friction),)
++MILLI_CONTACT_ROBOT_CFG = make_milli_robot_cfg("milli_contact", _CONTACT)
++# what if the neck carried the body as well as microduck's does? Stall over the torque to hold the tucked body on the head: microduck 2.10 and 1.12, milli 1.23 and 0.40 (no such servos chosen yet)
++MILLI_DYNAMIXEL_ROBOT_CFG = make_milli_robot_cfg("milli_dynamixel")
++MILLI_DYNAMIXEL_CONTACT_ROBOT_CFG = make_milli_robot_cfg("milli_dynamixel_contact", _CONTACT)
++MILLI_FEETECH_ROBOT_CFG = make_milli_robot_cfg("milli_feetech")
++MILLI_FEETECH_CONTACT_ROBOT_CFG = make_milli_robot_cfg("milli_feetech_contact", _CONTACT)
++STRONG_NECK = {"neck_pitch": 1.57, "head_pitch": 1.45}
++MILLI_CONTACT_STRONG_NECK_CFG = make_milli_robot_cfg("milli_contact", _CONTACT, stronger=STRONG_NECK)
 diff --git a/src/mjlab_microduck/tasks/__init__.py b/src/mjlab_microduck/tasks/__init__.py
-index 1f75034..41763df 100644
+index 1f75034..7d7f309 100644
 --- a/src/mjlab_microduck/tasks/__init__.py
 +++ b/src/mjlab_microduck/tasks/__init__.py
-@@ -81,6 +81,24 @@ from .microduck_roulade_env_cfg import (
+@@ -81,6 +81,83 @@ from .microduck_roulade_env_cfg import (
  from .backlash import make_backlash_variant
  
  # Standard velocity task
-+from .milli_velocity_env_cfg import MilliRlCfg, MilliSalvageRlCfg, make_milli_velocity_env_cfg
++from .milli_velocity_env_cfg import MilliDynamixelRlCfg, MilliFeetechRlCfg, MilliRlCfg, MilliSalvageRlCfg, make_milli_velocity_env_cfg
 +
 +register_mjlab_task(
 +    task_id="Mjlab-Velocity-Flat-Milli",
@@ -346,15 +545,246 @@ index 1f75034..41763df 100644
 +    runner_cls=MicroduckOnPolicyRunner,
 +)
 +
++from .milli_ground_env_cfg import MilliRouladeDynamixelRlCfg, MilliRouladeFeetechRlCfg, MilliRouladeRlCfg, MilliRouladeStrongNeckRlCfg, MilliStandUpDynamixelRlCfg, MilliStandUpFeetechRlCfg, MilliStandUpRlCfg, make_milli_roulade_env_cfg, make_milli_standup_env_cfg
++
++for _task, _make, _rl in (("Velocity", make_milli_velocity_env_cfg, MilliFeetechRlCfg), ("StandUp", make_milli_standup_env_cfg, MilliStandUpFeetechRlCfg), ("Roulade", make_milli_roulade_env_cfg, MilliRouladeFeetechRlCfg)):
++    register_mjlab_task(
++        task_id=f"Mjlab-{_task}-Flat-Milli-Feetech",
++        env_cfg=_make(recipe="feetech"),
++        play_env_cfg=_make(play=True, recipe="feetech"),
++        rl_cfg=_rl,
++        runner_cls=MicroduckOnPolicyRunner,
++    )
++
++register_mjlab_task(
++    task_id="Mjlab-Velocity-Flat-Milli-Dynamixel",
++    env_cfg=make_milli_velocity_env_cfg(recipe="dynamixel"),
++    play_env_cfg=make_milli_velocity_env_cfg(play=True, recipe="dynamixel"),
++    rl_cfg=MilliDynamixelRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-StandUp-Flat-Milli-Dynamixel",
++    env_cfg=make_milli_standup_env_cfg(recipe="dynamixel"),
++    play_env_cfg=make_milli_standup_env_cfg(play=True, recipe="dynamixel"),
++    rl_cfg=MilliStandUpDynamixelRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-Roulade-Flat-Milli-Dynamixel",
++    env_cfg=make_milli_roulade_env_cfg(recipe="dynamixel"),
++    play_env_cfg=make_milli_roulade_env_cfg(play=True, recipe="dynamixel"),
++    rl_cfg=MilliRouladeDynamixelRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-Roulade-Flat-Milli-StrongNeck",
++    env_cfg=make_milli_roulade_env_cfg(strong_neck=True),
++    play_env_cfg=make_milli_roulade_env_cfg(play=True, strong_neck=True),
++    rl_cfg=MilliRouladeStrongNeckRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-StandUp-Flat-Milli",
++    env_cfg=make_milli_standup_env_cfg(),
++    play_env_cfg=make_milli_standup_env_cfg(play=True),
++    rl_cfg=MilliStandUpRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-Roulade-Flat-Milli",
++    env_cfg=make_milli_roulade_env_cfg(),
++    play_env_cfg=make_milli_roulade_env_cfg(play=True),
++    rl_cfg=MilliRouladeRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
  register_mjlab_task(
      task_id="Mjlab-Velocity-Flat-MicroDuck",
      env_cfg=make_microduck_velocity_env_cfg(),
+diff --git a/src/mjlab_microduck/tasks/milli_ground_env_cfg.py b/src/mjlab_microduck/tasks/milli_ground_env_cfg.py
+new file mode 100644
+index 0000000..45eb35b
+--- /dev/null
++++ b/src/mjlab_microduck/tasks/milli_ground_env_cfg.py
+@@ -0,0 +1,166 @@
++"""milli's floor skills: getting back up, and the forward roll over its head. microduck's two recipes on milli's robot.
++
++What each recipe sets for microduck that would be wrong here, and what happens to it:
++- the robot: milli's model with a collision hull on every link above the shoes (make_rl_model.py --contact), no self-collision, its own DC motor model per servo;
++- every absolute height (trunk z of reset poses and rewards): by STAND_RATIO, milli's root at standing over microduck's, as milli's root sits higher in its body
++  as well as the robot being taller. Height stds by HEIGHT, the plain size ratio. Unmeasured for the low poses: rerun scripts/milli_sanity.py after a change;
++- microduck's knee folds past 1.3 rad and milli's stops at 1.05-1.10, so the sitting pose and the tucked pose here are milli's own. This may be what limits it;
++- the BAM friction randomization does nothing on these actuators: replaced, as in the walking task;
++- head centre-of-mass bodies, mass randomization on all links within 20 %, servo numbers within 30 %, as milli's masses and servos are estimates;
++- the roll's "top of the head" axis: milli's head frame is level at home, so straight up. It is a module-level value in mdp.py, so it is set when the environment starts.
++Kept, with why: reward weights and curriculum timing (dimensionless, or time in training); rate limits on the roll (5 and 7 rad/s: microduck's physics, unmeasured on milli,
++which is 1.2 x taller and so about 10 % slower); pushes.
++"""
++import re
++from copy import deepcopy
++from dataclasses import dataclass, fields
++
++from mjlab.envs import mdp as envs_mdp
++from mjlab.envs.mdp.actions.actions import JointPositionAction, JointPositionActionCfg
++from mjlab.managers.event_manager import EventTermCfg
++from mjlab.managers.scene_entity_config import SceneEntityCfg
++
++from mjlab_microduck.robot.milli_constants import MILLI_CONTACT_ROBOT_CFG, MILLI_CONTACT_STRONG_NECK_CFG, MILLI_DYNAMIXEL_CONTACT_ROBOT_CFG, MILLI_FEETECH_CONTACT_ROBOT_CFG
++from mjlab_microduck.tasks import mdp as microduck_mdp
++from mjlab_microduck.tasks.microduck_roulade_env_cfg import MicroduckRouladeRlCfg, make_microduck_roulade_env_cfg
++from mjlab_microduck.tasks.microduck_standup_env_cfg import MicroduckStandUpRlCfg, make_microduck_standup_env_cfg
++from mjlab_microduck.tasks.milli_velocity_env_cfg import HEIGHT, SERVO_DR
++
++STAND_Z = 0.172                                    # measured by scripts/milli_sanity.py: the root's height, standing
++STAND_RATIO = STAND_Z / 0.115                      # microduck's measured equilibrium
++HEAD_TOP = (0.0, 0.0, 1.0)
++SETTLE_S = 1.0                                     # a limp drop from the reset pose is still after about 0.7 s
++# a reset must clear the floor, or the overlap throws the robot up for free. Measured, with the hulls: lying on the head 0.124, on the back or side up to 0.108; sitting 0.132
++PRONE_Z = (0.126, 0.15)
++SIT_Z = (0.134, 0.15)
++FEETECH_STAND, FEETECH_PRONE, FEETECH_SIT = 0.170, (0.152, 0.175), (0.134, 0.15)   # (measured with the hulls)
++# the servo recipes: robot, root height standing, height over microduck's, lying and sitting reset heights, each measured as above
++RECIPES = {
++    "hybrid": dict(robot=MILLI_CONTACT_ROBOT_CFG, stand=STAND_Z, height=HEIGHT, prone=PRONE_Z, sit=SIT_Z),
++    "dynamixel": dict(robot=MILLI_DYNAMIXEL_CONTACT_ROBOT_CFG, stand=0.170, height=0.298 / 0.264, prone=(0.122, 0.145), sit=(0.134, 0.15)),
++    "feetech": dict(robot=MILLI_FEETECH_CONTACT_ROBOT_CFG, stand=FEETECH_STAND, height=0.377 / 0.264, prone=FEETECH_PRONE, sit=FEETECH_SIT),
++}
++# (joint index -> rad): 0-4 left leg, 5-8 neck and head, 9-13 right leg. Within milli's limits with the 0.9 soft factor
++SIT = {1: 0.0, 2: -0.45, 3: 0.95, 4: 0.0, 10: 0.0, 11: 0.45, 12: -0.95, 13: 0.0}
++# microduck's hip 1.15 puts milli's feet through its head (tools/checks.py overlap); the sim has no self-collision, so nothing else would stop that
++TUCK = {2: -0.8, 3: 0.95, 4: 1.05, 5: -1.0, 6: 1.0, 11: 0.8, 12: -0.95, 13: -1.05}
++_HEIGHT_KEY = re.compile(r"height|_z_(min|max)$")
++
++
++class SettleFirstAction(JointPositionAction):
++    """Servos hold the reset pose for the episode's first SETTLE_S, then the policy has them. A fall ends lying still; without this the policy swung its legs under itself on the way down."""
++
++    def __init__(self, cfg, env):
++        super().__init__(cfg, env)
++        self._env_ = env
++        self._steps = int(round(SETTLE_S / env.step_dt))
++        self._held = self._entity.data.default_joint_pos[:, self._target_ids].clone()
++
++    def process_actions(self, actions):
++        super().process_actions(actions)
++        age = self._env_.episode_length_buf
++        fresh = age == 0
++        self._held[fresh] = self._entity.data.joint_pos[fresh][:, self._target_ids]
++        hold = age < self._steps
++        self._processed_actions[hold] = self._held[hold]
++
++
++@dataclass(kw_only=True)
++class SettleFirstActionCfg(JointPositionActionCfg):
++    def build(self, env):
++        return SettleFirstAction(self, env)
++
++
++def _set_head_top(env, env_ids=None):
++    microduck_mdp._HEAD_TOP_AXIS = HEAD_TOP
++
++
++def _scale_heights(terms, stand=STAND_RATIO, height=HEIGHT):
++    for term in terms.values():
++        params = getattr(term, "params", None) or {}
++        for k, v in params.items():
++            if isinstance(v, float) and _HEIGHT_KEY.search(k):
++                params[k] = v * (height if k.endswith("_std") else stand)
++
++
++def _port(cfg, play, recipe="hybrid"):
++    r = RECIPES[recipe]
++    cfg.scene.entities = {"robot": r["robot"]}
++    cfg.sim.nconmax = 200                          # the recipe's budget, for its own tasks with close contact: self-collision now adds to the floor's
++    cfg.sim.njmax = 600
++    _scale_heights(cfg.rewards, r["stand"] / 0.115, r["height"])
++    _scale_heights(cfg.events, r["stand"] / 0.115, r["height"])
++    if "reset_base" in cfg.events:
++        cfg.events["reset_base"].params["pose_range"]["z"] = (0.0, 0.002)
++    if "randomize_head_com" in cfg.events:
++        cfg.events["randomize_head_com"].params["asset_cfg"].body_names = ("neck", "neck_pitch", "yaw_roll_motion", "jaw_soft")
++    if "randomize_mass_inertia" in cfg.events:
++        cfg.events["randomize_mass_inertia"].params["asset_cfg"].body_names = (".*",)
++        cfg.events["randomize_mass_inertia"].params["alpha_range"] = (-0.1, 0.1)
++    cfg.events.pop("expand_bam_friction_fields", None)
++    cfg.events.pop("randomize_joint_friction", None)
++    if not play:
++        dr = envs_mdp.dr
++        for name, fn in (("randomize_joint_friction", dr.joint_friction), ("randomize_joint_damping", dr.joint_damping)):
++            cfg.events[name] = EventTermCfg(
++                func=fn, mode="reset",
++                params={"asset_cfg": SceneEntityCfg("robot", joint_names=(".*",)), "operation": "scale", "ranges": SERVO_DR},
++            )
++        if "randomize_armature" in cfg.events:
++            cfg.events["randomize_armature"].params["ranges"] = SERVO_DR
++    return cfg
++
++
++def make_milli_standup_env_cfg(play: bool = False, recipe: str = "hybrid"):
++    cfg = _port(make_microduck_standup_env_cfg(play=play), play, recipe)
++    params = cfg.events["set_ground_state"].params
++    params["sitting_joint_overrides"] = SIT
++    params["prone_z_min"], params["prone_z_max"] = RECIPES[recipe]["prone"]
++    params["sitting_z_min"], params["sitting_z_max"] = RECIPES[recipe]["sit"]
++    old = cfg.actions["joint_pos"]
++    cfg.actions["joint_pos"] = SettleFirstActionCfg(**{f.name: getattr(old, f.name) for f in fields(old) if f.init})
++    cfg.episode_length_s += SETTLE_S
++    return cfg
++
++
++def make_milli_roulade_env_cfg(play: bool = False, strong_neck: bool = False, recipe: str = "hybrid"):
++    cfg = _port(make_microduck_roulade_env_cfg(play=play), play, recipe)
++    if strong_neck:
++        cfg.scene.entities = {"robot": MILLI_CONTACT_STRONG_NECK_CFG}
++    cfg.events["set_roulade_state"].params["tuck_overrides"] = TUCK
++    cfg.events["milli_head_top"] = EventTermCfg(func=_set_head_top, mode="startup")
++    cfg.episode_length_s = 5.5
++    return cfg
++
++
++MilliStandUpRlCfg = deepcopy(MicroduckStandUpRlCfg)
++MilliStandUpRlCfg.experiment_name = "milli_standup"
++MilliStandUpRlCfg.run_name = "milli_standup"
++MilliStandUpRlCfg.wandb_project = "milli"
++MilliStandUpRlCfg.max_iterations = 5000
++
++MilliRouladeRlCfg = deepcopy(MicroduckRouladeRlCfg)
++MilliRouladeRlCfg.experiment_name = "milli_roulade"
++MilliRouladeRlCfg.run_name = "milli_roulade"
++MilliRouladeRlCfg.wandb_project = "milli"
++MilliRouladeRlCfg.max_iterations = 5000
++
++MilliStandUpDynamixelRlCfg = deepcopy(MilliStandUpRlCfg)
++MilliStandUpDynamixelRlCfg.experiment_name = "milli_dynamixel_standup"
++MilliStandUpDynamixelRlCfg.run_name = "milli_dynamixel_standup"
++
++MilliRouladeDynamixelRlCfg = deepcopy(MilliRouladeRlCfg)
++MilliRouladeDynamixelRlCfg.experiment_name = "milli_dynamixel_roulade"
++MilliRouladeDynamixelRlCfg.run_name = "milli_dynamixel_roulade"
++
++MilliStandUpFeetechRlCfg = deepcopy(MilliStandUpRlCfg)
++MilliStandUpFeetechRlCfg.experiment_name = "milli_feetech_standup"
++MilliStandUpFeetechRlCfg.run_name = "milli_feetech_standup"
++
++MilliRouladeFeetechRlCfg = deepcopy(MilliRouladeRlCfg)
++MilliRouladeFeetechRlCfg.experiment_name = "milli_feetech_roulade"
++MilliRouladeFeetechRlCfg.run_name = "milli_feetech_roulade"
++
++MilliRouladeStrongNeckRlCfg = deepcopy(MilliRouladeRlCfg)
++MilliRouladeStrongNeckRlCfg.experiment_name = "milli_roulade_strongneck"
++MilliRouladeStrongNeckRlCfg.run_name = "milli_roulade_strongneck"
 diff --git a/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
 new file mode 100644
-index 0000000..92feca4
+index 0000000..37112cc
 --- /dev/null
 +++ b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
-@@ -0,0 +1,80 @@
+@@ -0,0 +1,134 @@
 +"""milli's walking task: microduck's velocity recipe, on milli's robot, plus the foot switches as policy inputs.
 +
 +What the recipe sets for microduck that would be wrong here, each found by reading the loaded config:
@@ -364,31 +794,70 @@ index 0000000..92feca4
 +- its head commands (to +-1.1 rad at the neck, about its own 20 deg HOME) pass milli's neck limit, which is 0.15 rad one way;
 +- lengths and times of its gait (foot lift, air time, pushes, CoM offsets) are scaled by HEIGHT, milli's height over microduck's;
 +- its mass randomization covered the trunk within 5 %; milli's masses are estimates, so all links within 20 %.
++- its yaw reward is exp(-error^2 / 0.5): a policy twisting at +-3 rad/s scores about 0 whatever it does, so nothing teaches it to stop. Trained on that, milli learned to pivot
++  over the stance foot on both hip yaws at 1.8 Hz, even told to stand still, and never learned to turn or go straight. So a quadratic yaw error too, and a tighter hip yaw pose.
++- nothing in it stops a servo holding stall: given that yaw error, the policy pressed both hip yaws on their stops at full torque, all the time, which is steady in sim and burns a real
++  servo. So a penalty near stall on every servo, and a heavy one for the hip yaws' stops (the recipe's -1 per radian cost -0.1 there, against -0.9 for twisting).
 +Kept as they are, and why: speed commands (+-0.4 m/s: milli's longer leg against its slower servos); foot friction 0.7-1.3 (both TPU);
 +IMU and encoder noise (similar parts, unmeasured); the reward weights and the curricula's timing (dimensionless, or time in training).
 +"""
++import json
 +from copy import deepcopy
++from pathlib import Path
 +
++import torch
 +from mjlab.envs import mdp as envs_mdp
 +from mjlab.managers.event_manager import EventTermCfg
 +from mjlab.managers.observation_manager import ObservationTermCfg
++from mjlab.managers.reward_manager import RewardTermCfg
 +from mjlab.managers.scene_entity_config import SceneEntityCfg
 +from mjlab.tasks.velocity import mdp as velocity_mdp
 +
-+from mjlab_microduck.robot.milli_constants import MILLI_ROBOT_CFG, MILLI_SALVAGE_ROBOT_CFG
++from mjlab_microduck.robot import milli_constants as robot_constants
++from mjlab_microduck.robot.milli_constants import MILLI_DYNAMIXEL_ROBOT_CFG, MILLI_FEETECH_ROBOT_CFG, MILLI_ROBOT_CFG, MILLI_SALVAGE_ROBOT_CFG
 +from mjlab_microduck.tasks.microduck_velocity_env_cfg import MicroduckRlCfg, make_microduck_velocity_env_cfg
 +
 +SERVO_DR = (0.7, 1.3)
++YAW_ERROR_WEIGHT = -0.1                            # at the +-3 rad/s it learned without this: -0.9, against 2.0 for tracking speed
++HIP_YAW_STD = 0.15                                 # the recipe's 0.3 allowed the swing
++STALL_FROM = 0.7                                   # of stall torque: below this a servo is working, not stalling
++STALL_WEIGHT = -0.5                                # two servos held at stall: -1.0, against 2.0 for tracking speed
++HIP_YAW_STOP_WEIGHT = -10.0                        # both pressed on their stops, 0.05 rad past the soft limit: -1.0
++ROBOTS = Path(robot_constants.__file__).parent
 +HEIGHT = 0.321 / 0.264                             # milli's over microduck's
 +TIME = HEIGHT ** 0.5                               # the same walk's time scale
++# the servo recipes: (robot, its generated model's folder, its height over microduck's)
++RECIPES = {"hybrid": (MILLI_ROBOT_CFG, "milli", HEIGHT), "dynamixel": (MILLI_DYNAMIXEL_ROBOT_CFG, "milli_dynamixel", 0.298 / 0.264), "feetech": (MILLI_FEETECH_ROBOT_CFG, "milli_feetech", 0.377 / 0.264)}
 +# head commands, by the curriculum's stage: (neck_pitch, head_pitch, head_yaw, head_roll), within milli's limits (neck -1.6..0.15) and
 +# short of where its head meets its body (head pitch -1.07 at the neck's zero)
 +_STAGE = (0.05, 0.17, 0.39, 0.72, 1.0)
 +
 +
-+def make_milli_velocity_env_cfg(play: bool = False, salvage: bool = False):
++def yaw_rate_error(env, command_name: str = "twist"):
++    """Squared error, so it has a gradient however wrong the yaw rate is."""
++    cmd = env.command_manager.get_command(command_name)
++    return (cmd[:, 2] - env.scene["robot"].data.root_link_ang_vel_b[:, 2]) ** 2
++
++
++_peaks = {}
++
++
++def near_stall(env, folder: str = "milli"):
++    """Each servo's load above STALL_FROM of its stall torque, from 0 to 1 at stall, squared and summed. A servo can pass through stall, but can't stay there."""
++    robot = env.scene["robot"]
++    if folder not in _peaks:
++        home = json.load(open(ROBOTS / folder / "home.json"))
++        peak = {j: s["peak_nm"] for s in home["servos"].values() for j in s["joints"]}
++        _peaks[folder] = torch.tensor([peak[j] for j in robot.actuator_names], device=env.device)  # actuator_force's order, not joint_pos's
++    load = robot.data.actuator_force.abs() / _peaks[folder]
++    return (((load - STALL_FROM) / (1 - STALL_FROM)).clamp(0, 1) ** 2).sum(dim=1)
++
++
++def make_milli_velocity_env_cfg(play: bool = False, salvage: bool = False, recipe: str = "hybrid"):
++    robot, folder, HEIGHT = RECIPES[recipe]
++    TIME = HEIGHT ** 0.5
 +    cfg = make_microduck_velocity_env_cfg(play=play)
-+    cfg.scene.entities = {"robot": MILLI_SALVAGE_ROBOT_CFG if salvage else MILLI_ROBOT_CFG}
++    cfg.scene.entities = {"robot": MILLI_SALVAGE_ROBOT_CFG if salvage else robot}
 +    cfg.events["reset_base"].params["pose_range"]["z"] = (0.0, 0.002)
 +    cfg.events["push_robot"].params["velocity_range"] = {"x": (-0.3 * TIME, 0.3 * TIME), "y": (-0.3 * TIME, 0.3 * TIME)} if "push_robot" in cfg.events else None
 +    air = cfg.rewards["air_time"].params
@@ -407,6 +876,13 @@ index 0000000..92feca4
 +    cfg.commands["head_pose"].ranges = head(_STAGE[0])
 +    steps = (0, 12000, 24000, 36000, 48000)
 +    cfg.curriculum["head_pose_range"].params["range_stages"] = [dict(step=st, ranges=head(f)) for st, f in zip(steps, _STAGE)]
++    cfg.rewards["yaw_rate_error"] = RewardTermCfg(func=yaw_rate_error, weight=YAW_ERROR_WEIGHT)
++    cfg.rewards["near_stall"] = RewardTermCfg(func=near_stall, weight=STALL_WEIGHT, params={"folder": "milli_salvage" if salvage else folder})
++    cfg.rewards["hip_yaw_stops"] = RewardTermCfg(func=velocity_mdp.joint_pos_limits, weight=HIP_YAW_STOP_WEIGHT, params={"asset_cfg": SceneEntityCfg("robot", joint_names=(r".*hip_yaw.*",))})
++    for k in ("std_walking", "std_running"):
++        stds = dict(cfg.rewards["pose"].params[k])
++        stds[r".*hip_yaw.*"] = HIP_YAW_STD
++        cfg.rewards["pose"].params[k] = stds
 +    # a microswitch in each shoe (milli's spec): two booleans the real robot reads on GPIO, as Open Duck Mini's policy has
 +    cfg.observations["actor"].terms["foot_switch"] = ObservationTermCfg(
 +        func=velocity_mdp.foot_contact,
@@ -431,6 +907,14 @@ index 0000000..92feca4
 +MilliRlCfg.run_name = "milli"
 +MilliRlCfg.wandb_project = "milli"
 +MilliRlCfg.max_iterations = 3000
++
++MilliDynamixelRlCfg = deepcopy(MilliRlCfg)
++MilliDynamixelRlCfg.experiment_name = "milli_dynamixel"
++MilliDynamixelRlCfg.run_name = "milli_dynamixel"
++
++MilliFeetechRlCfg = deepcopy(MilliRlCfg)
++MilliFeetechRlCfg.experiment_name = "milli_feetech"
++MilliFeetechRlCfg.run_name = "milli_feetech"
 +
 +MilliSalvageRlCfg = deepcopy(MilliRlCfg)
 +MilliSalvageRlCfg.experiment_name = "milli_salvage"

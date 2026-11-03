@@ -35,6 +35,42 @@ WHITE, ORANGE, YELLOW, BLACK, DARK, GREY = '#ECEBE6', '#E8642A', '#F2B233', '#1B
 ALU, CELL, LENS, PCB = '#A8ACB0', '#2E3B4E', '#0A1420', '#1F5A36'
 AMBER = '#F0A030'                                  # the eye ring
 
+# One design, three servo recipes, compared in simulation (2026-11-03, the user: "three recipes - all dynamixel, hybrid, all
+# feetech"; "our repo can serve like a case study"). MILLI_RECIPE picks one; hybrid, the original, is the default and writes
+# spec/robot.json, the others spec/robot_<recipe>.json. K: the leg's and body's plain lengths, for a smaller servo. HK: the head,
+# over microduck's. Bracket and wall thicknesses don't scale, nor do parts sized by a bought part.
+RECIPES = {
+    'hybrid': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='XC330_M288', head='XL330_M288', K=1.0, HK=1.18,
+                   battery=dict(name='battery 2S 800 mAh', size=(0.014, 0.060, 0.030), mass=0.045)),
+    # full micro, as microduck: XL330s at every joint, on a 2S pack straight, as microduck's are: its trainer models them at 6.5-8.2 V
+    # with a 0.96 N m limit (robot/microduck/joints_properties.xml; microduck_constants.py), past ROBOTIS's 6 V maximum. xl330_2s
+    # below: the head at 1.14: the beak servo and the head roll's reach don't fit in 1.0. Microduck's
+    # ranges, where the parts allow them. A smaller pack, as the body has 28 mm under its plate (an estimate of a 2S 500 mAh:
+    # confirm a part before ordering)
+    'dynamixel': dict(yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
+                      battery=dict(name='battery 2S 500 mAh', size=(0.012, 0.050, 0.025), mass=0.030),
+                      ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.42, 0.42)),
+                      neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, plate_back=0.005),
+    # every joint a Feetech, on the 2S pack, no 5 V servo rail. The head and neck grow round the bigger case: Q, the head's plain internal
+    # lengths over the hybrid's (the case's width over the XL330's), the hood to match
+    'feetech': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='STS3215_C044', head='STS3215_C044', head2='STS3215_C046', K=1.0, HK=1.46, Q=1.235,
+                    neck_rise=0.074, rail=0.044, boss_in=0.003, plate_y=0.022, shell_gap=0.016, ranges=dict(head_roll=(-0.29, 0.29)),
+                    # what this recipe gives up, written here rather than hidden: over the 1.55 kg budget, its neck too long to keep microduck's
+                    # proportions within 10 %, and its heavy head leans the floor pick past the ankle's range
+                    mass_budget_kg=1.95, target_tol=0.15, cannot=['floor pick'],
+                    battery=dict(name='battery 2S 800 mAh', size=(0.014, 0.060, 0.030), mass=0.045)),
+}
+RECIPE = os.environ.get('MILLI_RECIPE', 'hybrid')
+R = RECIPES[RECIPE]
+K = R['K']
+Q = R.get('Q', 1.0)
+H2 = R.get('head2', 'XL330_M288')                   # the head's yaw, roll and beak servos
+if 'xl330_2s' in R:
+    # stall from microduck's identification; rated and no-load speed scaled from ROBOTIS's 5 V numbers (rated by the stall's ratio, speed by
+    # the voltage's): estimates, to measure on a real servo. Running past 6 V is microduck's choice: expect less life than ROBOTIS rates
+    ACT['XL330_M288'] = dict(ACT['XL330_M288'], **R['xl330_2s'])
+RANGE = dict(dict(hip=(-1.3, 0.43), knee=(-1.1, 1.05), ankle=(-1.3, 1.3), head_roll=(-0.44, 0.44)), **R.get('ranges', {}))
+
 LINKS, JOINTS = {}, []
 
 # Materials (tools/mass_model.py): a part's mass is its material's density times its volume (a shell's wall, a
@@ -522,14 +558,14 @@ def mount_geoms(j):
 
 # ---------------------------------------------------------------- servo sizes
 
-STS, XL = ACT['STS3215_C044'], ACT['XL330_M288']
+STS, XL = ACT[R['leg']], ACT[H2]                  # the leg's servo and the head's (named for the original)
 AK = STS                                   # the ankle servo
 SL, SW, SH = STS['box']                    # 45.2 x 24.7 x 35 mm (long, wide, along the shaft)
 SX = STS['shaft_x']                        # shaft 12.5 mm off the case's middle
-SHH = stack_of('STS3215_C044', True)       # the case's face to the plate on its horn, over the bearing (5 mm)
+SHH = stack_of(R['leg'], True)       # the case's face to the plate on its horn, over the bearing (5 mm)
 XLL, XLW, XLH = XL['box']                  # 34 x 20 x 26 mm
 XLX, XLHH = XL['shaft_x'], XL['horn_h']
-XLS = stack_of('XL330_M288', True)         # the same on the head's XL330s that carry a bearing (5.5 mm)
+XLS = stack_of(H2, True)         # the same on the head's XL330s that carry a bearing (5.5 mm)
 GAP = 0.003                                # clearance between parts of different links that move against each other
 
 # ---------------------------------------------------------------- proportions (iterate here)
@@ -545,10 +581,10 @@ GAP = 0.003                                # clearance between parts of differen
 #             one cover wraps both thigh servos (microduck's rounded triangle);
 #   ankle     straight under the knee; its servo stands in the shin, between the shoe's two ears.
 STANCE = 1.02                                      # microduck's thigh angle back from upright (its model: 58.4 deg)
-ZA = 0.0295                                        # ankle: microduck's 25 mm at 1.18; its case's lower end clears the shoe
+ZA = R.get('za', 0.0295)                                        # ankle: microduck's 25 mm at 1.18; its case's lower end clears the shoe
 #   knee: the STS3215 ankle's far end, its 3 mm cap and 1.5 mm to the thigh cover's 17.4 mm circle round the knee: it takes
 #   up the gap under the thigh (the user, 2026-11-03), 4 mm taller than with an XC330
-ZK = ZA + 0.057
+ZK = ZA + 0.057 * K
 #   hip pitch: the knee servo just behind the hip pitch servo's back end, both in the thigh
 XK = -(SL / 2 + SX) - SW / 2 - 0.0035              # -0.051: the knee behind the hip, one cradle wall (3 mm) between
 #                                                    the hip pitch case's end and the knee case (2026-11-02, mounts)
@@ -557,10 +593,10 @@ ZP = ZK - XK / math.tan(STANCE)                    # 0.111
 ZR = ZP                                            # hip roll: at the hip pitch axis' height, as microduck's
 #   hip yaw: its horn on a plate on the roll case's top (the roll shaft 10 mm below that top): 13 mm above the roll
 #            axis (microduck's: 12.5)
-ZY = ZR + SL / 2 - SX + 0.010                      # a 10 mm spacer: room under the body for the thigh covers to roll
+ZY = ZR + SL / 2 - SX + 0.010 * K                      # a 10 mm spacer: room under the body for the thigh covers to roll
 
 # Lateral (left leg, y > 0), from the middle out
-YY = 0.016                                         # hip yaw and roll: the two yaw cases side by side, 7 mm apart
+YY = 0.016 * K                                         # hip yaw and roll: the two yaw cases side by side, 7 mm apart
 # hip roll 2.5 mm outboard of the yaw axis: its bearing is wider than its case, and the two would meet as a leg yaws in
 YR = YY + 0.0025
 XRH = SH / 2 + SHH                                 # hip roll horn face, in front of the roll case (0.022)
@@ -574,12 +610,16 @@ YS = (YRS[0], YRS[1])                              # the shin plate
 YA_CASE = (YS[1], YS[1] + AK['box'][2])            # the ankle case, outside the shin plate
 # ankle horn face, outward: no bearing here, so only the real horn and its centre screw (3.05 mm on SO-101's mesh)
 ANKLE_STACK = 0.0035
+RIB = R.get('cap', 0.015) * K if 'cap' not in R else R['cap']
+CAP = R.get('cap', 0.015)                          # the shin cap's half width
+XCHH, ANK = 0.0031, BEARINGS['ankle']              # the rear horn's disc, in the case's step (0.5 mm proud of the box)
+YB = YA_CASE[0] - (0.0005 if 'steps' in AK else XCHH)   # the top of the ankle servo's rear boss
 YA = YA_CASE[1] + ANKLE_STACK
 XP_FRONT = SL / 2 - SX                             # hip pitch case's front end (0.0101; it runs back)
 # microduck's shoe at 1.18 (its foot_left, sole_left and ankle_left meshes): a 13 mm yellow sole (15 here), the orange
 # upper rising at the toe and heel to 22 mm, the ears round the ankle; low in the middle, where the ankle servo swings
 # (the STS3215 ankle: 3 mm wider than with an XC330, and 4 mm longer to keep the shoe's shape: 68 x 52 mm)
-FOOT = dict(x=(XK - 0.026, XK + 0.042), y=(0.0315, 0.0835), sole=0.0154, shoe=0.0160, rim=0.0225)   # sole 12.9 and upper 6 mm on microduck
+FOOT = dict(x=(XK - 0.026 * K, XK + 0.042 * K), y=(YB - 0.00795, YA + 0.00505), sole=0.0154 * K, shoe=0.0160 * K, rim=0.0225 * K)   # sole 12.9 and upper 6 mm on microduck
 THIGH_Y = (YT_CASE[0] - 0.002, YT_CASE[1] + 0.0061)  # the thigh cover, wrapping both thigh servos
 
 # Body (round 2): the two hip yaw servos side by side; behind them the battery on edge and the Pi Zero 2 W with its
@@ -594,52 +634,54 @@ PLATE = (YAW_TOP, YAW_TOP + 0.0035)                # the body's top plate
 # round 10 (the user: "the box is also big, do we need that?"): no. The Pi Zero goes in the head, behind the face, as
 # microduck's; the body holds the yaw servos, the battery and a thin servo-bus board behind it, and its front is flush
 # with the neck servo's (microduck's neck column stands at its body's front edge): 98 mm long (microduck's: 96 at 1.18)
-BODY = dict(x=(-0.058, 0.040), top=PLATE[1] + 0.004, bottom=ZY + 0.003)
-XN = 0.028                                         # neck pitch axis: its case in the body's front, as microduck's
+BODY = dict(x=(-0.058 * K, 0.040 * K), top=PLATE[1] + 0.004, bottom=ZY + 0.003)
+BATT = R['battery']['size']
+BATT_X = -0.052 * K                                # the battery's back face
+XN = XP_FRONT + XLW / 2 + 0.0079                                         # neck pitch axis: its case in the body's front, as microduck's
 ZN = ZY + SHH - 0.001 + XLL / 2 + XLX              # its case's foot level with the yaw cases' (0.207)
-ZH = ZN + 0.0514                                   # head pitch: straight above, the neck one column (round 6)
+ZH = ZN + R.get('neck_rise', 0.0514 * Q)                                   # head pitch: straight above, the neck one column (round 6)
 # head yaw: its case forward of the head pitch case (clear of its 13 mm circle), so it can sit low
 # head yaw (round 6, the user: "neck needs improvement"): microduck's neck is one straight column of servos, the head
 # yaw servo on top of it inside the head's underside. Its case straight over the head pitch servo, clear of its 13 mm
 # circle (round 5 had it 14 mm ahead: an L-shaped neck)
-YAW_FOOT = ZH + 0.0131 + GAP + 0.004               # the head pitch U's bridge: clear of its servo's 13 mm circle
+YAW_FOOT = ZH + 0.0131 * Q + GAP + 0.004               # the head pitch U's bridge: clear of its servo's 13 mm circle
 XHY, ZHY = XN + XLX, YAW_FOOT + XLH + XLS
 XHR, ZHR = XHY + XLH / 2 + XLS, ZHY + XLHH + XLW / 2            # head roll horn face and axis height
-HEAD_Z = ZHY - 0.008                               # the head's lower edge: the yaw horn 8 mm up inside it
-HEAD_CX = XN + 0.006                               # the head reaches as far behind the neck as in front, as microduck's
+HEAD_Z = ZHY - 0.008 * Q                               # the head's lower edge: the yaw horn 8 mm up inside it
+HEAD_CX = XN + 0.006 * Q                               # the head reaches as far behind the neck as in front, as microduck's
 
 
 # ---------------------------------------------------------------- body (root)
 
 link('trunk', 0.40, [
-    box('top plate', (-0.052, -0.025, PLATE[0]), (XP_FRONT, 0.025, PLATE[1])),
+    box('top plate', (BATT_X, -R.get('plate_y', 0.025 * K), PLATE[0]), (XP_FRONT, R.get('plate_y', 0.025 * K), PLATE[1])),
     # the wall joining the neck mount to the top plate: without it, only the hip yaw servo cases joined them
-    box('neck wall', (XP_FRONT + 0.0001, -0.0225, ZY + SHH + 0.0005), (XP_FRONT + 0.003, 0.0165, PLATE[1]), exposed=True),
-    box('neck wall tab', (XP_FRONT - 0.002, -0.0225, PLATE[0]), (XP_FRONT + 0.0002, 0.0165, PLATE[1]), exposed=True),
-    box('battery 2S 800 mAh', (-0.052, -0.030, PLATE[0] - 0.030), (-0.038, 0.030, PLATE[0]), CELL,
-        material='cells', mass=0.045),
-    box('servo bus board', (-0.0552, -0.025, PLATE[0] - 0.030), (-0.0515, 0.025, PLATE[0]), PCB,
+    box('neck wall', (XP_FRONT + 0.0001, -0.0225 * Q, ZY + SHH + 0.0005), (XP_FRONT + 0.003, 0.0165 * Q, PLATE[1]), exposed=True),
+    box('neck wall tab', (XP_FRONT - 0.002, -0.0225 * Q, PLATE[0]), (XP_FRONT + 0.0002, 0.0165 * Q, PLATE[1]), exposed=True),
+    box(R['battery']['name'], (BATT_X, -BATT[1] / 2, PLATE[0] - BATT[2]), (BATT_X + BATT[0], BATT[1] / 2, PLATE[0]), CELL,
+        material='cells', mass=R['battery']['mass']),
+    box('servo bus board', (BATT_X - 0.0032, -0.025, PLATE[0] - BATT[2]), (BATT_X + 0.0005, 0.025, PLATE[0]), PCB,
         material='electronics', mass=0.010),
-    box('5 V regulator and IMU', (-0.030, -0.012, PLATE[1]), (0.000, 0.012, PLATE[1] + 0.0025), PCB,
+    box('5 V regulator and IMU', (-0.030 * K, -0.012, PLATE[1]), (0.000, 0.012, PLATE[1] + 0.0025), PCB,
         material='electronics', mass=0.008),
-    box('battery strap', (-0.0525, -0.010, PLATE[0] - 0.030), (-0.0351 + 0.0005, 0.010, PLATE[0] - 0.026)),
+    box('battery strap', (BATT_X - 0.0005, -0.010, PLATE[0] - BATT[2]), (BATT_X + BATT[0] + 0.0034, 0.010, PLATE[0] - BATT[2] + 0.004)),
     # the neck servo rides in the neck; the body holds it on both sides (round 7, the user: "one sided joints are
     # bad"): a bracket on its horn, a bracket with an idler on its other face, on a block clear of its 13 mm circle
-    box('neck mount', (XP_FRONT - 0.0005, -0.0225, ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165, ZN - 0.016), DARK,
+    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165 * Q, ZN - 0.016 * Q), DARK,
         exposed=True),
-    box('neck bracket', (XN - XLW / 2, 0.0130, ZN - 0.0165), (XN + XLW / 2, 0.0165, ZN + 0.012), DARK, exposed=True),
-    box('neck idler bracket', (XN - XLW / 2, -0.0225, ZN - 0.0165), (XN + XLW / 2, -0.0190, ZN + 0.012), DARK,
+    box('neck bracket', (XN - XLW / 2, 0.0130 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
+    box('neck idler bracket', (XN - XLW / 2, -0.0225 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, -0.0190 * Q, ZN + 0.012 * Q), DARK,
         exposed=True),
     # a superellipse of power 5 round the yaw cases' front corners (power 3.2 cut through them, round 2), as narrow
     # as microduck's body in proportion (round 5)
-    loft('body', [(BODY['bottom'], -0.009, 0, 0.047, 0.031, 6.0), (BODY['bottom'] + 0.010, -0.009, 0, 0.049, 0.040, 8.0),
-                  (BODY['top'] - 0.008, -0.009, 0, 0.049, 0.040, 8.0), (BODY['top'] - 0.003, -0.010, 0, 0.045, 0.036, 5.0),
-                  (BODY['top'], -0.011, 0, 0.038, 0.028, 3.5)], WHITE, open=('bottom',)),
+    loft('body', [(BODY['bottom'], -0.009 * K, 0, 0.047 * K, 0.031 * K, 6.0), (BODY['bottom'] + 0.010 * K, -0.009 * K, 0, 0.049 * K, 0.040 * K, 8.0),
+                  (BODY['top'] - 0.008, -0.009 * K, 0, 0.049 * K, 0.040 * K, 8.0), (BODY['top'] - 0.003, -0.010 * K, 0, 0.045 * K, 0.036 * K, 5.0),
+                  (BODY['top'], -0.011 * K, 0, 0.038 * K, 0.028 * K, 3.5)], WHITE, open=('bottom',)),
     # the neck comes up out of the body through a slot in its top, as microduck's (the user, round 6)
     # down through the front too: the neck folds forward 1.6 rad to tuck the head in (Pollen's desk photo)
     *[fast(cyl(f'body screw {k}', (x_, 0, BODY['top'] + 0.0003), 'z', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.006,
-           (x_, 0, BODY['top']), (0, 0, -1)) for k, x_ in enumerate((-0.040, 0.005))],
-    cut(box('neck slot', (XN - 0.017, -0.026, ZN - 0.014), (XN + 0.040, 0.0195, BODY['top'] + 0.01), WHITE, 'shell'),
+           (x_, 0, BODY['top']), (0, 0, -1)) for k, x_ in enumerate((-0.040 * K, 0.005 * K))],
+    cut(box('neck slot', (XP_FRONT + 0.0009, -0.026 * Q, ZN - 0.014 * Q), (XN + 0.040 * Q, 0.0195 * Q, BODY['top'] + 0.01), WHITE, 'shell'),
         'body'),
 ], 'the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front')
 
@@ -650,10 +692,10 @@ link('L_hip_yaw_link', 0.07, [
 ])
 link('L_hip_roll_link', 0.07, [
     # microduck's hip_l: from the roll horn at the front, out to the side, where the hip pitch horn turns
-    box('L hip roll front', (XRH - 0.0005, YR - 0.011, ZR - 0.010), (XRH + 0.003, YRS[1], ZR + 0.010), exposed=True),
-    box('L hip roll side', (-0.012, YRS[0], ZR - 0.010), (XRH + MT, YRS[1], ZR + 0.010), exposed=True),
+    box('L hip roll front', (XRH - 0.0005, YR - 0.011 * K, ZR - 0.010 * K), (XRH + 0.003, YRS[1], ZR + 0.010 * K), exposed=True),
+    box('L hip roll side', (-0.012 * K, YRS[0], ZR - 0.010 * K), (XRH + MT, YRS[1], ZR + 0.010 * K), exposed=True),
     # (the arm from the pitch horn to the front plate carries the whole leg: 1.5 mm thicker, past the horn's screws)
-    box('L hip roll arm', (0.0115, YRS[0] - 0.0015, ZR - 0.010), (XRH + MT, YRS[1], ZR + 0.010), exposed=True),
+    box('L hip roll arm', (0.0115 * K, YRS[0] - 0.0015, ZR - 0.010 * K), (XRH + MT, YRS[1], ZR + 0.010 * K), exposed=True),
 ])
 link('L_hip_pitch_link', 0.10, [
     # the thigh: the hip pitch servo lying flat (from the joint, case in the thigh) and the knee servo standing at
@@ -676,25 +718,23 @@ link('L_hip_pitch_link', 0.10, [
     cut(box('L thigh cover slot', (XK - SW / 2 - 0.001, YS[0] - 0.004, ZK - (SL / 2 - SX) - 0.0015),
             (XP_FRONT + 0.0015, YT_CASE[1] - 0.0003, ZP + SW / 2 + 0.0012), WHITE, 'shell'), 'L thigh cover'),
 ])
-YB = YA_CASE[0] - 0.0005                     # the top of the ankle servo's rear boss
-XCHH, ANK = 0.0031, BEARINGS['ankle']              # the rear horn's disc, in the case's step (0.5 mm proud of the box)
 link('L_knee_link', 0.05, [
-    box('L shin plate', (XK - 0.011, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.001), (XK + 0.011, YS[1],
-                                                                                           ZK + 0.011), exposed=True),
-    box('L shin cap', (XK - 0.015, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
-        (XK + 0.015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
+    box('L shin plate', (XK - 0.011 * K, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.001), (XK + 0.011 * K, YS[1],
+                                                                                           ZK + 0.011 * K), exposed=True),
+    box('L shin cap', (XK - CAP, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
+        (XK + CAP, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
     # the shin as a real part (2026-11-03, the user: "that doesn't seem like something I can 3D print for strength"): a 3 mm
     # flat plate bent across its thin side. Below the knee's horn, 6 mm thick and 30 mm wide, a block into the corner with
     # the cap, and a collar round the servo's far end, so the load goes from the plate into the case over a box section.
-    box('L shin rib', (XK - 0.015, YS[0] - 0.003, ZA + 0.0225), (XK + 0.015, YS[1], ZK - 0.0105), exposed=True),
-    box('L shin gusset', (XK - 0.015, YS[1] - 0.0001, ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0005), (XK + 0.015, YS[1] + 0.0028, ZK - 0.0178), exposed=True),
-    *[box(f'L shin collar {k}', (XK + sx_ * (SW / 2 + 0.0015) - 0.0015, YS[1] - 0.0001, ZA + 0.028),
+    box('L shin rib', (XK - RIB, YS[0] - 0.003, ZA + 0.0225 * K + R.get('rib_up', 0.0)), (XK + RIB, YS[1], ZK - 0.0105 * K), exposed=True),
+    box('L shin gusset', (XK - RIB, YS[1] - 0.0001, ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0005), (XK + RIB, YS[1] + 0.0028, ZK - 0.0178 * K), exposed=True),
+    *[box(f'L shin collar {k}', (XK + sx_ * (SW / 2 + 0.0015) - 0.0015, YS[1] - 0.0001, ZA + 0.028 * K),
           (XK + sx_ * (SW / 2 + 0.0015) + 0.0015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True)
-      for k, sx_ in enumerate((1, -1))],
+      for k, sx_ in enumerate((1, -1) if R.get('collars', True) else ())],
     # the ankle's far side, as microduck's: a plate on the servo's rear horn (4 M3 x 6), up to the shin plate, and a stub
     # from it through a small bearing in the shoe's inner ear
     dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', AK['horn_r'], XCHH, ALU), exposed=True),
-    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0105), (XK, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0105)],
+    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0105 * K), (XK, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0105 * K)],
           DARK, 'struct', exposed=True),
     dict(cyl('L ankle stub', (XK, YB - 0.0041, ZA), 'y', ANK['d'] / 2, 0.0042, DARK), exposed=True),
     # flat heads, flush: the bearing's race turns 0.2 mm off this plate
@@ -709,7 +749,7 @@ link('L_knee_link', 0.05, [
 ])
 SOLE_C = ((FOOT['x'][0] + FOOT['x'][1]) / 2, (FOOT['y'][0] + FOOT['y'][1]) / 2)
 SOLE_A, SOLE_B = (FOOT['x'][1] - FOOT['x'][0]) / 2 + 0.0005, (FOOT['y'][1] - FOOT['y'][0]) / 2 + 0.0005
-EAR = [(XK, ZA, 0.011), (XK - 0.0175, FOOT['rim'] - 0.006, 0.005), (XK + 0.021, FOOT['rim'] - 0.006, 0.005)]   # inside the shoe's round corners
+EAR = [(XK, ZA, 0.011 * K), (XK - 0.0175 * K, FOOT['rim'] - 0.006, 0.005), (XK + 0.021 * K, FOOT['rim'] - 0.006, 0.005)]   # inside the shoe's round corners
 link('L_foot', 0.05, [
     # the shoe's ears (microduck's): orange, rising either side of the ankle servo to round tops on its axis; the
     # outer one on the horn, the inner one on a bearing round the shin's stub (the shoe joins them: no post). The inner
@@ -721,7 +761,7 @@ link('L_foot', 0.05, [
     cut(cyl('L ankle ear bore', (XK, YB - 0.0047, ZA), 'y', ANK['D'] / 2 - 0.00005, 0.006, ORANGE), 'L ankle ear in'),
     cut(plate('L ankle ear recess', FOOT['y'][0] - 0.001, YB - 0.0028 - FOOT['y'][0] + 0.001, EAR, ORANGE, 'struct'), 'L shoe'),
     *[fast(cyl(f'L ankle ear screw {k}', (XK + dx, YB - 0.0073, FOOT['rim'] - 0.006), 'y', 0.0019, 0.0012, DARK, 'decal'),
-           'M2', 0.008, (XK + dx, YB - 0.0067, FOOT['rim'] - 0.006), (0, 1, 0)) for k, dx in enumerate((-0.0175, 0.021))],
+           'M2', 0.008, (XK + dx, YB - 0.0067, FOOT['rim'] - 0.006), (0, 1, 0)) for k, dx in enumerate((-0.0175 * K, 0.021 * K))],
     dict(cyl('L ankle bearing outer race', (XK, YB - 0.0042, ZA), 'y', ANK['D'] / 2, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),
     cut(cyl('L ankle bearing outer race bore', (XK, YB - 0.0042, ZA), 'y', ANK['D'] / 2 - RACE, ANK['w'] + 0.002),
@@ -736,18 +776,18 @@ link('L_foot', 0.05, [
                          (FOOT['rim'], SOLE_C[0], SOLE_C[1], SOLE_A - 0.0045, SOLE_B - 0.0045, 3.5)], ORANGE, 'struct',
               open=()), exposed=True),
     # a round cup for the servo's corners (16 mm from the shaft), down into the TPU sole, as microduck's ankle cup
-    cut(cyl('L shoe pocket', (XK, (YB - 0.0025 + YA_CASE[1]) / 2, ZA), 'y', 0.021, YA_CASE[1] - YB + 0.0025,
+    cut(cyl('L shoe pocket', (XK, (YB - 0.0025 + YA_CASE[1]) / 2, ZA), 'y', 0.021 * K, YA_CASE[1] - YB + 0.0025,
             ORANGE, 'shell'), 'L shoe', 'L sole'),
     # two pieces, as microduck's shoe (its foot and sole meshes) and Open Duck's (a TPU bottom, screwed on from below). The
     # foot switch (2026-11-02, the user: an input to the walking policy, as Open Duck's GPIO foot switches): a subminiature
     # microswitch pressed into the shoe's underside ahead of the ankle pocket, its plunger on the TPU sole, which gives
     # as the foot takes weight. Its travel against this TPU is untested: try it before printing all four
-    cut(box('L foot switch pocket', (XK + 0.0285 - 0.0063, SOLE_C[1] - 0.00285, FOOT['sole'] - 0.002),
-            (XK + 0.0285 + 0.0063, SOLE_C[1] + 0.00285, FOOT['sole'] + 0.0048), ORANGE, 'struct'), 'L shoe'),
-    box('L foot switch', (XK + 0.0285 - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015),
-        (XK + 0.0285 + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005), DARK, material='electronics', mass=0.001, exposed=True),
-    *[fast(cyl(f'L shoe bottom screw {k}', (XK + dx, SOLE_C[1], 0.0078), 'z', 0.0027, 0.0015, DARK, 'decal'), 'M3', 0.012,
-           (XK + dx, SOLE_C[1], 0.008), (0, 0, 1)) for k, dx in enumerate((-0.0215, 0.038))],
+    cut(box('L foot switch pocket', (XK + 0.0285 * K - 0.0063, SOLE_C[1] - 0.00285, FOOT['sole'] - 0.002),
+            (XK + 0.0285 * K + 0.0063, SOLE_C[1] + 0.00285, FOOT['sole'] + 0.0048), ORANGE, 'struct'), 'L shoe'),
+    box('L foot switch', (XK + 0.0285 * K - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015),
+        (XK + 0.0285 * K + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005), DARK, material='electronics', mass=0.001, exposed=True),
+    *[fast(cyl(f'L shoe bottom screw {k}', (XK + dx, SOLE_C[1], 0.0078 * K), 'z', 0.0027, 0.0015, DARK, 'decal'), 'M3', 0.012,
+           (XK + dx, SOLE_C[1], 0.008 * K), (0, 0, 1)) for k, dx in enumerate((-0.0215 * K, 0.038 * K))],
     # the sole curls up all round underneath, toe and heel most (microduck's, round 11): sections from a smaller
     # rounder footprint on the floor out to the full one 5 mm up; it stands on the flat middle ('contact')
     dict(loft('L sole', [(0.0, SOLE_C[0], SOLE_C[1], SOLE_A - 0.009, SOLE_B - 0.005, 2.6),
@@ -760,16 +800,16 @@ link('L_foot', 0.05, [
 
 # ranges in microduck's stance (the zero pose): the hip folds forward 1.3 and back 0.43, the knee 1.1 each way
 # the driven horn and a bearing, as microduck's (BEARINGS); no rear horns, forks or posts
-joint('L_hip_yaw', 'trunk', 'L_hip_yaw_link', (0, YY, ZY), 'z', (-0.45, 0.45), 'STS3215_C046', out=-1, long='-x',
+joint('L_hip_yaw', 'trunk', 'L_hip_yaw_link', (0, YY, ZY), 'z', (-0.45, 0.45), R['yaw'], out=-1, long='-x',
       fork=False, bearing=('horn',))
-joint('L_hip_roll', 'L_hip_yaw_link', 'L_hip_roll_link', (XRH, YR, ZR), 'x', (-0.33, 0.33), 'STS3215_C044', out=+1,
+joint('L_hip_roll', 'L_hip_yaw_link', 'L_hip_roll_link', (XRH, YR, ZR), 'x', (-0.33, 0.33), R['leg'], out=+1,
       long='-z', fork=False, bearing=('horn',), sides=(1,), tray_full=True)   # no inner cradle wall (the two roll cradles face each other)
-joint('L_hip_pitch', 'L_hip_roll_link', 'L_hip_pitch_link', (0, YP, ZP), 'y', (-1.3, 0.43), 'STS3215_C044', out=-1,
+joint('L_hip_pitch', 'L_hip_roll_link', 'L_hip_pitch_link', (0, YP, ZP), 'y', RANGE['hip'], R['leg'], out=-1,
       long='-x', case_in='child', fork=False, bearing=('horn',))
-joint('L_knee', 'L_hip_pitch_link', 'L_knee_link', (XK, YK, ZK), 'y', (-1.1, 1.05), 'STS3215_C044', out=-1,
+joint('L_knee', 'L_hip_pitch_link', 'L_knee_link', (XK, YK, ZK), 'y', RANGE['knee'], R['leg'], out=-1,
       long='+z', fork=False, bearing=('horn',))
 # the bearing on the far side, in the shoe's inner ear (spelled out in the links); no side walls: they dip into the shoe
-joint('L_ankle_pitch', 'L_knee_link', 'L_foot', (XK, YA, ZA), 'y', (-1.3, 1.3), 'STS3215_C044', out=+1, long='+z',
+joint('L_ankle_pitch', 'L_knee_link', 'L_foot', (XK, YA, ZA), 'y', RANGE['ankle'], R['leg'], out=+1, long='+z',
       fork=False, sides=(), stack=ANKLE_STACK)
 
 # ---------------------------------------------------------------- neck and head (bare servos, as microduck's)
@@ -781,13 +821,13 @@ joint('L_ankle_pitch', 'L_knee_link', 'L_foot', (XK, YA, ZA), 'y', (-1.3, 1.3), 
 # front (a superellipse of power 3 standing on the hood's lower edge): its top rises gently to a sharp, straight,
 # upright front; the hood is widest at the front and narrows and rounds down toward the back. The face is a grey
 # arch set 20 mm into the hood's open front, the same arch shrunk by the rim; one big amber eye ring in its middle.
-HK = 1.18                                          # the head at the scale the STS3215 body sets (milli / microduck)
+HK = R['HK']                                          # the head at the scale the STS3215 body sets (milli / microduck)
 # (distance back from the front, height above the hood's lower edge, half width) on microduck, metres
 # (the heights from the front back to 92 mm smoothed to the straight slope they scatter about: raw, they left a dip)
 HOOD_MD = [(0.1227, 0.0141, 0.0229), (0.1173, 0.0241, 0.0280), (0.1123, 0.0295, 0.0331), (0.1023, 0.0357, 0.0364),
            (0.0923, 0.0381, 0.0388), (0.0623, 0.0408, 0.0407), (0.0323, 0.0435, 0.0440), (0.0123, 0.0453, 0.0459),
            (0.0, 0.0464, 0.0458)]
-HEAD_FRONT = HEAD_CX + 0.085
+HEAD_FRONT = HEAD_CX + 0.085 * HK / 1.18
 HEAD_BACK = HEAD_FRONT - HK * HOOD_MD[0][0]
 RIM = 0.0025                                       # the hood's rim round the face
 
@@ -819,28 +859,30 @@ FACE_X = HEAD_FRONT - HK * 0.011                   # the face's plane (microduck
 FRONT_LEAN = 0.105
 FRONT = ((HEAD_FRONT, 0, HEAD_Z), (-1.0, 0, FRONT_LEAN))
 EYE = dict(y=0.0, z=HEAD_Z + HK * 0.020, r=HK * 0.015)
-HEAD_PLATE_Z = HEAD_Z + 0.029                      # the head's top plate, on the beak servo, under the hood's back
+HEAD_PLATE_Z = HEAD_Z + 0.029 * Q                      # the head's top plate, on the beak servo, under the hood's back
 
+RAIL = R.get('rail', 0.034)                        # the head frame's half width: outside the roll case's reach as the head rolls
+BOSS_IN = R.get('boss_in', 0.0015)                 # the hinge boss's outer face, in from the hood
 YAW_R = math.hypot(XLL / 2 + XLX, XLW / 2) + GAP   # what turns under the head with its yaw: the yaw case's reach
 link('neck_link', 0.02, [
-    box('neck front plate', (XN + XLW / 2 - 0.0005, -0.010, ZN + 0.008), (XN + XLW / 2 + 0.0025, 0.010, ZH - 0.008),
+    box('neck front plate', (XN + XLW / 2 - 0.0005, -0.010 * Q, ZN + 0.008 * Q), (XN + XLW / 2 + 0.0025, 0.010 * Q, ZH - 0.008 * Q),
         exposed=True),
-    box('neck back plate', (XN - XLW / 2 - 0.0025, -0.010, ZN + 0.008), (XN - XLW / 2 + 0.0005, 0.010, ZH - 0.008),
+    box('neck back plate', (XN - XLW / 2 - 0.0025, -0.010 * Q, ZN + 0.008 * Q), (XN - XLW / 2 + 0.0005, 0.010 * Q, ZH - 0.008 * Q),
         exposed=True),
 ])
 link('head_pitch_link', 0.03, [
-    box('head pitch plate', (XN - 0.010, -0.019, ZH - 0.011), (XN + 0.010, -0.0155, YAW_FOOT), exposed=True),
-    box('head pitch idler plate', (XN - 0.010, 0.0165, ZH - 0.011), (XN + 0.010, 0.020, YAW_FOOT), exposed=True),
-    box('head pitch bridge', (XN - XLL / 2, -0.019, YAW_FOOT - 0.003), (XN + XLL / 2, 0.020, YAW_FOOT),
+    box('head pitch plate', (XN - 0.010 * Q, -0.019 * Q, ZH - 0.011 * Q), (XN + 0.010 * Q, -0.0155 * Q, YAW_FOOT), exposed=True),
+    box('head pitch idler plate', (XN - 0.010 * Q, 0.0165 * Q, ZH - 0.011 * Q), (XN + 0.010 * Q, 0.020 * Q, YAW_FOOT), exposed=True),
+    box('head pitch bridge', (XN - XLL / 2, -0.019 * Q, YAW_FOOT - 0.003), (XN + XLL / 2, 0.020 * Q, YAW_FOOT),
         exposed=True),
 ])
 link('head_yaw_link', 0.02, [
-    box('head yaw plate', (XHY - XLH / 2, -0.009, ZHY - 0.0005), (XHY + XLH / 2, 0.0255, ZHY + XLHH), exposed=True),
+    box('head yaw plate', (XHY - XLH / 2, -0.009 * Q, ZHY - 0.0005), (XHY + XLH / 2, 0.0255 * Q, ZHY + XLHH), exposed=True),
 ])
 # the beak servo: inside the head over the neck, its horn on the jaw's hinge at mid-head, as microduck's side tab
 # the beak servo lies flat behind the head yaw and roll servos, its top under the top plate (round 9: the head at
 # milli's smaller scale is too low at the back for it standing)
-XBK, ZBK = XN - 0.039, HEAD_Z + 0.019              # over the head yaw case; behind the head roll's rear bearing
+XBK, ZBK = XN - R.get('beak_x', 0.039 * Q), HEAD_Z + 0.019 * Q              # over the head yaw case; behind the head roll's rear bearing
 def interp(x, xs, ys):
     """Linear interpolation, ends held."""
     if x <= xs[0]:
@@ -877,7 +919,7 @@ TAB_Y_ = max(hood_b(XJ - 0.014), hood_b(XJ + 0.014)) + 0.0006 + GAP      # the h
 # soft_mouth_top meshes): the jaw is a tray from the lip back 27 mm (x 1.18), then two thin arms to the hinge. A soft insert
 # fills the tray, 1 mm under its rim, and another closes the roof. Printed in TPU, glued in.
 SOFT = '#F7AE55'
-MOUTH_X = HEAD_FRONT - 1.18 * 0.027                # the tray's back edge
+MOUTH_X = HEAD_FRONT - HK * 0.027                # the tray's back edge
 MOUTH_F = HEAD_FRONT - 0.0025
 
 
@@ -890,23 +932,23 @@ def mouth_outline(x0):
 link('head', 0.12, [
     # the head's frame: a plate in front of the head roll servo, a plate on the beak servo behind it, two rails
     # past it either side (outside the roll servo's 27 mm reach as the head rolls)
-    box('head frame', (XHR - 0.0005, -0.034, ZHY + 0.004), (XHR + 0.003, 0.034, HEAD_PLATE_Z + 0.003)),
+    box('head frame', (XHR - 0.0005, -RAIL, ZHY + 0.004 * Q), (XHR + 0.003, RAIL, HEAD_PLATE_Z + 0.003)),
     # narrow at the hood's low back, wide beside the roll servo, where the rails pass it (round 9)
-    box('head top plate', (XBK - 0.008, -0.020, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, 0.020, HEAD_PLATE_Z + 0.003)),
+    box('head top plate', (XBK - R.get('plate_back', 0.008), -0.020 * Q, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, 0.020 * Q, HEAD_PLATE_Z + 0.003)),
     # (the rails stop short of the beak servo, which goes in from the side between them)
-    box('head top plate wide', (XHR - XLH - XLS - 0.0085, -0.034, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, 0.034,
+    box('head top plate wide', (XHR - XLH - XLS - 0.0085, -RAIL, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, RAIL,
                                                                                    HEAD_PLATE_Z + 0.003)),
-    box('L head rail', (XHR - XLH - XLS - 0.0085, 0.031, HEAD_Z + 0.006), (XHR + 0.003, 0.034, HEAD_PLATE_Z + 0.003)),
-    box('R head rail', (XHR - XLH - XLS - 0.0085, -0.034, HEAD_Z + 0.006), (XHR + 0.003, -0.031, HEAD_PLATE_Z + 0.003)),
+    box('L head rail', (XHR - XLH - XLS - 0.0085, RAIL - 0.003, HEAD_Z + 0.006 * Q), (XHR + 0.003, RAIL, HEAD_PLATE_Z + 0.003)),
+    box('R head rail', (XHR - XLH - XLS - 0.0085, -RAIL, HEAD_Z + 0.006 * Q), (XHR + 0.003, -RAIL + 0.003, HEAD_PLATE_Z + 0.003)),
     # the jaw's hinge screws go through the hood's wall (a spacer each, for the tab to turn on) into these bosses, and
     # are what holds the hood on
     *[g for sy in (1, -1) for g in (
-        box(f"{'L' if sy > 0 else 'R'} head hinge boss", (XJ - 0.005, min(sy * 0.033, sy * (hood_b(XJ) - 0.0015)), ZJ - 0.003),
-            (XJ + 0.005, max(sy * 0.033, sy * (hood_b(XJ) - 0.0015)), ZJ + 0.007)),
+        box(f"{'L' if sy > 0 else 'R'} head hinge boss", (XJ - 0.005, min(sy * min(0.033 * Q, hood_b(XJ) - BOSS_IN - 0.0015), sy * (hood_b(XJ) - BOSS_IN)), ZJ - 0.003),
+            (XJ + 0.005, max(sy * min(0.033 * Q, hood_b(XJ) - BOSS_IN - 0.0015), sy * (hood_b(XJ) - BOSS_IN)), ZJ + 0.007)),
         fast(cyl(f"{'L' if sy > 0 else 'R'} hinge screw", (XJ, sy * (TAB_Y_ + hood_b(XJ) + 0.0015) / 2, ZJ + 0.002), 'y', 0.0015, TAB_Y_ + 0.0035 - hood_b(XJ) + 0.0035, DARK, 'decal'),
              'M3', 0.014, (XJ, sy * (TAB_Y_ + 0.003), ZJ + 0.002), (0, -sy, 0), pivot=True))],
     box('camera mount', (XHR + 0.0025, -0.006, EYE['z'] - 0.005), (FACE_X - 0.0105, 0.006, EYE['z'] + 0.005)),
-    box('Pi Zero 2 W', (FACE_X - 0.024, -0.0325, HEAD_Z + 0.006), (FACE_X - 0.018, 0.0325, HEAD_Z + 0.036), PCB,
+    box('Pi Zero 2 W', (FACE_X - 0.024, -0.0325, HEAD_Z + 0.006 * Q), (FACE_X - 0.018, 0.0325, HEAD_Z + 0.036 * Q), PCB,
         material='electronics', mass=0.011),
     box('camera', (FACE_X - 0.011, EYE['y'] - 0.012, EYE['z'] - 0.012), (FACE_X - 0.0005, EYE['y'] + 0.012,
                                                                          EYE['z'] + 0.012),
@@ -919,14 +961,14 @@ link('head', 0.12, [
     cut(ABOVE_BILL, 'upper bill'),
     loft('face', arch_front(FACE_X - 0.0015, FACE_X + 0.0005, RIM - 0.0005), GREY, 'decal', open=(), along='x',
          clip=((0, 0, HEAD_Z + BILL_H), (0, 0, 1))),
-    dict(loft('lower shell', band_secs(HEAD_BACK - 0.004, JAW_X0 - 0.011), ORANGE, 'struct', open=(), along='x'),
+    dict(loft('lower shell', band_secs(HEAD_BACK - 0.004, JAW_X0 - R.get('shell_gap', 0.011)), ORANGE, 'struct', open=(), along='x'),
          exposed=True),
-    cut(box('lower shell opening', (HEAD_BACK + 0.010, -0.033, JAW_Z[0] - 0.01), (JAW_X0 - 0.010, 0.033, JAW_Z[1] + 0.01),
+    cut(box('lower shell opening', (HEAD_BACK + 0.010, -0.033 * Q, JAW_Z[0] - 0.01), (JAW_X0 - 0.010, 0.033 * Q, JAW_Z[1] + 0.01),
             WHITE, 'shell'), 'lower shell'),
     # (beside the beak servo, on its cradle's rear plate: 2026-11-02, they ran through its case)
-    box('lower shell post', (HEAD_BACK + 0.006, -0.019, JAW_Z[1] - 0.0005), (HEAD_BACK + 0.016, -0.0124, HEAD_Z + 0.010),
+    box('lower shell post', (HEAD_BACK + 0.006, -0.019 * Q, JAW_Z[1] - 0.0005), (HEAD_BACK + 0.016, -0.0124 * Q, HEAD_Z + 0.010 * Q),
         exposed=True),
-    box('lower shell beam', (HEAD_BACK + 0.006, -0.019, HEAD_Z + 0.008), (XBK + XLX + 0.014, -0.012, HEAD_Z + 0.011)),
+    box('lower shell beam', (HEAD_BACK + 0.006, -0.019 * Q, HEAD_Z + 0.008 * Q), (XBK + XLX + 0.014 * Q, -0.012 * Q, HEAD_Z + 0.011 * Q)),
     cyl('eye ring', (FACE_X + HK * 0.005, EYE['y'], EYE['z']), 'x', EYE['r'], HK * 0.0095, AMBER, 'decal'),
     cyl('eye lens', (FACE_X + HK * 0.0075, EYE['y'], EYE['z']), 'x', HK * 0.0086, HK * 0.008, LENS, 'decal'),
     box('sensor', (FACE_X, 0.030, EYE['z'] - 0.003), (FACE_X + 0.002, 0.042, EYE['z'] + 0.004), LENS, 'decal',
@@ -939,7 +981,7 @@ TAB_X = (XJ - 0.014, XJ + 0.014)
 TAB_Y = max(hood_b(TAB_X[0]), hood_b(TAB_X[1])) + 0.0006 + GAP      # the hinge tab, just outside the hood
 link('beak_link', 0.03, [
     dict(loft('jaw', band_secs(JAW_X0, HEAD_FRONT - 0.0005), ORANGE, 'struct', open=(), along='x'), exposed=True),
-    cut(box('jaw opening', (JAW_X0 - 0.01, -0.041, JAW_Z[0] - 0.01), (MOUTH_X, 0.041, JAW_Z[1] + 0.01),
+    cut(box('jaw opening', (JAW_X0 - 0.01, -0.041 * Q, JAW_Z[0] - 0.01), (MOUTH_X, 0.041 * Q, JAW_Z[1] + 0.01),
             WHITE, 'shell'), 'jaw'),
     cut(plate('jaw tray', JAW_Z[1] - 0.006, 0.007, mouth_outline(MOUTH_X + 0.0015), ORANGE, 'struct', axis='z'), 'jaw'),
     dict(plate('jaw soft', JAW_Z[1] - 0.0061, 0.0051, mouth_outline(MOUTH_X + 0.0015), SOFT, 'struct', axis='z'), exposed=True,
@@ -959,17 +1001,17 @@ link('beak_link', 0.03, [
                ZBK + 0.002 + 0.0075 * math.sin(math.pi / 4 + k * math.pi / 2)), 'y', 0.0011, 0.002, DARK, 'decal')
           for k in range(4)])],
 ])
-joint('neck_pitch', 'trunk', 'neck_link', (XN, 0.013, ZN), 'y', (-0.15, 1.6), 'XC330_M288', out=+1, long='+z',
+joint('neck_pitch', 'trunk', 'neck_link', (XN, 0.013 * Q, ZN), 'y', (-0.15, 1.6), R['neck'], out=+1, long='+z',
       case_in='child')
-joint('head_pitch', 'neck_link', 'head_pitch_link', (XN, -0.016, ZH), 'y', (-1.6, 1.6), 'XL330_M288', out=-1,
+joint('head_pitch', 'neck_link', 'head_pitch_link', (XN, -0.016 * Q, ZH), 'y', (-1.6, 1.6), R['head'], out=-1,
       long='-z', post=False)                       # the head pitch bridge joins the fork's plates
-joint('head_yaw', 'head_pitch_link', 'head_yaw_link', (XHY, 0, ZHY), 'z', (-2.5, 2.5), 'XL330_M288', out=+1,
+joint('head_yaw', 'head_pitch_link', 'head_yaw_link', (XHY, 0, ZHY), 'z', (-2.5, 2.5), H2, out=+1,
       long='-x', fork=False, bearing=('horn',), face_t=0.001)   # a 1 mm sheet to the far holes, as microduck's: the
 #                                                    beak servo turns over it
-joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', (-0.44, 0.44), 'XL330_M288', out=+1, long='+y',
+joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', RANGE['head_roll'], H2, out=+1, long='+y',
       bearing=('horn', 'rear'))                    # a bearing each side, as microduck's
-joint('beak', 'head', 'beak_link', (XJ, 0.0, ZJ), 'y', (0.0, 0.4), 'XL330_M288', out=+1, long='+x',
-      remote_at=(XBK, 0.019, ZBK), sides=(1,))     # no lower cradle wall: the head yaw case is 1 mm under it
+joint('beak', 'head', 'beak_link', (XJ, 0.0, ZJ), 'y', (0.0, R.get('beak_max', 0.4)), H2, out=+1, long='+x',
+      remote_at=(XBK, 0.019 * Q, ZBK), sides=(1,))     # no lower cradle wall: the head yaw case is 1 mm under it
 
 
 # ---------------------------------------------------------------- mirror, servos
@@ -1046,13 +1088,14 @@ def build():
         for g in l['geoms']:
             if g['role'] != 'cut':
                 g['material'] = material_of(g)
-    return dict(frame='metres; X forward, Y left, Z up; floor z=0; zero pose standing, legs straight, head level',
+    return dict(recipe=RECIPE, recipe_limits={k: R[k] for k in ('mass_budget_kg', 'target_tol', 'cannot') if k in R},
+                frame='metres; X forward, Y left, Z up; floor z=0; zero pose standing, legs straight, head level',
                 actuators=ACT, bearings=BEARINGS, materials=MATERIALS, links=links, joints=joints, root='trunk')
 
 
 if __name__ == '__main__':
     robot = build()
-    out = os.path.join(HERE, 'robot.json')
+    out = os.path.join(HERE, 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json')
     with open(out, 'w', encoding='utf-8') as f:
         json.dump(robot, f, indent=1)
     print(f"{len(robot['links'])} links, {len(robot['joints'])} joints -> {out} (masses: python -I tools/mass_model.py)")
