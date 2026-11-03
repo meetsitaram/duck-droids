@@ -38,12 +38,29 @@ Checkpoints go to `logs/rsl_rl/milli/`, every 250 iterations.
 
 ## What's different from microduck's recipe
 
+Run `scripts/milli_audit.py` in the trainer to print every setting the task has loaded. The reasons are at the top of `tasks/milli_velocity_env_cfg.py`.
+
+**Changed for milli:**
+
 - **The robot:** `tools/make_rl_model.py` gives milli microduck's names, joint directions and order, so the recipe's rewards and observations apply. The beak is locked.
 - **Standing pose:** level, with the feet 42 mm forward, until the centre of mass is over the soles.
 - **Foot switches:** two booleans added to the policy's inputs, from sole contact.
+- **Servos:** a DC motor model per servo type, with each type's own gain, stall torque and no-load speed. microduck's measured BAM model fits only the XL330.
 - **Reset height:** the recipe's 12-13 cm was microduck's; it dropped milli from 12 cm at every reset. Now 0-2 mm.
-- **Servo randomization:** friction, damping and armature each +-30 %, as they're scaled or copied. The recipe's friction setting did nothing here: it only acts through microduck's servo model.
-- **Servos:** plain position actuators with a torque limit. microduck's measured BAM model fits only the XL330.
+- **Servo randomization:** friction, damping and armature each +-30 %, as they're scaled or copied. The recipe's friction setting did nothing here.
+- **Mass randomization:** all links, about +-20 %, as milli's masses are estimates (the recipe: trunk only, about +-5 %).
+- **Head commands:** within milli's limits (neck 0.12 rad back, 0.8 forward; head pitch +-0.8), as the recipe's +-1.1 passed them.
+- **Scaled by size** (height x 1.22, time x 1.10): foot lift, air time, pushes, centre-of-mass offsets.
+
+**Kept from microduck, on purpose:**
+
+- **Speed commands** (+-0.4 m/s): milli's longer leg against its slower servos.
+- **Foot friction** 0.7-1.3: both soles are TPU, and neither is measured.
+- **IMU and encoder noise:** similar parts, unmeasured.
+- **Servo delay** 15-30 ms: microduck's, an estimate of a serial bus at 50 Hz.
+- **Reward weights and curriculum timing:** dimensionless, or time in training.
+
+**Lost with the BAM model, not replaced:** load-dependent friction, battery voltage and its sag under load. milli's servo torque is modelled at a fixed voltage.
 
 ## What's assumed, and not measured
 
@@ -53,8 +70,9 @@ Checkpoints go to `logs/rsl_rl/milli/`, every 250 iterations.
 | XL330 stiffness | 0.55 N m/rad | microduck's identification |
 | XC330 stiffness | 0.98 N m/rad | the XL330's, scaled by stall torque |
 | STS3215 peak torque | C044 1.06, C046 0.81 N m | scaled from the C001; a listing gives the C044 2.7 |
-| Servo delay and voltage sag | none | microduck's recipe has both, in its BAM model; not ported yet |
-| Rewards, command speeds | microduck's, unscaled | milli is 1.2 x taller and 2 x heavier |
+| Servo delay | 15-30 ms | microduck's, kept as an estimate |
+| Voltage sag, load-dependent friction | none | in microduck's BAM model; not ported |
+| Reward weights, command speeds | microduck's | see above |
 | Masses, friction | see the spec | infill, wires and friction are estimates |
 
 So a policy trained here shows whether the design can walk in simulation. It isn't ready for a real robot: that needs a measured servo model, and delay and backlash in the sim.
