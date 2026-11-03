@@ -22,6 +22,7 @@ Geometry roles (as echo's, the repo this method is forked from):
   actuator  bought servo case. Rigid. Lives in the joint's PARENT link, its shaft on the joint axis.
 """
 import copy
+import glob
 import json
 import math
 import os
@@ -66,6 +67,9 @@ RECIPES = {
                     mass_budget_kg=1.95, target_tol=0.15, cannot=['floor pick'],
                     battery=dict(name='battery 2S 800 mAh', size=(0.014, 0.060, 0.030), mass=0.045)),
 }
+# a duck at any height, from tools/new_duck.py
+for _f in sorted(glob.glob(os.path.join(HERE, 'recipes', '*.json'))):
+    RECIPES[os.path.splitext(os.path.basename(_f))[0]] = json.load(open(_f, encoding='utf-8'))
 RECIPE = os.environ.get('MILLI_RECIPE', 'hybrid')
 R = RECIPES[RECIPE]
 K = R['K']
