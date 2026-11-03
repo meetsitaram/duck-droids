@@ -18,6 +18,10 @@ uv pip install "torch==2.9.1" --reinstall-package torch --index-url https://down
 python tools/make_rl_model.py ../milli-rl/src/mjlab_microduck/robot/milli
 ```
 
+## Check before a long run
+
+`scripts/milli_sanity.py`, in the trainer: resets 256 robots and holds still with zero actions. Soles on the floor, none fall in 2 s. A smoke test only proves the code runs.
+
 ## Train
 
 Smoke test first, then the run (RTX 5090, 4096 robots). `WANDB_MODE=offline` keeps the logs local.
@@ -37,6 +41,8 @@ Checkpoints go to `logs/rsl_rl/milli/`, every 250 iterations.
 - **The robot:** `tools/make_rl_model.py` gives milli microduck's names, joint directions and order, so the recipe's rewards and observations apply. The beak is locked.
 - **Standing pose:** level, with the feet 42 mm forward, until the centre of mass is over the soles.
 - **Foot switches:** two booleans added to the policy's inputs, from sole contact.
+- **Reset height:** the recipe's 12-13 cm was microduck's; it dropped milli from 12 cm at every reset. Now 0-2 mm.
+- **Servo randomization:** friction, damping and armature each +-30 %, as they're scaled or copied. The recipe's friction setting did nothing here: it only acts through microduck's servo model.
 - **Servos:** plain position actuators with a torque limit. microduck's measured BAM model fits only the XL330.
 
 ## What's assumed, and not measured
