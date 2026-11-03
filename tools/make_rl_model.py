@@ -1,6 +1,7 @@
-"""milli as a robot for the microduck_rl trainer: python tools/make_rl_model.py OUT_DIR [--salvage]
+"""milli as a robot for the microduck_rl trainer: python tools/make_rl_model.py OUT_DIR [--salvage] [--contact]
 
 --salvage: the servos from a dismantled SO-101 pair (SALVAGE below), to find out if they can walk, before the spec changes.
+--contact: every link above the shoes also gets a collision shape, its convex hull, for tasks where the body meets the floor.
 Writes OUT_DIR/milli.xml, one mesh per link, and home.json. Follows that trainer's conventions, so its rewards, symmetry and
 observations apply: microduck's link, joint, site and sensor names, its joint directions and joint order, the beak locked.
 
@@ -16,6 +17,7 @@ import sys
 
 import numpy as np
 from scipy.optimize import least_squares, brentq
+from scipy.spatial import ConvexHull
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import checks as C  # noqa: E402
@@ -107,13 +109,26 @@ def main():
         RP.stl(os.path.join(out, 'meshes', name + '.stl'), np.asarray(mesh.vert_properties[:, :3], float) - o, np.asarray(mesh.tri_verts, int))
         assets.append(f'<mesh name="{name}" file="{name}.stl"/>')
         x.append(f'<geom type="mesh" mesh="{name}" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>')
+        if '--contact' in sys.argv and ln not in ('L_foot', 'R_foot'):     # the shoes keep their sole boxes: nothing frictionless below them
+            hv = np.asarray(mesh.vert_properties[:, :3], float) - o
+            hull = ConvexHull(hv)
+            RP.stl(os.path.join(out, 'meshes', name + '_hull.stl'), hv, hull.simplices)
+            assets.append(f'<mesh name="{name}_hull" file="{name}_hull.stl" maxhullvert="32"/>')
+            x.append(f'<geom name="{name}_collision" type="mesh" mesh="{name}_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>')
+        elif '--contact' in sys.argv:                                      # the shoe's hull meets the robot, never the floor: contype 2 against the floor's 1
+            hv = np.asarray(mesh.vert_properties[:, :3], float) - o
+            hull = ConvexHull(hv)
+            RP.stl(os.path.join(out, 'meshes', name + '_hull.stl'), hv, hull.simplices)
+            assets.append(f'<mesh name="{name}_hull" file="{name}_hull.stl" maxhullvert="32"/>')
+            side = 'left' if ln == 'L_foot' else 'right'
+            x.append(f'<geom name="{side}_foot_hull_collision" type="mesh" mesh="{name}_hull" rgba="1 1 0 0" group="3" mass="0" contype="2" conaffinity="2"/>')
         for g in spec['links'][ln]['geoms']:
             if 'contact' in g:
                 side = 'left' if ln == 'L_foot' else 'right'
                 cn = np.array(g['contact']['c']) - o
                 sz = np.array(g['contact']['size']) / 2
                 x.append(f'<geom name="{side}_foot_collision" type="box" pos="{cn[0]:.5f} {cn[1]:.5f} {cn[2]:.5f}" size="{sz[0]:.5f} {sz[1]:.5f} {sz[2]:.5f}" '
-                         'rgba="1 1 0 0" group="3" friction="1"/>')
+                         'rgba="1 1 0 0" group="3" friction="1"' + (' contype="3" conaffinity="2"' if '--contact' in sys.argv else '') + '/>')
                 x.append(f'<site name="{side}_foot" pos="{cn[0]:.5f} {cn[1]:.5f} {cn[2] - sz[2]:.5f}"/>')
         kids = R.children.get(ln, [])
         if ln == 'trunk':
@@ -155,6 +170,21 @@ def main():
     for n in ('left_hip_yaw', 'right_hip_yaw', 'left_hip_roll', 'right_hip_roll', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll'):
         home[n] = 0.0
     json.dump(dict(servos=servos, joint_pos=home, root_z=ROOT_Z + 0.001, feet_forward_m=dx, mass_kg=sum(v[0] for v in inert.values())), open(os.path.join(out, 'home.json'), 'w'), indent=1)
+    if '--contact' in sys.argv:
+        import mujoco
+        # hulls are fatter than the parts: a pair that touches standing, with nothing wrong, can't collide in sim. Which pairs that leaves unguarded is printed: tools/check_motion.py covers them
+        m = mujoco.MjModel.from_xml_path(os.path.join(out, 'milli.xml'))
+        d = mujoco.MjData(m)
+        d.qpos[2] = ROOT_Z + 0.001
+        for jn, v in home.items():
+            d.qpos[m.joint(jn).qposadr[0]] = v
+        mujoco.mj_forward(m, d)
+        pairs = sorted({tuple(sorted((m.body(int(m.geom_bodyid[d.contact[i].geom1])).name, m.body(int(m.geom_bodyid[d.contact[i].geom2])).name))) for i in range(d.ncon)})
+        # and at the ends of single-joint sweeps, where tools/checks.py finds the parts clear
+        pairs = sorted(set(pairs) | {('upper_leg_left', 'yaw2roll'), ('bearing_roll', 'upper_leg_right'), ('bearing_roll', 'leg_2')})
+        print('excluded, as their hulls touch where the parts do not:', pairs)
+        xml = xml.replace('<sensor>', '<contact>' + ''.join(f'<exclude body1="{a}" body2="{b}"/>' for a, b in pairs) + '</contact>\n<sensor>', 1)
+        open(os.path.join(out, 'milli.xml'), 'w', encoding='utf-8').write(xml)
     print(f"mass {sum(v[0] for v in inert.values()):.2f} kg; level stance: feet {dx * 1000:.0f} mm forward; home", {k: round(v, 3) for k, v in home.items() if v})
     return 0
 

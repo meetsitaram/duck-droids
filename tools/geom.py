@@ -19,7 +19,7 @@ RIGID = ('struct', 'actuator')
 PLATE_DIMS = {'x': (0, (1, 2)), 'y': (1, (0, 2)), 'z': (2, (0, 1))}   # a plate's axis, its outline's dims
 
 def load(path=None):
-    return json.load(open(path or os.path.join(ROOT, 'spec', 'robot.json'), encoding='utf-8'))
+    return json.load(open(path or os.path.join(ROOT, 'spec', 'robot.json' if os.environ.get('MILLI_RECIPE', 'hybrid') == 'hybrid' else f"robot_{os.environ['MILLI_RECIPE']}.json"), encoding='utf-8'))
 
 
 # ---------------------------------------------------------------- lofts

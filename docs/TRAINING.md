@@ -64,6 +64,12 @@ python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli
 python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli_salvage --salvage
 ```
 
+The floor skills and the other two [servo recipes](../README.md#three-servo-recipes) need their own models too, and the trainer won't import without them. In bash:
+
+```bash
+R=../microduck_rl/src/mjlab_microduck/robot; python tools/make_rl_model.py $R/milli_contact --contact; for r in dynamixel feetech; do MILLI_RECIPE=$r python tools/make_rl_model.py $R/milli_$r; MILLI_RECIPE=$r python tools/make_rl_model.py $R/milli_${r}_contact --contact; done
+```
+
 ## Check before a long run
 
 In the trainer. This resets 256 robots and holds still with zero actions: soles on the floor, and few or none falling in 2 s.
@@ -87,6 +93,8 @@ WANDB_MODE=offline PYTHONUTF8=1 train Mjlab-Velocity-Flat-Milli --env.scene.num-
 Checkpoints go to `logs/rsl_rl/milli/`, every 250 iterations.
 
 `Mjlab-Velocity-Flat-Milli-Salvage` trains the same recipe on the servos of a dismantled SO-101 pair: C046 at the hip yaws, C044 at the knees, C001 at hip roll, hip pitch and ankle. Its checkpoints go to `logs/rsl_rl/milli_salvage/`. That run hasn't been tested for walking yet.
+
+Each recipe has three tasks, none with a finished, tested result yet. Hybrid: `Mjlab-Velocity-Flat-Milli`, `Mjlab-StandUp-Flat-Milli`, `Mjlab-Roulade-Flat-Milli`. For the others, add `-Dynamixel` or `-Feetech` to the name. Test them with `--recipe dynamixel` or `--recipe feetech` on `scripts/milli_eval.py` and `scripts/milli_skill_eval.py standup|roulade`. With zero actions, the all-Dynamixel robot and half of the all-Feetech robots fall within 2 s in the check above, as do most of microduck's own, so that check's "few or none falling" applies to the hybrid only. Run at most three trainings at once on one GPU: four, beside a heavy CPU job, reset the display driver and killed every run.
 
 ## Test a checkpoint
 

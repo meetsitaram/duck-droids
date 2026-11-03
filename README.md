@@ -15,6 +15,27 @@ training (iteration 1750 of 3000). It stays up, but told to walk straight at 0.3
 The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement in this one is an
 animation from the leg's kinematics, tested for joint limits and collisions, not a physics simulation or a trained walk.
 
+## Three servo recipes
+
+One design on three sets of servos, drawn at the same scale, to compare in simulation on walking, the head roll and getting up after a
+fall. A case study you can rerun or add to: pick one with `MILLI_RECIPE`, or add your own to `RECIPES` in [spec/robot.py](spec/robot.py).
+
+| All Dynamixel | Hybrid | All Feetech |
+|:---:|:---:|:---:|
+| ![All Dynamixel recipe](docs/images/recipes/dynamixel.png) | ![Hybrid recipe](docs/images/recipes/hybrid.png) | ![All Feetech recipe](docs/images/recipes/feetech.png) |
+| **15 × XL330-M288** | **8 × STS3215-C044**, **2 × STS3215-C046**, **1 × XC330-M288**, **4 × XL330-M288** | **10 × STS3215-C044**, **5 × STS3215-C046** |
+| 0.298 m, 0.89 kg | 0.321 m, 1.51 kg | 0.377 m, 1.85 kg |
+
+Microduck, for scale: 0.264 m, 0.8 kg, on XL330s.
+
+- **Results are pending.** Training is under way, and nothing here has been built or tested on real parts. Hybrid is the design the rest
+  of this README, the parts list and the printable files describe. The other two are spec-only drafts: no assembly guide, parts list or CAD yet.
+- **All Dynamixel** runs its XL330s straight off a 2S pack, as microduck's trainer models its own, which is past ROBOTIS's 6 V maximum. Its
+  torque and speed at that voltage are estimates.
+- **All Feetech** passes its checks only with looser limits, set in the spec: a higher mass budget, proportions within 15 % rather than 10 %, a
+  smaller head roll range, and one pose (the floor pick) it can't reach.
+- Masses are estimates from each part's material. Pictures: `python tools/render_recipes.py`.
+
 ## Status
 
 A design, not yet built. Nothing here has been printed or tested on real parts. This branch has STS3215 ankles; branch

@@ -214,13 +214,14 @@ def check_targets(spec, S, rep):
     ref = tg['model']
     k = m['height_m'] / ref['height_m']
     rep.add('targets', 'height', False, f"{m['height_m']:.3f} m: {k:.2f} x microduck's {ref['height_m']} m "
-            f"(STS3215 legs: proportions are checked at this scale)", warn=True)
+            f"(proportions are checked at this scale)", warn=True)
     for key, v in ref.items():
         if key == 'height_m':
             continue
         want = v * k
-        rep.add('targets', key, abs(m[key] - want) <= tg['tol'] * want,
-                f"{m[key]:.3f} (microduck {v} x {k:.2f} = {want:.3f} +/- {tg['tol'] * 100:.0f} %)")
+        tol = spec.get('recipe_limits', {}).get('target_tol', tg['tol'])    # a recipe that can't keep the proportions says so in the spec
+        rep.add('targets', key, abs(m[key] - want) <= tol * want,
+                f"{m[key]:.3f} (microduck {v} x {k:.2f} = {want:.3f} +/- {tol * 100:.0f} %)")
     return m
 
 
@@ -229,8 +230,9 @@ def check_mass(spec, S, rep):
     tg = json.load(open(os.path.join(ROOT, 'spec', 'targets.json'), encoding='utf-8'))
     inert = MM.link_inertials(spec, S)
     total = sum(v[0] for v in inert.values())
-    rep.add('mass', 'total', total <= tg['mass_budget_kg'],
-            f"{total:.3f} kg bottom-up (budget {tg['mass_budget_kg']} kg; microduck {tg['published']['mass_kg']} kg)")
+    budget = spec.get('recipe_limits', {}).get('mass_budget_kg', tg['mass_budget_kg'])
+    rep.add('mass', 'total', total <= budget,
+            f"{total:.3f} kg bottom-up (budget {budget} kg; microduck {tg['published']['mass_kg']} kg)")
 
 
 def check_axis(spec, rep):
@@ -599,7 +601,8 @@ def check_poses(spec, S, R, rep, collide=True):
         # 0.86 rad of dorsiflexion, past a 0.8 limit, and only a collision gave it away)
         out = [f"{k} {v:+.2f} outside [{R.joints[k]['lower']:+.2f}, {R.joints[k]['upper']:+.2f}]"
                for k, v in q.items() if not R.joints[k]['lower'] - 1e-9 <= v <= R.joints[k]['upper'] + 1e-9]
-        rep.add('poses', f'{name}: within limits', not out, '; '.join(out) or 'yes')
+        cannot = name in spec.get('recipe_limits', {}).get('cannot', [])     # a move this recipe gives up, shown as a warning, not dropped
+        rep.add('poses', f'{name}: within limits', not out, '; '.join(out) or 'yes', warn=cannot)
         for j in spec['joints']:
             cap = capacity(spec, j)
             if cap is None:
