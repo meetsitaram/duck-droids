@@ -35,7 +35,7 @@ JOINT = {'L_hip_yaw': ('left_hip_yaw', -1), 'R_hip_yaw': ('right_hip_yaw', -1), 
          'L_ankle_pitch': ('left_ankle', 1), 'R_ankle_pitch': ('right_ankle', -1), 'neck_pitch': ('neck_pitch', -1), 'head_pitch': ('head_pitch', 1),
          'head_yaw': ('head_yaw', 1), 'head_roll': ('head_roll', -1)}
 ORDER = ['L_hip_yaw', 'neck_pitch', 'R_hip_yaw']   # the trunk's children, in the trainer's joint order
-ROOT_Z = 0.17                                      # the root body's height: about the trunk's middle
+ROOT_Z = G.load().get('rl', {}).get('root_z', 0.17)   # the root body's height: about the trunk's middle
 KP = {'STS3215_C001': 17.8, 'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52,
       # an estimate: the STS3215's gain by gear ratio, at the position gain XGO-Duck's runtime starts from (5 against a Feetech default of 32). Measure it
       'HD1910_C001': 17.8 * 320 / 345 * 5 / 32}
@@ -66,8 +66,18 @@ def level_home(spec, S):
         com = sum(MS.m[l] * G.apply(M[l], MS.com[l][None])[0] for l in spec['links']) / sum(MS.m.values())
         sole = next(g for g in spec['links']['L_foot']['geoms'] if 'contact' in g)['contact']['c']
         return com[0] - (sole[0] + dx)
-    dx = brentq(miss, -0.02, 0.07, xtol=1e-4)
+    dx = brentq(miss, -0.02 * ROOT_Z / 0.17, 0.07 * ROOT_Z / 0.17, xtol=1e-4)
     return pose(dx), dx
+
+
+def at_joint(spec, j):
+    """A big duck's joint, through its pair and chain: (peak, no-load speed, armature, damping, friction, rated). A joint that has only its actuator's numbers says so by no 'rl' in the spec."""
+    a = spec['actuators'][j['act']]
+    if 'rl' not in spec:
+        return a['peak_nm'], a['noload_rads'], a['armature_kgm2'], a['damping_nms'], a['friction_nm'], a.get('rated_nm')
+    n, r = j['capacity']['count'], j['capacity']['ratio']
+    slowest = next((v for k, v in spec['rl'].get('speed_ratio', {}).items() if k in j['name']), r)      # a crank's ratio changes: see spec/big_duck.py
+    return a['peak_nm'] * n * r, a['noload_rads'] / slowest, a['rotor_kgm2'] * a['gear'] ** 2 * n * r * r, a['damping_nms'] * n * r * r, a['friction_nm'] * n * r, a['rated_nm'] * n * r
 
 
 def main():
@@ -98,15 +108,15 @@ def main():
         j = R.parent_joint.get(ln)
         if j is None:
             x.append('<freejoint name="trunk_base_freejoint"/>')
-            sens = np.array(next(g for g in spec['links']['trunk']['geoms'] if g['name'] == '5 V regulator and IMU')['c']) - o
+            sens = np.array(spec['rl']['imu'] if 'rl' in spec else next(g for g in spec['links']['trunk']['geoms'] if g['name'] == '5 V regulator and IMU')['c']) - o
             x.append(f'<site name="imu" pos="{sens[0]:.5f} {sens[1]:.5f} {sens[2]:.5f}"/>')
         elif j['name'] in JOINT:
             nm, sg = JOINT[j['name']]
-            a = spec['actuators'][j['act']]
+            _, _, arm, dmp, frc, _ = at_joint(spec, j)
             ax = sg * AXIS[j['axis']]
             lo, hi = sorted((sg * j['lower'], sg * j['upper']))
-            x.append(f'<joint name="{nm}" axis="{ax[0]} {ax[1]} {ax[2]}" range="{lo:.4f} {hi:.4f}" armature="{a["armature_kgm2"]:.6g}" '
-                     f'damping="{a["damping_nms"]:.5g}" frictionloss="{a["friction_nm"]:.5g}"/>')
+            x.append(f'<joint name="{nm}" axis="{ax[0]} {ax[1]} {ax[2]}" range="{lo:.4f} {hi:.4f}" armature="{arm:.6g}" '
+                     f'damping="{dmp:.5g}" frictionloss="{frc:.5g}"/>')
         mesh = S.all[ln].to_mesh()
         RP.stl(os.path.join(out, 'meshes', name + '.stl'), np.asarray(mesh.vert_properties[:, :3], float) - o, np.asarray(mesh.tri_verts, int))
         assets.append(f'<mesh name="{name}" file="{name}.stl"/>')
@@ -146,8 +156,13 @@ def main():
            'R_hip_yaw', 'R_hip_roll', 'R_hip_pitch', 'R_knee', 'R_ankle_pitch']
     servos = {}
     for n in seq:
-        a = spec['actuators'][J[n]['act']]
-        g = servos.setdefault(J[n]['act'], dict(kp=KP[J[n]['act']], peak_nm=a['peak_nm'], noload_rads=a['noload_rads'], joints=[]))
+        peak, noload, _, _, _, rated = at_joint(spec, J[n])
+        if 'rl' in spec:                           # gains by joint, as each joint has its own pair and chain
+            kind = JOINT[n][0].replace('left_', '').replace('right_', '')
+            kp, kd = spec['rl']['gains'][kind]
+            g = servos.setdefault(kind, dict(kp=kp, kd=kd, peak_nm=peak, rated_nm=rated, noload_rads=noload, joints=[]))
+        else:
+            g = servos.setdefault(J[n]['act'], dict(kp=KP[J[n]['act']], peak_nm=peak, noload_rads=noload, joints=[]))
         g['joints'].append(JOINT[n][0])
     xml = f"""<mujoco model="milli">
 <compiler meshdir="meshes" angle="radian" autolimits="true"/>

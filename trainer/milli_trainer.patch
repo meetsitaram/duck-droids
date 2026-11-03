@@ -1,3 +1,15 @@
+diff --git a/.gitignore b/.gitignore
+index 7257287..36d04bd 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -38,3 +38,7 @@ backup_onnx/
+ logdir/.claude/
+ logdir/
+ logdir/.claude/worktrees/
++
++logs/
++wandb/
++train_milli_*.log
 diff --git a/scripts/milli_audit.py b/scripts/milli_audit.py
 new file mode 100644
 index 0000000..6fa4c5a
@@ -277,6 +289,61 @@ index 0000000..6d3d0c5
 +print("max joint speed", round(r.data.joint_vel.abs().max().item(), 1), "nan", bool(torch.isnan(r.data.joint_pos).any()))
 +print("rewards", list(cfg.rewards)[:40])
 +print("events", list(cfg.events))
+diff --git a/scripts/milli_limits.py b/scripts/milli_limits.py
+new file mode 100644
+index 0000000..29b2ebe
+--- /dev/null
++++ b/scripts/milli_limits.py
+@@ -0,0 +1,49 @@
++"""Is a joint resting on its stop? python scripts/milli_limits.py CHECKPOINT [TASK]: each leg joint's angle, torque, and how often it's at its limit, in stance and in swing, told 0.3 m/s."""
++import sys
++import numpy as np, torch
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.envs import ManagerBasedRlEnv
++from mjlab.rl import RslRlVecEnvWrapper
++from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
++from dataclasses import asdict
++
++TASK = sys.argv[2] if len(sys.argv) > 2 else 'Mjlab-Velocity-Flat-Milli-Big'
++ck = sys.argv[1]
++cfg = load_env_cfg(TASK)
++cfg.scene.num_envs = 32
++cfg.events.pop('push_robot', None)
++w = RslRlVecEnvWrapper(ManagerBasedRlEnv(cfg=cfg, device="cuda:0"), clip_actions=load_rl_cfg(TASK).clip_actions)
++env = w.unwrapped
++rl = load_rl_cfg(TASK)
++runner = load_runner_cls(TASK)(w, asdict(rl), device="cuda:0")
++runner.load(ck, map_location="cuda:0")
++pol = runner.get_inference_policy(device="cuda:0")
++robot = env.scene['robot']
++obs = w.get_observations()
++env.command_manager.get_term('twist').cfg.ranges.lin_vel_x = (0.3, 0.3)
++env.command_manager.get_term('twist').cfg.ranges.lin_vel_y = (0.0, 0.0)
++env.command_manager.get_term('twist').cfg.ranges.ang_vel_z = (0.0, 0.0)
++env.command_manager.get_term('twist').cfg.rel_standing_envs = 0.0
++names = list(robot.joint_names)
++an = list(robot.actuator_names)
++LEG = ['left_hip_pitch', 'left_knee', 'left_ankle']
++ids = [names.index(j) for j in LEG]
++aid = [an.index(j) for j in LEG]
++Q, T, C = [], [], []
++with torch.no_grad():
++    for i in range(400):
++        obs, *_ = w.step(pol(obs))
++        if i > 100:
++            Q.append(robot.data.joint_pos[:, ids].cpu().numpy())
++            T.append(robot.data.actuator_force[:, aid].cpu().numpy())
++            C.append((env.scene['feet_ground_contact'].data.found[:, 0] > 0).cpu().numpy())
++Q, T, C = np.array(Q), np.array(T), np.array(C)
++lim = robot.data.joint_pos_limits[0, ids].cpu().numpy()
++soft = robot.data.soft_joint_pos_limits[0, ids].cpu().numpy() if hasattr(robot.data, 'soft_joint_pos_limits') else lim
++print('foot on the floor', round(C.mean() * 100), '% of the time')
++for k, j in enumerate(LEG):
++    q, t = Q[..., k], T[..., k]
++    hi = lim[k, 1]
++    for tag, m in (('stance', C), ('swing', ~C)):
++        print(f"{j:15s} {tag:6s} angle mean {q[m].mean():+.2f} min {q[m].min():+.2f} max {q[m].max():+.2f}  torque mean {t[m].mean():+7.1f} RMS {np.sqrt((t[m] ** 2).mean()):6.1f}  within 3 cm-rad of its limits {((q[m] > hi - 0.03) | (q[m] < lim[k, 0] + 0.03)).mean() * 100:4.0f} %")
++    print(f"   hard limits {lim[k].round(2)} soft {np.round(soft[k], 2)}")
 diff --git a/scripts/milli_sanity.py b/scripts/milli_sanity.py
 new file mode 100644
 index 0000000..c2d076c
@@ -445,9 +512,250 @@ index 0000000..d9625d8
 +        np.savez(os.path.join(a.trajdir, f"{a.skill}_{label.replace(' ', '_')}.npz"), q=np.array(qs)[:, i], names=np.array(names), dt=dt, won=bool(win.any()))
 +if a.out:
 +    json.dump(results, open(a.out, "w"), indent=1)
+diff --git a/src/mjlab_microduck/robot/milli/home.json b/src/mjlab_microduck/robot/milli/home.json
+new file mode 100644
+index 0000000..208762f
+--- /dev/null
++++ b/src/mjlab_microduck/robot/milli/home.json
+@@ -0,0 +1,65 @@
++{
++ "servos": {
++  "STS3215_C046": {
++   "kp": 7.584347826086956,
++   "peak_nm": 1.41,
++   "noload_rads": 11.1,
++   "joints": [
++    "left_hip_yaw",
++    "right_hip_yaw"
++   ]
++  },
++  "STS3215_C044": {
++   "kp": 9.85449275362319,
++   "peak_nm": 2.69,
++   "noload_rads": 9.0,
++   "joints": [
++    "left_hip_roll",
++    "left_hip_pitch",
++    "left_knee",
++    "left_ankle",
++    "right_hip_roll",
++    "right_hip_pitch",
++    "right_knee",
++    "right_ankle"
++   ]
++  },
++  "XC330_M288": {
++   "kp": 0.9836538461538462,
++   "peak_nm": 0.93,
++   "noload_rads": 8.5,
++   "joints": [
++    "neck_pitch"
++   ]
++  },
++  "XL330_M288": {
++   "kp": 0.55,
++   "peak_nm": 0.52,
++   "noload_rads": 10.8,
++   "joints": [
++    "head_pitch",
++    "head_yaw",
++    "head_roll"
++   ]
++  }
++ },
++ "joint_pos": {
++  "left_hip_pitch": -0.23037718060806966,
++  "left_knee": 0.39559065192334153,
++  "left_ankle": 0.6259678325314249,
++  "right_hip_pitch": 0.23037718060806966,
++  "right_knee": -0.39559065192334153,
++  "right_ankle": -0.6259678325314249,
++  "left_hip_yaw": 0.0,
++  "right_hip_yaw": 0.0,
++  "left_hip_roll": 0.0,
++  "right_hip_roll": 0.0,
++  "neck_pitch": 0.0,
++  "head_pitch": 0.0,
++  "head_yaw": 0.0,
++  "head_roll": 0.0
++ },
++ "root_z": 0.171,
++ "feet_forward_m": 0.04188706788585979,
++ "mass_kg": 1.506338437877665
++}
+\ No newline at end of file
+diff --git a/src/mjlab_microduck/robot/milli/meshes/ankle_left.stl b/src/mjlab_microduck/robot/milli/meshes/ankle_left.stl
+new file mode 100644
+index 0000000..311756a
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/ankle_left.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/ankle_right.stl b/src/mjlab_microduck/robot/milli/meshes/ankle_right.stl
+new file mode 100644
+index 0000000..5799899
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/ankle_right.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/bearing_roll.stl b/src/mjlab_microduck/robot/milli/meshes/bearing_roll.stl
+new file mode 100644
+index 0000000..e80f0b3
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/bearing_roll.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/hip_l.stl b/src/mjlab_microduck/robot/milli/meshes/hip_l.stl
+new file mode 100644
+index 0000000..b60bfb9
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/hip_l.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/hip_l_2.stl b/src/mjlab_microduck/robot/milli/meshes/hip_l_2.stl
+new file mode 100644
+index 0000000..d923bf1
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/hip_l_2.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/jaw.stl b/src/mjlab_microduck/robot/milli/meshes/jaw.stl
+new file mode 100644
+index 0000000..637e1c9
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/jaw.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/jaw_soft.stl b/src/mjlab_microduck/robot/milli/meshes/jaw_soft.stl
+new file mode 100644
+index 0000000..39d784f
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/jaw_soft.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/leg.stl b/src/mjlab_microduck/robot/milli/meshes/leg.stl
+new file mode 100644
+index 0000000..9da9165
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/leg.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/leg_2.stl b/src/mjlab_microduck/robot/milli/meshes/leg_2.stl
+new file mode 100644
+index 0000000..8763123
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/leg_2.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/neck.stl b/src/mjlab_microduck/robot/milli/meshes/neck.stl
+new file mode 100644
+index 0000000..a193813
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/neck.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/neck_pitch.stl b/src/mjlab_microduck/robot/milli/meshes/neck_pitch.stl
+new file mode 100644
+index 0000000..1b0d684
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/neck_pitch.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/trunk_base.stl b/src/mjlab_microduck/robot/milli/meshes/trunk_base.stl
+new file mode 100644
+index 0000000..d4ab74e
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/trunk_base.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/upper_leg_left.stl b/src/mjlab_microduck/robot/milli/meshes/upper_leg_left.stl
+new file mode 100644
+index 0000000..b60db99
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/upper_leg_left.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/upper_leg_right.stl b/src/mjlab_microduck/robot/milli/meshes/upper_leg_right.stl
+new file mode 100644
+index 0000000..6e0a014
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/upper_leg_right.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/yaw2roll.stl b/src/mjlab_microduck/robot/milli/meshes/yaw2roll.stl
+new file mode 100644
+index 0000000..a3a7fc8
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/yaw2roll.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/meshes/yaw_roll_motion.stl b/src/mjlab_microduck/robot/milli/meshes/yaw_roll_motion.stl
+new file mode 100644
+index 0000000..00c3d21
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli/meshes/yaw_roll_motion.stl differ
+diff --git a/src/mjlab_microduck/robot/milli/milli.xml b/src/mjlab_microduck/robot/milli/milli.xml
+new file mode 100644
+index 0000000..223cc2a
+--- /dev/null
++++ b/src/mjlab_microduck/robot/milli/milli.xml
+@@ -0,0 +1,99 @@
++<mujoco model="milli">
++<compiler meshdir="meshes" angle="radian" autolimits="true"/>
++<option timestep="0.005" integrator="implicitfast"/>
++<asset><mesh name="trunk_base" file="trunk_base.stl"/><mesh name="yaw2roll" file="yaw2roll.stl"/><mesh name="hip_l" file="hip_l.stl"/><mesh name="upper_leg_left" file="upper_leg_left.stl"/><mesh name="leg" file="leg.stl"/><mesh name="ankle_left" file="ankle_left.stl"/><mesh name="neck" file="neck.stl"/><mesh name="neck_pitch" file="neck_pitch.stl"/><mesh name="yaw_roll_motion" file="yaw_roll_motion.stl"/><mesh name="jaw_soft" file="jaw_soft.stl"/><mesh name="jaw" file="jaw.stl"/><mesh name="bearing_roll" file="bearing_roll.stl"/><mesh name="hip_l_2" file="hip_l_2.stl"/><mesh name="upper_leg_right" file="upper_leg_right.stl"/><mesh name="leg_2" file="leg_2.stl"/><mesh name="ankle_right" file="ankle_right.stl"/></asset>
++<worldbody>
++<body name="trunk_base" pos="0.000000 0.000000 0.170000">
++<inertial pos="-0.018030 -0.000175 -0.007498" mass="0.28148" fullinertia="0.00014666268 0.00021179285 0.00027068656 1.9585434e-06 1.1539586e-05 -6.3990443e-07"/>
++<freejoint name="trunk_base_freejoint"/>
++<site name="imu" pos="-0.01500 0.00000 0.01264"/>
++<geom type="mesh" mesh="trunk_base" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="yaw2roll" pos="0.000000 0.016000 -0.032106">
++<inertial pos="0.000181 0.002576 -0.028385" mass="0.08668" fullinertia="2.9648278e-05 3.6488974e-05 1.6878996e-05 1.4871713e-07 -5.6281842e-07 1.1156557e-06"/>
++<joint name="left_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0051" damping="0.109" frictionloss="0.052"/>
++<geom type="mesh" mesh="yaw2roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="hip_l" pos="0.022500 0.002500 -0.020100">
++<inertial pos="-0.010335 0.012491 -0.000000" mass="0.01775" fullinertia="3.1387438e-06 2.9941624e-06 4.709051e-06 1.6369889e-06 -5.4401439e-14 1.107793e-14"/>
++<joint name="left_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="hip_l" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="upper_leg_left" pos="-0.022500 0.021450 0.000000">
++<inertial pos="-0.032625 0.023917 -0.008551" mass="0.18559" fullinertia="7.8819121e-05 0.00014441322 0.0001297379 6.6109532e-07 -3.1187399e-05 -4.0226076e-07"/>
++<joint name="left_hip_pitch" axis="0 1 0" range="-1.3000 0.4300" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="upper_leg_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="leg" pos="-0.050950 0.000000 -0.031294">
++<inertial pos="0.000000 0.013471 -0.037023" mass="0.08570" fullinertia="4.1377498e-05 3.3800975e-05 1.7026113e-05 -6.7648554e-14 -1.8363164e-13 5.1336935e-06"/>
++<joint name="left_knee" axis="0 -1 0" range="-1.0500 1.1000" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="leg" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="ankle_left" pos="0.000000 0.038500 -0.057000">
++<inertial pos="0.009357 -0.019719 -0.015960" mass="0.05329" fullinertia="1.7642861e-05 2.3252423e-05 3.3704398e-05 4.8407923e-07 2.6667922e-07 -3.9176622e-07"/>
++<joint name="left_ankle" axis="0 1 0" range="-1.3000 1.3000" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="ankle_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<geom name="left_foot_collision" type="box" pos="0.00800 -0.02095 -0.02750" size="0.02450 0.02150 0.00200" rgba="1 1 0 0" group="3" friction="1"/>
++<site name="left_foot" pos="0.00800 -0.02095 -0.02950"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++<body name="neck" pos="0.028000 0.013000 -0.003606">
++<inertial pos="-0.000000 -0.014526 0.023896" mass="0.05346" fullinertia="2.218488e-05 2.1382342e-05 5.7803438e-06 1.8262136e-14 1.1844521e-14 -1.1962381e-06"/>
++<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 0.1500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="neck" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="neck_pitch" pos="0.000000 -0.029000 0.051400">
++<inertial pos="-0.000474 0.016105 0.026578" mass="0.03678" fullinertia="1.2894989e-05 1.2510173e-05 7.3608807e-06 -1.8273144e-09 -2.405539e-07 5.4045108e-08"/>
++<joint name="head_pitch" axis="0 1 0" range="-1.6000 1.6000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="neck_pitch" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="yaw_roll_motion" pos="0.007500 0.016000 0.051600">
++<inertial pos="-0.000000 0.007201 0.010286" mass="0.03715" fullinertia="6.632022e-06 6.0624549e-06 7.7033161e-06 6.7979622e-14 4.9828342e-14 -4.1148122e-07"/>
++<joint name="head_yaw" axis="0 0 1" range="-2.5000 2.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="yaw_roll_motion" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="jaw_soft" pos="0.018500 0.000000 0.013000">
++<inertial pos="0.000289 -0.000028 0.002016" mass="0.20244" fullinertia="0.00020609767 0.0004915506 0.00058678809 7.3819073e-07 -3.3655387e-05 -2.4612338e-07"/>
++<joint name="head_roll" axis="-1 0 0" range="-0.4400 0.4400" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="jaw_soft" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="jaw" pos="-0.018500 0.000000 -0.002000">
++<inertial pos="0.040253 -0.000000 -0.022437" mass="0.03703" fullinertia="6.6151487e-05 3.9399384e-05 0.00010017025 4.8912588e-12 5.0073123e-06 -1.9302817e-11"/>
++<geom type="mesh" mesh="jaw" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++<body name="bearing_roll" pos="0.000000 -0.016000 -0.032106">
++<inertial pos="0.000181 -0.002576 -0.028385" mass="0.08668" fullinertia="2.9648278e-05 3.6488974e-05 1.6878996e-05 -1.4871713e-07 -5.6281842e-07 -1.1156557e-06"/>
++<joint name="right_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0051" damping="0.109" frictionloss="0.052"/>
++<geom type="mesh" mesh="bearing_roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="hip_l_2" pos="0.022500 -0.002500 -0.020100">
++<inertial pos="-0.010335 -0.012491 -0.000000" mass="0.01775" fullinertia="3.1387438e-06 2.9941624e-06 4.709051e-06 -1.6369889e-06 -5.4401442e-14 -1.1077912e-14"/>
++<joint name="right_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="hip_l_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="upper_leg_right" pos="-0.022500 -0.021450 0.000000">
++<inertial pos="-0.032625 -0.023917 -0.008551" mass="0.18559" fullinertia="7.8819121e-05 0.00014441322 0.0001297379 -6.6109532e-07 -3.1187399e-05 4.0226077e-07"/>
++<joint name="right_hip_pitch" axis="0 -1 0" range="-0.4300 1.3000" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="upper_leg_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="leg_2" pos="-0.050950 0.000000 -0.031294">
++<inertial pos="0.000000 -0.013471 -0.037023" mass="0.08570" fullinertia="4.1377498e-05 3.3800975e-05 1.7026113e-05 6.7653542e-14 -1.8362757e-13 -5.1336935e-06"/>
++<joint name="right_knee" axis="0 1 0" range="-1.1000 1.0500" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="leg_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="ankle_right" pos="0.000000 -0.038500 -0.057000">
++<inertial pos="0.009357 0.019719 -0.015960" mass="0.05329" fullinertia="1.7642865e-05 2.3252425e-05 3.3704404e-05 -4.8390624e-07 2.6668195e-07 3.917656e-07"/>
++<joint name="right_ankle" axis="0 -1 0" range="-1.3000 1.3000" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="ankle_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<geom name="right_foot_collision" type="box" pos="0.00800 0.02095 -0.02750" size="0.02450 0.02150 0.00200" rgba="1 1 0 0" group="3" friction="1"/>
++<site name="right_foot" pos="0.00800 0.02095 -0.02950"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++</body>
++</worldbody>
++<sensor>
++<framequat name="orientation" objtype="site" noise="0.001" objname="imu"/>
++<gyro name="angular-velocity" site="imu" noise="0.005"/>
++<gyro name="imu_ang_vel" site="imu"/>
++<velocimeter name="imu_lin_vel" site="imu"/>
++<accelerometer name="imu_accel" site="imu"/>
++<subtreeangmom name="root_angmom" body="trunk_base"/>
++</sensor>
++</mujoco>
 diff --git a/src/mjlab_microduck/robot/milli_constants.py b/src/mjlab_microduck/robot/milli_constants.py
 new file mode 100644
-index 0000000..6b7be11
+index 0000000..e320ff7
 --- /dev/null
 +++ b/src/mjlab_microduck/robot/milli_constants.py
 @@ -0,0 +1,82 @@
@@ -491,8 +799,8 @@ index 0000000..6b7be11
 +            actuators=tuple(
 +                DcMotorActuatorCfg(
 +                    target_names_expr=tuple(f"^{j}$" for j in s["joints"]),
-+                    stiffness=s["kp"],
-+                    damping=0.0,
++                    stiffness=float(s["kp"]),
++                    damping=float(s.get("kd", 0.0)),
 +                    effort_limit=s["peak_nm"],
 +                    saturation_effort=s["peak_nm"],
 +                    velocity_limit=s["noload_rads"],
@@ -533,6 +841,254 @@ index 0000000..6b7be11
 +EXTRA_RECIPES = extra_recipes()
 +STRONG_NECK = {"neck_pitch": 1.57, "head_pitch": 1.45}
 +MILLI_CONTACT_STRONG_NECK_CFG = make_milli_robot_cfg("milli_contact", _CONTACT, stronger=STRONG_NECK)
+diff --git a/src/mjlab_microduck/robot/milli_salvage/home.json b/src/mjlab_microduck/robot/milli_salvage/home.json
+new file mode 100644
+index 0000000..059f5af
+--- /dev/null
++++ b/src/mjlab_microduck/robot/milli_salvage/home.json
+@@ -0,0 +1,72 @@
++{
++ "servos": {
++  "STS3215_C046": {
++   "kp": 7.584347826086956,
++   "peak_nm": 1.41,
++   "noload_rads": 11.1,
++   "joints": [
++    "left_hip_yaw",
++    "right_hip_yaw"
++   ]
++  },
++  "STS3215_C001": {
++   "kp": 17.8,
++   "peak_nm": 1.91,
++   "noload_rads": 5.4,
++   "joints": [
++    "left_hip_roll",
++    "left_hip_pitch",
++    "left_ankle",
++    "right_hip_roll",
++    "right_hip_pitch",
++    "right_ankle"
++   ]
++  },
++  "STS3215_C044": {
++   "kp": 9.85449275362319,
++   "peak_nm": 2.69,
++   "noload_rads": 9.0,
++   "joints": [
++    "left_knee",
++    "right_knee"
++   ]
++  },
++  "XC330_M288": {
++   "kp": 0.9836538461538462,
++   "peak_nm": 0.93,
++   "noload_rads": 8.5,
++   "joints": [
++    "neck_pitch"
++   ]
++  },
++  "XL330_M288": {
++   "kp": 0.55,
++   "peak_nm": 0.52,
++   "noload_rads": 10.8,
++   "joints": [
++    "head_pitch",
++    "head_yaw",
++    "head_roll"
++   ]
++  }
++ },
++ "joint_pos": {
++  "left_hip_pitch": -0.23037718060806966,
++  "left_knee": 0.39559065192334153,
++  "left_ankle": 0.6259678325314249,
++  "right_hip_pitch": 0.23037718060806966,
++  "right_knee": -0.39559065192334153,
++  "right_ankle": -0.6259678325314249,
++  "left_hip_yaw": 0.0,
++  "right_hip_yaw": 0.0,
++  "left_hip_roll": 0.0,
++  "right_hip_roll": 0.0,
++  "neck_pitch": 0.0,
++  "head_pitch": 0.0,
++  "head_yaw": 0.0,
++  "head_roll": 0.0
++ },
++ "root_z": 0.171,
++ "feet_forward_m": 0.04188706788585979,
++ "mass_kg": 1.506338437877665
++}
+\ No newline at end of file
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_left.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_left.stl
+new file mode 100644
+index 0000000..311756a
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_left.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_right.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_right.stl
+new file mode 100644
+index 0000000..5799899
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/ankle_right.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/bearing_roll.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/bearing_roll.stl
+new file mode 100644
+index 0000000..e80f0b3
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/bearing_roll.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l.stl
+new file mode 100644
+index 0000000..b60bfb9
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l_2.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l_2.stl
+new file mode 100644
+index 0000000..d923bf1
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/hip_l_2.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/jaw.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/jaw.stl
+new file mode 100644
+index 0000000..637e1c9
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/jaw.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/jaw_soft.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/jaw_soft.stl
+new file mode 100644
+index 0000000..39d784f
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/jaw_soft.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/leg.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/leg.stl
+new file mode 100644
+index 0000000..9da9165
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/leg.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/leg_2.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/leg_2.stl
+new file mode 100644
+index 0000000..8763123
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/leg_2.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/neck.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/neck.stl
+new file mode 100644
+index 0000000..a193813
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/neck.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/neck_pitch.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/neck_pitch.stl
+new file mode 100644
+index 0000000..1b0d684
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/neck_pitch.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/trunk_base.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/trunk_base.stl
+new file mode 100644
+index 0000000..d4ab74e
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/trunk_base.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_left.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_left.stl
+new file mode 100644
+index 0000000..b60db99
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_left.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_right.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_right.stl
+new file mode 100644
+index 0000000..6e0a014
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/upper_leg_right.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/yaw2roll.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/yaw2roll.stl
+new file mode 100644
+index 0000000..a3a7fc8
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/yaw2roll.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/meshes/yaw_roll_motion.stl b/src/mjlab_microduck/robot/milli_salvage/meshes/yaw_roll_motion.stl
+new file mode 100644
+index 0000000..00c3d21
+Binary files /dev/null and b/src/mjlab_microduck/robot/milli_salvage/meshes/yaw_roll_motion.stl differ
+diff --git a/src/mjlab_microduck/robot/milli_salvage/milli.xml b/src/mjlab_microduck/robot/milli_salvage/milli.xml
+new file mode 100644
+index 0000000..4d1db13
+--- /dev/null
++++ b/src/mjlab_microduck/robot/milli_salvage/milli.xml
+@@ -0,0 +1,99 @@
++<mujoco model="milli">
++<compiler meshdir="meshes" angle="radian" autolimits="true"/>
++<option timestep="0.005" integrator="implicitfast"/>
++<asset><mesh name="trunk_base" file="trunk_base.stl"/><mesh name="yaw2roll" file="yaw2roll.stl"/><mesh name="hip_l" file="hip_l.stl"/><mesh name="upper_leg_left" file="upper_leg_left.stl"/><mesh name="leg" file="leg.stl"/><mesh name="ankle_left" file="ankle_left.stl"/><mesh name="neck" file="neck.stl"/><mesh name="neck_pitch" file="neck_pitch.stl"/><mesh name="yaw_roll_motion" file="yaw_roll_motion.stl"/><mesh name="jaw_soft" file="jaw_soft.stl"/><mesh name="jaw" file="jaw.stl"/><mesh name="bearing_roll" file="bearing_roll.stl"/><mesh name="hip_l_2" file="hip_l_2.stl"/><mesh name="upper_leg_right" file="upper_leg_right.stl"/><mesh name="leg_2" file="leg_2.stl"/><mesh name="ankle_right" file="ankle_right.stl"/></asset>
++<worldbody>
++<body name="trunk_base" pos="0.000000 0.000000 0.170000">
++<inertial pos="-0.018030 -0.000175 -0.007498" mass="0.28148" fullinertia="0.00014666268 0.00021179285 0.00027068656 1.9585434e-06 1.1539586e-05 -6.3990443e-07"/>
++<freejoint name="trunk_base_freejoint"/>
++<site name="imu" pos="-0.01500 0.00000 0.01264"/>
++<geom type="mesh" mesh="trunk_base" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="yaw2roll" pos="0.000000 0.016000 -0.032106">
++<inertial pos="0.000181 0.002576 -0.028385" mass="0.08668" fullinertia="2.9648278e-05 3.6488974e-05 1.6878996e-05 1.4871713e-07 -5.6281842e-07 1.1156557e-06"/>
++<joint name="left_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0051" damping="0.109" frictionloss="0.052"/>
++<geom type="mesh" mesh="yaw2roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="hip_l" pos="0.022500 0.002500 -0.020100">
++<inertial pos="-0.010335 0.012491 -0.000000" mass="0.01775" fullinertia="3.1387438e-06 2.9941624e-06 4.709051e-06 1.6369889e-06 -5.4401439e-14 1.107793e-14"/>
++<joint name="left_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="hip_l" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="upper_leg_left" pos="-0.022500 0.021450 0.000000">
++<inertial pos="-0.032625 0.023917 -0.008551" mass="0.18559" fullinertia="7.8819121e-05 0.00014441322 0.0001297379 6.6109532e-07 -3.1187399e-05 -4.0226076e-07"/>
++<joint name="left_hip_pitch" axis="0 1 0" range="-1.3000 0.4300" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="upper_leg_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="leg" pos="-0.050950 0.000000 -0.031294">
++<inertial pos="0.000000 0.013471 -0.037023" mass="0.08570" fullinertia="4.1377498e-05 3.3800975e-05 1.7026113e-05 -6.7648554e-14 -1.8363164e-13 5.1336935e-06"/>
++<joint name="left_knee" axis="0 -1 0" range="-1.0500 1.1000" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="leg" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="ankle_left" pos="0.000000 0.038500 -0.057000">
++<inertial pos="0.009357 -0.019719 -0.015960" mass="0.05329" fullinertia="1.7642861e-05 2.3252423e-05 3.3704398e-05 4.8407923e-07 2.6667922e-07 -3.9176622e-07"/>
++<joint name="left_ankle" axis="0 1 0" range="-1.3000 1.3000" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="ankle_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<geom name="left_foot_collision" type="box" pos="0.00800 -0.02095 -0.02750" size="0.02450 0.02150 0.00200" rgba="1 1 0 0" group="3" friction="1"/>
++<site name="left_foot" pos="0.00800 -0.02095 -0.02950"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++<body name="neck" pos="0.028000 0.013000 -0.003606">
++<inertial pos="-0.000000 -0.014526 0.023896" mass="0.05346" fullinertia="2.218488e-05 2.1382342e-05 5.7803438e-06 1.8262136e-14 1.1844521e-14 -1.1962381e-06"/>
++<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 0.1500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="neck" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="neck_pitch" pos="0.000000 -0.029000 0.051400">
++<inertial pos="-0.000474 0.016105 0.026578" mass="0.03678" fullinertia="1.2894989e-05 1.2510173e-05 7.3608807e-06 -1.8273144e-09 -2.405539e-07 5.4045108e-08"/>
++<joint name="head_pitch" axis="0 1 0" range="-1.6000 1.6000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="neck_pitch" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="yaw_roll_motion" pos="0.007500 0.016000 0.051600">
++<inertial pos="-0.000000 0.007201 0.010286" mass="0.03715" fullinertia="6.632022e-06 6.0624549e-06 7.7033161e-06 6.7979622e-14 4.9828342e-14 -4.1148122e-07"/>
++<joint name="head_yaw" axis="0 0 1" range="-2.5000 2.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="yaw_roll_motion" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="jaw_soft" pos="0.018500 0.000000 0.013000">
++<inertial pos="0.000289 -0.000028 0.002016" mass="0.20244" fullinertia="0.00020609767 0.0004915506 0.00058678809 7.3819073e-07 -3.3655387e-05 -2.4612338e-07"/>
++<joint name="head_roll" axis="-1 0 0" range="-0.4400 0.4400" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
++<geom type="mesh" mesh="jaw_soft" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="jaw" pos="-0.018500 0.000000 -0.002000">
++<inertial pos="0.040253 -0.000000 -0.022437" mass="0.03703" fullinertia="6.6151487e-05 3.9399384e-05 0.00010017025 4.8912588e-12 5.0073123e-06 -1.9302817e-11"/>
++<geom type="mesh" mesh="jaw" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++<body name="bearing_roll" pos="0.000000 -0.016000 -0.032106">
++<inertial pos="0.000181 -0.002576 -0.028385" mass="0.08668" fullinertia="2.9648278e-05 3.6488974e-05 1.6878996e-05 -1.4871713e-07 -5.6281842e-07 -1.1156557e-06"/>
++<joint name="right_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0051" damping="0.109" frictionloss="0.052"/>
++<geom type="mesh" mesh="bearing_roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="hip_l_2" pos="0.022500 -0.002500 -0.020100">
++<inertial pos="-0.010335 -0.012491 -0.000000" mass="0.01775" fullinertia="3.1387438e-06 2.9941624e-06 4.709051e-06 -1.6369889e-06 -5.4401442e-14 -1.1077912e-14"/>
++<joint name="right_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="hip_l_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="upper_leg_right" pos="-0.022500 -0.021450 0.000000">
++<inertial pos="-0.032625 -0.023917 -0.008551" mass="0.18559" fullinertia="7.8819121e-05 0.00014441322 0.0001297379 -6.6109532e-07 -3.1187399e-05 4.0226077e-07"/>
++<joint name="right_hip_pitch" axis="0 -1 0" range="-0.4300 1.3000" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="upper_leg_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="leg_2" pos="-0.050950 0.000000 -0.031294">
++<inertial pos="0.000000 -0.013471 -0.037023" mass="0.08570" fullinertia="4.1377498e-05 3.3800975e-05 1.7026113e-05 6.7653542e-14 -1.8362757e-13 -5.1336935e-06"/>
++<joint name="right_knee" axis="0 1 0" range="-1.1000 1.0500" armature="0.0086" damping="0.184" frictionloss="0.052"/>
++<geom type="mesh" mesh="leg_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<body name="ankle_right" pos="0.000000 -0.038500 -0.057000">
++<inertial pos="0.009357 0.019719 -0.015960" mass="0.05329" fullinertia="1.7642865e-05 2.3252425e-05 3.3704404e-05 -4.8390624e-07 2.6668195e-07 3.917656e-07"/>
++<joint name="right_ankle" axis="0 -1 0" range="-1.3000 1.3000" armature="0.028" damping="0.6" frictionloss="0.052"/>
++<geom type="mesh" mesh="ankle_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
++<geom name="right_foot_collision" type="box" pos="0.00800 0.02095 -0.02750" size="0.02450 0.02150 0.00200" rgba="1 1 0 0" group="3" friction="1"/>
++<site name="right_foot" pos="0.00800 0.02095 -0.02950"/>
++</body>
++</body>
++</body>
++</body>
++</body>
++</body>
++</worldbody>
++<sensor>
++<framequat name="orientation" objtype="site" noise="0.001" objname="imu"/>
++<gyro name="angular-velocity" site="imu" noise="0.005"/>
++<gyro name="imu_ang_vel" site="imu"/>
++<velocimeter name="imu_lin_vel" site="imu"/>
++<accelerometer name="imu_accel" site="imu"/>
++<subtreeangmom name="root_angmom" body="trunk_base"/>
++</sensor>
++</mujoco>
 diff --git a/src/mjlab_microduck/tasks/__init__.py b/src/mjlab_microduck/tasks/__init__.py
 index 1f75034..963689a 100644
 --- a/src/mjlab_microduck/tasks/__init__.py
@@ -830,10 +1386,10 @@ index 0000000..d14d3cd
 +MilliRouladeStrongNeckRlCfg.run_name = "milli_roulade_strongneck"
 diff --git a/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
 new file mode 100644
-index 0000000..92169d6
+index 0000000..1ead335
 --- /dev/null
 +++ b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
-@@ -0,0 +1,141 @@
+@@ -0,0 +1,240 @@
 +"""milli's walking task: microduck's velocity recipe, on milli's robot, plus the foot switches as policy inputs.
 +
 +What the recipe sets for microduck that would be wrong here, each found by reading the loaded config:
@@ -905,6 +1461,103 @@ index 0000000..92169d6
 +    return (((load - STALL_FROM) / (1 - STALL_FROM)).clamp(0, 1) ** 2).sum(dim=1)
 +
 +
++# A stepping clock, for the big robot only. Twice, with only scaled rewards and a shorter air time, it learned to stand (0.001 m/s told 0.4): lifting a foot fell over at once and nothing
++# led past that. So the stride's timing is given, not found. An estimate of the 1.8 m robot's walk: microduck's stride, slowed by the square root of size.
++CLOCK_PERIOD = 1.2                                 # seconds a stride
++CLOCK_SWING = 0.4                                  # of a stride, each foot in the air; the rest of it, stance, with two short spells on both feet
++
++
++def _clock(env):
++    return (env.episode_length_buf.float() * env.step_dt / CLOCK_PERIOD) % 1.0
++
++
++def gait_clock(env):
++    """The stride's phase, as a sine and cosine, for the policy to see."""
++    a = 2 * torch.pi * _clock(env)
++    return torch.stack((torch.sin(a), torch.cos(a)), dim=1)
++
++
++def _swing(env):
++    """How far through its swing each foot (left, right) is: 0 to 1, or negative in stance. The feet are half a stride apart."""
++    ph = _clock(env)
++    x = torch.stack((ph / CLOCK_SWING, ((ph + 0.5) % 1.0) / CLOCK_SWING), dim=1)
++    return torch.where(x < 1.0, x, -1.0)
++
++
++def _moving(env, command_name):
++    cmd = env.command_manager.get_command(command_name)
++    return (torch.norm(cmd[:, :2], dim=1) + cmd[:, 2].abs()) > 0.05
++
++
++def clock_contact(env, sensor_name: str, command_name: str = "twist"):
++    """Fraction of the two feet doing what the clock says: in the air in their swing, on the floor otherwise. Told to stand, both on the floor."""
++    down = env.scene[sensor_name].data.found > 0
++    swing = (_swing(env) >= 0) & _moving(env, command_name)[:, None]
++    return (down != swing).float().mean(dim=1)
++
++
++def clock_lift(env, height_sensor: str, target: float, std: float, command_name: str = "twist"):
++    """A swinging foot near an arc that peaks at `target` mid swing; 0 otherwise."""
++    sw = _swing(env)
++    want = target * torch.sin(torch.pi * sw.clamp(0, 1))
++    r = torch.exp(-(((env.scene[height_sensor].data.heights - want) / std) ** 2)) * (sw >= 0).float()
++    return r.sum(dim=1) * _moving(env, command_name).float()
++
++
++_rated = {}
++_heat = {}
++RATED_TAU = 2.0                                    # seconds: how long torque above the rating builds up, as heat does. An estimate, not the actuators' thermal numbers
++
++
++def over_rated(env, folder: str):
++    """Each actuator's RMS torque over the last seconds, above its rated torque: squared, summed. Near-stall penalties start at 70 % of peak, and at 3:1 peak to rated a knee held at 60 % of peak all
++    through stance cost nothing, at 38 % over its rating. Short peaks stay free."""
++    robot = env.scene["robot"]
++    if folder not in _rated:
++        home = json.load(open(ROBOTS / folder / "home.json"))
++        rated = {j: s_["rated_nm"] for s_ in home["servos"].values() for j in s_["joints"]}
++        _rated[folder] = torch.tensor([rated[j] for j in robot.actuator_names], device=env.device)
++    load = (robot.data.actuator_force / _rated[folder]) ** 2
++    if folder not in _heat or _heat[folder].shape != load.shape:
++        _heat[folder] = load.clone()
++    fresh = env.episode_length_buf <= 1
++    _heat[folder][fresh] = 0.0
++    _heat[folder] += (load - _heat[folder]) * min(env.step_dt / RATED_TAU, 1.0)
++    return ((_heat[folder].sqrt() - 1.0).clamp(min=0.0) ** 2).sum(dim=1)
++
++
++def scale_for_big(cfg, height, mass, folder):
++    """The recipe's numbers that have units, for a robot many times microduck's size: at 113 kg its angular momentum penalty alone would be millions of times too strong.
++    Speeds go by the square root of size, as for the same walk: the hybrid's commands, at the same Froude number. Height is over microduck's; mass over its 0.8 kg."""
++    s = (height * 0.264 / 0.321) ** 0.5
++    c = cfg.commands["twist"].ranges
++    c.lin_vel_x, c.lin_vel_y, c.ang_vel_z = (-0.4 * s, 0.4 * s), (-0.3 * s, 0.3 * s), (-1.0 / s, 1.0 / s)
++    # Scaled exactly, the first run learned to stand: 0.001 m/s told 0.4, up 100 % by iteration 750, air time reward 0. So three things go beyond scaling.
++    # Tracking tighter than speed scaling alone (standing still scored 1.27 of 2.0 on it). Air time paid from 0.15 s, not 0.33: a foot held up that long never happens by chance
++    # on a robot this heavy, and nothing else leads to it. A lower foot and stronger lift terms, as the scaled ones came to nothing.
++    cfg.rewards["air_time"].params["threshold_min"] = 0.15
++    cfg.rewards["track_linear_velocity"].params["std"] *= s ** 0.5
++    cfg.rewards["track_angular_velocity"].params["std"] /= s
++    cfg.rewards["yaw_rate_error"].weight *= s * s
++    cfg.rewards["angular_momentum"].weight /= (mass / 0.8 * height ** 1.5) ** 2
++    cfg.rewards["foot_slip"].weight /= height
++    cfg.rewards["foot_clearance"].weight /= height
++    cfg.rewards["foot_swing_height"].weight /= height
++    for r_ in ("foot_clearance", "foot_swing_height"):
++        cfg.rewards[r_].params["target_height"] = 0.07         # the crank's range lifts a level foot 6.3 cm straight up: 10 cm could never be met
++    cfg.rewards["self_collisions"].params["force_threshold"] = 10.0 * mass / 0.8
++    # the same cheat the small ducks' hip yaws found: with the recipe's -1 per radian, the walk sat on its knee stops 83-92 % of the time, pressing past them
++    cfg.rewards["knee_stops"] = RewardTermCfg(func=velocity_mdp.joint_pos_limits, weight=HIP_YAW_STOP_WEIGHT, params={"asset_cfg": SceneEntityCfg("robot", joint_names=(r".*knee.*",))})
++    cfg.rewards["over_rated"] = RewardTermCfg(func=over_rated, weight=-5.0, params={"folder": folder})     # the knee at 170 against 123: -0.7, against 2.0 for tracking speed
++    cfg.observations["actor"].terms["gait_clock"] = ObservationTermCfg(func=gait_clock)
++    cfg.observations["critic"].terms["gait_clock"] = ObservationTermCfg(func=gait_clock)
++    cfg.rewards["clock_contact"] = RewardTermCfg(func=clock_contact, weight=3.0, params={"sensor_name": "feet_ground_contact"})
++    cfg.rewards["clock_lift"] = RewardTermCfg(func=clock_lift, weight=2.0, params={"height_sensor": "foot_height_scan", "target": 0.07, "std": 0.05})
++    if "com_range" in cfg.curriculum:              # its masses are estimates too: three times, against soles 100 mm behind the ankle and 200 mm ahead, not 20
++        for st in cfg.curriculum["com_range"].params["range_stages"]:
++            st["range"] *= 3
++
++
 +def make_milli_velocity_env_cfg(play: bool = False, salvage: bool = False, recipe: str = "hybrid"):
 +    robot, folder, HEIGHT = RECIPES[recipe]
 +    TIME = HEIGHT ** 0.5
@@ -940,6 +1593,8 @@ index 0000000..92169d6
 +        func=velocity_mdp.foot_contact,
 +        params={"sensor_name": "feet_ground_contact"},
 +    )
++    if HEIGHT > 3:
++        scale_for_big(cfg, HEIGHT, json.load(open(ROBOTS / folder / "home.json"))["mass_kg"], folder)
 +    cfg.events.pop("expand_bam_friction_fields", None)
 +    cfg.events.pop("randomize_joint_friction", None)
 +    if not play:
