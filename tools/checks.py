@@ -335,7 +335,8 @@ def check_connect(spec, S, rep):
     under a cover is still missing, 2026-10-31 calibration), and every cover must be mounted on it."""
     # pieces under 0.01 cm3 are slivers the boolean union leaves where cut pieces meet, not parts (2026-10-31: a
     # zero-volume sliver where the right shoe's toe and heel pieces overlap)
-    pieces = lambda m: len([p for p in m.decompose() if abs(p.volume()) > 1e-8])
+    # (a negative volume is a closed void between parts, not a separate piece)
+    pieces = lambda m: len([p for p in m.decompose() if p.volume() > 1e-8])
     for ln in spec['links']:
         if S.rigid[ln] is not None:
             n = pieces(S.rigid[ln])

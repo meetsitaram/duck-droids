@@ -9,7 +9,7 @@ Watch each animation, then do the same. Parts: [BOM.md](../BOM.md). The right si
 
 ## 0. Before you start
 
-1. **Print everything** (list in the BOM). Before printing all of it, test: a horn in a bearing, a bearing in a lid's seat, and a servo in a tray.
+1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
 2. **Set each servo's ID on its own**, before any are chained: Feetech 1-8, Dynamixel 1-7, on their separate buses. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **One thing the pictures leave out:** the STS3215's face steps down 2.5 mm round its horn, and each lid's floor fills that step.

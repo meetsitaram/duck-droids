@@ -11,7 +11,8 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
   clearances) -> `python -I spec/robot.py` -> `spec/robot.json`. Never hand-edit robot.json or the Fusion document.
 - **Every change:** `python -I spec/robot.py`, `python -I tools/checks.py` (0 failing), `python tools/compare.py`
   (microduck beside milli at one scale), look at the pictures. If a part or screw changed: `python -I tools/assembly.py`
-  (the build order: 0 failing), `python tools/render_assembly.py`, `python -I tools/make_docs.py` (BOM.md, docs/ASSEMBLY.md). Masses from materials (`python -I tools/mass_model.py`).
+  (the build order: 0 failing), `python -I tools/buildable.py` (walls, one piece, load: a beam estimate), `python tools/render_assembly.py`,
+  `python -I tools/make_docs.py` (BOM.md, docs/ASSEMBLY.md), `python -I tools/export_prints.py` (prints/). Fit is not strength: say which was checked. Masses from materials (`python -I tools/mass_model.py`).
 - **Servos:** `spec/actuators.json`: STS3215 C044 (1:191) and C046 (1:147), XC330/XL330-M288; the lower-ratio STS3215
   numbers are scaled from the C001, not measured: confirm before ordering.
 - **References (local, never in the repo):** microduck's MJCF in %TEMP%/figrefs/microduck_rl (code Apache-2.0, meshes

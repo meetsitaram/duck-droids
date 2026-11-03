@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.464 kg bottom-up (budget 1.5 kg; microduck 0.8 kg)"
+  "detail": "1.506 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
  },
  {
   "group": "axis",
@@ -975,43 +975,43 @@
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 98 % used"
+  "detail": "0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 99 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used"
+  "detail": "0.29 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 83 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used"
+  "detail": "0.29 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 83 % used"
  },
  {
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 77 % used"
+  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 78 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.37 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 53 % used"
+  "detail": "0.38 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 54 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used"
+  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 27 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used"
+  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 27 % used"
  },
  {
   "group": "torque",
@@ -1023,19 +1023,19 @@
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 23 % used"
+  "detail": "0.13 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 24 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.14 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 19 % used"
+  "detail": "0.14 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 20 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 19 % used"
+  "detail": "0.07 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 20 % used"
  },
  {
   "group": "torque",

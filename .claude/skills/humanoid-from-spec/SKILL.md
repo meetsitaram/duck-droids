@@ -211,6 +211,20 @@ Then commit and push, with the README video re-rendered and every quoted number 
 `LESSONS.md` row for each issue the round hit and how it was fixed. Never publish the reference robot's frames,
 panels made from them, raw motion captures or anyone's trademark.
 
+## Before you call it buildable
+
+Checks that pass mean only what they test. Collision and fit checks say nothing about whether a part can be printed, or holds. Say so to the user, and before a design counts as ready, have these:
+
+- **Bought parts at their real shape:** sections of the maker's mesh, not a bounding box (steps, bosses and lumps change what a seat can be).
+- **Every screw in the spec:** size, length, position, direction. Parts held by nothing show up.
+- **The build order as data**, with paths: each part slides in without cutting what's already on; a key reaches each screw at that moment; the thread bites something; the head clamps something (milli's `tools/assembly.py`).
+- **Per printed part, not per link:** one piece without bought parts in it; walls at the printer's minimum; fits the bed; exported with its holes, hollow where it is hollow (`tools/buildable.py`, `tools/export_prints.py`).
+- **A load estimate through each section on the load path**, at a landing's load, against the material across its layers. A hand estimate finds weak parts; it doesn't replace FEA or a test.
+- **Limits scaled to the robot:** a volume limit from a 1.7 m robot hides real collisions on a 0.3 m one.
+- **One joint printed and assembled** with real parts before buying the rest.
+
+Each of these has a `--bad` case. When a look-alike's reference does something odd, check that before "fixing" it.
+
 ## Each round
 
 1. Change `spec/robot.py`, with the reason in a comment.

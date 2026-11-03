@@ -203,11 +203,11 @@ def link(name, budget, geoms, note=''):
 # round the case (a post has to clear the case's corners, 24 mm out on an STS3215, whatever the range). The bore is the
 # horn's size: STS3215 20 mm (SO-101's mesh), XL/XC330 16 mm (microduck's). floor + w + clear: the case's face to the
 # horn link's plate. Unlike microduck's, the outer race also sits in a printed seat. The STS3215's face steps down 2.5 mm
-# round its horn (mesh: 14.5 against 17), which the box model does not show: the real seat's floor fills that step and
-# takes 2 M2 x 6 in the near holes, under the bearing. The boss makes the horn screws M3 x 10. Masses: 6704ZZ 6.9 g (EZO
+# round its horn ('steps' in spec/actuators.json): the seat's collar goes down that step, under the bearing, and takes 2 M2 x 6
+# in the near holes. The boss makes the horn screws M3 x 10. Masses: 6704ZZ 6.9 g (EZO
 # F6704ZZ listing; others list 5-10 g), the others scaled from it by volume: confirm before ordering.
 BEARINGS = {
-    'STS3215': dict(part='6704ZZ', d=0.020, D=0.027, w=0.004, floor=0.00045, clear=0.00055, wall=0.002, mass=0.0069),
+    'STS3215': dict(part='6704ZZ', d=0.020, D=0.027, w=0.004, floor=0.0006, clear=0.0004, wall=0.002, mass=0.0069),
     'XL330': dict(part='MR2216ZZ', d=0.016, D=0.022, w=0.004, floor=0.001, clear=0.0005, wall=0.0015, mass=0.0048),
     'ankle': dict(part='6700ZZ', d=0.010, D=0.015, w=0.004, mass=0.0026),
 }
@@ -226,7 +226,7 @@ def stack_of(act, bearing):
 
 def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', exposed=True, remote_at=None,
           case_in='parent', fork_at=None, fork_r=None, post=True, fork=True, sides=(1, -1), faces=('horn', 'rear'),
-          bearing=(), face_t=None, stack=None):
+          bearing=(), face_t=None, stack=None, tray_full=False):
     """A servo-driven joint. origin: the centre of the horn's outer face, on the axis. act: the servo model, its
     case in `parent`: the shaft along `axis`, the horn facing `out` (+1 / -1 along the axis) toward the child, the
     case's long side running `long` ('+x' .. '-z') from the shaft (the shaft sits shaft_x off the case's middle).
@@ -237,7 +237,8 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     two plates; fork=False: the driven horn only, no rear horn, its screws in the link's own plate. sides: which of the
     cradle's side walls (+1 / -1 along the servo frame's w) to build; faces: which face plates; bearing: on which faces a
     bearing sits ('horn', 'rear'; BEARINGS); face_t: a thinner horn face plate than MT; stack: the case's face to the plate on its horn,
-    when not the usual."""
+    when not the usual; tray_full: the tray's rear wall runs the case's whole length, to reach the plate at its near
+    end (the fit checks counted a tray hanging from a servo case as joined; no print would be)."""
     a = ACT[act]
     ax = {'x': 0, 'y': 1, 'z': 2}[axis]
     act_c = list(remote_at or origin)
@@ -246,7 +247,7 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     j = dict(name=name, parent=parent, child=child, origin=list(origin), axis=axis, lower=lim[0], upper=lim[1],
              act=act, act_c=act_c, out=out, long=long, exposed=exposed, remote=bool(remote_at), case_in=case_in,
              fork_at=fork_at, fork_r=fork_r, post=post, fork=fork, sides=list(sides), faces=list(faces),
-             bearing=list(bearing), stack=stack, face_t=face_t,
+             bearing=list(bearing), stack=stack, face_t=face_t, tray_full=tray_full,
              capacity=dict(model=act, count=1, ratio=1.0))
     JOINTS.append(j)
     return j
@@ -264,6 +265,13 @@ def servo_geoms(j, color=BLACK):
     size = [W, W, W]
     size[ax], size[lx] = H, L
     case = rbox(f"{j['name']} actuator (buy) {j['act']}", c, size, 0.0015, color, 'actuator')
+    if 'steps' in a:                               # the case's real shape, not its bounding box
+        f = servo_frame(j)
+        bx = []
+        for (u0, u1), wh, (a0, a1) in a['steps']:
+            p_, q_ = at(f, u0, -(wh or W / 2), a0), at(f, u1, wh or W / 2, a1)
+            bx.append([[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]])
+        case = dict(case, kind='stepbox', boxes=bx)
     hc = list(j['origin'])
     hc[ax] -= j['out'] * (j['stack'] - 0.0005) / 2
     horn = cyl(f"{j['name']} flange", hc, j['axis'], 0.4 * W, j['stack'] + 0.0005, ALU, 'struct')
@@ -416,18 +424,22 @@ def mount_geoms(j):
         r_d, r_o, fl = b['d'] / 2, b['D'] / 2, b['floor']
         R, e = r_o + b['wall'], 0.001
         clear_in = r_d + RACE + 0.0002             # the inner race turns free of the floor
-        out = [plate(nm, *axial(sg * H / 2, sg * (H / 2 + cmt)),
+        out = [plate(nm, *axial(sg * (H / 2 - (0.00016 if sts and side == 'horn' else 0)), sg * (H / 2 + cmt)),   # on the real far top
                      [(*pp(-sx, 0), R), (*pp(L / 2 - e, wl[0] + e), e), (*pp(L / 2 - e, wl[1] - e), e)], DARK, 'struct',
                      axis=ax, **ex)]
         if cmt > fl + 1e-9:                        # a thick plate: the bore, and a floor ring under the bearing
             out += [cut(lcyl(f'{nm} bore', f, -sx, 0, sg * (H / 2 + cmt / 2), r_o - 0.00005, cmt + 0.002, DARK, 'struct'), nm)]
-            out += ring(f'{n} {side} seat floor', sg, 0, fl, r_o, clear_in)
+            a0_ = A['steps'][1][2][0] - H / 2 if sts and side == 'horn' else 0.0   # down the step round an STS3215's horn
+            out += ring(f'{n} {side} seat floor', sg, a0_, fl, r_o, clear_in)
+            if a0_:                                # clear of the far end's raised top
+                out.append(cut(lbox(f'{n} seat floor step', f, (A['steps'][1][0][0], A['steps'][1][0][0] + 0.01), (-r_o - 0.001, r_o + 0.001),
+                                    (H / 2 + a0_ - 0.001, H / 2)), f'{n} {side} seat floor'))
         else:                                      # a thin sheet is the floor; a wall round the bearing on it
             out += [cut(lcyl(f'{nm} bore', f, -sx, 0, sg * (H / 2 + cmt / 2), clear_in, cmt + 0.002, DARK, 'struct'), nm)]
             out += ring(f'{n} {side} seat wall', sg, 0, fl + 0.003, R, r_o - 0.00005)
         for g_ in (1, -1):                         # no cradle wall on this side: nothing past the bearing either
-            if g_ not in sd:
-                out.append(cut(lbox(f'{nm} trim {g_}', f, (-sx - R - 0.001, L / 2 + 0.001),
+            if g_ not in sd or j.get('tray_full'):  # (also past the seat: the hip arm passes close over a rolling lid's edge)
+                out.append(cut(lbox(f'{nm} trim {g_}', f, (-sx - R - 0.001 if g_ not in sd else -sx + 0.009, L / 2 + 0.001),
                                     sorted((g_ * (r_o + 0.0001), g_ * (R + 0.001))),
                                     (min(sg * H / 2, sg * (H / 2 + cmt)) - 0.001, max(sg * H / 2, sg * (H / 2 + cmt)) + 0.001)), nm))
         if sts and side == 'horn':                 # the near holes, under the bearing (BEARINGS)
@@ -445,6 +457,11 @@ def mount_geoms(j):
         nm = f'{n} cradle {side} face'
         if side in bg:
             cr += seat(nm, side, sg)
+        elif sts and side == 'rear':               # down onto the real rear face, round the case's lump
+            rf = A['steps'][2][2][0]
+            cr.append(lbox(nm, f, (-L / 2 - 0.0005 if j.get('tray_full') else u0, L / 2), wl, (-H / 2 - cmt, rf + 0.0001), **ex))
+            cr.append(cut(lbox(f'{nm} lump', f, (u0 - 0.001, A['steps'][3][0][1] + 0.0005), (-A['steps'][3][1] - 0.0005, A['steps'][3][1] + 0.0005),
+                               (-H / 2 - cmt / 2, rf)), nm))
         else:
             cr.append(lbox(nm, f, (u0, L / 2), wl, sorted((sg * H / 2, sg * (H / 2 + cmt))), **ex))
     ea = (-H / 2 - (cmt if 'rear' in fc else 0), H / 2 + (cmt if 'horn' in fc else 0))   # the end wall's height
@@ -459,7 +476,7 @@ def mount_geoms(j):
         sg = 1 if a0 > 0 else -1
         for k, (x, y) in enumerate(holes):
             cr.append(fast(lcyl(f'{n} cradle screw {side} {k}', f, -x, y, a0 + sg * 0.00075, head, 0.0015, DARK, 'decal'),
-                           'M2', 0.006 if sts else 0.008, at(f, -x, y, a0), [-sg * v for v in f[3]]))
+                           'M2', (0.006 if a0 > 0 else 0.008) if sts else 0.008, at(f, -x, y, a0), [-sg * v for v in f[3]]))
     if j['remote']:
         return cr, []
     hr, hd = A['horn_hole_r'], A['horn_hole_deg']
@@ -472,8 +489,8 @@ def mount_geoms(j):
             fl, r_i = b['floor'], b['d'] / 2 + RACE
             fk += ring(f'{n} {side} bearing inner race', sg, fl, fl + b['w'], r_i, 0.4 * W - 0.00005, ALU, material='steel',
                        mass=b['mass'] / 2, on_joint=j['name'])
-            fk.append(dict(lcyl(f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2), r_i,
-                                b['clear'], DARK, 'struct'), **ex))
+            fk.append(dict(lcyl(f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2 + 0.0001), r_i,
+                                b['clear'] + 0.0002, DARK, 'struct'), **ex))
     faces_ = [(top + MT, 1, 'horn')]
     if j.get('fork', True):
         # the fork: a plate on each horn, joined by a post where the case and its cradle never go over the joint's range
@@ -596,6 +613,9 @@ HEAD_CX = XN + 0.006                               # the head reaches as far beh
 
 link('trunk', 0.40, [
     box('top plate', (-0.052, -0.025, PLATE[0]), (XP_FRONT, 0.025, PLATE[1])),
+    # the wall joining the neck mount to the top plate: without it, only the hip yaw servo cases joined them
+    box('neck wall', (XP_FRONT + 0.0001, -0.0225, ZY + SHH + 0.0005), (XP_FRONT + 0.003, 0.0165, PLATE[1]), exposed=True),
+    box('neck wall tab', (XP_FRONT - 0.002, -0.0225, PLATE[0]), (XP_FRONT + 0.0002, 0.0165, PLATE[1]), exposed=True),
     box('battery 2S 800 mAh', (-0.052, -0.030, PLATE[0] - 0.030), (-0.038, 0.030, PLATE[0]), CELL,
         material='cells', mass=0.045),
     box('servo bus board', (-0.0552, -0.025, PLATE[0] - 0.030), (-0.0515, 0.025, PLATE[0]), PCB,
@@ -632,6 +652,8 @@ link('L_hip_roll_link', 0.07, [
     # microduck's hip_l: from the roll horn at the front, out to the side, where the hip pitch horn turns
     box('L hip roll front', (XRH - 0.0005, YR - 0.011, ZR - 0.010), (XRH + 0.003, YRS[1], ZR + 0.010), exposed=True),
     box('L hip roll side', (-0.012, YRS[0], ZR - 0.010), (XRH + MT, YRS[1], ZR + 0.010), exposed=True),
+    # (the arm from the pitch horn to the front plate carries the whole leg: 1.5 mm thicker, past the horn's screws)
+    box('L hip roll arm', (0.0115, YRS[0] - 0.0015, ZR - 0.010), (XRH + MT, YRS[1], ZR + 0.010), exposed=True),
 ])
 link('L_hip_pitch_link', 0.10, [
     # the thigh: the hip pitch servo lying flat (from the joint, case in the thigh) and the knee servo standing at
@@ -655,12 +677,20 @@ link('L_hip_pitch_link', 0.10, [
             (XP_FRONT + 0.0015, YT_CASE[1] - 0.0003, ZP + SW / 2 + 0.0012), WHITE, 'shell'), 'L thigh cover'),
 ])
 YB = YA_CASE[0] - 0.0005                     # the top of the ankle servo's rear boss
-XCHH, ANK = 0.0005, BEARINGS['ankle']              # the rear horn sits in the case's step: 0.5 mm proud of the box
+XCHH, ANK = 0.0031, BEARINGS['ankle']              # the rear horn's disc, in the case's step (0.5 mm proud of the box)
 link('L_knee_link', 0.05, [
     box('L shin plate', (XK - 0.011, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.001), (XK + 0.011, YS[1],
                                                                                            ZK + 0.011), exposed=True),
-    box('L shin cap', (XK - 0.0125, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
-        (XK + 0.0125, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
+    box('L shin cap', (XK - 0.015, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
+        (XK + 0.015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
+    # the shin as a real part (2026-11-03, the user: "that doesn't seem like something I can 3D print for strength"): a 3 mm
+    # flat plate bent across its thin side. Below the knee's horn, 6 mm thick and 30 mm wide, a block into the corner with
+    # the cap, and a collar round the servo's far end, so the load goes from the plate into the case over a box section.
+    box('L shin rib', (XK - 0.015, YS[0] - 0.003, ZA + 0.0225), (XK + 0.015, YS[1], ZK - 0.0105), exposed=True),
+    box('L shin gusset', (XK - 0.015, YS[1] - 0.0001, ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0005), (XK + 0.015, YS[1] + 0.0028, ZK - 0.0178), exposed=True),
+    *[box(f'L shin collar {k}', (XK + sx_ * (SW / 2 + 0.0015) - 0.0015, YS[1] - 0.0001, ZA + 0.028),
+          (XK + sx_ * (SW / 2 + 0.0015) + 0.0015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True)
+      for k, sx_ in enumerate((1, -1))],
     # the ankle's far side, as microduck's: a plate on the servo's rear horn (4 M3 x 6), up to the shin plate, and a stub
     # from it through a small bearing in the shoe's inner ear
     dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', AK['horn_r'], XCHH, ALU), exposed=True),
@@ -733,7 +763,7 @@ link('L_foot', 0.05, [
 joint('L_hip_yaw', 'trunk', 'L_hip_yaw_link', (0, YY, ZY), 'z', (-0.45, 0.45), 'STS3215_C046', out=-1, long='-x',
       fork=False, bearing=('horn',))
 joint('L_hip_roll', 'L_hip_yaw_link', 'L_hip_roll_link', (XRH, YR, ZR), 'x', (-0.33, 0.33), 'STS3215_C044', out=+1,
-      long='-z', fork=False, bearing=('horn',), sides=(1,))   # no inner cradle wall (the two roll cradles face each other)
+      long='-z', fork=False, bearing=('horn',), sides=(1,), tray_full=True)   # no inner cradle wall (the two roll cradles face each other)
 joint('L_hip_pitch', 'L_hip_roll_link', 'L_hip_pitch_link', (0, YP, ZP), 'y', (-1.3, 0.43), 'STS3215_C044', out=-1,
       long='-x', case_in='child', fork=False, bearing=('horn',))
 joint('L_knee', 'L_hip_pitch_link', 'L_knee_link', (XK, YK, ZK), 'y', (-1.1, 1.05), 'STS3215_C044', out=-1,

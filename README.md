@@ -14,7 +14,7 @@ walk.
 
 A design, not yet built. Nothing here has been printed or tested on real parts.
 
-- **Size:** 0.321 m tall, 1.47 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
+- **Size:** 0.321 m tall, 1.51 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
   the proportions are checked against microduck's at that scale.
 - **Joints:** 15, as microduck's: each leg hip yaw, roll, pitch, knee, ankle; neck pitch, head pitch, yaw, roll, beak.
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.
@@ -52,6 +52,7 @@ python tools/render_build_video.py
 
 `tools/checks.py` covers proportions, mass, collisions over every joint's range, torque and bearing alignment.
 `tools/assembly.py` tests the build order: every part can slide in along its path, every screw bites, and a key can reach it.
+`tools/buildable.py` tests each printed part: one piece, walls, and a load estimate (not FEA). `tools/export_prints.py` writes the STLs. None has been test printed.
 Python 3.12 with numpy, scipy, trimesh, manifold3d, shapely, Pillow, imageio and mujoco.
 
 ## Credits
