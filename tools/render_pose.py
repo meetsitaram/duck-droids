@@ -79,7 +79,7 @@ class Scene:
             fh.write(xml)
         return mujoco.MjModel.from_xml_path(path)
 
-    def render(self, q, view='front', w=800, h=600, height_m=1.9, target_z=0.86, target_y=0.0, hide=(), target_x=0.0):
+    def render(self, q, view='front', w=800, h=600, height_m=1.9, target_z=0.86, target_y=0.0, hide=(), target_x=0.0, background=255):
         with tempfile.TemporaryDirectory() as tmp:
             m = self.model(q, tmp, hide)
             d = mujoco.MjData(m)
@@ -104,7 +104,7 @@ class Scene:
             r.update_scene(d, cam)
             seg = r.render()[:, :, 0]
             r.close()
-        img[seg < 0] = 255
+        img[seg < 0] = background
         return Image.fromarray(img)
 
 

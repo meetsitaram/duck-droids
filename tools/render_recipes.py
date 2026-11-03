@@ -16,7 +16,8 @@ RECIPES = (('dynamixel', 'All Dynamixel', ['15 x XL330-M288']),
            ('feetech', 'All Feetech', ['10 x STS3215-C044', '5 x STS3215-C046']))
 SIZE = 1400                                        # pixels; the camera's scale and framing are the same in all three
 GAP = 330                                          # between one robot's side and the next's, for the height's line and the labels
-INK, LINE = (30, 32, 36), (90, 94, 100)
+# a mid blue, as white shells and black servos both have to show against it
+BG, INK, LINE, FAINT = (84, 112, 140), (255, 255, 255), (235, 240, 245), (150, 170, 190)
 
 
 def child(recipe, out):
@@ -29,7 +30,7 @@ def child(recipe, out):
     S = C.Solids(spec)
     m = C.measure(spec, S)
     json.dump(dict(height=m['height_m'], width=m['overall_width_m'], mass=sum(v[0] for v in MM.link_inertials(spec, S).values())), open(out + '.json', 'w'))
-    RP.Scene().render({}, 'front', SIZE, SIZE, 0.46, 0.215).save(out + '.png')
+    RP.Scene().render({}, 'front', SIZE, SIZE, 0.46, 0.215, background=BG).save(out + '.png')
 
 
 def main():
@@ -48,7 +49,7 @@ def main():
             info = json.load(open(p + '.json'))
             im = Image.open(p + '.png').convert('RGB')
             a = np.asarray(im).astype(int)
-            mask = (255 * 3 - a.sum(axis=2)) > 30
+            mask = (a != np.array(BG)).any(axis=2)
             ys, xs = np.where(mask)
             x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
             bots.append(dict(title=title, servos=servos, im=im.crop((x0, y0, x1, y1)), w=x1 - x0, h=y1 - y0, **info))
@@ -58,7 +59,7 @@ def main():
     H = max(b['h'] for b in bots)
     W = sum(b['w'] for b in bots) + GAP * 3 + 120
     top, under = 70, 330
-    C_ = Image.new('RGB', (W, top + H + under), 'white')
+    C_ = Image.new('RGB', (W, top + H + under), BG)
     D = ImageDraw.Draw(C_)
     x, floor = GAP, top + H
 
@@ -78,8 +79,8 @@ def main():
     for b in bots:
         C_.paste(b['im'], (x, floor - b['h']))
         hx = x - 45
-        D.line([(hx - 18, floor - b['h']), (x + 30, floor - b['h'])], fill=(190, 194, 200), width=2)
-        D.line([(hx - 18, floor), (x + 30, floor)], fill=(190, 194, 200), width=2)
+        D.line([(hx - 18, floor - b['h']), (x + 30, floor - b['h'])], fill=FAINT, width=2)
+        D.line([(hx - 18, floor), (x + 30, floor)], fill=FAINT, width=2)
         arrow((hx, floor - b['h']), (hx, floor), f"{b['height'] * 100:.1f} cm", 'left')
         wy = floor + 28
         arrow((x, wy), (x + b['w'], wy), f"{b['width'] * 100:.1f} cm", 'below')
