@@ -6,9 +6,8 @@ the pictures and the parts list. milli is not made by or connected with Pollen R
 
 ![milli walking in MuJoCo under a policy still in training, drifting round in a circle](docs/images/walk/milli_walk.gif)
 
-milli under a trained policy in MuJoCo ([MP4, 12 s, sharper](docs/images/walk/milli_walk.mp4)). This is simulation only, part way through
-training (iteration 1750 of 3000). It stays up, but told to walk straight at 0.3 m/s, this robot circles, turning about 310 degrees in 10 s.
-[Train it yourself](docs/TRAINING.md).
+An early milli policy in MuJoCo ([MP4, 12 s, sharper](docs/images/walk/milli_walk.mp4)), from iteration 1750 of 3000, before the fixes in
+[LESSONS.md](LESSONS.md): it circles. The finished walks go straight: see the table below. Simulation only. [Train it yourself](docs/TRAINING.md).
 
 ![milli being built, then walking and moving its head](docs/images/assembly/milli_build.gif)
 
@@ -24,14 +23,50 @@ fall. A case study you can rerun or add to: pick one with `MILLI_RECIPE`, or add
 
 Microduck, for scale: 26.4 cm tall, 14.1 cm wide on its model, 0.8 kg as published, on XL330s.
 
-- **Results are pending.** Training is under way, and nothing here has been built or tested on real parts. Hybrid is the design the rest
-  of this README, the parts list and the printable files describe. The other three are spec-only drafts: no assembly guide, parts list or CAD yet.
+- **Nothing here has been built or tested on real parts.** Hybrid is the design the rest of this README, the parts list and the printable
+  files describe. The other three are spec-only drafts: no assembly guide, parts list or CAD yet.
 - **All Dynamixel** runs its XL330s straight off a 2S pack, as microduck's trainer models its own, which is past ROBOTIS's 6 V maximum. Its
   torque and speed at that voltage are estimates.
 - **Feetech HD-1910** is the servo most community Microduck builds use, and is rated to 8.4 V, so it stays inside the maker's limits. Its numbers are a seller's sheet (+/- 10 %; the maker's own lists less torque), and its motor friction and inertia, and position gain, are estimates. No part of those builds is used here.
 - **All Feetech** passes its checks only with looser limits, set in the spec: a higher mass budget, proportions within 15 % rather than 10 %, a
   smaller head roll range, and one pose (the floor pick) it can't reach.
 - Masses are estimates from each part's material. Pictures: `python tools/render_recipes.py`.
+
+Results so far, in simulation only, from 64 robots with the training's randomization on. Speeds are what they reached:
+
+| Walk, final checkpoint (3000) | Told 0.1 / 0.2 / 0.3 / 0.4 m/s forward | Backward 0.2 | Sideways 0.2 | Turn 1.0 rad/s |
+|---|---|---|---|---|
+| Hybrid | 0.10 / 0.19 / 0.26 / 0.31 | 0.11 | 0.06 | 0.94 |
+| All Dynamixel | 0.00 / 0.16 / 0.22 / 0.25 | 0.00 | | 0.98 |
+| Feetech HD-1910 | 0.05 / 0.16 / 0.24 / 0.33 | 0.14 | 0.06 | 0.92 |
+| All Feetech | not trained yet | | | |
+
+- **All Dynamixel** freezes at the slowest speed and doesn't go backward.
+- **Getting up:** the hybrid, at iteration 3000 of a stopped run, gets up 100 % of the time from face down, face up and sitting, but in 0.2-0.55 s, too
+  fast to trust on real servos, with small overlaps in 4-5 of 200 frames. The other recipes aren't trained on it yet.
+- **The head roll:** set aside. No policy does it: all Dynamixel, the only recipe that reached 3000 iterations on it, turned 35 degrees at best. Scripted
+  searches (`tools/flip_search.py`) didn't get a clean flip either.
+
+## A big duck
+
+The same duck at 1.8 m, taller than [echo](https://github.com/meetsitaram/echo), on RobStride RS04 actuators, to test whether the method scales: a full design first, with
+metal frames, bearings, screws and printed panels that fit a 256 mm bed, from its own spec, [spec/big_duck.py](spec/big_duck.py) (`MILLI_RECIPE=big`, on branch `big-duck`).
+
+![The big duck from the front and side, and a close-up of its neck with one head pitch actuator on a chain](docs/images/big/big_duck.png)
+
+![Its knee drawn to scale at three angles: a crank on the actuator, a rod, and a lever on the knee](docs/images/big/knee_crank.png)
+
+- **Size:** 1.797 m tall, 99.5 kg from every part's material, 23 actuators (20 RS04, 2 RS03, 1 RS00). Masses lean on assumed pocketing: no pockets are drawn.
+- **Knee:** two RS04s, each with a crank, a rod and a lever, in place of a roller chain. 1.54:1 at its weakest, about 3.4:1 at the straight end, over 70 degrees.
+- **Given up:** deep squat and floor pick, as the crank's range won't reach them; the head roll, for a lighter neck.
+- **Strength against real humanoids,** peak torque over (weight x leg length), read from their own URDFs: knee 0.56 and hips 0.36 are in the range of
+  Unitree's G1, H1-2 and H2 and AgiBot's X2 and A3 (0.35-0.65), and ankle 0.18 is above Unitree's. Hip yaw, 0.18, is about half most of theirs, and it has no ankle roll, which they all do.
+
+**Can it walk?** Partly, in simulation. [A walk from checkpoint 1500](docs/images/big/big_walk.mp4) (MP4, 8 s), told 0.4 m/s, reaches about 0.33 m/s. Read this with it:
+- It needs help the small ducks didn't: a stepping clock. Scaled correctly, with no clock, it learned to stand still.
+- That walk overloads its knee, 170 N m RMS against 123 rated, and drifts and ignores other commands. A run with a penalty for sustained overload
+  brought the knee to 126 at iteration 750, a straighter leg, but it then ignored forward commands. That run wasn't finished when this was written.
+- Not done: stress analysis, the RS04's real drawing, the chain's tensioner, the rods moving in the model, wiring, how it survives a fall, the Fusion model.
 
 ## Status
 

@@ -34,8 +34,18 @@ def design():
     return adsk.fusion.Design.cast(app().activeProduct)
 
 
+SPEC = 'robot.json'
+
+
+def use(name):
+    """Which spec to build: build.use('robot_big.json'), once after importing this."""
+    global SPEC
+    SPEC = name
+    return json.load(open(os.path.join(REPO, 'spec', SPEC), encoding='utf-8'))['root']
+
+
 def spec():
-    return json.load(open(os.path.join(REPO, 'spec', 'robot.json'), encoding='utf-8'))
+    return json.load(open(os.path.join(REPO, 'spec', SPEC), encoding='utf-8'))
 
 
 def finish(g):

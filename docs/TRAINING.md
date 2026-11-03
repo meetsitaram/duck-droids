@@ -144,6 +144,20 @@ Run `scripts/milli_audit.py` in the trainer to print every setting the task has 
 
 **Lost with the BAM model, not replaced:** load-dependent friction, battery voltage and its sag under load. milli's servo torque is modelled at a fixed voltage.
 
+## A robot far bigger than its recipe
+
+The big duck (`Mjlab-Velocity-Flat-Milli-Big`) showed what scaling this recipe does and doesn't do. `scale_for_big` in the velocity task handles any robot over 3 times microduck's height:
+
+- **Units.** Speeds by the square root of size. The angular momentum penalty by (mass x height^1.5)^2: at 113 kg it was millions of times too strong. Foot slip, clearance and swing penalties by height. Self-collision's force threshold by mass.
+- **Scaled correctly, it stood still.** 0.001 m/s told 0.4, staying up 100 % of the time. Its air-time reward needed a foot up for 0.33 s, which never happens by chance at this weight, and standing already earned most of the tracking reward. Shorter air time and tighter tracking weren't enough.
+- **So a stepping clock:** a phase input, and rewards for each foot's contact and lift against it. A 1.2 s stride is an estimate. It stepped within 500 iterations. This makes its walk not like-for-like against the small ducks.
+- **Stop penalties on every joint.** Its knee sat on its stop 83-92 % of the time, pressing past it, on the recipe's weak penalty. Torque didn't fall with mass: that was the clue.
+- **A sustained load penalty,** `over_rated`: RMS torque over about 2 s above the rated torque. Near-stall penalties start at 70 % of peak, and at 3:1 peak to rated a joint can sit at twice its rating and pay nothing.
+
+Check a new size early, against a robot that learned, at iterations 250-750: each reward term (one at zero has no path to it), real speed, and time at each joint's limits (`scripts/milli_limits.py CHECKPOINT TASK`). Survival alone says nothing. `tools/leg_limits.py` compares foot lift, lean and static torque between two models.
+
+Its gains (kp 100-400, kd = kp / 40) are a first guess, and the crank's changing ratio is modelled as one number: its weakest torque and, near the bent end, its speed.
+
 ## What's assumed, and not measured
 
 | What | Value | Source |
