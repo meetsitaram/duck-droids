@@ -57,10 +57,10 @@ index 0000000..6fa4c5a
 +    print(" ", show(s))
 diff --git a/scripts/milli_eval.py b/scripts/milli_eval.py
 new file mode 100644
-index 0000000..43263c4
+index 0000000..e819256
 --- /dev/null
 +++ b/scripts/milli_eval.py
-@@ -0,0 +1,161 @@
+@@ -0,0 +1,164 @@
 +"""Can milli walk on these servos? Runs a checkpoint through fixed commands, with the training's randomization on, and reports.
 +
 +  python scripts/milli_eval.py [CHECKPOINT.pt] [--envs 512] [--video OUT.mp4]
@@ -98,6 +98,7 @@ index 0000000..43263c4
 +ap.add_argument("--only", help="run this one test, e.g. 'forward 0.3', and record its walk")
 +ap.add_argument("--seconds", type=float, default=SECONDS)
 +ap.add_argument("--traj", help="save the recorded walk (a robot still up at the end), for milli's tools/render_walk.py")
++ap.add_argument("--straightest", action="store_true", help="record the robot that turned least: for a picture, not a measure of the policy")
 +a = ap.parse_args()
 +WALK = a.only or "forward 0.3"
 +TESTS = [t for t in TESTS if not a.only or t[0] == a.only]
@@ -184,7 +185,9 @@ index 0000000..43263c4
 +    results[label] = row
 +    print(f"{label:14s} up {m.mean() * 100:5.1f} %  got vx {got[0]:+.3f} vy {got[1]:+.3f} wz {got[2]:+.2f}  per robot: start-to-end speed {row['net_speed']:.3f} m/s, |turn| median {row['abs_turn']:.2f}, 90th pct {row['abs_turn_p90']:.2f} rad/s")
 +    if label == WALK:
-+        video_q = np.array(qs)[:, int(np.argmax(m))]
++        keep = int(np.where(m)[0][np.argmin(turn)]) if a.straightest and m.any() else int(np.argmax(m))
++        video_q = np.array(qs)[:, keep]
++        print(f"recorded robot {keep}: turning {V[:, keep, 2].mean():+.2f} rad/s" + (f", the straightest of {int(m.sum())}" if a.straightest else ""))
 +if a.traj:
 +    np.savez(a.traj, q=video_q, names=np.array(names), dt=dt, root_z=home["root_z"])
 +    print(a.traj)
