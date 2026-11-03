@@ -71,7 +71,7 @@ def leg_parts(s):
         (f'{s} thigh cover', 'P', [f'{s} thigh cover']),
         (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle stub',
                             f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -']),
-        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) XC330_M288', f'{s} ankle rear boss']),
+        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', f'{s} ankle rear boss']),
         (f'{s} ankle lid', 'P', [f'{a} cradle horn face']),
         (f'{s} ankle horn', 'B', [f'{s}_ankle_pitch flange']),
         (f'{s} ankle bearing inner', 'B', [f'{s} ankle bearing inner race']),
@@ -152,7 +152,7 @@ def sections():
         ]), dict(key=f'shin_{s}', title=f'The {nm} shin', on=[], steps=[
             ('The shin', [(f'{s} shin', None)], []),
             ('Plug in the cable, slide in the ankle servo', [(f'{s} ankle servo', IN)], []),
-            ('Screws: 4 flat-head into the rear boss, 2 at the far end', [], [rf'^{s} ankle boss screw', rf'^{a} cradle screw rear']),
+            ('Screws: 4 flat-head into the rear horn, 2 at the far end', [], [rf'^{s} ankle boss screw', rf'^{a} cradle screw rear']),
             ('The lid, 2 screws', [(f'{s} ankle lid', IN)], [rf'^{a} cradle screw horn']),
             ('Press the small bearing onto the stub', [(f'{s} ankle bearing inner', OUT)], []),
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),

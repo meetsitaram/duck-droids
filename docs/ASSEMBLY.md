@@ -38,11 +38,11 @@ Then the same for the right side, mirrored.
 
 ![2. Shins and ankles](images/assembly/shin_L.gif)
 
-> ⚠ The rear-boss screws go in before the bearing: the bearing covers them.
+> ⚠ The rear-horn screws go in before the bearing: the bearing covers them.
 
 1. The shin
 2. Plug in the cable, slide in the ankle servo
-3. Screws: 4 flat-head into the rear boss, 2 at the far end
+3. Screws: 4 flat-head into the rear horn, 2 at the far end
 4. The lid, 2 screws
 5. Press the small bearing onto the stub
 6. Horn on, servo at mid-range

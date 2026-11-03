@@ -12,7 +12,7 @@ The look is Pollen Robotics' microduck (2026-11-02, the user: "looks of microduc
 of a head with one eye and an orange bill on a neck of bare servos, a small white body, bare black servos at the
 hips and knees, orange shoes on yellow soles. Its joint layout too (leg: hip yaw, roll, pitch, knee, ankle; head:
 neck pitch, head pitch, head yaw, head roll, beak). Its servos are not: the hips and knees are Feetech STS3215s,
-the SO-101 arm's servo; the ankles and head ROBOTIS XC330/XL330s (spec/actuators.json). The servo cases are the
+the SO-101 arm's servo, ankles too; the neck and head ROBOTIS XC330/XL330s (spec/actuators.json). The servo cases are the
 structure: each sits in its parent link with its horn on the joint axis; printed plates join horn to case.
 
 Geometry roles (as echo's, the repo this method is forked from):
@@ -226,7 +226,7 @@ def stack_of(act, bearing):
 
 def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', exposed=True, remote_at=None,
           case_in='parent', fork_at=None, fork_r=None, post=True, fork=True, sides=(1, -1), faces=('horn', 'rear'),
-          bearing=(), face_t=None):
+          bearing=(), face_t=None, stack=None):
     """A servo-driven joint. origin: the centre of the horn's outer face, on the axis. act: the servo model, its
     case in `parent`: the shaft along `axis`, the horn facing `out` (+1 / -1 along the axis) toward the child, the
     case's long side running `long` ('+x' .. '-z') from the shaft (the shaft sits shaft_x off the case's middle).
@@ -236,11 +236,12 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     fork_at (deg) / fork_r (m) fix where the fork's post goes; post=False when the link's own plates join the fork's
     two plates; fork=False: the driven horn only, no rear horn, its screws in the link's own plate. sides: which of the
     cradle's side walls (+1 / -1 along the servo frame's w) to build; faces: which face plates; bearing: on which faces a
-    bearing sits ('horn', 'rear'; BEARINGS); face_t: a thinner horn face plate than MT."""
+    bearing sits ('horn', 'rear'; BEARINGS); face_t: a thinner horn face plate than MT; stack: the case's face to the plate on its horn,
+    when not the usual."""
     a = ACT[act]
     ax = {'x': 0, 'y': 1, 'z': 2}[axis]
     act_c = list(remote_at or origin)
-    stack = stack_of(act, bearing)
+    stack = stack or stack_of(act, bearing)
     act_c[ax] -= out * (stack + a['box'][2] / 2)
     j = dict(name=name, parent=parent, child=child, origin=list(origin), axis=axis, lower=lim[0], upper=lim[1],
              act=act, act_c=act_c, out=out, long=long, exposed=exposed, remote=bool(remote_at), case_in=case_in,
@@ -497,14 +498,15 @@ def mount_geoms(j):
             t = math.radians(dg)
             u_, w_ = -sx + hr * math.cos(t), hr * math.sin(t)
             fk.append(fast(lcyl(f'{n} fork screw {nm} {k}', f, u_, w_, a0 + sg * 0.00075, sh, 0.0015, DARK, 'decal'),
-                           'M3' if sts else 'M2', 0.010 if sts else (0.008 if nm in bg else 0.006), at(f, u_, w_, a0),
+                           'M3' if sts else 'M2', (0.010 if nm in bg else 0.008) if sts else (0.008 if nm in bg else 0.006), at(f, u_, w_, a0),
                            [-sg * v for v in f[3]]))
     return cr, fk
 
 
 # ---------------------------------------------------------------- servo sizes
 
-STS, XL, XC = ACT['STS3215_C044'], ACT['XL330_M288'], ACT['XC330_M288']
+STS, XL = ACT['STS3215_C044'], ACT['XL330_M288']
+AK = STS                                   # the ankle servo
 SL, SW, SH = STS['box']                    # 45.2 x 24.7 x 35 mm (long, wide, along the shaft)
 SX = STS['shaft_x']                        # shaft 12.5 mm off the case's middle
 SHH = stack_of('STS3215_C044', True)       # the case's face to the plate on its horn, over the bearing (5 mm)
@@ -527,8 +529,9 @@ GAP = 0.003                                # clearance between parts of differen
 #   ankle     straight under the knee; its servo stands in the shin, between the shoe's two ears.
 STANCE = 1.02                                      # microduck's thigh angle back from upright (its model: 58.4 deg)
 ZA = 0.0295                                        # ankle: microduck's 25 mm at 1.18; its case's lower end clears the shoe
-#   knee: microduck's 42 mm shin at milli's scale; the ankle case's top stays clear of the knee case's 16 mm circle
-ZK = ZA + 0.053
+#   knee: the STS3215 ankle's far end, its 3 mm cap and 1.5 mm to the thigh cover's 17.4 mm circle round the knee: it takes
+#   up the gap under the thigh (the user, 2026-11-03), 4 mm taller than with an XC330
+ZK = ZA + 0.057
 #   hip pitch: the knee servo just behind the hip pitch servo's back end, both in the thigh
 XK = -(SL / 2 + SX) - SW / 2 - 0.0035              # -0.051: the knee behind the hip, one cradle wall (3 mm) between
 #                                                    the hip pitch case's end and the knee case (2026-11-02, mounts)
@@ -549,12 +552,17 @@ YT_CASE = (YRS[1] + SHH, YRS[1] + SHH + SH)        # the thigh's two servo cases
 YP = YRS[1]                                        # hip pitch horn face, inward onto the roll bracket
 YK = YRS[1]                                        # knee horn face, inward onto the shin plate
 YS = (YRS[0], YRS[1])                              # the shin plate
-YA_CASE = (YS[1], YS[1] + XC['box'][2])            # the ankle case, outside the shin plate
-YA = YA_CASE[1] + XC['horn_h']                     # ankle horn face, outward (0.0665)
+# the ankle case in line with the two thigh cases (the user, 2026-11-03: "why are the two servos out of alignment?"): a
+# spacer on the shin plate takes up the knee's stack, so the leg reads as one column, the feet 5 mm further out
+YA_CASE = (YS[1], YS[1] + AK['box'][2])            # the ankle case, outside the shin plate
+# ankle horn face, outward: no bearing here, so only the real horn and its centre screw (3.05 mm on SO-101's mesh)
+ANKLE_STACK = 0.0035
+YA = YA_CASE[1] + ANKLE_STACK
 XP_FRONT = SL / 2 - SX                             # hip pitch case's front end (0.0101; it runs back)
 # microduck's shoe at 1.18 (its foot_left, sole_left and ankle_left meshes): a 13 mm yellow sole (15 here), the orange
 # upper rising at the toe and heel to 22 mm, the ears round the ankle; low in the middle, where the ankle servo swings
-FOOT = dict(x=(XK - 0.024, XK + 0.040), y=(0.029, 0.078), sole=0.0154, shoe=0.0160, rim=0.0225)   # sole 12.9 and upper 6 mm on microduck
+# (the STS3215 ankle: 3 mm wider than with an XC330, and 4 mm longer to keep the shoe's shape: 68 x 52 mm)
+FOOT = dict(x=(XK - 0.026, XK + 0.042), y=(0.0315, 0.0835), sole=0.0154, shoe=0.0160, rim=0.0225)   # sole 12.9 and upper 6 mm on microduck
 THIGH_Y = (YT_CASE[0] - 0.002, YT_CASE[1] + 0.0061)  # the thigh cover, wrapping both thigh servos
 
 # Body (round 2): the two hip yaw servos side by side; behind them the battery on edge and the Pi Zero 2 W with its
@@ -646,24 +654,24 @@ link('L_hip_pitch_link', 0.10, [
     cut(box('L thigh cover slot', (XK - SW / 2 - 0.001, YS[0] - 0.004, ZK - (SL / 2 - SX) - 0.0015),
             (XP_FRONT + 0.0015, YT_CASE[1] - 0.0003, ZP + SW / 2 + 0.0012), WHITE, 'shell'), 'L thigh cover'),
 ])
-YB = YA_CASE[0] - XC['horn_h']                     # the top of the ankle servo's rear boss
-XCHH, ANK = XC['horn_h'], BEARINGS['ankle']
+YB = YA_CASE[0] - 0.0005                     # the top of the ankle servo's rear boss
+XCHH, ANK = 0.0005, BEARINGS['ankle']              # the rear horn sits in the case's step: 0.5 mm proud of the box
 link('L_knee_link', 0.05, [
-    box('L shin plate', (XK - 0.011, YS[0], ZA + XC['box'][0] / 2 + XC['shaft_x'] - 0.001), (XK + 0.011, YS[1],
+    box('L shin plate', (XK - 0.011, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.001), (XK + 0.011, YS[1],
                                                                                            ZK + 0.011), exposed=True),
-    box('L shin cap', (XK - 0.010, YS[0], ZA + XC['box'][0] / 2 + XC['shaft_x'] - 0.0005),
-        (XK + 0.010, YA_CASE[1], ZA + XC['box'][0] / 2 + XC['shaft_x'] + 0.003), exposed=True),
-    # the ankle's far side, as microduck's: a plate on the servo's rear boss (4 M2 x 6), up to the shin plate, and a stub
+    box('L shin cap', (XK - 0.0125, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
+        (XK + 0.0125, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
+    # the ankle's far side, as microduck's: a plate on the servo's rear horn (4 M3 x 6), up to the shin plate, and a stub
     # from it through a small bearing in the shoe's inner ear
-    dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', XC['horn_r'], XCHH, ALU), exposed=True),
-    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0095), (XK, ZA + XC['box'][0] / 2 + XC['shaft_x'] + 0.002, 0.0095)],
+    dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', AK['horn_r'], XCHH, ALU), exposed=True),
+    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0105), (XK, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0105)],
           DARK, 'struct', exposed=True),
     dict(cyl('L ankle stub', (XK, YB - 0.0041, ZA), 'y', ANK['d'] / 2, 0.0042, DARK), exposed=True),
     # flat heads, flush: the bearing's race turns 0.2 mm off this plate
-    *[fast(cyl(f'L ankle boss screw {k}', (XK + XC['horn_hole_r'] * math.cos(k * math.pi / 2), YB - 0.00175,
-                                           ZA + XC['horn_hole_r'] * math.sin(k * math.pi / 2)), 'y', 0.0019, 0.0005, DARK, 'decal'),
-           'M2 flat', 0.006, (XK + XC['horn_hole_r'] * math.cos(k * math.pi / 2), YB - 0.002,
-                              ZA + XC['horn_hole_r'] * math.sin(k * math.pi / 2)), (0, 1, 0)) for k in range(4)],
+    *[fast(cyl(f'L ankle boss screw {k}', (XK + AK['horn_hole_r'] * math.cos(math.pi / 4 + k * math.pi / 2), YB - 0.00175,
+                                           ZA + AK['horn_hole_r'] * math.sin(math.pi / 4 + k * math.pi / 2)), 'y', 0.0027, 0.0005, DARK, 'decal'),
+           'M3 flat', 0.006, (XK + AK['horn_hole_r'] * math.cos(math.pi / 4 + k * math.pi / 2), YB - 0.002,
+                              ZA + AK['horn_hole_r'] * math.sin(math.pi / 4 + k * math.pi / 2)), (0, 1, 0)) for k in range(4)],
     dict(cyl('L ankle bearing inner race', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 + RACE, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),
     cut(cyl('L ankle bearing inner race bore', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 - 0.00005, ANK['w'] + 0.002),
@@ -671,7 +679,7 @@ link('L_knee_link', 0.05, [
 ])
 SOLE_C = ((FOOT['x'][0] + FOOT['x'][1]) / 2, (FOOT['y'][0] + FOOT['y'][1]) / 2)
 SOLE_A, SOLE_B = (FOOT['x'][1] - FOOT['x'][0]) / 2 + 0.0005, (FOOT['y'][1] - FOOT['y'][0]) / 2 + 0.0005
-EAR = [(XK, ZA, 0.011), (XK - 0.016, FOOT['rim'] - 0.006, 0.006), (XK + 0.020, FOOT['rim'] - 0.006, 0.006)]
+EAR = [(XK, ZA, 0.011), (XK - 0.0175, FOOT['rim'] - 0.006, 0.005), (XK + 0.021, FOOT['rim'] - 0.006, 0.005)]   # inside the shoe's round corners
 link('L_foot', 0.05, [
     # the shoe's ears (microduck's): orange, rising either side of the ankle servo to round tops on its axis; the
     # outer one on the horn, the inner one on a bearing round the shin's stub (the shoe joins them: no post). The inner
@@ -683,7 +691,7 @@ link('L_foot', 0.05, [
     cut(cyl('L ankle ear bore', (XK, YB - 0.0047, ZA), 'y', ANK['D'] / 2 - 0.00005, 0.006, ORANGE), 'L ankle ear in'),
     cut(plate('L ankle ear recess', FOOT['y'][0] - 0.001, YB - 0.0028 - FOOT['y'][0] + 0.001, EAR, ORANGE, 'struct'), 'L shoe'),
     *[fast(cyl(f'L ankle ear screw {k}', (XK + dx, YB - 0.0073, FOOT['rim'] - 0.006), 'y', 0.0019, 0.0012, DARK, 'decal'),
-           'M2', 0.008, (XK + dx, YB - 0.0067, FOOT['rim'] - 0.006), (0, 1, 0)) for k, dx in enumerate((-0.016, 0.020))],
+           'M2', 0.008, (XK + dx, YB - 0.0067, FOOT['rim'] - 0.006), (0, 1, 0)) for k, dx in enumerate((-0.0175, 0.021))],
     dict(cyl('L ankle bearing outer race', (XK, YB - 0.0042, ZA), 'y', ANK['D'] / 2, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),
     cut(cyl('L ankle bearing outer race bore', (XK, YB - 0.0042, ZA), 'y', ANK['D'] / 2 - RACE, ANK['w'] + 0.002),
@@ -697,18 +705,19 @@ link('L_foot', 0.05, [
                          (FOOT['rim'] - 0.0012, SOLE_C[0], SOLE_C[1], SOLE_A - 0.0025, SOLE_B - 0.0025, 4.0),
                          (FOOT['rim'], SOLE_C[0], SOLE_C[1], SOLE_A - 0.0045, SOLE_B - 0.0045, 3.5)], ORANGE, 'struct',
               open=()), exposed=True),
-    cut(cyl('L shoe pocket', (XK, (YB - 0.0025 + YA_CASE[1]) / 2, ZA), 'y', 0.017, YA_CASE[1] - YB + 0.0025,
-            ORANGE, 'shell'), 'L shoe'),
+    # a round cup for the servo's corners (16 mm from the shaft), down into the TPU sole, as microduck's ankle cup
+    cut(cyl('L shoe pocket', (XK, (YB - 0.0025 + YA_CASE[1]) / 2, ZA), 'y', 0.021, YA_CASE[1] - YB + 0.0025,
+            ORANGE, 'shell'), 'L shoe', 'L sole'),
     # two pieces, as microduck's shoe (its foot and sole meshes) and Open Duck's (a TPU bottom, screwed on from below). The
     # foot switch (2026-11-02, the user: an input to the walking policy, as Open Duck's GPIO foot switches): a subminiature
     # microswitch pressed into the shoe's underside ahead of the ankle pocket, its plunger on the TPU sole, which gives
     # as the foot takes weight. Its travel against this TPU is untested: try it before printing all four
-    cut(box('L foot switch pocket', (XK + 0.024 - 0.0063, SOLE_C[1] - 0.00285, FOOT['sole'] - 0.002),
-            (XK + 0.024 + 0.0063, SOLE_C[1] + 0.00285, FOOT['sole'] + 0.0048), ORANGE, 'struct'), 'L shoe'),
-    box('L foot switch', (XK + 0.024 - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015),
-        (XK + 0.024 + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005), DARK, material='electronics', mass=0.001, exposed=True),
+    cut(box('L foot switch pocket', (XK + 0.0285 - 0.0063, SOLE_C[1] - 0.00285, FOOT['sole'] - 0.002),
+            (XK + 0.0285 + 0.0063, SOLE_C[1] + 0.00285, FOOT['sole'] + 0.0048), ORANGE, 'struct'), 'L shoe'),
+    box('L foot switch', (XK + 0.0285 - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015),
+        (XK + 0.0285 + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005), DARK, material='electronics', mass=0.001, exposed=True),
     *[fast(cyl(f'L shoe bottom screw {k}', (XK + dx, SOLE_C[1], 0.0078), 'z', 0.0027, 0.0015, DARK, 'decal'), 'M3', 0.012,
-           (XK + dx, SOLE_C[1], 0.008), (0, 0, 1)) for k, dx in enumerate((-0.019, 0.036))],
+           (XK + dx, SOLE_C[1], 0.008), (0, 0, 1)) for k, dx in enumerate((-0.0215, 0.038))],
     # the sole curls up all round underneath, toe and heel most (microduck's, round 11): sections from a smaller
     # rounder footprint on the floor out to the full one 5 mm up; it stands on the flat middle ('contact')
     dict(loft('L sole', [(0.0, SOLE_C[0], SOLE_C[1], SOLE_A - 0.009, SOLE_B - 0.005, 2.6),
@@ -730,8 +739,8 @@ joint('L_hip_pitch', 'L_hip_roll_link', 'L_hip_pitch_link', (0, YP, ZP), 'y', (-
 joint('L_knee', 'L_hip_pitch_link', 'L_knee_link', (XK, YK, ZK), 'y', (-1.1, 1.05), 'STS3215_C044', out=-1,
       long='+z', fork=False, bearing=('horn',))
 # the bearing on the far side, in the shoe's inner ear (spelled out in the links); no side walls: they dip into the shoe
-joint('L_ankle_pitch', 'L_knee_link', 'L_foot', (XK, YA, ZA), 'y', (-1.4, 1.4), 'XC330_M288', out=+1, long='+z',
-      fork=False, sides=())
+joint('L_ankle_pitch', 'L_knee_link', 'L_foot', (XK, YA, ZA), 'y', (-1.3, 1.3), 'STS3215_C044', out=+1, long='+z',
+      fork=False, sides=(), stack=ANKLE_STACK)
 
 # ---------------------------------------------------------------- neck and head (bare servos, as microduck's)
 

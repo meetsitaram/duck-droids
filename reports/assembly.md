@@ -286,24 +286,24 @@ From tools/assembly.py
 | PASS | L knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L thigh cover screw hip | M2 x 6: bites 2.9 mm |
 | PASS | L thigh cover screw knee | M2 x 6: bites 2.9 mm |
-| PASS | L ankle boss screw 0 | M2 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 1 | M2 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 2 | M2 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 3 | M2 flat x 6: bites 3.0 mm |
-| PASS | L ankle pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
-| PASS | L ankle pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
-| PASS | L ankle pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
-| PASS | L ankle pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | L ankle boss screw 0 | M3 flat x 6: bites 3.0 mm |
+| PASS | L ankle boss screw 1 | M3 flat x 6: bites 3.0 mm |
+| PASS | L ankle boss screw 2 | M3 flat x 6: bites 3.0 mm |
+| PASS | L ankle boss screw 3 | M3 flat x 6: bites 3.0 mm |
+| PASS | L ankle pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
+| PASS | L ankle pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
+| PASS | L ankle pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
+| PASS | L ankle pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L shoe bottom screw 0 | M3 x 12: bites 5.4 mm |
 | PASS | L shoe bottom screw 1 | M3 x 12: bites 5.4 mm |
 | PASS | L knee fork screw horn 0 | M3 x 10: bites 2.9 mm |
 | PASS | L knee fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | L knee fork screw horn 2 | M3 x 10: bites 2.9 mm |
 | PASS | L knee fork screw horn 3 | M3 x 10: bites 2.9 mm |
-| PASS | L ankle pitch fork screw horn 0 | M2 x 6: bites 2.9 mm |
-| PASS | L ankle pitch fork screw horn 1 | M2 x 6: bites 2.9 mm |
-| PASS | L ankle pitch fork screw horn 2 | M2 x 6: bites 2.9 mm |
-| PASS | L ankle pitch fork screw horn 3 | M2 x 6: bites 2.9 mm |
+| PASS | L ankle pitch fork screw horn 0 | M3 x 8: bites 2.5 mm |
+| PASS | L ankle pitch fork screw horn 1 | M3 x 8: bites 2.5 mm |
+| PASS | L ankle pitch fork screw horn 2 | M3 x 8: bites 2.5 mm |
+| PASS | L ankle pitch fork screw horn 3 | M3 x 8: bites 2.5 mm |
 | PASS | L ankle ear screw 0 | M2 x 8: bites 4.0 mm |
 | PASS | L ankle ear screw 1 | M2 x 8: bites 4.0 mm |
 | PASS | L hip pitch fork screw horn 0 | M3 x 10: bites 2.9 mm |
@@ -324,24 +324,24 @@ From tools/assembly.py
 | PASS | R knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | R thigh cover screw hip | M2 x 6: bites 2.9 mm |
 | PASS | R thigh cover screw knee | M2 x 6: bites 2.9 mm |
-| PASS | R ankle boss screw 0 | M2 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 1 | M2 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 2 | M2 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 3 | M2 flat x 6: bites 3.0 mm |
-| PASS | R ankle pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
-| PASS | R ankle pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
-| PASS | R ankle pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
-| PASS | R ankle pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | R ankle boss screw 0 | M3 flat x 6: bites 3.0 mm |
+| PASS | R ankle boss screw 1 | M3 flat x 6: bites 3.0 mm |
+| PASS | R ankle boss screw 2 | M3 flat x 6: bites 3.0 mm |
+| PASS | R ankle boss screw 3 | M3 flat x 6: bites 3.0 mm |
+| PASS | R ankle pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
+| PASS | R ankle pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
+| PASS | R ankle pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
+| PASS | R ankle pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | R shoe bottom screw 0 | M3 x 12: bites 5.4 mm |
 | PASS | R shoe bottom screw 1 | M3 x 12: bites 5.4 mm |
 | PASS | R knee fork screw horn 0 | M3 x 10: bites 2.9 mm |
 | PASS | R knee fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | R knee fork screw horn 2 | M3 x 10: bites 2.9 mm |
 | PASS | R knee fork screw horn 3 | M3 x 10: bites 2.9 mm |
-| PASS | R ankle pitch fork screw horn 0 | M2 x 6: bites 2.9 mm |
-| PASS | R ankle pitch fork screw horn 1 | M2 x 6: bites 2.9 mm |
-| PASS | R ankle pitch fork screw horn 2 | M2 x 6: bites 2.9 mm |
-| PASS | R ankle pitch fork screw horn 3 | M2 x 6: bites 2.9 mm |
+| PASS | R ankle pitch fork screw horn 0 | M3 x 8: bites 2.5 mm |
+| PASS | R ankle pitch fork screw horn 1 | M3 x 8: bites 2.5 mm |
+| PASS | R ankle pitch fork screw horn 2 | M3 x 8: bites 2.5 mm |
+| PASS | R ankle pitch fork screw horn 3 | M3 x 8: bites 2.5 mm |
 | PASS | R ankle ear screw 0 | M2 x 8: bites 4.0 mm |
 | PASS | R ankle ear screw 1 | M2 x 8: bites 4.0 mm |
 | PASS | R hip pitch fork screw horn 0 | M3 x 10: bites 2.9 mm |

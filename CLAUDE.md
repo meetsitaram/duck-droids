@@ -1,7 +1,7 @@
 # milli (a microduck-sized biped on Feetech STS3215 legs): notes for Claude
 
 milli has microduck's look (Pollen Robotics; spec/targets.json) on the SO-101 arm's servo, the Feetech STS3215, at
-the hips and knees, and ROBOTIS XC330/XL330s at the ankles and head. Forked from echo (github.com/meetsitaram/echo),
+the hips, knees and ankles, and ROBOTIS XC330/XL330s at the neck and head. Forked from echo (github.com/meetsitaram/echo),
 the Figure 03 replica: use the `humanoid-from-spec` skill (`.claude/skills/humanoid-from-spec/SKILL.md`) for the
 method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in its own section).
 
