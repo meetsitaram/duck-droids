@@ -4,8 +4,8 @@ Writes OUT_DIR/milli.xml, one mesh per link, and home.json. Follows that trainer
 observations apply: microduck's link, joint, site and sensor names, its joint directions and joint order, the beak locked.
 
 The standing pose is level (the trunk square to the floor, the feet moved forward at the same height until the centre of mass is
-over them), as microduck's HOME is. Servos are plain position actuators, not that trainer's measured BAM model, which fits only
-the XL330. Stiffness: 0.55 N m/rad for the XL330 (microduck's identification, kp 200); the XC330 scaled by stall torque; the
+over them), as microduck's HOME is. The servos go in home.json, each with its own numbers from spec/actuators.json, for that
+trainer's DC motor model (a torque-speed curve and a delay), not its measured BAM model, which fits only the XL330. Stiffness: 0.55 N m/rad for the XL330 (microduck's identification, kp 200); the XC330 scaled by stall torque; the
 STS3215 from Open Duck Mini's 17.8 for the 1:345 version, scaled by gear ratio. Unmeasured: expect this to change with a real servo.
 Collision: the soles only, as that trainer's walking model. Plain python.
 """
@@ -120,11 +120,11 @@ def main():
     J = {j['name']: j for j in spec['joints']}
     seq = ['L_hip_yaw', 'L_hip_roll', 'L_hip_pitch', 'L_knee', 'L_ankle_pitch', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll',
            'R_hip_yaw', 'R_hip_roll', 'R_hip_pitch', 'R_knee', 'R_ankle_pitch']
-    acts = []
+    servos = {}
     for n in seq:
-        nm = JOINT[n][0]
         a = spec['actuators'][J[n]['act']]
-        acts.append(f'<position name="{nm}" joint="{nm}" kp="{KP[J[n]["act"]]:.3f}" ctrlrange="-10 10" forcerange="{-a["peak_nm"]:.3f} {a["peak_nm"]:.3f}"/>')
+        g = servos.setdefault(J[n]['act'], dict(kp=KP[J[n]['act']], peak_nm=a['peak_nm'], noload_rads=a['noload_rads'], joints=[]))
+        g['joints'].append(JOINT[n][0])
     xml = f"""<mujoco model="milli">
 <compiler meshdir="meshes" angle="radian" autolimits="true"/>
 <option timestep="0.005" integrator="implicitfast"/>
@@ -132,7 +132,6 @@ def main():
 <worldbody>
 {chr(10).join(tree)}
 </worldbody>
-<actuator>{chr(10).join(acts)}</actuator>
 <sensor>
 <framequat name="orientation" objtype="site" noise="0.001" objname="imu"/>
 <gyro name="angular-velocity" site="imu" noise="0.005"/>
@@ -148,7 +147,7 @@ def main():
     home = {JOINT[n][0]: float(JOINT[n][1] * v) for n, v in q.items()}
     for n in ('left_hip_yaw', 'right_hip_yaw', 'left_hip_roll', 'right_hip_roll', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll'):
         home[n] = 0.0
-    json.dump(dict(joint_pos=home, root_z=ROOT_Z + 0.001, feet_forward_m=dx, mass_kg=sum(v[0] for v in inert.values())), open(os.path.join(out, 'home.json'), 'w'), indent=1)
+    json.dump(dict(servos=servos, joint_pos=home, root_z=ROOT_Z + 0.001, feet_forward_m=dx, mass_kg=sum(v[0] for v in inert.values())), open(os.path.join(out, 'home.json'), 'w'), indent=1)
     print(f"mass {sum(v[0] for v in inert.values()):.2f} kg; level stance: feet {dx * 1000:.0f} mm forward; home", {k: round(v, 3) for k, v in home.items() if v})
     return 0
 
