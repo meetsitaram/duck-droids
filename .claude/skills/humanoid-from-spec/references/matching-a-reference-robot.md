@@ -1,6 +1,6 @@
 # Matching a reference robot: what milli taught
 
-milli (github.com/meetsitaram/open-micro-duck, 2026-11-02) is Pollen Robotics' microduck rebuilt on bigger servos: Feetech
+milli (github.com/meetsitaram/duck-droids, 2026-11-02) is Pollen Robotics' microduck rebuilt on bigger servos: Feetech
 STS3215s (the LeRobot SO-101 arm's servo) at the hips and knees, ROBOTIS XC330/XL330s at the ankles and head. The user
 wanted "the looks of microduck for sure". It took the user about twenty corrections over eleven rounds in one day,
 nearly all of them because the agent designed from reasoning and eyeballed pictures instead of measuring and copying

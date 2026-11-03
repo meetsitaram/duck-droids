@@ -1,6 +1,6 @@
 ---
 name: duck-at-size
-description: Design, check, train and iterate a small open biped duck at any height the user names, in the milli / open-micro-duck repo, choosing the servos and working in rounds with the user until it walks, gets up and tries the head roll in simulation. Use it whenever someone asks for a duck, Microduck, Mini Duck or biped of a given size or on given servos, asks whether a size or servo can work, wants a new servo recipe, or wants to compare recipes, even if they only give a height ("make me a 40 cm duck") and don't mention this repo or the word recipe.
+description: Design, check, train and iterate a small open biped duck at any height the user names, in the milli / duck-droids repo, choosing the servos and working in rounds with the user until it walks, gets up and tries the head roll in simulation. Use it whenever someone asks for a duck, Microduck, Mini Duck or biped of a given size or on given servos, asks whether a size or servo can work, wants a new servo recipe, or wants to compare recipes, even if they only give a height ("make me a 40 cm duck") and don't mention this repo or the word recipe.
 ---
 
 # A duck at any size

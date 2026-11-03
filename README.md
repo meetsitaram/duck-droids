@@ -1,6 +1,7 @@
-# milli
+# duck-droids
 
-A small open biped built to look like Pollen Robotics' microduck, from servos you can buy: Feetech STS3215s at the hips,
+Open biped robot ducks, from 30 cm to 1.8 m, each generated from one Python spec, and tested in simulation. The first and the most complete is **milli**,
+a small open biped built to look like Pollen Robotics' microduck, from servos you can buy: Feetech STS3215s at the hips,
 knees and ankles, ROBOTIS Dynamixel XC330s and XL330s at the neck and head. One Python spec generates the shapes, the checks,
 the pictures and the parts list. milli is not made by or connected with Pollen Robotics.
 
@@ -50,7 +51,7 @@ Results so far, in simulation only, from 64 robots with the training's randomiza
 ## A big duck
 
 The same duck at 1.8 m, taller than [echo](https://github.com/meetsitaram/echo), on RobStride RS04 actuators, to test whether the method scales: a full design first, with
-metal frames, bearings, screws and printed panels that fit a 256 mm bed, from its own spec, [spec/big_duck.py](spec/big_duck.py) (`MILLI_RECIPE=big`, on branch `big-duck`).
+metal frames, bearings, screws and printed panels that fit a 256 mm bed, from its own spec, [spec/big_duck.py](spec/big_duck.py) (`MILLI_RECIPE=big`).
 
 ![The big duck from the front and side, and a close-up of its neck with one head pitch actuator on a chain](docs/images/big/big_duck.png)
 
@@ -62,15 +63,15 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
 - **Strength against real humanoids,** peak torque over (weight x leg length), read from their own URDFs: knee 0.56 and hips 0.36 are in the range of
   Unitree's G1, H1-2 and H2 and AgiBot's X2 and A3 (0.35-0.65), and ankle 0.18 is above Unitree's. Hip yaw, 0.18, is about half most of theirs, and it has no ankle roll, which they all do.
 
-**Can it walk?** Partly, in simulation. [A walk from checkpoint 1500](docs/images/big/big_walk.mp4) (MP4, 8 s), told 0.4 m/s, reaches about 0.33 m/s. Read this with it:
-- It needs help the small ducks didn't: a stepping clock. Scaled correctly, with no clock, it learned to stand still.
-- That walk overloads its knee, 170 N m RMS against 123 rated, and drifts and ignores other commands. A run with a penalty for sustained overload
-  brought the knee to 126 at iteration 750, a straighter leg, but it then ignored forward commands. That run wasn't finished when this was written.
+**Can it walk?** Slowly, in simulation. All of this needs help the small ducks didn't: a stepping clock. Scaled correctly, with no clock, it learned to stand still.
+- [The walk in this video](docs/images/big/big_walk.mp4) (MP4, 8 s) reaches about 0.33 m/s told 0.4, but overloads its knee: 170 N m RMS against 123 rated.
+- With a penalty for sustained overload, at iteration 1500 of 3000, every joint is under its rating at 0.3-0.4 m/s (knee 99 N m), on a straighter leg, and all 32 test robots stay up.
+  The cost is speed: 0.20 m/s told 0.4, 0.04 m/s backward told 0.2. It drifts sideways at about 0.12 m/s whatever it's told, and barely answers sideways commands. That run wasn't finished when this was written.
 - Not done: stress analysis, the RS04's real drawing, the chain's tensioner, the rods moving in the model, wiring, how it survives a fall, the Fusion model.
 
 ## Status
 
-A design, not yet built. Nothing here has been printed or tested on real parts. This branch has STS3215 ankles; branch
+A design, not yet built. Nothing here has been printed or tested on real parts. milli has STS3215 ankles; branch
 `xc330-ankle` keeps the version with Dynamixel XC330 ankles, before the strength and printing work.
 
 - **Size:** 0.321 m tall, 1.51 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
