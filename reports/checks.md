@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-02 17:20, 26 s
+spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
 
 177 checks: 173 pass, 4 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-02 17:20, 26 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.377 kg bottom-up (budget 1.4 kg; microduck 0.8 kg) |
+| PASS | total | 1.394 kg bottom-up (budget 1.4 kg; microduck 0.8 kg) |
 
 ## axis
 
@@ -220,18 +220,18 @@ spec: `spec/robot.json`, 2026-11-02 17:20, 26 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | head_pitch | 0.15 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 91 % used |
-| PASS | L_knee | 0.26 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 75 % used |
-| PASS | R_knee | 0.26 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 75 % used |
-| PASS | neck_pitch | 0.22 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 71 % used |
-| PASS | L_hip_roll | 0.34 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 48 % used |
-| PASS | R_hip_roll | 0.08 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 24 % used |
-| PASS | L_hip_pitch | 0.17 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 24 % used |
-| PASS | R_hip_pitch | 0.17 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 24 % used |
-| PASS | L_hip_yaw | 0.11 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 21 % used |
+| PASS | head_pitch | 0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 97 % used |
+| PASS | L_knee | 0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used |
+| PASS | R_knee | 0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used |
+| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 76 % used |
+| PASS | L_hip_roll | 0.34 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 49 % used |
+| PASS | L_hip_pitch | 0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used |
+| PASS | R_hip_pitch | 0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used |
+| PASS | R_hip_roll | 0.09 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 24 % used |
+| PASS | L_hip_yaw | 0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 21 % used |
 | PASS | L_ankle_pitch | 0.13 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.93 N m (1 x XC330_M288): 21 % used |
 | PASS | R_ankle_pitch | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XC330_M288): 20 % used |
-| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 16 % used |
-| PASS | beak | 0.01 N m in 'head tucked in' vs rated 0.17 N m (1 x XL330_M288): 9 % used |
+| PASS | R_hip_yaw | 0.05 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 17 % used |
+| PASS | beak | 0.02 N m in 'head tucked in' vs rated 0.17 N m (1 x XL330_M288): 10 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 1 % used |
 | PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 0 % used |

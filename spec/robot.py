@@ -834,6 +834,20 @@ def hood_b(x):
 
 
 TAB_Y_ = max(hood_b(XJ - 0.014), hood_b(XJ + 0.014)) + 0.0006 + GAP      # the hinge tab, just outside the hood
+# The mouth, as microduck's (2026-11-03, the user: "our mouth is hollow square"; its launch video and its jaw, jaw_soft and
+# soft_mouth_top meshes): the jaw is a tray from the lip back 27 mm (x 1.18), then two thin arms to the hinge. A soft insert
+# fills the tray, 1 mm under its rim, and another closes the roof. Printed in TPU, glued in.
+SOFT = '#F7AE55'
+MOUTH_X = HEAD_FRONT - 1.18 * 0.027                # the tray's back edge
+MOUTH_F = HEAD_FRONT - 0.0025
+
+
+def mouth_outline(x0):
+    """The insert's outline from x0 to the lip, 1.6 mm inside the band (axis z: circles (x, y, r))."""
+    r = 0.004
+    return [(x_ + (r if x_ == x0 else -r), sy * (hood_b(x_) - 0.0016 - r), r) for x_ in (x0, MOUTH_F) for sy in (1, -1)]
+
+
 link('head', 0.12, [
     # the head's frame: a plate in front of the head roll servo, a plate on the beak servo behind it, two rails
     # past it either side (outside the roll servo's 27 mm reach as the head rolls)
@@ -860,6 +874,7 @@ link('head', 0.12, [
         PCB, material='electronics', mass=0.004),
     loft('head', hood(), WHITE, open=(), along='x', clip=FRONT),
     cut(UNDER, 'head', 'upper bill'),
+    dict(plate('mouth roof', HEAD_Z - 0.0002, 0.0032, mouth_outline(MOUTH_X - 0.012), SOFT, 'shell', axis='z'), material='tpu'),
     cut(loft('face recess', arch_front(FACE_X, HEAD_FRONT + 0.01, RIM), WHITE, open=(), along='x'), 'head'),
     loft('upper bill', hood(grow=0.0006), ORANGE, open=(), along='x', clip=FRONT),
     cut(ABOVE_BILL, 'upper bill'),
@@ -885,8 +900,11 @@ TAB_X = (XJ - 0.014, XJ + 0.014)
 TAB_Y = max(hood_b(TAB_X[0]), hood_b(TAB_X[1])) + 0.0006 + GAP      # the hinge tab, just outside the hood
 link('beak_link', 0.03, [
     dict(loft('jaw', band_secs(JAW_X0, HEAD_FRONT - 0.0005), ORANGE, 'struct', open=(), along='x'), exposed=True),
-    cut(box('jaw opening', (JAW_X0 - 0.01, -0.041, JAW_Z[0] - 0.01), (HEAD_FRONT - 0.019, 0.041, JAW_Z[1] + 0.01),
+    cut(box('jaw opening', (JAW_X0 - 0.01, -0.041, JAW_Z[0] - 0.01), (MOUTH_X, 0.041, JAW_Z[1] + 0.01),
             WHITE, 'shell'), 'jaw'),
+    cut(plate('jaw tray', JAW_Z[1] - 0.006, 0.007, mouth_outline(MOUTH_X + 0.0015), ORANGE, 'struct', axis='z'), 'jaw'),
+    dict(plate('jaw soft', JAW_Z[1] - 0.0061, 0.0051, mouth_outline(MOUTH_X + 0.0015), SOFT, 'struct', axis='z'), exposed=True,
+         material='tpu', fill=0.4),                 # 40 % infill, as Open Duck Mini's TPU
     *[g for sy in (1, -1) for g in (
         # microduck's hinge tab: a rounded triangle standing on the band, its hub at the top on the hinge
         plate(f"{'L' if sy > 0 else 'R'} hinge tab", TAB_Y if sy > 0 else -TAB_Y - 0.003, 0.003,

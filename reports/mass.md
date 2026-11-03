@@ -2,14 +2,14 @@
 
 Bottom-up: every part from its material and shape (`tools/mass_model.py`, materials in `spec/robot.py`), a 6 % wiring / fastener / bearing allowance per link on its frames.
 
-**Total 1.38 kg** (microduck: 0.8 kg).
+**Total 1.39 kg** (microduck: 0.8 kg).
 
 | material | kg | share |
 |---|---|---|
-| actuator | 0.61 | 45 % |
+| actuator | 0.61 | 44 % |
 | pla | 0.54 | 39 % |
 | steel | 0.08 | 6 % |
-| tpu | 0.06 | 4 % |
+| tpu | 0.08 | 6 % |
 | cells | 0.05 | 3 % |
 | electronics | 0.04 | 3 % |
 
@@ -29,5 +29,5 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 | neck_link | 0.05 | 0.02 | +0.028 -0.002 +0.186 | 0.0000 0.0000 0.0000 |
 | head_pitch_link | 0.04 | 0.03 | +0.028 +0.000 +0.240 | 0.0000 0.0000 0.0000 |
 | head_yaw_link | 0.04 | 0.02 | +0.035 +0.007 +0.276 | 0.0000 0.0000 0.0000 |
-| head | 0.19 | 0.12 | +0.051 -0.000 +0.282 | 0.0002 0.0005 0.0006 |
-| beak_link | 0.03 | 0.03 | +0.075 +0.000 +0.255 | 0.0000 0.0001 0.0001 |
+| head | 0.20 | 0.12 | +0.054 -0.000 +0.280 | 0.0002 0.0005 0.0006 |
+| beak_link | 0.04 | 0.03 | +0.076 -0.000 +0.254 | 0.0000 0.0001 0.0001 |

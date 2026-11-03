@@ -124,6 +124,8 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('camera', 'B', ['camera']),
     ('hood', 'P', ['head']),
     ('jaw', 'P', ['jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot']),
+    ('jaw soft insert', 'P', ['jaw soft']),
+    ('mouth roof', 'P', ['mouth roof']),
 ]
 
 
@@ -215,7 +217,8 @@ def sections():
         ('Its lid, 2 screws', [('beak lid', NEG(Y))], [r'^beak cradle screw horn']),
         ('Pi and camera', [('Pi Zero 2 W', NEG(Z)), ('camera', NEG(X))], []),
         ('The hood, down over the frame', [('hood', NEG(Z))], []),
-        ('The jaw, up under the hood', [('jaw', Z)], []),
+        ('Glue in the soft mouth roof', [('mouth roof', Z)], []),
+        ('The jaw, with its soft insert glued in, up under the hood', [('jaw soft insert', Z), ('jaw', Z)], []),
         ('The hinge screws hold the jaw and the hood', [], [r'^[LR] hinge screw']),
     ])]
     return out

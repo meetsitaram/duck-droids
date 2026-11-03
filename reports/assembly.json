@@ -3499,6 +3499,18 @@
  },
  {
   "group": "PATH",
+  "item": "head: mouth roof",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "head: jaw",
   "status": "PASS",
   "detail": ""
@@ -4046,6 +4058,18 @@
  {
   "group": "ALL",
   "item": "part jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part mouth roof",
   "status": "PASS",
   "detail": ""
  }

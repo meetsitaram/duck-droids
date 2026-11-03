@@ -14,7 +14,7 @@ walk.
 
 A design, not yet built. Nothing here has been printed or tested on real parts.
 
-- **Size:** 0.317 m tall, 1.38 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
+- **Size:** 0.317 m tall, 1.39 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
   the proportions are checked against microduck's at that scale.
 - **Joints:** 15, as microduck's: each leg hip yaw, roll, pitch, knee, ankle; neck pitch, head pitch, yaw, roll, beak.
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.

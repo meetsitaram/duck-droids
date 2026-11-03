@@ -158,8 +158,9 @@ Then the same for the right side, mirrored.
 6. Its lid, 2 screws
 7. Pi and camera
 8. The hood, down over the frame
-9. The jaw, up under the hood
-10. The hinge screws hold the jaw and the hood
+9. Glue in the soft mouth roof
+10. The jaw, with its soft insert glued in, up under the hood
+11. The hinge screws hold the jaw and the hood
 
 ## Not in this guide yet
 
