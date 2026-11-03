@@ -69,7 +69,7 @@ Run `scripts/milli_audit.py` in the trainer to print every setting the task has 
 | STS3215-C044 / C046 stiffness | 9.9 / 7.6 N m/rad | Open Duck's 17.8 for the C001, scaled by gear ratio |
 | XL330 stiffness | 0.55 N m/rad | microduck's identification |
 | XC330 stiffness | 0.98 N m/rad | the XL330's, scaled by stall torque |
-| STS3215 peak torque | C044 1.06, C046 0.81 N m | scaled from the C001; a listing gives the C044 2.7 |
+| STS3215 peak torque | C044 2.69, C046 1.41 N m, at 7.4 V | retailer listings; no Feetech page found; one retailer gives the C044 1.57. Sources in `spec/actuators.json` |
 | Servo delay | 15-30 ms | microduck's, kept as an estimate |
 | Voltage sag, load-dependent friction | none | in microduck's BAM model; not ported |
 | Reward weights, command speeds | microduck's | see above |
