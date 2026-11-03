@@ -4,11 +4,12 @@ A small open biped built to look like Pollen Robotics' microduck, from servos yo
 knees, ROBOTIS Dynamixel XC330s and XL330s at the ankles, neck and head. One Python spec generates the shapes, the checks,
 the pictures and the parts list. milli is not made by or connected with Pollen Robotics.
 
-![Building the head](docs/images/assembly/head.gif)
+![milli being built, then walking and moving its head](docs/images/assembly/milli_build.gif)
 
-**[Watch the whole build, then milli moving (MP4, 28 s)](docs/images/assembly/milli_build.mp4).** The movement is an
+The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement is an
 animation from the leg's kinematics, tested for joint limits and collisions. It is not yet a physics simulation or a trained
-walk.
+walk. This video shows the [`sts3215-ankle`](https://github.com/meetsitaram/milli/tree/sts3215-ankle) branch, the latest design: STS3215
+ankles, stronger legs, and the filled mouth. This page still describes the earlier version.
 
 ## Status
 
