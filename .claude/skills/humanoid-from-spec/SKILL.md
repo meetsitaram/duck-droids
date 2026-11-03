@@ -8,7 +8,7 @@ description: Design and build a humanoid robot, or a look-alike of a reference r
 This is the method behind echo (github.com/meetsitaram/echo). echo is a 1.727 m, 29-joint humanoid built to Figure 03's published
 specs and look, with an Asimov 1-style internal layout and off-the-shelf RobStride actuators. Start from that repo:
 its tools read `spec/robot.json` and work for any robot described the same way. "Make it yours" below lists what is
-echo-specific. milli (github.com/meetsitaram/open-micro-duck), a 0.31 m microduck look-alike on Feetech STS3215 and ROBOTIS
+echo-specific. milli (github.com/meetsitaram/duck-droids), a 0.31 m microduck look-alike on Feetech STS3215 and ROBOTIS
 XL330 servos, was forked from echo and added the method for matching a robot whose own model is available:
 `references/matching-a-reference-robot.md`, round by round.
 
