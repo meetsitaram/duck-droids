@@ -1,4 +1,4 @@
-"""The three servo recipes, front on and at one scale, with height, width and weight: python tools/render_recipes.py -> docs/images/recipes/recipes.png
+"""The servo recipes, front on and at one scale, with height, width and weight: python tools/render_recipes.py -> docs/images/recipes/recipes.png
 
 Offline renders of each recipe's spec (spec/robot.py's RECIPES; generate the spec first, with MILLI_RECIPE set). The numbers come from the spec,
 as tools/checks.py and tools/mass_model.py measure them; the dimension lines are drawn from the picture, which also checks the two agree. Plain python.
@@ -12,10 +12,11 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'docs', 'images', 'recipes')
 RECIPES = (('dynamixel', 'All Dynamixel', ['15 x XL330-M288']),
+           ('hd1910', 'Feetech HD-1910', ['15 x HD-1910-C001']),
            ('hybrid', 'Hybrid', ['8 x STS3215-C044, 2 x STS3215-C046', '1 x XC330-M288, 4 x XL330-M288']),
            ('feetech', 'All Feetech', ['10 x STS3215-C044', '5 x STS3215-C046']))
-SIZE = 1400                                        # pixels; the camera's scale and framing are the same in all three
-GAP = 330                                          # between one robot's side and the next's, for the height's line and the labels
+SIZE = 1400                                        # pixels; the camera's scale and framing are the same in all of them
+GAP = 300                                          # between one robot's side and the next's, for the height's line and the labels
 # a mid blue, as white shells and black servos both have to show against it
 BG, INK, LINE, FAINT = (84, 112, 140), (255, 255, 255), (235, 240, 245), (150, 170, 190)
 

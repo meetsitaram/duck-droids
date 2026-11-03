@@ -15,19 +15,20 @@ training (iteration 1750 of 3000). It stays up, but told to walk straight at 0.3
 The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement in this one is an
 animation from the leg's kinematics, tested for joint limits and collisions, not a physics simulation or a trained walk.
 
-## Three servo recipes
+## Four servo recipes
 
-One design on three sets of servos, drawn at the same scale, to compare in simulation on walking, the head roll and getting up after a
+One design on four sets of servos, drawn at the same scale, to compare in simulation on walking, the head roll and getting up after a
 fall. A case study you can rerun or add to: pick one with `MILLI_RECIPE`, or add your own to `RECIPES` in [spec/robot.py](spec/robot.py).
 
-![The three recipes front on at one scale, with height, width, weight and servos: all Dynamixel 29.8 cm tall, 14.7 cm wide, 0.89 kg; hybrid 32.1 cm, 17.4 cm, 1.51 kg; all Feetech 37.7 cm, 17.4 cm, 1.85 kg](docs/images/recipes/recipes.png)
+![The four recipes front on at one scale, with height, width, weight and servos: all Dynamixel 29.8 cm tall, 14.7 cm wide, 0.89 kg; Feetech HD-1910 29.5 cm, 14.1 cm, 0.93 kg; hybrid 32.1 cm, 17.4 cm, 1.51 kg; all Feetech 37.7 cm, 17.4 cm, 1.85 kg](docs/images/recipes/recipes.png)
 
 Microduck, for scale: 26.4 cm tall, 14.1 cm wide on its model, 0.8 kg as published, on XL330s.
 
 - **Results are pending.** Training is under way, and nothing here has been built or tested on real parts. Hybrid is the design the rest
-  of this README, the parts list and the printable files describe. The other two are spec-only drafts: no assembly guide, parts list or CAD yet.
+  of this README, the parts list and the printable files describe. The other three are spec-only drafts: no assembly guide, parts list or CAD yet.
 - **All Dynamixel** runs its XL330s straight off a 2S pack, as microduck's trainer models its own, which is past ROBOTIS's 6 V maximum. Its
   torque and speed at that voltage are estimates.
+- **Feetech HD-1910** is the servo most community Microduck builds use, and is rated to 8.4 V, so it stays inside the maker's limits. Its numbers are a seller's sheet (+/- 10 %; the maker's own lists less torque), and its motor friction and inertia, and position gain, are estimates. No part of those builds is used here.
 - **All Feetech** passes its checks only with looser limits, set in the spec: a higher mass budget, proportions within 15 % rather than 10 %, a
   smaller head roll range, and one pose (the floor pick) it can't reach.
 - Masses are estimates from each part's material. Pictures: `python tools/render_recipes.py`.

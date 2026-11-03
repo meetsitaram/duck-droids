@@ -51,6 +51,12 @@ RECIPES = {
                       battery=dict(name='battery 2S 500 mAh', size=(0.012, 0.050, 0.025), mass=0.030),
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.42, 0.42)),
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, plate_back=0.005),
+    # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit.
+    # Its case is the XL330's but 3 mm shorter along the shaft, and its horn stands proud: the bearing seats and horn plates here allow for that, and no part of any such build is used
+    'hd1910': dict(yaw='HD1910_C001', leg='HD1910_C001', neck='HD1910_C001', head='HD1910_C001', head2='HD1910_C001', K=0.84, HK=1.14,
+                   battery=dict(name='battery 2S 500 mAh', size=(0.012, 0.050, 0.025), mass=0.030),
+                   ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.38, 0.38)),
+                   short=0.003, target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, plate_back=0.005),
     # every joint a Feetech, on the 2S pack, no 5 V servo rail. The head and neck grow round the bigger case: Q, the head's plain internal
     # lengths over the hybrid's (the case's width over the XL330's), the hood to match
     'feetech': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='STS3215_C044', head='STS3215_C044', head2='STS3215_C046', K=1.0, HK=1.46, Q=1.235,
@@ -64,6 +70,7 @@ RECIPE = os.environ.get('MILLI_RECIPE', 'hybrid')
 R = RECIPES[RECIPE]
 K = R['K']
 Q = R.get('Q', 1.0)
+SHORT = R.get('short', 0.0)                         # a case this much shorter than the XL330's along its shaft: the plates at its rear face move in
 H2 = R.get('head2', 'XL330_M288')                   # the head's yaw, roll and beak servos
 if 'xl330_2s' in R:
     # stall from microduck's identification; rated and no-load speed scaled from ROBOTIS's 5 V numbers (rated by the stall's ratio, speed by
@@ -670,7 +677,7 @@ link('trunk', 0.40, [
     box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165 * Q, ZN - 0.016 * Q), DARK,
         exposed=True),
     box('neck bracket', (XN - XLW / 2, 0.0130 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
-    box('neck idler bracket', (XN - XLW / 2, -0.0225 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, -0.0190 * Q, ZN + 0.012 * Q), DARK,
+    box('neck idler bracket', (XN - XLW / 2, -0.0225 * Q + SHORT, ZN - 0.0165 * Q), (XN + XLW / 2, -0.0190 * Q + SHORT, ZN + 0.012 * Q), DARK,
         exposed=True),
     # a superellipse of power 5 round the yaw cases' front corners (power 3.2 cut through them, round 2), as narrow
     # as microduck's body in proportion (round 5)
@@ -872,7 +879,7 @@ link('neck_link', 0.02, [
 ])
 link('head_pitch_link', 0.03, [
     box('head pitch plate', (XN - 0.010 * Q, -0.019 * Q, ZH - 0.011 * Q), (XN + 0.010 * Q, -0.0155 * Q, YAW_FOOT), exposed=True),
-    box('head pitch idler plate', (XN - 0.010 * Q, 0.0165 * Q, ZH - 0.011 * Q), (XN + 0.010 * Q, 0.020 * Q, YAW_FOOT), exposed=True),
+    box('head pitch idler plate', (XN - 0.010 * Q, 0.0165 * Q - SHORT, ZH - 0.011 * Q), (XN + 0.010 * Q, 0.020 * Q - SHORT, YAW_FOOT), exposed=True),
     box('head pitch bridge', (XN - XLL / 2, -0.019 * Q, YAW_FOOT - 0.003), (XN + XLL / 2, 0.020 * Q, YAW_FOOT),
         exposed=True),
 ])
@@ -966,9 +973,9 @@ link('head', 0.12, [
     cut(box('lower shell opening', (HEAD_BACK + 0.010, -0.033 * Q, JAW_Z[0] - 0.01), (JAW_X0 - 0.010, 0.033 * Q, JAW_Z[1] + 0.01),
             WHITE, 'shell'), 'lower shell'),
     # (beside the beak servo, on its cradle's rear plate: 2026-11-02, they ran through its case)
-    box('lower shell post', (HEAD_BACK + 0.006, -0.019 * Q, JAW_Z[1] - 0.0005), (HEAD_BACK + 0.016, -0.0124 * Q, HEAD_Z + 0.010 * Q),
+    box('lower shell post', (HEAD_BACK + 0.006, -0.019 * Q + SHORT, JAW_Z[1] - 0.0005), (HEAD_BACK + 0.016, -0.0124 * Q + SHORT, HEAD_Z + 0.010 * Q),
         exposed=True),
-    box('lower shell beam', (HEAD_BACK + 0.006, -0.019 * Q, HEAD_Z + 0.008 * Q), (XBK + XLX + 0.014 * Q, -0.012 * Q, HEAD_Z + 0.011 * Q)),
+    box('lower shell beam', (HEAD_BACK + 0.006, -0.019 * Q + SHORT, HEAD_Z + 0.008 * Q), (XBK + XLX + 0.014 * Q, -0.012 * Q + SHORT, HEAD_Z + 0.011 * Q)),
     cyl('eye ring', (FACE_X + HK * 0.005, EYE['y'], EYE['z']), 'x', EYE['r'], HK * 0.0095, AMBER, 'decal'),
     cyl('eye lens', (FACE_X + HK * 0.0075, EYE['y'], EYE['z']), 'x', HK * 0.0086, HK * 0.008, LENS, 'decal'),
     box('sensor', (FACE_X, 0.030, EYE['z'] - 0.003), (FACE_X + 0.002, 0.042, EYE['z'] + 0.004), LENS, 'decal',
