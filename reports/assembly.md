@@ -272,26 +272,26 @@ From tools/assembly.py
 
 | status | item | detail |
 |---|---|---|
-| PASS | L hip pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | L hip pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | L knee cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | L knee cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | L hip pitch cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | L hip pitch cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | L hip pitch cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | L hip pitch cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | L knee cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | L knee cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | L hip pitch cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | L hip pitch cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | L hip pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | L hip pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
-| PASS | L knee cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | L knee cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | L knee cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | L knee cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | L knee cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | L knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L thigh cover screw hip | M2 x 6: bites 2.9 mm |
 | PASS | L thigh cover screw knee | M2 x 6: bites 2.9 mm |
-| PASS | L ankle boss screw 0 | M3 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 1 | M3 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 2 | M3 flat x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 3 | M3 flat x 6: bites 3.0 mm |
-| PASS | L ankle pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | L ankle pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
+| PASS | L ankle boss screw 0 | M3 flat x 6: bites 2.3 mm |
+| PASS | L ankle boss screw 1 | M3 flat x 6: bites 2.3 mm |
+| PASS | L ankle boss screw 2 | M3 flat x 6: bites 2.3 mm |
+| PASS | L ankle boss screw 3 | M3 flat x 6: bites 2.3 mm |
+| PASS | L ankle pitch cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | L ankle pitch cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
 | PASS | L ankle pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | L ankle pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L shoe bottom screw 0 | M3 x 12: bites 5.4 mm |
@@ -310,26 +310,26 @@ From tools/assembly.py
 | PASS | L hip pitch fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | L hip pitch fork screw horn 2 | M3 x 10: bites 2.9 mm |
 | PASS | L hip pitch fork screw horn 3 | M3 x 10: bites 2.9 mm |
-| PASS | R hip pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | R hip pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R knee cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | R knee cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R hip pitch cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | R hip pitch cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | R hip pitch cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | R hip pitch cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | R knee cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | R knee cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | R hip pitch cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | R hip pitch cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | R hip pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | R hip pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R knee cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | R knee cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | R knee cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | R knee cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | R knee cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | R knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | R thigh cover screw hip | M2 x 6: bites 2.9 mm |
 | PASS | R thigh cover screw knee | M2 x 6: bites 2.9 mm |
-| PASS | R ankle boss screw 0 | M3 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 1 | M3 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 2 | M3 flat x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 3 | M3 flat x 6: bites 3.0 mm |
-| PASS | R ankle pitch cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | R ankle pitch cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
+| PASS | R ankle boss screw 0 | M3 flat x 6: bites 2.3 mm |
+| PASS | R ankle boss screw 1 | M3 flat x 6: bites 2.3 mm |
+| PASS | R ankle boss screw 2 | M3 flat x 6: bites 2.3 mm |
+| PASS | R ankle boss screw 3 | M3 flat x 6: bites 2.3 mm |
+| PASS | R ankle pitch cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | R ankle pitch cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
 | PASS | R ankle pitch cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | R ankle pitch cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | R shoe bottom screw 0 | M3 x 12: bites 5.4 mm |
@@ -348,18 +348,18 @@ From tools/assembly.py
 | PASS | R hip pitch fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | R hip pitch fork screw horn 2 | M3 x 10: bites 2.9 mm |
 | PASS | R hip pitch fork screw horn 3 | M3 x 10: bites 2.9 mm |
-| PASS | L hip yaw cradle screw rear face 0 | M2 x 6: bites 3.0 mm |
-| PASS | L hip yaw cradle screw rear face 1 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw rear face 0 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw rear face 1 | M2 x 6: bites 3.0 mm |
-| PASS | L hip yaw cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | L hip yaw cradle screw near 1 | M2 x 6: bites 3.0 mm |
-| PASS | L hip yaw cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
-| PASS | L hip yaw cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw near 1 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
-| PASS | R hip yaw cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
+| PASS | L hip yaw cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | L hip yaw cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | R hip yaw cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | R hip yaw cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | L hip yaw cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | L hip yaw cradle screw near 1 | M2 x 6: bites 2.7 mm |
+| PASS | L hip yaw cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
+| PASS | L hip yaw cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
+| PASS | R hip yaw cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | R hip yaw cradle screw near 1 | M2 x 6: bites 2.7 mm |
+| PASS | R hip yaw cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
+| PASS | R hip yaw cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L hip yaw fork screw horn 0 | M3 x 10: bites 2.9 mm |
 | PASS | L hip yaw fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | L hip yaw fork screw horn 2 | M3 x 10: bites 2.9 mm |
@@ -368,16 +368,16 @@ From tools/assembly.py
 | PASS | R hip yaw fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | R hip yaw fork screw horn 2 | M3 x 10: bites 2.9 mm |
 | PASS | R hip yaw fork screw horn 3 | M3 x 10: bites 2.9 mm |
-| PASS | L hip roll cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | L hip roll cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R hip roll cradle screw rear face 0 | M2 x 6: bites 2.9 mm |
-| PASS | R hip roll cradle screw rear face 1 | M2 x 6: bites 2.9 mm |
-| PASS | L hip roll cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | L hip roll cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | L hip roll cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | L hip roll cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | R hip roll cradle screw rear face 0 | M2 x 8: bites 3.0 mm |
+| PASS | R hip roll cradle screw rear face 1 | M2 x 8: bites 3.0 mm |
+| PASS | L hip roll cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | L hip roll cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | L hip roll cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | L hip roll cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R hip roll cradle screw near 0 | M2 x 6: bites 3.0 mm |
-| PASS | R hip roll cradle screw near 1 | M2 x 6: bites 3.0 mm |
+| PASS | R hip roll cradle screw near 0 | M2 x 6: bites 2.7 mm |
+| PASS | R hip roll cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | R hip roll cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | R hip roll cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
 | PASS | L hip roll fork screw horn 0 | M3 x 10: bites 2.9 mm |

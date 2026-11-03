@@ -57,7 +57,7 @@ def leg_parts(s):
         (f'{s} hip roll lid', 'P', lid(r)),
         (f'{s} hip roll bearing', 'B', races(r)),
         (f'{s} hip roll horn', 'B', [f'{s}_hip_roll flange']),
-        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{r} horn boss shoulder',
+        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{r} horn boss shoulder',
                                     f'{p} horn boss shoulder']),
         (f'{s} thigh frame', 'P', [f'{s} thigh plate'] + tray(p) + tray(k)),
         (f'{s} hip pitch servo', 'B', [f'{s}_hip_pitch actuator (buy) STS3215_C044']),
@@ -69,7 +69,7 @@ def leg_parts(s):
         (f'{s} hip pitch horn', 'B', [f'{s}_hip_pitch flange']),
         (f'{s} knee horn', 'B', [f'{s}_knee flange']),
         (f'{s} thigh cover', 'P', [f'{s} thigh cover']),
-        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle stub',
+        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin rib', f'{s} shin gusset', f'{s} shin collar 0', f'{s} shin collar 1', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle stub',
                             f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -']),
         (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', f'{s} ankle rear boss']),
         (f'{s} ankle lid', 'P', [f'{a} cradle horn face']),
@@ -83,7 +83,7 @@ def leg_parts(s):
 
 
 PARTS = leg_parts('L') + leg_parts('R') + [
-    ('chassis', 'P', ['top plate', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
+    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
                       'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post']
      + tray('L hip yaw') + tray('R hip yaw')),
     ('battery', 'B', ['battery 2S 800 mAh']),
@@ -115,14 +115,14 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head roll horn', 'B', ['head_roll flange']),
     ('head frame', 'P', ['head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'camera mount',
                          'L head hinge boss', 'R head hinge boss', 'lower shell', 'lower shell post', 'lower shell beam',
-                         'upper bill', 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
+                         'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +',
                          'beak cradle end -', 'beak cradle side +']),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288']),
     ('beak lid', 'P', ['beak cradle horn face']),
     ('Pi Zero 2 W', 'B', ['Pi Zero 2 W']),
     ('camera', 'B', ['camera']),
-    ('hood', 'P', ['head']),
+    ('hood', 'P', ['head', 'upper bill']),
     ('jaw', 'P', ['jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot']),
     ('jaw soft insert', 'P', ['jaw soft']),
     ('mouth roof', 'P', ['mouth roof']),

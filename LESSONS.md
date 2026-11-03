@@ -188,3 +188,19 @@ own humanoid this way, start with `.claude/skills/humanoid-from-spec/SKILL.md` (
 | Swapping the XC330 ankle for an STS3215: the first try made the shoe 7 mm wider, drawn from the box model | Read the real servo first: its rear horn sits in the case's step, 0.5 mm proud, and its driven horn needs 3.5 mm when no bearing sits there. That took the shoe to 52 mm wide. The gap under the thigh takes the longer case for 4 mm of height, and the case's corners sink into a cup in the TPU sole |
 | "0 failing" read as "buildable" when no check looked at strength, wall thickness or the servo's real shape; the user spotted a 3 mm shin plate no one could trust | Say what a check does not cover. Fit is not strength: estimate the load through every printed part, and check walls, before calling a design ready |
 | Aligning the ankle and knee servos looked tidy, cost 0.27 rad of knee range, and microduck has the same offset | Check the reference before "fixing" what looks wrong |
+
+## Buildable, not only fitting (milli, 2026-11-03)
+
+Each row is something the user had to find by eye, or nearly did. The checks now find them.
+
+| Issue | Do instead |
+|---|---|
+| A flat 3 mm printed plate carried the whole robot's weight, bent across its thin side; collision checks passed it | `tools/buildable.py` LOAD: the stress through each section on the load path, in a 3 g landing, against the material across its layers. Each section has a `--bad` case |
+| A servo's tray and a neck mount were joined to their links only through the servo case: the "one solid" check counted the case as structure | Check connectivity per PRINTED PART, not per link (ONE): every part must be one piece without the bought parts |
+| Plates that looked fine but had slivers under 1 mm either side of a bore | WALL: a voxel opening on each part, at the smallest wall the printer holds. Name the thin parts that are thin on purpose |
+| A servo drawn as its bounding box hid a 2.5 mm step round the horn and a lump on its back, so a seat floor was 0.45 mm thick in the model and meaningless on the real part | Model bought parts from sections of the maker's mesh; never design a seat against a bounding box |
+| A rectangular plate's corner poked out of a rounded cover, as the part had a flag excusing it from the skin check | Excuse only what is meant to show; give a part under a cover the cover's outline, inset |
+| Screws were decorations, with no length or direction, so parts were held by nothing and no hole was ever defined | Every screw in the spec with size, length, position and direction. They drive the assembly checks, the BOM and the holes in the exported parts |
+| A plate that looks right needs a material, a section and a load before it is a design; the model let us skip that | Before calling anything ready: which way does the load go, through which section, on which printed layer direction? Then print one joint before buying the rest |
+| Covers exported solid, 500 g of plastic | Export what will really print: the wall, with its holes. Look at the exported volumes |
+| An interrupted command had already run, and I reported that nothing had changed | After any interrupted step, read the state (`git status`, the file) before saying what is in it |

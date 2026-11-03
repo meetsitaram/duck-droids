@@ -56,7 +56,7 @@ def parts(spec, S, ln):
             continue
         if g['role'] == 'actuator':
             m = A[g['name'].split()[-1]]['mass']
-            if g['kind'] == 'rbox':                       # a servo case: a solid box
+            if g['kind'] in ('rbox', 'stepbox'):          # a servo case: a solid box
                 a, b, c = g['size']
                 I = m / 12 * np.diag([b * b + c * c, a * a + c * c, a * a + b * b])
             else:
