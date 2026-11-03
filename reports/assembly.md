@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-675 checks: 675 pass, 0 warn, **0 fail**
+679 checks: 679 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -93,6 +93,8 @@ From tools/assembly.py
 | PASS | head: Pi Zero 2 W |  |
 | PASS | head: camera |  |
 | PASS | head: hood |  |
+| PASS | head: mouth roof |  |
+| PASS | head: jaw soft insert |  |
 | PASS | head: jaw |  |
 
 ## HELD
@@ -703,3 +705,5 @@ From tools/assembly.py
 | PASS | part camera |  |
 | PASS | part hood |  |
 | PASS | part jaw |  |
+| PASS | part jaw soft insert |  |
+| PASS | part mouth roof |  |

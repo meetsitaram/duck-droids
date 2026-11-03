@@ -80,7 +80,7 @@ def bom(spec):
         if k == 'P':
             seen[n[2:] if n[:2] in ('L ', 'R ') else n] += 1
     for n, c in seen.items():
-        L.append(f"| ☐ | {n} | {c} | {'TPU 95A' if n == 'sole' else 'PLA'} |")
+        L.append(f"| ☐ | {n} | {c} | {'TPU 95A' if n in ('sole', 'jaw soft insert', 'mouth roof') else 'PLA'} |")
     L += ['', '## Sensors and electronics', '',
           'The list below is what the model has room for now. The next round settles wiring, speaker and microphone, so wait',
           'before ordering these.', '', '| Have | Part | Need | Note |', '|---|---|---|---|',
