@@ -20,13 +20,9 @@ animation from the leg's kinematics, tested for joint limits and collisions, not
 One design on three sets of servos, drawn at the same scale, to compare in simulation on walking, the head roll and getting up after a
 fall. A case study you can rerun or add to: pick one with `MILLI_RECIPE`, or add your own to `RECIPES` in [spec/robot.py](spec/robot.py).
 
-| All Dynamixel | Hybrid | All Feetech |
-|:---:|:---:|:---:|
-| ![All Dynamixel recipe](docs/images/recipes/dynamixel.png) | ![Hybrid recipe](docs/images/recipes/hybrid.png) | ![All Feetech recipe](docs/images/recipes/feetech.png) |
-| **15 × XL330-M288** | **8 × STS3215-C044**, **2 × STS3215-C046**, **1 × XC330-M288**, **4 × XL330-M288** | **10 × STS3215-C044**, **5 × STS3215-C046** |
-| 0.298 m, 0.89 kg | 0.321 m, 1.51 kg | 0.377 m, 1.85 kg |
+![The three recipes front on at one scale, with height, width, weight and servos: all Dynamixel 29.8 cm tall, 14.7 cm wide, 0.89 kg; hybrid 32.1 cm, 17.4 cm, 1.51 kg; all Feetech 37.7 cm, 17.4 cm, 1.85 kg](docs/images/recipes/recipes.png)
 
-Microduck, for scale: 0.264 m, 0.8 kg, on XL330s.
+Microduck, for scale: 26.4 cm tall, 14.1 cm wide on its model, 0.8 kg as published, on XL330s.
 
 - **Results are pending.** Training is under way, and nothing here has been built or tested on real parts. Hybrid is the design the rest
   of this README, the parts list and the printable files describe. The other two are spec-only drafts: no assembly guide, parts list or CAD yet.
