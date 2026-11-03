@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+
+# microduck reference material: renders of its model (CC BY-NC-SA meshes, kept outside this repo), Pollen's product
+# photos, and the side-by-side panels made with them: kept locally for tools/compare.py, not ours to publish
+reports/compare/
+
+# generated: the web viewer's model and motion, Fusion's raw STL export (make_robot_files.py reads it)
+reports/web/
+reports/motion/
+urdf/meshes/fusion/
+
+# Claude Code: per-user local settings (the skill in .claude/skills/ is shared)
+.claude/settings.local.json
