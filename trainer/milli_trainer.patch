@@ -1,0 +1,434 @@
+diff --git a/scripts/milli_audit.py b/scripts/milli_audit.py
+new file mode 100644
+index 0000000..6fa4c5a
+--- /dev/null
++++ b/scripts/milli_audit.py
+@@ -0,0 +1,51 @@
++"""Everything the loaded milli task inherited: python scripts/milli_audit.py. Read it against milli, line by line."""
++import dataclasses
++import numbers
++
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
++
++c = load_env_cfg("Mjlab-Velocity-Flat-Milli")
++p = load_env_cfg("Mjlab-Velocity-Flat-Milli", play=True) if False else None
++
++
++def show(v):
++    if isinstance(v, (numbers.Number, str, bool)) or v is None:
++        return repr(round(v, 5) if isinstance(v, float) else v)
++    if isinstance(v, dict):
++        return "{" + ", ".join(f"{k}: {show(x)}" for k, x in v.items()) + "}"
++    if isinstance(v, (list, tuple)):
++        return "(" + ", ".join(show(x) for x in v) + ")"
++    if dataclasses.is_dataclass(v):
++        keep = {f.name: getattr(v, f.name) for f in dataclasses.fields(v) if getattr(v, f.name) not in (None, (), [], {}) and f.name not in ("class_type",)}
++        return type(v).__name__ + show(keep)
++    return getattr(v, "__name__", type(v).__name__)
++
++
++print("== sim", "decimation", c.decimation, "episode_s", c.episode_length_s, "timestep", c.sim.mujoco.timestep, "iterations", c.sim.mujoco.iterations, "integrator", c.sim.mujoco.integrator)
++print("   nconmax", c.sim.nconmax, "njmax", c.sim.njmax, "terrain", show(getattr(c.scene.terrain, "terrain_type", None)))
++for group, g in c.observations.items():
++    print(f"== observations {group}")
++    for n, t in g.terms.items():
++        print(f"  {n:26s} {getattr(t.func, '__name__', t.func)} {show(t.params)} noise={show(t.noise)} delay={t.delay_min_lag},{t.delay_max_lag} hist={t.history_length} scale={t.scale}")
++print("== actions")
++for n, a in c.actions.items():
++    print(" ", n, show(a))
++print("== commands")
++for n, a in c.commands.items():
++    print(" ", n, show(a))
++print("== events")
++for n, e in c.events.items():
++    print(f"  {n:28s} {e.mode:9s} {getattr(e.func, '__name__', e.func)} {show(e.params)} every={e.interval_range_s}")
++print("== rewards")
++for n, r in c.rewards.items():
++    print(f"  {n:28s} w={r.weight:<8} {getattr(r.func, '__name__', r.func)} {show(r.params)}")
++print("== terminations")
++for n, r in c.terminations.items():
++    print(f"  {n:24s} {getattr(r.func, '__name__', r.func)} {show(r.params)}")
++print("== curriculum")
++for n, r in c.curriculum.items():
++    print(f"  {n:24s} {getattr(r.func, '__name__', r.func)} {show(r.params)}")
++print("== sensors")
++for s in c.scene.sensors:
++    print(" ", show(s))
+diff --git a/scripts/milli_eval.py b/scripts/milli_eval.py
+new file mode 100644
+index 0000000..43263c4
+--- /dev/null
++++ b/scripts/milli_eval.py
+@@ -0,0 +1,161 @@
++"""Can milli walk on these servos? Runs a checkpoint through fixed commands, with the training's randomization on, and reports.
++
++  python scripts/milli_eval.py [CHECKPOINT.pt] [--envs 512] [--video OUT.mp4]
++
++For each command: robots still up at the end, the speed they really reached, and each servo's load against its limits. The video
++replays one robot in plain MuJoCo.
++"""
++import argparse
++import glob
++import json
++import os
++import sys
++from dataclasses import asdict
++
++import mujoco
++import numpy as np
++import torch
++
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.envs import ManagerBasedRlEnv
++from mjlab.rl import RslRlVecEnvWrapper
++from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
++
++TESTS = [("stand", 0, 0, 0), ("forward 0.1", 0.1, 0, 0), ("forward 0.2", 0.2, 0, 0), ("forward 0.3", 0.3, 0, 0), ("forward 0.4", 0.4, 0, 0),
++         ("backward 0.2", -0.2, 0, 0), ("sideways 0.2", 0, 0.2, 0), ("turn 1.0", 0, 0, 1.0)]
++SECONDS = 8.0
++SKIP = 2.0                                         # seconds to settle before measuring
++
++ap = argparse.ArgumentParser()
++ap.add_argument("ckpt", nargs="?")
++ap.add_argument("--envs", type=int, default=512)
++ap.add_argument("--video")
++ap.add_argument("--out", default="milli_eval.json")
++ap.add_argument("--salvage", action="store_true", help="the model on a dismantled SO-101 pair's servos")
++ap.add_argument("--only", help="run this one test, e.g. 'forward 0.3', and record its walk")
++ap.add_argument("--seconds", type=float, default=SECONDS)
++ap.add_argument("--traj", help="save the recorded walk (a robot still up at the end), for milli's tools/render_walk.py")
++a = ap.parse_args()
++WALK = a.only or "forward 0.3"
++TESTS = [t for t in TESTS if not a.only or t[0] == a.only]
++TASK = "Mjlab-Velocity-Flat-Milli-Salvage" if a.salvage else "Mjlab-Velocity-Flat-Milli"
++NAME = "milli_salvage" if a.salvage else "milli"
++ck = a.ckpt
++if not ck:
++    runs = sorted(glob.glob(f"logs/rsl_rl/{NAME}/*"), key=os.path.getmtime)
++    cands = sorted(glob.glob(runs[-1] + "/model_*.pt"), key=lambda p: int(p.split("_")[-1][:-3]))
++    ck = cands[-1]
++print("checkpoint", ck)
++
++cfg = load_env_cfg(TASK)
++cfg.scene.num_envs = a.envs
++cfg.events.pop("push_robot", None)
++cfg.curriculum = {}
++cfg.episode_length_s = 1000.0
++tw = cfg.commands["twist"]
++tw.resampling_time_range = (1000.0, 1000.0)
++tw.heading_command = False
++tw.ranges.heading = None
++tw.rel_standing_envs = 0.0
++tw.rel_forward_envs = 0.0
++tw.rel_turn_in_place_envs = 0.0
++for n in ("head_pose", "body_pose"):
++    cfg.commands[n].ranges = tuple((0.0, 0.0) for _ in cfg.commands[n].ranges)
++env = RslRlVecEnvWrapper(ManagerBasedRlEnv(cfg=cfg, device="cuda:0"), clip_actions=load_rl_cfg(TASK).clip_actions)
++rl = load_rl_cfg(TASK)
++runner = load_runner_cls(TASK)(env, asdict(rl), device="cuda:0")
++runner.load(ck, map_location="cuda:0")
++policy = runner.get_inference_policy(device="cuda:0")
++base = env.unwrapped
++robot = base.scene["robot"]
++twist = base.command_manager.get_term("twist")
++names = list(robot.joint_names)
++ids = [names.index(n) for n in names]
++home = json.load(open(f"src/mjlab_microduck/robot/{NAME}/home.json"))
++servo_of = {j: k for k, s in home["servos"].items() for j in s["joints"]}
++lim = {j: home["servos"][servo_of[j]] for j in names}
++results, video_q = {}, None
++dt = base.step_dt
++for label, vx, vy, wz in TESTS:
++    obs, _ = env.reset()
++    n = int(a.seconds / dt)
++    skip = int(SKIP / dt)
++    up = torch.ones(a.envs, dtype=torch.bool, device="cuda:0")
++    vel, tq, qd, qs, xy = [], [], [], [], []
++    for t in range(n):
++        twist.vel_command_b[:, 0], twist.vel_command_b[:, 1], twist.vel_command_b[:, 2] = vx, vy, wz
++        with torch.no_grad():
++            act = policy(obs)
++        obs, _, dones, _ = env.step(act)
++        up &= ~base.termination_manager.terminated
++        if t >= skip:
++            xy.append((robot.data.root_link_pos_w[:, :2] - base.scene.env_origins[:, :2]).clone())
++            v = robot.data.root_link_lin_vel_b
++            w = robot.data.root_link_ang_vel_b
++            vel.append(torch.stack([v[:, 0], v[:, 1], w[:, 2]], 1))
++            tq.append(robot.data.actuator_force.clone())
++            qd.append(robot.data.joint_vel.clone())
++        if label == WALK:
++            qs.append(np.concatenate([(robot.data.root_link_pos_w - base.scene.env_origins).cpu().numpy(),
++                                      robot.data.root_link_quat_w.cpu().numpy(), robot.data.joint_pos.cpu().numpy()], axis=1))
++    m = up.cpu().numpy()
++    V = torch.stack(vel).cpu().numpy()
++    TQ = torch.stack(tq).cpu().numpy()
++    QD = torch.stack(qd).cpu().numpy()
++    got = V[:, m].mean(axis=(0, 1)) if m.any() else np.zeros(3)
++    a_names = list(robot.actuator_names) if hasattr(robot, "actuator_names") else names
++    # per robot, as an average over robots hides circles: left and right ones cancel, and body-frame speed counts walking in a circle as speed
++    P = torch.stack(xy).cpu().numpy()
++    T = (len(P) - 1) * dt
++    net = np.linalg.norm(P[-1] - P[0], axis=1)[m] / T if m.any() else np.zeros(1)
++    turn = np.abs(V[:, m, 2].mean(axis=0)) if m.any() else np.zeros(1)
++    row = dict(survived=float(m.mean()), vx=float(got[0]), vy=float(got[1]), wz=float(got[2]), net_speed=float(np.median(net)), abs_turn=float(np.median(turn)),
++               abs_turn_p90=float(np.percentile(turn, 90)), joints={})
++    for i, jn in enumerate(a_names):
++        d = TQ[:, m, i] if m.any() else TQ[:, :, i]
++        w = QD[:, m, names.index(jn)] if m.any() else QD[:, :, names.index(jn)]
++        s = lim[jn]
++        row["joints"][jn] = dict(rms=float(np.sqrt((d ** 2).mean())), p99=float(np.percentile(np.abs(d), 99)), at_limit=float((np.abs(d) > 0.98 * s["peak_nm"]).mean()),
++                                 peak_nm=s["peak_nm"], servo=servo_of[jn], speed_rms=float(np.sqrt((w ** 2).mean())), speed_p99=float(np.percentile(np.abs(w), 99)),
++                                 noload_rads=s["noload_rads"])
++    results[label] = row
++    print(f"{label:14s} up {m.mean() * 100:5.1f} %  got vx {got[0]:+.3f} vy {got[1]:+.3f} wz {got[2]:+.2f}  per robot: start-to-end speed {row['net_speed']:.3f} m/s, |turn| median {row['abs_turn']:.2f}, 90th pct {row['abs_turn_p90']:.2f} rad/s")
++    if label == WALK:
++        video_q = np.array(qs)[:, int(np.argmax(m))]
++if a.traj:
++    np.savez(a.traj, q=video_q, names=np.array(names), dt=dt, root_z=home["root_z"])
++    print(a.traj)
++if a.only:
++    json.dump(dict(checkpoint=ck, tests=results), open(a.out, "w"), indent=1)
++    sys.exit(0)
++print(f"\n{'joint':18s}{'servo':15s}{'stall':>6s}" + "".join(f"{t[0][:11]:>13s}" for t in TESTS[3:5]) + "   (RMS / 99th pct / % at stall)")
++for jn in [j for j in a_names if j.startswith("left") or "neck" in j or "head_pitch" in j]:
++    L = lim[jn]
++    cols = "".join(f"{results[t[0]]['joints'][jn]['rms']:5.2f}/{results[t[0]]['joints'][jn]['p99']:4.2f}/{results[t[0]]['joints'][jn]['at_limit'] * 100:2.0f}".rjust(13) for t in TESTS[3:5])
++    J = results["forward 0.3"]["joints"][jn]
++    print(f"{jn:18s}{servo_of[jn]:15s}{L['peak_nm']:6.2f}{cols}   speed at 0.3: RMS {J['speed_rms']:.2f}, 99th pct {J['speed_p99']:.2f}, no-load {J['noload_rads']:.1f} rad/s")
++json.dump(dict(checkpoint=ck, tests=results), open(a.out, "w"), indent=1)
++if a.video and video_q is not None:
++    import imageio.v2 as imageio
++    x = open(f"src/mjlab_microduck/robot/{NAME}/milli.xml").read().replace(
++        "<worldbody>", '<visual><global offwidth="1280" offheight="720"/></visual><asset><texture type="2d" name="g" builtin="checker" rgb1=".88 .88 .88" rgb2=".95 .95 .95" width="256" height="256"/>'
++        '<material name="g" texture="g" texrepeat="40 40"/></asset><worldbody><light directional="true" dir="-0.5 -0.3 -1" diffuse=".5 .5 .5"/><geom type="plane" size="5 5 .1" material="g"/>', 1)
++    p = f"src/mjlab_microduck/robot/{NAME}/_view.xml"
++    open(p, "w").write(x)
++    M = mujoco.MjModel.from_xml_path(p)
++    D = mujoco.MjData(M)
++    os.remove(p)
++    order = [M.joint(n).qposadr[0] for n in names]
++    r = mujoco.Renderer(M, 720, 1280)
++    cam = mujoco.MjvCamera()
++    cam.azimuth, cam.elevation, cam.distance = 130, -10, 0.85
++    F = []
++    for i in range(0, len(video_q)):
++        D.qpos[:7] = video_q[i, :7]
++        D.qpos[order] = video_q[i, 7:]
++        mujoco.mj_forward(M, D)
++        cam.lookat[:] = [D.qpos[0], D.qpos[1], 0.14]
++        r.update_scene(D, cam)
++        F.append(r.render().copy())
++    imageio.mimsave(a.video, F, fps=int(round(1 / dt)), codec="libx264", quality=7, macro_block_size=1)
++    print(a.video)
+diff --git a/scripts/milli_sanity.py b/scripts/milli_sanity.py
+new file mode 100644
+index 0000000..c2d076c
+--- /dev/null
++++ b/scripts/milli_sanity.py
+@@ -0,0 +1,34 @@
++"""Before a long run: load milli's task, reset it, and hold the home pose with zero actions. Numbers, not impressions."""
++import sys
++
++import numpy as np
++import torch
++
++import mjlab_microduck.tasks  # noqa: F401
++from mjlab.envs import ManagerBasedRlEnv
++from mjlab.tasks.registry import load_env_cfg
++
++cfg = load_env_cfg(sys.argv[1] if len(sys.argv) > 1 else "Mjlab-Velocity-Flat-Milli")
++cfg.scene.num_envs = 256
++for k in ("push_robot",):
++    cfg.events.pop(k, None)
++env = ManagerBasedRlEnv(cfg=cfg, device="cuda:0")
++env.reset()
++r = env.scene["robot"]
++site = r.find_sites(("left_foot", "right_foot"))[0]
++base = r.data.root_link_pos_w
++print("after reset: root z", round(base[:, 2].mean().item(), 4), "- env origin", round(env.scene.env_origins[:, 2].mean().item(), 4),
++      "sole z", round((r.data.site_pos_w[:, site, 2] - env.scene.env_origins[:, 2:3]).mean().item(), 4))
++print("mass", round(float(env.sim.mj_model.body("robot/trunk_base").subtreemass[0]) if False else 0, 3), "actuators", [type(a).__name__ for a in r.actuators],
++      "bodies[1]", env.sim.mj_model.body(1).name)
++a = torch.zeros((env.num_envs, env.action_manager.total_action_dim), device=env.device)
++done = torch.zeros(env.num_envs, dtype=torch.bool, device=env.device)
++for t in range(100):
++    env.step(a)
++    done |= env.termination_manager.terminated
++    if t in (0, 24, 49, 99):
++        print(f"t {0.02 * (t + 1):.2f} s: fell {done.float().mean().item() * 100:.0f} %, up z {r.data.projected_gravity_b[:, 2].mean().item():+.3f}, "
++              f"root z {(base[:, 2] - env.scene.env_origins[:, 2]).mean().item():.4f}, foot contact {env.scene['feet_ground_contact'].data.found.float().clamp(max=1).mean().item():.2f}")
++print("joint friction", np.round(env.sim.mj_model.dof_frictionloss[6:9], 3), "damping", np.round(env.sim.mj_model.dof_damping[6:9], 3))
++print("actor obs", env.observation_manager.group_obs_dim)
++print("events", list(cfg.events))
+diff --git a/src/mjlab_microduck/robot/milli_constants.py b/src/mjlab_microduck/robot/milli_constants.py
+new file mode 100644
+index 0000000..857612f
+--- /dev/null
++++ b/src/mjlab_microduck/robot/milli_constants.py
+@@ -0,0 +1,49 @@
++"""milli (github.com/meetsitaram/open-micro-duck), on this trainer: the model is generated by milli's tools/make_rl_model.py into robot/milli/."""
++import json
++import os
++from pathlib import Path
++
++import mujoco
++from mjlab.actuator.dc_actuator import DcMotorActuatorCfg
++from mjlab.entity import EntityArticulationInfoCfg, EntityCfg
++
++from mjlab_microduck.robot.microduck_constants import FULL_COLLISION
++
++_ROBOT = Path(os.path.dirname(__file__))
++
++
++def make_milli_robot_cfg(folder: str = "milli") -> EntityCfg:
++    """A generated model's folder: `milli`, or `milli_salvage` (the servos of a dismantled SO-101 pair)."""
++    home = json.load(open(_ROBOT / folder / "home.json"))
++    # Each servo model its own numbers (generated from milli's spec/actuators.json): position gain, stall torque, no-load speed.
++    # Joint damping, friction and armature are in milli.xml. The 15-30 ms delay is microduck's, kept as an estimate of a serial
++    # bus at 50 Hz: measure it on the real STS3215s.
++    return EntityCfg(
++        spec_fn=lambda: mujoco.MjSpec.from_file(str(_ROBOT / folder / "milli.xml")),
++        init_state=EntityCfg.InitialStateCfg(
++            pos=(0.0, 0.0, home["root_z"]),
++            joint_pos=home["joint_pos"],
++            joint_vel={".*": 0.0},
++        ),
++        collisions=(FULL_COLLISION,),
++        articulation=EntityArticulationInfoCfg(
++            actuators=tuple(
++                DcMotorActuatorCfg(
++                    target_names_expr=tuple(f"^{j}$" for j in s["joints"]),
++                    stiffness=s["kp"],
++                    damping=0.0,
++                    effort_limit=s["peak_nm"],
++                    saturation_effort=s["peak_nm"],
++                    velocity_limit=s["noload_rads"],
++                    delay_min_lag=3,
++                    delay_max_lag=6,
++                )
++                for s in home["servos"].values()
++            ),
++            soft_joint_pos_limit_factor=0.9,
++        ),
++    )
++
++
++MILLI_ROBOT_CFG = make_milli_robot_cfg()
++MILLI_SALVAGE_ROBOT_CFG = make_milli_robot_cfg("milli_salvage")
+diff --git a/src/mjlab_microduck/tasks/__init__.py b/src/mjlab_microduck/tasks/__init__.py
+index 1f75034..41763df 100644
+--- a/src/mjlab_microduck/tasks/__init__.py
++++ b/src/mjlab_microduck/tasks/__init__.py
+@@ -81,6 +81,24 @@ from .microduck_roulade_env_cfg import (
+ from .backlash import make_backlash_variant
+ 
+ # Standard velocity task
++from .milli_velocity_env_cfg import MilliRlCfg, MilliSalvageRlCfg, make_milli_velocity_env_cfg
++
++register_mjlab_task(
++    task_id="Mjlab-Velocity-Flat-Milli",
++    env_cfg=make_milli_velocity_env_cfg(),
++    play_env_cfg=make_milli_velocity_env_cfg(play=True),
++    rl_cfg=MilliRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
++register_mjlab_task(
++    task_id="Mjlab-Velocity-Flat-Milli-Salvage",
++    env_cfg=make_milli_velocity_env_cfg(salvage=True),
++    play_env_cfg=make_milli_velocity_env_cfg(play=True, salvage=True),
++    rl_cfg=MilliSalvageRlCfg,
++    runner_cls=MicroduckOnPolicyRunner,
++)
++
+ register_mjlab_task(
+     task_id="Mjlab-Velocity-Flat-MicroDuck",
+     env_cfg=make_microduck_velocity_env_cfg(),
+diff --git a/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
+new file mode 100644
+index 0000000..92feca4
+--- /dev/null
++++ b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
+@@ -0,0 +1,80 @@
++"""milli's walking task: microduck's velocity recipe, on milli's robot, plus the foot switches as policy inputs.
++
++What the recipe sets for microduck that would be wrong here, each found by reading the loaded config:
++- the reset's height is an offset from the root's default: microduck's 12-13 cm dropped milli from 12 cm at every reset;
++- friction randomization acts only through microduck's BAM servo model (a no-op on these plain actuators): replaced;
++- milli's servo numbers are scaled or copied, not measured: friction, damping and armature get wide ranges;
++- its head commands (to +-1.1 rad at the neck, about its own 20 deg HOME) pass milli's neck limit, which is 0.15 rad one way;
++- lengths and times of its gait (foot lift, air time, pushes, CoM offsets) are scaled by HEIGHT, milli's height over microduck's;
++- its mass randomization covered the trunk within 5 %; milli's masses are estimates, so all links within 20 %.
++Kept as they are, and why: speed commands (+-0.4 m/s: milli's longer leg against its slower servos); foot friction 0.7-1.3 (both TPU);
++IMU and encoder noise (similar parts, unmeasured); the reward weights and the curricula's timing (dimensionless, or time in training).
++"""
++from copy import deepcopy
++
++from mjlab.envs import mdp as envs_mdp
++from mjlab.managers.event_manager import EventTermCfg
++from mjlab.managers.observation_manager import ObservationTermCfg
++from mjlab.managers.scene_entity_config import SceneEntityCfg
++from mjlab.tasks.velocity import mdp as velocity_mdp
++
++from mjlab_microduck.robot.milli_constants import MILLI_ROBOT_CFG, MILLI_SALVAGE_ROBOT_CFG
++from mjlab_microduck.tasks.microduck_velocity_env_cfg import MicroduckRlCfg, make_microduck_velocity_env_cfg
++
++SERVO_DR = (0.7, 1.3)
++HEIGHT = 0.321 / 0.264                             # milli's over microduck's
++TIME = HEIGHT ** 0.5                               # the same walk's time scale
++# head commands, by the curriculum's stage: (neck_pitch, head_pitch, head_yaw, head_roll), within milli's limits (neck -1.6..0.15) and
++# short of where its head meets its body (head pitch -1.07 at the neck's zero)
++_STAGE = (0.05, 0.17, 0.39, 0.72, 1.0)
++
++
++def make_milli_velocity_env_cfg(play: bool = False, salvage: bool = False):
++    cfg = make_microduck_velocity_env_cfg(play=play)
++    cfg.scene.entities = {"robot": MILLI_SALVAGE_ROBOT_CFG if salvage else MILLI_ROBOT_CFG}
++    cfg.events["reset_base"].params["pose_range"]["z"] = (0.0, 0.002)
++    cfg.events["push_robot"].params["velocity_range"] = {"x": (-0.3 * TIME, 0.3 * TIME), "y": (-0.3 * TIME, 0.3 * TIME)} if "push_robot" in cfg.events else None
++    air = cfg.rewards["air_time"].params
++    air["threshold_min"], air["threshold_max"] = 0.125 * TIME, 0.3 * TIME
++    for r_ in ("foot_clearance", "foot_swing_height"):
++        cfg.rewards[r_].params["target_height"] = 0.02 * HEIGHT
++    cfg.rewards["body_pose_tracking"].params["nominal_height"] = 0.095 * HEIGHT
++    if "base_com" in cfg.events:
++        cfg.events["base_com"].params["ranges"] = {0: (-0.03, 0.03), 1: (-0.03, 0.03), 2: (-0.036, 0.036)}
++    if "randomize_head_com" in cfg.events:                 # (the recipe also listed a hip link here)
++        cfg.events["randomize_head_com"].params["asset_cfg"].body_names = ("neck", "neck_pitch", "yaw_roll_motion", "jaw_soft")
++    if "randomize_mass_inertia" in cfg.events:
++        cfg.events["randomize_mass_inertia"].params["asset_cfg"].body_names = (".*",)
++        cfg.events["randomize_mass_inertia"].params["alpha_range"] = (-0.1, 0.1)
++    head = lambda f: ((-0.8 * f, min(0.12, 0.8 * f)), (-0.8 * f, 0.8 * f), (-1.4 * f, 1.4 * f), (-0.31 * f, 0.31 * f))
++    cfg.commands["head_pose"].ranges = head(_STAGE[0])
++    steps = (0, 12000, 24000, 36000, 48000)
++    cfg.curriculum["head_pose_range"].params["range_stages"] = [dict(step=st, ranges=head(f)) for st, f in zip(steps, _STAGE)]
++    # a microswitch in each shoe (milli's spec): two booleans the real robot reads on GPIO, as Open Duck Mini's policy has
++    cfg.observations["actor"].terms["foot_switch"] = ObservationTermCfg(
++        func=velocity_mdp.foot_contact,
++        params={"sensor_name": "feet_ground_contact"},
++    )
++    cfg.events.pop("expand_bam_friction_fields", None)
++    cfg.events.pop("randomize_joint_friction", None)
++    if not play:
++        dr = envs_mdp.dr
++        for name, fn in (("randomize_joint_friction", dr.joint_friction), ("randomize_joint_damping", dr.joint_damping)):
++            cfg.events[name] = EventTermCfg(
++                func=fn, mode="reset",
++                params={"asset_cfg": SceneEntityCfg("robot", joint_names=(".*",)), "operation": "scale", "ranges": SERVO_DR},
++            )
++        if "randomize_armature" in cfg.events:
++            cfg.events["randomize_armature"].params["ranges"] = SERVO_DR
++    return cfg
++
++
++MilliRlCfg = deepcopy(MicroduckRlCfg)
++MilliRlCfg.experiment_name = "milli"
++MilliRlCfg.run_name = "milli"
++MilliRlCfg.wandb_project = "milli"
++MilliRlCfg.max_iterations = 3000
++
++MilliSalvageRlCfg = deepcopy(MilliRlCfg)
++MilliSalvageRlCfg.experiment_name = "milli_salvage"
++MilliSalvageRlCfg.run_name = "milli_salvage"

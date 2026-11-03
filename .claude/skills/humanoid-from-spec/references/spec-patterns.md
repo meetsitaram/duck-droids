@@ -113,7 +113,7 @@ target. Do not set a link's mass by hand: the bottom-up number tells you whether
 
 ## Servo-built robots (milli)
 
-milli's spec (`spec/robot.py` in github.com/meetsitaram/milli) adds what a hobby-servo robot needs:
+milli's spec (`spec/robot.py` in github.com/meetsitaram/open-micro-duck) adds what a hobby-servo robot needs:
 
 - **Servo cases as boxes.** `joint(name, parent, child, origin, axis, lim, act, out, long)`: `origin` is the horn's
   outer face on the axis; the case (`act`'s `box`: long x wide x along-shaft) sits behind it in the parent, its long

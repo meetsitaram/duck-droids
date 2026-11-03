@@ -6,7 +6,7 @@ milli is licensed under the Apache License 2.0 (`LICENSE`). It is forked from ec
 
 - microduck, Pollen Robotics (pollen-robotics/microduck_rl): joints, proportions and shapes were measured from its model.
   Its meshes are CC BY-NC-SA 4.0 and are not in this repo. Its identified XL330 dynamics (Apache-2.0) are in
-  `spec/actuators.json`.
+  `spec/actuators.json`. `trainer/milli_trainer.patch` is a change to its Apache-2.0 code, and includes lines of it as context.
 - SO-ARM100 (TheRobotStudio/SO-ARM100, Apache-2.0): the STS3215's size and mounting pattern.
 - Open Duck Mini and Open Duck Playground (apirrone, Apache-2.0): STS3215 dynamics, and the idea of the TPU sole and foot switches.
 
