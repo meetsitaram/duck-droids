@@ -1,7 +1,7 @@
 # milli
 
-A small open biped built to look like Pollen Robotics' microduck, from servos you can buy: Feetech STS3215s at the hips and
-knees, ROBOTIS Dynamixel XC330s and XL330s at the ankles, neck and head. One Python spec generates the shapes, the checks,
+A small open biped built to look like Pollen Robotics' microduck, from servos you can buy: Feetech STS3215s at the hips,
+knees and ankles, ROBOTIS Dynamixel XC330s and XL330s at the neck and head. One Python spec generates the shapes, the checks,
 the pictures and the parts list. milli is not made by or connected with Pollen Robotics.
 
 ![Building the head](docs/images/assembly/head.gif)
@@ -14,14 +14,13 @@ walk.
 
 A design, not yet built. Nothing here has been printed or tested on real parts.
 
-- **Size:** 0.317 m tall, 1.39 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
+- **Size:** 0.321 m tall, 1.47 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
   the proportions are checked against microduck's at that scale.
 - **Joints:** 15, as microduck's: each leg hip yaw, roll, pitch, knee, ankle; neck pitch, head pitch, yaw, roll, beak.
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.
 - **Foot switches:** a microswitch in each shoe, as an input to a walking policy, as Open Duck Mini's.
 - **Open:** wiring, speaker and microphone, the rod from the beak servo to the jaw, the Fusion model, and a walking
-  simulation. The ankle servo is still in question: the XC330 passes the static torque checks with less margin than we'd
-  like, and walking is untested.
+  simulation. Walking is untested.
 
 ## Build it
 

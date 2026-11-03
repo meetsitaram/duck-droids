@@ -3,67 +3,67 @@
   "group": "targets",
   "item": "height",
   "status": "WARN",
-  "detail": "0.317 m: 1.20 x microduck's 0.264 m (STS3215 legs: proportions are checked at this scale)"
+  "detail": "0.321 m: 1.22 x microduck's 0.264 m (STS3215 legs: proportions are checked at this scale)"
  },
  {
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.155 (microduck 0.123 x 1.20 = 0.148 +/- 10 %)"
+  "detail": "0.155 (microduck 0.123 x 1.22 = 0.150 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_width_m",
   "status": "PASS",
-  "detail": "0.108 (microduck 0.092 x 1.20 = 0.111 +/- 10 %)"
+  "detail": "0.108 (microduck 0.092 x 1.22 = 0.112 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_height_m",
   "status": "PASS",
-  "detail": "0.071 (microduck 0.059 x 1.20 = 0.071 +/- 10 %)"
+  "detail": "0.071 (microduck 0.059 x 1.22 = 0.072 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_bottom_z",
   "status": "PASS",
-  "detail": "0.246 (microduck 0.205 x 1.20 = 0.246 +/- 10 %)"
+  "detail": "0.250 (microduck 0.205 x 1.22 = 0.249 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "neck_pitch_z",
   "status": "PASS",
-  "detail": "0.162 (microduck 0.139 x 1.20 = 0.167 +/- 10 %)"
+  "detail": "0.166 (microduck 0.139 x 1.22 = 0.169 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "hip_pitch_z",
   "status": "PASS",
-  "detail": "0.114 (microduck 0.089 x 1.20 = 0.107 +/- 10 %)"
+  "detail": "0.118 (microduck 0.089 x 1.22 = 0.108 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "body_width_m",
   "status": "PASS",
-  "detail": "0.080 (microduck 0.064 x 1.20 = 0.077 +/- 10 %)"
+  "detail": "0.080 (microduck 0.064 x 1.22 = 0.078 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "overall_width_m",
   "status": "PASS",
-  "detail": "0.174 (microduck 0.141 x 1.20 = 0.169 +/- 10 %)"
+  "detail": "0.174 (microduck 0.141 x 1.22 = 0.172 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "foot_length_m",
   "status": "PASS",
-  "detail": "0.065 (microduck 0.054 x 1.20 = 0.065 +/- 10 %)"
+  "detail": "0.069 (microduck 0.054 x 1.22 = 0.066 +/- 10 %)"
  },
  {
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.394 kg bottom-up (budget 1.4 kg; microduck 0.8 kg)"
+  "detail": "1.464 kg bottom-up (budget 1.5 kg; microduck 0.8 kg)"
  },
  {
   "group": "axis",
@@ -117,13 +117,13 @@
   "group": "axis",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "XC330_M288 0.0 mm off the axis"
+  "detail": "STS3215_C044 0.0 mm off the axis"
  },
  {
   "group": "axis",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "XC330_M288 0.0 mm off the axis"
+  "detail": "STS3215_C044 0.0 mm off the axis"
  },
  {
   "group": "axis",
@@ -806,14 +806,14 @@
  {
   "group": "sweep",
   "item": "L_knee",
-  "status": "WARN",
-  "detail": "[-1.10, +1.05] rad clear; lower: L_foot / L_hip_yaw_link: L shoe / L hip roll cradle end + at -1.05 rad (pose-dependent)"
+  "status": "PASS",
+  "detail": "[-1.10, +1.05] rad clear"
  },
  {
   "group": "sweep",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "[-1.40, +1.40] rad clear"
+  "detail": "[-1.30, +1.30] rad clear"
  },
  {
   "group": "sweep",
@@ -849,7 +849,7 @@
   "group": "poses",
   "item": "stand (microduck stance): balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -867,7 +867,7 @@
   "group": "poses",
   "item": "crouch: balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -885,7 +885,7 @@
   "group": "poses",
   "item": "deep squat: balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -903,7 +903,7 @@
   "group": "poses",
   "item": "single-leg stance (walking): balance",
   "status": "WARN",
-  "detail": "CoM 3.3 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll)"
+  "detail": "CoM 3.6 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll)"
  },
  {
   "group": "poses",
@@ -921,7 +921,7 @@
   "group": "poses",
   "item": "floor pick: balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -939,7 +939,7 @@
   "group": "poses",
   "item": "head tucked in: balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -957,7 +957,7 @@
   "group": "poses",
   "item": "head forward and down, beak open: balance",
   "status": "PASS",
-  "detail": "CoM 2.1 cm inside the feet"
+  "detail": "CoM 2.3 cm inside the feet"
  },
  {
   "group": "poses",
@@ -975,73 +975,73 @@
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 97 % used"
+  "detail": "0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 98 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used"
+  "detail": "0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used"
+  "detail": "0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used"
  },
  {
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 76 % used"
+  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 77 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.34 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 49 % used"
+  "detail": "0.37 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 53 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used"
+  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used"
+  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.09 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 24 % used"
+  "detail": "0.09 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 25 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 21 % used"
+  "detail": "0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 23 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.13 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.93 N m (1 x XC330_M288): 21 % used"
+  "detail": "0.14 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 19 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XC330_M288): 20 % used"
+  "detail": "0.07 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 19 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_yaw",
   "status": "PASS",
-  "detail": "0.05 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 17 % used"
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 16 % used"
  },
  {
   "group": "torque",

@@ -1,29 +1,29 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
+spec: `spec/robot.json`, 2026-11-02 18:03, 26 s
 
-177 checks: 173 pass, 4 warn, **0 fail**
+177 checks: 174 pass, 3 warn, **0 fail**
 
 ## targets
 
 | status | item | detail |
 |---|---|---|
-| WARN | height | 0.317 m: 1.20 x microduck's 0.264 m (STS3215 legs: proportions are checked at this scale) |
-| PASS | head_length_m | 0.155 (microduck 0.123 x 1.20 = 0.148 +/- 10 %) |
-| PASS | head_width_m | 0.108 (microduck 0.092 x 1.20 = 0.111 +/- 10 %) |
-| PASS | head_height_m | 0.071 (microduck 0.059 x 1.20 = 0.071 +/- 10 %) |
-| PASS | head_bottom_z | 0.246 (microduck 0.205 x 1.20 = 0.246 +/- 10 %) |
-| PASS | neck_pitch_z | 0.162 (microduck 0.139 x 1.20 = 0.167 +/- 10 %) |
-| PASS | hip_pitch_z | 0.114 (microduck 0.089 x 1.20 = 0.107 +/- 10 %) |
-| PASS | body_width_m | 0.080 (microduck 0.064 x 1.20 = 0.077 +/- 10 %) |
-| PASS | overall_width_m | 0.174 (microduck 0.141 x 1.20 = 0.169 +/- 10 %) |
-| PASS | foot_length_m | 0.065 (microduck 0.054 x 1.20 = 0.065 +/- 10 %) |
+| WARN | height | 0.321 m: 1.22 x microduck's 0.264 m (STS3215 legs: proportions are checked at this scale) |
+| PASS | head_length_m | 0.155 (microduck 0.123 x 1.22 = 0.150 +/- 10 %) |
+| PASS | head_width_m | 0.108 (microduck 0.092 x 1.22 = 0.112 +/- 10 %) |
+| PASS | head_height_m | 0.071 (microduck 0.059 x 1.22 = 0.072 +/- 10 %) |
+| PASS | head_bottom_z | 0.250 (microduck 0.205 x 1.22 = 0.249 +/- 10 %) |
+| PASS | neck_pitch_z | 0.166 (microduck 0.139 x 1.22 = 0.169 +/- 10 %) |
+| PASS | hip_pitch_z | 0.118 (microduck 0.089 x 1.22 = 0.108 +/- 10 %) |
+| PASS | body_width_m | 0.080 (microduck 0.064 x 1.22 = 0.078 +/- 10 %) |
+| PASS | overall_width_m | 0.174 (microduck 0.141 x 1.22 = 0.172 +/- 10 %) |
+| PASS | foot_length_m | 0.069 (microduck 0.054 x 1.22 = 0.066 +/- 10 %) |
 
 ## mass
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.394 kg bottom-up (budget 1.4 kg; microduck 0.8 kg) |
+| PASS | total | 1.464 kg bottom-up (budget 1.5 kg; microduck 0.8 kg) |
 
 ## axis
 
@@ -37,8 +37,8 @@ spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
 | PASS | R_hip_pitch | STS3215_C044 0.0 mm off the axis |
 | PASS | L_knee | STS3215_C044 0.0 mm off the axis |
 | PASS | R_knee | STS3215_C044 0.0 mm off the axis |
-| PASS | L_ankle_pitch | XC330_M288 0.0 mm off the axis |
-| PASS | R_ankle_pitch | XC330_M288 0.0 mm off the axis |
+| PASS | L_ankle_pitch | STS3215_C044 0.0 mm off the axis |
+| PASS | R_ankle_pitch | STS3215_C044 0.0 mm off the axis |
 | PASS | neck_pitch | XC330_M288 0.0 mm off the axis |
 | PASS | head_pitch | XL330_M288 0.0 mm off the axis |
 | PASS | head_yaw | XL330_M288 0.0 mm off the axis |
@@ -182,8 +182,8 @@ spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
 | PASS | L_hip_yaw | [-0.45, +0.45] rad clear |
 | PASS | L_hip_roll | [-0.33, +0.33] rad clear |
 | PASS | L_hip_pitch | [-1.30, +0.43] rad clear |
-| WARN | L_knee | [-1.10, +1.05] rad clear; lower: L_foot / L_hip_yaw_link: L shoe / L hip roll cradle end + at -1.05 rad (pose-dependent) |
-| PASS | L_ankle_pitch | [-1.40, +1.40] rad clear |
+| PASS | L_knee | [-1.10, +1.05] rad clear |
+| PASS | L_ankle_pitch | [-1.30, +1.30] rad clear |
 | PASS | neck_pitch | [-0.15, +1.60] rad clear |
 | WARN | head_pitch | [-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.07 rad (pose-dependent) |
 | PASS | head_yaw | [-2.50, +2.50] rad clear |
@@ -194,25 +194,25 @@ spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | stand (microduck stance): balance | CoM 2.1 cm inside the feet |
+| PASS | stand (microduck stance): balance | CoM 2.3 cm inside the feet |
 | PASS | stand (microduck stance): within limits | yes |
 | PASS | stand (microduck stance): collisions | none |
-| PASS | crouch: balance | CoM 2.1 cm inside the feet |
+| PASS | crouch: balance | CoM 2.3 cm inside the feet |
 | PASS | crouch: within limits | yes |
 | PASS | crouch: collisions | none |
-| PASS | deep squat: balance | CoM 2.1 cm inside the feet |
+| PASS | deep squat: balance | CoM 2.3 cm inside the feet |
 | PASS | deep squat: within limits | yes |
 | PASS | deep squat: collisions | none |
-| WARN | single-leg stance (walking): balance | CoM 3.3 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
+| WARN | single-leg stance (walking): balance | CoM 3.6 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
 | PASS | single-leg stance (walking): within limits | yes |
 | PASS | single-leg stance (walking): collisions | none |
-| PASS | floor pick: balance | CoM 2.1 cm inside the feet |
+| PASS | floor pick: balance | CoM 2.3 cm inside the feet |
 | PASS | floor pick: within limits | yes |
 | PASS | floor pick: collisions | none |
-| PASS | head tucked in: balance | CoM 2.1 cm inside the feet |
+| PASS | head tucked in: balance | CoM 2.3 cm inside the feet |
 | PASS | head tucked in: within limits | yes |
 | PASS | head tucked in: collisions | none |
-| PASS | head forward and down, beak open: balance | CoM 2.1 cm inside the feet |
+| PASS | head forward and down, beak open: balance | CoM 2.3 cm inside the feet |
 | PASS | head forward and down, beak open: within limits | yes |
 | PASS | head forward and down, beak open: collisions | none |
 
@@ -220,18 +220,18 @@ spec: `spec/robot.json`, 2026-11-02 17:30, 26 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | head_pitch | 0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 97 % used |
-| PASS | L_knee | 0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used |
-| PASS | R_knee | 0.27 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 77 % used |
-| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 76 % used |
-| PASS | L_hip_roll | 0.34 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 49 % used |
-| PASS | L_hip_pitch | 0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used |
-| PASS | R_hip_pitch | 0.18 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 25 % used |
-| PASS | R_hip_roll | 0.09 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 24 % used |
-| PASS | L_hip_yaw | 0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 21 % used |
-| PASS | L_ankle_pitch | 0.13 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.93 N m (1 x XC330_M288): 21 % used |
-| PASS | R_ankle_pitch | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XC330_M288): 20 % used |
-| PASS | R_hip_yaw | 0.05 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 17 % used |
+| PASS | head_pitch | 0.17 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 98 % used |
+| PASS | L_knee | 0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used |
+| PASS | R_knee | 0.28 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 81 % used |
+| PASS | neck_pitch | 0.24 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XC330_M288): 77 % used |
+| PASS | L_hip_roll | 0.37 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 53 % used |
+| PASS | L_hip_pitch | 0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used |
+| PASS | R_hip_pitch | 0.19 N m x 1.5 in 'floor pick' vs peak 1.06 N m (1 x STS3215_C044): 26 % used |
+| PASS | R_hip_roll | 0.09 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 25 % used |
+| PASS | L_hip_yaw | 0.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.81 N m (1 x STS3215_C046): 23 % used |
+| PASS | L_ankle_pitch | 0.14 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.06 N m (1 x STS3215_C044): 19 % used |
+| PASS | R_ankle_pitch | 0.07 N m in 'crouch' vs rated 0.35 N m (1 x STS3215_C044): 19 % used |
+| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.27 N m (1 x STS3215_C046): 16 % used |
 | PASS | beak | 0.02 N m in 'head tucked in' vs rated 0.17 N m (1 x XL330_M288): 10 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.17 N m (1 x XL330_M288): 1 % used |
 | PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 0 % used |

@@ -16,10 +16,10 @@ import mass_model as MM  # noqa: E402
 BUY = [
     # (what, how many in the spec counts it, price each USD or None, where, note)
     ('Feetech STS3215-C044 servo, 7.4 V, 1:191', 'STS3215_C044', 23.99,
-     '[openelab](https://openelab.com/products/feetech-sts3215-c044-servo)', 'hip roll, hip pitch, knee. Comes with horns and screws'),
+     '[openelab](https://openelab.com/products/feetech-sts3215-c044-servo)', 'hip roll, hip pitch, knee, ankle. Comes with horns and screws'),
     ('Feetech STS3215-C046 servo, 7.4 V, 1:147', 'STS3215_C046', 24.0, 'openelab, Feetech resellers (the SO-101 leader arm uses it)',
      'hip yaw. Price assumed the same as the C044'),
-    ('ROBOTIS Dynamixel XC330-M288-T servo', 'XC330_M288', 103.0, 'robotshop, ROBOTIS', 'ankles and neck: they carry the most for their size'),
+    ('ROBOTIS Dynamixel XC330-M288-T servo', 'XC330_M288', 103.0, 'robotshop, ROBOTIS', 'neck: it carries the head'),
     ('ROBOTIS Dynamixel XL330-M288-T servo', 'XL330_M288', 24.0, 'ROBOTIS', 'head pitch, yaw, roll, beak'),
 ]
 BEARINGS = [
@@ -31,8 +31,8 @@ BEARINGS = [
 ]
 SCREW_USE = {('M2', 6): 'STS3215 cases; XL/XC330 horns; shoe, cover and body screws. Self-tapping',
              ('M2', 8): 'XL/XC330 frame holes, inner ears, horns over a bearing. Self-tapping',
-             ('M2 flat', 6): 'ankle rear boss: flat heads, flush under the bearing',
-             ('M3', 10): 'STS3215 horns, through the bracket and its boss', ('M3', 12): 'soles, from below', ('M3', 14): 'jaw hinges'}
+             ('M3 flat', 6): 'ankle rear horn: flat heads, flush under the bearing',
+             ('M3', 10): 'STS3215 horns, through the bracket and its boss', ('M3', 8): 'ankle horns, through the outer ear', ('M3', 12): 'soles, from below', ('M3', 14): 'jaw hinges'}
 
 
 def counts(spec):
@@ -99,7 +99,7 @@ TITLE = {'thigh_L': '1. Thighs', 'shin_L': '2. Shins and ankles', 'shoe_L': '3. 
          'legs': '6. Legs onto the hips', 'column': '7. Neck column', 'torso': '8. Neck and body shell', 'headbench': '9. Head yaw and roll', 'head': '10. The head'}
 WARN = {
     'thigh_L': 'Plug the 3-pin cables in before the servos go in: there is no way to reach the sockets afterwards.',
-    'shin_L': 'The rear-boss screws go in before the bearing: the bearing covers them.',
+    'shin_L': 'The rear-horn screws go in before the bearing: the bearing covers them.',
     'shoe_L': 'Solder the switch wires before pressing the switch in, and try the switch against the sole before printing all four parts: its travel in this TPU is untested.',
     'leg_L': 'The roll bracket goes onto the hip horn here, on the bench: once the leg is on the robot, the roll servo blocks those 4 screws.',
     'body': 'Screw on the yaw brackets **before** the roll servos: the roll servos cover those screws.',
