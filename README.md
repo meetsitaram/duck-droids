@@ -5,6 +5,12 @@ a small open biped built to look like Pollen Robotics' microduck, from servos yo
 knees and ankles, ROBOTIS Dynamixel XC330s and XL330s at the neck and head. One Python spec generates the shapes, the checks,
 the pictures and the parts list. milli is not made by or connected with Pollen Robotics.
 
+![A 1.8 m white duck walking behind four small coloured ducks, each labelled with its servos, their beaks opening in turn](docs/images/family/duck_family.gif)
+
+The family ([MP4, 17 s, sharper](docs/images/family/duck_family.mp4)). In simulation only: nothing here has been built. Each walk was recorded in physics and replayed at its real speed, told 0.3 m/s (the big duck 0.4). Some of it isn't what it looks like:
+the beaks are scripted animation, as the policies keep them shut. Yellow and blue get up with the hybrid's stand-up, not their own. Pink has no trained walk yet and replays the hybrid's, scaled.
+The big duck's walk uses a stepping clock, and this one overloads its knee: see [A big duck](#a-big-duck).
+
 ![milli walking in MuJoCo under a policy still in training, drifting round in a circle](docs/images/walk/milli_walk.gif)
 
 An early milli policy in MuJoCo ([MP4, 12 s, sharper](docs/images/walk/milli_walk.mp4)), from iteration 1750 of 3000, before the fixes in
