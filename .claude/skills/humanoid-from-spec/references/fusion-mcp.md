@@ -3,9 +3,47 @@
 Fusion is the CAD of record, but it is slow, and the MCP calls time out long before Fusion finishes. Work offline
 until the spec passes, then build in short calls.
 
+## Connecting
+
+Fusion ships the MCP server; there is nothing to install. In Fusion: **Preferences -> General -> API ->
+"Fusion MCP Server (runs locally on this device)"**, which is off by default. Tick it and OK. The port is beside
+it (27182 by default) and the line under it says whether the server is running. No other API preference matters:
+Developer Tools and the debugging ports are unrelated, and there is no add-in to load.
+
+It speaks streamable HTTP at `http://127.0.0.1:<port>/mcp`, registered in the repo's `.mcp.json`:
+
+```json
+{ "mcpServers": { "fusion": { "type": "http", "url": "http://127.0.0.1:27182/mcp" } } }
+```
+
+Claude Code reads `.mcp.json` when a session starts, so a session already running will not see it until restarted.
+To check the server without a restart, POST an `initialize` to that URL: it answers with an `MCP-Session-Id`
+header, which later calls pass back.
+
+Four tools (Fusion 2706.1.17, checked 2026-11-03):
+
+| tool | what |
+|---|---|
+| `fusion_mcp_execute` | `featureType`: **script** (below), `document`, `purchase`, `editImage`, `generatePowerpoint`, `previewImage` |
+| `fusion_mcp_read` | `queryType`: `apiDocumentation` (searchable), `screenshot` (direction, size, anti-aliasing), `document`, `projects`, `licensing`, `activeCommand` |
+| `fusion_mcp_update` | `undo`, `redo` |
+| `fusion_mcp_electronics_read` | 50 `electronics.*` classes; needs an Electronics document |
+
+`fusion_mcp_read` with `queryType: "apiDocumentation"` searches the Fusion API docs from inside the tool: use it
+before writing a script, rather than guessing at a class or member name.
+
 ## Calling the build module
 
-Each MCP script call imports the build module fresh:
+`fusion_mcp_execute` with `featureType: "script"` takes `{"script": "...", "readOnly": true|false}`. The script
+must define `run` with exactly one argument; whatever it prints comes back as the tool's output, and an exception
+comes back as the error. **Do not catch exceptions in `run`** -- a caught one loses where and why it failed.
+
+`readOnly` is enforced, not taken on trust: a read-only script that tries to change the design fails with "Cannot
+modify the design from a read-only context", and it must also avoid `Application.executeTextCommand`. In exchange,
+a read-only script runs even while a command dialog is open, which is the way to inspect state mid-command. A
+normal script cannot: it returns an error saying so, and the user has to close the dialog first.
+
+Each call imports the build module fresh:
 
 ```python
 import sys, importlib
