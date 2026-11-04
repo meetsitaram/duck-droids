@@ -27,7 +27,7 @@ SERVO_GAP = 0.00015                                # a printed pocket round a bo
 BEARING_GAP = 0.00005                              # on a bearing seat's radius: 0.1 mm on the diameter, a firm press in PLA. Print one joint first
 HEAD_R, HEAD_H = {'M2': 0.0019, 'M3': 0.0027}, 0.002   # a pan head, and a turn of tolerance
 MATE_GAP = 0.0001                                  # where one printed part sits in another
-FUSION = os.path.join(G.ROOT, 'spec', 'parts.json')
+FUSION = G.parts_path()
 TEST = {'knee': ['L thigh frame', 'L knee lid', 'L shin']}
 
 
@@ -172,7 +172,7 @@ def main():
     spec = G.load()
     S = C.Solids(spec)
     B = A.Build(spec, S)
-    out = os.path.join(G.ROOT, 'prints')
+    out = G.out_path('prints')
     os.makedirs(out, exist_ok=True)
     want = TEST[a.test] if a.test else [n for n, p in B.parts.items() if p['kind'] == 'P']
     fusion = {}
@@ -215,8 +215,9 @@ def main():
             L.append(f"| {part} | {name} | {e[0]:.0f} x {e[1]:.0f} x {e[2]:.0f} | {v:.1f} | {mat} | {orient[part]['overhang']:.0f}{' (none)' if orient[part]['overhang'] < 1 else ''} |")
         L += ['', 'The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
               'A part with an overhang figure needs support or a bridge there; tools/printable.py counts faces, not a slicer, so it overstates short bridges. Check each in your slicer.', '']
-        L += ['', '## Print one joint first', '', 'Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin` (about 32 cm3 solid), with 1 STS3215-C044, 1 6704ZZ,',
-              '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
+        servo_, bear_, screws_ = ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
+        L += ['', '## Print one joint first', '', f'Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 {servo_}, 1 {bear_},',
+              f'{screws_}. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
               'how much the shin flexes with about 1.3 kg hung from it, off-centre as a foot would load it. Note what fits, and change the spec, not the STL.']
         open(os.path.join(out, 'README.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 

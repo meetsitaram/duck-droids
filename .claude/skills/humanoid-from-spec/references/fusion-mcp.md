@@ -62,8 +62,9 @@ def run(_context: str):
     print(build.status(), build.verify())
 ```
 
-First `python -I tools/export_prints.py` (it writes `spec/parts.json`), and `python -I tools/verify_fusion.py write`. milli's whole
-robot takes about 5 minutes in that one call: a request can outlast the client's default timeout, so give it 10.
+First `python -I tools/export_prints.py` (it writes `spec/parts.json`, or `parts_<recipe>.json` under `MILLI_RECIPE`), and `python -I tools/verify_fusion.py write`. A whole robot takes about 5 minutes in one call: a request can outlast the client's default timeout, so give it 10.
+
+`cad/fusion/full_build.py` is all of it for a variant: build, verify, interference, pictures, save, close. `tools/fusion_call.py` runs it if the session hasn't loaded Fusion's server as a tool.
 
 | call | does |
 |---|---|
@@ -104,7 +105,7 @@ A script with `readOnly` is refused any change, naming that as the reason: read 
   `doc.saveAs(name, folder, description, '')`. Check `doc.isSaved` and `dataFile.versionNumber`.
 - The root component takes the document's name only on save; before that the STEP's top product is
   "(Unsaved)". So save first, then export:
-  - `exportManager.createSTEPExportOptions(path)` writes `cad/<name>.step`. **Passing `rootComponent` wrote an empty file and reported success, on a design built with no timeline: count the `MANIFOLD_SOLID_BREP`s in it;**
+  - `exportManager.createSTEPExportOptions(path)` writes `cad/<name>.step`. **Straight after a first save it wrote an empty file and reported success, and Fusion also refuses to reopen a file that new. Close it, then in a later call open it from the hub and export (`cad/fusion/export_step.py`); count the `MANIFOLD_SOLID_BREP`s;**
   - `createFusionArchiveExportOptions(path)` writes `cad/<name>.f3d`, the native design with its timeline and
     joints;
   - `export_stl` writes the URDF meshes.

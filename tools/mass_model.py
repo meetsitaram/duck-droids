@@ -139,7 +139,7 @@ def report(spec, inert, path):
 def main():
     spec = G.load()
     inert = link_inertials(spec)
-    total, by_mat = report(spec, inert, os.path.join(G.ROOT, 'reports', 'mass.md'))
+    total, by_mat = report(spec, inert, G.out_path('reports', 'mass.md'))
     for m, v in sorted(by_mat.items(), key=lambda kv: -kv[1]):
         print(f'{m:12s} {v:6.2f} kg')
     print(f'total {total:.2f} kg -> reports/mass.md')

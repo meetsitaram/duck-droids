@@ -3,7 +3,7 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "12.6 MPa (allowed 15): 45 N, section 179 mm2"
+  "detail": "12.7 MPa (allowed 15): 45 N, section 179 mm2"
  },
  {
   "group": "LOAD",
@@ -285,7 +285,7 @@
   "group": "FIT",
   "item": "neck column",
   "status": "PASS",
-  "detail": "27 x 35 x 36 mm"
+  "detail": "27 x 29 x 30 mm"
  },
  {
   "group": "ONE",
@@ -339,7 +339,7 @@
   "group": "FIT",
   "item": "head fork",
   "status": "PASS",
-  "detail": "38 x 40 x 59 mm"
+  "detail": "38 x 40 x 56 mm"
  },
  {
   "group": "ONE",
@@ -357,7 +357,7 @@
   "group": "FIT",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "33 x 41 x 28 mm"
+  "detail": "30 x 41 x 28 mm"
  },
  {
   "group": "ONE",

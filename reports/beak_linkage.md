@@ -70,5 +70,5 @@ From tools/beak_linkage.py
 | PASS | beak rod / head | 0.006 cm3 at the worst pose |
 | PASS | beak rod / beak_link | 0.000 cm3 at the worst pose |
 | PASS | beak rod / head_yaw_link | 0.000 cm3 at the worst pose |
-| WARN | beak rod / yaw servo, head rolled and yawed together | 0.257 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad |
+| WARN | beak rod / yaw servo, head rolled and yawed together | 0.219 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad |
 | PASS | beak rod / head_pitch_link | 0.000 cm3 at the worst pose |

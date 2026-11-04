@@ -177,7 +177,7 @@ def main():
             print('  ', r['group'], r['item'], r['detail'])
         return 0 if fails else 1
     check(rep)
-    rep.write(os.path.join(G.ROOT, 'reports', 'printable.md'), 'From tools/printable.py. Overhang from faces, not a slicer: none of this has been printed.')
+    rep.write(G.out_path('reports', 'printable.md'), 'From tools/printable.py. Overhang from faces, not a slicer: none of this has been printed.')
     for r in rep.rows:
         if r['status'] != 'PASS':
             print(r['status'], r['group'], r['item'], r['detail'])

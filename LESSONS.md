@@ -271,4 +271,18 @@ The spec passed every check, 950 of them, with 0 failing. Building it for real, 
 | Head roll past 0.2 rad with head yaw past 0.5 rad puts the head into the yaw servo. Single-joint sweeps can't see it, and no pose used it | Sweep pairs of joints in a chain where parts pass close, and write the limit down for what commands them |
 | Assumed the repo's Fusion MCP had to be built, and wrote a 500-line bridge. It was a checkbox in Fusion's preferences. The skill said "an MCP server", no more; the user had it open | Before building something, look for the product's own feature. A doc that assumes a setup should name it |
 | Left six unsaved builds of one robot open in Fusion, as each rebuild opened a new document; the user pointed out that this is what makes Fusion crawl | Save each finished model into the hub, then close it, before starting the next, and close every scratch document as you go. One document open at a time |
-| `createSTEPExportOptions(path, rootComponent)` wrote a 591-byte STEP with no solids and reported success, on a design that started with no timeline. `createSTEPExportOptions(path)` wrote all 305 | Check an export's contents, not its success: count the solids in it |
+| Straight after a first save, a STEP export wrote 600 bytes with no solids and reported success. Opened afresh from the hub, the same call wrote all 315 | Check an export's contents, not its success: count the solids in it |
+
+## The second variant: all Dynamixel (2026-11-04)
+
+The same process on a second servo. The first round's fixes carried over and its checks found this one's problems, at the first run. What was new:
+
+| Issue | Do instead |
+|---|---|
+| The XL330's datasheet 26 mm includes its 3 mm horn. The spec drew a 26 mm case with a horn on top, so all 5 of the hybrid's XL/XC joints were 3 mm off, in a model pushed an hour earlier. No mesh we had showed it: Microduck's is simplified, and an older variant's "shorter case" was the same servo's true size | Get the maker's own CAD before designing round a part, not a robot's simplified copy. It was in the user's own Fusion hub all along: ask, and look there first. A note that two near-identical parts differ by an odd amount is a question, not a fact |
+| Sockets again: the same 3-pin sockets are in a different place on this servo, on the rear face in notches at its edges. The first round's lesson, "look at every side", was right; assuming the last servo's layout would have been wrong | A connector check per servo model, from its own CAD |
+| Fixes from round one held hybrid's numbers: board positions, tab positions, a battery slot. On a smaller body one crossed itself into a negative-size box, and sampling points inside it hung the checks for half an hour with no message | Put a variant's choices in its recipe, and fail on a box with a negative size. A check that hangs is a failure: run long jobs with a timeout and read how far they got |
+| Every variant's reports, prints and part lists wrote over the first one's: reports/mass.md and reports/checks.md read wrong for a while | One set of outputs per variant before running a second one (`G.out_path`) |
+| Grooves for wires in a small thigh cover came right through its 2 mm wall, and its servo corners came through too. The picture showed it, again | A cover drawn in proportion is too small once its servos are not to scale: size it from what's inside. Send wires where there is room (out the back) |
+| Fusion had a sibling document left open with a saved copy: a failed script left behind whatever it opened | `try`/close around anything a script opens. Check `documents` at the start and the end |
+| The motors at hand decide what can be built this week, and that isn't the count the design needs: 4 M288s from a Koch pair, against 15 | Ask what's on the shelf before planning a build around it |

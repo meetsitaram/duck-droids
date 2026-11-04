@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-786 checks: 786 pass, 0 warn, **0 fail**
+796 checks: 796 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -441,10 +441,10 @@ From tools/assembly.py
 | PASS | head pitch fork screw horn 1 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw horn 2 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw horn 3 | M2 x 6: bites 2.9 mm |
-| PASS | head pitch fork screw rear 0 | M2 x 6: bites 3.0 mm |
-| PASS | head pitch fork screw rear 1 | M2 x 6: bites 3.0 mm |
-| PASS | head pitch fork screw rear 2 | M2 x 6: bites 3.0 mm |
-| PASS | head pitch fork screw rear 3 | M2 x 6: bites 3.0 mm |
+| PASS | head pitch fork screw rear 0 | M2 x 6: bites 2.9 mm |
+| PASS | head pitch fork screw rear 1 | M2 x 6: bites 2.9 mm |
+| PASS | head pitch fork screw rear 2 | M2 x 6: bites 2.9 mm |
+| PASS | head pitch fork screw rear 3 | M2 x 6: bites 2.9 mm |
 | PASS | head roll fork screw horn 0 | M2 x 8: bites 4.0 mm |
 | PASS | head roll fork screw horn 1 | M2 x 8: bites 4.0 mm |
 | PASS | head roll fork screw horn 2 | M2 x 8: bites 4.0 mm |
@@ -457,10 +457,10 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | beak crank screw 0 | M2 x 6: bites 2.9 mm |
-| PASS | beak crank screw 1 | M2 x 6: bites 2.9 mm |
-| PASS | beak crank screw 2 | M2 x 6: bites 2.9 mm |
-| PASS | beak crank screw 3 | M2 x 6: bites 2.9 mm |
+| PASS | beak crank screw 0 | M2 x 6: bites 3.0 mm |
+| PASS | beak crank screw 1 | M2 x 6: bites 3.0 mm |
+| PASS | beak crank screw 2 | M2 x 6: bites 3.0 mm |
+| PASS | beak crank screw 3 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 0 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 1 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 2 | M2 x 6: bites 3.0 mm |
@@ -722,6 +722,16 @@ From tools/assembly.py
 | PASS | R knee cable plugs |  |
 | PASS | L ankle pitch cable plugs |  |
 | PASS | R ankle pitch cable plugs |  |
+| PASS | neck pitch cable plugs + |  |
+| PASS | neck pitch cable plugs - |  |
+| PASS | head pitch cable plugs + |  |
+| PASS | head pitch cable plugs - |  |
+| PASS | head yaw cable plugs + |  |
+| PASS | head yaw cable plugs - |  |
+| PASS | head roll cable plugs + |  |
+| PASS | head roll cable plugs - |  |
+| PASS | beak cable plugs + |  |
+| PASS | beak cable plugs - |  |
 
 ## ALL
 

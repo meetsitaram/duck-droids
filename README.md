@@ -31,7 +31,7 @@ fall. A case study you can rerun or add to: pick one with `MILLI_RECIPE`, or add
 Microduck, for scale: 26.4 cm tall, 14.1 cm wide on its model, 0.8 kg as published, on XL330s.
 
 - **Nothing here has been built or tested on real parts.** Hybrid is the design the rest of this README, the parts list and the printable
-  files describe. The other three are spec-only drafts: no assembly guide, parts list or CAD yet.
+  files describe. All Dynamixel has its own [parts list](docs/dynamixel/BOM.md), [printable files](prints/dynamixel/README.md) and [CAD](cad/duck-droids-dynamixel.f3d), but changed after its walks were trained. The other two are spec-only drafts.
 - **All Dynamixel** runs its XL330s straight off a 2S pack, as microduck's trainer models its own, which is past ROBOTIS's 6 V maximum. Its
   torque and speed at that voltage are estimates.
 - **Feetech HD-1910** is the servo most community Microduck builds use, and is rated to 8.4 V, so it stays inside the maker's limits. Its numbers are a seller's sheet (+/- 10 %; the maker's own lists less torque), and its motor friction and inertia, and position gain, are estimates. No part of those builds is used here.
@@ -77,7 +77,7 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
 
 ## Status
 
-A design, not yet built. Nothing here has been printed or tested on real parts. milli has STS3215 ankles; branch
+A design, not yet built. Nothing here has been printed or tested on real parts. Fusion models so far: hybrid and [all Dynamixel](docs/dynamixel/BOM.md), in [cad/](cad/). milli has STS3215 ankles; branch
 `xc330-ankle` keeps the version with Dynamixel XC330 ankles, before the strength and printing work.
 
 - **Size:** 0.321 m tall, 1.59 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
@@ -88,7 +88,7 @@ A design, not yet built. Nothing here has been printed or tested on real parts. 
 - **The Fusion model:** built from the spec, one body per printed part with its holes and pockets, 15 joints, each part checked point by point against its STL: [cad/duck-droids-hybrid.f3d](cad/duck-droids-hybrid.f3d), [.step](cad/duck-droids-hybrid.step), [picture](docs/images/fusion/fusion_34.png). The build video above is from before this round.
 - **Printable parts:** STLs with their screw holes and pockets in [prints/](prints/README.md), left and right, turned the way they should print. Strength so far is a hand estimate: print one joint first.
 - **Head limits:** head roll over 0.1 rad only while head yaw is under 0.5 rad, or the head meets the yaw servo. The head pitch XL330 can pass through, but not hold, the head forward and down.
-- **Open:** a power switch, speaker and microphone, and retraining: the model is 80 g heavier than the walks were trained on, with wider thighs.
+- **Open:** a power switch, speaker and microphone, and retraining: the servo cases are 3 mm thinner than the walks were trained on, the model 90 g heavier, with wider thighs.
 
 ## Build it
 

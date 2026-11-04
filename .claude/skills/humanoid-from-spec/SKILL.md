@@ -101,6 +101,7 @@ to be a grey knit hood with a black visor, visible only in a close-up.
 - **With a reference model: copy its joint layout** (positions, axes, ranges, which link each actuator case rides
   in, which axes share a height), and take its zero pose as yours. Find where it keeps its boards and battery too
   (microduck's Pi Zero is in its head).
+- **Get the maker's own CAD for every bought part first,** from their site, or the user's own CAD library: ask. A robot's model of a part is simplified, and a datasheet's size may include the horn (the XL330's 26 mm does: a 3 mm error on 5 joints, found after the first build). Note where its connectors are, and what comes in the box.
 - **Actuators.** Put the catalog in `spec/actuators.json`: size, mass, rated and peak torque, gear, rotor inertia.
   Mark retailer numbers as "confirm before ordering". Hobby servos are boxes with an off-centre shaft: take the box
   from the maker's CAD (milli: SO-101's STS3215 mesh) and the response from someone's identification (Open Duck Mini's

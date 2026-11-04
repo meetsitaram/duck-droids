@@ -1,0 +1,296 @@
+[
+ {
+  "group": "DRIVE",
+  "item": "L_hip_yaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "R_hip_yaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "L_hip_roll",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "R_hip_roll",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "L_hip_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "R_hip_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "L_knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "R_knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "L_ankle_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "R_ankle_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "neck_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "head_pitch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "head_yaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "head_roll",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVE",
+  "item": "beak",
+  "status": "PASS",
+  "detail": "a crank and a rod"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.00 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.00 rad",
+  "status": "PASS",
+  "detail": "42 deg at the crank, 79 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.05 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.05 rad",
+  "status": "PASS",
+  "detail": "48 deg at the crank, 83 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.10 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.10 rad",
+  "status": "PASS",
+  "detail": "54 deg at the crank, 87 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.15 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.15 rad",
+  "status": "PASS",
+  "detail": "59 deg at the crank, 89 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.20 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.20 rad",
+  "status": "PASS",
+  "detail": "64 deg at the crank, 85 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.25 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.25 rad",
+  "status": "PASS",
+  "detail": "69 deg at the crank, 82 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.30 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.30 rad",
+  "status": "PASS",
+  "detail": "74 deg at the crank, 78 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.35 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.35 rad",
+  "status": "PASS",
+  "detail": "78 deg at the crank, 75 at the lever"
+ },
+ {
+  "group": "SOLVE",
+  "item": "jaw +0.40 rad",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ANGLE",
+  "item": "jaw +0.40 rad",
+  "status": "PASS",
+  "detail": "82 deg at the crank, 71 at the lever"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank / head",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank / beak_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank / head_yaw_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank / yaw servo, head rolled and yawed together",
+  "status": "PASS",
+  "detail": "0.000 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank / head_pitch_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank pin / head",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank pin / beak_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank pin / head_yaw_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank pin / yaw servo, head rolled and yawed together",
+  "status": "PASS",
+  "detail": "0.000 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak crank pin / head_pitch_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak rod / head",
+  "status": "PASS",
+  "detail": "0.004 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak rod / beak_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak rod / head_yaw_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak rod / yaw servo, head rolled and yawed together",
+  "status": "WARN",
+  "detail": "0.167 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad"
+ },
+ {
+  "group": "CLEAR",
+  "item": "beak rod / head_pitch_link",
+  "status": "PASS",
+  "detail": "0.000 cm3 at the worst pose"
+ },
+ {
+  "group": "SOLVE",
+  "item": "servo travel",
+  "status": "PASS",
+  "detail": "33 deg of crank for 23 deg of jaw"
+ }
+]

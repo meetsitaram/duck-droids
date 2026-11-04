@@ -3,67 +3,73 @@
   "group": "targets",
   "item": "height",
   "status": "WARN",
-  "detail": "0.298 m: 1.13 x microduck's 0.264 m (proportions are checked at this scale)"
+  "detail": "0.295 m: 1.12 x microduck's 0.264 m (proportions are checked at this scale)"
  },
  {
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.150 (microduck 0.123 x 1.13 = 0.139 +/- 10 %)"
+  "detail": "0.150 (microduck 0.123 x 1.12 = 0.137 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_width_m",
   "status": "PASS",
-  "detail": "0.105 (microduck 0.092 x 1.13 = 0.104 +/- 10 %)"
+  "detail": "0.105 (microduck 0.092 x 1.12 = 0.103 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_height_m",
   "status": "PASS",
-  "detail": "0.069 (microduck 0.059 x 1.13 = 0.067 +/- 10 %)"
+  "detail": "0.069 (microduck 0.059 x 1.12 = 0.066 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_bottom_z",
   "status": "PASS",
-  "detail": "0.229 (microduck 0.205 x 1.13 = 0.231 +/- 10 %)"
+  "detail": "0.226 (microduck 0.205 x 1.12 = 0.229 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "neck_pitch_z",
   "status": "PASS",
-  "detail": "0.147 (microduck 0.139 x 1.13 = 0.157 +/- 10 %)"
+  "detail": "0.147 (microduck 0.139 x 1.12 = 0.155 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "hip_pitch_z",
   "status": "PASS",
-  "detail": "0.100 (microduck 0.089 x 1.13 = 0.101 +/- 10 %)"
+  "detail": "0.100 (microduck 0.089 x 1.12 = 0.099 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "body_width_m",
   "status": "PASS",
-  "detail": "0.067 (microduck 0.064 x 1.13 = 0.072 +/- 10 %)"
+  "detail": "0.067 (microduck 0.064 x 1.12 = 0.072 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "overall_width_m",
   "status": "PASS",
-  "detail": "0.147 (microduck 0.141 x 1.13 = 0.159 +/- 10 %)"
+  "detail": "0.147 (microduck 0.141 x 1.12 = 0.158 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "foot_length_m",
   "status": "PASS",
-  "detail": "0.058 (microduck 0.054 x 1.13 = 0.061 +/- 10 %)"
+  "detail": "0.058 (microduck 0.054 x 1.12 = 0.060 +/- 10 %)"
  },
  {
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "0.894 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "0.931 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+ },
+ {
+  "group": "printable",
+  "item": "largest part",
+  "status": "PASS",
+  "detail": "402 printed parts; largest head: 150 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -685,25 +691,37 @@
  },
  {
   "group": "skin",
-  "item": "battery 2S 500 mAh",
+  "item": "battery 2S 450 mAh",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "servo bus board",
+  "item": "L 5 V regulator",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "5 V regulator and IMU",
+  "item": "IMU",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
   "item": "battery strap",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "body post 0",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "body post 1",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -763,7 +781,37 @@
  },
  {
   "group": "skin",
-  "item": "camera mount",
+  "item": "Pi mount",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi plate",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 0",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 1",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 2",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 3",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -776,6 +824,12 @@
  {
   "group": "skin",
   "item": "camera",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "U2D2",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -837,7 +891,7 @@
   "group": "sweep",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "[-0.42, +0.42] rad clear"
+  "detail": "[-0.35, +0.35] rad clear"
  },
  {
   "group": "sweep",
@@ -975,19 +1029,19 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.20 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 64 % used"
+  "detail": "0.20 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 66 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.15 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 49 % used"
+  "detail": "0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 51 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.15 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 49 % used"
+  "detail": "0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 51 % used"
  },
  {
   "group": "torque",
@@ -999,43 +1053,43 @@
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.18 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 28 % used"
+  "detail": "0.18 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 29 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 23 % used"
+  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 24 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 23 % used"
+  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 24 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.05 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 17 % used"
- },
- {
-  "group": "torque",
-  "item": "R_ankle_pitch",
-  "status": "PASS",
-  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 11 % used"
+  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 18 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 11 % used"
+  "detail": "0.04 N m in 'stand (microduck stance)' vs rated 0.31 N m (1 x XL330_M288): 12 % used"
+ },
+ {
+  "group": "torque",
+  "item": "R_ankle_pitch",
+  "status": "PASS",
+  "detail": "0.04 N m in 'stand (microduck stance)' vs rated 0.31 N m (1 x XL330_M288): 12 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "0.03 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 11 % used"
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 12 % used"
  },
  {
   "group": "torque",
@@ -1053,7 +1107,7 @@
   "group": "torque",
   "item": "head_yaw",
   "status": "PASS",
-  "detail": "0.00 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 0 % used"
+  "detail": "0.00 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 1 % used"
  },
  {
   "group": "torque",

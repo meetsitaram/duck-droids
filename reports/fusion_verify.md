@@ -32,19 +32,19 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | R shin | 0.3 % of 1500 points disagree; solid in 166 offline, 168 in Fusion |
 | PASS | R ankle lid | 3.8 % of 1500 points disagree; solid in 1372 offline, 1423 in Fusion |
 | PASS | R shoe | 0.1 % of 1500 points disagree; solid in 189 offline, 190 in Fusion |
-| PASS | R sole | 1.2 % of 1500 points disagree; solid in 1092 offline, 1104 in Fusion |
+| PASS | R sole | 1.1 % of 1500 points disagree; solid in 1092 offline, 1104 in Fusion |
 | PASS | R inner ear | 0.0 % of 1500 points disagree; solid in 667 offline, 667 in Fusion |
-| PASS | chassis | 0.1 % of 1500 points disagree; solid in 156 offline, 157 in Fusion |
+| PASS | chassis | 0.1 % of 1500 points disagree; solid in 157 offline, 158 in Fusion |
 | PASS | body shell | 0.3 % of 1500 points disagree; solid in 136 offline, 132 in Fusion |
-| PASS | neck column | 0.7 % of 1500 points disagree; solid in 225 offline, 231 in Fusion |
-| PASS | neck lid | 6.4 % of 1500 points disagree; solid in 1150 offline, 1208 in Fusion |
-| PASS | head pitch lid | 6.5 % of 1500 points disagree; solid in 1131 offline, 1190 in Fusion |
-| PASS | head fork | 0.4 % of 1500 points disagree; solid in 178 offline, 184 in Fusion |
+| PASS | neck column | 0.9 % of 1500 points disagree; solid in 291 offline, 299 in Fusion |
+| PASS | neck lid | 6.6 % of 1500 points disagree; solid in 1153 offline, 1208 in Fusion |
+| PASS | head pitch lid | 6.8 % of 1500 points disagree; solid in 1136 offline, 1190 in Fusion |
+| PASS | head fork | 0.4 % of 1500 points disagree; solid in 163 offline, 165 in Fusion |
 | PASS | head yaw sheet | 0.6 % of 1500 points disagree; solid in 354 offline, 347 in Fusion |
-| PASS | head yaw bracket | 0.3 % of 1500 points disagree; solid in 250 offline, 255 in Fusion |
-| PASS | head roll lid | 0.4 % of 1500 points disagree; solid in 775 offline, 769 in Fusion |
-| PASS | head frame | 0.2 % of 1500 points disagree; solid in 120 offline, 123 in Fusion |
-| PASS | beak lid | 6.3 % of 1500 points disagree; solid in 1190 offline, 1271 in Fusion |
+| PASS | head yaw bracket | 0.3 % of 1500 points disagree; solid in 246 offline, 250 in Fusion |
+| PASS | head roll lid | 0.3 % of 1500 points disagree; solid in 778 offline, 773 in Fusion |
+| PASS | head frame | 0.1 % of 1500 points disagree; solid in 112 offline, 114 in Fusion |
+| PASS | beak lid | 6.4 % of 1500 points disagree; solid in 1191 offline, 1269 in Fusion |
 | PASS | beak crank | 0.0 % of 1500 points disagree; solid in 294 offline, 294 in Fusion |
 | PASS | beak rod | 0.0 % of 1500 points disagree; solid in 545 offline, 545 in Fusion |
 | PASS | hood | 0.9 % of 1500 points disagree; solid in 86 offline, 89 in Fusion |

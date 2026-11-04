@@ -11,6 +11,10 @@ Read `LESSONS.md` first, and `.claude/skills/humanoid-from-spec/SKILL.md` for th
 
 "Any size" has limits, so say them early. A servo's case sets a smallest duck on that servo, and with the same servo the torque a joint needs grows with about the fourth power of size. What the skill promises is a duck at the size asked for, or a clear reason why not, with the nearest size that works.
 
+## A second variant of a built design
+
+`MILLI_RECIPE=<recipe>` gives each variant its own spec, reports, prints and CAD. Put its own choices in `RECIPES` (boards, battery, covers), not in shared code: the first variant's numbers will not fit a smaller body. Then the same suites, in order: `spec/robot.py`, `tools/checks.py`, `tools/assembly.py`, `tools/buildable.py`, `tools/beak_linkage.py`, `tools/printable.py`, `tools/export_prints.py`, `tools/verify_fusion.py write`, `cad/fusion/full_build.py`, `cad/fusion/export_step.py`, `tools/verify_fusion.py compare`, and look at the pictures from every side. Ask what parts are already on the shelf: it decides what can be built first. A change to a shared part's model means rebuilding every variant that uses it.
+
 ## Round 0: agree the goal
 
 Ask only what you can't default:

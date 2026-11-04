@@ -23,7 +23,7 @@ import checks as C  # noqa: E402
 import geom as G  # noqa: E402
 import render_pose as RP  # noqa: E402
 
-OUT = os.path.join(G.ROOT, 'docs', 'images', 'assembly')
+OUT = G.out_path('docs/images/assembly')
 W, H, CAP = 560, 480, 44
 FLY = 0.045                                        # how far out a part starts
 SCREW_FLY = 0.018
@@ -200,7 +200,7 @@ def main():
     sc = Scene(spec)
     os.makedirs(OUT, exist_ok=True)
     done = {}
-    secs = A.sections()
+    secs = A.sections_for(A.Build(G.load()))
     sheet = []
     for sec in secs:
         want = not args or sec['key'] in args

@@ -10,7 +10,7 @@ Watch each animation, then do the same. Parts: [BOM.md](../BOM.md). The right si
 ## 0. Before you start
 
 1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
-2. **Set each servo's ID on its own**, before any are chained: Feetech 1-8, Dynamixel 1-7, on their separate buses. Label each servo.
+2. **Set each servo's ID on its own**, before any are chained: Feetech 1-10, Dynamixel 1-5, on their separate buses. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.
 

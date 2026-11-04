@@ -31,21 +31,21 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R shoe | R_shoe.stl | 29 x 53 x 69 | 14.7 | PLA | 683 |
 | R sole | R_sole.stl | 15 x 53 x 69 | 40.8 | TPU 95A | 479 |
 | R inner ear | R_inner_ear.stl | 29 x 48 x 5 | 2.7 | PLA | 52 |
-| chassis | chassis.stl | 49 x 97 x 76 | 38.7 | PLA | 3284 |
-| body shell | body_shell.stl | 49 x 80 x 98 | 32.4 | PLA | 2534 |
-| neck column | neck_column.stl | 35 x 26 x 34 | 5.3 | PLA | 244 |
+| chassis | chassis.stl | 49 x 97 x 76 | 38.5 | PLA | 3284 |
+| body shell | body_shell.stl | 49 x 80 x 98 | 32.5 | PLA | 2556 |
+| neck column | neck_column.stl | 29 x 26 x 28 | 4.3 | PLA | 217 |
 | neck lid | neck_lid.stl | 5 x 26 x 3 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 0 (none) |
-| head fork | head_fork.stl | 58 x 39 x 37 | 9.3 | PLA | 440 |
+| head fork | head_fork.stl | 55 x 39 x 37 | 9.1 | PLA | 430 |
 | head yaw sheet | head_yaw_sheet.stl | 37 x 26 x 4 | 0.9 | PLA | 0 (none) |
-| head yaw bracket | head_yaw_bracket.stl | 26 x 40 x 32 | 5.8 | PLA | 209 |
+| head yaw bracket | head_yaw_bracket.stl | 27 x 29 x 40 | 5.2 | PLA | 204 |
 | head roll lid | head_roll_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
-| head frame | head_frame.stl | 123 x 94 x 50 | 44.0 | PLA | 3932 |
+| head frame | head_frame.stl | 123 x 94 x 50 | 43.7 | PLA | 3991 |
 | beak lid | beak_lid.stl | 20 x 5 x 2 | 0.2 | PLA | 0 (none) |
 | beak crank | beak_crank.stl | 24 x 20 x 14 | 1.3 | PLA | 0 (none) |
 | beak rod | beak_rod.stl | 13 x 44 x 3 | 0.7 | PLA | 0 (none) |
-| hood | hood.stl | 60 x 110 x 155 | 53.7 | PLA | 2862 |
-| jaw | jaw.stl | 43 x 113 x 105 | 37.2 | PLA | 1046 |
+| hood | hood.stl | 60 x 110 x 155 | 53.7 | PLA | 2883 |
+| jaw | jaw.stl | 44 x 113 x 105 | 37.2 | PLA | 1046 |
 | jaw soft insert | jaw_soft_insert.stl | 28 x 105 x 5 | 14.3 | TPU 95A | 0 (none) |
 | mouth roof | mouth_roof.stl | 41 x 105 x 3 | 13.5 | TPU 95A | 3 |
 | face | face.stl | 52 x 103 x 3 | 9.1 | PLA | 45 |

@@ -16,6 +16,19 @@ RIGID = ('struct', 'actuator')
 
 
 
+RECIPE = os.environ.get('MILLI_RECIPE', 'hybrid')
+SPEC_FILE = 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json'
+
+
+def out_path(folder, name=''):
+    """A variant's own copy of an output: hybrid, the original, keeps the top level; others, reports/dynamixel/..., prints/dynamixel/..."""
+    return os.path.join(ROOT, folder, *([] if RECIPE == 'hybrid' else [RECIPE]), *([name] if name else []))
+
+
+def parts_path(name='parts'):
+    return os.path.join(ROOT, 'spec', f'{name}.json' if RECIPE == 'hybrid' else f'{name}_{RECIPE}.json')
+
+
 PLATE_DIMS = {'x': (0, (1, 2)), 'y': (1, (0, 2)), 'z': (2, (0, 1))}   # a plate's axis, its outline's dims
 
 def load(path=None):
