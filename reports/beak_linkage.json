@@ -279,7 +279,7 @@
   "group": "CLEAR",
   "item": "beak rod / yaw servo, head rolled and yawed together",
   "status": "WARN",
-  "detail": "0.257 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad"
+  "detail": "0.219 cm3: keep |roll| under 0.1 rad when |yaw| is over 0.5 rad"
  },
  {
   "group": "CLEAR",

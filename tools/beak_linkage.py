@@ -170,7 +170,7 @@ def main():
         for r in fails[:3]:
             print('  ', r['group'], r['item'], r['detail'])
         return 0 if fails else 1
-    rep.write(os.path.join(G.ROOT, 'reports', 'beak_linkage.md'), 'From tools/beak_linkage.py')
+    rep.write(G.out_path('reports', 'beak_linkage.md'), 'From tools/beak_linkage.py')
     for r in fails:
         print(r['group'], r['item'], r['detail'])
     print(f'{len(rep.rows)} linkage checks, {len(fails)} failing')

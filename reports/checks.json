@@ -3,67 +3,67 @@
   "group": "targets",
   "item": "height",
   "status": "WARN",
-  "detail": "0.321 m: 1.22 x microduck's 0.264 m (proportions are checked at this scale)"
+  "detail": "0.318 m: 1.21 x microduck's 0.264 m (proportions are checked at this scale)"
  },
  {
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.155 (microduck 0.123 x 1.22 = 0.150 +/- 10 %)"
+  "detail": "0.155 (microduck 0.123 x 1.21 = 0.148 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_width_m",
   "status": "PASS",
-  "detail": "0.108 (microduck 0.092 x 1.22 = 0.112 +/- 10 %)"
+  "detail": "0.108 (microduck 0.092 x 1.21 = 0.111 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_height_m",
   "status": "PASS",
-  "detail": "0.071 (microduck 0.059 x 1.22 = 0.072 +/- 10 %)"
+  "detail": "0.071 (microduck 0.059 x 1.21 = 0.071 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_bottom_z",
   "status": "PASS",
-  "detail": "0.250 (microduck 0.205 x 1.22 = 0.249 +/- 10 %)"
+  "detail": "0.247 (microduck 0.205 x 1.21 = 0.247 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "neck_pitch_z",
   "status": "PASS",
-  "detail": "0.166 (microduck 0.139 x 1.22 = 0.169 +/- 10 %)"
+  "detail": "0.166 (microduck 0.139 x 1.21 = 0.168 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "hip_pitch_z",
   "status": "PASS",
-  "detail": "0.118 (microduck 0.089 x 1.22 = 0.108 +/- 10 %)"
+  "detail": "0.118 (microduck 0.089 x 1.21 = 0.107 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "body_width_m",
   "status": "PASS",
-  "detail": "0.080 (microduck 0.064 x 1.22 = 0.078 +/- 10 %)"
+  "detail": "0.080 (microduck 0.064 x 1.21 = 0.077 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "overall_width_m",
   "status": "PASS",
-  "detail": "0.180 (microduck 0.141 x 1.22 = 0.172 +/- 10 %)"
+  "detail": "0.180 (microduck 0.141 x 1.21 = 0.170 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "foot_length_m",
   "status": "PASS",
-  "detail": "0.069 (microduck 0.054 x 1.22 = 0.066 +/- 10 %)"
+  "detail": "0.069 (microduck 0.054 x 1.21 = 0.065 +/- 10 %)"
  },
  {
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.594 kg bottom-up (budget 1.6 kg; microduck 0.8 kg)"
+  "detail": "1.596 kg bottom-up (budget 1.61 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -963,7 +963,7 @@
   "group": "sweep",
   "item": "head_pitch",
   "status": "WARN",
-  "detail": "[-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.00 rad (pose-dependent)"
+  "detail": "[-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -0.93 rad (pose-dependent)"
  },
  {
   "group": "sweep",
@@ -975,7 +975,7 @@
   "group": "sweep",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "[-0.44, +0.44] rad clear"
+  "detail": "[-0.38, +0.38] rad clear"
  },
  {
   "group": "sweep",
@@ -1113,13 +1113,13 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.18 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 59 % used"
+  "detail": "0.19 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 60 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.19 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 55 % used"
+  "detail": "0.18 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 53 % used"
  },
  {
   "group": "torque",
@@ -1179,13 +1179,13 @@
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.07 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.07 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
  },
  {
   "group": "torque",

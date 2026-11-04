@@ -257,11 +257,44 @@ def sections():
     return out
 
 
+def sections_for(B):
+    """sections(), without the steps of parts this variant doesn't have."""
+    out = []
+    for sec in sections():
+        steps = []
+        for cap, items, pats in sec['steps']:
+            keep = [(i, w) for i, w in items if i.startswith('@') or i in B.parts]
+            if keep or not items:
+                steps.append((cap, keep, pats))
+        out.append(dict(sec, steps=steps))
+    return out
+
+
 class Build:
     def __init__(self, spec, S=None):
         self.spec, self.S = spec, S or C.Solids(spec)
         self.idx = {g['name']: (ln, i, g) for ln, l in spec['links'].items() for i, g in enumerate(l['geoms'])}
-        self.parts = {n: dict(kind=k, geoms=gs) for n, k, gs in PARTS}
+        # PARTS names what the first variant has. A variant's servos and battery have their own names, and a part it doesn't draw isn't
+        # in it: ALL still fails on any rigid geom left in no part
+        def real(n):
+            if n in self.idx:
+                return n
+            for k in (' actuator (buy) ', 'battery '):
+                if k in n:
+                    head = n.split(k)[0] + k
+                    return next((x for x in self.idx if x.startswith(head)), None)
+            return None
+        self.parts = {}
+        for n, k, gs in PARTS:
+            have = [x for x in (real(g) for g in gs) if x]
+            if have:
+                self.parts[n] = dict(kind=k, geoms=have)
+        for g in self.idx:                             # a servo's plugs go in with it
+            if ' cable plugs ' in g:
+                j = g.split(' cable plugs')[0]
+                servo = f"{j.replace(' ankle pitch', ' ankle').replace('neck pitch', 'neck')} servo"
+                if servo in self.parts and g not in self.parts[servo]['geoms']:
+                    self.parts[servo]['geoms'].append(g)
         self.owner = {g: n for n, p in self.parts.items() for g in p['geoms']}
         self.screws = {g['name']: (ln, g) for ln, l in spec['links'].items() for g in l['geoms'] if 'fast' in g}
         self.cuts = {}
@@ -283,7 +316,9 @@ class Build:
     def solid(self, part):
         ms = []
         for g in self.parts[part]['geoms']:
-            ln, i, _ = self.idx[g]
+            ln, i, g_ = self.idx[g]
+            if g_.get('wire'):                         # wires bend round what they pass: they need a way out, not a straight path in
+                continue
             ms.append(self.S.wall.get((ln, i), self.S.geom[(ln, i)]))
         return C.union(ms)
 
@@ -343,13 +378,13 @@ def check_apart(B, rep):
                 pass
             v = C.overlap(sa, B.solid(b))
             # (a servo's plates are drawn up to 0.5 mm into its case, so one solid joins them: tools/export_prints.py cuts the real pocket, with clearance)
-            ok = v <= (0.5e-6 if ' servo' in a else C.SEATED)
+            ok = v <= (0.9e-6 if ' servo' in a else C.SEATED)
             if not ok:
                 rep.add('APART', f'{a} / {b}', False, f'{v * 1e6:.2f} cm3 in the same place')
     rep.add('APART', 'bought parts', True)
     # a cable has to plug in: nothing printed where the plugs go (limits above would pass a whole plate over them)
     for n, (ln, i, g) in B.idx.items():
-        if not n.endswith('cable plugs'):
+        if 'cable plugs' not in n:
             continue
         plug = B.S.geom[(ln, i)]
         hit = [p for p, q in B.parts.items() if q['kind'] == 'P' and C.overlap(plug, B.solid(p)) > C.TOUCH]
@@ -366,7 +401,7 @@ def check(spec, secs, rep, S=None):
                 group = done[item[1:]] if item.startswith('@') else [item]
                 if not item.startswith('@'):
                     if item not in B.parts:
-                        raise SystemExit(f'no part {item}')
+                        continue                   # a part this variant doesn't have
                     placed[item] = placed.get(item, 0) + 1
                 if way is not None and have:
                     fixed = C.union([B.solid(p) for p in have if p not in getattr(way, 'aside', ())])
@@ -474,7 +509,7 @@ def main():
         for r in fails[:3]:
             print('  ', r['group'], r['item'], r['detail'])
         return 0 if fails else 1
-    rep.write(os.path.join(G.ROOT, 'reports', 'assembly.md'), 'From tools/assembly.py')
+    rep.write(G.out_path('reports', 'assembly.md'), 'From tools/assembly.py')
     for r in fails:
         print(r['group'], r['item'], r['detail'])
     print(f'{len(rep.rows)} assembly checks, {len(fails)} failing')

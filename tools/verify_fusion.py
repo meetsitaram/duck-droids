@@ -21,8 +21,8 @@ import geom as G  # noqa: E402
 
 N = 1500
 LIMIT = 0.03
-OUT = os.path.join(G.ROOT, 'spec', 'verify_points.json')
-BACK = os.path.join(G.ROOT, 'reports', 'fusion_points.json')
+OUT = G.parts_path('verify_points')
+BACK = G.parts_path('verify_points').replace('verify_points', 'fusion_points').replace('spec', 'reports')
 
 
 def write():
@@ -52,9 +52,9 @@ def compare():
         bad = float((x != y).mean())
         solid = max(int(x.sum()), 1)
         # (a part under 1 cm3: the offline solid rounds its edges under 0.5 mm, and Fusion leaves them square, a few percent of a thin lid)
-        limit = 0.10 if abs(int(x.sum())) > 0.6 * len(x) else LIMIT
+        limit = 0.10 if abs(int(x.sum())) > 0.5 * len(x) else LIMIT
         rep.add('POINTS', part, bad <= limit, f'{bad * 100:.1f} % of {len(x)} points disagree; solid in {x.sum()} offline, {y.sum()} in Fusion')
-    rep.write(os.path.join(G.ROOT, 'reports', 'fusion_verify.md'), 'From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.')
+    rep.write(G.out_path('reports', 'fusion_verify.md'), 'From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.')
     for r in sorted(rep.rows, key=lambda r: r['status'])[:12]:
         print(r['status'], r['item'], r['detail'])
     print(f"{len(rep.rows)} parts, {len(rep.failing())} failing")

@@ -1,4 +1,6 @@
-# milli (a microduck-sized biped on Feetech STS3215 legs): notes for Claude
+# duck-droids (microduck-sized bipeds, in servo variants): notes for Claude
+
+`MILLI_RECIPE` picks a variant: hybrid (the default, "milli" in older text), dynamixel, hd1910, feetech, big. Each has its own `spec/robot_<recipe>.json`, `spec/parts_<recipe>.json`, `reports/<recipe>/`, `prints/<recipe>/`, `cad/duck-droids-<recipe>.*`, `docs/images/fusion/<recipe>/`.
 
 milli has microduck's look (Pollen Robotics; spec/targets.json) on the SO-101 arm's servo, the Feetech STS3215, at
 the hips, knees and ankles, and ROBOTIS XC330/XL330s at the neck and head. Forked from echo (github.com/meetsitaram/echo),

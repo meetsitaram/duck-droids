@@ -8,7 +8,7 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 
 | status | item | detail |
 |---|---|---|
-| PASS | shin, under the knee horn | 12.6 MPa (allowed 15): 45 N, section 179 mm2 |
+| PASS | shin, under the knee horn | 12.7 MPa (allowed 15): 45 N, section 179 mm2 |
 | PASS | shin, at the cap | 0.4 MPa (allowed 15): 45 N, section 1228 mm2 |
 | PASS | thigh, hip to knee | 0.4 MPa (allowed 15): 45 N, section 814 mm2 |
 | PASS | roll bracket, side arm | 12.5 MPa (allowed 15): 45 N, section 89 mm2 |
@@ -98,11 +98,11 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | L sole | 70 x 54 x 16 mm |
 | PASS | L inner ear | 50 x 6 x 30 mm |
 | PASS | chassis | 98 x 77 x 50 mm |
-| PASS | neck column | 27 x 35 x 36 mm |
+| PASS | neck column | 27 x 29 x 30 mm |
 | PASS | neck lid | 27 x 4 x 6 mm |
 | PASS | head pitch lid | 27 x 4 x 6 mm |
-| PASS | head fork | 38 x 40 x 59 mm |
-| PASS | head yaw bracket | 33 x 41 x 28 mm |
+| PASS | head fork | 38 x 40 x 56 mm |
+| PASS | head yaw bracket | 30 x 41 x 28 mm |
 | PASS | head roll lid | 4 x 38 x 27 mm |
 | PASS | head frame | 124 x 96 x 51 mm |
 | PASS | beak lid | 6 x 4 x 24 mm |

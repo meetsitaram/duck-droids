@@ -729,7 +729,7 @@ def main():
     ap.add_argument('--only', nargs='*')
     ap.add_argument('--bad')
     ap.add_argument('--spec')
-    ap.add_argument('--out', default=os.path.join(ROOT, 'reports', 'checks.md'))
+    ap.add_argument('--out', default=G.out_path('reports', 'checks.md'))
     a = ap.parse_args()
     spec = G.load(a.spec)
     if a.bad:

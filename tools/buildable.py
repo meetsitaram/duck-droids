@@ -212,7 +212,7 @@ def main():
         for r in fails[:4]:
             print('  ', r['group'], r['item'], r['detail'])
         return 0 if fails else 1
-    rep.write(os.path.join(G.ROOT, 'reports', 'buildable.md'), 'From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.')
+    rep.write(G.out_path('reports', 'buildable.md'), 'From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.')
     for r in rep.rows:
         if r['group'] == 'LOAD':
             print(r['status'], r['item'], r['detail'])

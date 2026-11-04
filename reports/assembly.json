@@ -3213,7 +3213,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3231,7 +3231,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3249,7 +3249,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3267,7 +3267,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3525,7 +3525,7 @@
   "group": "THREAD",
   "item": "beak crank screw 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3543,7 +3543,7 @@
   "group": "THREAD",
   "item": "beak crank screw 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3561,7 +3561,7 @@
   "group": "THREAD",
   "item": "beak crank screw 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3579,7 +3579,7 @@
   "group": "THREAD",
   "item": "beak crank screw 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -4130,6 +4130,66 @@
  {
   "group": "APART",
   "item": "R ankle pitch cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "neck pitch cable plugs +",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "neck pitch cable plugs -",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head pitch cable plugs +",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head pitch cable plugs -",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head yaw cable plugs +",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head yaw cable plugs -",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head roll cable plugs +",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "head roll cable plugs -",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "beak cable plugs +",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "beak cable plugs -",
   "status": "PASS",
   "detail": ""
  },

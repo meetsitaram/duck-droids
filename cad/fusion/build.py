@@ -72,8 +72,13 @@ def parametric():
     return f'parametric, timeline {d.timeline.count}'
 
 
+def _variant_file(stem):
+    """robot.json -> parts.json; robot_dynamixel.json -> parts_dynamixel.json."""
+    return SPEC.replace('robot', stem, 1)
+
+
 def parts_spec():
-    return json.load(open(os.path.join(REPO, 'spec', 'parts.json'), encoding='utf-8'))
+    return json.load(open(os.path.join(REPO, 'spec', _variant_file('parts')), encoding='utf-8'))
 
 
 def link(name):
@@ -255,7 +260,7 @@ def verify():
 def verify_points():
     """tools/verify_fusion.py: is each of its points inside the Fusion body? Written to reports/fusion_points.json."""
     t = time.time()
-    data = json.load(open(os.path.join(REPO, 'spec', 'verify_points.json'), encoding='utf-8'))
+    data = json.load(open(os.path.join(REPO, 'spec', _variant_file('verify_points')), encoding='utf-8'))
     P_ = parts_spec()
     occ = occurrences()
     IN = adsk.fusion.PointContainment.PointInsidePointContainment
@@ -266,7 +271,7 @@ def verify_points():
         if body is None:
             continue
         out[pn] = [1 if body.pointContainment(F.P(q)) == IN else 0 for q in v['pts']]
-    json.dump(out, open(os.path.join(REPO, 'reports', 'fusion_points.json'), 'w', encoding='utf-8'))
+    json.dump(out, open(os.path.join(REPO, 'reports', _variant_file('fusion_points')), 'w', encoding='utf-8'))
     return f'{len(out)} parts, {time.time() - t:.1f} s'
 
 

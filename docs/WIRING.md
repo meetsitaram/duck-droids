@@ -1,6 +1,6 @@
 # Wiring milli
 
-Nothing here has been built. Connector positions for the STS3215 come from SO-101's mesh; for the XL330 from microduck's model, which is simplified: check a real one.
+Nothing here has been built. Connector positions for the STS3215 come from SO-101's mesh; for the XL330 from ROBOTIS's own model.
 
 ## Power
 
@@ -41,7 +41,7 @@ Each servo has 2 sockets, wired through, so each chain is one line.
 | Hip roll | rear face, through a window in its tray | back, then out to the thigh, leaving slack for roll and yaw |
 | Hip pitch, knee | rear face, through windows in the thigh plate, under the cover | a notch in the plate's top edge (from the hip) and its back edge (to the shin), to the cover's open inside |
 | Ankle | rear face, through a window between the plate's 2 rails | **tie the wires straight up the rail.** The shoe's inner ear passes within 1 mm of the plug past about 1 rad, and would catch a loop |
-| XL330, XC330 | in the notches each side of the case by the horn, per microduck's model | out sideways |
+| XL330, XC330 | in notches at the long edges of the rear face | out sideways; for the head roll and beak, through a groove in the plate against that side |
 
 Across each joint, leave a loop for its whole range. Then move every joint by hand, end to end, before powering up.
 
