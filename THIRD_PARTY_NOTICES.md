@@ -10,6 +10,13 @@ milli is licensed under the Apache License 2.0 (`LICENSE`). It is forked from ec
 - SO-ARM100 (TheRobotStudio/SO-ARM100, Apache-2.0): the STS3215's size and mounting pattern.
 - Open Duck Mini and Open Duck Playground (apirrone, Apache-2.0): STS3215 dynamics, and the idea of the TPU sole and foot switches.
 
+## Bought parts' CAD inside the Fusion models and their exports
+
+`cad/duck-droids-*.f3d` and `.step` contain the makers' models of the servos, so that the model shows the real part. The STEP files themselves are not in this repo: `tools/fetch_servo_cad.py` fetches them.
+
+- XL330-M288-T and FPX330-H101 idler: ROBOTIS's models, as published in Koch v1.1 (jess-moss/koch-v1-1, Apache-2.0, Copyright 2024 The Hugging Face team), which this project's owner has forked. That repository's licence is the one its files came under; ROBOTIS's own terms for its CAD were looked for and not found, so ROBOTIS may keep rights in them. Remove them from the exports if ROBOTIS asks.
+- STS3215 and its passive horn: SO-ARM100 (TheRobotStudio/SO-ARM100, Apache-2.0).
+
 ## Adapted into echo: GMR, General Motion Retargeting (MIT licence)
 
 - Source: https://github.com/YanjieZe/GMR

@@ -123,3 +123,15 @@ will not render, `tools/render_pose.py` draws the same shapes offline with the s
 Fusion held about 10 GB with six full builds open. Build in one document, save it, do every export, and tell the
 user when Fusion can be closed. Before stopping the process, check the document is saved (`isModified` false).
 Unsaved "Untitled" documents are lost; Fusion offers to recover them on the next start.
+
+## Real parts, and rounding (2026-11-04)
+
+- Importing a STEP: `importManager.importToTarget2(createSTEPImportOptions(path), root)` works in Direct mode. `TemporaryBRepManager.createFromFile` refuses `.STEP` ("invalid argument filename"). Then `tbm.copy` each body, `tbm.transform`, `comp.bRepBodies.add`, and delete the import.
+- Don't instance a component in nested occurrences here: each later copy's transform composed with the last. A nested occurrence's `transform2` can't be set either.
+- `filletFeatures.add` in Direct mode returns a feature whose health is not reliable: test that the body's face count rose. After a failed one, edges may be unreadable: read what you need first.
+- `analyzeInterference` can return None: a broken body in the model did it once. Handle it, and don't call that no clashes.
+- Keep a `tbm.copy` of a body before rounding it, to put back if it lost too much.
+
+## When Fusion stops answering
+
+A modal dialog blocks every MCP call, with no error and no CPU use: the window still responds. Look for it before waiting: list the process's visible windows and capture the dialog with `PrintWindow` (2026-11-04: an "Unsaved changes" dialog cost over an hour). Showing and hiding bodies marks a document modified, even when restored. `full_build.py` now closes the variant's old model first. Don't stack repeated calls while it's blocked.

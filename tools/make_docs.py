@@ -6,6 +6,7 @@ Links, prices and stock were read from the listings on 2026-11-02: confirm befor
 """
 import collections
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -39,14 +40,12 @@ BEARINGS = [
      'round the head yaw and roll horns'),
     ('6700ZZ ball bearing, 10 x 15 x 4 mm', '6700ZZ', f"{amz('B0FQ4VYXRP', 'Amazon')}: 10 for $6.79", "in each shoe's inner ear"),
 ]
-HORNS = ('ROBOTIS HNX330-N102 horns, 5 pack', '[ROBOTIS US](https://robotis.us/hnx330-n102-5pcs), [OpenELAB](https://openelab.io/products/dynamixel-hnx330-n102) at 22.90 euro; about $25. Confirm stock',
-         '**Was missing: ROBOTIS lists the horn as not included with an XL330 or XC330.** One on each of the 5 servos. Check its size against the 16 mm bearing bore before printing')
 PACKS = [
     # the packs that cover the screw table: (what, price USD, where, covers)
     ('M2 self-tapping pan head kit, 800 pieces', 15.66, amz('B0GV338JJK'), 'M2 x 6 and x 8, 100 each. The listing disagrees with itself on stainless or plated steel'),
     ('M3 socket cap kit, 610 pieces, with nuts and washers', 19.99, amz('B09NR8X2LV'), 'M3 x 8, 10, 12, 14. Its count per length is not listed: 32 of the 10 mm are needed'),
     ('M3 x 6 flat head socket screws, 100', 5.99, amz('B01HBN0U76'), 'M3 flat x 6. Head 6 mm wide, 1.7 mm high: check it sits flush'),
-    ('M3 aluminium spacers, 3 mm long, 5 mm OD, 10', 6.99, amz('B0CQFF328L'), 'jaw hinges, with a 0.5 mm M3 washer each to make 3.5 mm. No 3.5 mm spacer found. 4 packs left'),
+    ('M3 washers, 0.5 mm thick, a few', 2.00, 'any hardware shop; the price is a guess', 'jaw hinges, one each side (it was a 3.5 mm spacer until the hinge tab came in against the hood). No 3.5 mm spacer found. 4 packs left'),
     ('Foam tape, hook-and-loop strap, small cable ties', 12.00, 'any hardware shop', 'the bus boards, IMU and camera on tape, the battery on a strap, the regulators and wires tied'),
 ]
 PRINT = [
@@ -69,9 +68,26 @@ ELECTRONICS = [
     ('Micro USB OTG lead, short', '1', 5.00, 'any shop', 'the Pi to the U2D2'),
     ('3-pin 2.54 mm servo leads (5264), 15 and 30 cm', '12', 1.00, 'search "5264 3 pin 2.54 mm female to female". **No listing confirmed**', 'the Feetech chains. Listings disagree on whether a 15 cm lead comes with each servo. Across a joint, leave slack'),
 ]
-SCREW_USE = {('M2', 6): 'STS3215 cases; XL/XC330 horns; shoe, cover and body screws. Self-tapping',
+WIRES_NOTE = {
+    'thigh_L': 'Each thigh servo has 2 sockets, wired through. A lead from the knee to the hip pitch, and one out of the hip pitch toward the roll servo. Plug them in now: the plate covers the sockets.',
+    'shin_L': 'The ankle is the end of its leg\'s chain: one lead up to the knee. Leave slack across the knee and tie it to the rail.',
+    'body': 'One lead from each hip yaw servo to the body, and one on to its roll servo, before each servo goes in.',
+    'legs': 'Plug the leg\'s lead into the roll servo as it comes on, with slack for the hip\'s whole range.',
+    'column': 'A lead between the two neck servos, and one down toward the body, with slack for the neck\'s range.',
+    'headbench': 'A lead between the yaw and roll servos, with slack for the yaw\'s range of +/- 2.5 rad: it winds round.',
+    'framebench': 'The beak servo is the end of the head\'s chain: one lead, plugged in before it goes in.',
+    'head': 'The bus board\'s 2 sockets feed the head chain and the legs. Plug in its leads, and the right-angle USB-C lead to the Pi, before the board goes on.',
+}
+
+
+def driver(sz):
+    return {'M2': 'small Phillips', 'M2.5': 'small Phillips', 'M2 flat': 'small Phillips', 'M3': '2.5 mm hex', 'M3 flat': '2 mm hex'}.get(sz, 'driver')
+
+
+SCREW_USE = {('M2.5', 5): 'the bus board, into its brass standoffs. Kept with the board, if yours came with them',
+             ('M2', 6): 'STS3215 cases; XL/XC330 horns; shoe, cover and body screws. Self-tapping',
              ('M2', 8): 'XL/XC330 frame holes, inner ears, horns over a bearing. Self-tapping',
-             ('M3 flat', 6): 'ankle rear horn: flat heads, flush under the bearing',
+             ('M3 flat', 6): 'ankle rear horn: flat heads, flush under the bearing', ('M2 flat', 5): 'ankle idler: flat heads, flush under the bearing',
              ('M3', 10): 'STS3215 horns, through the bracket and its boss', ('M3', 8): 'ankle horns, through the outer ear', ('M3', 12): 'soles, from below', ('M3', 14): 'jaw hinges'}
 
 
@@ -100,7 +116,7 @@ def bom(spec):
     cost = sum(servos[k] * pr for _, k, pr, _, _ in BUY)
     n44 = servos['STS3215_C044']
     cost += max(0, n44 - 7) * (25.99 - 23.98)      # only 7 at the lower price
-    bearings = 18.39 + 42.72 + 6.79 + 11.27 + 25.00
+    bearings = 18.39 + 42.72 + 6.79 + 11.27
     packs = sum(p[1] for p in PACKS)
     fil = sum(p[1] for p in PRINT)
     elec = sum(e[2] * (int(e[1]) if 'pack' not in e[0] else 1) for e in ELECTRONICS)
@@ -144,13 +160,12 @@ def bom(spec):
           '## Bearings and idlers', '', '| Have | Part | Need | Where | Used for |', '|---|---|---|---|---|']
     for what, k, where, note in BEARINGS:
         L.append(f'| ☐ | {what} | {bear[k]} | {where} | {note} |')
-    L += [f'| ☐ | {HORNS[0]} | 1 | {HORNS[1]} | {HORNS[2]} |']
     L += ['| ☐ | ROBOTIS FPX330-H101 4-piece set | 1 | [ROBOTIS US](https://robotis.us/products/fpx330-h101-4pcs-set): $11.27. Not on Amazon | '
           'the idlers and caps for the neck and head pitch. ROBOTIS sells them only in this set, and the servos don\'t include them |']
     L += ['', '## Screws', '', 'Buy packs and keep spares; small screws get lost.', '', '| Have | Size | Need | Used for |', '|---|---|---|---|']
     for (sz, ln), n in sorted(screws.items()):
         L.append(f"| ☐ | {sz} x {ln} mm | {n} | {SCREW_USE.get((sz, ln), '')} |")
-    L += ['| ☐ | M3 spacer, 3.5 mm | 2 | jaw hinges: the hinge tabs turn on them |', '', 'These packs cover the table:', '',
+    L += ['| ☐ | M3 washer, 0.5 mm | 1 | the far hinge of the jaw: its tab turns on it |', '', 'These packs cover the table:', '',
           '| Have | Pack | Price | Where | Covers |', '|---|---|---|---|---|']
     for what, pr, where, note in PACKS:
         L.append(f'| ☐ | {what} | ${pr:.2f} | {where} | {note} |')
@@ -177,7 +192,7 @@ def bom(spec):
         f.write('\n'.join(L))
 
 
-TITLE = {'jawbench': '10. The jaw and its rod', 'head': '11. The head', 'thigh_L': '1. Thighs', 'shin_L': '2. Shins and ankles', 'shoe_L': '3. Shoes', 'leg_L': '4. Join each leg', 'body': '5. Chassis and hips',
+TITLE = {'framebench': '9b. The head frame and the beak servo', 'jawbench': '10. The jaw', 'head': '11. The head', 'thigh_L': '1. Thighs', 'shin_L': '2. Shins and ankles', 'shoe_L': '3. Shoes', 'leg_L': '4. Join each leg', 'body': '5. Chassis and hips',
          'legs': '6. Legs onto the hips', 'column': '7. Neck column', 'torso': '8. Neck and body shell', 'headbench': '9. Head yaw and roll'}
 WARN = {
     'thigh_L': 'The cable sockets are on each servo\'s rear face, behind a window in the plate. Plug the cables in from outside, before the cover, with room to turn the wires under it.',
@@ -188,22 +203,23 @@ WARN = {
     'column': 'Fit both horns to each servo before it goes in, at mid-range.',
     'torso': 'Do the neck before the body shell: the shell blocks the neck\'s horn screws. Do the shell before the head: the head will not pass through its slot.',
     'headbench': 'The head yaw servo\'s screws under the bridge go in here, on the bench: once this is on the neck, they cannot be reached.',
-    'head': 'The roll servo\'s rear horn screws go in before the beak servo, which covers them. The jaw goes in before the hood, for the rod\'s screw. The hinge screws and the 2 at the back hold the hood on, so they are last.',
+    'head': 'The beak servo goes into the head frame first, on the bench: the roll servo blocks its screws afterwards. The jaw goes in before the hood. The far hinge screw and the 2 at the back hold the hood on, so they are last.',
 }
 
 
 def guide():
-    L = ['# How to build milli', '', 'Generated by `tools/make_docs.py` from the order in `tools/assembly.py`. That order is checked: every part can',
+    L = ['# How to build the duck' if G.RECIPE == 'hybrid' else '# How to build the all-Dynamixel duck', '', 'Generated by `tools/make_docs.py` from the order in `tools/assembly.py`. That order is checked: every part can',
          'slide in along the path shown without hitting what is already on, and a key reaches every screw (`python -I tools/assembly.py`).', '',
-         f"Watch each animation, then do the same. Parts: [BOM.md]({'../BOM.md' if G.RECIPE == 'hybrid' else 'BOM.md'}). The right side is the mirror of the left, so only the left is shown.", '',
+         ('See it whole first: [the 30-second reveal](../images/assembly/dynamixel/reveal_30s.mp4) and [the 5-minute build](../images/assembly/dynamixel/build_5min.mp4). ' if G.RECIPE == 'dynamixel' else '') + f"Watch each animation, then do the same. Parts: [BOM.md]({'../BOM.md' if G.RECIPE == 'hybrid' else 'BOM.md'}). The right side is the mirror of the left, so only the left is shown.", '',
          '> ⚠ marks what has to happen in that order, or cannot be done later.', '',
          '## 0. Before you start', '',
          '1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.',
          '2. **Set each servo\'s ID on its own**, before any are chained: ' + ('Feetech 1-10, Dynamixel 1-5, on their separate buses' if G.RECIPE == 'hybrid' else 'Dynamixel 1-15') + '. Label each servo.',
          '3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint\'s range will be off-centre.',
          '4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.', '',
-         'Tools: 1.5 and 2 mm hex or small Phillips drivers, soldering iron (a grown-up, if you are young), threadlock for screws into metal.', '']
-    for sec in A.sections_for(A.Build(G.load())):
+         'Tools: a small Phillips driver, 2 and 2.5 mm hex keys, soldering iron (a grown-up, if you are young), threadlock for screws into metal. Self-tapping screws into plastic: stop when snug, as they strip.', '']
+    B_ = A.Build(G.load())
+    for sec in A.sections_for(B_):
         k = sec['key']
         if k not in TITLE:
             continue
@@ -212,8 +228,24 @@ def guide():
             L += [f'> ⚠ {WARN[k]}', '']
         elif k == 'thigh_L':
             L += ['> ⚠ The cable sockets are in notches at the edges of each servo\'s rear face. Plug the cables in through the windows in the thigh plate, before the cover.', '']
-        for i, (cap, _, _) in enumerate(sec['steps'], 1):
-            L.append(f'{i}. {cap}')
+        if k in WIRES_NOTE and G.RECIPE != 'hybrid':
+            L += [f'> 🔌 {WIRES_NOTE[k]}', '']
+        need, total = [], collections.Counter()
+        for cap, items, pats in sec['steps']:
+            names = [n for n in B_.screws if any(re.search(p_, n) for p_ in pats)]
+            for n in names:
+                f_ = B_.screws[n][1]['fast']
+                total[(f_['size'], round(f_['L'] * 1000))] += 1
+        if total:
+            L += ['**Screws for this section:** ' + ', '.join(f'{c} x {sz} x {ln} mm' for (sz, ln), c in sorted(total.items())) + (' (each side)' if k.endswith('_L') else ''), '']
+        for i, (cap, _, pats) in enumerate(sec['steps'], 1):
+            here = collections.Counter()
+            for n in B_.screws:
+                if any(re.search(p_, n) for p_ in pats):
+                    f_ = B_.screws[n][1]['fast']
+                    here[(f_['size'], round(f_['L'] * 1000))] += 1
+            how = '; '.join(f'{c} x {sz} x {ln} mm, {driver(sz)}' for (sz, ln), c in sorted(here.items()))
+            L.append(f'{i}. {cap}' + (f' *({how})*' if how else ''))
         if k.endswith('_L'):
             L += ['', 'Then the same for the right side, mirrored.']
         L.append('')
@@ -237,24 +269,24 @@ def bom_dynamixel(spec):
          f'**{n} XL330-M288-T.** ROBOTIS US: [sold out](https://robotis.us/products/dynamixel-xl330-m288-t), lead time to the end of November, $27.49. '
          '[Seeed](https://www.seeedstudio.com/Servo-Motor-1-5V-103RPM-Brush-mm-p-6783.html): $31.40, limit 2 per account, sold as numbered Reachy Mini servos (No. 1-6, each its own listing, with an arm and a preset ID: set the ID again).', '',
          '| From a Koch arm pair | Count | Use |', '|---|---|---|',
-         '| XL330-M288-T (follower) | 4 | the right servo: 4 of the 15 |', '| XL330-M077-T (leader) | 6 | same case, so it fits, but about a third of the torque: no walking joint. Check any use with its own numbers. Possibly the beak |',
+         '| XL330-M288-T (follower) | 4 | the right servo: 4 of the 15 |', '| XL330-M077-T (leader) | 6 | same case, so it fits, but about a third of the torque: no walking joint. **Optional for the beak:** the jaw needs little torque, and it frees an M288 for a joint that does. Check any use with its own numbers |',
          '| XL430 (follower) | 2 | a bigger case: does not fit |', '',
          'What 4 M288s can build now: the neck and head (5 joints, with an M077 on the beak), or one leg. Either tests the fit, connectors and screws on real parts.', '',
          '**They run past their rating:** on a 2S pack straight, as Microduck\'s trainer models its own (6.5-8.2 V), against ROBOTIS\'s 6 V maximum. Expect a shorter life than ROBOTIS rates. A 5 V supply would be within rating, but the walks here were trained at 2S.', '',
          '## Horns, idlers, bearings', '', '| Have | Part | Need | Where | Used for |', '|---|---|---|---|---|',
-         f'| ☐ | ROBOTIS HNX330-N102 horns, 5 pack | {-(-n // 5)} packs | [ROBOTIS US](https://robotis.us/hnx330-n102-5pcs), [OpenELAB](https://openelab.io/products/dynamixel-hnx330-n102) | **ROBOTIS lists the horn as not included.** One per servo. Your Koch servos may still have theirs |',
          f"| ☐ | MR2216ZZ bearing, 16 x 22 x 4 mm | {bear['MR2216ZZ']} | {amz('B0C5ZCVGNP', 'Amazon, ET2216ZZ')}: 10 for $42.72, so 2 packs | round each horn. Check a horn fits the bore before printing |",
          f"| ☐ | 6700ZZ bearing, 10 x 15 x 4 mm | {bear['6700ZZ']} | {amz('B0FQ4VYXRP')}: 10 for $6.79 | each shoe's inner ear |",
-         '| ☐ | ROBOTIS FPX330-H101 set | 1 | [ROBOTIS US](https://robotis.us/fpx330-h101-4pcs-set/): $11.27 | idlers for the neck, head pitch and head roll |', '',
+         '| ☐ | ROBOTIS FPX330-H101 set, 4 idlers | 2 | [ROBOTIS US](https://robotis.us/fpx330-h101-4pcs-set/): $11.27 each. Your Koch arm\'s spares count | 5 idlers: the neck, head pitch, head roll and both ankles |', '',
+         '**Horns:** none to buy. Every ROBOTIS photo and ROBOTIS\'s own model have the horn on the servo, and the Koch arm\'s bill of materials buys none. If a servo of yours came without one, it is the HNX330-N102.', '',
          '## Screws', '', 'Each Dynamixel comes with its M2 screws (6 x 6 mm, 10 x 8 mm), per ROBOTIS, so most of these you have, if you kept them.', '', '| Have | Size | Need |', '|---|---|---|']
     for (sz, ln), c in sorted(screws.items()):
         L.append(f'| ☐ | {sz} x {ln} mm | {c} |')
-    L += ['| ☐ | M3 spacer, 3.5 mm | 2: a 3 mm spacer and a 0.5 mm washer |', '', 'Packs: see [the hybrid list](../../BOM.md). Also foam tape, a hook-and-loop strap, small cable ties.', '',
+    L += ['| ☐ | M3 washer, 0.5 mm | 1: between the far hinge tab and the hood |', '', 'Packs: see [the hybrid list](../../BOM.md). Also foam tape, a hook-and-loop strap, small cable ties.', '',
           '## Printed parts', '', f'About {pla * 1000:.0f} g of PLA and {tpu * 1000:.0f} g of TPU 95A, as modelled. STLs: [prints/dynamixel/](../../prints/dynamixel/README.md).', '',
           '## Electronics', '', 'One bus, so one board. Sizes are from listings, in places checked against everything that moves.', '',
           '| Have | Part | Need | Where | Note |', '|---|---|---|---|---|',
           '| ☐ | Raspberry Pi Zero 2 W | 1 | [PiShop](https://www.pishop.us/product/raspberry-pi-zero-2-w/): its page marked it out of stock on 2026-11-03. Look at other resellers | in the head |',
-          '| ☐ | ROBOTIS U2D2 | 1 | [RobotShop](https://www.robotshop.com/products/robotis-u2d2-usb-to-serial-adapter-for-dynamixel): $46.76, in stock on 2026-11-03. [ROBOTIS US](https://robotis.us/products/u2d2): sold out. **The Koch arm has one or two already** | on the Pi\'s USB, flat under the Pi\'s mount. It gives the servos no power |',
+          '| ☐ | Waveshare Bus Servo Adapter (A) | 1 | [Waveshare](https://www.waveshare.com/bus-servo-adapter-a.htm). **The one on your Koch arm: nothing to buy.** Set both jumpers to B, USB to servo. Its silkscreen says DC 9-12.6 V and this duck\'s pack is 7.4-8.4 V: the servo rail runs straight through, as your arm\'s lower supply shows, but try it on the bench | stands on the back of the Pi\'s plate. Replaces the U2D2 |',
           '| ☐ | 2S LiPo, 450 mAh, 60C, 43 x 23 x 13 mm, XT30 | 1 | Gens Ace GEA4502S60XT3: [listing](https://www.rccarshop.co.uk/GEA4502S60XT3-GENSACE-ADVENTURE-LIPO-2S-7-4V-450-60C-XT30-43X23X13MM-28G), a UK shop whose page may mean out of stock. Any pack this size or smaller | in its slot, on a strap |',
           f"| ☐ | 5 V 8 A UBEC | 1 | {amz('B07DD9L6P6', 'Amazon, FEICHAO')}, $18.98 | 39 x 21 x 6 mm, taped to the battery's back: the Pi and IMU. **Set its jumper to 5 V and measure first** |",
           '| ☐ | BNO085 IMU board | 1 | [Adafruit 4754](https://www.adafruit.com/product/4754), $29.50, in stock on 2026-11-03 | on the top plate |',

@@ -11,6 +11,8 @@ import argparse
 import os
 import sys
 
+import math
+
 import numpy as np
 import trimesh
 
@@ -21,11 +23,11 @@ import checks as C  # noqa: E402
 import geom as G  # noqa: E402
 import printable as PR  # noqa: E402
 
-CLEAR = {'M2': 0.00115, 'M3': 0.0017}
-PILOT = {'M2': 0.0008, 'M3': 0.00125}
+CLEAR = {'M2': 0.00115, 'M2.5': 0.00145, 'M3': 0.0017}
+PILOT = {'M2': 0.0008, 'M2.5': 0.00105, 'M3': 0.00125}
 SERVO_GAP = 0.00015                                # a printed pocket round a bought part, each side: 0.3 mm on a width. The model draws them touching, and FDM prints bores small
 BEARING_GAP = 0.00005                              # on a bearing seat's radius: 0.1 mm on the diameter, a firm press in PLA. Print one joint first
-HEAD_R, HEAD_H = {'M2': 0.0019, 'M3': 0.0027}, 0.002   # a pan head, and a turn of tolerance
+HEAD_R, HEAD_H = {'M2': 0.0019, 'M2.5': 0.00225, 'M3': 0.0027}, 0.002   # a pan head, and a turn of tolerance
 MATE_GAP = 0.0001                                  # where one printed part sits in another
 FUSION = G.parts_path()
 TEST = {'knee': ['L thigh frame', 'L knee lid', 'L shin']}
@@ -62,6 +64,16 @@ def grown(g, c):
     return g
 
 
+def shell_round(g, c):
+    """What a shell leaves for a lid in it: the lid's plate, whole, with a gap (its bore is the lid's business, not the shell's)."""
+    g = {k: v for k, v in g.items() if k != 'targets'}
+    if g['kind'] == 'plate':
+        cx, cy = (sum(p[k] for p in g['pts']) / len(g['pts']) for k in (0, 1))
+        g['pts'] = [[x + c * (x - cx) / math.hypot(x - cx, y - cy), y + c * (y - cy) / math.hypot(x - cx, y - cy)] for x, y in g['pts']]
+        return g
+    return grown(g, c)
+
+
 def rank(B, part):
     """Where two printed parts are drawn in the same place, the lower rank gives way. (The spec overlaps them so one solid joins them; a printer can't. 2026-11-03:
     a sole 1 mm into its shoe, an eye ring through its face, lids in their trays' end walls: all invisible, as every check took a link as one solid.)"""
@@ -75,7 +87,8 @@ def rank(B, part):
     if any(g.get('material') == 'tpu' for g in gs):
         return 1
     if ' lid' in part or 'sheet' in part:
-        return 2
+        # (a lid with a bearing seat ranks over a shell: the cover ate a slot through the seat's wall, the race showing through it, and only the user's eye found it, 2026-11-04)
+        return 3.2 if any(' seat' in g['name'] for g in gs) else 2
     if any(g['role'] == 'shell' for g in gs):
         return 3
     return 5
@@ -96,6 +109,12 @@ def pockets(B, part, m):
             if p['kind'] == 'P':
                 if rank(B, name) <= mine:
                     continue
+                if mine == 3 and rank(B, name) == 3.2:
+                    t = shell_round(g, MATE_GAP)
+                    tool = C.to_manifold(G.mesh_of(t))
+                    if C.overlap(m, tool) > 1e-12:
+                        out.append((t, tool))
+                    continue
                 # a plain shape: with a gap. One with cuts, or a shell's wall: exactly that shape, or the cuts would be lost
                 if g['kind'] in ('rbox', 'cyl') and n not in B.cuts and (ln, i) not in B.S.wall:
                     t = grown(g, MATE_GAP)
@@ -104,7 +123,7 @@ def pockets(B, part, m):
                     if C.overlap(m, tool) > 1e-12:
                         out.append((dict(exact=n, name=n), tool))
                     continue
-            elif g['role'] == 'actuator' or n in ('Pi Zero 2 W', 'U2D2', 'IMU', 'battery 2S 850 mAh', 'servo bus board', 'camera') or n.endswith('5 V regulator') or n.endswith('foot switch'):
+            elif g['role'] == 'actuator' or n in ('Pi Zero 2 W', 'U2D2', 'Waveshare bus board', 'IMU', 'battery 2S 850 mAh', 'servo bus board', 'camera') or n.endswith('5 V regulator') or n.endswith('foot switch'):
                 t = grown(g, SERVO_GAP)
             elif n.endswith('outer race'):
                 t = dict(g, r=g['r'] + BEARING_GAP)
@@ -148,9 +167,9 @@ def hole_list(B, part):
                 if C.overlap(solid_part(B, part), tool) > 1e-11:
                     out.append((p, d, HEAD_R[sz] + 0.0002, -HEAD_H, 0.0, n))
             continue
-        if under:                                  # it clamps this part: a clearance hole, its head's counterbore above
+        if under or ' spacer' in part:             # it clamps this part: a clearance hole, its head's counterbore above
             out.append((p, d, CLEAR[sz], -0.0005, f['L'], n))
-            out.append((p, d, 0.0029 if sz == 'M3' else 0.0021, -0.03, 0.0, n))
+            out.append((p, d, {'M3': 0.0029, 'M2.5': 0.0024}.get(sz, 0.0021), -0.03, 0.0, n))
         else:
             out.append((p, d, PILOT[sz], -0.0005, f['L'] + 0.0005, n))
     return out
@@ -183,6 +202,9 @@ def main():
         mesh = m.to_mesh()
         tm = trimesh.Trimesh(np.asarray(mesh.vert_properties[:, :3], float) * 1000, np.asarray(mesh.tri_verts, int))
         best = PR.best_orientation(tm)
+        if part == 'head frame':
+            # (least overhang area stood it 141 mm tall on 330 mm2, its supports trapped inside. With its band on the bed: 60 mm, 3 x the first layer, and under half the support landing on the part)
+            best = dict(best, T=trimesh.transformations.rotation_matrix(np.radians(90), [0, 1, 0]) @ np.asarray(best['T'], float))
         tm.apply_transform(best['T'])
         tm.apply_translation(-tm.bounds[0])
         name = part.replace(' ', '_') + '.stl'
@@ -190,7 +212,7 @@ def main():
         e = tm.extents
         gs = B.parts[part]['geoms']
         solid = solid_part(B, part)
-        fusion[part] = dict(link=B.idx[gs[0]][0], geoms=gs, volume_cm3=abs(m.volume()) * 1e6,
+        fusion[part] = dict(link=B.idx[gs[0]][0], geoms=gs, volume_cm3=abs(m.volume()) * 1e6, print_T=np.asarray(best['T'], float).tolist(),
                             material=B.idx[gs[0]][2].get('material'), color=B.idx[gs[0]][2]['color'],
                             holes=[dict(p=p.tolist(), d=d.tolist(), r=r, a=a_, b=b_, screw=sc) for p, d, r, a_, b_, sc in hole_list(B, part)],
                             pockets=[t for t, _ in pockets(B, part, solid)],
@@ -213,7 +235,7 @@ def main():
         for part, name, e, v, n_ in rows:
             mat = 'TPU 95A' if fusion[part]['material'] == 'tpu' else 'PLA'
             L.append(f"| {part} | {name} | {e[0]:.0f} x {e[1]:.0f} x {e[2]:.0f} | {v:.1f} | {mat} | {orient[part]['overhang']:.0f}{' (none)' if orient[part]['overhang'] < 1 else ''} |")
-        L += ['', 'The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
+        L += ['', 'The head frame prints in orange, in one filament: only its rim shows below the hood. The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
               'A part with an overhang figure needs support or a bridge there; tools/printable.py counts faces, not a slicer, so it overstates short bridges. Check each in your slicer.', '']
         servo_, bear_, screws_ = ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
         L += ['', '## Print one joint first', '', f'Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 {servo_}, 1 {bear_},',

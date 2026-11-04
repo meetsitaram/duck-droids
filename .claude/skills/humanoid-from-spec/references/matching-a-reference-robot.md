@@ -103,3 +103,5 @@ the next build starts where milli ended. Read it before a look-alike, and whenev
 - Checks that suddenly take ten minutes usually mean a geom with zero or negative size.
 - Videos on X: the syndication endpoint (`cdn.syndication.twimg.com/tweet-result?id=...&token=...`) lists the mp4;
   OpenCV reads frames when ffmpeg is missing. Keep the clip and frames local (`reports/compare/` is ignored).
+
+**Correction (2026-11-04):** earlier notes say microduck drives its jaw through a rod. Its model shows no rod: the beak servo's shaft is on the hinge, the tab on the horn, a bearing on the far side, and the head roll servo sits behind the yaw axis. Its body is two shells, left and right.

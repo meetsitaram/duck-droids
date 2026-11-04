@@ -148,6 +148,7 @@ class Builder:
     def fillet(self, body, r, name):
         """Round every edge of body; on failure try smaller, then give up and delete (never leave a broken
         feature in the timeline)."""
+        n0 = body.faces.count
         for k in (1.0, 0.7, 0.45):
             edges = coll([body.edges.item(i) for i in range(body.edges.count)])
             fi = self.f.filletFeatures.createInput()
@@ -159,7 +160,9 @@ class Builder:
                 ff = self.f.filletFeatures.add(fi)
             except RuntimeError:
                 continue
-            if ff is None:                           # no timeline: it worked, and the same body has the new shape
+            # no timeline: it worked if the same body has the new shape. (Direct mode does return a feature, whose health then read as a failure: it was deleted, and for two builds
+            # no box had a fillet. 3,235 sharp edges; the user saw it, 2026-11-04)
+            if ff is None or (body.isValid and body.faces.count > n0):
                 return body
             if ff.healthState == adsk.fusion.FeatureHealthStates.HealthyFeatureHealthState:
                 ff.name = name

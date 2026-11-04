@@ -286,3 +286,47 @@ The same process on a second servo. The first round's fixes carried over and its
 | Grooves for wires in a small thigh cover came right through its 2 mm wall, and its servo corners came through too. The picture showed it, again | A cover drawn in proportion is too small once its servos are not to scale: size it from what's inside. Send wires where there is room (out the back) |
 | Fusion had a sibling document left open with a saved copy: a failed script left behind whatever it opened | `try`/close around anything a script opens. Check `documents` at the start and the end |
 | The motors at hand decide what can be built this week, and that isn't the count the design needs: 4 M288s from a Koch pair, against 15 | Ask what's on the shelf before planning a build around it |
+
+## Real parts in the model (2026-11-04)
+
+The user looked at the picture and asked what held a servo on one side. Each of these passed every check.
+
+- **A horn drawn tall enough to reach its plate passed THREAD and FIT for two builds.** The real horn stopped 2.5 mm short, and the 4 screws spanned air. A stand-in must be drawn at the real part's size, even when that makes something else look broken: that is the finding. Now a printed boss, and SEAT, proven with `--bad seat`.
+- **A servo held at one end of its case.** Each screw had a reason and no check counts ends. ENDS names the joints that are one-ended and why, `--bad ends`.
+- **Put the maker's CAD in the model, not boxes.** The first interference run against real parts found round pocket corners on a square case (no servo would have seated), raised bands on the STS3215's faces under lids and frames, and a rear horn in the STEP file that the servo doesn't come with. Read what a STEP file includes before trusting it. A maker's model overlaps itself: filter that out of the report.
+- **Instances of one component in nested occurrences composed their transforms** and landed in the wrong place: copy the bodies instead.
+- **A low-rank part can lose a wall it needs.** The rule "a lid gives way to a shell" cut a slot through a bearing seat's wall, the race showing through, with the cover hidden nothing looked wrong in the checks. Who gives way depends on what the part does.
+- **A printed spacer can't be part of something that drops into place.** The boss on the head frame stood in a bearing's bore. PATH caught it: make it loose.
+
+**Fillets, and how a look went unchecked:**
+
+- A fillet that "worked" was deleted every time: Direct mode returns a feature whose health reads as a failure. 3,235 sharp edges of 3 mm or more, across two builds and every check. Nothing measured it, so nothing could fail. `build.look_check()` counts them now.
+- **Round the finished part, not its pieces.** Each box rounded by itself left a V-groove at every join: a notch to crack from, in the prints too, that looked like many small pieces.
+- **Order: join, round, then cut pockets and holes.** What a servo or a bearing fits against stays crisp. Round outside edges and straight inside corners; a round inside corner is a boss on a plate, where a race sits.
+- **Reject a fillet that loses over 3 %.** Fusion called it a success when an inner ear went from 2.4 cm3 to nothing. `verify` found it, not the fillet.
+- **Size the radius to the part, against the reference.** 1 mm on a 60 mm cover is invisible. A shell's rim needs its inside curved too, by the radius less the wall.
+- **If the look is in Fusion, the prints must come from Fusion** (`tools/prints_from_fusion.py`), or the model isn't what gets printed.
+
+**Weight and parts:** 190 screws were a PLA disc each, in a flat 6 % allowance that also double-counted the bearings: every screw has its steel mass now, and the allowance is cables only. Count printed parts and screws per joint in the design review: a beam estimate says nothing about how many pieces it takes. Beam estimates also have no corners in them: a sharp inside corner multiplies the stress 2-3 x.
+
+**Read the maker's drawing before asking the user to measure:** Waveshare's page had every hole and connector.
+
+**The user's review of that build, each from a close-up, each past every check:**
+
+- A hole 0.4 mm from a plate's edge, on a near-end screw added that day: new parts get the old checks only. EDGE measures the plastic round every clearance hole now; a fix isn't finished until something looks at what it added.
+- A 0.2 cm3 lid strip beside its own bracket read as a mistake, and wasn't needed: the rear idler already held that end. Ask of each small part whether it does anything.
+- A horn's centre screw under solid plastic: 4 screws out to reach 1. No check saw it, as the screw that comes with a servo wasn't a screw in the spec, and ACCESS only asks whether a screw can be reached while it's being fitted. Reaching it later is a different question.
+- A hinge tab 5 mm off the hood, with a hub on it: a clearance number (GAP, for things that move against each other) used where 1 mm would do. Measure the reference's: its tab runs on from the jaw's skin.
+- A reference's parts list is in its model: open it first. Microduck's shows a two-part body, left and right, a speaker at the back of the head and a battery hanging behind the body, all there all along.
+
+**The jaw, from the same review:**
+
+- **We wrote down that a design was the reference's without opening its model.** A crank and rod were "as microduck's" for weeks, in these notes and in what I told the user. Its model has neither: its beak servo's shaft is on the jaw's hinge, and the tab screws to the horn. The user asked why the servo sat so far back. Check a claim like that against the file before repeating it.
+- **Two servos in the wrong places looked fine in every check:** ask of each joint why its servo is where it is. Ours was there from an early layout decision that no one looked at again. Fixing it took out a crank, a rod, a lever, a lid, a tray wall and their screws.
+- **A clearance swept wider than the real motion** made a big triangular recess. Sweep the range a joint has, the way it goes.
+- **A hole in the hood** came from a small tray wall above the servo, not the servo I first blamed: the shell gives way to what's inside it. PIERCE checks that now, proven on that wall. Measure before fixing: I'd moved the hinge for the wrong reason first.
+- **A check that passed on the broken design wasn't checking:** the first PIERCE passed on it too, and only trying it on the real fault showed that.
+
+
+- **A fit check can pass because the part fits itself.** The ankle bearing's outer race was listed in the printed inner ear, so the ear exported with a 12.5 mm hole for a 15 mm bearing, and every check passed. It turned up only when a colour audit found a steel-grey solid in a printed part. BOUGHT in `tools/assembly.py` now fails any steel solid listed in a printed part. Measure the exported STL's holes against the real part, not the model against itself.
+- **One printed part, one colour, unless the docs say how.** The head frame was one STL in two colours, and only the hood's two colours were in the print notes. The user spotted it in a video and chose all orange. COLOUR in `tools/assembly.py` now fails a part with two colours and no print note.

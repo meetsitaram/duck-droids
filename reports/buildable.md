@@ -2,18 +2,18 @@
 
 From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 
-90 checks: 90 pass, 0 warn, **0 fail**
+96 checks: 96 pass, 0 warn, **0 fail**
 
 ## LOAD
 
 | status | item | detail |
 |---|---|---|
-| PASS | shin, under the knee horn | 12.7 MPa (allowed 15): 45 N, section 179 mm2 |
-| PASS | shin, at the cap | 0.4 MPa (allowed 15): 45 N, section 1228 mm2 |
-| PASS | thigh, hip to knee | 0.4 MPa (allowed 15): 45 N, section 814 mm2 |
-| PASS | roll bracket, side arm | 12.5 MPa (allowed 15): 45 N, section 89 mm2 |
-| PASS | roll bracket, front plate | 11.5 MPa (allowed 15): 45 N, section 59 mm2 |
-| PASS | yaw bracket | 1.3 MPa (allowed 15): 45 N, section 951 mm2 |
+| PASS | shin, under the knee horn | 12.2 MPa (allowed 15): 44 N, section 180 mm2 |
+| PASS | shin, at the cap | 0.4 MPa (allowed 15): 44 N, section 1293 mm2 |
+| PASS | thigh, hip to knee | 0.4 MPa (allowed 15): 44 N, section 815 mm2 |
+| PASS | roll bracket, side arm | 11.9 MPa (allowed 15): 44 N, section 90 mm2 |
+| PASS | roll bracket, front plate | 10.7 MPa (allowed 15): 44 N, section 60 mm2 |
+| PASS | yaw bracket | 1.2 MPa (allowed 15): 44 N, section 952 mm2 |
 
 ## ONE
 
@@ -38,6 +38,8 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | head fork |  |
 | PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | beak lid |  |
 | PASS | beak crank |  |
@@ -71,6 +73,8 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | head fork |  |
 | PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | beak lid |  |
 | PASS | beak crank |  |
@@ -86,9 +90,9 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | status | item | detail |
 |---|---|---|
 | PASS | L hip yaw lid | 52 x 32 x 4 mm |
-| PASS | L yaw bracket | 42 x 31 x 60 mm |
+| PASS | L yaw bracket | 42 x 31 x 63 mm |
 | PASS | L hip roll lid | 4 x 32 x 52 mm |
-| PASS | L roll bracket | 39 x 34 x 24 mm |
+| PASS | L roll bracket | 39 x 37 x 24 mm |
 | PASS | L thigh frame | 82 x 47 x 62 mm |
 | PASS | L hip pitch lid | 52 x 4 x 32 mm |
 | PASS | L knee lid | 32 x 4 x 52 mm |
@@ -102,8 +106,10 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | neck lid | 27 x 4 x 6 mm |
 | PASS | head pitch lid | 27 x 4 x 6 mm |
 | PASS | head fork | 38 x 40 x 56 mm |
-| PASS | head yaw bracket | 30 x 41 x 28 mm |
+| PASS | head yaw bracket | 30 x 41 x 30 mm |
 | PASS | head roll lid | 4 x 38 x 27 mm |
+| PASS | head roll spacer | 3 x 17 x 17 mm |
+| PASS | head roll rear spacer | 3 x 17 x 17 mm |
 | PASS | head frame | 124 x 96 x 51 mm |
 | PASS | beak lid | 6 x 4 x 24 mm |
 | PASS | beak crank | 21 x 15 x 26 mm |

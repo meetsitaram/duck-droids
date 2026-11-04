@@ -7,7 +7,7 @@ Nothing here has been built. Connector positions are from ROBOTIS's own XL330 mo
 | Rail | From | Feeds | Worst case |
 |---|---|---|---|
 | Battery, 7.4 V nominal, **8.4 V full** | 2S 450 mAh 60C, on its XT30 | all 15 XL330s, directly, as Microduck's trainer models its own. **Past ROBOTIS's 6 V maximum** | 27 A from the pack. All 15 stalling at 5 V would be 22 A (1.47 A each, per ROBOTIS), and more at 7.4 V: expect the pack's voltage to sag first |
-| Logic 5 V | 1 UBEC, 8 A, jumper at 5 V: **measure it before connecting anything** | Pi Zero 2 W, IMU (through the Pi), U2D2 | under 1.5 A |
+| Logic 5 V | 1 UBEC, 8 A, jumper at 5 V: **measure it before connecting anything** | Pi Zero 2 W, IMU (through the Pi). The bus board's logic comes over its USB-C | under 1.5 A |
 
 No power switch is designed in: unplug the XT30. Each JST EH lead is rated by ROBOTIS's 21 AWG crimp at about 3 A, so power each leg and the neck by its own lead from the battery, rather than one chain through all 15.
 
@@ -15,8 +15,9 @@ No power switch is designed in: unplug the XT30. Each JST EH lead is rated by RO
 
 | From | To | How |
 |---|---|---|
-| Pi micro USB, OTG lead | U2D2 | |
-| U2D2 | the chains | data and ground only. The U2D2 gives no power |
+| Pi micro USB (the port marked USB), right-angle OTG lead | Waveshare Bus Servo Adapter (A), USB-C | both jumpers at B. Right-angle at both ends: there is 11 mm beside the board and little under the Pi |
+| Bus board's 2 sockets | the chains | D, V, G. V is only what its DC terminals are given. Your Koch arm needed its sockets eased to take Dynamixel plugs: do it before fitting |
+| Battery lead, in the neck | bus board's DC terminals | feeds the head's chain. **Its silkscreen says DC 9-12.6 V, and the pack is 7.4-8.4 V. Bench test first** |
 | Pi I2C (pins 3, 5), 3V3, ground | IMU in the body | 4 thin wires down the neck |
 | Pi GPIO, ground | foot switches | 2 wires down each leg |
 | Pi camera port | camera | its ribbon. Leave slack: the camera is on the hood, the Pi on the frame |

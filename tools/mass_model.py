@@ -11,7 +11,7 @@ Rules (spec/robot.py MATERIALS; a geom's 'material' defaults by role and colour 
   linkage   7075 rods and cranks
   'mass'    on any geom: that mass, spread over its solid (battery, compute, the hands' internals)
   'add_mass' on any geom: extra mass carried by that part (boards on a frame)
-  allowance WIRING of each link's mass (cables, fasteners, bearings, thermal pads), on its frames
+  allowance WIRING of each link's mass (cables, cable ties, tape), on its frames. Screws: spec/robot.py screw_mass, each one
 """
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import checks as C  # noqa: E402
 import geom as G  # noqa: E402
 
-WIRING = 0.06
+WIRING = 0.03   # cables and small things only. Screws and bearings have their own masses now (it was 6 %, 'cables, fasteners, bearings', on top of the bearings already counted)
 LAYER = 0.002
 
 
@@ -120,7 +120,7 @@ def report(spec, inert, path):
     by_mat = {m: sum(p[2] for v in inert.values() for p in v[3] if p[1] == m) for m in mats}
     lines = ['# Mass model', '',
              'Bottom-up: every part from its material and shape (`tools/mass_model.py`, materials in `spec/robot.py`), '
-             f'a {WIRING * 100:.0f} % wiring / fastener / bearing allowance per link on its frames.', '',
+             f'a {WIRING * 100:.0f} % wiring allowance per link on its frames.', '',
              f"**Total {total:.2f} kg** (microduck: 0.8 kg).", '',
              '| material | kg | share |', '|---|---|---|']
     lines += [f'| {m} | {by_mat[m]:.2f} | {by_mat[m] / total * 100:.0f} % |' for m in sorted(by_mat, key=lambda k: -by_mat[k])]

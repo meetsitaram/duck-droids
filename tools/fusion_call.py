@@ -18,7 +18,7 @@ def post(payload, session=None):
     if session:
         h['MCP-Session-Id'] = session
     req = urllib.request.Request(URL, data=json.dumps(payload).encode('utf-8'), headers=h, method='POST')
-    with urllib.request.urlopen(req, timeout=900) as r:
+    with urllib.request.urlopen(req, timeout=2400) as r:
         body, sid = r.read().decode('utf-8').strip(), r.headers.get('MCP-Session-Id')
     if body.startswith(('event:', 'data:')):
         body = [x[5:].strip() for x in body.splitlines() if x.startswith('data:')][-1]
