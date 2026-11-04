@@ -24,6 +24,16 @@ Outside `checks.py`:
 - `tools/motion_collisions.py`: replays a recorded motion and tests each leg link against every link not jointed to
   it. This covers combined motions, which single-joint sweeps cannot.
 
+- `tools/assembly.py`: the build order. PATH, THREAD, HELD, ACCESS, ALL; **HOLD** (screws not all on one axis, or glued, or a pivot); **APART** (bought parts against the rest of
+  their link, and nothing printed where a cable plugs in). `--bad seal thread order path hold apart window`.
+- `tools/buildable.py`: ONE, WALL, FIT, LOAD, per printed part. `--bad thin weak split`.
+- `tools/printable.py`: the exported STLs. ORIENT, PIECES, BED, HOLES, SUPPORT; **SKIN** (a cover's holes are its own screws' only); **MATE** (exported parts never share space);
+  **HEADS** (no fitted screw head stands inside a servo or a board). `--bad big void hole mate heads skin`.
+- `tools/beak_linkage.py`: DRIVE (every servo drives something), SOLVE, ANGLE, CLEAR, for a linkage through its range. `--bad hood lock`.
+- `tools/verify_fusion.py`: the Fusion bodies against the STLs, point by point.
+
+**What a check skips is what it can't find.** `static` skips parts of one link, so a bar through a circuit board passed it, and `sweep` moves one joint at a time.
+
 ## Severity
 
 Collisions between links at most 3 joints apart are structural: the limit cannot be reached in any pose, so they

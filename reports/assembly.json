@@ -279,7 +279,7 @@
   "group": "THREAD",
   "item": "L thigh cover screw hip",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -297,7 +297,7 @@
   "group": "THREAD",
   "item": "L thigh cover screw knee",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -693,7 +693,7 @@
   "group": "THREAD",
   "item": "L ankle ear screw 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.8 mm"
  },
  {
   "group": "ACCESS",
@@ -711,7 +711,7 @@
   "group": "THREAD",
   "item": "L ankle ear screw 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.8 mm"
  },
  {
   "group": "ACCESS",
@@ -1077,7 +1077,7 @@
   "group": "THREAD",
   "item": "R thigh cover screw hip",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1095,7 +1095,7 @@
   "group": "THREAD",
   "item": "R thigh cover screw knee",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1491,7 +1491,7 @@
   "group": "THREAD",
   "item": "R ankle ear screw 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.8 mm"
  },
  {
   "group": "ACCESS",
@@ -1509,7 +1509,7 @@
   "group": "THREAD",
   "item": "R ankle ear screw 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 8: bites 3.8 mm"
  },
  {
   "group": "ACCESS",
@@ -2611,13 +2611,19 @@
  },
  {
   "group": "PATH",
-  "item": "torso: servo bus board",
+  "item": "torso: L 5 V regulator",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "PATH",
-  "item": "torso: regulator and IMU",
+  "item": "torso: R 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "torso: IMU",
   "status": "PASS",
   "detail": ""
  },
@@ -2787,7 +2793,7 @@
   "group": "THREAD",
   "item": "body screw 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2805,7 +2811,7 @@
   "group": "THREAD",
   "item": "body screw 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2925,7 +2931,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2943,7 +2949,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2961,7 +2967,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -2979,7 +2985,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3092,6 +3098,30 @@
  {
   "group": "PATH",
   "item": "headbench: head roll horn",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "jawbench: jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "jawbench: beak rod",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak rod screw jaw",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.7 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak rod screw jaw",
   "status": "PASS",
   "detail": ""
  },
@@ -3333,7 +3363,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3351,7 +3381,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3369,7 +3399,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 2",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3387,7 +3417,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 3",
   "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3481,13 +3511,187 @@
  },
  {
   "group": "PATH",
-  "item": "head: Pi Zero 2 W",
+  "item": "head: beak crank",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak crank screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak crank screw 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.9 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak crank screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak crank screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak crank screw 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.9 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak crank screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak crank screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak crank screw 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.9 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak crank screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak crank screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak crank screw 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.9 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak crank screw 3",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "PATH",
-  "item": "head: camera",
+  "item": "head: U2D2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: Pi Zero 2 W",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "Pi screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "Pi screw 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "Pi screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "Pi screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "Pi screw 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "Pi screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "Pi screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "Pi screw 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "Pi screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "Pi screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "Pi screw 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "Pi screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: servo bus board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: @jawbench",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak rod screw crank",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak rod screw crank",
   "status": "PASS",
   "detail": ""
  },
@@ -3505,13 +3709,61 @@
  },
  {
   "group": "PATH",
-  "item": "head: jaw soft insert",
+  "item": "head: camera",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "PATH",
-  "item": "head: jaw",
+  "item": "head: face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: eye iris",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "hood rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "hood rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "hood rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "hood rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "hood rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "hood rear screw 1",
   "status": "PASS",
   "detail": ""
  },
@@ -3519,7 +3771,7 @@
   "group": "THREAD",
   "item": "L hinge screw",
   "status": "PASS",
-  "detail": "M3 x 14: bites 4.7 mm"
+  "detail": "M3 x 14: bites 3.3 mm"
  },
  {
   "group": "ACCESS",
@@ -3531,11 +3783,353 @@
   "group": "THREAD",
   "item": "R hinge screw",
   "status": "PASS",
-  "detail": "M3 x 14: bites 4.7 mm"
+  "detail": "M3 x 14: bites 3.3 mm"
  },
  {
   "group": "ACCESS",
   "item": "R hinge screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip yaw lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L yaw bracket",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip roll lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": "8 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh frame",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip pitch lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L knee lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh cover",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": "10 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L ankle lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L shoe",
+  "status": "PASS",
+  "detail": "8 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L inner ear",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip yaw lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R yaw bracket",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip roll lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": "8 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh frame",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip pitch lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R knee lid",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh cover",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": "10 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R ankle lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R shoe",
+  "status": "PASS",
+  "detail": "8 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R inner ear",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": "14 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "neck column",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "neck lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head pitch lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head fork",
+  "status": "PASS",
+  "detail": "10 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head yaw sheet",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head yaw bracket",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head roll lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": "18 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak lid",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak crank",
+  "status": "PASS",
+  "detail": "5 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak rod",
+  "status": "PASS",
+  "detail": "turns on its screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": "turns on its screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "jaw soft insert",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "mouth roof",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "face",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "APART",
+  "item": "bought parts",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "L hip yaw cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "R hip yaw cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "L hip roll cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "R hip roll cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "L hip pitch cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "L knee cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "R hip pitch cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "R knee cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "L ankle pitch cable plugs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "R ankle pitch cable plugs",
   "status": "PASS",
   "detail": ""
  },
@@ -3901,13 +4495,19 @@
  },
  {
   "group": "ALL",
-  "item": "part servo bus board",
+  "item": "part L 5 V regulator",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "ALL",
-  "item": "part regulator and IMU",
+  "item": "part R 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part IMU",
   "status": "PASS",
   "detail": ""
  },
@@ -4039,6 +4639,18 @@
  },
  {
   "group": "ALL",
+  "item": "part beak crank",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part beak rod",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
   "item": "part Pi Zero 2 W",
   "status": "PASS",
   "detail": ""
@@ -4046,6 +4658,18 @@
  {
   "group": "ALL",
   "item": "part camera",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part servo bus board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part U2D2",
   "status": "PASS",
   "detail": ""
  },
@@ -4070,6 +4694,24 @@
  {
   "group": "ALL",
   "item": "part mouth roof",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part eye iris",
   "status": "PASS",
   "detail": ""
  }

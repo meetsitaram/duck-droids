@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "11.9 MPa (allowed 15): 43 N, section 179 mm2"
+  "detail": "12.6 MPa (allowed 15): 45 N, section 179 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 43 N, section 1228 mm2"
+  "detail": "0.4 MPa (allowed 15): 45 N, section 1228 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 43 N, section 799 mm2"
+  "detail": "0.4 MPa (allowed 15): 45 N, section 814 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "11.8 MPa (allowed 15): 43 N, section 89 mm2"
+  "detail": "12.5 MPa (allowed 15): 45 N, section 89 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "9.2 MPa (allowed 15): 43 N, section 69 mm2"
+  "detail": "11.5 MPa (allowed 15): 45 N, section 59 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.2 MPa (allowed 15): 43 N, section 951 mm2"
+  "detail": "1.3 MPa (allowed 15): 45 N, section 951 mm2"
  },
  {
   "group": "ONE",
@@ -123,7 +123,7 @@
   "group": "FIT",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "82 x 42 x 62 mm"
+  "detail": "82 x 47 x 62 mm"
  },
  {
   "group": "ONE",
@@ -267,7 +267,7 @@
   "group": "FIT",
   "item": "chassis",
   "status": "PASS",
-  "detail": "97 x 64 x 43 mm"
+  "detail": "98 x 77 x 50 mm"
  },
  {
   "group": "ONE",
@@ -393,7 +393,7 @@
   "group": "FIT",
   "item": "head frame",
   "status": "PASS",
-  "detail": "126 x 96 x 45 mm"
+  "detail": "124 x 96 x 51 mm"
  },
  {
   "group": "ONE",
@@ -415,6 +415,42 @@
  },
  {
   "group": "ONE",
+  "item": "beak crank",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "beak crank",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "beak crank",
+  "status": "PASS",
+  "detail": "21 x 15 x 26 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "beak rod",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "beak rod",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "beak rod",
+  "status": "PASS",
+  "detail": "46 x 4 x 14 mm"
+ },
+ {
+  "group": "ONE",
   "item": "jaw",
   "status": "PASS",
   "detail": ""
@@ -429,7 +465,7 @@
   "group": "FIT",
   "item": "jaw",
   "status": "PASS",
-  "detail": "106 x 111 x 45 mm"
+  "detail": "106 x 114 x 45 mm"
  },
  {
   "group": "ONE",
@@ -448,5 +484,59 @@
   "item": "jaw soft insert",
   "status": "PASS",
   "detail": "29 x 106 x 6 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "face",
+  "status": "PASS",
+  "detail": "5 x 104 x 53 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": "12 x 36 x 36 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": "10 x 22 x 22 mm"
  }
 ]
