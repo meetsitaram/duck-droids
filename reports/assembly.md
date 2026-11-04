@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-679 checks: 679 pass, 0 warn, **0 fail**
+786 checks: 786 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -71,8 +71,9 @@ From tools/assembly.py
 | PASS | column: head pitch servo |  |
 | PASS | column: head pitch lid |  |
 | PASS | torso: battery |  |
-| PASS | torso: servo bus board |  |
-| PASS | torso: regulator and IMU |  |
+| PASS | torso: L 5 V regulator |  |
+| PASS | torso: R 5 V regulator |  |
+| PASS | torso: IMU |  |
 | PASS | torso: @column |  |
 | PASS | torso: body shell |  |
 | PASS | headbench: head yaw servo |  |
@@ -86,16 +87,23 @@ From tools/assembly.py
 | PASS | headbench: head roll lid |  |
 | PASS | headbench: head roll bearing |  |
 | PASS | headbench: head roll horn |  |
+| PASS | jawbench: jaw soft insert |  |
+| PASS | jawbench: beak rod |  |
 | PASS | head: @headbench |  |
 | PASS | head: head frame |  |
 | PASS | head: beak servo |  |
 | PASS | head: beak lid |  |
+| PASS | head: beak crank |  |
+| PASS | head: U2D2 |  |
 | PASS | head: Pi Zero 2 W |  |
-| PASS | head: camera |  |
+| PASS | head: servo bus board |  |
+| PASS | head: @jawbench |  |
 | PASS | head: hood |  |
 | PASS | head: mouth roof |  |
-| PASS | head: jaw soft insert |  |
-| PASS | head: jaw |  |
+| PASS | head: camera |  |
+| PASS | head: face |  |
+| PASS | head: eye ring |  |
+| PASS | head: eye iris |  |
 
 ## HELD
 
@@ -267,6 +275,16 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw horn face 0 |  |
 | PASS | beak cradle screw horn face 1 |  |
+| PASS | beak crank screw 0 |  |
+| PASS | beak crank screw 1 |  |
+| PASS | beak crank screw 2 |  |
+| PASS | beak crank screw 3 |  |
+| PASS | Pi screw 0 |  |
+| PASS | Pi screw 1 |  |
+| PASS | Pi screw 2 |  |
+| PASS | Pi screw 3 |  |
+| PASS | hood rear screw 0 |  |
+| PASS | hood rear screw 1 |  |
 
 ## THREAD
 
@@ -284,8 +302,8 @@ From tools/assembly.py
 | PASS | L knee cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | L knee cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | L knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
-| PASS | L thigh cover screw hip | M2 x 6: bites 2.9 mm |
-| PASS | L thigh cover screw knee | M2 x 6: bites 2.9 mm |
+| PASS | L thigh cover screw hip | M2 x 6: bites 3.0 mm |
+| PASS | L thigh cover screw knee | M2 x 6: bites 3.0 mm |
 | PASS | L ankle boss screw 0 | M3 flat x 6: bites 2.3 mm |
 | PASS | L ankle boss screw 1 | M3 flat x 6: bites 2.3 mm |
 | PASS | L ankle boss screw 2 | M3 flat x 6: bites 2.3 mm |
@@ -304,8 +322,8 @@ From tools/assembly.py
 | PASS | L ankle pitch fork screw horn 1 | M3 x 8: bites 2.5 mm |
 | PASS | L ankle pitch fork screw horn 2 | M3 x 8: bites 2.5 mm |
 | PASS | L ankle pitch fork screw horn 3 | M3 x 8: bites 2.5 mm |
-| PASS | L ankle ear screw 0 | M2 x 8: bites 4.0 mm |
-| PASS | L ankle ear screw 1 | M2 x 8: bites 4.0 mm |
+| PASS | L ankle ear screw 0 | M2 x 8: bites 3.8 mm |
+| PASS | L ankle ear screw 1 | M2 x 8: bites 3.8 mm |
 | PASS | L hip pitch fork screw horn 0 | M3 x 10: bites 2.9 mm |
 | PASS | L hip pitch fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | L hip pitch fork screw horn 2 | M3 x 10: bites 2.9 mm |
@@ -322,8 +340,8 @@ From tools/assembly.py
 | PASS | R knee cradle screw near 1 | M2 x 6: bites 2.7 mm |
 | PASS | R knee cradle screw horn face 0 | M2 x 6: bites 2.9 mm |
 | PASS | R knee cradle screw horn face 1 | M2 x 6: bites 2.9 mm |
-| PASS | R thigh cover screw hip | M2 x 6: bites 2.9 mm |
-| PASS | R thigh cover screw knee | M2 x 6: bites 2.9 mm |
+| PASS | R thigh cover screw hip | M2 x 6: bites 3.0 mm |
+| PASS | R thigh cover screw knee | M2 x 6: bites 3.0 mm |
 | PASS | R ankle boss screw 0 | M3 flat x 6: bites 2.3 mm |
 | PASS | R ankle boss screw 1 | M3 flat x 6: bites 2.3 mm |
 | PASS | R ankle boss screw 2 | M3 flat x 6: bites 2.3 mm |
@@ -342,8 +360,8 @@ From tools/assembly.py
 | PASS | R ankle pitch fork screw horn 1 | M3 x 8: bites 2.5 mm |
 | PASS | R ankle pitch fork screw horn 2 | M3 x 8: bites 2.5 mm |
 | PASS | R ankle pitch fork screw horn 3 | M3 x 8: bites 2.5 mm |
-| PASS | R ankle ear screw 0 | M2 x 8: bites 4.0 mm |
-| PASS | R ankle ear screw 1 | M2 x 8: bites 4.0 mm |
+| PASS | R ankle ear screw 0 | M2 x 8: bites 3.8 mm |
+| PASS | R ankle ear screw 1 | M2 x 8: bites 3.8 mm |
 | PASS | R hip pitch fork screw horn 0 | M3 x 10: bites 2.9 mm |
 | PASS | R hip pitch fork screw horn 1 | M3 x 10: bites 2.9 mm |
 | PASS | R hip pitch fork screw horn 2 | M3 x 10: bites 2.9 mm |
@@ -404,20 +422,21 @@ From tools/assembly.py
 | PASS | neck pitch fork screw rear 1 | M2 x 6: bites 2.9 mm |
 | PASS | neck pitch fork screw rear 2 | M2 x 6: bites 2.9 mm |
 | PASS | neck pitch fork screw rear 3 | M2 x 6: bites 2.9 mm |
-| PASS | body screw 0 | M2 x 6: bites 2.0 mm |
-| PASS | body screw 1 | M2 x 6: bites 2.0 mm |
+| PASS | body screw 0 | M2 x 6: bites 3.0 mm |
+| PASS | body screw 1 | M2 x 6: bites 3.0 mm |
 | PASS | head yaw cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 0 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 1 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 2 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 3 | M2 x 8: bites 4.0 mm |
+| PASS | head yaw fork screw horn 0 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 1 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 2 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 3 | M2 x 6: bites 3.0 mm |
 | PASS | head roll cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head roll cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | head roll cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head roll cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | beak rod screw jaw | M2 x 6: bites 2.7 mm |
 | PASS | head pitch fork screw horn 0 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw horn 1 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw horn 2 | M2 x 6: bites 2.9 mm |
@@ -430,16 +449,27 @@ From tools/assembly.py
 | PASS | head roll fork screw horn 1 | M2 x 8: bites 4.0 mm |
 | PASS | head roll fork screw horn 2 | M2 x 8: bites 4.0 mm |
 | PASS | head roll fork screw horn 3 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw rear 0 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw rear 1 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw rear 2 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw rear 3 | M2 x 8: bites 4.0 mm |
+| PASS | head roll fork screw rear 0 | M2 x 6: bites 3.0 mm |
+| PASS | head roll fork screw rear 1 | M2 x 6: bites 3.0 mm |
+| PASS | head roll fork screw rear 2 | M2 x 6: bites 3.0 mm |
+| PASS | head roll fork screw rear 3 | M2 x 6: bites 3.0 mm |
 | PASS | beak cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | L hinge screw | M3 x 14: bites 4.7 mm |
-| PASS | R hinge screw | M3 x 14: bites 4.7 mm |
+| PASS | beak crank screw 0 | M2 x 6: bites 2.9 mm |
+| PASS | beak crank screw 1 | M2 x 6: bites 2.9 mm |
+| PASS | beak crank screw 2 | M2 x 6: bites 2.9 mm |
+| PASS | beak crank screw 3 | M2 x 6: bites 2.9 mm |
+| PASS | Pi screw 0 | M2 x 6: bites 3.0 mm |
+| PASS | Pi screw 1 | M2 x 6: bites 3.0 mm |
+| PASS | Pi screw 2 | M2 x 6: bites 3.0 mm |
+| PASS | Pi screw 3 | M2 x 6: bites 3.0 mm |
+| PASS | beak rod screw crank | M2 x 8: bites 4.0 mm |
+| PASS | hood rear screw 0 | M2 x 8: bites 4.0 mm |
+| PASS | hood rear screw 1 | M2 x 8: bites 4.0 mm |
+| PASS | L hinge screw | M3 x 14: bites 3.3 mm |
+| PASS | R hinge screw | M3 x 14: bites 3.3 mm |
 
 ## ACCESS
 
@@ -591,6 +621,7 @@ From tools/assembly.py
 | PASS | head roll cradle screw rear face 1 |  |
 | PASS | head roll cradle screw horn face 0 |  |
 | PASS | head roll cradle screw horn face 1 |  |
+| PASS | beak rod screw jaw |  |
 | PASS | head pitch fork screw horn 0 |  |
 | PASS | head pitch fork screw horn 1 |  |
 | PASS | head pitch fork screw horn 2 |  |
@@ -611,8 +642,86 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw horn face 0 |  |
 | PASS | beak cradle screw horn face 1 |  |
+| PASS | beak crank screw 0 |  |
+| PASS | beak crank screw 1 |  |
+| PASS | beak crank screw 2 |  |
+| PASS | beak crank screw 3 |  |
+| PASS | Pi screw 0 |  |
+| PASS | Pi screw 1 |  |
+| PASS | Pi screw 2 |  |
+| PASS | Pi screw 3 |  |
+| PASS | beak rod screw crank |  |
+| PASS | hood rear screw 0 |  |
+| PASS | hood rear screw 1 |  |
 | PASS | L hinge screw |  |
 | PASS | R hinge screw |  |
+
+## HOLD
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw lid | 4 screws |
+| PASS | L yaw bracket | 6 screws |
+| PASS | L hip roll lid | 4 screws |
+| PASS | L roll bracket | 8 screws |
+| PASS | L thigh frame | 6 screws |
+| PASS | L hip pitch lid | 4 screws |
+| PASS | L knee lid | 4 screws |
+| PASS | L thigh cover | 2 screws |
+| PASS | L shin | 10 screws |
+| PASS | L ankle lid | 2 screws |
+| PASS | L shoe | 8 screws |
+| PASS | L sole | 2 screws |
+| PASS | L inner ear | 2 screws |
+| PASS | R hip yaw lid | 4 screws |
+| PASS | R yaw bracket | 6 screws |
+| PASS | R hip roll lid | 4 screws |
+| PASS | R roll bracket | 8 screws |
+| PASS | R thigh frame | 6 screws |
+| PASS | R hip pitch lid | 4 screws |
+| PASS | R knee lid | 4 screws |
+| PASS | R thigh cover | 2 screws |
+| PASS | R shin | 10 screws |
+| PASS | R ankle lid | 2 screws |
+| PASS | R shoe | 8 screws |
+| PASS | R sole | 2 screws |
+| PASS | R inner ear | 2 screws |
+| PASS | chassis | 14 screws |
+| PASS | body shell | 2 screws |
+| PASS | neck column | 4 screws |
+| PASS | neck lid | 2 screws |
+| PASS | head pitch lid | 2 screws |
+| PASS | head fork | 10 screws |
+| PASS | head yaw sheet | 2 screws |
+| PASS | head yaw bracket | 6 screws |
+| PASS | head roll lid | 2 screws |
+| PASS | head frame | 18 screws |
+| PASS | beak lid | 2 screws |
+| PASS | beak crank | 5 screws |
+| PASS | beak rod | turns on its screws |
+| PASS | hood | 4 screws |
+| PASS | jaw | turns on its screws |
+| PASS | jaw soft insert | glued |
+| PASS | mouth roof | glued |
+| PASS | face | glued |
+| PASS | eye ring | glued |
+| PASS | eye iris | glued |
+
+## APART
+
+| status | item | detail |
+|---|---|---|
+| PASS | bought parts |  |
+| PASS | L hip yaw cable plugs |  |
+| PASS | R hip yaw cable plugs |  |
+| PASS | L hip roll cable plugs |  |
+| PASS | R hip roll cable plugs |  |
+| PASS | L hip pitch cable plugs |  |
+| PASS | L knee cable plugs |  |
+| PASS | R hip pitch cable plugs |  |
+| PASS | R knee cable plugs |  |
+| PASS | L ankle pitch cable plugs |  |
+| PASS | R ankle pitch cable plugs |  |
 
 ## ALL
 
@@ -678,8 +787,9 @@ From tools/assembly.py
 | PASS | part R inner ear |  |
 | PASS | part chassis |  |
 | PASS | part battery |  |
-| PASS | part servo bus board |  |
-| PASS | part regulator and IMU |  |
+| PASS | part L 5 V regulator |  |
+| PASS | part R 5 V regulator |  |
+| PASS | part IMU |  |
 | PASS | part body shell |  |
 | PASS | part neck servo |  |
 | PASS | part neck column |  |
@@ -701,9 +811,16 @@ From tools/assembly.py
 | PASS | part head frame |  |
 | PASS | part beak servo |  |
 | PASS | part beak lid |  |
+| PASS | part beak crank |  |
+| PASS | part beak rod |  |
 | PASS | part Pi Zero 2 W |  |
 | PASS | part camera |  |
+| PASS | part servo bus board |  |
+| PASS | part U2D2 |  |
 | PASS | part hood |  |
 | PASS | part jaw |  |
 | PASS | part jaw soft insert |  |
 | PASS | part mouth roof |  |
+| PASS | part face |  |
+| PASS | part eye ring |  |
+| PASS | part eye iris |  |

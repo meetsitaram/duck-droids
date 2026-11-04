@@ -59,8 +59,8 @@ Stop and show the user pictures whenever the look is at stake; don't push to a p
 - Python 3.12 with numpy, scipy, trimesh, manifold3d, mujoco, Pillow, imageio and matplotlib; add mink for
   retargeting. Run scripts that read downloaded files with `python -I`. MuJoCo lives in user site-packages, so run the
   sim and render tools with plain `python`.
-- Fusion 360 with an MCP server that runs Python scripts in Fusion. It is only needed for the CAD; everything else
-  runs offline.
+- Fusion 360, with its own MCP server turned on: Preferences > General > API > Fusion MCP Server (nothing to install;
+  `references/fusion-mcp.md`). It is only needed for the CAD; everything else runs offline.
 - On Windows, keep working files on short paths: Python cannot open paths over 260 characters.
 
 ## Workflow
@@ -180,11 +180,16 @@ sphere where several axes cross; spheres also hide seams. The patterns, with num
 ### 7. Build it in Fusion
 
 Build after the user approves the look and the pose validation passes; tell the user early that the spec is the
-CAD source and Fusion comes then (milli's user asked "why would you build without CAD?"). Build one link per MCP call
-(`build.link(name)`), then rebuild its joints (`build.joints([...])`). After any
-timeout, ask `build.status()` before retrying: Fusion keeps working after the call times out. Save the document
-into a hub folder, then export `cad/<name>.step`, `cad/<name>.f3d` and one STL per link. See
-`references/fusion-mcp.md`. If the viewport cannot save images, the offline renders are the same shapes.
+CAD source and Fusion comes then (milli's user asked "why would you build without CAD?"). **Build earlier than feels
+necessary: the CAD finds what the offline checks can't.** milli's first build found 143 clashes and shells full of
+holes behind 950 passing checks.
+
+Regenerate `spec/parts.json` (`tools/export_prints.py`), build every link in a new document with no timeline, turn the
+timeline on, add the joints, then check: `build.status()`, `build.verify()`, `tools/verify_fusion.py` (point by point against the
+STLs) and Fusion's own `analyzeInterference`, explaining every clash left. Then look at it, from every side, the top and
+underneath, and chase every odd line: nothing else finds a slit in a cover. Save only when the user says. See
+`references/fusion-mcp.md`. If the viewport cannot save images, the offline renders are the same shapes, but that
+is not the same check.
 
 ### 8. Robot files and physics
 
@@ -217,14 +222,20 @@ panels made from them, raw motion captures or anyone's trademark.
 
 Checks that pass mean only what they test. Collision and fit checks say nothing about whether a part can be printed, or holds. Say so to the user, and before a design counts as ready, have these:
 
-- **Bought parts at their real shape:** sections of the maker's mesh, not a bounding box (steps, bosses and lumps change what a seat can be).
-- **Every screw in the spec:** size, length, position, direction. Parts held by nothing show up.
+- **Bought parts at their real shape:** sections of the maker's mesh, not a bounding box (steps, bosses and lumps change what a seat can be), seen from all 6 sides. **What plugs into them is part of them:** cable sockets are on a face, the plug and its wires need room, and the wires need a way out.
+- **Every screw in the spec:** size, length, position, direction, and the room its head takes. Parts held by nothing show up. So do parts held by screws on one axis, which turn about them (HOLD).
+- **Every servo drives something:** a horn on the child, or a linkage solved and swept through its range (DRIVE). A joint can pass every check with nothing driving it.
+- **Printed parts checked against each other, as exported:** a link is not one solid to a printer. Say who gives way, cut real pockets with clearance, and check the exports (MATE, APART, SKIN in `tools/printable.py` and `tools/assembly.py`). A check that skips parts of one link can't see any of this.
+- **Printing, per part:** the orientation with the least overhang, what needs support, a sealed void, holes big enough to print (`tools/printable.py`). Exported already turned that way, left and right.
 - **The build order as data**, with paths: each part slides in without cutting what's already on; a key reaches each screw at that moment; the thread bites something; the head clamps something (milli's `tools/assembly.py`).
 - **Per printed part, not per link:** one piece without bought parts in it; walls at the printer's minimum; fits the bed; exported with its holes, hollow where it is hollow (`tools/buildable.py`, `tools/export_prints.py`).
 - **A load estimate through each section on the load path**, at a landing's load, against the material across its layers. A hand estimate finds weak parts; it doesn't replace FEA or a test.
 - **Limits scaled to the robot:** a volume limit from a 1.7 m robot hides real collisions on a 0.3 m one.
 - **Sim results sanity-checked:** the floor carries the weight, the whole robot collides, inherited tools have really run on this robot, each joint's speed is under its actuator's, and every sim parameter's source (measured, scaled, copied, guessed) is written down.
-- **One joint printed and assembled** with real parts before buying the rest.
+- **Electronics are real parts with links:** each board's size from its listing, in a place checked against everything that moves; every rail's stall current against its regulator; the pack's full voltage against each part; every connector against its current; signals and power routed through the joints (`docs/WIRING.md`).
+- **The parts list re-read at the shop when you finish, not from memory:** stock against the quantity, and what the page says is NOT in the box. Say which entries you couldn't re-read. Name what's on order the longest: it sets the date.
+- **The CAD model built, and compared with the exports.** Offline solids aren't the printer's solids until something has checked.
+- **One joint printed and assembled** with real parts before buying the rest. **None of the checks above replaces this.**
 
 Each of these has a `--bad` case. When a look-alike's reference does something odd, check that before "fixing" it.
 

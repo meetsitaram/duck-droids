@@ -142,9 +142,11 @@ class Solids:
         for ln, l in spec['links'].items():
             idx = range(len(l['geoms']))
             role = lambda i: l['geoms'][i]['role']
-            self.all[ln] = union([self.geom[(ln, i)] for i in idx])
+            # (a linkage moves by itself: it joins nothing; a tab on a cover is mounted on the cover, not the structure)
+            free = lambda i: l['geoms'][i].get('linkage')
+            self.all[ln] = union([self.geom[(ln, i)] for i in idx if not free(i)])
             self.shell[ln] = union([self.geom[(ln, i)] for i in idx if role(i) == 'shell'])
-            self.rigid[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID])
+            self.rigid[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID and not free(i) and not l['geoms'][i].get('on_cover')])
             self.hard[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID] +
                                   [self.wall[(ln, i)] for i in idx if role(i) == 'shell'])
 

@@ -47,11 +47,19 @@ def add(a, b, s=1.0):
     return (a[0] + s * b[0], a[1] + s * b[1], a[2] + s * b[2])
 
 
+def _axis_of(d):
+    """'x' / 'y' / 'z' for an axis-aligned direction with a positive sign (a cylinder doesn't care), else the vector."""
+    for k, v in AX.items():
+        if abs(abs(dot(d, v)) - 1) < 1e-9:
+            return k
+    return list(d)
+
+
 # ---------------------------------------------------------------- appearances
 
 def appearance(design, hexcol, finish='matte'):
     app = adsk.core.Application.get()
-    name = f'echo {finish} {hexcol}'
+    name = f'duck-droids {finish} {hexcol}'
     a = design.appearances.itemByName(name)
     if a:
         return a
@@ -135,9 +143,7 @@ class Builder:
         d = (adsk.fusion.ExtentDirections.PositiveExtentDirection if dot((z.x, z.y, z.z), normal) > 0
              else adsk.fusion.ExtentDirections.NegativeExtentDirection)
         ei.setOneSideExtent(adsk.fusion.DistanceExtentDefinition.create(VI.createByReal(length * CM)), d)
-        f = self.f.extrudeFeatures.add(ei)
-        f.name = name
-        return f
+        return self.f.extrudeFeatures.add(ei)
 
     def fillet(self, body, r, name):
         """Round every edge of body; on failure try smaller, then give up and delete (never leave a broken
@@ -153,6 +159,8 @@ class Builder:
                 ff = self.f.filletFeatures.add(fi)
             except RuntimeError:
                 continue
+            if ff is None:                           # no timeline: it worked, and the same body has the new shape
+                return body
             if ff.healthState == adsk.fusion.FeatureHealthStates.HealthyFeatureHealthState:
                 ff.name = name
                 return ff.bodies.item(0)
@@ -167,7 +175,7 @@ class Builder:
             pl = self.plane_at('x' if along_x else 'z', s['z'])
             sk = self.sketch(pl, g['name'])
             pts = []
-            m = 24
+            m = 24 if s['n'] < 5 else 64                 # a squarer section needs more points, or the spline bulges its corners and the wall thickens
             for i in range(m):
                 t = math.pi + 2 * math.pi * i / m        # start at the back: the spline seam shows as an edge
                 c, si = math.cos(t), math.sin(t)
@@ -178,9 +186,9 @@ class Builder:
             sp.isClosed = True
             li.loftSections.add(sk.profiles.item(0))
         li.isSolid = True
+        n0 = self.comp.bRepBodies.count
         f = self.f.loftFeatures.add(li)
-        f.name = g['name']
-        body = f.bodies.item(0)
+        body = f.bodies.item(0) if f else self.comp.bRepBodies.item(n0)
         c = g.get('clip')
         planes = [] if not c else ([c] if isinstance(c, dict) else c)
         for k, cp in enumerate(planes):                  # every plane in turn
@@ -247,8 +255,8 @@ class Builder:
             ci = self.f.combineFeatures.createInput(t, coll([tool]))
             ci.operation = adsk.fusion.FeatureOperations.CutFeatureOperation
             ci.isKeepToolBodies = True
-            self.f.combineFeatures.add(ci).name = name
-        self.f.removeFeatures.add(tool)
+            self.f.combineFeatures.add(ci)           # (with no timeline, add() returns None: name nothing)
+        tool.deleteMe()
 
     def clip(self, body, cp, name):
         """Split body with the plane cp = {'p', 'n'} and keep the part in front of it (the normal's side)."""
@@ -257,18 +265,22 @@ class Builder:
                               b.physicalProperties.centerOfMass.y / CM - p0[1],
                               b.physicalProperties.centerOfMass.z / CM - p0[2]), n)
         pl = self.plane_normal(p0, n)
+        before = {self.comp.bRepBodies.item(i).entityToken for i in range(self.comp.bRepBodies.count)}
+        token = body.entityToken
         si = self.f.splitBodyFeatures.createInput(body, pl, True)
         try:
-            sf = self.f.splitBodyFeatures.add(si)
+            self.f.splitBodyFeatures.add(si)
         except RuntimeError:                     # the plane misses the body: all of it is on one side
             return body
-        sf.name = name
+        # (with no timeline, add() returns None: the pieces are the bodies that are new, and the one split)
+        pieces = [self.comp.bRepBodies.item(i) for i in range(self.comp.bRepBodies.count)]
+        pieces = [b for b in pieces if b.entityToken not in before or b.entityToken == token]
         keep = None
-        for b in [sf.bodies.item(i) for i in range(sf.bodies.count)]:     # copy: removing changes the collection
+        for b in pieces:
             if side(b) > 0:
                 keep = b
             else:
-                self.f.removeFeatures.add(b)
+                b.deleteMe()
         return keep
 
     def ellipsoid(self, g):
@@ -358,7 +370,40 @@ class Builder:
             sk.sketchCurves.sketchLines.addByTwoPoints(pts[i], pts[(i + 1) % len(pts)])
         return self.extrude(sk, [sk.profiles.item(0)], AX[axis], g['t'], g['name']).bodies.item(0)
 
+    def box(self, lo, hi, name):
+        sk = self.sketch(self.plane_at('z', lo[2]), name)
+        p0 = sk.modelToSketchSpace(P((lo[0], lo[1], lo[2])))
+        p1 = sk.modelToSketchSpace(P((hi[0], hi[1], lo[2])))
+        sk.sketchCurves.sketchLines.addTwoPointRectangle(p0, p1)
+        return self.extrude(sk, [sk.profiles.item(0)], AX['z'], hi[2] - lo[2], name).bodies.item(0)
+
+    def stepbox(self, g):
+        """A servo's real shape: boxes from the maker's mesh, joined (spec/actuators.json 'steps')."""
+        bodies = [self.box(lo, hi, g['name']) for lo, hi in g['boxes']]
+        return self.join(bodies, g['name'])
+
+    def join(self, bodies, name):
+        """One body from these: what a printed part is. Pieces that don't touch stay separate bodies, and tools/... status reports them."""
+        if len(bodies) < 2:
+            return bodies[0]
+        ci = self.f.combineFeatures.createInput(bodies[0], coll(bodies[1:]))
+        ci.operation = adsk.fusion.FeatureOperations.JoinFeatureOperation
+        ci.isKeepToolBodies = False
+        self.f.combineFeatures.add(ci)
+        return bodies[0]
+
+    def bore(self, p, d, r, a, b, name):
+        """A cylinder from a to b along the unit direction d from p (metres), as a tool body."""
+        return self.cyl(dict(c=list(add(p, d, (a + b) / 2)), axis=_axis_of(d), r=r, h=b - a, name=name))
+
+    def cut_from(self, body, tool):
+        """Remove the tool from one body, and the tool with it."""
+        ci = self.f.combineFeatures.createInput(body, coll([tool]))
+        ci.operation = adsk.fusion.FeatureOperations.CutFeatureOperation
+        ci.isKeepToolBodies = False
+        self.f.combineFeatures.add(ci)
+
     def build(self, g):
         body = getattr(self, {'loft': 'loft', 'ellipsoid': 'ellipsoid', 'cyl': 'cyl', 'rbox': 'rbox', 'plate': 'plate',
-                              'capsule': 'capsule', 'revolve': 'revolve', 'prism': 'prism'}[g['kind']])(g)
+                              'capsule': 'capsule', 'revolve': 'revolve', 'prism': 'prism', 'stepbox': 'stepbox'}[g['kind']])(g)
         return body

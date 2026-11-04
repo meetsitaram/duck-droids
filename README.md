@@ -80,19 +80,21 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
 A design, not yet built. Nothing here has been printed or tested on real parts. milli has STS3215 ankles; branch
 `xc330-ankle` keeps the version with Dynamixel XC330 ankles, before the strength and printing work.
 
-- **Size:** 0.321 m tall, 1.51 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
+- **Size:** 0.321 m tall, 1.59 kg from every part's material (microduck: 0.264 m, 0.8 kg). The STS3215s set the scale;
   the proportions are checked against microduck's at that scale.
 - **Joints:** 15, as microduck's: each leg hip yaw, roll, pitch, knee, ankle; neck pitch, head pitch, yaw, roll, beak.
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.
 - **Foot switches:** a microswitch in each shoe, as an input to a walking policy, as Open Duck Mini's.
-- **Printable parts:** STLs with their screw holes in [prints/](prints/README.md). Strength so far is a hand estimate: print one joint first.
-- **Open:** wiring, speaker and microphone, the rod from the beak servo to the jaw, the Fusion model, and a walk that goes
-  straight. Walking is in training, in simulation only.
+- **The Fusion model:** built from the spec, one body per printed part with its holes and pockets, 15 joints, each part checked point by point against its STL: [cad/duck-droids-hybrid.f3d](cad/duck-droids-hybrid.f3d), [.step](cad/duck-droids-hybrid.step), [picture](docs/images/fusion/fusion_34.png). The build video above is from before this round.
+- **Printable parts:** STLs with their screw holes and pockets in [prints/](prints/README.md), left and right, turned the way they should print. Strength so far is a hand estimate: print one joint first.
+- **Head limits:** head roll over 0.1 rad only while head yaw is under 0.5 rad, or the head meets the yaw servo. The head pitch XL330 can pass through, but not hold, the head forward and down.
+- **Open:** a power switch, speaker and microphone, and retraining: the model is 80 g heavier than the walks were trained on, with wider thighs.
 
 ## Build it
 
 - [Parts to buy](BOM.md): counts generated from the spec. Prices are retailer listings: confirm before ordering.
 - [Assembly guide](docs/ASSEMBLY.md): an animation per section, in an order the checks have tested.
+- [Wiring](docs/WIRING.md): power rails, buses, and where each cable goes.
 - [What went wrong, and the fix for each](LESSONS.md).
 
 ## Run it
@@ -119,7 +121,8 @@ python tools/render_build_video.py
 
 `tools/checks.py` covers proportions, mass, collisions over every joint's range, torque and bearing alignment.
 `tools/assembly.py` tests the build order: every part can slide in along its path, every screw bites, and a key can reach it.
-`tools/buildable.py` tests each printed part: one piece, walls, and a load estimate (not FEA). `tools/export_prints.py` writes the STLs. None has been test printed.
+`tools/buildable.py` tests each printed part: one piece, walls, and a load estimate (not FEA). `tools/printable.py` tests the exported parts: orientation, supports, and that they fit each other.
+`tools/beak_linkage.py` solves the beak's drive through its range. `tools/export_prints.py` writes the STLs. None has been test printed.
 Python 3.12 with numpy, scipy, trimesh, manifold3d, shapely, Pillow, imageio and mujoco.
 
 ## Credits

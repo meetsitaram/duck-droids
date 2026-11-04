@@ -30,7 +30,7 @@ SCREW_FLY = 0.018
 N_IN, HOLD = 8, 5                                  # frames flying in; frames held after each step
 LEFT_ONLY = re.compile(r'_R$')
 VIEW = dict(thigh=(235, 20), shin=(235, 20), shoe=(40, -25), leg=(235, 15), body=(30, -30), legs=(35, 12), column=(50, 15),
-            torso=(140, 25), headbench=(50, 25), head=(40, 25))
+            torso=(140, 25), headbench=(50, 25), jawbench=(40, 25), head=(40, 25))
 
 
 class Scene:

@@ -54,23 +54,41 @@ import figlib, build
 importlib.reload(figlib); importlib.reload(build)
 
 def run(_context: str):
-    print(build.link('L_hip_roll_link'))
+    print(build.new_document())
+    for n in build.spec()['links']:
+        print(build.link(n))
+    print(build.parametric())
+    print(build.joints())
+    print(build.status(), build.verify())
 ```
+
+First `python -I tools/export_prints.py` (it writes `spec/parts.json`), and `python -I tools/verify_fusion.py write`. milli's whole
+robot takes about 5 minutes in that one call: a request can outlast the client's default timeout, so give it 10.
 
 | call | does |
 |---|---|
-| `build.new_document()` | a new Z-up design document (only for a full rebuild) |
-| `build.link(name)` | deletes the link's component and rebuilds it from `spec/robot.json`: bodies, appearances, cuts |
-| `build.joints([names])` | as-built revolute joints with limits; after rebuilding links, rebuild only their joints |
+| `build.new_document()` | a new Z-up design with no timeline. **Every full build: rebuilding a link in place keeps its old name, as `trunk 1`** |
+| `build.link(name)` | the link's component: one body per printed part (joined, hollow, with its pockets and holes), one per bought part, every screw head |
+| `build.parametric()` | turns the timeline on: 17 items instead of 1,800. Joints need it. With no timeline, `features.add()` returns None: name nothing from it |
+| `build.joints([names])` | as-built revolute joints with limits. **Exactly on a limit, `rotationValue` refuses and stays put:** test at 98 % |
 | `build.status()` | links, joints, timeline length, and problems (body counts against the spec, unhealthy features) |
+| `build.verify()`, `build.verify_points()` | each printed body against the STL: its volume, then 1,500 points each, read by `python -I tools/verify_fusion.py compare` |
 | `build.pose({...})`, `build.show(skins=False)` | pose the model; hide the covers to see inside |
 | `build.render(path, view)` | orthographic picture; reports whether the file was written |
 | `build.export_stl(folder)` | one STL per link at the zero pose, for the URDF (millimetres; the writer rescales) |
 
+## After a build
+
+`design.analyzeInterference` over all occurrences takes seconds and finds what offline checks skip. Explain every clash left. On milli what's left is: horn seats (drawn 0.5 mm
+into their plates), screw heads in their own counterbores, bearing races 0.05 mm over a horn. Anything else is a real problem. Then take a picture from every side, the top and
+underneath, in shaded style, and read them.
+
+A script with `readOnly` is refused any change, naming that as the reason: read errors to their end before chasing them.
+
 ## Timeouts and speed
 
-- One link per call. A full build is about 1,800 timeline features, and in a big document one link with many cut
-  prisms took 5-10 minutes.
+- With a timeline: one link per call. A full build is about 1,800 timeline features, and in a big document one link with many cut
+  prisms took 5-10 minutes. Build with none instead.
 - After a timeout Fusion carries on. Poll with read-only scripts (`"readOnly": true`) that print the link's bodies
   or `status()`. They time out too while Fusion is busy; keep asking.
 - Do offline work while Fusion builds: renders, videos, docs.
@@ -79,12 +97,14 @@ def run(_context: str):
 
 ## Save and export
 
+**Save each finished model, then close it, before starting the next:** a build opens a new document, and several open at once is what makes Fusion crawl. Variants of one robot share a hub folder (`my-projects` / `duck-droids`), each named `duck-droids <recipe>`, and go in the repo as `cad/duck-droids-<recipe>.step` and `.f3d`.
+
 - Save into the hub. Find the project by name in `app.data.activeHub.dataProjects` (`app.data.activeProject` can
   raise when no project is selected). Make or find a folder (`rootFolder.dataFolders.add('<name>')`), then
   `doc.saveAs(name, folder, description, '')`. Check `doc.isSaved` and `dataFile.versionNumber`.
 - The root component takes the document's name only on save; before that the STEP's top product is
   "(Unsaved)". So save first, then export:
-  - `exportManager.createSTEPExportOptions(path, rootComponent)` writes `cad/<name>.step`;
+  - `exportManager.createSTEPExportOptions(path)` writes `cad/<name>.step`. **Passing `rootComponent` wrote an empty file and reported success, on a design built with no timeline: count the `MANIFOLD_SOLID_BREP`s in it;**
   - `createFusionArchiveExportOptions(path)` writes `cad/<name>.f3d`, the native design with its timeline and
     joints;
   - `export_stl` writes the URDF meshes.

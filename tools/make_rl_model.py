@@ -108,7 +108,7 @@ def main():
         j = R.parent_joint.get(ln)
         if j is None:
             x.append('<freejoint name="trunk_base_freejoint"/>')
-            sens = np.array(spec['rl']['imu'] if 'rl' in spec else next(g for g in spec['links']['trunk']['geoms'] if g['name'] == '5 V regulator and IMU')['c']) - o
+            sens = np.array(spec['rl']['imu'] if 'rl' in spec else next(g for g in spec['links']['trunk']['geoms'] if g['name'] == 'IMU')['c']) - o
             x.append(f'<site name="imu" pos="{sens[0]:.5f} {sens[1]:.5f} {sens[2]:.5f}"/>')
         elif j['name'] in JOINT:
             nm, sg = JOINT[j['name']]

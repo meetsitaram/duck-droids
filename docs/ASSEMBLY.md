@@ -12,8 +12,7 @@ Watch each animation, then do the same. Parts: [BOM.md](../BOM.md). The right si
 1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
 2. **Set each servo's ID on its own**, before any are chained: Feetech 1-8, Dynamixel 1-7, on their separate buses. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
-4. **One thing the pictures leave out:** the STS3215's face steps down 2.5 mm round its horn, and each lid's floor fills that step.
-   It does not show here, as the model's servo is a plain box.
+4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.
 
 Tools: 1.5 and 2 mm hex or small Phillips drivers, soldering iron (a grown-up, if you are young), threadlock for screws into metal.
 
@@ -21,7 +20,7 @@ Tools: 1.5 and 2 mm hex or small Phillips drivers, soldering iron (a grown-up, i
 
 ![1. Thighs](images/assembly/thigh_L.gif)
 
-> ⚠ Plug the 3-pin cables in before the servos go in: there is no way to reach the sockets afterwards.
+> ⚠ The cable sockets are on each servo's rear face, behind a window in the plate. Plug the cables in from outside, before the cover, with room to turn the wires under it.
 
 1. The thigh frame
 2. Plug in the cables, then drop in both servos
@@ -122,11 +121,12 @@ Then the same for the right side, mirrored.
 
 > ⚠ Do the neck before the body shell: the shell blocks the neck's horn screws. Do the shell before the head: the head will not pass through its slot.
 
-1. Battery and bus board in from behind
-2. Regulator and IMU on the top plate
-3. The column down into the chassis fork
-4. 4 screws on each horn
-5. The body shell, 2 screws
+1. Battery into its slot from behind, onto its tray; a hook-and-loop strap round both
+2. A 5 V regulator into each side pocket
+3. The IMU on the top plate, double-sided tape
+4. The column down into the chassis fork
+5. 4 screws on each horn
+6. The body shell, 2 screws
 
 ## 9. Head yaw and roll
 
@@ -144,11 +144,19 @@ Then the same for the right side, mirrored.
 8. The lid, 2 screws
 9. Bearing and horn
 
-## 10. The head
+## 10. The jaw and its rod
 
-![10. The head](images/assembly/head.gif)
+![10. The jaw and its rod](images/assembly/jawbench.gif)
 
-> ⚠ The roll servo's rear horn screws go in before the beak servo, which covers them. The hinge screws are what holds the hood on, so they are last.
+1. The jaw
+2. Glue in its soft insert
+3. The rod on its lever, 1 screw
+
+## 11. The head
+
+![11. The head](images/assembly/head.gif)
+
+> ⚠ The roll servo's rear horn screws go in before the beak servo, which covers them. The jaw goes in before the hood, for the rod's screw. The hinge screws and the 2 at the back hold the hood on, so they are last.
 
 1. The head fork down onto the head pitch servo
 2. 4 screws on each horn
@@ -156,13 +164,18 @@ Then the same for the right side, mirrored.
 4. 4 screws on each horn
 5. Beak servo in from the side, 2 screws
 6. Its lid, 2 screws
-7. Pi and camera
-8. The hood, down over the frame
-9. Glue in the soft mouth roof
-10. The jaw, with its soft insert glued in, up under the hood
-11. The hinge screws hold the jaw and the hood
+7. The beak crank on its horn, servo at mid-range, 4 screws
+8. The U2D2 on the frame, from below, foam tape
+9. The Pi onto its plate from the front, 4 screws
+10. The Feetech bus board on its rails, foam tape
+11. The jaw, its rod already on its lever, in from the front
+12. The rod onto the crank pin
+13. The hood, down between the jaw's tabs
+14. Let the jaw hang on its rod and glue in the soft mouth roof through the gap
+15. The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris
+16. 2 screws up through the band into the hood's back
+17. A spacer each side, and the hinge screws hold the jaw and the hood
 
-## Not in this guide yet
+## Wires
 
-- Routing the wires, and the electronics: next round.
-- The rod from the beak servo to the jaw: not designed yet.
+See [WIRING.md](WIRING.md). **Tie the ankle's wires up against its rail:** the shoe's ear passes close by them past 1 rad.
