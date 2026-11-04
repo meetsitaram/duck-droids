@@ -76,3 +76,11 @@ To add a check:
 
 `measure()` holds the landmark definitions, and `spec/targets.json` holds the targets. `POSES` holds the task poses
 and payloads. The mass target is in `check_mass`. The leg and arm keys decide which links count as a "leg" or "arm".
+
+## BOUGHT (`tools/assembly.py`)
+
+A steel solid listed in a printed part would be fused into its STL. Proven on the broken design: it failed both inner ears, whose bearing holes exported at 12.5 mm for a 15 mm bearing. Fix the part's list, not the check.
+
+## COLOUR (`tools/assembly.py`)
+
+One STL is one colour, unless `TWO_COLOURS` says how it's printed and why. Proven on the broken design: it failed the head frame before it went all orange.

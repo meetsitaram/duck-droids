@@ -3,6 +3,8 @@ name: duck-at-size
 description: Design, check, train and iterate a small open biped duck at any height the user names, in the milli / duck-droids repo, choosing the servos and working in rounds with the user until it walks, gets up and tries the head roll in simulation. Use it whenever someone asks for a duck, Microduck, Mini Duck or biped of a given size or on given servos, asks whether a size or servo can work, wants a new servo recipe, or wants to compare recipes, even if they only give a height ("make me a 40 cm duck") and don't mention this repo or the word recipe.
 ---
 
+**Stages:** this skill sizes a duck and iterates it in simulation. For the build itself, parts, detail pass, CAD, prints and assembly guide, follow the stages in `humanoid-from-spec`.
+
 # A duck at any size
 
 The user names a size. You drive the whole design from there, in rounds, as echo's humanoid was built: one change, the checks, pictures, a review, then the next. The tools build, check and measure. They cannot judge whether a duck looks right, whether a score is real, or whether a trade-off is acceptable. You and the user do.

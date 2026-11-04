@@ -107,7 +107,7 @@ def check_mate(B, solids, rep):
                     rep.add('MATE', f'{a} / {g}', False, f'{v * 1e9:.0f} mm3 in the same place')
     rep.add('MATE', 'parts that share a link', True, f'{len(names)} parts: {bad} clashes')
     import export_prints as E
-    hard = [(n, ln, S_) for n, (ln, i, g) in B.idx.items() if (S_ := B.S.geom.get((ln, i))) is not None and (g['role'] == 'actuator' or n in ('battery 2S 850 mAh', 'servo bus board', 'U2D2', 'IMU', 'camera') or n.endswith('5 V regulator'))]
+    hard = [(n, ln, S_) for n, (ln, i, g) in B.idx.items() if (S_ := B.S.geom.get((ln, i))) is not None and (g['role'] == 'actuator' or n in ('battery 2S 850 mAh', 'servo bus board', 'Waveshare bus board', 'U2D2', 'IMU', 'camera') or n.endswith('5 V regulator'))]
     for n, (ln, g) in B.screws.items():
         f = g['fast']
         sz = f['size'].split()[0]

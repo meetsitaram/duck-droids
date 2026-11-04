@@ -21,6 +21,7 @@ import adsk.core  # noqa: E402
 import adsk.fusion  # noqa: E402
 
 RECIPE = 'hybrid'
+KEEP_OPEN = False                                         # leave the finished model open, to look at
 VIEWS = {'34': (60, 40, 30), 'back': (-60, 35, 30), 'side': (0, 80, 16), 'under': (40, 30, -25), 'top': (20, 10, 90)}
 
 
@@ -31,10 +32,16 @@ def interference(d):
     i = d.createInterferenceInput(occs)
     i.areCoincidentFacesIncluded = False
     r = d.analyzeInterference(i)
-    out = sorted(((r.item(k).entityOne.name, r.item(k).entityTwo.name, round(r.item(k).interferenceBody.volume * 1000, 2)) for k in range(r.count)), key=lambda q: -q[2])
+    if r is None:                                         # (Fusion can return nothing on a model with a broken body)
+        print('INTERFERENCE: no result')
+        return [], []
+    named = lambda e: getattr(e, 'name', '?')
+    out = sorted(((named(r.item(k).entityOne), named(r.item(k).entityTwo), round(r.item(k).interferenceBody.volume * 1000, 2)) for k in range(r.count)), key=lambda q: -q[2])
     # what is drawn so on purpose: horn seats, heads in their counterbores, a race on its horn
-    ok = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race')
-    return out, [q for q in out if not any(k in q[0] + q[1] for k in ok) and q[2] > 1.0]
+    # a real servo's own pieces overlap in its maker's model; a plug is drawn into its real socket
+    ok = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs')
+    same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 '))
+    return out, [q for q in out if not any(k in q[0] + q[1] for k in ok) and not same(q[0], q[1]) and q[2] > 1.0]
 
 
 def run(_context: str):
@@ -43,7 +50,9 @@ def run(_context: str):
     name = f'duck-droids {RECIPE}'
     for i in range(app.documents.count - 1, -1, -1):      # one document at a time: anything saved can go
         x = app.documents.item(i)
-        if x.isSaved and not x.isModified:
+        # (this variant's old model too, even marked modified: it's generated, and left open its file can't be replaced
+        # without an "Unsaved changes" dialog, which stops Fusion answering anything: 2026-11-04, a reveal's show and hide marked it)
+        if (x.isSaved and not x.isModified) or x.name.split(' v')[0] == name:
             x.close(False)
     spec_name = 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json'
     build.SPEC = spec_name
@@ -72,6 +81,8 @@ def run(_context: str):
     clash, odd = interference(d)
     json.dump(clash, open(os.path.join(build.REPO, 'reports', build._variant_file('fusion_interference')), 'w', encoding='utf-8'), indent=0)
     print('clashes', len(clash), 'to explain', odd[:12])
+    print('look', json.dumps(build.look_check()))
+    print(build.export_print_stls(os.path.join(os.environ['TEMP'], 'duck_fusion_stl', RECIPE)))
     vp = app.activeViewport
     vp.visualStyle = adsk.core.VisualStyles.ShadedVisualStyle
     root.isJointsFolderLightBulbOn = False
@@ -97,6 +108,8 @@ def run(_context: str):
         vp.saveAsImageFile(p, 1400, 1400)
     if st['problems'] or v['bad'] and False:
         print('NOT SAVED: problems')
+        doc = app.activeDocument
+        doc.close(False)
         return
     hub = app.data.activeHub
     proj = next(hub.dataProjects.item(i) for i in range(hub.dataProjects.count) if hub.dataProjects.item(i).name == 'my-projects')
@@ -111,5 +124,6 @@ def run(_context: str):
     stem = os.path.join(build.REPO, 'cad', name.replace(' ', '-'))
     em.execute(em.createFusionArchiveExportOptions(stem + '.f3d'))
     print('f3d', os.path.getsize(stem + '.f3d'), '; now run cad/fusion/export_step.py for the STEP')
-    doc.close(False)
+    if not KEEP_OPEN:
+        doc.close(False)
     print('open now', [app.documents.item(i).name for i in range(app.documents.count)], round(time.time() - t), 's')

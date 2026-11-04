@@ -18,6 +18,8 @@ An early milli policy in MuJoCo ([MP4, 12 s, sharper](docs/images/walk/milli_wal
 
 ![milli being built, then walking and moving its head](docs/images/assembly/milli_build.gif)
 
+The all-Dynamixel duck: [the 30-second reveal](docs/images/assembly/dynamixel/reveal_30s.mp4), motors to covers, and [the 5-minute build](docs/images/assembly/dynamixel/build_5min.mp4), step by step in the checked order, naming each part and screw. Both are portrait. It has been designed and checked, not printed.
+
 The whole build, then milli moving ([MP4, 28 s, sharper](docs/images/assembly/milli_build.mp4)). The movement in this one is an
 animation from the leg's kinematics, tested for joint limits and collisions, not a physics simulation or a trained walk.
 

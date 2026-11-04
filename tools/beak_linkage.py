@@ -79,6 +79,8 @@ def check(spec, rep):
         else:
             ok = f"{j['name']} flange" in names
             rep.add('DRIVE', j['name'], ok, '' if ok else 'no horn on the child')
+    if not any(j['remote'] for j in spec['joints']):
+        return                                     # every servo on its joint's horn: nothing to solve (the jaw's crank and rod are gone)
     H = spec['links']['head']['geoms']
     g = {x['name']: x for x in H}
     beak_g = {x['name']: x for x in spec['links']['beak_link']['geoms']}

@@ -63,13 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.596 kg bottom-up (budget 1.61 kg; microduck 0.8 kg)"
+  "detail": "1.634 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "438 printed parts; largest head: 155 mm, on a 256 mm bed"
+  "detail": "256 printed parts; largest head: 155 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -152,6 +152,12 @@
  {
   "group": "axis",
   "item": "head_roll",
+  "status": "PASS",
+  "detail": "XL330_M288 0.0 mm off the axis"
+ },
+ {
+  "group": "axis",
+  "item": "beak",
   "status": "PASS",
   "detail": "XL330_M288 0.0 mm off the axis"
  },
@@ -823,12 +829,6 @@
  },
  {
   "group": "skin",
-  "item": "L head hinge boss",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
   "item": "R head hinge boss",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -919,6 +919,18 @@
  },
  {
   "group": "skin",
+  "item": "L base riser top",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi base tab",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
   "item": "lower shell beam",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -975,7 +987,7 @@
   "group": "sweep",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "[-0.38, +0.38] rad clear"
+  "detail": "[-0.34, +0.34] rad clear"
  },
  {
   "group": "sweep",
@@ -1113,49 +1125,49 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.19 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 60 % used"
+  "detail": "0.20 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 65 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.18 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 53 % used"
+  "detail": "0.19 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 56 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.31 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 35 % used"
+  "detail": "0.32 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 36 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.31 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 35 % used"
+  "detail": "0.32 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 36 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.40 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 22 % used"
+  "detail": "0.41 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 23 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "0.13 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.41 N m (1 x STS3215_C046): 14 % used"
+  "detail": "0.14 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.41 N m (1 x STS3215_C046): 15 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.20 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 11 % used"
+  "detail": "0.21 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.20 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 11 % used"
+  "detail": "0.21 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
  },
  {
   "group": "torque",
@@ -1165,38 +1177,38 @@
  },
  {
   "group": "torque",
-  "item": "beak",
+  "item": "R_hip_yaw",
   "status": "PASS",
-  "detail": "0.02 N m in 'head tucked in' vs rated 0.17 N m (1 x XL330_M288): 10 % used"
+  "detail": "0.05 N m in 'head tucked in' vs rated 0.47 N m (1 x STS3215_C046): 10 % used"
  },
  {
   "group": "torque",
-  "item": "R_hip_yaw",
+  "item": "beak",
   "status": "PASS",
-  "detail": "0.04 N m in 'head tucked in' vs rated 0.47 N m (1 x STS3215_C046): 9 % used"
+  "detail": "0.02 N m in 'head tucked in' vs rated 0.17 N m (1 x XL330_M288): 9 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.15 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 8 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.07 N m in 'head tucked in' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+ },
+ {
+  "group": "torque",
+  "item": "head_roll",
+  "status": "PASS",
+  "detail": "0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 3 % used"
  },
  {
   "group": "torque",
   "item": "head_yaw",
   "status": "PASS",
   "detail": "0.00 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 1 % used"
- },
- {
-  "group": "torque",
-  "item": "head_roll",
-  "status": "PASS",
-  "detail": "0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 1 % used"
  }
 ]

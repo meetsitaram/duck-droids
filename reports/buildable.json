@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "12.7 MPa (allowed 15): 45 N, section 179 mm2"
+  "detail": "12.2 MPa (allowed 15): 44 N, section 180 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 45 N, section 1228 mm2"
+  "detail": "0.4 MPa (allowed 15): 44 N, section 1293 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 45 N, section 814 mm2"
+  "detail": "0.4 MPa (allowed 15): 44 N, section 815 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "12.5 MPa (allowed 15): 45 N, section 89 mm2"
+  "detail": "11.9 MPa (allowed 15): 44 N, section 90 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "11.5 MPa (allowed 15): 45 N, section 59 mm2"
+  "detail": "10.7 MPa (allowed 15): 44 N, section 60 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.3 MPa (allowed 15): 45 N, section 951 mm2"
+  "detail": "1.2 MPa (allowed 15): 44 N, section 952 mm2"
  },
  {
   "group": "ONE",
@@ -69,7 +69,7 @@
   "group": "FIT",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "42 x 31 x 60 mm"
+  "detail": "42 x 31 x 63 mm"
  },
  {
   "group": "ONE",
@@ -105,7 +105,7 @@
   "group": "FIT",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "39 x 34 x 24 mm"
+  "detail": "39 x 37 x 24 mm"
  },
  {
   "group": "ONE",
@@ -357,7 +357,7 @@
   "group": "FIT",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "30 x 41 x 28 mm"
+  "detail": "30 x 41 x 30 mm"
  },
  {
   "group": "ONE",
@@ -376,6 +376,42 @@
   "item": "head roll lid",
   "status": "PASS",
   "detail": "4 x 38 x 27 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head roll spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head roll spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head roll spacer",
+  "status": "PASS",
+  "detail": "3 x 17 x 17 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head roll rear spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head roll rear spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head roll rear spacer",
+  "status": "PASS",
+  "detail": "3 x 17 x 17 mm"
  },
  {
   "group": "ONE",
