@@ -59,7 +59,7 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
 
 ![Its knee drawn to scale at three angles: a crank on the actuator, a rod, and a lever on the knee](images/big/knee_crank.png)
 
-- **Size:** 1.797 m tall, 96.8 kg from every part's material, 22 actuators (19 RS04, 2 RS03, 1 RS00). Masses lean on assumed pocketing: no pockets are drawn.
+- **Size:** 1.797 m tall, 96.3 kg from every part's material, 22 actuators (19 RS04, 2 RS03, 1 RS00). Masses lean on assumed pocketing: no pockets are drawn.
 - **Knee:** two RS04s, each with a crank, a rod and a lever, in place of a roller chain. 1.54:1 at its weakest, about 3.4:1 at the straight end, over 70 degrees.
 - **Given up:** deep squat and floor pick, as the crank's range won't reach them; the head roll, for a lighter neck.
 - **Strength against real humanoids,** peak torque over (weight x leg length), read from their own URDFs: knee 0.56 and hips 0.36 are in the range of
