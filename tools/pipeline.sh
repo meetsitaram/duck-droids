@@ -144,6 +144,7 @@ case $1 in
     gate floaters "$PY" tools/video_floaters.py
     "$PY" tools/render_pov_video.py 2>&1 | grep -v "^dry" | tail -3 | cut -c1-150
     "$PY" tools/cut_clips.py 2>&1 | tail -3 | cut -c1-110
+    gate parts_layout "$PY" tools/render_parts_layout.py
     FF=$("$PY" -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())")
     "$FF" -y -loglevel error -i "$D/build_5min.mp4" -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$WORK/build.mp4" && cp "$WORK/build.mp4" "$D/build_5min.mp4"
     "$PY" -I tools/make_docs.py | tail -1 | cut -c1-70

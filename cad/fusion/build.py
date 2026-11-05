@@ -245,7 +245,7 @@ def real_model(act):
 
 def real_skip(s):
     """The spec's stand-ins for a real servo: not built where there's the maker's model."""
-    out = {'Pi Zero 2 W', 'Waveshare bus board'}
+    out = {'Pi Zero 2 W', 'Waveshare bus board', 'leg bus board'}
     for j in s['joints']:
         if not real_model(j['act']):
             continue
@@ -405,7 +405,21 @@ def real_boards(name, comp, s):
             ('USB-C', SILVER, 'metal', [(28, 35.1, -1.3, 7.4, 0, 3.3)]),
             ('jumpers', '#F2C230', 'matte', [(33.6, 39.3, 14.2, 22, 0, 6)]),
         ], at)
-    return ('Pi Zero 2 W' in gs) + ('Waveshare bus board' in gs)
+    if 'leg bus board' in gs:                      # the hybrid's second one, flat on its plate: the 42 across, the jack's edge down
+        g = gs['leg bus board']
+        back, zlow = (g['c'][0] + g['size'][0] / 2) * 1000, (g['c'][2] + g['size'][2] / 2) * 1000 - 33
+        at = lambda u, v, w: ((back - 1.6 - w) / 10, (21 - u) / 10, (zlow + v) / 10)
+        _details(comp, 'leg bus board', [
+            ('board', BLACK_PCB, 'gloss', [(0, 42, 0, 33, -1.6, 0)]),
+            ('mounting rings', SILVER, 'metal', [(u, v, 2.3, 0, 0.05) for u in (2.5, 39.5) for v in (2.5, 30.5)]),
+            ('servo sockets', CREAM, 'matte', [(5.2, 15.9, 28, 33, 0, 6.0), (17.5, 28.3, 28, 33, 0, 6.0)]),
+            ('UART pins', '#17181A', 'matte', [(29.6, 37.0, 30.5, 33, 0, 8.5)]),
+            ('DC jack', '#17181A', 'matte', [(4.9, 14.5, -1.1, 14, 0, 11)]),
+            ('DC terminals', '#3E9B5F', 'matte', [(17.3, 25.3, -1, 6.3, 0, 10)]),
+            ('USB-C', SILVER, 'metal', [(28, 35.1, -1.3, 7.4, 0, 3.3)]),
+            ('jumpers', '#F2C230', 'matte', [(33.6, 39.3, 14.2, 22, 0, 6)]),
+        ], at)
+    return ('Pi Zero 2 W' in gs) + ('Waveshare bus board' in gs) + ('leg bus board' in gs)
 
 
 def real_servos(name, comp, s):

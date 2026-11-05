@@ -54,7 +54,7 @@ line([(1330, 94), (1385, 94)], AMBER, 3)
 label(1395, 83, '24 V or 5 V, or signal', s=18)
 
 # power side
-box(30, 150, 270, 110, 'Battery: not chosen', ['13S lithium-ion, with BMS', '8 kg, about 1.4 kWh, in the model'], '#FBEDEC')
+box(30, 150, 270, 110, 'Battery: candidate only', ['Dan-Tech 13S5P, 1200 Wh, 100 A', 'BMS and case: not chosen'], '#FBEDEC')
 box(30, 300, 270, 66, 'Main fuse, disconnect', ['not chosen'], '#FBEDEC')
 box(30, 420, 270, 90, 'PRE/DIS_R resistor', ['10 ohm, 200 W; 2-way terminal', 'needs a metal plate to cool'], '#FBEDEC')
 box(30, 545, 270, 90, 'Emergency stop', ['EM_NO terminal, normally open', 'cuts branches: the robot falls'], '#FBEDEC')

@@ -2,14 +2,14 @@
 
 Bottom-up: every part from its material and shape (`tools/mass_model.py`, materials in `spec/robot.py`), a 3 % wiring allowance per link on its frames.
 
-**Total 96.80 kg** (microduck: 0.8 kg).
+**Total 96.32 kg** (microduck: 0.8 kg).
 
 | material | kg | share |
 |---|---|---|
-| al7075 | 31.42 | 32 % |
+| al7075 | 31.41 | 33 % |
 | actuator | 29.06 | 30 % |
-| al6061 | 11.58 | 12 % |
-| petg | 8.82 | 9 % |
+| al6061 | 11.57 | 12 % |
+| petg | 8.36 | 9 % |
 | cells | 8.00 | 8 % |
 | steel | 4.94 | 5 % |
 | electronics | 1.82 | 2 % |
@@ -17,13 +17,13 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | link | mass kg | budget kg (hand estimate) | CoM (m, world, zero pose) | principal inertia (kg m2) |
 |---|---|---|---|---|
-| trunk | 21.15 | 0.00 | -0.042 -0.000 +0.918 | 0.2205 0.4442 0.5328 |
+| trunk | 21.15 | 0.00 | -0.044 -0.000 +0.918 | 0.2376 0.4514 0.5596 |
 | L_hip_yaw_link | 5.91 | 0.00 | +0.000 +0.110 +0.723 | 0.0337 0.0543 0.0743 |
 | R_hip_yaw_link | 5.91 | 0.00 | +0.000 -0.110 +0.723 | 0.0337 0.0543 0.0743 |
 | L_hip_roll_link | 5.39 | 0.00 | +0.002 +0.232 +0.678 | 0.0121 0.0493 0.0509 |
 | R_hip_roll_link | 5.39 | 0.00 | +0.002 -0.232 +0.678 | 0.0121 0.0493 0.0509 |
-| L_hip_pitch_link | 8.49 | 0.00 | -0.178 +0.271 +0.641 | 0.0514 0.0823 0.0843 |
-| R_hip_pitch_link | 8.49 | 0.00 | -0.178 -0.271 +0.641 | 0.0514 0.0823 0.0843 |
+| L_hip_pitch_link | 8.25 | 0.00 | -0.177 +0.274 +0.641 | 0.0477 0.0798 0.0801 |
+| R_hip_pitch_link | 8.25 | 0.00 | -0.177 -0.274 +0.641 | 0.0477 0.0798 0.0801 |
 | L_knee_link | 5.18 | 0.00 | -0.236 +0.263 +0.332 | 0.0086 0.1078 0.1092 |
 | R_knee_link | 5.18 | 0.00 | -0.236 -0.263 +0.332 | 0.0086 0.1078 0.1092 |
 | L_foot | 3.60 | 0.00 | -0.200 +0.265 +0.077 | 0.0210 0.0332 0.0361 |

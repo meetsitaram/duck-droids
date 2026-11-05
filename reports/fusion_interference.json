@@ -1,33 +1,13 @@
 [
 [
-"L yaw bracket",
-"L hip roll STS3215 case",
-615.3
+"leg bus board plugs servo",
+"leg bus board servo sockets",
+321.0
 ],
 [
-"R yaw bracket",
-"R hip roll STS3215 case",
-615.3
-],
-[
-"L ankle pitch STS3215 case",
-"L ankle pitch STS3215 rear horn",
-291.25
-],
-[
-"R ankle pitch STS3215 case",
-"R ankle pitch STS3215 rear horn",
-291.25
-],
-[
-"L ankle pitch cable plugs",
-"L ankle pitch STS3215 rear horn",
-148.79
-],
-[
-"R ankle pitch cable plugs",
-"R ankle pitch STS3215 rear horn",
-148.79
+"leg bus board plugs uart",
+"leg bus board UART pins",
+157.25
 ],
 [
 "neck pitch XL330 case middle",
@@ -105,54 +85,9 @@
 95.46
 ],
 [
-"L shoe",
-"L ankle pitch STS3215 horn",
-46.18
-],
-[
-"R shoe",
-"R ankle pitch STS3215 horn",
-46.17
-],
-[
-"L hip yaw lid",
-"L hip yaw STS3215 case",
-37.01
-],
-[
-"R hip yaw lid",
-"R hip yaw STS3215 case",
-37.01
-],
-[
-"L hip roll lid",
-"L hip roll STS3215 case",
-37.01
-],
-[
-"R hip roll lid",
-"R hip roll STS3215 case",
-37.01
-],
-[
-"L hip pitch lid",
-"L hip pitch STS3215 case",
-37.01
-],
-[
-"L knee lid",
-"L knee STS3215 case",
-37.01
-],
-[
-"R hip pitch lid",
-"R hip pitch STS3215 case",
-37.01
-],
-[
-"R knee lid",
-"R knee STS3215 case",
-37.01
+"bus board cable plugs power",
+"Waveshare bus board DC terminals",
+80.0
 ],
 [
 "neck pitch XL330 centre screw",
@@ -180,34 +115,59 @@
 34.85
 ],
 [
-"L thigh frame",
-"L hip pitch STS3215 case",
-28.51
+"bus board cable plugs usb",
+"Waveshare bus board USB-C",
+30.46
 ],
 [
-"L thigh frame",
-"L knee STS3215 case",
-28.51
+"Pi USB plug",
+"Pi Zero 2 W USB port",
+20.8
 ],
 [
-"R thigh frame",
-"R hip pitch STS3215 case",
-28.51
+"Pi PWR plug",
+"Pi Zero 2 W power port",
+20.8
 ],
 [
-"R thigh frame",
-"R knee STS3215 case",
-28.51
+"L roll bracket",
+"L hip pitch horn bearing inner race",
+11.18
 ],
 [
-"chassis",
-"L hip yaw STS3215 case",
-10.51
+"R roll bracket",
+"R hip roll horn bearing inner race",
+11.18
 ],
 [
-"chassis",
-"R hip yaw STS3215 case",
-10.51
+"L shin",
+"L knee horn bearing inner race",
+11.18
+],
+[
+"R shin",
+"R knee horn bearing inner race",
+11.18
+],
+[
+"R roll bracket",
+"R hip pitch horn bearing inner race",
+11.14
+],
+[
+"L roll bracket",
+"L hip roll horn bearing inner race",
+11.13
+],
+[
+"L yaw bracket",
+"L hip yaw horn bearing inner race",
+11.12
+],
+[
+"R yaw bracket",
+"R hip yaw horn bearing inner race",
+11.12
 ],
 [
 "neck pitch XL330 idler screw",
@@ -238,6 +198,11 @@
 "head roll XL330 case rear",
 "head roll XL330 idler screw",
 9.23
+],
+[
+"head yaw bracket",
+"head yaw horn bearing inner race",
+8.98
 ],
 [
 "L shoe bottom screw 0",
@@ -300,6 +265,51 @@
 6.91
 ],
 [
+"L hip yaw lid",
+"L hip yaw STS3215 case",
+4.92
+],
+[
+"R hip yaw lid",
+"R hip yaw STS3215 case",
+4.92
+],
+[
+"L hip roll lid",
+"L hip roll STS3215 case",
+4.92
+],
+[
+"R hip roll lid",
+"R hip roll STS3215 case",
+4.92
+],
+[
+"L hip pitch lid",
+"L hip pitch STS3215 case",
+4.92
+],
+[
+"L knee lid",
+"L knee STS3215 case",
+4.92
+],
+[
+"R hip pitch lid",
+"R hip pitch STS3215 case",
+4.92
+],
+[
+"R knee lid",
+"R knee STS3215 case",
+4.92
+],
+[
+"leg bus board plugs power",
+"leg bus board DC terminals",
+4.8
+],
+[
 "head roll rear bearing inner race",
 "head roll XL330 idler",
 4.58
@@ -315,14 +325,9 @@
 4.48
 ],
 [
-"L hinge screw",
-"hood",
-4.23
-],
-[
 "R hinge screw",
 "hood",
-4.22
+4.32
 ],
 [
 "L hip yaw lid",
@@ -495,9 +500,14 @@
 2.98
 ],
 [
-"neck column",
-"neck pitch XL330 case front",
-2.88
+"L shin",
+"L ankle pitch STS3215 rear horn",
+2.51
+],
+[
+"R shin",
+"R ankle pitch STS3215 rear horn",
+2.51
 ],
 [
 "neck pitch XL330 case rear",
@@ -600,11 +610,6 @@
 2.5
 ],
 [
-"neck column",
-"head pitch XL330 case rear",
-2.49
-],
-[
 "body shell",
 "body screw 0",
 2.16
@@ -635,34 +640,49 @@
 2.16
 ],
 [
-"neck column",
-"neck pitch XL330 case rear",
-1.35
+"bus board top screw 0",
+"Waveshare bus board mounting rings",
+0.8
 ],
 [
-"L shin",
-"L ankle pitch STS3215 case",
-1.17
+"bus board top screw 1",
+"Waveshare bus board mounting rings",
+0.8
 ],
 [
-"R shin",
-"R ankle pitch STS3215 case",
-1.17
+"bus board top screw 2",
+"Waveshare bus board mounting rings",
+0.8
 ],
 [
-"neck column",
-"head pitch XL330 case front",
-1.11
+"bus board top screw 3",
+"Waveshare bus board mounting rings",
+0.8
 ],
 [
-"L shin",
-"L ankle pitch STS3215 rear horn",
-0.91
+"leg bus board screw 0",
+"leg bus board mounting rings",
+0.8
 ],
 [
-"R shin",
-"R ankle pitch STS3215 rear horn",
-0.91
+"leg bus board screw 1",
+"leg bus board mounting rings",
+0.8
+],
+[
+"leg bus board screw 2",
+"leg bus board mounting rings",
+0.8
+],
+[
+"leg bus board screw 3",
+"leg bus board mounting rings",
+0.8
+],
+[
+"chassis",
+"R hip yaw STS3215 horn",
+0.67
 ],
 [
 "Pi screw 0",
@@ -685,6 +705,21 @@
 0.57
 ],
 [
+"neck column",
+"neck lid",
+0.49
+],
+[
+"chassis",
+"L hip yaw STS3215 horn",
+0.43
+],
+[
+"R thigh frame",
+"R knee lid",
+0.37
+],
+[
 "chassis",
 "neck pitch XL330 idler",
 0.33
@@ -700,14 +735,39 @@
 0.33
 ],
 [
-"L inner ear",
-"L shoe",
-0.18
+"chassis",
+"R hip yaw lid",
+0.32
 ],
 [
-"R inner ear",
-"R shoe",
-0.18
+"L thigh frame",
+"L knee lid",
+0.32
+],
+[
+"neck column",
+"head pitch lid",
+0.32
+],
+[
+"head fork",
+"head yaw sheet",
+0.32
+],
+[
+"L shoe",
+"L ankle pitch STS3215 horn",
+0.31
+],
+[
+"head yaw bracket",
+"head roll cable plugs -",
+0.2
+],
+[
+"L thigh frame",
+"L hip pitch lid",
+0.16
 ],
 [
 "neck pitch XL330 case front",
@@ -835,34 +895,14 @@
 0.13
 ],
 [
-"head yaw bracket",
-"head roll XL330 case rear",
-0.09
+"L yaw bracket",
+"L hip roll lid",
+0.07
 ],
 [
-"chassis",
-"R hip yaw STS3215 horn",
-0.08
-],
-[
-"head fork",
-"head yaw XL330 case rear",
-0.08
-],
-[
-"head frame",
-"beak XL330 case front",
-0.06
-],
-[
-"head frame",
-"beak XL330 case rear",
-0.04
-],
-[
-"hood",
-"beak XL330 case front",
-0.04
+"R yaw bracket",
+"R hip roll lid",
+0.07
 ],
 [
 "Pi Zero 2 W mounting rings",
@@ -870,14 +910,19 @@
 0.04
 ],
 [
-"chassis",
-"L hip yaw STS3215 horn",
-0.03
+"L yaw bracket",
+"L hip roll STS3215 case",
+0.02
 ],
 [
-"head frame",
-"beak cable plugs +",
-0.03
+"R yaw bracket",
+"R hip roll STS3215 case",
+0.02
+],
+[
+"R shoe",
+"R sole",
+0.01
 ],
 [
 "neck pitch XL330 case middle",
@@ -905,13 +950,13 @@
 0.01
 ],
 [
-"head yaw bracket",
-"head roll cable plugs -",
+"R inner ear",
+"R shoe",
 0.0
 ],
 [
-"head yaw bracket",
-"head roll XL330 LED window",
+"jaw",
+"jaw soft insert",
 0.0
 ]
 ]
