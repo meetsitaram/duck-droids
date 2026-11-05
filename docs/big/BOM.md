@@ -5,9 +5,9 @@
 | | |
 |---|---|
 | Product | Big duck, biped, 22 actuators on 15 joints |
-| Height, mass | 1.797 m, 96.8 kg as modelled, leaning on pocketing nobody has drawn |
+| Height, mass | 1.797 m, 96.3 kg as modelled, leaning on pocketing nobody has drawn |
 | Build quantity | Quantities are for 1 robot |
-| Fabricated parts | 149 metal, 72 printed: 29.1 kg 7075, 10.9 kg 6061, 2.3 kg steel, 8.7 kg PETG, 1.2 kg TPU. No drawing or print file exists for any of them |
+| Fabricated parts | 145 metal, 68 printed: 29.1 kg 7075, 10.9 kg 6061, 2.3 kg steel, 8.2 kg PETG, 1.2 kg TPU. No drawing or print file exists for any of them |
 | Status | Design study: no part made, no actuator tested, not safe to build |
 | Prices | USD, as listed or found 2026-11-05, before tax and shipping. Confirm before ordering |
 | Related | [Wiring](WIRING.md), [its spec](../../spec/big_duck.py), [Fusion trial](FUSION.md) |
@@ -67,7 +67,7 @@ Every line is required unless it starts with **OPTIONAL**. Optional lines show t
 | 12 | Socket cap screw, actuator mounting and RS03 outputs | class 12.9, or stainless to be decided | M4. Length per joint: not chosen. The manuals' holes need 218; the model shows 128 | 218 | box of 100 | 3 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M4+socket+cap+screw+12.9) |
 | 13 | Socket cap screw, RS04 outputs | class 12.9 | M5. Thread 6.5 mm deep, so length matters: see Open before ordering. The manual's holes need 171; the model shows 72 | 171 | box of 100 | 2 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M5+socket+cap+screw+12.9) |
 | 14 | Socket cap screw, RS00 | generic | M3. 12 for its mount and output | 12 | box of 100 | 1 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M3+socket+cap+screw) |
-| 15 | Panel screws and inserts | not chosen | 61 printed panels have no screws or bosses designed | - | - | - | - | - | not designed<br>[Search Amazon](https://www.amazon.com/s?k=M3+heat+set+insert) |
+| 15 | Panel screws and inserts | not chosen | 59 printed panels have no screws or bosses designed | - | - | - | - | - | not designed<br>[Search Amazon](https://www.amazon.com/s?k=M3+heat+set+insert) |
 
 ### Electronics
 
@@ -165,54 +165,52 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 5 mm, 0.1
 | F42 | knee rod O | 7075-T6 | 120 x 64 x 5.0 mm | cut from 5 mm sheet | - | 38 g | 2 |
 | F43 | thigh cover post out hip | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
 | F44 | thigh cover post out rear | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F45 | thigh cover post in rear | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F46 | thigh cover post out knee | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F47 | thigh cover post in knee | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F48 | knee shaft | steel | 72 x 40 x 40.0 mm | turned | - | 705 g | 2 |
-| F49 | knee lever I | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
-| F50 | knee lever O | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
-| F51 | knee lever pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F52 | knee lever pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F53 | shin hub in | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
-| F54 | shin hub out | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
-| F55 | shin spacer | 6061-T6 | 70 x 30 x 12.0 mm | turned or milled | - | 67 g | 2 |
-| F56 | shin top | 7075-T6 | 110 x 90 x 8.0 mm | cut from 8 mm sheet | - | 221 g | 2 |
-| F57 | shin wall front | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
-| F58 | shin wall back | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
-| F59 | shin wall in | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
-| F60 | shin wall out | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
-| F61 | shin cap | 7075-T6 | 126 x 94 x 8.0 mm | cut from 8 mm sheet | - | 264 g | 2 |
-| F62 | ankle plate in | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 2 |
-| F63 | ankle stub | steel | 30 x 30 x 20.0 mm | turned | - | 110 g | 2 |
-| F64 | foot plate | 7075-T6 | 306 x 166 x 13.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 1111 g | 2 |
-| F65 | ankle ear out | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
-| F66 | ankle ear in | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
-| F67 | ankle output | 6061-T6 | 80 x 80 x 13.0 mm | turned or milled | - | 176 g | 2 |
-| F68 | ankle bearing housing | 7075-T6 | 80 x 80 x 16.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 91 g | 2 |
-| F69 | neck output L | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
-| F70 | neck output R | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
-| F71 | neck spine | 7075-T6 | 430 x 80 x 60.0 mm | milled from solid; pockets not designed | 25 % of solid, assumed | 1323 g | 1 |
-| F72 | head pitch stator plate L | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
-| F73 | head pitch stator tie L | 6061-T6 | 73 x 24 x 10.0 mm | turned or milled | - | 46 g | 1 |
-| F74 | head pitch shaft | steel | 150 x 40 x 40.0 mm | turned | 45 % of solid, assumed | 661 g | 1 |
-| F75 | head pitch yoke | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
-| F76 | head pitch yoke R | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
-| F77 | head pitch bridge | 7075-T6 | 140 x 102 x 8.0 mm | cut from 8 mm sheet | - | 319 g | 1 |
-| F78 | head yaw output | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 108 g | 1 |
-| F79 | head yaw plate | 7075-T6 | 202 x 120 x 8.0 mm | cut from 8 mm sheet | - | 542 g | 1 |
-| F80 | head roll cradle | 7075-T6 | 135 x 120 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
-| F81 | head roll output | 6061-T6 | 64 x 64 x 10.0 mm | turned or milled | - | 87 g | 1 |
-| F82 | head main frame | 6061-T6 | 400 x 240 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 517 g | 1 |
-| F83 | head rail L | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
-| F84 | head rail R | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
-| F85 | head rear frame | 6061-T6 | 400 x 90 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 232 g | 1 |
-| F86 | head front frame | 6061-T6 | 400 x 200 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 517 g | 1 |
-| F87 | head beak mount | 6061-T6 | 400 x 60 x 6.0 mm | cut from 6 mm sheet | 45 % of solid, assumed | 173 g | 1 |
-| F88 | head beak lug L | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
-| F89 | head beak lug R | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
-| F90 | beak hinge L | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
-| F91 | beak hinge R | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
-| F92 | beak tray frame | 6061-T6 | 426 x 300 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 688 g | 1 |
+| F45 | thigh cover post out knee | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
+| F46 | knee shaft | steel | 72 x 40 x 40.0 mm | turned | - | 705 g | 2 |
+| F47 | knee lever I | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
+| F48 | knee lever O | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
+| F49 | knee lever pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F50 | knee lever pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F51 | shin hub in | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
+| F52 | shin hub out | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
+| F53 | shin spacer | 6061-T6 | 70 x 30 x 12.0 mm | turned or milled | - | 67 g | 2 |
+| F54 | shin top | 7075-T6 | 110 x 90 x 8.0 mm | cut from 8 mm sheet | - | 221 g | 2 |
+| F55 | shin wall front | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
+| F56 | shin wall back | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
+| F57 | shin wall in | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
+| F58 | shin wall out | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
+| F59 | shin cap | 7075-T6 | 126 x 94 x 8.0 mm | cut from 8 mm sheet | - | 264 g | 2 |
+| F60 | ankle plate in | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 2 |
+| F61 | ankle stub | steel | 30 x 30 x 20.0 mm | turned | - | 110 g | 2 |
+| F62 | foot plate | 7075-T6 | 306 x 166 x 13.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 1111 g | 2 |
+| F63 | ankle ear out | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
+| F64 | ankle ear in | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
+| F65 | ankle output | 6061-T6 | 80 x 80 x 13.0 mm | turned or milled | - | 176 g | 2 |
+| F66 | ankle bearing housing | 7075-T6 | 80 x 80 x 16.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 91 g | 2 |
+| F67 | neck output L | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
+| F68 | neck output R | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
+| F69 | neck spine | 7075-T6 | 430 x 80 x 60.0 mm | milled from solid; pockets not designed | 25 % of solid, assumed | 1323 g | 1 |
+| F70 | head pitch stator plate L | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
+| F71 | head pitch stator tie L | 6061-T6 | 73 x 24 x 10.0 mm | turned or milled | - | 46 g | 1 |
+| F72 | head pitch shaft | steel | 150 x 40 x 40.0 mm | turned | 45 % of solid, assumed | 661 g | 1 |
+| F73 | head pitch yoke | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
+| F74 | head pitch yoke R | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
+| F75 | head pitch bridge | 7075-T6 | 140 x 102 x 8.0 mm | cut from 8 mm sheet | - | 319 g | 1 |
+| F76 | head yaw output | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 108 g | 1 |
+| F77 | head yaw plate | 7075-T6 | 202 x 120 x 8.0 mm | cut from 8 mm sheet | - | 542 g | 1 |
+| F78 | head roll cradle | 7075-T6 | 135 x 120 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
+| F79 | head roll output | 6061-T6 | 64 x 64 x 10.0 mm | turned or milled | - | 87 g | 1 |
+| F80 | head main frame | 6061-T6 | 400 x 240 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 517 g | 1 |
+| F81 | head rail L | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
+| F82 | head rail R | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
+| F83 | head rear frame | 6061-T6 | 400 x 90 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 232 g | 1 |
+| F84 | head front frame | 6061-T6 | 400 x 200 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 517 g | 1 |
+| F85 | head beak mount | 6061-T6 | 400 x 60 x 6.0 mm | cut from 6 mm sheet | 45 % of solid, assumed | 173 g | 1 |
+| F86 | head beak lug L | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
+| F87 | head beak lug R | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
+| F88 | beak hinge L | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
+| F89 | beak hinge R | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
+| F90 | beak tray frame | 6061-T6 | 426 x 300 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 688 g | 1 |
 
 ### Printed
 
@@ -228,59 +226,57 @@ Panels within a 256 mm bed by `tools/checks.py`. Masses are 3 mm walls in the sh
 | P6 | body panel FL | PETG | 216 x 205 x 129 mm | 88 g | 1 |
 | P7 | thigh cover out hip | PETG | 154 x 132 x 3 mm | 67 g | 2 |
 | P8 | thigh cover out rear | PETG | 210 x 190 x 3 mm | 129 g | 2 |
-| P9 | thigh cover in rear | PETG | 210 x 190 x 3 mm | 129 g | 2 |
-| P10 | thigh cover out knee | PETG | 240 x 144 x 3 mm | 99 g | 2 |
-| P11 | thigh cover in knee | PETG | 240 x 144 x 3 mm | 99 g | 2 |
-| P12 | shin cover front | PETG | 170 x 122 x 71 mm | 101 g | 2 |
-| P13 | shin cover back | PETG | 170 x 122 x 71 mm | 101 g | 2 |
-| P14 | sole rear | TPU | 190 x 180 x 34 mm | 320 g | 2 |
-| P15 | sole front | TPU | 190 x 150 x 34 mm | 263 g | 2 |
-| P16 | shoe rear | PETG | 190 x 180 x 40 mm | 167 g | 2 |
-| P17 | shoe front | PETG | 190 x 150 x 40 mm | 280 g | 2 |
-| P18 | hood panel 0Ru | PETG | 180 x 132 x 118 mm | 62 g | 1 |
-| P19 | hood panel 0Rl | PETG | 233 x 150 x 135 mm | 80 g | 1 |
-| P20 | hood panel 0c | PETG | 240 x 194 x 130 mm | 118 g | 1 |
-| P21 | hood panel 0Lu | PETG | 180 x 132 x 118 mm | 62 g | 1 |
-| P22 | hood panel 0Ll | PETG | 233 x 150 x 135 mm | 80 g | 1 |
-| P23 | hood panel 1Ru | PETG | 220 x 150 x 140 mm | 121 g | 1 |
-| P24 | hood panel 1Rl | PETG | 220 x 164 x 135 mm | 77 g | 1 |
-| P25 | hood panel 1c | PETG | 240 x 220 x 150 mm | 136 g | 1 |
-| P26 | hood panel 1Lu | PETG | 220 x 150 x 140 mm | 121 g | 1 |
-| P27 | hood panel 1Ll | PETG | 220 x 164 x 135 mm | 77 g | 1 |
-| P28 | hood panel 2Ru | PETG | 210 x 176 x 161 mm | 134 g | 1 |
-| P29 | hood panel 2Rl | PETG | 210 x 187 x 135 mm | 73 g | 1 |
-| P30 | hood panel 2c | PETG | 240 x 210 x 169 mm | 130 g | 1 |
-| P31 | hood panel 2Lu | PETG | 210 x 176 x 161 mm | 134 g | 1 |
-| P32 | hood panel 2Ll | PETG | 210 x 187 x 135 mm | 73 g | 1 |
-| P33 | hood panel 3Ru | PETG | 215 x 190 x 181 mm | 160 g | 1 |
-| P34 | hood panel 3Rl | PETG | 215 x 199 x 135 mm | 75 g | 1 |
-| P35 | hood panel 3c | PETG | 240 x 215 x 187 mm | 132 g | 1 |
-| P36 | hood panel 3Lu | PETG | 215 x 190 x 181 mm | 160 g | 1 |
-| P37 | hood panel 3Ll | PETG | 215 x 199 x 135 mm | 75 g | 1 |
-| P38 | face panel 0u | PETG | 174 x 166 x 4 mm | 107 g | 1 |
-| P39 | face panel 0l | PETG | 183 x 135 x 4 mm | 124 g | 1 |
-| P40 | face panel 1u | PETG | 240 x 172 x 4 mm | 208 g | 1 |
-| P41 | face panel 1l | PETG | 240 x 135 x 4 mm | 165 g | 1 |
-| P42 | face panel 2u | PETG | 174 x 166 x 4 mm | 107 g | 1 |
-| P43 | face panel 2l | PETG | 183 x 135 x 4 mm | 124 g | 1 |
-| P44 | bill panel 00 | PETG | 223 x 153 x 35 mm | 91 g | 1 |
-| P45 | bill panel 01 | PETG | 240 x 80 x 35 mm | 97 g | 1 |
-| P46 | bill panel 02 | PETG | 223 x 153 x 35 mm | 91 g | 1 |
-| P47 | bill panel 10 | PETG | 220 x 101 x 35 mm | 115 g | 1 |
-| P48 | bill panel 12 | PETG | 220 x 101 x 35 mm | 115 g | 1 |
-| P49 | bill panel 20 | PETG | 210 x 86 x 35 mm | 88 g | 1 |
-| P50 | bill panel 22 | PETG | 210 x 86 x 35 mm | 88 g | 1 |
-| P51 | bill panel 30 | PETG | 218 x 202 x 35 mm | 149 g | 1 |
-| P52 | bill panel 31 | PETG | 240 x 38 x 35 mm | 65 g | 1 |
-| P53 | bill panel 32 | PETG | 218 x 202 x 35 mm | 149 g | 1 |
-| P54 | eye ring | PETG | 210 x 210 x 16 mm | 300 g | 1 |
-| P55 | eye lens | PETG | 120 x 120 x 12 mm | 100 g | 1 |
-| P56 | beak panel 0 | PETG | 197 x 135 x 84 mm | 157 g | 1 |
-| P57 | beak panel 1 | PETG | 207 x 135 x 84 mm | 142 g | 1 |
-| P58 | beak panel 2 | PETG | 197 x 135 x 84 mm | 157 g | 1 |
-| P59 | beak panel 3 | PETG | 197 x 135 x 84 mm | 195 g | 1 |
-| P60 | beak panel 4 | PETG | 207 x 135 x 84 mm | 184 g | 1 |
-| P61 | beak panel 5 | PETG | 197 x 135 x 84 mm | 195 g | 1 |
+| P9 | thigh cover out knee | PETG | 240 x 144 x 3 mm | 99 g | 2 |
+| P10 | shin cover front | PETG | 170 x 122 x 71 mm | 101 g | 2 |
+| P11 | shin cover back | PETG | 170 x 122 x 71 mm | 101 g | 2 |
+| P12 | sole rear | TPU | 190 x 180 x 34 mm | 320 g | 2 |
+| P13 | sole front | TPU | 190 x 150 x 34 mm | 263 g | 2 |
+| P14 | shoe rear | PETG | 190 x 180 x 40 mm | 167 g | 2 |
+| P15 | shoe front | PETG | 190 x 150 x 40 mm | 280 g | 2 |
+| P16 | hood panel 0Ru | PETG | 180 x 132 x 118 mm | 62 g | 1 |
+| P17 | hood panel 0Rl | PETG | 233 x 150 x 135 mm | 80 g | 1 |
+| P18 | hood panel 0c | PETG | 240 x 194 x 130 mm | 118 g | 1 |
+| P19 | hood panel 0Lu | PETG | 180 x 132 x 118 mm | 62 g | 1 |
+| P20 | hood panel 0Ll | PETG | 233 x 150 x 135 mm | 80 g | 1 |
+| P21 | hood panel 1Ru | PETG | 220 x 150 x 140 mm | 121 g | 1 |
+| P22 | hood panel 1Rl | PETG | 220 x 164 x 135 mm | 77 g | 1 |
+| P23 | hood panel 1c | PETG | 240 x 220 x 150 mm | 136 g | 1 |
+| P24 | hood panel 1Lu | PETG | 220 x 150 x 140 mm | 121 g | 1 |
+| P25 | hood panel 1Ll | PETG | 220 x 164 x 135 mm | 77 g | 1 |
+| P26 | hood panel 2Ru | PETG | 210 x 176 x 161 mm | 134 g | 1 |
+| P27 | hood panel 2Rl | PETG | 210 x 187 x 135 mm | 73 g | 1 |
+| P28 | hood panel 2c | PETG | 240 x 210 x 169 mm | 130 g | 1 |
+| P29 | hood panel 2Lu | PETG | 210 x 176 x 161 mm | 134 g | 1 |
+| P30 | hood panel 2Ll | PETG | 210 x 187 x 135 mm | 73 g | 1 |
+| P31 | hood panel 3Ru | PETG | 215 x 190 x 181 mm | 160 g | 1 |
+| P32 | hood panel 3Rl | PETG | 215 x 199 x 135 mm | 75 g | 1 |
+| P33 | hood panel 3c | PETG | 240 x 215 x 187 mm | 132 g | 1 |
+| P34 | hood panel 3Lu | PETG | 215 x 190 x 181 mm | 160 g | 1 |
+| P35 | hood panel 3Ll | PETG | 215 x 199 x 135 mm | 75 g | 1 |
+| P36 | face panel 0u | PETG | 174 x 166 x 4 mm | 107 g | 1 |
+| P37 | face panel 0l | PETG | 183 x 135 x 4 mm | 124 g | 1 |
+| P38 | face panel 1u | PETG | 240 x 172 x 4 mm | 208 g | 1 |
+| P39 | face panel 1l | PETG | 240 x 135 x 4 mm | 165 g | 1 |
+| P40 | face panel 2u | PETG | 174 x 166 x 4 mm | 107 g | 1 |
+| P41 | face panel 2l | PETG | 183 x 135 x 4 mm | 124 g | 1 |
+| P42 | bill panel 00 | PETG | 223 x 153 x 35 mm | 91 g | 1 |
+| P43 | bill panel 01 | PETG | 240 x 80 x 35 mm | 97 g | 1 |
+| P44 | bill panel 02 | PETG | 223 x 153 x 35 mm | 91 g | 1 |
+| P45 | bill panel 10 | PETG | 220 x 101 x 35 mm | 115 g | 1 |
+| P46 | bill panel 12 | PETG | 220 x 101 x 35 mm | 115 g | 1 |
+| P47 | bill panel 20 | PETG | 210 x 86 x 35 mm | 88 g | 1 |
+| P48 | bill panel 22 | PETG | 210 x 86 x 35 mm | 88 g | 1 |
+| P49 | bill panel 30 | PETG | 218 x 202 x 35 mm | 149 g | 1 |
+| P50 | bill panel 31 | PETG | 240 x 38 x 35 mm | 65 g | 1 |
+| P51 | bill panel 32 | PETG | 218 x 202 x 35 mm | 149 g | 1 |
+| P52 | eye ring | PETG | 210 x 210 x 16 mm | 300 g | 1 |
+| P53 | eye lens | PETG | 120 x 120 x 12 mm | 100 g | 1 |
+| P54 | beak panel 0 | PETG | 197 x 135 x 84 mm | 157 g | 1 |
+| P55 | beak panel 1 | PETG | 207 x 135 x 84 mm | 142 g | 1 |
+| P56 | beak panel 2 | PETG | 197 x 135 x 84 mm | 157 g | 1 |
+| P57 | beak panel 3 | PETG | 197 x 135 x 84 mm | 195 g | 1 |
+| P58 | beak panel 4 | PETG | 207 x 135 x 84 mm | 184 g | 1 |
+| P59 | beak panel 5 | PETG | 197 x 135 x 84 mm | 195 g | 1 |
 
 ## Open before ordering
 

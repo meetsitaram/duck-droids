@@ -27,7 +27,9 @@ The first full build held Fusion far too long. Links, clashes and pictures were 
 
 At 01:21 Fusion still showed "big assembly", not responding, and using some CPU. Its top-level windows showed no dialog, but the window couldn't be captured, so a dialog isn't ruled out. The cause isn't known. The step after the pictures is saving the assembly, so that's the first place to look. So `pipeline.sh` now stops the big duck before its assembly, unless told `BIG_ASSEMBLY=True`, and the assembly isn't to be run again without asking.
 
-Whether the assembly saved, and in which hub project, isn't known either: the window's title read "big assembly (tinkerbuggy)", though the script looks for my-projects / duck-droids / big. To check once Fusion is back.
+Fusion was force-quit at 05:52, which discarded whatever was unsaved in it. The coordinator found 17 files in my-projects / duck-droids / big, and none for this duck in tinkerbuggy: the title's project name didn't mean a file landed there. On 2026-11-05 at about 06:18, Fusion stopped responding again on the hybrid's assembly, so this isn't only the big duck's size. The same stage is the one to suspect in both, but neither cause is known.
+
+For the next try, `linked_build.py` logs each stage to `reports/big/fusion_log.txt` as it happens, takes pictures of each link, and for this duck makes its assembly in one call and checks it in another (`BIG_CHECK_ONLY=True`), closing without a second save.
 
 ## Clashes
 
@@ -37,15 +39,15 @@ Whether the assembly saved, and in which hub project, isn't known either: the wi
 
 | Clash | Mirrored | What it is | Done |
 |---|---|---|---|
-| Inner thigh cover, hip piece, into rear hip roll actuator (8.4 cm3), yoke (2.0), cheek (1.9), its seat and 2 screws | yes | **a real flaw.** Covers are `decal`, so the offline checks never test them | piece and its post removed from the spec; not yet rebuilt |
-| Inner thigh cover, knee piece, into hip roll cheek (0.16 cm3) | yes | **a real flaw,** small | **not fixed** |
+| Inner thigh cover, hip piece, into rear hip roll actuator (8.4 cm3), yoke (2.0), cheek (1.9), its seat and 2 screws | yes | **a real flaw.** Covers are `decal`, so the offline checks never test them | inner covers removed from the spec; not yet rebuilt |
+| Inner thigh cover, knee piece, into hip roll cheek (0.16 cm3) | yes | **a real flaw,** small | the same |
 | Body panel M into hip yaw drum (0.41 cm3) | yes | **a real flaw:** the drum reaches 8 mm into the panel's lower edge | clearance cut in the spec; not yet rebuilt |
 | Knee rod into lever pin (0.39 cm3) | yes | the rod has no hole drawn. It's drawn at knee angle 0 and belongs to the thigh, as one body can't swing within a link | **not fixed:** rods need their own moving links, and bushes |
 | Chain into 25T sprocket (0.58 cm3 each strand) | no | a chain drawn as 2 straight bars tangent to the pitch circle | a drawing, not a flaw. Chain and tensioner not designed |
 
 Mirrored ones count twice in the 22.
 
-**None of the sweep is tested for covers or rods.** This check is at the zero pose only, and the covers and rods are left out of the offline sweeps. **Whether Fusion accepted every joint's limits isn't known:** the script's printed results, the refused joints among them, were lost when the call timed out. Only the files it wrote survive: the clash list, the link times and the pictures.
+**Sweeps.** This clash check is at the zero pose only. `tools/big_sweep.py` now swings the thigh covers through the hip pitch's whole range, at 21 angles, against everything above that joint, with the other joints at zero. It found the inner rear and knee pieces reaching the body panel (10.7 cm3), cheek, deck and beam at the top of the range, which is why all the inner covers went: the frame now shows from the inside of the thigh. The outer ones sweep clear, on that one joint. **Hip pitch and roll together, and the rods, aren't tested.** **Whether Fusion accepted every joint's limits isn't known:** the script's printed results, the refused joints among them, were lost when the call timed out. Only the files it wrote survive: the clash list, the link times and the pictures.
 
 ### Inside one link, which are not assemblies
 
@@ -70,17 +72,17 @@ Within a link everything is one rigid lump in the model, and these overlaps say 
 Looked at from the front three-quarter, side, back and below, at full size.
 
 - It reads as the duck: hood, eye, orange band and jaw, a long neck, the body, and the hip frames under it.
-- **The inner and outer thigh covers look like loose flat plates,** standing off the thigh on thin posts. They were designed as flat shapes and it shows. Nothing joins them, and from below they look stuck on.
+- **The thigh covers look like loose flat plates,** standing off the thigh on thin posts. The inner ones have since gone. They were designed as flat shapes and it shows. Nothing joins them, and from below they look stuck on.
 - **The head hangs 0.6 m in front of the neck,** and the side view shows how far that is from the feet. Nothing about it is checked for strength or for a fall.
 - **The hip frame sits below the body, with a clear gap** and its two drums showing. The body panels don't reach the frame.
 - **Above the jaw, from the side,** the frames show through a gap in the orange band.
 - **From behind,** the hood has a square opening onto the head's frame plates, which the small duck's doesn't, and the jaw's frame shows under it.
-- The real RS04 shape isn't here: these are plain cylinders.
+- The real RS04 shape isn't here: these are plain cylinders, stand-ins, as RobStride's STEP files haven't been downloaded.
 
 Not looked at: close crops of each joint, and the views at other poses.
 
 ## Not done
 
-- A rebuild with the fixes above, so these pictures and clashes are from before them.
+- A rebuild with the fixes above, so these pictures and clashes are from before them. Pictures of each link come with it.
 - A one-document build for `cad/duck-droids-big.f3d` and `.step`.
 - Videos: not until those exist, and not at the risk of holding Fusion from the others.
