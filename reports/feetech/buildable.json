@@ -21,7 +21,7 @@
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "14.9 MPa (allowed 15): 55 N, section 90 mm2"
+  "detail": "14.8 MPa (allowed 15): 55 N, section 90 mm2"
  },
  {
   "group": "LOAD",

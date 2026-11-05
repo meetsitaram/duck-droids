@@ -76,11 +76,13 @@ def run(_context: str):
             cam = vp.camera
             cam.isSmoothTransition = False
             cam.cameraType = adsk.core.CameraTypes.OrthographicCameraType
-            tgt = adsk.core.Point3D.create(0.8, 0, 12.4)
+            # (framed for the all-Dynamixel's 29.5 cm. The all-Feetech is 38 cm, with a 19 cm head: as these numbers, its hood's top and base left the picture)
+            big_ = 'feetech' in app.activeDocument.name
+            tgt = adsk.core.Point3D.create(3.0, 0, 16.0) if big_ else adsk.core.Point3D.create(0.8, 0, 12.4)
             cam.target = tgt
             cam.eye = adsk.core.Point3D.create(tgt.x + 80 * math.cos(az) * math.cos(el), tgt.y + 80 * math.sin(az) * math.cos(el), tgt.z + 80 * math.sin(el))
             cam.upVector = adsk.core.Vector3D.create(0, 0, 1)
-            cam.viewExtents = 25.5
+            cam.viewExtents = 35.0 if big_ else 25.5
             vp.camera = cam
             vp.refresh()
             vp.saveAsImageFile(os.path.join(OUT, f'f{f:04d}.png'), W, H)

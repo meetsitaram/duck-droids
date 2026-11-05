@@ -453,6 +453,7 @@ QUICK_TESTS = {'L_knee', 'L_hip_pitch', 'L_hip_yaw', 'neck_pitch', 'head_yaw', '
 
 
 HEAD_SECTIONS = ('headbench', 'framebench', 'jawbench', 'head')     # from here on the labels are at the bottom
+TALL = 1.29 if G.RECIPE == 'feetech' else 1.0       # these views were framed for a 29.5 cm duck: at 38 cm, the hood's top left the picture
 _PARTS = json.load(open(G.parts_path(), encoding='utf-8'))
 
 
@@ -608,14 +609,14 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
     for j in (['L_hip_pitch', 'L_knee', 'head_yaw', 'beak'] if quick else FINAL):
         f.step = j.replace('_', ' ')
         leg = j[:2] in ('L_', 'R_')
-        f.test_joint(j, re.sub(r'^R ', 'right ', re.sub(r'^L ', 'left ', j.replace('_', ' '))), 2.2, LEG_VIEW if leg else HEAD_VIEW, 0.12 if leg else 0.21, 0.46 if leg else 0.50)
+        f.test_joint(j, re.sub(r'^R ', 'right ', re.sub(r'^L ', 'left ', j.replace('_', ' '))), 2.2, LEG_VIEW if leg else HEAD_VIEW, (0.12 if leg else 0.21) * TALL, (0.46 if leg else 0.50) * TALL)
     f.title, f.step = 'The hybrid duck' if G.RECIPE == 'hybrid' else 'The all-Feetech duck' if G.RECIPE == 'feetech' else 'The Feetech HD-1910 duck' if G.RECIPE == 'hd1910' else 'The all-Dynamixel duck', ''
     nf = 75 if quick else 120
     for k in range(nf):
         a = math.radians(-90 + 90 * ease(min(1.0, k / (nf * 0.6))))     # round to the front, then hold on the face
         f.rest('R')
         f.rest('L')
-        f.frame(np.array([0, 0, 0.15]), 0.46, np.array([math.cos(a) * 0.8, math.sin(a) * 0.8, 0.25]), rate=0.05)
+        f.frame(np.array([0, 0, 0.15 * TALL]), 0.46 * TALL, np.array([math.cos(a) * 0.8, math.sin(a) * 0.8, 0.25]), rate=0.05)
     print(f'{name}: pace {pace:.2f}, {f.n} frames, {f.n / FPS:.0f} s')
     f.marks['finished'][1] = f.n
     globals()['LAST_MARKS'] = f.marks

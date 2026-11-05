@@ -190,7 +190,10 @@ class Builder:
             li.loftSections.add(sk.profiles.item(0))
         li.isSolid = True
         n0 = self.comp.bRepBodies.count
-        f = self.f.loftFeatures.add(li)
+        try:
+            f = self.f.loftFeatures.add(li)
+        except RuntimeError as e:
+            raise RuntimeError(f"loft '{g['name']}': {e}") from e
         body = f.bodies.item(0) if f else self.comp.bRepBodies.item(n0)
         c = g.get('clip')
         planes = [] if not c else ([c] if isinstance(c, dict) else c)

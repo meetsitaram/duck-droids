@@ -9,7 +9,7 @@
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.191 (microduck 0.123 x 1.44 = 0.177 +/- 15 %)"
+  "detail": "0.192 (microduck 0.123 x 1.44 = 0.177 +/- 15 %)"
  },
  {
   "group": "targets",
@@ -63,13 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.939 kg bottom-up (budget 1.95 kg; microduck 0.8 kg)"
+  "detail": "1.936 kg bottom-up (budget 1.95 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "255 printed parts; largest head: 191 mm, on a 256 mm bed"
+  "detail": "255 printed parts; largest head: 192 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -1041,7 +1041,7 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.53 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 60 % used"
+  "detail": "0.52 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 60 % used"
  },
  {
   "group": "torque",
@@ -1099,13 +1099,13 @@
  },
  {
   "group": "torque",
-  "item": "R_ankle_pitch",
+  "item": "L_ankle_pitch",
   "status": "PASS",
   "detail": "0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used"
  },
  {
   "group": "torque",
-  "item": "L_ankle_pitch",
+  "item": "R_ankle_pitch",
   "status": "PASS",
   "detail": "0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used"
  },
