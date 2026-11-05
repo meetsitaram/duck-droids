@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 11:57, 97 s
+spec: `spec/robot.json`, 2026-11-05 15:10, 103 s
 
 203 checks: 200 pass, 3 warn, **0 fail**
 
@@ -164,7 +164,7 @@ spec: `spec/robot.json`, 2026-11-05 11:57, 97 s
 | status | item | detail |
 |---|---|---|
 | PASS | top plate | 0.00 % outside the skin |
-| PASS | battery 2S 850 mAh | 0.00 % outside the skin |
+| PASS | battery 2S 850 mAh | 0.30 % outside the skin |
 | PASS | L 5 V regulator | 0.00 % outside the skin |
 | PASS | L regulator arm 0 | 0.00 % outside the skin |
 | PASS | L regulator arm 1 | 0.00 % outside the skin |

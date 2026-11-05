@@ -117,7 +117,7 @@
   "group": "THIN",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -495,7 +495,7 @@
   "group": "VOLUME",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "18.2 cm3, designed 18.3: 1 % off"
+  "detail": "18.1 cm3, designed 18.3: 1 % off"
  },
  {
   "group": "BED",
@@ -735,7 +735,7 @@
   "group": "VOLUME",
   "item": "chassis",
   "status": "PASS",
-  "detail": "37.4 cm3, designed 37.5: 0 % off"
+  "detail": "37.5 cm3, designed 37.5: 0 % off"
  },
  {
   "group": "BED",

@@ -472,6 +472,11 @@ def parts_spec():
     return json.load(open(os.path.join(REPO, 'spec', _variant_file('parts')), encoding='utf-8'))
 
 
+def drawn_only(g, real):
+    """A decal that is only a picture of a thing: nothing to buy or print, so not built. Screws, printed parts and what the spec marks in_cad (the battery's plugs) are built."""
+    return g['role'] == 'decal' and 'fast' not in g and g['name'] not in real and not g.get('in_cad')
+
+
 def link(name):
     """The link's component: its geoms, then each printed part joined, hollowed, holed and pocketed."""
     t = time.time()
@@ -498,7 +503,7 @@ def link(name):
     for g in geoms:
         if g['role'] == 'cut' or g['name'] in stand_in:
             continue
-        if g['role'] == 'decal' and 'fast' not in g and g['name'] not in real:
+        if drawn_only(g, real):
             continue                                     # a picture of a thing, not a thing: nothing to buy or print
         body = b.build(dict(g, sections=closer[g['name']]) if g['name'] in closer else g)
         body.name = g['name']
@@ -647,7 +652,7 @@ def pose(q):
 
 def show(skins=True, internals=True):
     s = spec()
-    role = {g['name']: g['role'] for l in s['links'].values() for g in l['geoms']}
+    role = {g['name']: 'part' if g.get('in_cad') else g['role'] for l in s['links'].values() for g in l['geoms']}     # (the battery's plugs are inside: shown with the internals, not the skins)
     exposed = {g['name'] for l in s['links'].values() for g in l['geoms'] if g.get('exposed')}
     for j in s['joints']:
         if j['act'] and j['exposed']:
@@ -713,7 +718,7 @@ def status():
         nb = o.component.bRepBodies.count
         real = {n for p in P_['parts'].values() for n in p['geoms']}
         stand_in = real_skip(s)
-        nreal = [g for g in parts(l['geoms']) if g['name'] not in stand_in and not (g['role'] == 'decal' and 'fast' not in g and g['name'] not in real)]
+        nreal = [g for g in parts(l['geoms']) if g['name'] not in stand_in and not drawn_only(g, real)]
         want = len(nreal) - sum(len(p['geoms']) - 1 for p in P_['parts'].values() if p['link'] == name)
         if nb != want:
             problems.append(f'{name}: {nb} bodies, spec has {want}')
