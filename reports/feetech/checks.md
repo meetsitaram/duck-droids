@@ -1,8 +1,8 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 00:30, 61 s
+spec: `spec/robot.json`, 2026-11-05 00:40, 78 s
 
-188 checks: 182 pass, 4 warn, **2 fail**
+188 checks: 184 pass, 4 warn, **0 fail**
 
 ## targets
 
@@ -23,13 +23,13 @@ spec: `spec/robot.json`, 2026-11-05 00:30, 61 s
 
 | status | item | detail |
 |---|---|---|
-| FAIL | total | 1.961 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
+| PASS | total | 1.942 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
 
 ## printable
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 254 printed parts; largest head: 191 mm, on a 256 mm bed |
+| PASS | largest part | 255 printed parts; largest head: 191 mm, on a 256 mm bed |
 
 ## axis
 
@@ -203,7 +203,7 @@ spec: `spec/robot.json`, 2026-11-05 00:30, 61 s
 | PASS | neck_pitch | [-0.15, +1.60] rad clear |
 | WARN | head_pitch | [-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.40 rad (pose-dependent) |
 | PASS | head_yaw | [-2.50, +2.50] rad clear |
-| FAIL | head_roll | lower -0.29: blocked at -0.18 rad by head yaw plate / beak cradle rear face (across the joint) (0 cm3) |
+| PASS | head_roll | [-0.29, +0.29] rad clear |
 | PASS | beak | [+0.00, +0.40] rad clear |
 
 ## poses
@@ -223,7 +223,7 @@ spec: `spec/robot.json`, 2026-11-05 00:30, 61 s
 | PASS | single-leg stance (walking): within limits | yes |
 | PASS | single-leg stance (walking): collisions | none |
 | PASS | floor pick: balance | CoM 2.3 cm inside the feet |
-| WARN | floor pick: within limits | L_ankle_pitch +1.57 outside [-1.30, +1.30]; R_ankle_pitch +1.57 outside [-1.30, +1.30] |
+| WARN | floor pick: within limits | L_ankle_pitch +1.56 outside [-1.30, +1.30]; R_ankle_pitch +1.56 outside [-1.30, +1.30] |
 | PASS | floor pick: collisions | none |
 | PASS | head tucked in: balance | CoM 2.3 cm inside the feet |
 | PASS | head tucked in: within limits | yes |
@@ -236,15 +236,15 @@ spec: `spec/robot.json`, 2026-11-05 00:30, 61 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.55 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 62 % used |
-| PASS | R_knee | 0.41 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 47 % used |
-| PASS | L_knee | 0.41 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 47 % used |
-| PASS | head_pitch | 0.39 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 45 % used |
+| PASS | neck_pitch | 0.53 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 60 % used |
+| PASS | R_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
+| PASS | L_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
+| PASS | head_pitch | 0.37 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 42 % used |
 | PASS | L_hip_roll | 0.47 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 26 % used |
-| PASS | L_hip_pitch | 0.20 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 22 % used |
-| PASS | R_hip_pitch | 0.20 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 22 % used |
-| PASS | L_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 18 % used |
-| PASS | R_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 18 % used |
+| PASS | L_hip_pitch | 0.19 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 21 % used |
+| PASS | R_hip_pitch | 0.19 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 21 % used |
+| PASS | L_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 17 % used |
+| PASS | R_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 17 % used |
 | PASS | R_hip_roll | 0.13 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 15 % used |
 | PASS | R_ankle_pitch | 0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used |
 | PASS | L_ankle_pitch | 0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used |

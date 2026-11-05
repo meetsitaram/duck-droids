@@ -75,7 +75,7 @@ RECIPES = {
                     mass_budget_kg=1.95, target_tol=0.15, cannot=['floor pick'],
                     # one bus, one board (2026-11-05, as the all-Dynamixel's): 15 servos of one maker need neither the U2D2 nor the 5 V servo rail. The Waveshare board is Feetech's own socket
                     # (no adapter). Its power stays on the battery side for the legs: docs/feetech/WIRING.md
-                    buses=1, foot_switch=False, pi_ports_up=True, reg_head=True, charge_port=True, reg_box=((0.0700, -0.0470, 0.3098), (0.1050, -0.0385, 0.3268)),
+                    buses=1, foot_switch=False, pi_ports_up=True, reg_head=True, charge_port=True, reg_box=((0.0700, -0.0470, 0.3122), (0.1050, -0.0385, 0.3292)),
                     # the hybrid's real pack (Zeee 2S 850 mAh, 54 x 30 x 15 mm), not the estimate. Its leads come out of its +y end, so the 2 plugs sit beside it, faces at the back wall
                     battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052),
                     charge_at=dict(xt30=(-0.0555, -0.0395, 0.1500, 0.1615), bal=(-0.0550, -0.0460, 0.1625, 0.1695), port=(-0.0620, -0.0515, 0.1490, 0.1705)),
@@ -88,7 +88,11 @@ RECIPES = {
                     yaw_round=0.0435,
                     # everything over the yaw plate up 2.2 mm, the plate that much thicker: the beak's rear plate met the yaw bearing past 0.22 rad of head roll. Raising the beak alone put its case through the hood,
                     # and a shorter boss did too: the hood curves in over it (0.17 cm3, 3.7 mm deep along its top edge)
-                    yaw_plate_up=0.0022, hood_rear_x=-0.0310),
+                    yaw_plate_up=0.0022, hood_rear_x=-0.0310,
+                    # (the yaw plate's +y edge in, 8.4 mm from the axis, past the horn screws' heads: the beak's rear plate passes it as the head rolls)
+                    yaw_plate_y=0.0084,
+                    # the eye ring, a 44 mm disc 14 mm thick at this head's scale, was 25 g of solid plastic in front of the neck: a cup, open at the back, 3 mm at its front
+                    eye_cup=True),
 }
 # a duck at any height, from tools/new_duck.py
 for _f in sorted(glob.glob(os.path.join(HERE, 'recipes', '*.json'))):
@@ -594,6 +598,10 @@ def mount_geoms(j):
         for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
             cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, a0 - 0.00075, head, 0.0015, DARK, 'decal'),
                            'M2', 0.008, at(f, -x, y, a0), list(f[3])))
+    if sts and j.get('near') and j['name'] == 'beak' and R.get('head_plugs'):
+        for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
+            cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, -H / 2 - cmt - 0.00075, head, 0.0015, DARK, 'decal'),
+                           'M2', 0.008, at(f, -x, y, -H / 2 - cmt), list(f[3])))
     if j['remote']:
         return cr, []
     hr, hd = A['horn_hole_r'], A['horn_hole_deg']
@@ -784,9 +792,10 @@ link('trunk', 0.40, [
     box('battery strap', (BATT_X, -0.010, PLATE[0] - BATT[2] - R.get('strap', 0.003)), (BATT_X + BATT[0] + 0.0034, 0.010, PLATE[0] - BATT[2])),
     # the neck servo rides in the neck; the body holds it on both sides (round 7, the user: "one sided joints are
     # bad"): a bracket on its horn, a bracket with an idler on its other face, on a block clear of its 13 mm circle
-    box('neck mount', (XP_FRONT - 0.0005, min(-0.0225 * Q, NECK_IDLER[0]), ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165 * Q, ZN - 0.016 * Q), DARK,
+    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165 * Q, ZN - 0.016 * Q), DARK,
         exposed=True),
     box('neck bracket', (XN - XLW / 2, 0.0130 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
+    *[box('neck idler step', (XN - XLW / 2, NECK_IDLER[0], ZN - 0.0165 * Q), (XN + XLW / 2, -0.0225 * Q + 0.0001, ZN - 0.0165 * Q + 0.004), DARK, exposed=True) for _ in range(NECK_IDLER[0] < -0.0225 * Q - 1e-6)],
     box('neck idler bracket', (XN - XLW / 2, NECK_IDLER[0], ZN - 0.0165 * Q), (XN + XLW / 2, NECK_IDLER[1], ZN + 0.012 * Q), DARK,
         exposed=True),
     # a superellipse of power 5 round the yaw cases' front corners (power 3.2 cut through them, round 2), as narrow
@@ -1021,7 +1030,7 @@ link('head_pitch_link', 0.03, [
         exposed=True),
 ])
 link('head_yaw_link', 0.02, [
-    box('head yaw plate', (XHY - XLH / 2, -0.0255 * Q, ZHY - 0.0005), (XHY + XLH / 2, 0.009 * Q, ZHY + XLHH + YAW_UP), exposed=True),
+    box('head yaw plate', (XHY - XLH / 2, -0.0255 * Q, ZHY - 0.0005), (XHY + XLH / 2, R.get('yaw_plate_y', 0.009 * Q), ZHY + XLHH + YAW_UP), exposed=True),
 ])
 # the beak servo: inside the head over the neck, its horn on the jaw's hinge at mid-head, as microduck's side tab
 # the beak servo lies flat behind the head yaw and roll servos, its top under the top plate (round 9: the head at
@@ -1099,6 +1108,7 @@ def mouth_outline(x0):
 
 
 HRX_ = R.get('hood_rear_x', -0.0192)               # the hood's 2 rear screws, in the band's solid back
+HRX2_ = (HRX_ - 0.0005, HRX_ + 0.0005) if 'hood_rear_x' in R else (-0.0197, -0.0187)
 PI_X, PI_Z, PI_T = FACE_X - R.get('pi_back', 0.0268), HEAD_Z + 0.021 * Q, 0.0052    # the Pi: its plate's front face, its board's middle height, its thickness with parts
 BUS_Z = HEAD_PLATE_Z + 0.0092                      # under the bus board
 # the beak's linkage, at the jaw's shut pose (x, z)
@@ -1233,10 +1243,11 @@ link('head', 0.12, [
     # (printed black, a bore in it: the camera has to see out. It was a solid plug over the lens)
     cyl('eye lens', (FACE_X + HK * 0.0075, EYE['y'], EYE['z']), 'x', HK * 0.0086, HK * 0.008, LENS, 'decal'),
     cut(cyl('eye bore', (FACE_X + HK * 0.005, EYE['y'], EYE['z']), 'x', 0.0055, HK * 0.03, LENS, 'decal'), 'face', 'eye ring', 'eye lens'),
+    *[cut(cyl('eye cup', (FACE_X + HK * 0.005 + HK * 0.00475 - 0.003 - 0.015, EYE['y'], EYE['z']), 'x', EYE['r'] - 0.0025, 0.030, LENS, 'decal'), 'eye ring', 'eye lens') for _ in range(bool(R.get('eye_cup')))],
     # the hood can't hang on its 2 hinge screws alone: on one axis, it would tip about them. A tab inside its back, 2 screws up
     # through the fixed lower band
     # (from the screw out to the hood's wall, as the hood widens forward)
-    *[dict(plate(f'hood rear tab {k}', HEAD_Z + 0.0002, 0.0058, [(HRX_ - 0.0005, sy_ * 0.0258, 0.0026), (HRX_ + 0.0005, sy_ * 0.0258, 0.0026), (HRX_ - 0.0005, sy_ * (hood_b(HRX_ - 0.0005) - 0.0026), 0.001), (HRX_ + 0.0005, sy_ * (hood_b(HRX_ + 0.0005) - 0.0026), 0.001)], DARK, 'struct', axis='z'), exposed=True, on_cover=True)
+    *[dict(plate(f'hood rear tab {k}', HEAD_Z + 0.0002, 0.0058, [(HRX2_[0], sy_ * 0.0258, 0.0026), (HRX2_[1], sy_ * 0.0258, 0.0026), (HRX2_[0], sy_ * (hood_b(HRX2_[0]) - 0.0026), 0.001), (HRX2_[1], sy_ * (hood_b(HRX2_[1]) - 0.0026), 0.001)], DARK, 'struct', axis='z'), exposed=True, on_cover=True)
       for k, sy_ in enumerate((1, -1))],
     *[fast(cyl(f'hood rear screw {k}', (HRX_, sy_ * 0.0258, HEAD_Z - 0.0026), 'z', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.008,
            (HRX_, sy_ * 0.0258, HEAD_Z - 0.0020), (0, 0, 1)) for k, sy_ in enumerate((1, -1))],
@@ -1315,7 +1326,7 @@ def mirror_name(n):
     return 'R_' + n[2:] if n.startswith('L_') else n
 
 
-HEAD_FRAME_ORANGE = {'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
+HEAD_FRAME_ORANGE = {'beak horn seat boss', 'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
                      'bus board post 0', 'bus board post 1', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1',
                      'lower shell', 'lower shell post', 'lower shell beam', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'head roll horn boss shoulder',
                      'head roll rear boss shoulder', 'head roll fork horn plate', 'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +', 'beak cradle end -', 'beak cradle side +', 'beak cradle end plain', 'head strip deep', 'L base riser back'}
