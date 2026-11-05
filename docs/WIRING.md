@@ -40,6 +40,10 @@ The picture is drawn and checked from `spec/wiring_hybrid.json` by `python -I to
 
 **The legs' V wire stays in the body.** Each leg's first lead carries that leg's current through a 5264 plug, about 3 A by its contacts, and 5 STS3215s can pull more at stall. If those plugs get warm, solder the hip yaw leads' V and G straight to the battery lead.
 
+All the 2S joins are one star on the XT30 pigtail, in the same heat-shrink as the legs' splice: legs' V and G, the UBEC's input, the pair up the neck.
+
+The UBEC is shut in the body shell, with up to 40 W of servo current through it at a stall: watch its temperature on the first long run. Nothing has measured it.
+
 No power switch is designed in: unplug the XT30, which sits with the balance plug in the port at the rear left of the body. To charge, unplug the XT30 first, then use the balance plug.
 
 ## Signals
@@ -54,6 +58,8 @@ No power switch is designed in: unplug the XT30, which sits with the balance plu
 | Pi camera port, at the end of the board by the regulator | camera | 15 cm ribbon. Leave slack: the camera is on the hood, the Pi on the frame |
 
 Solder the Pi's 7 wires before it goes on its plate. They leave from its bottom edge, round the microSD end, and behind the plate.
+
+**Setting IDs:** on the bench, one servo at a time, through a board on USB (jumpers at B, on a laptop): Feetech's tool for the STS3215s, ROBOTIS's Dynamixel Wizard for the others.
 
 ## The chains
 

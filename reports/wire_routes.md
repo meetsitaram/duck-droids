@@ -21,7 +21,7 @@ From `tools/wire_routes.py`. Longest straight run through the points in any pose
 | 5 V to the Dynamixel board | 20 AWG pair, up the neck | 306 | 382 | cut to length | head pitch, head roll, head yaw, neck pitch |
 | IMU | 4 x 28 AWG, down the neck | 408 | 499 | cut to length | head pitch, head roll, head yaw, neck pitch |
 | UART | 3 x 28 AWG | 130 | 180 | cut to length | none |
-| Pi's regulator input | 2 x 28 AWG | 108 | 154 | cut to length | none |
+| Pi's regulator input | 2 x 28 AWG | 100 | 145 | cut to length | none |
 | Pi's power | LY tech USB ribbon | 36 | 71 | 100 | none |
 | Pi to the Dynamixel board | Veeloon OTG lead | 76 | 118 | 183 | none |
 | camera | ribbon | 48 | 85 | 150 | none |

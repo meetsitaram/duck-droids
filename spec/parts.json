@@ -13165,7 +13165,7 @@
 "hood rear tab 1",
 "R hood step"
 ],
-"volume_cm3": 52.10393948808543,
+"volume_cm3": 52.10392332912099,
 "print_T": [
 [
 0.0,
@@ -13245,6 +13245,27 @@
 }
 ],
 "pockets": [
+{
+"kind": "rbox",
+"name": "head 5 V regulator",
+"c": [
+0.0755,
+-0.03995,
+0.273
+],
+"size": [
+0.0353,
+0.0088,
+0.01729999999999996
+],
+"fillet": 0.001,
+"color": "#1F5A36",
+"role": "struct",
+"exposed": false,
+"material": "electronics",
+"mass": 0.008,
+"on_cover": true
+},
 {
 "exact": "head base",
 "name": "head base"
@@ -14144,7 +14165,8 @@
 "L 5 V regulator"
 ],
 "head 5 V regulator": [
-"head 5 V regulator"
+"head 5 V regulator",
+"head regulator plug"
 ],
 "IMU": [
 "IMU"
