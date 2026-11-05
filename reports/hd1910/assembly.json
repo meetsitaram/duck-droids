@@ -279,7 +279,7 @@
   "group": "THREAD",
   "item": "L thigh cover screw hip",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -297,7 +297,7 @@
   "group": "THREAD",
   "item": "L thigh cover screw knee",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1029,7 +1029,7 @@
   "group": "THREAD",
   "item": "R thigh cover screw hip",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -1047,7 +1047,7 @@
   "group": "THREAD",
   "item": "R thigh cover screw knee",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.0 mm"
  },
  {
   "group": "ACCESS",

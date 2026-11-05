@@ -217,8 +217,9 @@ def HD_FIRST():
         return []
     return ['5. **Take the rear horn off every servo,** with its centre screw. The tube it turned on stays, and the plate there has a square hole for it. '
             'Keep 5 horns and their screws: the neck, head pitch, head roll and both ankles use theirs, and the steps below say when each goes back on. The other 10 are spare.',
-            '6. **Screws into a horn are machine screws, M2, not self-tapping:** Feetech draws its holes as 8-M2.0. They go right through the horn, with 0.5 mm of air below: use the length given, as a longer one drags on the case.',
-            '7. **All 3 wires in a servo lead are black.** Pin order is signal, Vcc, ground. Never turn a plug round when splicing: see [WIRING.md](WIRING.md).']
+            '6. **Each horn comes on the shaft at no known angle.** With the servo at mid-range, position 2048, pull the driven horn and put it back with 4 of its holes square to the case. Its 25-tooth spline lets you get within 1 degree, and the servo can store the rest as an offset.',
+            '7. **Screws into a horn are machine screws, M2, not self-tapping:** Feetech draws its holes as 8-M2.0. They go right through the horn, with 0.5 mm of air below: use the length given, as a longer one drags on the case.',
+            '8. **All 3 wires in a servo lead are black.** Pin order is signal, Vcc, ground. Never turn a plug round when splicing: see [WIRING.md](WIRING.md).']
 
 
 def guide():

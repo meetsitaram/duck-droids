@@ -2969,6 +2969,66 @@
       "neck bracket",
       "neck pitch fork horn plate"
      ]
+    },
+    {
+     "kind": "cyl",
+     "name": "neck pitch rear screw recess trunk",
+     "c": [
+      0.027400000000000004,
+      -0.0161,
+      0.14711965370031987
+     ],
+     "axis": "y",
+     "r": 0.0027,
+     "h": 0.001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "targets": [
+      "neck idler bracket",
+      "neck pitch fork rear plate"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "L hip yaw rear tube hole",
+     "c": [
+      0.0,
+      0.01344,
+      0.1485196537003199
+     ],
+     "size": [
+      0.005600000000000001,
+      0.005600000000000001,
+      0.004200000000000009
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "top plate"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "R hip yaw rear tube hole",
+     "c": [
+      0.0,
+      -0.01344,
+      0.1485196537003199
+     ],
+     "size": [
+      0.005600000000000001,
+      0.005600000000000001,
+      0.004200000000000009
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "top plate"
+     ]
     }
    ],
    "note": "the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front"
@@ -3807,6 +3867,27 @@
       "L hip yaw horn boss shoulder",
       "L hip yaw horn seat boss"
      ]
+    },
+    {
+     "kind": "rbox",
+     "name": "L hip roll rear tube hole",
+     "c": [
+      -0.013399999999999999,
+      0.01594,
+      0.10021965370031988
+     ],
+     "size": [
+      0.004200000000000001,
+      0.005600000000000001,
+      0.005600000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L hip roll cradle rear face"
+     ]
     }
    ],
    "note": ""
@@ -4644,6 +4725,27 @@
       "R hip yaw plate",
       "R hip yaw horn boss shoulder",
       "R hip yaw horn seat boss"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "R hip roll rear tube hole",
+     "c": [
+      -0.013399999999999999,
+      -0.01594,
+      0.10021965370031988
+     ],
+     "size": [
+      0.004200000000000001,
+      0.005600000000000001,
+      0.005600000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "R hip roll cradle rear face"
      ]
     }
    ],
@@ -8169,6 +8271,50 @@
      "targets": [
       "L thigh plate"
      ]
+    },
+    {
+     "kind": "rbox",
+     "name": "L hip pitch rear tube hole",
+     "c": [
+      0.0,
+      0.06544,
+      0.10021965370031986
+     ],
+     "size": [
+      0.005600000000000001,
+      0.004199999999999995,
+      0.005599999999999994
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L thigh plate",
+      "L thigh post hip"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "L knee rear tube hole",
+     "c": [
+      -0.038000000000000006,
+      0.06544,
+      0.07688
+     ],
+     "size": [
+      0.005599999999999994,
+      0.004199999999999995,
+      0.005600000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L thigh plate",
+      "L thigh post knee"
+     ]
     }
    ],
    "note": ""
@@ -10197,6 +10343,50 @@
      "targets": [
       "R thigh plate"
      ]
+    },
+    {
+     "kind": "rbox",
+     "name": "R hip pitch rear tube hole",
+     "c": [
+      0.0,
+      -0.06544,
+      0.10021965370031986
+     ],
+     "size": [
+      0.005600000000000001,
+      0.004199999999999995,
+      0.005599999999999994
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "R thigh plate",
+      "R thigh post hip"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "R knee rear tube hole",
+     "c": [
+      -0.038000000000000006,
+      -0.06544,
+      0.07688
+     ],
+     "size": [
+      0.005599999999999994,
+      0.004199999999999995,
+      0.005600000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "R thigh plate",
+      "R thigh post knee"
+     ]
     }
    ],
    "note": ""
@@ -10986,6 +11176,23 @@
       "L knee horn boss shoulder",
       "L knee horn seat boss"
      ]
+    },
+    {
+     "kind": "cyl",
+     "name": "L ankle pitch rear screw recess L_knee_link",
+     "c": [
+      -0.038000000000000006,
+      0.03194,
+      0.029
+     ],
+     "axis": "y",
+     "r": 0.0027,
+     "h": 0.001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "targets": [
+      "L ankle stub plate"
+     ]
     }
    ],
    "note": ""
@@ -11774,6 +11981,23 @@
       "R shin plate",
       "R knee horn boss shoulder",
       "R knee horn seat boss"
+     ]
+    },
+    {
+     "kind": "cyl",
+     "name": "R ankle pitch rear screw recess R_knee_link",
+     "c": [
+      -0.038000000000000006,
+      -0.03194,
+      0.029
+     ],
+     "axis": "y",
+     "r": 0.0027,
+     "h": 0.001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "targets": [
+      "R ankle stub plate"
      ]
     }
    ],
@@ -15336,6 +15560,44 @@
      "targets": [
       "head pitch plate",
       "head pitch fork horn plate"
+     ]
+    },
+    {
+     "kind": "cyl",
+     "name": "head pitch rear screw recess head_pitch_link",
+     "c": [
+      0.027400000000000004,
+      0.013099999999999997,
+      0.19661965370031986
+     ],
+     "axis": "y",
+     "r": 0.0027,
+     "h": 0.001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "targets": [
+      "head pitch fork rear plate"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "head yaw rear tube hole",
+     "c": [
+      0.0349,
+      0.0,
+      0.21481965370031986
+     ],
+     "size": [
+      0.005599999999999994,
+      0.0056,
+      0.004200000000000009
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "head pitch bridge"
      ]
     }
    ],
@@ -21284,6 +21546,44 @@
       "head roll horn boss shoulder",
       "head roll horn seat boss",
       "head roll fork horn plate"
+     ]
+    },
+    {
+     "kind": "cyl",
+     "name": "head roll rear screw recess head",
+     "c": [
+      0.02029999999999999,
+      0,
+      0.25821965370031985
+     ],
+     "axis": "x",
+     "r": 0.0027,
+     "h": 0.001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "targets": [
+      "head roll rear seat boss"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "beak rear tube hole",
+     "c": [
+      0.0379,
+      0.01531236915254237,
+      0.25521965370031985
+     ],
+     "size": [
+      0.005599999999999994,
+      0.004200000000000002,
+      0.005600000000000049
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L head rail"
      ]
     }
    ],

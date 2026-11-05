@@ -302,8 +302,8 @@ From tools/assembly.py
 | PASS | L hip pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
 | PASS | L knee cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | L knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | L thigh cover screw hip | M2 x 6: bites 3.0 mm |
-| PASS | L thigh cover screw knee | M2 x 6: bites 3.0 mm |
+| PASS | L thigh cover screw hip | M2 x 6: bites 2.0 mm |
+| PASS | L thigh cover screw knee | M2 x 6: bites 2.0 mm |
 | PASS | L ankle boss screw 0 | M2 flat x 4: bites 1.9 mm |
 | PASS | L ankle boss screw 1 | M2 flat x 4: bites 1.9 mm |
 | PASS | L ankle boss screw 2 | M2 flat x 4: bites 1.9 mm |
@@ -338,8 +338,8 @@ From tools/assembly.py
 | PASS | R hip pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
 | PASS | R knee cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | R knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | R thigh cover screw hip | M2 x 6: bites 3.0 mm |
-| PASS | R thigh cover screw knee | M2 x 6: bites 3.0 mm |
+| PASS | R thigh cover screw hip | M2 x 6: bites 2.0 mm |
+| PASS | R thigh cover screw knee | M2 x 6: bites 2.0 mm |
 | PASS | R ankle boss screw 0 | M2 flat x 4: bites 1.9 mm |
 | PASS | R ankle boss screw 1 | M2 flat x 4: bites 1.9 mm |
 | PASS | R ankle boss screw 2 | M2 flat x 4: bites 1.9 mm |

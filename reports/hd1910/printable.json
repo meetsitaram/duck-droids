@@ -27,7 +27,7 @@
   "group": "ORIENT",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "197 mm2 overhang, 980 mm2 on the bed, 29 mm tall"
+  "detail": "197 mm2 overhang, 949 mm2 on the bed, 29 mm tall"
  },
  {
   "group": "PIECES",
@@ -39,7 +39,7 @@
   "group": "BED",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "48 x 25 x 29 mm, 980 mm2 on the bed"
+  "detail": "48 x 25 x 29 mm, 949 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -99,7 +99,7 @@
   "group": "ORIENT",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "2171 mm2 overhang, 52 mm2 on the bed, 34 mm tall"
+  "detail": "2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall"
  },
  {
   "group": "PIECES",
@@ -111,7 +111,7 @@
   "group": "BED",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "51 x 66 x 34 mm, 52 mm2 on the bed"
+  "detail": "51 x 66 x 34 mm, 89 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -123,7 +123,7 @@
   "group": "SUPPORT",
   "item": "L thigh frame",
   "status": "WARN",
-  "detail": "2171 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2118 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -207,7 +207,7 @@
   "group": "ORIENT",
   "item": "L shin",
   "status": "PASS",
-  "detail": "307 mm2 overhang, 178 mm2 on the bed, 21 mm tall"
+  "detail": "310 mm2 overhang, 178 mm2 on the bed, 21 mm tall"
  },
  {
   "group": "PIECES",
@@ -231,7 +231,7 @@
   "group": "SUPPORT",
   "item": "L shin",
   "status": "WARN",
-  "detail": "307 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "310 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -345,7 +345,7 @@
   "group": "ORIENT",
   "item": "R yaw bracket",
   "status": "PASS",
-  "detail": "197 mm2 overhang, 980 mm2 on the bed, 29 mm tall"
+  "detail": "197 mm2 overhang, 949 mm2 on the bed, 29 mm tall"
  },
  {
   "group": "PIECES",
@@ -357,7 +357,7 @@
   "group": "BED",
   "item": "R yaw bracket",
   "status": "PASS",
-  "detail": "48 x 25 x 29 mm, 980 mm2 on the bed"
+  "detail": "48 x 25 x 29 mm, 949 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -417,7 +417,7 @@
   "group": "ORIENT",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "2126 mm2 overhang, 89 mm2 on the bed, 34 mm tall"
+  "detail": "2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall"
  },
  {
   "group": "PIECES",
@@ -441,7 +441,7 @@
   "group": "SUPPORT",
   "item": "R thigh frame",
   "status": "WARN",
-  "detail": "2126 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2118 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -525,7 +525,7 @@
   "group": "ORIENT",
   "item": "R shin",
   "status": "PASS",
-  "detail": "307 mm2 overhang, 178 mm2 on the bed, 21 mm tall"
+  "detail": "310 mm2 overhang, 178 mm2 on the bed, 21 mm tall"
  },
  {
   "group": "PIECES",
@@ -549,7 +549,7 @@
   "group": "SUPPORT",
   "item": "R shin",
   "status": "WARN",
-  "detail": "307 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "310 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -639,7 +639,7 @@
   "group": "ORIENT",
   "item": "chassis",
   "status": "PASS",
-  "detail": "2143 mm2 overhang, 241 mm2 on the bed, 84 mm tall"
+  "detail": "2156 mm2 overhang, 241 mm2 on the bed, 84 mm tall"
  },
  {
   "group": "PIECES",
@@ -663,7 +663,7 @@
   "group": "SUPPORT",
   "item": "chassis",
   "status": "WARN",
-  "detail": "2143 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2156 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -777,7 +777,7 @@
   "group": "ORIENT",
   "item": "head fork",
   "status": "PASS",
-  "detail": "420 mm2 overhang, 389 mm2 on the bed, 37 mm tall"
+  "detail": "425 mm2 overhang, 389 mm2 on the bed, 37 mm tall"
  },
  {
   "group": "PIECES",
@@ -801,7 +801,7 @@
   "group": "SUPPORT",
   "item": "head fork",
   "status": "WARN",
-  "detail": "420 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "425 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -903,7 +903,7 @@
   "group": "ORIENT",
   "item": "head roll rear spacer",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 179 mm2 on the bed, 2 mm tall"
+  "detail": "23 mm2 overhang, 156 mm2 on the bed, 2 mm tall"
  },
  {
   "group": "PIECES",
@@ -915,7 +915,7 @@
   "group": "BED",
   "item": "head roll rear spacer",
   "status": "PASS",
-  "detail": "16 x 16 x 2 mm, 179 mm2 on the bed"
+  "detail": "16 x 16 x 2 mm, 156 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -927,7 +927,7 @@
   "group": "ORIENT",
   "item": "head frame",
   "status": "PASS",
-  "detail": "5484 mm2 overhang, 300 mm2 on the bed, 141 mm tall"
+  "detail": "5486 mm2 overhang, 300 mm2 on the bed, 141 mm tall"
  },
  {
   "group": "PIECES",
@@ -951,7 +951,7 @@
   "group": "SUPPORT",
   "item": "head frame",
   "status": "WARN",
-  "detail": "5484 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "5486 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",

@@ -255,7 +255,7 @@
 "L hip roll cradle side +",
 "L hip yaw horn seat boss"
 ],
-"volume_cm3": 8.164056113906142,
+"volume_cm3": 8.144930080261377,
 "print_T": [
 [
 0.0,
@@ -1136,7 +1136,7 @@
 "L knee cradle side +",
 "L knee cradle side -"
 ],
-"volume_cm3": 10.378979182058243,
+"volume_cm3": 10.29197243540458,
 "print_T": [
 [
 0.0,
@@ -1145,14 +1145,14 @@
 0.0
 ],
 [
--1.0,
+1.0,
 0.0,
 0.0,
 0.0
 ],
 [
 0.0,
--1.0,
+1.0,
 0.0,
 0.0
 ],
@@ -2061,7 +2061,7 @@
 "geoms": [
 "L thigh cover"
 ],
-"volume_cm3": 15.981936943405794,
+"volume_cm3": 15.983850242230787,
 "print_T": [
 [
 0.0,
@@ -2158,36 +2158,12 @@
 ],
 "pockets": [
 {
-"kind": "cyl",
-"name": "L thigh post hip",
-"c": [
-0.0,
-0.06859,
-0.10021965370031986
-],
-"axis": "y",
-"r": 0.0031,
-"h": 0.005099999999999993,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
+"exact": "L thigh post hip",
+"name": "L thigh post hip"
 },
 {
-"kind": "cyl",
-"name": "L thigh post knee",
-"c": [
--0.038000000000000006,
-0.06859,
-0.07688
-],
-"axis": "y",
-"r": 0.0031,
-"h": 0.005099999999999993,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
+"exact": "L thigh post knee",
+"name": "L thigh post knee"
 },
 {
 "kind": "stepbox",
@@ -2705,7 +2681,7 @@
 "L ankle pitch cradle end -",
 "L knee horn seat boss"
 ],
-"volume_cm3": 6.49567657566666,
+"volume_cm3": 6.481957336928219,
 "print_T": [
 [
 0.0,
@@ -3870,7 +3846,7 @@
 "R hip roll cradle side -",
 "R hip yaw horn seat boss"
 ],
-"volume_cm3": 8.164056113906142,
+"volume_cm3": 8.144930080261377,
 "print_T": [
 [
 0.0,
@@ -4751,7 +4727,7 @@
 "R knee cradle side +",
 "R knee cradle side -"
 ],
-"volume_cm3": 10.378979182058245,
+"volume_cm3": 10.29197243540458,
 "print_T": [
 [
 0.0,
@@ -5676,7 +5652,7 @@
 "geoms": [
 "R thigh cover"
 ],
-"volume_cm3": 15.98193694340579,
+"volume_cm3": 15.983850242230783,
 "print_T": [
 [
 0.0,
@@ -5773,36 +5749,12 @@
 ],
 "pockets": [
 {
-"kind": "cyl",
-"name": "R thigh post hip",
-"c": [
-0.0,
--0.06859,
-0.10021965370031986
-],
-"axis": "y",
-"r": 0.0031,
-"h": 0.005099999999999993,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
+"exact": "R thigh post hip",
+"name": "R thigh post hip"
 },
 {
-"kind": "cyl",
-"name": "R thigh post knee",
-"c": [
--0.038000000000000006,
--0.06859,
-0.07688
-],
-"axis": "y",
-"r": 0.0031,
-"h": 0.005099999999999993,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
+"exact": "R thigh post knee",
+"name": "R thigh post knee"
 },
 {
 "kind": "stepbox",
@@ -6320,7 +6272,7 @@
 "R ankle pitch cradle end -",
 "R knee horn seat boss"
 ],
-"volume_cm3": 6.49567657566666,
+"volume_cm3": 6.481957336928219,
 "print_T": [
 [
 0.0,
@@ -7256,7 +7208,7 @@
 "R hip yaw cradle side +",
 "R hip yaw cradle side -"
 ],
-"volume_cm3": 27.615155084744007,
+"volume_cm3": 27.53183292143851,
 "print_T": [
 [
 0.0,
@@ -9103,7 +9055,7 @@
 "head yaw cradle side +",
 "head yaw cradle side -"
 ],
-"volume_cm3": 9.055118824348703,
+"volume_cm3": 9.024560055422597,
 "print_T": [
 [
 0.0,
@@ -10493,7 +10445,7 @@
 "geoms": [
 "head roll rear seat boss"
 ],
-"volume_cm3": 0.35847925184871565,
+"volume_cm3": 0.3447599651249008,
 "print_T": [
 [
 0.0,
@@ -10694,7 +10646,7 @@
 "beak cradle end +",
 "beak cradle end -"
 ],
-"volume_cm3": 54.11778333499444,
+"volume_cm3": 54.1063211998159,
 "print_T": [
 [
 1.0,
