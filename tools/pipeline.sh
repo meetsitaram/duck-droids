@@ -29,9 +29,17 @@ take() {   # resource, minutes, why: waits its turn, if there's a team
     [ $rc -eq 3 ] || { echo "scheduler error $rc"; exit 1; }
   done
 }
+turn_end() {   # before Fusion goes to the next duck, even after a failure: saved, closed, and nothing left open. If that can't be done, nobody else gets a turn on it
+  left=$(timeout 240 "$PY" -I tools/fusion_call.py cad/fusion/turn_end.py --write 2>&1 | tail -3 | cut -c1-240)
+  echo "[turn end] $left"
+  echo "$left" | grep -q "open now 0" || "$PY" "$TEAM" hold fusion --dir "$TEAM_DIR" --why "$AGENT's turn end left Fusion unclosed: $(echo "$left" | tail -1 | cut -c1-120)"
+}
 give() {
-  [ -n "$TEAM_DIR" ] && [ -n "$HELD" ] && "$PY" "$TEAM" release "$HELD" --dir "$TEAM_DIR" --agent "$AGENT"
+  h=$HELD
   HELD=
+  [ -n "$TEAM_DIR" ] && [ -n "$h" ] || return 0
+  [ "$h" = fusion ] && turn_end
+  "$PY" "$TEAM" release "$h" --dir "$TEAM_DIR" --agent "$AGENT"
 }
 trap give EXIT
 
