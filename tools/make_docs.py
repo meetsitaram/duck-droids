@@ -338,7 +338,7 @@ def bom_dynamixel(spec):
         return f'${v:,.2f}'
     tot, opt, unpriced, summary, T = 0.0, 0.0, 0, [], []
     for g, rows in GROUPS:
-        T += [f'### {g}', '', '| Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source | Status |', '|---|---|---|---|---|---|---|---|---|---|---|']
+        T += [f'### {g}', '', '| Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source |', '|---|---|---|---|---|---|---|---|---|---|']
         sub = 0.0
         for key, part, mpn, spec_, q, unit, oq, price, src, st in rows:
             line = None if price is None else oq * price
@@ -349,7 +349,8 @@ def bom_dynamixel(spec):
                     unpriced += 1
             elif line is not None:
                 opt += line
-            T.append(f"| {num[key]} | {part} | {mpn} | {spec_} | {q or '-'} | {unit} | {oq or '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src} | {'**Optional**' if st == 'Optional' else 'Required'} |")
+            o = st == 'Optional'
+            T.append(f"| {num[key]} | {'**OPTIONAL:** ' if o else ''}{part} | {mpn} | {spec_} | {(f'({q})' if o else q) if q else '-'} | {unit} | {(f'({oq})' if o else oq) if oq else '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src} |")
         T.append('')
         tot += sub
         summary.append(f'| {g} | {money(sub) if sub else "-"} |')
@@ -389,7 +390,7 @@ def bom_dynamixel(spec):
          '## Cost summary', '', '| Group | Required parts, priced |', '|---|---|', *summary,
          f'| **Total of quoted lines** | **{money(tot)}** |', '',
          f'{unpriced} required lines have no quote yet and are not in the total, nor is filament. Optional parts add {money(opt)} on the quoted lines.', '',
-         '## Purchased parts', '', *T,
+         '## Purchased parts', '', 'Every line is required unless it starts with **OPTIONAL**. Optional lines show their quantities in brackets and are not in the total.', '', *T,
          '## Fabricated parts', '', 'All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.md), already oriented for printing, in millimetres. Mass is each piece. The hood has an orange band, painted or split in the slicer.', '',
          '| Item | Part | File | Material | Colour | Hex | Mass each | Qty per robot |', '|---|---|---|---|---|---|---|---|', *F, '',
          '### Filament', '', '| Colour | Hex | Material | Model mass | With 15 % for supports and scrap |', '|---|---|---|---|---|', *fil, '',
