@@ -243,7 +243,7 @@
   "group": "ORIENT",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "707 mm2 overhang, 84 mm2 on the bed, 69 mm tall"
+  "detail": "708 mm2 overhang, 84 mm2 on the bed, 69 mm tall"
  },
  {
   "group": "PIECES",
@@ -267,7 +267,7 @@
   "group": "SUPPORT",
   "item": "L shoe",
   "status": "WARN",
-  "detail": "707 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "708 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -567,7 +567,7 @@
   "group": "ORIENT",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "707 mm2 overhang, 84 mm2 on the bed, 69 mm tall"
+  "detail": "708 mm2 overhang, 84 mm2 on the bed, 69 mm tall"
  },
  {
   "group": "PIECES",
@@ -591,7 +591,7 @@
   "group": "SUPPORT",
   "item": "R shoe",
   "status": "WARN",
-  "detail": "707 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "708 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
