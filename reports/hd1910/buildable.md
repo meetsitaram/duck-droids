@@ -13,7 +13,7 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | thigh, hip to knee | 0.5 MPa (allowed 15): 29 N, section 484 mm2 |
 | PASS | roll bracket, side arm | 8.7 MPa (allowed 15): 29 N, section 76 mm2 |
 | PASS | roll bracket, front plate | 7.0 MPa (allowed 15): 29 N, section 50 mm2 |
-| PASS | yaw bracket | 1.2 MPa (allowed 15): 29 N, section 553 mm2 |
+| PASS | yaw bracket | 1.3 MPa (allowed 15): 29 N, section 553 mm2 |
 
 ## ONE
 

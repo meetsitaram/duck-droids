@@ -9,10 +9,10 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | L yaw bracket | L_yaw_bracket.stl | 48 x 25 x 29 | 8.1 | PLA | 197 |
 | L hip roll lid | L_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
 | L roll bracket | L_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
-| L thigh frame | L_thigh_frame.stl | 51 x 66 x 34 | 10.3 | PLA | 2118 |
+| L thigh frame | L_thigh_frame.stl | 51 x 66 x 34 | 10.7 | PLA | 2100 |
 | L hip pitch lid | L_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | L knee lid | L_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
-| L thigh cover | L_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
+| L thigh cover | L_thigh_cover.stl | 55 x 70 x 34 | 15.9 | PLA | 0 (none) |
 | L shin | L_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 310 |
 | L shoe | L_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
 | L sole | L_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
@@ -21,10 +21,10 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.1 | PLA | 197 |
 | R hip roll lid | R_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
 | R roll bracket | R_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
-| R thigh frame | R_thigh_frame.stl | 51 x 66 x 34 | 10.3 | PLA | 2118 |
+| R thigh frame | R_thigh_frame.stl | 51 x 66 x 34 | 10.7 | PLA | 2100 |
 | R hip pitch lid | R_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | R knee lid | R_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
-| R thigh cover | R_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
+| R thigh cover | R_thigh_cover.stl | 55 x 70 x 34 | 15.9 | PLA | 0 (none) |
 | R shin | R_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 310 |
 | R shoe | R_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
 | R sole | R_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |

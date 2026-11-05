@@ -6847,7 +6847,7 @@
       0.10021965370031986
      ],
      "axis": "y",
-     "r": 0.003,
+     "r": 0.0045,
      "h": 0.005099999999999993,
      "color": "#3A3D42",
      "role": "struct",
@@ -6863,7 +6863,7 @@
       0.07688
      ],
      "axis": "y",
-     "r": 0.003,
+     "r": 0.0045,
      "h": 0.005099999999999993,
      "color": "#3A3D42",
      "role": "struct",
@@ -8271,50 +8271,6 @@
      "targets": [
       "L thigh plate"
      ]
-    },
-    {
-     "kind": "rbox",
-     "name": "L hip pitch rear tube hole",
-     "c": [
-      0.0,
-      0.06544,
-      0.10021965370031986
-     ],
-     "size": [
-      0.005600000000000001,
-      0.004199999999999995,
-      0.005599999999999994
-     ],
-     "fillet": 0.0001,
-     "color": "#3A3D42",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "L thigh plate",
-      "L thigh post hip"
-     ]
-    },
-    {
-     "kind": "rbox",
-     "name": "L knee rear tube hole",
-     "c": [
-      -0.038000000000000006,
-      0.06544,
-      0.07688
-     ],
-     "size": [
-      0.005599999999999994,
-      0.004199999999999995,
-      0.005600000000000008
-     ],
-     "fillet": 0.0001,
-     "color": "#3A3D42",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "L thigh plate",
-      "L thigh post knee"
-     ]
     }
    ],
    "note": ""
@@ -8919,7 +8875,7 @@
       0.10021965370031986
      ],
      "axis": "y",
-     "r": 0.003,
+     "r": 0.0045,
      "h": 0.005099999999999993,
      "color": "#3A3D42",
      "role": "struct",
@@ -8935,7 +8891,7 @@
       0.07688
      ],
      "axis": "y",
-     "r": 0.003,
+     "r": 0.0045,
      "h": 0.005099999999999993,
      "color": "#3A3D42",
      "role": "struct",
@@ -10342,50 +10298,6 @@
      "exposed": false,
      "targets": [
       "R thigh plate"
-     ]
-    },
-    {
-     "kind": "rbox",
-     "name": "R hip pitch rear tube hole",
-     "c": [
-      0.0,
-      -0.06544,
-      0.10021965370031986
-     ],
-     "size": [
-      0.005600000000000001,
-      0.004199999999999995,
-      0.005599999999999994
-     ],
-     "fillet": 0.0001,
-     "color": "#3A3D42",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "R thigh plate",
-      "R thigh post hip"
-     ]
-    },
-    {
-     "kind": "rbox",
-     "name": "R knee rear tube hole",
-     "c": [
-      -0.038000000000000006,
-      -0.06544,
-      0.07688
-     ],
-     "size": [
-      0.005599999999999994,
-      0.004199999999999995,
-      0.005600000000000008
-     ],
-     "fillet": 0.0001,
-     "color": "#3A3D42",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "R thigh plate",
-      "R thigh post knee"
      ]
     }
    ],

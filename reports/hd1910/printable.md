@@ -12,7 +12,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L yaw bracket | 197 mm2 overhang, 949 mm2 on the bed, 29 mm tall |
 | PASS | L hip roll lid | 0 mm2 overhang, 499 mm2 on the bed, 3 mm tall |
 | PASS | L roll bracket | 108 mm2 overhang, 420 mm2 on the bed, 30 mm tall |
-| PASS | L thigh frame | 2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall |
+| PASS | L thigh frame | 2100 mm2 overhang, 123 mm2 on the bed, 34 mm tall |
 | PASS | L hip pitch lid | 0 mm2 overhang, 577 mm2 on the bed, 3 mm tall |
 | PASS | L knee lid | 0 mm2 overhang, 557 mm2 on the bed, 3 mm tall |
 | PASS | L thigh cover | 0 mm2 overhang, 2900 mm2 on the bed, 34 mm tall |
@@ -24,7 +24,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R yaw bracket | 197 mm2 overhang, 949 mm2 on the bed, 29 mm tall |
 | PASS | R hip roll lid | 0 mm2 overhang, 499 mm2 on the bed, 3 mm tall |
 | PASS | R roll bracket | 108 mm2 overhang, 420 mm2 on the bed, 30 mm tall |
-| PASS | R thigh frame | 2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall |
+| PASS | R thigh frame | 2100 mm2 overhang, 123 mm2 on the bed, 34 mm tall |
 | PASS | R hip pitch lid | 0 mm2 overhang, 577 mm2 on the bed, 3 mm tall |
 | PASS | R knee lid | 0 mm2 overhang, 557 mm2 on the bed, 3 mm tall |
 | PASS | R thigh cover | 0 mm2 overhang, 2900 mm2 on the bed, 34 mm tall |
@@ -108,7 +108,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L yaw bracket | 48 x 25 x 29 mm, 949 mm2 on the bed |
 | PASS | L hip roll lid | 37 x 24 x 3 mm, 499 mm2 on the bed |
 | PASS | L roll bracket | 19 x 31 x 30 mm, 420 mm2 on the bed |
-| PASS | L thigh frame | 51 x 66 x 34 mm, 89 mm2 on the bed |
+| PASS | L thigh frame | 51 x 66 x 34 mm, 123 mm2 on the bed |
 | PASS | L hip pitch lid | 26 x 37 x 3 mm, 577 mm2 on the bed |
 | PASS | L knee lid | 37 x 26 x 3 mm, 557 mm2 on the bed |
 | PASS | L thigh cover | 55 x 70 x 34 mm, 2900 mm2 on the bed |
@@ -120,7 +120,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R yaw bracket | 48 x 25 x 29 mm, 949 mm2 on the bed |
 | PASS | R hip roll lid | 37 x 24 x 3 mm, 499 mm2 on the bed |
 | PASS | R roll bracket | 19 x 31 x 30 mm, 420 mm2 on the bed |
-| PASS | R thigh frame | 51 x 66 x 34 mm, 89 mm2 on the bed |
+| PASS | R thigh frame | 51 x 66 x 34 mm, 123 mm2 on the bed |
 | PASS | R hip pitch lid | 26 x 37 x 3 mm, 577 mm2 on the bed |
 | PASS | R knee lid | 37 x 26 x 3 mm, 557 mm2 on the bed |
 | PASS | R thigh cover | 55 x 70 x 34 mm, 2900 mm2 on the bed |
@@ -200,11 +200,11 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 
 | status | item | detail |
 |---|---|---|
-| WARN | L thigh frame | 2118 mm2 needs support or a bridge: check it in the slicer |
+| WARN | L thigh frame | 2100 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L shin | 310 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L shoe | 395 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L sole | 347 mm2 needs support or a bridge: check it in the slicer |
-| WARN | R thigh frame | 2118 mm2 needs support or a bridge: check it in the slicer |
+| WARN | R thigh frame | 2100 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R shin | 310 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R shoe | 395 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R sole | 347 mm2 needs support or a bridge: check it in the slicer |
