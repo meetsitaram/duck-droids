@@ -99,9 +99,9 @@ All 3D printed. Files are in [prints/feetech/](../../prints/feetech/README.md), 
 
 | Item | Part | File | Material | Colour | Hex | Mass each | Qty per robot |
 |---|---|---|---|---|---|---|---|
-| P1 | Hip yaw lid, left and right | `L_hip_yaw_lid.stl`, `R_hip_yaw_lid.stl` | PLA | Dark grey | #3A3D42 | 3.5 g | 2 |
-| P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 19.3 g | 2 |
-| P3 | Hip roll lid, left and right | `L_hip_roll_lid.stl`, `R_hip_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 3.0 g | 2 |
+| P1 | Hip yaw lid, left and right | `L_hip_yaw_lid.stl`, `R_hip_yaw_lid.stl` | PLA | Dark grey | #3A3D42 | 3.4 g | 2 |
+| P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 19.4 g | 2 |
+| P3 | Hip roll lid, left and right | `L_hip_roll_lid.stl`, `R_hip_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 2.9 g | 2 |
 | P4 | Roll bracket, left and right | `L_roll_bracket.stl`, `R_roll_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.7 g | 2 |
 | P5 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 21.5 g | 2 |
 | P6 | Hip pitch lid, left and right | `L_hip_pitch_lid.stl`, `R_hip_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 3.5 g | 2 |
