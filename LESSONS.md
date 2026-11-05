@@ -344,3 +344,12 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 - **Look at the file's splits.** The first boolean to cut the rotor failed on faces nearly coincident with the cutter (ASM_INCONS_FACE). Move the cutter's faces into air: every other try worked.
 - **A long comment can go stale in the same file.** `ZP`'s said 0.634 for a value of 0.674. Print it.
 
+
+## The big duck's frame joints (2026-11-05)
+
+- **A 0.5 mm overlap is a joint nobody designed.** The checks read touching parts as one piece only if they overlapped, so every frame joint was drawn 0.5 mm deep and none had a screw. Manifold's union merges parts that only share a face, so exact faces keep `connect` passing, and a separate check (`tools/big_assembly.py` JOINED) asks what holds each touching pair.
+- **Let each screw say what it joins.** `bolt()` records `clamp` and `tap` (or `tap_hub`, an actuator's own thread) on the screw. Then one tool can test contact, thread engagement, edge distance, the screw's way in and its key's reach, without a hand-kept list of parts per joint.
+- **Check the order, not only the finished robot.** The first run found an inner retainer that could only go in after the stator that hid its screws, a yaw housing's outer screws 11 mm off the deck's edge (true since the first build), housing screws under the neck tie's heads and the computer's box, two pairs of screws meeting head to head across a 24 mm thigh, and cleat screws under the ankle stator. The static checks and Fusion's clash list had shown none of them.
+- **Two engagements that need opposite motions can't both be fixed parts.** The hip roll's back stator must move toward the yoke onto its pins while its rear step goes the other way into its cheek: so the cheek is bolted to the beam last, through a cleat, after the stator and cheek go on together.
+- **A path check backs a screw out only until its tip leaves its hole.** Further, and a 16 mm screw in a 24 mm gap reads as blocked when it isn't.
+- **Mirror every name a part carries.** The trunk's right yaw bearing was mirrored by hand, outside `build()`, and kept the left's `unit` name: the checker joined the left bearing to the right housing.
