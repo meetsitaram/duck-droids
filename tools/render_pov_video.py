@@ -157,7 +157,7 @@ class Film:
         self.test, self.every, self.sheet, self.n = test, every, [], 0
         self.writer = None
         if not test and not dry:
-            p = os.path.join(G.ROOT, 'docs', 'images', 'assembly', G.RECIPE if G.RECIPE != 'hybrid' else '', f'{name}.mp4')
+            p = os.path.join(G.ROOT, 'docs', 'images', 'assembly', G.RECIPE, f'{name}.mp4')
             os.makedirs(os.path.dirname(p), exist_ok=True)
             self.path = p
             self.writer = imageio.get_writer(p, fps=FPS, codec='libx264', quality=8, macro_block_size=1, pixelformat='yuv420p')
@@ -453,7 +453,7 @@ QUICK_TESTS = {'L_knee', 'L_hip_pitch', 'L_hip_yaw', 'neck_pitch', 'head_yaw', '
 
 
 HEAD_SECTIONS = ('headbench', 'framebench', 'jawbench', 'head')     # from here on the labels are at the bottom
-_PARTS = json.load(open(os.path.join(G.ROOT, 'spec', f'parts_{G.RECIPE}.json'), encoding='utf-8'))
+_PARTS = json.load(open(G.parts_path(), encoding='utf-8'))
 
 
 def part_kind(n):
@@ -463,6 +463,14 @@ def part_kind(n):
     if 'servo' in n and 'bus' not in n:
         m = re.search(r'\(buy\) (\S+)', ' '.join(_PARTS['groups'].get(n, [])))
         return m.group(1).replace('_', '-') if m else None
+    if G.RECIPE == 'hybrid':
+        dx = n.startswith(('neck', 'head', 'beak'))
+        for k, v in (('ankle bearing', '6700ZZ'), ('bearing', 'MR2216ZZ' if dx else '6704ZZ'), ('rear horn', 'FPX330-H101 idler' if dx else 'from the servo box'), ('horn', 'HNX330-N102' if dx else 'from the servo box'), ('battery', '2S LiPo, 850 mAh'),
+                     ('L 5 V regulator', '8 A UBEC'), ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('standoff', 'hex, M2.5'),
+                     ('leg bus board', 'Bus Servo Adapter (A), on UART'), ('Waveshare', 'Bus Servo Adapter (A), on USB'), ('splice', 'lead joined in heat-shrink'), ('Pi Zero', 'bought')):
+            if k in n:
+                return v
+        return None
     fe_ = G.RECIPE == 'feetech'
     for k, v in (('ankle bearing', '6700ZZ'), ('bearing', '6704ZZ' if fe_ else 'MR2216ZZ'), ('rear horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box' if fe_ else 'FPX330-H101 idler'), ('horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box'), ('battery', '2S LiPo, 850 mAh' if fe_ else '2S LiPo, 450 mAh'),
                  ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('foot switch', 'Omron D2F-01F'), ('standoff', 'hex, M2.5'),
@@ -601,7 +609,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         f.step = j.replace('_', ' ')
         leg = j[:2] in ('L_', 'R_')
         f.test_joint(j, re.sub(r'^R ', 'right ', re.sub(r'^L ', 'left ', j.replace('_', ' '))), 2.2, LEG_VIEW if leg else HEAD_VIEW, 0.12 if leg else 0.21, 0.46 if leg else 0.50)
-    f.title, f.step = 'The all-Feetech duck' if G.RECIPE == 'feetech' else 'The Feetech HD-1910 duck' if G.RECIPE == 'hd1910' else 'The all-Dynamixel duck', ''
+    f.title, f.step = 'The hybrid duck' if G.RECIPE == 'hybrid' else 'The all-Feetech duck' if G.RECIPE == 'feetech' else 'The Feetech HD-1910 duck' if G.RECIPE == 'hd1910' else 'The all-Dynamixel duck', ''
     nf = 75 if quick else 120
     for k in range(nf):
         a = math.radians(-90 + 90 * ease(min(1.0, k / (nf * 0.6))))     # round to the front, then hold on the face

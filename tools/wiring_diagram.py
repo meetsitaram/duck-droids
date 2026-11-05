@@ -65,8 +65,12 @@ def main():
         print(' FAIL', b)
     if bad:
         sys.exit(1)
-    im = Image.new('RGB', (W, H), 'white')
+    W_, H_ = c.get('size', (W, H))
+    im = Image.new('RGB', (W_, H_), 'white')
     d = ImageDraw.Draw(im)
+    for x0, y0, x1, y1, t in c.get('bands', ()):        # where the parts are: what crosses between 2 bands goes up the neck
+        d.rounded_rectangle((x0, y0, x1, y1), 18, outline=(190, 194, 198), width=2)
+        d.text((x1 - 20, y0 + 22), t, fill=GREY, font=font(26, True), anchor='rm')
     d.text((60, 36), c['title'], fill=INK, font=font(46, True))
     at = {}
     boxes = {}
@@ -104,7 +108,7 @@ def main():
         if wire.get('label'):
             seg = max(zip(pts, pts[1:]), key=lambda s: abs(s[1][0] - s[0][0]) + abs(s[1][1] - s[0][1]))
             flat = abs(seg[1][1] - seg[0][1]) < 2   # along a level wire the label sits above it, so the wire stays visible
-            labels.append(((seg[0][0] + seg[1][0]) / 2, (seg[0][1] + seg[1][1]) / 2 - (26 if flat else 0), wire['label'], k['color']))
+            labels.append((*wire.get('label_at', ((seg[0][0] + seg[1][0]) / 2, (seg[0][1] + seg[1][1]) / 2 - (26 if flat else 0))), wire['label'], k['color']))
     for x, y, t, col in labels:
         f = font(24, True)
         tw = d.textlength(t, font=f)
@@ -123,11 +127,11 @@ def main():
             d.text((x, y - 30 if top else y + h + 62), p['sub'], fill=GREY, font=font(24), anchor='lm')
     x = 60
     for k in c['kinds'].values():
-        d.line((x, H - 118, x + 50, H - 118), fill=k['color'], width=k['width'])
-        d.text((x + 62, H - 118), k['name'], fill=INK, font=font(23), anchor='lm')
+        d.line((x, H_ - 118, x + 50, H_ - 118), fill=k['color'], width=k['width'])
+        d.text((x + 62, H_ - 118), k['name'], fill=INK, font=font(23), anchor='lm')
         x += 104 + d.textlength(k['name'], font=font(23))
     for i, t in enumerate(c['footer']):
-        d.text((60, H - 76 + 32 * i), t, fill=GREY, font=font(24), anchor='lm')
+        d.text((60, H_ - 76 + 32 * i), t, fill=GREY, font=font(24), anchor='lm')
     im.save(out)
     print(out)
 
