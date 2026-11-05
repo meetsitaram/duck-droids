@@ -13,10 +13,17 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 
 | Duck | Question |
 |---|---|
-| Big | RS03 mounting: only 4 rear holes are free, as RobStride's own screws fill the other 4, and they carry about 14 kg of head. The 8 front holes are free but need a new flange. The big duck's worker is trying the front holes |
+| Big | Many frame joints are M4 screws tapped into the edge of 8 mm plate: the hip pitch bridge, head pitch yokes, head roll cradle, head rails, beak mount and tray, shin top. Accept them, or go to angle brackets or thicker plate? Nothing has checked their strength |
+| Big | The shin is a 5 mm 6061 tube with one welded seam. Accept a weld there? |
+| Big | The hip roll yoke and its standoff ring are one machined billet part, as there's no room for screws. Acceptable to machine? |
+| Big | 14 of the 22 actuator harnesses don't reach the boards on the deck: even the shortest route past the hips needs about 420 mm against 350. A CAN hub and power block in each leg, or extension cables? See [CABLES.md](big/CABLES.md) |
 | Big | Delete the old `big assembly` document in the Fusion hub, now that `big assembly real` replaces it? |
 | All Feetech | Bench-test one STS3215 at a full 8.4 V before fitting? Sellers disagree on whether the 7.4 V servo takes it |
 | All Feetech | A fuse at the XT30? To decide once walking current is measured |
+
+## Settled
+
+- **Big, RS03 mounting:** each RS03 now uses its 8 free front holes, through a 6 mm ring with countersunk M4 screws, as well as the 4 rear ones.
 
 ## Measure on the first parts
 
