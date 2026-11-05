@@ -158,6 +158,7 @@ Optional alternate to item 5: printed idlers, 5 wheels and 5 bushings in PETG or
 - **Item 17:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.
 - **Item 21:** marked HV. Charge as a normal 2S, to 8.4 V.
 - **Item 26:** check the Pi's voltage under load, as the ribbon's wires are thin.
+- **Horns:** ROBOTIS's own photos and model show the horn on the servo, though its box list names only the servo, a cable and screws. If one comes without, it's the HNX330-N102. Check the first servo before ordering the rest.
 - **Items 6, 7:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: order item 13 and set each ID again if buying there.
 - Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.
 

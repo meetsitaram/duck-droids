@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.024 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "1.026 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -859,6 +859,12 @@
  },
  {
   "group": "skin",
+  "item": "head regulator plug",
+  "status": "PASS",
+  "detail": "0.40 % outside the skin"
+ },
+ {
+  "group": "skin",
   "item": "Pi base tab",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -1053,7 +1059,7 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 66 % used"
+  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 67 % used"
  },
  {
   "group": "torque",
@@ -1131,7 +1137,7 @@
   "group": "torque",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 1 % used"
+  "detail": "0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 0 % used"
  },
  {
   "group": "torque",
