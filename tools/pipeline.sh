@@ -2,8 +2,9 @@
 # The whole chain for one duck, from whichever worktree this is in. Takes its turn at Fusion and at rendering if TEAM_DIR is set.
 #
 #   MILLI_RECIPE=hd1910 AGENT=hd1910 bash tools/pipeline.sh gates     offline checks, docs, prints from the spec. Free: run it as often as you like
-#   ... pipeline.sh fusion    Fusion build, prints from Fusion, audit (about 15 min)
-#   ... pipeline.sh reveal    Fusion build and the 30-second reveal's frames, in one turn (about 40 min)
+#   ... pipeline.sh fusion    linked Fusion build, prints from Fusion, audit: 10 min the first time, then 1-3 min, as it rebuilds only the links that changed
+#   ... pipeline.sh final     the one-document Fusion build, for the repo's .f3d (about 12 min). Milestones only
+#   ... pipeline.sh reveal    the one-document build and the 30-second reveal's frames, in one turn (about 40 min)
 #   ... pipeline.sh video     the 5-minute build and the guide's clips (about 10 min; needs Fusion's bodies from `fusion` or `reveal`)
 #
 # Stops at the first failing gate. Reads the whole of each check's output, as a failure isn't always on its last line.
@@ -69,13 +70,28 @@ build() {
   gate compare "$PY" -I tools/verify_fusion.py compare
 }
 
+linked() {
+  gate verify_write "$PY" -I tools/verify_fusion.py write
+  s=$(date +%s)
+  "$PY" -I tools/fusion_call.py cad/fusion/linked_build.py --write --recipe "$RECIPE" 2>&1 | grep -v "bodies, " | tail -12 | cut -c1-240
+  echo "[linked build] $(( $(date +%s) - s )) s"
+  gate prints "$PY" -I tools/prints_from_fusion.py
+  gate audit "$PY" -I tools/audit_prints.py
+  gate compare "$PY" -I tools/verify_fusion.py compare
+}
+
 case $1 in
   gates)
     gates
     ;;
   fusion)
     gates
-    take fusion 15 "$RECIPE build"
+    take fusion "${FUSION_MIN:-5}" "$RECIPE linked build"
+    linked
+    ;;
+  final)
+    gates
+    take fusion 15 "$RECIPE one-document build"
     build
     ;;
   reveal)
@@ -106,7 +122,7 @@ case $1 in
     ls -la "$D/build_5min.mp4"
     ;;
   *)
-    echo "gates, fusion, reveal or video"
+    echo "gates, fusion, final, reveal or video"
     exit 2
     ;;
 esac
