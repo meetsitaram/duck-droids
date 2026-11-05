@@ -463,7 +463,8 @@ def part_kind(n):
     if 'servo' in n and 'bus' not in n:
         m = re.search(r'\(buy\) (\S+)', ' '.join(_PARTS['groups'].get(n, [])))
         return m.group(1).replace('_', '-') if m else None
-    for k, v in (('ankle bearing', '6700ZZ'), ('bearing', 'MR2216ZZ'), ('rear horn', 'FPX330-H101 idler'), ('horn', 'from the servo box'), ('battery', '2S LiPo, 450 mAh'),
+    fe_ = G.RECIPE == 'feetech'
+    for k, v in (('ankle bearing', '6700ZZ'), ('bearing', '6704ZZ' if fe_ else 'MR2216ZZ'), ('rear horn', 'from the servo box' if fe_ else 'FPX330-H101 idler'), ('horn', 'from the servo box'), ('battery', '2S LiPo, 850 mAh' if fe_ else '2S LiPo, 450 mAh'),
                  ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('foot switch', 'Omron D2F-01F'), ('standoff', 'hex, M2.5'),
                  ('Waveshare', 'Bus Servo Adapter (A)'), ('Pi Zero', 'bought')):
         if k in n:
@@ -600,7 +601,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         f.step = j.replace('_', ' ')
         leg = j[:2] in ('L_', 'R_')
         f.test_joint(j, re.sub(r'^R ', 'right ', re.sub(r'^L ', 'left ', j.replace('_', ' '))), 2.2, LEG_VIEW if leg else HEAD_VIEW, 0.12 if leg else 0.21, 0.46 if leg else 0.50)
-    f.title, f.step = 'The all-Dynamixel duck', ''
+    f.title, f.step = 'The all-Feetech duck' if G.RECIPE == 'feetech' else 'The all-Dynamixel duck', ''
     nf = 75 if quick else 120
     for k in range(nf):
         a = math.radians(-90 + 90 * ease(min(1.0, k / (nf * 0.6))))     # round to the front, then hold on the face
