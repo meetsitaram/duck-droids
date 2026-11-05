@@ -4,6 +4,12 @@ Nothing here has been built. Socket positions are from the STS3215 STEP file in 
 
 ![Wiring](wiring.png)
 
+## Every part
+
+Everything you'll handle, drawn from the model. Its counts are checked against the [BOM](BOM.md). Printed parts are the real Fusion bodies; bought parts are the model's shapes, not the makers' CAD.
+
+![Every part](parts_layout.png)
+
 The picture is drawn and checked from `spec/wiring_feetech.json`:
 
     python -I tools/wiring_diagram.py spec/wiring_feetech.json docs/dynamixel/parts docs/feetech/wiring.png
