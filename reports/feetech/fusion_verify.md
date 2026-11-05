@@ -18,14 +18,14 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | L thigh cover | 1.2 % of 1500 points disagree; solid in 138 offline, 130 in Fusion |
 | PASS | L shin | 0.2 % of 1500 points disagree; solid in 186 offline, 187 in Fusion |
 | PASS | L shoe | 0.1 % of 1500 points disagree; solid in 209 offline, 209 in Fusion |
-| PASS | L sole | 1.2 % of 1500 points disagree; solid in 1052 offline, 1070 in Fusion |
+| PASS | L sole | 1.3 % of 1500 points disagree; solid in 1051 offline, 1070 in Fusion |
 | PASS | L inner ear | 0.1 % of 1500 points disagree; solid in 682 offline, 684 in Fusion |
 | PASS | R hip yaw lid | 0.0 % of 1500 points disagree; solid in 482 offline, 482 in Fusion |
 | PASS | R yaw bracket | 0.7 % of 1500 points disagree; solid in 306 offline, 300 in Fusion |
-| PASS | R hip roll lid | 0.0 % of 1500 points disagree; solid in 459 offline, 459 in Fusion |
+| PASS | R hip roll lid | 0.1 % of 1500 points disagree; solid in 460 offline, 459 in Fusion |
 | PASS | R roll bracket | 0.3 % of 1500 points disagree; solid in 298 offline, 297 in Fusion |
 | PASS | R thigh frame | 0.1 % of 1500 points disagree; solid in 134 offline, 134 in Fusion |
-| PASS | R hip pitch lid | 0.0 % of 1500 points disagree; solid in 518 offline, 518 in Fusion |
+| PASS | R hip pitch lid | 0.1 % of 1500 points disagree; solid in 517 offline, 518 in Fusion |
 | PASS | R knee lid | 0.1 % of 1500 points disagree; solid in 476 offline, 474 in Fusion |
 | PASS | R thigh cover | 1.8 % of 1500 points disagree; solid in 155 offline, 146 in Fusion |
 | PASS | R shin | 0.0 % of 1500 points disagree; solid in 192 offline, 192 in Fusion |
@@ -48,5 +48,5 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | jaw soft insert | 0.0 % of 1500 points disagree; solid in 1482 offline, 1482 in Fusion |
 | PASS | mouth roof | 0.0 % of 1500 points disagree; solid in 1459 offline, 1459 in Fusion |
 | PASS | face | 0.1 % of 1500 points disagree; solid in 747 offline, 749 in Fusion |
-| PASS | eye ring | 0.2 % of 1500 points disagree; solid in 382 offline, 381 in Fusion |
+| PASS | eye ring | 0.1 % of 1500 points disagree; solid in 381 offline, 381 in Fusion |
 | PASS | eye iris | 0.1 % of 1500 points disagree; solid in 960 offline, 960 in Fusion |

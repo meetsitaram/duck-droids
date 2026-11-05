@@ -63,7 +63,7 @@
   "group": "POINTS",
   "item": "L sole",
   "status": "PASS",
-  "detail": "1.2 % of 1500 points disagree; solid in 1052 offline, 1070 in Fusion"
+  "detail": "1.3 % of 1500 points disagree; solid in 1051 offline, 1070 in Fusion"
  },
  {
   "group": "POINTS",
@@ -87,7 +87,7 @@
   "group": "POINTS",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 459 offline, 459 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 460 offline, 459 in Fusion"
  },
  {
   "group": "POINTS",
@@ -105,7 +105,7 @@
   "group": "POINTS",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 518 offline, 518 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 517 offline, 518 in Fusion"
  },
  {
   "group": "POINTS",
@@ -243,7 +243,7 @@
   "group": "POINTS",
   "item": "eye ring",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 382 offline, 381 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 381 offline, 381 in Fusion"
  },
  {
   "group": "POINTS",
