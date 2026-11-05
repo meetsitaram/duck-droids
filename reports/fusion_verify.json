@@ -15,7 +15,7 @@
   "group": "POINTS",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 461 offline, 461 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 462 offline, 461 in Fusion"
  },
  {
   "group": "POINTS",
@@ -57,7 +57,7 @@
   "group": "POINTS",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 209 offline, 208 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 209 offline, 209 in Fusion"
  },
  {
   "group": "POINTS",
@@ -87,7 +87,7 @@
   "group": "POINTS",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 463 offline, 462 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 464 offline, 462 in Fusion"
  },
  {
   "group": "POINTS",
@@ -99,7 +99,7 @@
   "group": "POINTS",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 134 offline, 133 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 134 offline, 134 in Fusion"
  },
  {
   "group": "POINTS",
@@ -129,7 +129,7 @@
   "group": "POINTS",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 234 offline, 235 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 231 offline, 232 in Fusion"
  },
  {
   "group": "POINTS",
@@ -165,7 +165,7 @@
   "group": "POINTS",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 1241 offline, 1242 in Fusion"
+  "detail": "0.3 % of 1500 points disagree; solid in 1243 offline, 1242 in Fusion"
  },
  {
   "group": "POINTS",
@@ -189,7 +189,7 @@
   "group": "POINTS",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "0.7 % of 1500 points disagree; solid in 267 offline, 258 in Fusion"
+  "detail": "0.6 % of 1500 points disagree; solid in 267 offline, 260 in Fusion"
  },
  {
   "group": "POINTS",
@@ -231,7 +231,7 @@
   "group": "POINTS",
   "item": "jaw soft insert",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 1473 offline, 1474 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 1474 offline, 1474 in Fusion"
  },
  {
   "group": "POINTS",
@@ -255,6 +255,6 @@
   "group": "POINTS",
   "item": "eye iris",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 864 offline, 862 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 863 offline, 862 in Fusion"
  }
 ]
