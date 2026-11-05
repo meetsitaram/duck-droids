@@ -8,9 +8,9 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 
 | status | item | detail |
 |---|---|---|
-| PASS | L hip yaw lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
+| PASS | L hip yaw lid | 122 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
 | PASS | L yaw bracket | 579 mm2 overhang, 1165 mm2 on the bed, 41 mm tall |
-| PASS | L hip roll lid | 123 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
+| PASS | L hip roll lid | 113 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
 | PASS | L roll bracket | 174 mm2 overhang, 572 mm2 on the bed, 37 mm tall |
 | PASS | L thigh frame | 1375 mm2 overhang, 478 mm2 on the bed, 61 mm tall |
 | PASS | L hip pitch lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
@@ -20,9 +20,9 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L shoe | 708 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
 | PASS | L sole | 478 mm2 overhang, 238 mm2 on the bed, 69 mm tall |
 | PASS | L inner ear | 0 mm2 overhang, 779 mm2 on the bed, 4 mm tall |
-| PASS | R hip yaw lid | 118 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
+| PASS | R hip yaw lid | 108 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
 | PASS | R yaw bracket | 579 mm2 overhang, 1165 mm2 on the bed, 41 mm tall |
-| PASS | R hip roll lid | 123 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
+| PASS | R hip roll lid | 113 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
 | PASS | R roll bracket | 174 mm2 overhang, 572 mm2 on the bed, 37 mm tall |
 | PASS | R thigh frame | 1375 mm2 overhang, 478 mm2 on the bed, 61 mm tall |
 | PASS | R hip pitch lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
@@ -104,7 +104,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 
 | status | item | detail |
 |---|---|---|
-| PASS | L hip yaw lid | 51 x 31 x 6 mm, 858 mm2 on the bed |
+| PASS | L hip yaw lid | 6 x 31 x 51 mm, 88 mm2 on the bed |
 | PASS | L yaw bracket | 62 x 30 x 41 mm, 1165 mm2 on the bed |
 | PASS | L hip roll lid | 6 x 29 x 51 mm, 75 mm2 on the bed |
 | PASS | L roll bracket | 23 x 36 x 37 mm, 572 mm2 on the bed |

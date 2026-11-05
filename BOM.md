@@ -107,11 +107,11 @@ All 3D printed. Files are in [prints/](prints/README.md), already oriented for p
 |---|---|---|---|---|---|---|---|
 | P1 | Hip yaw lid, left and right | `L_hip_yaw_lid.stl`, `R_hip_yaw_lid.stl` | PLA | Dark grey | #3A3D42 | 3.6 g | 2 |
 | P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 20.1 g | 2 |
-| P3 | Hip roll lid, left and right | `L_hip_roll_lid.stl`, `R_hip_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 3.1 g | 2 |
+| P3 | Hip roll lid, left and right | `L_hip_roll_lid.stl`, `R_hip_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 3.0 g | 2 |
 | P4 | Roll bracket, left and right | `L_roll_bracket.stl`, `R_roll_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.9 g | 2 |
 | P5 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 22.3 g | 2 |
-| P6 | Hip pitch lid, left and right | `L_hip_pitch_lid.stl`, `R_hip_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 3.7 g | 2 |
-| P7 | Knee lid, left and right | `L_knee_lid.stl`, `R_knee_lid.stl` | PLA | Dark grey | #3A3D42 | 3.6 g | 2 |
+| P6 | Hip pitch lid, left and right | `L_hip_pitch_lid.stl`, `R_hip_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 3.6 g | 2 |
+| P7 | Knee lid, left and right | `L_knee_lid.stl`, `R_knee_lid.stl` | PLA | Dark grey | #3A3D42 | 3.5 g | 2 |
 | P8 | Thigh cover, left and right | `L_thigh_cover.stl`, `R_thigh_cover.stl` | PLA | White | #ECEBE6 | 31.4 g | 2 |
 | P9 | Shin, left and right | `L_shin.stl`, `R_shin.stl` | PLA | Dark grey | #3A3D42 | 15.4 g | 2 |
 | P10 | Shoe, left and right | `L_shoe.stl`, `R_shoe.stl` | PLA | Orange | #E8642A | 19.2 g | 2 |
@@ -128,7 +128,7 @@ All 3D printed. Files are in [prints/](prints/README.md), already oriented for p
 | P21 | Head roll lid | `head_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 1 |
 | P22 | Head roll spacer | `head_roll_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P23 | Head roll rear spacer | `head_roll_rear_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
-| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 74.8 g | 1 |
+| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 74.7 g | 1 |
 | P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 63.6 g | 1 |
 | P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 40.1 g | 1 |
 | P27 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 9.9 g | 1 |
