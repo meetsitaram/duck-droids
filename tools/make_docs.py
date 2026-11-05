@@ -217,7 +217,7 @@ WARN = {
 }
 
 
-CLIPS = ('dynamixel', 'hd1910')          # the variants whose guide shows clips from a build video
+CLIPS = ('dynamixel',) + (('hd1910',) if os.path.exists(os.path.join(G.ROOT, 'docs', 'images', 'assembly', 'hd1910', 'build_5min.mp4')) else ())          # the variants whose guide links a build video
 
 
 def HD_FIRST():

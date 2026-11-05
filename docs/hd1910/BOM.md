@@ -105,43 +105,43 @@ All 3D printed. Files are in [prints/hd1910/](../../prints/hd1910/README.md), al
 | Item | Part | File | Material | Colour | Hex | Mass each | Qty per robot |
 |---|---|---|---|---|---|---|---|
 | P1 | Hip yaw lid, left and right | `L_hip_yaw_lid.stl`, `R_hip_yaw_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
-| P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 10.2 g | 2 |
+| P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 10.1 g | 2 |
 | P3 | Hip roll lid, left and right | `L_hip_roll_lid.stl`, `R_hip_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 1.5 g | 2 |
 | P4 | Roll bracket, left and right | `L_roll_bracket.stl`, `R_roll_bracket.stl` | PLA | Dark grey | #3A3D42 | 4.4 g | 2 |
-| P5 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 12.8 g | 2 |
+| P5 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 13.3 g | 2 |
 | P6 | Hip pitch lid, left and right | `L_hip_pitch_lid.stl`, `R_hip_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
 | P7 | Knee lid, left and right | `L_knee_lid.stl`, `R_knee_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
-| P8 | Thigh cover, left and right | `L_thigh_cover.stl`, `R_thigh_cover.stl` | PLA | White | #ECEBE6 | 20.0 g | 2 |
+| P8 | Thigh cover, left and right | `L_thigh_cover.stl`, `R_thigh_cover.stl` | PLA | White | #ECEBE6 | 19.9 g | 2 |
 | P9 | Shin, left and right | `L_shin.stl`, `R_shin.stl` | PLA | Dark grey | #3A3D42 | 8.1 g | 2 |
 | P10 | Shoe, left and right | `L_shoe.stl`, `R_shoe.stl` | PLA | Orange | #E8642A | 14.3 g | 2 |
 | P11 | Sole, left and right | `L_sole.stl`, `R_sole.stl` | TPU 95A | Yellow | #F2B233 | 17.7 g | 2 |
 | P12 | Inner ear, left and right | `L_inner_ear.stl`, `R_inner_ear.stl` | PLA | Orange | #E8642A | 2.7 g | 2 |
-| P13 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 34.4 g | 1 |
-| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 27.6 g | 1 |
+| P13 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 34.3 g | 1 |
+| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 27.5 g | 1 |
 | P15 | Neck column | `neck_column.stl` | PLA | Dark grey | #3A3D42 | 4.5 g | 1 |
 | P16 | Neck lid | `neck_lid.stl` | PLA | Dark grey | #3A3D42 | 0.2 g | 1 |
 | P17 | Head pitch lid | `head_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 0.2 g | 1 |
-| P18 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.3 g | 1 |
+| P18 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.2 g | 1 |
 | P19 | Head yaw sheet | `head_yaw_sheet.stl` | PLA | Dark grey | #3A3D42 | 1.0 g | 1 |
 | P20 | Head yaw bracket | `head_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 7.1 g | 1 |
 | P21 | Head roll lid | `head_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 1 |
 | P22 | Head roll spacer | `head_roll_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P23 | Head roll rear spacer | `head_roll_rear_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
-| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 67.5 g | 1 |
-| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.8 g | 1 |
-| P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 37.0 g | 1 |
+| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 67.4 g | 1 |
+| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.6 g | 1 |
+| P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.9 g | 1 |
 | P27 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 9.5 g | 1 |
 | P28 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 9.0 g | 1 |
 | P29 | Face | `face.stl` | PLA | Mid grey | #9A9C98 | 10.4 g | 1 |
 | P30 | Eye ring | `eye_ring.stl` | PLA | Amber | #F0A030 | 9.3 g | 1 |
-| P31 | Eye iris | `eye_iris.stl` | PLA | Black | #0A1420 | 2.4 g | 1 |
+| P31 | Eye iris | `eye_iris.stl` | PLA | Black | #0A1420 | 2.3 g | 1 |
 
 ### Filament
 
 | Colour | Hex | Material | Model mass | With 15 % for supports and scrap |
 |---|---|---|---|---|
-| Dark grey | #3A3D42 | PLA | 146 g | 168 g |
-| Orange | #E8642A | PLA | 139 g | 159 g |
+| Dark grey | #3A3D42 | PLA | 147 g | 169 g |
+| Orange | #E8642A | PLA | 138 g | 159 g |
 | White | #ECEBE6 | PLA | 128 g | 147 g |
 | Mid grey | #9A9C98 | PLA | 10 g | 12 g |
 | Amber | #F0A030 | PLA | 9 g | 11 g |
