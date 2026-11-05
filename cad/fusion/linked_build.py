@@ -26,6 +26,10 @@ import adsk.fusion  # noqa: E402
 
 RECIPE = 'hybrid'
 VIEWS = {'34': (60, 40, 30), 'back': (-60, 35, 30), 'side': (0, 80, 16), 'under': (40, 30, -25), 'top': (20, 10, 90)}
+BIG_ONLY = None                                   # the big duck: only these links, for a trial
+BIG_SECONDS = 900                                 # the big duck: stop starting links after this, so a turn at Fusion stays short. Built links stay built
+BIG_ASSEMBLY = True                               # the big duck: go on to the assembly once every link is built
+BIG_CLASH = True
 OK_CLASH = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs', ' plug', 'camera ribbon', 'microSD')
 
 
@@ -117,6 +121,49 @@ def _occ(name):
     return occs.get(name) or next(o for n, o in occs.items() if n.startswith(name + ' '))
 
 
+def big_spec():
+    """The big duck's rods, chain and thigh covers are 'decal' to keep them out of the offline sweep checks, and build.link skips decals with no screw. Here they're real: mark them, in this script only, so build.py and its hash stay as they are for every other duck."""
+    plain = build.spec
+
+    def spec():
+        s = plain()
+        for l in s['links'].values():
+            for g in l['geoms']:
+                if g['role'] == 'decal' and 'fast' not in g:
+                    g['fast'] = dict(fusion_only=True)
+        return s
+    build.spec = spec
+
+
+def big_hollow(name, s, occ, wall=0.003):
+    """build.link makes a lofted panel solid, and its offline wall comes from its printed part, which the big duck hasn't got. One inner loft for each set of panels, cut from them all: (panels, failures, seconds)."""
+    t, comp = time.time(), occ.component
+    b = figlib.Builder(comp)
+    groups = {}
+    for g in s['links'][name]['geoms']:
+        if g['role'] == 'shell' and g['kind'] == 'loft' and comp.bRepBodies.itemByName(g['name']):
+            groups.setdefault(json.dumps(g['sections'], sort_keys=True), []).append(g)
+    done = fail = 0
+    for gs in groups.values():
+        g0 = gs[0]
+        secs = [dict(x, a=x['a'] - wall, b=x['b'] - wall) for x in g0['sections']]
+        op = g0.get('open') or ()
+        secs[0]['z'] += -0.001 if 'bottom' in op else wall
+        secs[-1]['z'] += 0.001 if 'top' in op else -wall
+        tool = b.loft(dict(name=f"{g0['name']} inner", sections=secs, along=g0.get('along')))
+        for g in gs:
+            ci = b.f.combineFeatures.createInput(comp.bRepBodies.itemByName(g['name']), figlib.coll([tool]))
+            ci.operation = adsk.fusion.FeatureOperations.CutFeatureOperation
+            ci.isKeepToolBodies = True
+            try:
+                b.f.combineFeatures.add(ci)
+                done += 1
+            except RuntimeError:
+                fail += 1
+        tool.deleteMe()
+    return done, fail, round(time.time() - t, 1)
+
+
 def close_all(app):
     while app.documents.count:                    # closing an assembly can close its linked documents too
         app.documents.item(app.documents.count - 1).close(False)
@@ -170,6 +217,9 @@ def check_assembly(app, s, d):
                 refused.append(j['name'])
         m.rotationValue = 0.0
     print('joints', root.asBuiltJoints.count, 'refused', refused)
+    if RECIPE == 'big' and not BIG_CLASH:
+        print('clashes: not run')
+        return
     occs = adsk.core.ObjectCollection.create()
     for o in root.occurrences:
         occs.add(o)
@@ -208,6 +258,8 @@ def run(_context: str):
     app = adsk.core.Application.get()
     close_all(app)
     build.SPEC = 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json'
+    if RECIPE == 'big':
+        big_spec()
     s = build.spec()
     parts = build.parts_spec()['parts']
     code = ''.join(open(os.path.join(P, f), encoding='utf-8').read() for f in ('build.py', 'figlib.py'))
@@ -223,6 +275,8 @@ def run(_context: str):
     rebuilt, kept, bad = [], [], []
     t0 = time.time()
     for name in s['links']:
+        if RECIPE == 'big' and ((BIG_ONLY and name not in BIG_ONLY) or time.time() - t00 > BIG_SECONDS):
+            continue
         h = link_hash(s, parts, name, code)
         doc_name = f'{RECIPE} {name}'
         prints_ok = all(os.path.exists(os.path.join(stl, pn.replace(' ', '_') + '.stl')) for pn, p in parts.items() if p['link'] == name)
@@ -238,6 +292,8 @@ def run(_context: str):
             doc = app.activeDocument
         print(build.link(name))
         occ = _occ(name)
+        if RECIPE == 'big':
+            print(name, 'hollowed, failed, s', big_hollow(name, s, occ))
         vb = verify_link(name, parts, occ)
         points.update(points_link(name, parts, occ, vdata))
         stls_link(name, parts, occ, stl)
@@ -250,12 +306,18 @@ def run(_context: str):
         bad += vb
         man[name] = dict(hash=h, bad=vb, seconds=round(time.time() - t, 1))
         rebuilt.append(name)
+        if RECIPE == 'big':                       # so a turn that runs out loses nothing
+            json.dump(man, open(mpath, 'w', encoding='utf-8'), indent=1)
     json.dump(man, open(mpath, 'w', encoding='utf-8'), indent=1)
     json.dump(points, open(pts_path, 'w', encoding='utf-8'))
     print(f'links: {len(rebuilt)} rebuilt {rebuilt}, {len(kept)} unchanged, {round(time.time() - t0)} s')
     print('verify', len(parts), 'bad', json.dumps(bad))
     t0 = time.time()
     have = files(fd)
+    if RECIPE == 'big' and (not BIG_ASSEMBLY or any(f'{RECIPE} {n}' not in have or n not in man for n in s['links'])):
+        print('not yet: links left', [n for n in s['links'] if f'{RECIPE} {n}' not in have or n not in man], 'seconds so far', round(time.time() - t00))
+        close_all(app)
+        return
     if aname not in have:
         asm, d = make_assembly(app, s, have, fd, aname)
         check_assembly(app, s, d)

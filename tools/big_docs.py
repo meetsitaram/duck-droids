@@ -1,0 +1,264 @@
+"""The big duck's BOM: docs/big/BOM.md, counted from spec/robot_big.json. MILLI_RECIPE=big python -I tools/make_docs.py calls it.
+
+Its own file, as nothing in it fits a small duck's: plates, bearings and a battery pack that no shop sells ready. Prices and links were read on 2026-11-05. A price nobody could read stays empty. Never invent one.
+"""
+import collections
+import os
+
+import numpy as np
+
+import geom as G
+import mass_model as MM
+
+C = MM.C
+UNSAFE = ('**NOT SAFE TO BUILD.** This is a design study. It would stand 1.8 m and weigh about 100 kg, with no stress analysis, metal frames nobody has checked, no real actuator measured, and no brakes: its joints let go when the power does. '
+          'A failure could seriously hurt someone. Don\'t order parts for it, or build any of it, until everything under [Open before ordering](#open-before-ordering) is closed, by someone able to sign off a machine of this size.')
+HOLES = {'RS04': (10, 'M4', 9, 'M5'), 'RS03': (8, 'M4', 6, 'M4'), 'RS00': (6, 'M3', 6, 'M3')}     # the mounting and output screws in each manual's outline figure
+
+
+def link(label, url):
+    return f'[{label}]({url})'
+
+
+def bought(spec):
+    """What the model holds: actuators, bearings, modelled screws."""
+    act, bear, screws = collections.Counter(), collections.Counter(), collections.Counter()
+    for l in spec['links'].values():
+        for g in l['geoms']:
+            if g['role'] == 'actuator':
+                act[g['name'].split()[-1]] += 1
+            if g.get('part') and 'outer race' in g['name']:
+                bear[g['part']] += 1
+            if 'fast' in g:
+                screws[(g['fast']['size'], round(g['fast']['L'] * 1000))] += 1
+    return act, bear, screws
+
+
+def fabricated(spec):
+    """Every metal part and printed panel, from its solid. Left and right legs are one row with a quantity of 2. Returns (metal rows, printed rows, masses by material)."""
+    S = C.Solids(spec)
+    metal, printed, by = [], [], collections.Counter()
+    for ln, l in spec['links'].items():
+        if ln.startswith('R_'):
+            continue
+        q = 2 if ln.startswith('L_') else 1
+        mass = {p[0]: p[2] for p in MM.parts(spec, S, ln)}
+        for i, g in enumerate(l['geoms']):
+            m = S.geom.get((ln, i))
+            if m is None or g['role'] in ('cut', 'actuator') or g.get('part') or g.get('seat') or 'fast' in g or '(buy)' in g['name'] or g.get('material') not in ('al7075', 'al6061', 'petg', 'tpu', 'steel'):
+                continue
+            v = np.asarray(m.to_mesh().vert_properties[:, :3], float)
+            if not len(v):
+                continue
+            dims = np.sort(np.ptp(v, axis=0)) * 1000
+            kg = mass.get(g['name'], 0.0)
+            by[g['material']] += kg * q
+            name = g['name'][2:] if g['name'][:2] in ('L ', 'R ') and q == 2 else g['name']
+            row = dict(name=name, q=q, mat=g['material'], dims=dims, kg=kg, fill=g.get('fill', 1.0), link=ln)
+            (printed if g['material'] in ('petg', 'tpu') else metal).append(row)
+    return metal, printed, by
+
+
+def process(r):
+    if r['mat'] == 'steel':
+        return 'turned'
+    if r['dims'][0] <= 8.01:
+        return f"cut from {r['dims'][0]:.0f} mm sheet"
+    if r['dims'][0] <= 14 and r['dims'][1] <= 90:
+        return 'turned or milled'
+    return 'milled from solid; pockets not designed'
+
+
+def bom_big(spec):
+    act, bear, screws = bought(spec)
+    metal, printed, by = fabricated(spec)
+    inert = MM.link_inertials(spec)
+    total = sum(v[0] for v in inert.values())
+    n04, n03, n00 = act['RS04'], act['RS03'], act['RS00']
+    hole = collections.Counter()
+    for a, n in act.items():
+        k, s, k2, s2 = HOLES[a]
+        hole[s] += k * n
+        hole[s2] += k2 * n
+    modelled = collections.Counter()
+    for (s, _), n in screws.items():
+        modelled[s] += n
+    A_ = link('Robotics Center', 'https://www.roboticscenter.ai/store/product/robstride-04')
+    A3 = link('Robotics Center', 'https://www.roboticscenter.ai/store/product/robstride-03')
+    A0 = link('Robotics Center', 'https://www.roboticscenter.ai/store/product/robstride-00')
+    OE3 = link('OpenELAB', 'https://openelab.io/products/robstride03-qdd-60n-m-integrated-joint-motor-module')
+    OP = link('OpenELAB', 'https://openelab.io/products/robstride-power-supply-board')
+    FBJ = link('Quality Bearings Online', 'https://www.qualitybearingsonline.ca/6908-2rs-fbj-thin-section-bearing-40x62x12mm/')
+    Q61 = link('Quality Bearings Online', 'https://www.qualitybearingsonline.ca/61824-2rsr-fag-thin-section-120x150x16mm/')
+    TX = link('Texas Belting', 'https://texasbelting.com/products/bb-40a25')
+    Z13 = link('Zoro', 'https://www.zoro.com/bb-manufacturing-40b13-roller-chain-sprocket-steel-40b13/i/G905366475/')
+    HUB = link('RCDrone', 'https://rcdrone.top/products/robstride-usb-can-hub-module')
+    HUB2 = link('AiFitLab', 'https://aifitlab.com/products/robstride-usb-can-hub-module')
+    AD = link('Adafruit 4754', 'https://www.adafruit.com/product/4754')
+    # (key, part, maker and part number, specification, qty per robot, order unit, order qty, unit price or None, source, Required / Optional, Amazon search words)
+    GROUPS = [
+        ('Actuators', [
+            ('rs04', 'Joint actuator', 'RobStride RS04, CAN 2.0', f'48 V (24-60 V), 40 N m rated on a 345 x 345 mm heat sink, 35 on 220 x 200, 120 N m peak for 3 s, 1.42 kg, 9:1. Hips, knees, ankles, neck, head pitch', n04, 'each', n04, 295.00, A_ + ': backorder, 4-6 weeks. Shipping about $67 each by its estimate', 'Required', 'RobStride RS04 actuator'),
+            ('rs03', 'Joint actuator', 'RobStride RS03, CAN 2.0', '48 V (24-60 V), 20 N m rated, 60 peak, 0.88 kg, 9:1. Head yaw, head roll', n03, 'each', n03, 245.00, A3 + ': backorder, 4-6 weeks. ' + OE3 + ' lists it at 226.75 EUR, sold out', 'Required', 'RobStride RS03 actuator'),
+            ('rs00', 'Joint actuator', 'RobStride RS00, CAN 2.0', '48 V (24-60 V), 5 N m rated, 14 peak, 0.31 kg, 10:1. Beak', n00, 'each', n00, 185.00, A0 + ': backorder, 4-6 weeks', 'Required', 'RobStride RS00 actuator'),
+            ('spare', 'Spare RS04', 'RobStride RS04, CAN 2.0', 'one actuator to test on a bench first, and to measure', 1, 'each', 1, 295.00, A_, 'Optional', 'RobStride RS04 actuator'),
+        ]),
+        ('Bearings', [
+            ('b61824', 'Thin-section bearing, hip yaw', '61824', '120 x 150 x 16 mm', bear['61824'], 'each', bear['61824'], None, Q61 + ' lists the sealed 2RSR, no price read. The only price found, $218.82, is a different grease version', 'Required', '61824 bearing 120x150x16mm'),
+            ('b6908', 'Bearing, knee and head pitch', '6908', '40 x 62 x 12 mm', bear['6908'], 'each', bear['6908'], None, FBJ + ': 6908-2RS at $22.17, Canadian shop, currency not confirmed', 'Required', '6908 2RS bearing 40x62x12mm'),
+            ('b6206', 'Bearing, ankle far side', '6206', '30 x 62 x 16 mm', bear['6206'], 'each', bear['6206'], None, 'any bearing shop; no price read', 'Required', '6206 2RS bearing 30x62x16mm'),
+        ]),
+        ('Head pitch chain', [
+            ('s13', 'Sprocket, drive', 'B&B 40B13, or plain-bore equivalent', '#40 chain, 13 teeth, 53.1 mm pitch circle. Needs a hub machined to the RS04 output: not designed', 1, 'each', 1, 13.99, Z13, 'Required', '40B13 sprocket 13 tooth'),
+            ('s25', 'Sprocket, joint', 'B&B 40A25, or plate equivalent', '#40 chain, 25 teeth, 101.3 mm pitch circle. Needs boring to the 40 mm shaft and a key or clamp: not designed', 1, 'each', 1, 21.43, TX, 'Required', '40A25 sprocket 25 tooth'),
+            ('ch', 'Roller chain', 'ANSI #40, single strand', '12.7 mm pitch, about 52 links for these centres, 205 mm. 52 links does not land exactly on 205, so it needs the tensioner that is still not designed', 1, 'length', 1, None, 'any power transmission shop', 'Required', 'ANSI 40 roller chain'),
+            ('cl', 'Connecting link', 'ANSI #40', '', 1, 'each', 1, None, 'with the chain', 'Required', 'ANSI 40 connecting link'),
+        ]),
+        ('Fasteners', [
+            ('m4', 'Socket cap screw, actuator mounting and RS03 outputs', 'class 12.9, or stainless to be decided', f"M4. Length per joint: not chosen. The manuals' holes need {hole['M4']}; the model shows {modelled['M4']}", hole['M4'], 'box of 100', int(np.ceil(hole['M4'] / 100)), None, 'any fastener shop', 'Required', 'M4 socket cap screw 12.9'),
+            ('m5', 'Socket cap screw, RS04 outputs', 'class 12.9', f"M5. Thread 6.5 mm deep, so length matters: see Open before ordering. The manual's holes need {hole['M5']}; the model shows {modelled['M5']}", hole['M5'], 'box of 100', int(np.ceil(hole['M5'] / 100)), None, 'any fastener shop', 'Required', 'M5 socket cap screw 12.9'),
+            ('m3', 'Socket cap screw, RS00', 'generic', f"M3. {hole['M3']} for its mount and output", hole['M3'], 'box of 100', 1, None, 'any fastener shop', 'Required', 'M3 socket cap screw'),
+            ('panel', 'Panel screws and inserts', 'not chosen', f'{len(printed)} printed panels have no screws or bosses designed', 0, '-', 0, None, 'not designed', 'Required', 'M3 heat set insert'),
+        ]),
+        ('Electronics', [
+            ('pi', 'Computer', 'Raspberry Pi 5, 4 GB', 'chosen for its 2 USB 3 ports and for running a walking policy on its CPU: not tested with this one. Fits the model\'s box beside the power board, 56 + 110 mm in its 170', 1, 'each', 1, None, 'any Raspberry Pi reseller', 'Required', 'Raspberry Pi 5 4GB'),
+            ('sd', 'microSD card', 'SanDisk Ultra', '32 GB microSDHC, A1, Class 10, UHS-I', 1, 'each', 1, None, '[Amazon](https://www.amazon.com/dp/B08L5HMJVW)', 'Required', 'SanDisk 32GB Ultra microSDHC A1'),
+            ('hub', 'USB to CAN adapter, 3 buses', 'RobStride USB-CAN HUB module', 'USB-C to 5 CAN channels, by its listing. Whether Linux sees it as SocketCAN is not known', 1, 'each', 1, 91.25, HUB + ', from a search result: the page would not open. ' + HUB2 + ' $75, backorder, the same', 'Required', 'USB to CAN adapter 1Mbps'),
+            ('usbcan', 'USB to CAN adapter, for setting IDs and firmware', 'RobStride USB-CAN module (CH340)', 'the one RobStride\'s own tool needs. DIP 2 on is its 120 ohm terminator. DIP 1 stays off', 1, 'each', 1, None, 'RobStride resellers, e.g. Pakronics; OpenELAB sells it as "Debug Board" at 20.53 EUR', 'Required', 'RobStride USB CAN debug'),
+            ('imu', 'IMU', 'BNO085 module, EC Buying', 'as the small ducks, on I2C. Must sit near the pelvis, not on the power board', 1, 'each', 1, None, '[Amazon](https://www.amazon.com/dp/B0CDGZMLPP). Second source ' + AD + ' at $29.50', 'Required', 'BNO085 IMU module'),
+            ('reg', '24 V to 5 V regulator for the Pi', 'not chosen', '5 V, 5 A for a Pi 5, from the board\'s 24 V rail. The board\'s own 5 V rail is 2 A rated, not enough', 1, 'each', 1, None, 'not chosen', 'Required', '24V to 5V 5A buck converter USB-C'),
+            ('cam', 'USB camera', 'not chosen', 'the head\'s far from the computer, about 1.2 m through 4 joints: a ribbon won\'t reach', 1, 'each', 1, None, 'not chosen', 'Optional', 'USB camera module'),
+        ]),
+        ('Power and wiring', [
+            ('batt', 'Battery', 'not chosen: custom pack', '13S lithium-ion, 54.6 V full, with a BMS. The model allows 140 x 190 x 137 mm and 8 kg, about 1.4 kWh at 175 Wh/kg. Its discharge rating has to come from measured current, as the listings found stop at 50 A continuous', 1, 'each', 1, None, 'no source. Only pack makers quote this', 'Required', '13S 48V lithium battery pack BMS'),
+            ('board', 'Power board', 'RobStride Power Supply Board (POWER V1.3 manual), SKU ROBSTRIDE-Power', '20-65 V in. 4 XT30 branches, 20 A rated, 40 A peak each. 24 V 4 A, 12 V 2 A, 5 V 2 A. 90 x 110 x 16.5 mm, 4 x M3. Precharge, emergency stop input, CAN', 1, 'each', 1, 114.99, OP + ': $114.99 by a search result, 103.95 EUR on its page; pre-order. RCDrone $177.50', 'Required', 'RobStride power board'),
+            ('res', 'Precharge and discharge resistor', 'aluminium-clad, not chosen', "10 ohm, 200 W: the board asks for 3-10 ohm and 50 W or more and won't start without one, and it also burns what braking returns. RobStride's discharge module manual gives 10 ohm, 200 W for a humanoid's limbs. Needs a metal plate to cool it, which the model doesn't have", 1, 'each', 1, None, 'not chosen', 'Required', '10 ohm 200W aluminum resistor'),
+            ('fuse', 'Main fuse and disconnect', 'not chosen', '60 V DC or more, sized from measured current. The board has an internal one-time fuse too', 1, 'each', 1, None, 'not chosen', 'Required', '100A DC circuit breaker 60V'),
+            ('estop', 'Emergency stop', 'not chosen', "normally-open contact, as the board's EM_NO terminal wants. **It cuts the motor branches and the robot then falls**: use it with the hoist below. A normally-open stop doesn't trip on a broken wire", 1, 'each', 1, None, 'not chosen', 'Required', 'emergency stop button normally open'),
+            ('xt', 'Actuator power plugs and sockets', 'AMASS XT30U-M and XT30UW-F', "each RS04 and RS03's line end is an XT30UW-F by the manual; the RS00 has AMASS XT30PB(2+2)-M.G.B on the case and XT30(2+2)-F.G.B on the line, power and CAN together. 21 to mate with the actuators, 3 at the board", 24, 'each', 24, None, 'not chosen', 'Required', 'AMASS XT30 connector'),
+            ('gh', 'CAN plugs', 'JST GH 1.25 mm, 2-pin, and "Tany" per the manual', 'GH1.25-2PWT on the board, GH1.25 on the line. 21 to mate with the actuators, 3 at the adapter', 24, 'each', 24, None, 'not chosen', 'Required', 'GH1.25 2 pin connector'),
+            ('dist', 'Power distribution: one branch to 8 actuators, in each leg', 'custom, not designed', 'see [wiring](WIRING.md). Rated at 40 A at 60 V', 3, 'each', 3, None, 'not designed', 'Required', 'XT30 parallel harness'),
+            ('wp', 'Power wire', 'silicone, 8 AWG and 12 AWG', '8 AWG battery to board, 12 AWG for branches. Lengths in [wiring](WIRING.md). Gauge to be checked against measured current', 1, 'lot', 1, None, 'any hobby shop', 'Required', '12 AWG silicone wire'),
+            ('wc', 'CAN wire', 'twisted pair, 120 ohm', 'about 4 m in all', 1, 'lot', 1, None, 'not chosen', 'Required', '120 ohm twisted pair CAN cable'),
+            ('r120', 'CAN terminator', '120 ohm, 1/4 W', '1 per bus at the far end. The hub\'s own end to be measured', 3, 'each', 3, None, 'any', 'Required', '120 ohm resistor 1/4W'),
+        ]),
+        ('Consumables', [
+            ('loc', 'Thread locker', 'medium strength', 'every screw into an actuator, with care: confirm with RobStride it is allowed in its threads', 1, 'bottle', 1, None, 'any hardware shop', 'Required', 'medium strength thread locker'),
+            ('fix', 'Cable ties, spiral wrap, heat-shrink, solder', 'generic', '', 1, 'lot', 1, None, 'any hardware shop', 'Required', 'cable ties spiral wrap heat shrink'),
+        ]),
+        ('Support equipment (not in the robot)', [
+            ('hoist', 'Overhead hoist or gantry, and harness', 'not chosen', 'for every power-on. Rated for several times 100 kg, by someone qualified to say how many', 1, 'each', 1, None, 'not chosen', 'Required', 'overhead gantry hoist'),
+            ('chg', 'Charger', 'not chosen', '13S, 54.6 V, matched to the pack and BMS', 1, 'each', 1, None, 'with the pack', 'Required', '54.6V 13S lithium charger'),
+        ]),
+    ]
+    num, k = {}, 0
+    for _, rows in GROUPS:
+        for r in rows:
+            k += 1
+            num[r[0]] = k
+
+    def money(v):
+        return f'${v:,.2f}'
+
+    tot, opt, unpriced, summary, T = 0.0, 0.0, 0, [], []
+    for g, rows in GROUPS:
+        T += [f'### {g}', '', '| Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source |', '|---|---|---|---|---|---|---|---|---|---|']
+        sub = 0.0
+        for key, part, mpn, spec_, q, unit, oq, price, src, st, words in rows:
+            line = None if price is None else oq * price
+            o = st == 'Optional'
+            if not o:
+                if line is not None:
+                    sub += line
+                else:
+                    unpriced += 1
+            elif line is not None:
+                opt += line
+            search = f"[Search Amazon](https://www.amazon.com/s?k={words.replace(' ', '+')})"
+            T.append(f"| {num[key]} | {'**OPTIONAL:** ' if o else ''}{part} | {mpn} | {spec_} | {(f'({q})' if o else q) if q else '-'} | {unit} | {(f'({oq})' if o else oq) if oq else '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src}<br>{search} |")
+        T.append('')
+        tot += sub
+        summary.append(f'| {g} | {money(sub) if sub else "-"} |')
+    MATN = {'al7075': '7075-T6', 'al6061': '6061-T6', 'steel': 'steel', 'petg': 'PETG', 'tpu': 'TPU'}
+    M, j = [], 0
+    for r in metal:
+        j += 1
+        d = r['dims']
+        M.append(f"| F{j} | {r['name']} | {MATN[r['mat']]} | {d[2]:.0f} x {d[1]:.0f} x {d[0]:.1f} mm | {process(r)} | {'-' if r['fill'] >= 1 else f'{r_pct(r)} of solid, assumed'} | {r['kg'] * 1000:.0f} g | {r['q']} |")
+    P_, j = [], 0
+    for r in printed:
+        j += 1
+        d = r['dims']
+        P_.append(f"| P{j} | {r['name']} | {MATN[r['mat']]} | {d[2]:.0f} x {d[1]:.0f} x {d[0]:.0f} mm | {r['kg'] * 1000:.0f} g | {r['q']} |")
+    n_metal = sum(r['q'] for r in metal)
+    n_print = sum(r['q'] for r in printed)
+    blocks = sum(1 for r in metal if process(r).startswith('milled'))
+    thick = collections.Counter(round(r['dims'][0], 1) for r in metal if process(r).startswith('cut'))
+    area = collections.Counter()
+    for r in metal:
+        if process(r).startswith('cut'):
+            area[(r['mat'], round(r['dims'][0], 1))] += r['q'] * r['dims'][1] * r['dims'][2] / 1e6
+    sheets = '; '.join(f"{MATN[m]} {t:g} mm, {a:.2f} m2" for (m, t), a in sorted(area.items()))
+    L = ['# Big duck: bill of materials', '', UNSAFE, '',
+         '| | |', '|---|---|',
+         f'| Product | Big duck, biped, {sum(act.values())} actuators on 15 joints |',
+         f'| Height, mass | 1.797 m, {total:.1f} kg as modelled, leaning on pocketing nobody has drawn |',
+         '| Build quantity | Quantities are for 1 robot |',
+         f'| Fabricated parts | {n_metal} metal, {n_print} printed: {by["al7075"]:.1f} kg 7075, {by["al6061"]:.1f} kg 6061, {by["steel"]:.1f} kg steel, {by["petg"]:.1f} kg PETG, {by["tpu"]:.1f} kg TPU. No drawing or print file exists for any of them |',
+         '| Status | Design study: no part made, no actuator tested, not safe to build |',
+         '| Prices | USD, as listed or found 2026-11-05, before tax and shipping. Confirm before ordering |',
+         '| Related | [Wiring](WIRING.md), [its spec](../../spec/big_duck.py), [Fusion trial](FUSION.md) |', '',
+         'Generated by `tools/big_docs.py` from the spec. Quantities of actuators, bearings and fabricated parts match the model. Screws follow the holes in the actuators, as the model only shows some of them.', '',
+         '## Cost summary', '', '| Group | Required parts, priced |', '|---|---|', *summary,
+         f'| **Total of quoted lines** | **{money(tot)}** |', '',
+         f'That is a floor, not a price: {unpriced} required lines have no quote and are not in it, including the battery, the metal, the machining and the hoist. Shipping isn\'t in it either. The optional line adds {money(opt)}.', '',
+         '## Purchased parts', '', 'Every line is required unless it starts with **OPTIONAL**. Optional lines show their quantities in brackets and are not in the total. The Search Amazon links are searches only: nobody has checked what they find.', '', *T,
+         '## Fabricated parts', '', 'No file for any of these exists yet: the sizes below are the spec\'s envelopes, not drawings. Left and right legs are the same parts mirrored.', '',
+         '### Metal', '', f'Sheet stock to cut, as outlines only, before nesting or scrap: {sheets}. The first idea in the spec, every metal part from one sheet thickness, does not hold: sheet thicknesses are {", ".join(f"{t:g}" for t in sorted(thick))} mm, and {blocks} parts are blocks standing in for machined parts.', '',
+         '| Item | Part | Material | Envelope | How | Pocketing | Mass each | Qty per robot |', '|---|---|---|---|---|---|---|---|', *M, '',
+         '### Printed', '', f'Panels within a 256 mm bed by `tools/checks.py`. Masses are 3 mm walls in the shape; the panels carry no load, and have no bosses or fixings.', '',
+         '| Item | Part | Material | Envelope | Mass each | Qty per robot |', '|---|---|---|---|---|---|', *P_, '',
+         '## Open before ordering', '',
+         'All of these stay open. Nothing here has been settled by a test or by anyone qualified to sign it off.', '',
+         '### Could hurt someone', '',
+         '- **No stress analysis.** Plates, shafts, pins, rods and screws have a hand estimate at most. Rods carry about 2 kN mid stroke and 3-4 kN at the ends on 10 mm pins, in 5 mm plate, with no bushing or bearing designed. The hip yaw beam, hip yoke and shin take the whole robot.',
+         '- **Metal frames unchecked.** No FEA, fatigue check, weld or joint design. Many frames are solid blocks with an assumed fill, so their real strength and mass are both unknown: pocketing them may take away what they need, and leaving them solid adds mass.',
+         '- **No real RS04 drawing has been read in CAD, and none measured.** The hole circles now in the spec are read off a figure in RobStride\'s manual. Download and read `RS04-20261030.stp` (RobStride\'s Product_Information repository), and measure a real one, before cutting metal.',
+         '- **No brakes.** RobStride\'s manual describes damping when back-driven with the power off, not a brake. Power loss, a tripped branch, the emergency stop or a BMS cut-off all drop 100 kg. A fault in a branch is one the board can\'t recover from without restarting. So a hoist for every power-on, and nobody under or beside it.',
+         '- **How it falls.** Not studied. Nothing protects the frames, the head, the battery or people nearby. An 8 kg lithium pack in a falling robot needs its own case and impact design.',
+         '- **Battery.** No pack chosen. Its BMS has to take back braking current and allow the peaks: if it cuts out, the robot drops. Fire safety for about 1.4 kWh isn\'t designed.',
+         '- **Pinch points.** Cranks, rods, the chain, and paired actuators can take a hand off. No guards are designed.',
+         '- **Paired actuators.** Hips and knees share one axis between two actuators. If one faults, or their zeros differ, they fight each other through the frame. No startup check or fault response is written.',
+         '- **Chain.** The tensioner, guards, fatigue and what happens if it breaks: the head and its yaw and roll, about 14 kg, drop. Not designed.',
+         '',
+         '### The real actuators against the model', '',
+         '- **Shape.** The spec has plain cylinders, 120 x 56 mm for the RS04. RobStride\'s figure shows 120 across for 39 mm, 94 across for the rear 13.2, 0.5 more at the output face, and 3 pins standing 3.3 mm. So 56 includes the pins. The plates that lie on rear faces in the model (hip pitch, knee) would hit the 94 mm step: they need a 95 mm hole or spacers 13.2 mm thick, and the 13.2 mm changes every lane in the legs, whose clearances are as thin as 0.2 mm.',
+         '- **Cable.** Each RS04 has one harness out through the side of its rear step: 310 mm, then 40 mm of CAN pigtail. The RS03 has the same plugs; its figure was not read for the cable. Nothing in the frames leaves room or a route for it. Not all plates can be notched: see [wiring](WIRING.md).',
+         '- **Pins.** The output pins, 3 x 6 mm on 35.86, have no holes in any plate. They may be what carries the torque: ask RobStride what the screws and pins are each rated for.',
+         '- **Screws.** The model\'s output screws don\'t work as drawn. Hip pitch: M5 x 16 through a 20.5 mm stack doesn\'t reach the thread. Ankle: M5 x 20 through a 20 mm stack, the same. Hip roll: M5 x 16 through 8 mm goes 8 deep into a hole 6.5 deep, and the manual says not to. Hip yaw: the heads are drawn in the 2 mm gap between the plate and the actuator, where no tool goes.',
+         '- **Missing screws.** Stators with no mounting screws in the model: hip pitch inner, knee inner, neck both, head pitch, head yaw, beak. Outputs with none: hip roll rear, hip pitch inner, both knee cranks, neck both, head pitch, head yaw, head roll, beak. So no assembly order exists either, and the tools that check one don\'t run on this duck: `assembly`, `buildable`, `export_prints`, `printable`, `beak_linkage`.',
+         '- **Torque and heat.** The 40 N m rating needs the RS04 on a 345 x 345 mm aluminium plate; 35 on 220 x 200. These frames are neither, so true ratings are lower and unknown. The manual\'s overload table, on that large plate: 120 N m for 3 s, 100 for 15 s, 80 for 38 s, 60 for 108 s, 50 for 324 s. So the "240 N m" pair is a 3-second number. A crouch asks each knee RS04 for about 34 N m, and the first walk for about 55, RMS: minutes at best. The manual\'s winding limit is 145 C.',
+         '- **Numbers disagree.** RobStride\'s selection table says the RS04 runs on 15-60 V, its manual 24-60. The retailer gives 1.5 kg and 1420 g on one page.',
+         '- **The beak.** Its rod and crank aren\'t designed. Nor is the head\'s contents: 0.6 kg of "head boards and camera" is a placeholder. The RS00\'s real connector is on its side.',
+         '',
+         '### Power and control', '',
+         '- **Current has never been measured or simulated.** Each leg gets one 20 A rated, 40 A peak branch, 1.9 kW at 48 V peak, for 8 RS04s of 700 W rated each. It may need more branches or a second board. Exceeding it stops the leg until a restart, and the robot falls.',
+         '- **Regenerated power.** Set the board\'s discharge point (parameter 0x8003) with care. Its manual has discharge start at this value plus 6 V, and the actuators\' maximum is 60 V, so with a 54.6 V pack it should read 54, not its default 58. Nothing has tested this.',
+         '- **Layout.** The model\'s single box, 90 x 170 x 30 mm, stands for the computer and board and shows no connectors. On the real board the battery, resistor and rail connectors face one edge and the branches the opposite, and the gap to the battery is 10 mm. The boards have to be modelled, and it probably won\'t fit as it is.',
+         f'- **CAN.** Stubs are 350 mm by the harness, over the 300 mm usually allowed at 1 Mbps: test for errors or cut them. Whether each actuator has its own terminator is unclear: RobStride\'s firmware notes mention one on an older RS03. Measure each bus between H and L with the power off.',
+         '- **Sources.** All actuators are on backorder at the shop read, and no second US source was confirmed. Items with "not chosen" have no source. The CAN hub\'s page wouldn\'t open.',
+         '- **Software.** The Pi code is for the small ducks\' serial servos. RobStride has its own CAN protocol, unwritten here.',
+         '- **Amazon links.** Only the 2 parts shared with the all-Dynamixel duck have product links, as last read for it. Every other is a search nobody has followed. Confirm before ordering.',
+         '- **Not in this design:** the walk\'s own limits (it overloads its knee at 0.33 m/s; see [the notes](../DETAILS.md#a-big-duck)), speaker, microphone.', '']
+    folder = G.out_path('docs')
+    os.makedirs(folder, exist_ok=True)
+    open(os.path.join(folder, 'BOM.md'), 'w', encoding='utf-8', newline='\n').write('\n'.join(L))
+    return tot, unpriced, n_metal, n_print
+
+
+def r_pct(r):
+    return f"{r['fill'] * 100:.0f} %"
+
+
+if __name__ == '__main__':
+    print(bom_big(G.load()))

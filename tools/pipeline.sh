@@ -25,6 +25,7 @@ take() {   # resource, minutes, why: waits its turn, if there's a team
     "$PY" "$TEAM" wait "$1" --dir "$TEAM_DIR" --agent "$AGENT" --minutes "$2" --why "$3" --priority "${PRIORITY:-1}" --timeout 300
     rc=$?
     [ $rc -eq 0 ] && { HELD=$1; return 0; }
+    [ $rc -eq 5 ] && { echo "$1 is on hold: stopping here"; exit 5; }
     [ $rc -eq 3 ] || { echo "scheduler error $rc"; exit 1; }
   done
 }
@@ -48,6 +49,13 @@ gate() {   # name, command
 }
 
 gates() {
+  if [ "$RECIPE" = big ]; then      # its own spec, and no printed parts: assembly, buildable, export, printable and beak don't apply to it, so none of that is checked
+    gate spec "$PY" -I spec/big_duck.py
+    gate checks "$PY" -I tools/checks.py
+    gate docs "$PY" -I tools/make_docs.py
+    gate mass "$PY" -I tools/mass_model.py
+    return
+  fi
   gate spec "$PY" -I spec/robot.py
   gate checks "$PY" -I tools/checks.py
   gate assembly "$PY" -I tools/assembly.py
@@ -71,6 +79,13 @@ build() {
 }
 
 linked() {
+  if [ "$RECIPE" = big ]; then      # BIG_ONLY="'head'," BIG_SECONDS=600: a trial, or a turn with a time limit. It has no printed parts, so no prints, audit or compare
+    sed -e "s/^BIG_ONLY = None/BIG_ONLY = ${BIG_ONLY:-None}/" -e "s/^BIG_SECONDS = 900/BIG_SECONDS = ${BIG_SECONDS:-900}/" -e "s/^BIG_ASSEMBLY = True/BIG_ASSEMBLY = ${BIG_ASSEMBLY:-False}/" -e "s/^BIG_CLASH = True/BIG_CLASH = ${BIG_CLASH:-True}/" cad/fusion/linked_build.py > "$WORK/big.py"
+    s=$(date +%s)
+    "$PY" -I tools/fusion_call.py "$WORK/big.py" --write --recipe big 2>&1 | tail -30 | cut -c1-260
+    echo "[linked build] $(( $(date +%s) - s )) s"
+    return
+  fi
   gate verify_write "$PY" -I tools/verify_fusion.py write
   s=$(date +%s)
   "$PY" -I tools/fusion_call.py cad/fusion/linked_build.py --write --recipe "$RECIPE" 2>&1 | grep -v "bodies, " | tail -12 | cut -c1-240
