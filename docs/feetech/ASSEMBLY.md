@@ -18,6 +18,8 @@ Tools: a small Phillips driver, 2 and 2.5 mm hex keys, soldering iron (a grown-u
 
 ## 1. Thighs
 
+![1. Thighs](../images/assembly/feetech/thigh_L.gif)
+
 > ⚠ The cable sockets are on each servo's rear face, behind a window in the plate. Plug the cables in from outside, before the cover, with room to turn the wires under it.
 
 > 🔌 Each thigh servo has 2 sockets, wired through. A lead from the knee to the hip pitch, and one out of the hip pitch toward the roll servo. Plug them in now: the plate covers the sockets.
@@ -37,6 +39,8 @@ Then the same for the right side, mirrored.
 
 ## 2. Shins and ankles
 
+![2. Shins and ankles](../images/assembly/feetech/shin_L.gif)
+
 > ⚠ The rear-horn screws go in before the bearing: the bearing covers them.
 
 > 🔌 The ankle is the end of its leg's chain: one lead up to the knee. Leave slack across the knee and tie it to the rail.
@@ -53,6 +57,8 @@ Then the same for the right side, mirrored.
 
 ## 3. Shoes
 
+![3. Shoes](../images/assembly/feetech/shoe_L.gif)
+
 **Screws for this section:** 2 x M3 x 12 mm (each side)
 
 1. The shoe
@@ -61,6 +67,8 @@ Then the same for the right side, mirrored.
 Then the same for the right side, mirrored.
 
 ## 4. Join each leg
+
+![4. Join each leg](../images/assembly/feetech/leg_L.gif)
 
 > ⚠ The roll bracket goes onto the hip horn here, on the bench: once the leg is on the robot, the roll servo blocks those 4 screws.
 
@@ -76,6 +84,8 @@ Then the same for the right side, mirrored.
 Then the same for the right side, mirrored.
 
 ## 5. Chassis and hips
+
+![5. Chassis and hips](../images/assembly/feetech/body.gif)
 
 > ⚠ Screw on the yaw brackets **before** the roll servos: the roll servos cover those screws.
 
@@ -98,6 +108,8 @@ Then the same for the right side, mirrored.
 
 ## 6. Legs onto the hips
 
+![6. Legs onto the hips](../images/assembly/feetech/legs.gif)
+
 > 🔌 Plug the leg's lead into the roll servo as it comes on, with slack for the hip's whole range.
 
 **Screws for this section:** 8 x M3 x 10 mm
@@ -108,6 +120,8 @@ Then the same for the right side, mirrored.
 4. 4 screws from the front *(4 x M3 x 10 mm, 2.5 mm hex)*
 
 ## 7. Neck column
+
+![7. Neck column](../images/assembly/feetech/column.gif)
 
 > ⚠ Fit both horns to each servo before it goes in, at mid-range.
 
@@ -123,6 +137,8 @@ Then the same for the right side, mirrored.
 
 ## 8. Neck and body shell
 
+![8. Neck and body shell](../images/assembly/feetech/torso.gif)
+
 > ⚠ Do the neck before the body shell: the shell blocks the neck's horn screws. Do the shell before the head: the head will not pass through its slot.
 
 > 🔌 Solder the leg hub first (WIRING.md): the XT30's wires, the battery pair up the neck, a lead to each hip yaw servo, and socket 2's lead with its V wire cut. Tape it beside the battery, and run the 3 bundles up through the slot before the shell goes on.
@@ -136,6 +152,8 @@ Then the same for the right side, mirrored.
 5. The body shell, 2 screws *(2 x M2 x 6 mm, small Phillips)*
 
 ## 9. Head yaw and roll
+
+![9. Head yaw and roll](../images/assembly/feetech/headbench.gif)
 
 > ⚠ The head yaw servo's screws under the bridge go in here, on the bench: once this is on the neck, they cannot be reached.
 
@@ -155,6 +173,8 @@ Then the same for the right side, mirrored.
 
 ## 9b. The head frame and the beak servo
 
+![9b. The head frame and the beak servo](../images/assembly/feetech/framebench.gif)
+
 > 🔌 The beak servo ends the head's chain: one lead, in its upper socket, plugged in before it goes in. Turn its wires back toward the rear at once: there is no room to leave them straight.
 
 **Screws for this section:** 4 x M2 x 8 mm, 4 x M2.5 x 5 mm
@@ -165,10 +185,14 @@ Then the same for the right side, mirrored.
 
 ## 10. The jaw
 
+![10. The jaw](../images/assembly/feetech/jawbench.gif)
+
 1. The jaw
 2. Glue in its soft insert
 
 ## 11. The head
+
+![11. The head](../images/assembly/feetech/head.gif)
 
 > ⚠ The beak servo goes into the head frame first, on the bench: the roll servo blocks its screws afterwards. The jaw goes in before the hood. The far hinge screw and the 2 at the back hold the hood on, so they are last.
 
