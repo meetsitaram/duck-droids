@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 09:11, 73 s
+spec: `spec/robot.json`, 2026-11-05 13:37, 119 s
 
 151 checks: 146 pass, 5 warn, **0 fail**
 
@@ -16,14 +16,14 @@ spec: `spec/robot.json`, 2026-11-05 09:11, 73 s
 | PASS | neck_pitch_z | 0.940 (microduck 0.139 x 6.81 = 0.946 +/- 25 %) |
 | PASS | hip_pitch_z | 0.674 (microduck 0.089 x 6.81 = 0.606 +/- 25 %) |
 | PASS | body_width_m | 0.410 (microduck 0.064 x 6.81 = 0.436 +/- 25 %) |
-| PASS | overall_width_m | 0.754 (microduck 0.141 x 6.81 = 0.960 +/- 25 %) |
+| PASS | overall_width_m | 0.735 (microduck 0.141 x 6.81 = 0.960 +/- 25 %) |
 | PASS | foot_length_m | 0.330 (microduck 0.054 x 6.81 = 0.368 +/- 25 %) |
 
 ## mass
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 96.324 kg bottom-up (budget 115.0 kg; microduck 0.8 kg) |
+| PASS | total | 97.084 kg bottom-up (budget 115.0 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -51,10 +51,10 @@ spec: `spec/robot.json`, 2026-11-05 09:11, 73 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | L hip yaw bearing inner race | 0.0 mm off the axis, on trunk |
-| PASS | R hip yaw bearing inner race | 0.0 mm off the axis, on trunk |
-| PASS | L hip yaw bearing outer race | 0.0 mm off the axis, on L_hip_yaw_link |
-| PASS | R hip yaw bearing outer race | 0.0 mm off the axis, on R_hip_yaw_link |
+| PASS | L hip yaw bearing outer race | 0.0 mm off the axis, on trunk |
+| PASS | R hip yaw bearing outer race | 0.0 mm off the axis, on trunk |
+| PASS | L hip yaw bearing inner race | 0.0 mm off the axis, on L_hip_yaw_link |
+| PASS | R hip yaw bearing inner race | 0.0 mm off the axis, on R_hip_yaw_link |
 | PASS | L knee bearing outer race | 0.0 mm off the axis, on L_hip_pitch_link |
 | PASS | L knee far bearing outer race | 0.0 mm off the axis, on L_hip_pitch_link |
 | PASS | R knee bearing outer race | 0.0 mm off the axis, on R_hip_pitch_link |
@@ -182,7 +182,7 @@ spec: `spec/robot.json`, 2026-11-05 09:11, 73 s
 | PASS | deep squat: balance | CoM 14.9 cm inside the feet |
 | WARN | deep squat: within limits | L_knee -1.08 outside [-0.92, +0.30]; R_knee -1.08 outside [-0.92, +0.30] |
 | PASS | deep squat: collisions | none |
-| WARN | single-leg stance (walking): balance | CoM 18.3 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
+| WARN | single-leg stance (walking): balance | CoM 18.4 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
 | PASS | single-leg stance (walking): within limits | yes |
 | PASS | single-leg stance (walking): collisions | none |
 | PASS | floor pick: balance | CoM 14.8 cm inside the feet |
@@ -199,18 +199,18 @@ spec: `spec/robot.json`, 2026-11-05 09:11, 73 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | L_knee | 104.56 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used |
-| PASS | R_knee | 104.56 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used |
-| PASS | L_hip_roll | 127.44 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 80 % used |
+| PASS | R_knee | 104.60 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used |
+| PASS | L_knee | 104.60 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used |
+| PASS | L_hip_roll | 128.34 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 80 % used |
 | PASS | beak | 3.04 N m in 'stand (microduck stance)' vs rated 5.00 N m (1 x RS00): 61 % used |
-| PASS | L_ankle_pitch | 46.59 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 58 % used |
-| PASS | R_ankle_pitch | 23.13 N m in 'crouch' vs rated 40.00 N m (1 x RS04): 58 % used |
-| PASS | L_hip_yaw | 45.12 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 56 % used |
-| PASS | R_hip_roll | 37.91 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 47 % used |
-| PASS | neck_pitch | 74.87 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used |
-| PASS | head_pitch | 31.90 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 41 % used |
-| PASS | R_hip_yaw | 10.60 N m in 'stand (microduck stance)' vs rated 40.00 N m (1 x RS04): 26 % used |
-| PASS | L_hip_pitch | 17.24 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 22 % used |
-| PASS | R_hip_pitch | 17.24 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 22 % used |
+| PASS | L_ankle_pitch | 46.99 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 59 % used |
+| PASS | R_ankle_pitch | 23.34 N m in 'crouch' vs rated 40.00 N m (1 x RS04): 58 % used |
+| PASS | L_hip_yaw | 45.47 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used |
+| PASS | R_hip_roll | 38.47 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 48 % used |
+| PASS | neck_pitch | 74.43 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used |
+| PASS | head_pitch | 31.93 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 42 % used |
+| PASS | R_hip_yaw | 10.69 N m in 'stand (microduck stance)' vs rated 40.00 N m (1 x RS04): 27 % used |
+| PASS | L_hip_pitch | 16.51 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 21 % used |
+| PASS | R_hip_pitch | 16.51 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 21 % used |
 | PASS | head_roll | 0.00 N m in 'crouch' vs rated 20.00 N m (1 x RS03): 0 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 60.00 N m (1 x RS03): 0 % used |

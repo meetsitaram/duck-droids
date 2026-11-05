@@ -11,7 +11,7 @@ The picture is drawn by `python -I tools/big_wiring.py`, from the 22 actuators i
 | Where | Connector | Status |
 |---|---|---|
 | Battery output | the candidate pack has no connector: to match the power board's input, below | candidate only; see [its options](BOM.md#battery-options) |
-| Power board input, "BAT" | an AMASS-style right-angle socket, 7 mm between its pins off the board drawing, so probably XT60PW | **not named in the manual:** read `POWER_PCB_V1.3_1105.step` or a real board. An XT60 is less than the board's 80 A software limit: check it isn't the limit |
+| Power board input, "BAT" | an AMASS-style right-angle socket, 7 mm between its pins off the board drawing, so probably XT60PW | **not named in the manual, nor in `POWER_PCB_V1.3_1105.step`**, where it's an unnamed solid, 18 x 16 x 11 mm, on the board's left edge. Read a real board. An XT60 is less than the board's 80 A software limit: check it isn't the limit |
 | Precharge and discharge resistor, "PRE/DIS_R" | 2-way screw terminal | the board won't start without the resistor: 3-10 ohm, 50 W or more |
 | Motor branches x 4, "M+" | XT30 right-angle sockets, 5 mm between pins | as drawn; not named in the manual |
 | 24 V, 12 V, 5 V rails | 2-pin sockets, one each | **type not named** |
@@ -29,6 +29,26 @@ The picture is drawn by `python -I tools/big_wiring.py`, from the 22 actuators i
 | Distribution in a leg, 1 XT30 to 8 | **custom, not designed.** One XT30U-M in and 8 XT30U-M out, on bus bars or a board | see below |
 
 RS04 harness, from its manual: red VBAT+, black GND, blue CAN_H, brown CAN_L. It's 310 +- 5 mm to the XT30, plus 40 +- 3 mm of CAN pair to the GH plug. Whether one comes with each actuator isn't stated. Don't trust the colours: check against a real one, as XT30 2+2 leads from other makers use other colours.
+
+## The boards, from their STEP files
+
+Read in Fusion on 2026-11-05. The files stay local: `python -I tools/fetch_servo_cad.py`. In mm, the board's corner at 0, 0; "up" is the parts' side.
+
+**Power board V1.3:** 90 x 110, 1.6 thick, 20.2 overall, -5.6 to +14.6 (the capacitors stand 14.6). Not the 90 x 170 x 30 box in the model, which holds the computer too.
+
+| Part in the file | Where: x, y | Stands |
+|---|---|---|
+| Battery socket, an unnamed solid | 0-18, 82-98, left edge | -3 to +8 |
+| 2 KF7.62 2-way screw terminals (the file gives no use: PRE/DIS_R and one other) | 0-13, 62-79, left edge | -5 to +12 |
+| 3 2-way 3 mm SMD sockets, part 662102145021: the 24, 12 and 5 V rails by count | 0-10, 13-56, left edge | up to +6 |
+| 4 XT30PW-M, the motor branches | 76-90, 37-100, right edge | -2 to +5 |
+| 2-way 5 mm screw terminal, blue: the emergency stop | 57-68, 1-8, bottom edge | -4 to +10 |
+| 4-way 2.54 mm socket HC-2510-4A: the fan | 38-48, 2-8, bottom edge | -3 to +12 |
+| USB-C | 11-20, 0-7, bottom edge | -1 to +3 |
+
+So connectors face 3 of its edges, and cables go off left and right with the battery off the left: the model's box has no room for them on its 170 mm sides. **Not moved in the model.** The board's box stays a stand-in.
+
+**CAN hub V03:** 65 x 55, 1.6 thick, 11.7 overall, -1.9 to +9.7. 5 3-way 2.54 mm terminals along one edge, x 8-57, y -1 to 9. 5 MX1.25 4-way upright sockets near the middle, y 22-25 (one at 37-40). A 4-way MX1.25 SMD socket and a USB-C on the opposite edge, y 46-54.
 
 ## Power
 
@@ -73,16 +93,30 @@ Why three, not one with 22: a frame of 8 bytes with a 29-bit ID takes about 150 
 
 ## Where the wires go
 
-Nothing in the model allows for any of this yet. From the RS04's figure, its one harness leaves sideways through the 94 mm rear step, 13.2 mm from its back. A plate lying on that back has to have a 95 mm hole and a notch, or a spacer, and the frame changes with it.
+The model now leaves each harness a way out, from RobStride's STEP files. An RS04's cable leaves in a 7.3 mm sleeve, radially, 6.3 mm behind the shoulder its rear step makes, ending at r 58.1. Each plate on a shoulder has a 94 mm step's bore and a 9 mm window for that sleeve, closed at r 64, so the cable comes out on the plate's far side. Stators turn so their cables leave this way:
+
+| Actuator | Cable points | Then |
+|---|---|---|
+| Hip yaw | forward, through the deck | into the body, above the deck: no joint to cross |
+| Hip roll, front and back | up, through the cheek | up the cheek's outer face to the beam |
+| Hip pitch, inner | up, through the upright and its ring | toward the yoke, over the 16 mm gap |
+| Hip pitch, outer | up, through the upright | on the plate's outer face: the thigh cover stands 15 mm off it, for a 7 mm cable |
+| Knee, inner and outer | forward, through the thigh's rear plate | along that plate's far side, toward the hip |
+| Ankle | up, through the plate on its shoulder | up inside the shin, through a 15 mm hole in the cap and another in the shin's top |
+| Neck, both | back, through its plate | into the body |
+| Head pitch | back, through its plate | on that plate's outer face, moving with the neck |
+| Head yaw, head roll (RS03) | no sleeve: 2 plugs on the sides of its rear step, past its plate | yaw's face front and back, in the opening between the yokes; roll's face left and right, behind the cradle |
+
+The holes are cut in the model, the cables aren't drawn. Nobody has shown they reach, or read their bend radius.
 
 | Crossing | Range | Route, and what stops it |
 |---|---|---|
-| Body to hip yaw link | +-0.45 rad | down between the two hip yaw drums, a 20 mm gap, with a loop. The drums close the path for anything bigger than the 3 cables. Tight |
+| Body to hip yaw link | +-0.45 rad | down between the two fixed hip yaw housings, 58 mm apart, with a loop, to the beam. The deck has no hole for it yet |
 | Hip yaw to hip roll | +-0.33 rad | along the beam's underside, between the cheeks and the roll stators, then a loop. The outputs fill this: no route is drawn |
 | Hip roll to thigh | -1.57 to +0.43 rad | round the back of the upright, on a long loop: the widest range on the leg. No gap for it is drawn |
 | Thigh to shin | -0.92 to +0.30 rad | a loop beside the knee shaft, outside the shin's hub plates. Must clear the crank lanes |
 | Shin to foot | +-1.2 rad | only the ankle RS04's own harness is in the shin. Its stator doesn't move, and the foot carries nothing, so nothing crosses this joint |
-| Body to neck | -0.15 to +1.6 rad | in the neck tube: the spine is drawn solid, so this needs a slot |
+| Body to neck | -0.15 to +1.6 rad | through the spine's window, 50 x 60 mm, which is there for the output screws: nothing's drawn above it yet |
 | Neck to head pitch link | +-1.6 rad | along the shaft, on a long loop |
 | Head yaw, roll | +-2.5, +-0.38 rad | yaw's +-2.5 rad takes a coiled lead or a slip ring |
 
