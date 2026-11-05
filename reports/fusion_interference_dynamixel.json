@@ -1,25 +1,5 @@
 [
 [
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case rear",
-105.97
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case rear",
-105.97
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case rear",
-105.97
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case rear",
-105.97
-],
-[
 "L hip pitch XL330 case middle",
 "L hip pitch XL330 case rear",
 105.97
@@ -40,13 +20,28 @@
 105.97
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case rear",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case rear",
 105.97
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case rear",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case rear",
+105.97
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case rear",
+105.97
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case rear",
+105.97
+],
+[
+"beak XL330 case middle",
+"beak XL330 case rear",
 105.97
 ],
 [
@@ -60,18 +55,23 @@
 105.97
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case rear",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case rear",
 105.97
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case rear",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case rear",
 105.97
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case rear",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case rear",
+105.97
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case rear",
 105.97
 ],
 [
@@ -80,38 +80,8 @@
 80.0
 ],
 [
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 centre screw",
-34.85
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 centre screw",
-34.85
-],
-[
-"neck pitch XL330 centre screw",
-"neck pitch XL330 case middle",
-34.85
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 centre screw",
-34.85
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 centre screw",
-34.85
-],
-[
-"L hip pitch XL330 centre screw",
 "L hip pitch XL330 case middle",
-34.85
-],
-[
-"R hip pitch XL330 centre screw",
-"R hip pitch XL330 case middle",
+"L hip pitch XL330 centre screw",
 34.85
 ],
 [
@@ -120,28 +90,43 @@
 34.85
 ],
 [
+"R hip pitch XL330 case middle",
+"R hip pitch XL330 centre screw",
+34.85
+],
+[
 "R knee XL330 case middle",
 "R knee XL330 centre screw",
 34.85
 ],
 [
-"L ankle pitch XL330 case middle",
+"L hip yaw XL330 centre screw",
+"L hip yaw XL330 case middle",
+34.85
+],
+[
+"L hip roll XL330 case middle",
+"L hip roll XL330 centre screw",
+34.85
+],
+[
+"R hip yaw XL330 centre screw",
+"R hip yaw XL330 case middle",
+34.85
+],
+[
+"R hip roll XL330 case middle",
+"R hip roll XL330 centre screw",
+34.85
+],
+[
 "L ankle pitch XL330 centre screw",
+"L ankle pitch XL330 case middle",
 34.85
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 centre screw",
-34.85
-],
-[
-"head pitch XL330 case middle",
-"head pitch XL330 centre screw",
-34.85
-],
-[
-"head yaw XL330 case middle",
 "head yaw XL330 centre screw",
+"head yaw XL330 case middle",
 34.85
 ],
 [
@@ -150,8 +135,23 @@
 34.85
 ],
 [
-"beak XL330 case middle",
 "beak XL330 centre screw",
+"beak XL330 case middle",
+34.85
+],
+[
+"head pitch XL330 centre screw",
+"head pitch XL330 case middle",
+34.85
+],
+[
+"neck pitch XL330 case middle",
+"neck pitch XL330 centre screw",
+34.85
+],
+[
+"R ankle pitch XL330 centre screw",
+"R ankle pitch XL330 case middle",
 34.85
 ],
 [
@@ -170,8 +170,18 @@
 20.8
 ],
 [
-"neck pitch XL330 idler screw",
+"head roll XL330 case middle",
+"head roll XL330 idler screw",
+9.36
+],
+[
+"head pitch XL330 idler screw",
+"head pitch XL330 case middle",
+9.36
+],
+[
 "neck pitch XL330 case middle",
+"neck pitch XL330 idler screw",
 9.36
 ],
 [
@@ -185,23 +195,23 @@
 9.36
 ],
 [
-"head pitch XL330 case middle",
-"head pitch XL330 idler screw",
-9.36
-],
-[
-"head roll XL330 case middle",
-"head roll XL330 idler screw",
-9.36
-],
-[
 "L shoe",
 "L sole",
 9.3
 ],
 [
-"neck pitch XL330 idler screw",
+"head roll XL330 case rear",
+"head roll XL330 idler screw",
+9.23
+],
+[
+"head pitch XL330 idler screw",
+"head pitch XL330 case rear",
+9.23
+],
+[
 "neck pitch XL330 case rear",
+"neck pitch XL330 idler screw",
 9.23
 ],
 [
@@ -212,16 +222,6 @@
 [
 "R ankle pitch XL330 case rear",
 "R ankle pitch XL330 idler screw",
-9.23
-],
-[
-"head pitch XL330 case rear",
-"head pitch XL330 idler screw",
-9.23
-],
-[
-"head roll XL330 case rear",
-"head roll XL330 idler screw",
 9.23
 ],
 [
@@ -247,11 +247,6 @@
 [
 "R shin",
 "R knee horn bearing inner race",
-8.98
-],
-[
-"head yaw bracket",
-"head yaw horn bearing inner race",
 8.98
 ],
 [
@@ -310,6 +305,16 @@
 4.48
 ],
 [
+"head yaw horn bearing inner race",
+"head yaw XL330 horn",
+4.48
+],
+[
+"head roll horn bearing inner race",
+"head roll XL330 horn",
+4.48
+],
+[
 "L hip roll horn bearing inner race",
 "L hip roll XL330 horn",
 4.48
@@ -340,59 +345,9 @@
 4.48
 ],
 [
-"head yaw horn bearing inner race",
-"head yaw XL330 horn",
-4.48
-],
-[
-"head roll horn bearing inner race",
-"head roll XL330 horn",
-4.48
-],
-[
 "R hinge screw",
 "hood",
 4.32
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 socket 0",
-3.69
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 socket 1",
-3.69
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 socket 0",
-3.69
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 socket 1",
-3.69
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 socket 0",
-3.69
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 socket 1",
-3.69
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 socket 0",
-3.69
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 socket 1",
-3.69
 ],
 [
 "L hip pitch XL330 case middle",
@@ -435,23 +390,53 @@
 3.69
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 socket 0",
+"L hip roll XL330 case middle",
+"L hip roll XL330 socket 0",
 3.69
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 socket 1",
+"L hip roll XL330 case middle",
+"L hip roll XL330 socket 1",
 3.69
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 socket 0",
+"R hip roll XL330 case middle",
+"R hip roll XL330 socket 0",
 3.69
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 socket 1",
+"R hip roll XL330 case middle",
+"R hip roll XL330 socket 1",
+3.69
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 socket 0",
+3.69
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 socket 1",
+3.69
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 socket 0",
+3.69
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 socket 1",
+3.69
+],
+[
+"beak XL330 case middle",
+"beak XL330 socket 0",
+3.69
+],
+[
+"beak XL330 case middle",
+"beak XL330 socket 1",
 3.69
 ],
 [
@@ -475,33 +460,43 @@
 3.69
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 socket 0",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 socket 0",
 3.69
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 socket 1",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 socket 1",
 3.69
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 socket 0",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 socket 0",
 3.69
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 socket 1",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 socket 1",
 3.69
 ],
 [
-"beak XL330 case middle",
-"beak XL330 socket 0",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 socket 0",
 3.69
 ],
 [
-"beak XL330 case middle",
-"beak XL330 socket 1",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 socket 1",
+3.69
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 socket 0",
+3.69
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 socket 1",
 3.69
 ],
 [
@@ -543,86 +538,6 @@
 "R shin",
 "R ankle boss screw 3",
 3.59
-],
-[
-"L hip yaw XL330 case rear",
-"L hip yaw XL330 case screw 0",
-2.5
-],
-[
-"L hip yaw XL330 case rear",
-"L hip yaw XL330 case screw 1",
-2.5
-],
-[
-"L hip yaw XL330 case rear",
-"L hip yaw XL330 case screw 2",
-2.5
-],
-[
-"L hip yaw XL330 case rear",
-"L hip yaw XL330 case screw 3",
-2.5
-],
-[
-"R hip yaw XL330 case rear",
-"R hip yaw XL330 case screw 0",
-2.5
-],
-[
-"R hip yaw XL330 case rear",
-"R hip yaw XL330 case screw 1",
-2.5
-],
-[
-"R hip yaw XL330 case rear",
-"R hip yaw XL330 case screw 2",
-2.5
-],
-[
-"R hip yaw XL330 case rear",
-"R hip yaw XL330 case screw 3",
-2.5
-],
-[
-"L hip roll XL330 case rear",
-"L hip roll XL330 case screw 0",
-2.5
-],
-[
-"L hip roll XL330 case rear",
-"L hip roll XL330 case screw 1",
-2.5
-],
-[
-"L hip roll XL330 case rear",
-"L hip roll XL330 case screw 2",
-2.5
-],
-[
-"L hip roll XL330 case rear",
-"L hip roll XL330 case screw 3",
-2.5
-],
-[
-"R hip roll XL330 case rear",
-"R hip roll XL330 case screw 0",
-2.5
-],
-[
-"R hip roll XL330 case rear",
-"R hip roll XL330 case screw 1",
-2.5
-],
-[
-"R hip roll XL330 case rear",
-"R hip roll XL330 case screw 2",
-2.5
-],
-[
-"R hip roll XL330 case rear",
-"R hip roll XL330 case screw 3",
-2.5
 ],
 [
 "L hip pitch XL330 case rear",
@@ -705,43 +620,103 @@
 2.5
 ],
 [
-"L ankle pitch XL330 case rear",
-"L ankle pitch XL330 case screw 0",
+"L hip roll XL330 case rear",
+"L hip roll XL330 case screw 0",
 2.5
 ],
 [
-"L ankle pitch XL330 case rear",
-"L ankle pitch XL330 case screw 1",
+"L hip roll XL330 case rear",
+"L hip roll XL330 case screw 1",
 2.5
 ],
 [
-"L ankle pitch XL330 case rear",
-"L ankle pitch XL330 case screw 2",
+"L hip roll XL330 case rear",
+"L hip roll XL330 case screw 2",
 2.5
 ],
 [
-"L ankle pitch XL330 case rear",
-"L ankle pitch XL330 case screw 3",
+"L hip roll XL330 case rear",
+"L hip roll XL330 case screw 3",
 2.5
 ],
 [
-"R ankle pitch XL330 case rear",
-"R ankle pitch XL330 case screw 0",
+"R hip roll XL330 case rear",
+"R hip roll XL330 case screw 0",
 2.5
 ],
 [
-"R ankle pitch XL330 case rear",
-"R ankle pitch XL330 case screw 1",
+"R hip roll XL330 case rear",
+"R hip roll XL330 case screw 1",
 2.5
 ],
 [
-"R ankle pitch XL330 case rear",
-"R ankle pitch XL330 case screw 2",
+"R hip roll XL330 case rear",
+"R hip roll XL330 case screw 2",
 2.5
 ],
 [
-"R ankle pitch XL330 case rear",
-"R ankle pitch XL330 case screw 3",
+"R hip roll XL330 case rear",
+"R hip roll XL330 case screw 3",
+2.5
+],
+[
+"head roll XL330 case rear",
+"head roll XL330 case screw 0",
+2.5
+],
+[
+"head roll XL330 case rear",
+"head roll XL330 case screw 1",
+2.5
+],
+[
+"head roll XL330 case rear",
+"head roll XL330 case screw 2",
+2.5
+],
+[
+"head roll XL330 case rear",
+"head roll XL330 case screw 3",
+2.5
+],
+[
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 0",
+2.5
+],
+[
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 1",
+2.5
+],
+[
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 2",
+2.5
+],
+[
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 3",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 0",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 1",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 2",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 3",
 2.5
 ],
 [
@@ -785,74 +760,84 @@
 2.5
 ],
 [
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 0",
+"L ankle pitch XL330 case rear",
+"L ankle pitch XL330 case screw 0",
 2.5
 ],
 [
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 1",
+"L ankle pitch XL330 case rear",
+"L ankle pitch XL330 case screw 1",
 2.5
 ],
 [
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 2",
+"L ankle pitch XL330 case rear",
+"L ankle pitch XL330 case screw 2",
 2.5
 ],
 [
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 3",
+"L ankle pitch XL330 case rear",
+"L ankle pitch XL330 case screw 3",
 2.5
 ],
 [
-"head roll XL330 case rear",
-"head roll XL330 case screw 0",
+"L hip yaw XL330 case rear",
+"L hip yaw XL330 case screw 0",
 2.5
 ],
 [
-"head roll XL330 case rear",
-"head roll XL330 case screw 1",
+"L hip yaw XL330 case rear",
+"L hip yaw XL330 case screw 1",
 2.5
 ],
 [
-"head roll XL330 case rear",
-"head roll XL330 case screw 2",
+"L hip yaw XL330 case rear",
+"L hip yaw XL330 case screw 2",
 2.5
 ],
 [
-"head roll XL330 case rear",
-"head roll XL330 case screw 3",
+"L hip yaw XL330 case rear",
+"L hip yaw XL330 case screw 3",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 0",
+"R hip yaw XL330 case rear",
+"R hip yaw XL330 case screw 0",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 1",
+"R hip yaw XL330 case rear",
+"R hip yaw XL330 case screw 1",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 2",
+"R hip yaw XL330 case rear",
+"R hip yaw XL330 case screw 2",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 3",
+"R hip yaw XL330 case rear",
+"R hip yaw XL330 case screw 3",
 2.5
 ],
 [
-"body shell",
-"body screw 0",
-2.16
+"R ankle pitch XL330 case rear",
+"R ankle pitch XL330 case screw 0",
+2.5
 ],
 [
-"body shell",
-"body screw 1",
-2.16
+"R ankle pitch XL330 case rear",
+"R ankle pitch XL330 case screw 1",
+2.5
+],
+[
+"R ankle pitch XL330 case rear",
+"R ankle pitch XL330 case screw 2",
+2.5
+],
+[
+"R ankle pitch XL330 case rear",
+"R ankle pitch XL330 case screw 3",
+2.5
 ],
 [
 "L thigh cover",
@@ -873,6 +858,26 @@
 "R thigh cover",
 "R thigh cover screw knee",
 2.16
+],
+[
+"body shell",
+"body screw 0",
+2.16
+],
+[
+"body shell",
+"body screw 1",
+2.16
+],
+[
+"L shin",
+"L ankle bearing inner race",
+1.73
+],
+[
+"R shin",
+"R ankle bearing inner race",
+1.73
 ],
 [
 "neck column",
@@ -970,8 +975,13 @@
 0.44
 ],
 [
-"chassis",
-"neck pitch XL330 idler",
+"head fork",
+"head pitch XL330 idler",
+0.33
+],
+[
+"head roll rear spacer",
+"head roll XL330 idler",
 0.33
 ],
 [
@@ -980,18 +990,13 @@
 0.33
 ],
 [
+"chassis",
+"neck pitch XL330 idler",
+0.33
+],
+[
 "R shin",
 "R ankle pitch XL330 idler",
-0.33
-],
-[
-"head fork",
-"head pitch XL330 idler",
-0.33
-],
-[
-"head roll rear spacer",
-"head roll XL330 idler",
 0.33
 ],
 [
@@ -1015,34 +1020,14 @@
 0.32
 ],
 [
-"chassis",
-"R hip yaw lid",
-0.16
-],
-[
 "L thigh frame",
 "L hip pitch lid",
 0.16
 ],
 [
-"L hip yaw XL330 case front",
-"L hip yaw XL330 label",
-0.14
-],
-[
-"R hip yaw XL330 case front",
-"R hip yaw XL330 label",
-0.14
-],
-[
-"L hip roll XL330 case front",
-"L hip roll XL330 label",
-0.14
-],
-[
-"R hip roll XL330 case front",
-"R hip roll XL330 label",
-0.14
+"chassis",
+"R hip yaw lid",
+0.16
 ],
 [
 "L hip pitch XL330 case front",
@@ -1065,13 +1050,28 @@
 0.14
 ],
 [
-"L ankle pitch XL330 case front",
-"L ankle pitch XL330 label",
+"L hip roll XL330 case front",
+"L hip roll XL330 label",
 0.14
 ],
 [
-"R ankle pitch XL330 case front",
-"R ankle pitch XL330 label",
+"R hip roll XL330 case front",
+"R hip roll XL330 label",
+0.14
+],
+[
+"head roll XL330 case front",
+"head roll XL330 label",
+0.14
+],
+[
+"head yaw XL330 case front",
+"head yaw XL330 label",
+0.14
+],
+[
+"beak XL330 case front",
+"beak XL330 label",
 0.14
 ],
 [
@@ -1085,99 +1085,24 @@
 0.14
 ],
 [
-"head yaw XL330 case front",
-"head yaw XL330 label",
+"L ankle pitch XL330 case front",
+"L ankle pitch XL330 label",
 0.14
 ],
 [
-"head roll XL330 case front",
-"head roll XL330 label",
+"L hip yaw XL330 case front",
+"L hip yaw XL330 label",
 0.14
 ],
 [
-"beak XL330 case front",
-"beak XL330 label",
+"R hip yaw XL330 case front",
+"R hip yaw XL330 label",
 0.14
 ],
 [
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case screw 0",
-0.13
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case screw 1",
-0.13
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case screw 2",
-0.13
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case screw 3",
-0.13
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case screw 0",
-0.13
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case screw 1",
-0.13
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case screw 2",
-0.13
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case screw 3",
-0.13
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case screw 0",
-0.13
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case screw 1",
-0.13
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case screw 2",
-0.13
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case screw 3",
-0.13
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case screw 0",
-0.13
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case screw 1",
-0.13
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case screw 2",
-0.13
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case screw 3",
-0.13
+"R ankle pitch XL330 case front",
+"R ankle pitch XL330 label",
+0.14
 ],
 [
 "L hip pitch XL330 case middle",
@@ -1260,43 +1185,103 @@
 0.13
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case screw 0",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case screw 0",
 0.13
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case screw 1",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case screw 1",
 0.13
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case screw 2",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case screw 2",
 0.13
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case screw 3",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case screw 3",
 0.13
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case screw 0",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case screw 0",
 0.13
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case screw 1",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case screw 1",
 0.13
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case screw 2",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case screw 2",
 0.13
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case screw 3",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case screw 3",
+0.13
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case screw 0",
+0.13
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case screw 1",
+0.13
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case screw 2",
+0.13
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case screw 3",
+0.13
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 0",
+0.13
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 1",
+0.13
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 2",
+0.13
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 3",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 0",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 1",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 2",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 3",
 0.13
 ],
 [
@@ -1340,68 +1325,83 @@
 0.13
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 0",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case screw 0",
 0.13
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 1",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case screw 1",
 0.13
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 2",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case screw 2",
 0.13
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 3",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case screw 3",
 0.13
 ],
 [
-"head yaw bracket",
-"head roll cable plugs -",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case screw 0",
 0.13
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case screw 0",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case screw 1",
 0.13
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case screw 1",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case screw 2",
 0.13
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case screw 2",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case screw 3",
 0.13
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case screw 3",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case screw 0",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 0",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case screw 1",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 1",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case screw 2",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 2",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case screw 3",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 3",
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case screw 0",
+0.13
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case screw 1",
+0.13
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case screw 2",
+0.13
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case screw 3",
 0.13
 ],
 [
@@ -1418,26 +1418,6 @@
 "Pi Zero 2 W mounting rings",
 "Pi Zero 2 W microSD socket",
 0.04
-],
-[
-"L hip yaw XL330 case middle",
-"L hip yaw XL330 case front",
-0.01
-],
-[
-"R hip yaw XL330 case middle",
-"R hip yaw XL330 case front",
-0.01
-],
-[
-"L hip roll XL330 case middle",
-"L hip roll XL330 case front",
-0.01
-],
-[
-"R hip roll XL330 case middle",
-"R hip roll XL330 case front",
-0.01
 ],
 [
 "L hip pitch cable plugs +",
@@ -1500,13 +1480,28 @@
 0.01
 ],
 [
-"L ankle pitch XL330 case middle",
-"L ankle pitch XL330 case front",
+"L hip roll XL330 case middle",
+"L hip roll XL330 case front",
 0.01
 ],
 [
-"R ankle pitch XL330 case middle",
-"R ankle pitch XL330 case front",
+"R hip roll XL330 case middle",
+"R hip roll XL330 case front",
+0.01
+],
+[
+"head roll XL330 case middle",
+"head roll XL330 case front",
+0.01
+],
+[
+"head yaw XL330 case middle",
+"head yaw XL330 case front",
+0.01
+],
+[
+"beak XL330 case middle",
+"beak XL330 case front",
 0.01
 ],
 [
@@ -1520,18 +1515,28 @@
 0.01
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case front",
+"L ankle pitch XL330 case middle",
+"L ankle pitch XL330 case front",
 0.01
 ],
 [
-"head roll XL330 case middle",
-"head roll XL330 case front",
+"L hip yaw XL330 case middle",
+"L hip yaw XL330 case front",
 0.01
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case front",
+"R hip yaw XL330 case middle",
+"R hip yaw XL330 case front",
 0.01
+],
+[
+"R ankle pitch XL330 case middle",
+"R ankle pitch XL330 case front",
+0.01
+],
+[
+"jaw",
+"jaw soft insert",
+0.0
 ]
 ]

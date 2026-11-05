@@ -32,7 +32,7 @@ BIG_SECONDS = 900                                 # the big duck: stop starting 
 BIG_ASSEMBLY = True                               # the big duck: go on to the assembly once every link is built
 BIG_CLASH = True
 BIG_REV = 'real-1'                                 # the big duck's own build code here isn't in a link's hash: change this to rebuild them all
-OK_CLASH = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs', ' plug', 'camera ribbon', 'microSD')
+OK_CLASH = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs', ' plug', 'XT30', 'camera ribbon', 'microSD')     # (the battery's plugs rest 0.2 mm into the pack's side: what mounts them, offline, as they hang on its leads)
 
 
 def wait(fn, seconds=240, what=''):

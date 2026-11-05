@@ -33,7 +33,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R sole | 477 mm2 overhang, 238 mm2 on the bed, 69 mm tall |
 | PASS | R inner ear | 0 mm2 overhang, 779 mm2 on the bed, 4 mm tall |
 | PASS | chassis | 3076 mm2 overhang, 434 mm2 on the bed, 69 mm tall |
-| PASS | body shell | 2399 mm2 overhang, 1803 mm2 on the bed, 98 mm tall |
+| PASS | body shell | 2399 mm2 overhang, 1795 mm2 on the bed, 98 mm tall |
 | PASS | neck column | 198 mm2 overhang, 150 mm2 on the bed, 28 mm tall |
 | PASS | neck lid | 0 mm2 overhang, 94 mm2 on the bed, 2 mm tall |
 | PASS | head pitch lid | 0 mm2 overhang, 95 mm2 on the bed, 2 mm tall |
@@ -129,7 +129,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R sole | 15 x 53 x 69 mm, 238 mm2 on the bed |
 | PASS | R inner ear | 29 x 48 x 4 mm, 779 mm2 on the bed |
 | PASS | chassis | 49 x 97 x 69 mm, 434 mm2 on the bed |
-| PASS | body shell | 49 x 80 x 98 mm, 1803 mm2 on the bed |
+| PASS | body shell | 49 x 80 x 98 mm, 1795 mm2 on the bed |
 | PASS | neck column | 29 x 26 x 28 mm, 150 mm2 on the bed |
 | PASS | neck lid | 5 x 26 x 2 mm, 94 mm2 on the bed |
 | PASS | head pitch lid | 5 x 26 x 2 mm, 95 mm2 on the bed |

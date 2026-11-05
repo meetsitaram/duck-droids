@@ -886,6 +886,7 @@
      "color": "#F2C21A",
      "role": "decal",
      "exposed": false,
+     "in_cad": true,
      "material": "pla"
     },
     {
@@ -905,6 +906,7 @@
      "color": "#E8E8E0",
      "role": "decal",
      "exposed": false,
+     "in_cad": true,
      "material": "pla"
     },
     {
@@ -1297,12 +1299,12 @@
      "name": "charge port",
      "c": [
       -0.051000000000000004,
-      0.0305,
+      0.0303,
       0.1599
      ],
      "size": [
       0.022,
-      0.007000000000000003,
+      0.007400000000000004,
       0.02059999999999998
      ],
      "fillet": 0.0001,
