@@ -27,6 +27,7 @@ FPS, W, H = 30, 720, 1280
 RA.W, RA.H = W, H
 APPROACH = 0.045                                    # the checked path: tools/assembly.py TRAVEL
 PICK = np.array([0.20, -0.12, 0.05])                # where the next part comes from: the tray at the builder's right
+PARKED = 0.6                                        # further than this from the mat, work is parked (run()'s spots, 1-1.5 m off), not on the tray
 GLOVE = '.13 .20 .38 1'
 DRIVER = '.72 .73 .75 1'
 GRIP = '.85 .32 .12 1'
@@ -80,6 +81,17 @@ FINAL = ['L_hip_yaw', 'R_hip_yaw', 'L_hip_roll', 'R_hip_roll', 'L_hip_pitch', 'R
 
 def ease(t):
     return t * t * (3 - 2 * t)
+
+
+def off_edge(home, far, size, dist):
+    """Just outside the picture, on the way from `home` to a parked spot `far`: where work set aside leaves the frame and where it comes back in.
+    The parked spots are well out of frame: moving all the way to them (or from them) with the camera on the mat left the frame empty for most of each move."""
+    u = np.array(far, float) - home
+    u[2] = 0.0
+    u /= np.linalg.norm(u) + 1e-9
+    # fovy 62 in portrait, looking along -y from above: at the mat the frame's half-width (x) is 0.34 x the distance, its half-height (y, foreshortened) under 0.6 x
+    r = min(0.36 * dist / max(abs(u[0]), 1e-3), 0.62 * dist / max(abs(u[1]), 1e-3))
+    return home + u * (r + 0.5 * size)
 
 
 def font(size):
@@ -358,8 +370,13 @@ class Film:
         for n in group:
             self.off.setdefault(n, origin)
         grp_c = lambda: self.centre(group)[0]
-        c_w = self.centre(self.work)[0] if self.work else target
+        # with nothing on the mat yet, look where the part will be: `target` is an offset, not a point (looking at it put a new section's first part out of frame, the neck column for 1 s)
+        c_w = self.centre(self.work)[0] if self.work else grp_c() - np.array(self.off[group[0]], float) + target
         d_ = max(0.15, min(0.50, max(self.centre(group)[1] * 2.6, self.centre(self.work + group)[1] * 0.95)))
+        if np.linalg.norm(origin - target) > PARKED:     # work built earlier, parked out of frame: in from the edge, not from its spot
+            origin = off_edge(target, origin, self.centre(group)[1], d_)
+            for n in group:
+                self.off[n] = origin
         vd = self.best_view(group, target, d_, self.view_for(way), start)
         if first:
             self.cam_t, self.cam_d, self.cam_dir = np.array(self.centre(group)[0], float), d_, np.array(vd, float)
@@ -530,13 +547,18 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         if carried:
             f.step = 'Bring the work to the mat'
             start = np.array(f.off.get(carried[0], home), float)
+            for n in carried:
+                f.off[n] = home
+            c_end, size = f.centre(carried)
+            if np.linalg.norm(start - home) > PARKED:     # from the edge of the picture, with the camera already on the mat: not from its spot, the camera chasing it there
+                start = off_edge(home, start, size, 0.45)
             nk = max(3, int(16 / (speed * f.pace)))
             for k in range(nk):
-                t = ease(k / max(1, nk - 1))
+                t = 1 - (1 - k / max(1, nk - 1)) ** 2       # (in at speed, slowing onto the mat)
                 for n in carried:
                     f.off[n] = start + (home - start) * t
                 f.hand['R'] += 0.2 * (f.centre(carried)[0] - f.hand['R'])
-                f.frame(f.centre(carried)[0], 0.45, f.view_for(None))
+                f.frame(c_end, 0.45, f.view_for(None))
             for o in sec['on']:
                 park.pop(o, None)
         f.work = list(carried)
@@ -587,15 +609,17 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
             f.step = 'Set it aside'
             f.detail = ''
             start = np.array(f.off.get(items[0], home), float)
-            c0 = f.centre(items)
+            out = off_edge(home, home + spot, f.centre(items)[1], 0.5)     # to the edge of the picture, then to its spot unseen: the rest of the way was frames of an empty mat
             nk = max(3, int(14 / (speed * f.pace)))
             for k in range(nk):
-                t = ease(k / max(1, nk - 1))
+                t = (k / max(1, nk - 1)) ** 2               # (off at speed: gone as the move ends)
                 for n in items:
-                    f.off[n] = start + (home + spot - start) * t
+                    f.off[n] = start + (out - start) * t
                 f.hand['R'] += 0.25 * (f.centre(items)[0] - f.hand['R'])
                 f.rest('L')
                 f.frame(np.array([0, 0, 0.04]), 0.5, f.view_for(None))
+            for n in items:
+                f.off[n] = home + spot
             park[key] = spot
         f.work = []
     # the finished duck: every joint, one by one, then a look at it
