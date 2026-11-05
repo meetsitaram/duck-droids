@@ -18,6 +18,10 @@ MOTORS, DUCK = ('15 HD-1910 servos', 'Feetech HD-1910 duck') if G.RECIPE == 'hd1
 TITLES = [(0, 150, 'Motors', MOTORS), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
           (360, 505, 'Electronics', 'Pi Zero 2 W, bus board, battery, IMU, camera'), (510, 700, 'Covers', 'hood, jaw, thigh covers, body shell, soles'),
           (705, 900, DUCK, '')]
+if G.RECIPE == 'hybrid':
+    TITLES = [(0, 150, 'Motors', '10 STS3215 in the legs, 5 Dynamixels at the neck and head'), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
+              (360, 505, 'Electronics', 'Pi Zero 2 W, 2 bus boards, 2 regulators, battery, IMU, camera'), (510, 700, 'Covers', 'hood, jaw, thigh covers, body shell, soles'),
+              (705, 900, 'Hybrid duck', '')]
 
 
 if G.RECIPE == 'feetech':

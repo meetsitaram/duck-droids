@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-974 checks: 973 pass, 0 warn, **1 fail**
+1102 checks: 1102 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -20,7 +20,6 @@ From tools/assembly.py
 | PASS | shin_L: L ankle servo |  |
 | PASS | shin_L: L ankle bearing inner |  |
 | PASS | shin_L: L ankle horn |  |
-| PASS | shoe_L: L foot switch |  |
 | PASS | shoe_L: L sole |  |
 | PASS | leg_L: @shin_L |  |
 | PASS | leg_L: @shoe_L |  |
@@ -38,7 +37,6 @@ From tools/assembly.py
 | PASS | shin_R: R ankle servo |  |
 | PASS | shin_R: R ankle bearing inner |  |
 | PASS | shin_R: R ankle horn |  |
-| PASS | shoe_R: R foot switch |  |
 | PASS | shoe_R: R sole |  |
 | PASS | leg_R: @shin_R |  |
 | PASS | leg_R: @shoe_R |  |
@@ -70,7 +68,7 @@ From tools/assembly.py
 | PASS | column: head pitch lid |  |
 | PASS | torso: battery |  |
 | PASS | torso: L 5 V regulator |  |
-| PASS | torso: R 5 V regulator |  |
+| PASS | torso: leg bus splice |  |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
 | PASS | torso: body shell |  |
@@ -87,13 +85,15 @@ From tools/assembly.py
 | PASS | headbench: head roll bearing |  |
 | PASS | headbench: head roll horn |  |
 | PASS | headbench: head roll spacer |  |
+| PASS | framebench: bus board standoffs |  |
 | PASS | framebench: beak servo |  |
 | PASS | jawbench: jaw soft insert |  |
 | PASS | head: @headbench |  |
 | PASS | head: @framebench |  |
-| PASS | head: U2D2 |  |
+| PASS | head: Waveshare bus board |  |
 | PASS | head: Pi Zero 2 W |  |
-| PASS | head: servo bus board |  |
+| PASS | head: head 5 V regulator |  |
+| PASS | head: leg bus board |  |
 | PASS | head: @jawbench |  |
 | PASS | head: hood |  |
 | PASS | head: mouth roof |  |
@@ -250,6 +250,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw rear face 1 |  |
 | PASS | head roll cradle screw horn face 0 |  |
 | PASS | head roll cradle screw horn face 1 |  |
+| PASS | bus board rear screw 0 |  |
+| PASS | bus board rear screw 1 |  |
+| PASS | bus board rear screw 2 |  |
+| PASS | bus board rear screw 3 |  |
 | PASS | beak cradle screw rear face 0 |  |
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw rear near 0 |  |
@@ -270,10 +274,18 @@ From tools/assembly.py
 | PASS | head roll fork screw rear 1 |  |
 | PASS | head roll fork screw rear 2 |  |
 | PASS | head roll fork screw rear 3 |  |
+| PASS | bus board top screw 0 |  |
+| PASS | bus board top screw 1 |  |
+| PASS | bus board top screw 2 |  |
+| PASS | bus board top screw 3 |  |
 | PASS | Pi screw 0 |  |
 | PASS | Pi screw 1 |  |
 | PASS | Pi screw 2 |  |
 | PASS | Pi screw 3 |  |
+| PASS | leg bus board screw 0 |  |
+| PASS | leg bus board screw 1 |  |
+| PASS | leg bus board screw 2 |  |
+| PASS | leg bus board screw 3 |  |
 | PASS | beak fork screw horn 0 |  |
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
@@ -429,6 +441,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | head roll cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head roll cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | bus board rear screw 0 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board rear screw 1 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board rear screw 2 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board rear screw 3 | M2.5 x 5: bites 2.5 mm |
 | PASS | beak cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw rear near 0 | M2 x 8: bites 4.0 mm |
@@ -449,10 +465,18 @@ From tools/assembly.py
 | PASS | head roll fork screw rear 1 | M2 x 6: bites 3.0 mm |
 | PASS | head roll fork screw rear 2 | M2 x 6: bites 3.0 mm |
 | PASS | head roll fork screw rear 3 | M2 x 6: bites 3.0 mm |
+| PASS | bus board top screw 0 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board top screw 1 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board top screw 2 | M2.5 x 5: bites 2.5 mm |
+| PASS | bus board top screw 3 | M2.5 x 5: bites 2.5 mm |
 | PASS | Pi screw 0 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 1 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 2 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 3 | M2 x 6: bites 3.0 mm |
+| PASS | leg bus board screw 0 | M2.5 x 5: bites 2.5 mm |
+| PASS | leg bus board screw 1 | M2.5 x 5: bites 2.5 mm |
+| PASS | leg bus board screw 2 | M2.5 x 5: bites 2.5 mm |
+| PASS | leg bus board screw 3 | M2.5 x 5: bites 2.5 mm |
 | PASS | beak fork screw horn 0 | M2 x 6: bites 3.0 mm |
 | PASS | beak fork screw horn 1 | M2 x 6: bites 3.0 mm |
 | PASS | beak fork screw horn 2 | M2 x 6: bites 3.0 mm |
@@ -609,6 +633,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw rear face 1 |  |
 | PASS | head roll cradle screw horn face 0 |  |
 | PASS | head roll cradle screw horn face 1 |  |
+| PASS | bus board rear screw 0 |  |
+| PASS | bus board rear screw 1 |  |
+| PASS | bus board rear screw 2 |  |
+| PASS | bus board rear screw 3 |  |
 | PASS | beak cradle screw rear face 0 |  |
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw rear near 0 |  |
@@ -629,10 +657,18 @@ From tools/assembly.py
 | PASS | head roll fork screw rear 1 |  |
 | PASS | head roll fork screw rear 2 |  |
 | PASS | head roll fork screw rear 3 |  |
+| PASS | bus board top screw 0 |  |
+| PASS | bus board top screw 1 |  |
+| PASS | bus board top screw 2 |  |
+| PASS | bus board top screw 3 |  |
 | PASS | Pi screw 0 |  |
 | PASS | Pi screw 1 |  |
 | PASS | Pi screw 2 |  |
 | PASS | Pi screw 3 |  |
+| PASS | leg bus board screw 0 |  |
+| PASS | leg bus board screw 1 |  |
+| PASS | leg bus board screw 2 |  |
+| PASS | leg bus board screw 3 |  |
 | PASS | beak fork screw horn 0 |  |
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
@@ -680,7 +716,7 @@ From tools/assembly.py
 | PASS | head roll lid | 2 screws |
 | PASS | head roll spacer | 4 screws |
 | PASS | head roll rear spacer | 4 screws |
-| PASS | head frame | 19 screws |
+| PASS | head frame | 27 screws |
 | PASS | hood | 3 screws |
 | PASS | jaw | turns on its screws |
 | PASS | jaw soft insert | glued |
@@ -712,6 +748,9 @@ From tools/assembly.py
 | PASS | head yaw cable plugs - |  |
 | PASS | head roll cable plugs + |  |
 | PASS | head roll cable plugs - |  |
+| PASS | bus board cable plugs servo |  |
+| PASS | bus board cable plugs power |  |
+| PASS | bus board cable plugs usb |  |
 | PASS | beak cable plugs + |  |
 | PASS | beak cable plugs - |  |
 
@@ -734,6 +773,102 @@ From tools/assembly.py
 | PASS | head yaw | 2 of 6 screws at the near end |
 | PASS | head roll | far end only: a bearing on both faces, and the fork round them |
 | PASS | beak | 2 of 4 screws at the near end |
+
+## BOUGHT
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw lid |  |
+| PASS | L yaw bracket |  |
+| PASS | L hip roll lid |  |
+| PASS | L roll bracket |  |
+| PASS | L thigh frame |  |
+| PASS | L hip pitch lid |  |
+| PASS | L knee lid |  |
+| PASS | L thigh cover |  |
+| PASS | L shin |  |
+| PASS | L shoe |  |
+| PASS | L sole |  |
+| PASS | L inner ear |  |
+| PASS | R hip yaw lid |  |
+| PASS | R yaw bracket |  |
+| PASS | R hip roll lid |  |
+| PASS | R roll bracket |  |
+| PASS | R thigh frame |  |
+| PASS | R hip pitch lid |  |
+| PASS | R knee lid |  |
+| PASS | R thigh cover |  |
+| PASS | R shin |  |
+| PASS | R shoe |  |
+| PASS | R sole |  |
+| PASS | R inner ear |  |
+| PASS | chassis |  |
+| PASS | body shell |  |
+| PASS | neck column |  |
+| PASS | neck lid |  |
+| PASS | head pitch lid |  |
+| PASS | head fork |  |
+| PASS | head yaw sheet |  |
+| PASS | head yaw bracket |  |
+| PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
+| PASS | head frame |  |
+| PASS | hood |  |
+| PASS | jaw |  |
+| PASS | jaw soft insert |  |
+| PASS | mouth roof |  |
+| PASS | face |  |
+| PASS | eye ring |  |
+| PASS | eye iris |  |
+
+## COLOUR
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw lid |  |
+| PASS | L yaw bracket |  |
+| PASS | L hip roll lid |  |
+| PASS | L roll bracket |  |
+| PASS | L thigh frame |  |
+| PASS | L hip pitch lid |  |
+| PASS | L knee lid |  |
+| PASS | L thigh cover |  |
+| PASS | L shin |  |
+| PASS | L shoe |  |
+| PASS | L sole |  |
+| PASS | L inner ear |  |
+| PASS | R hip yaw lid |  |
+| PASS | R yaw bracket |  |
+| PASS | R hip roll lid |  |
+| PASS | R roll bracket |  |
+| PASS | R thigh frame |  |
+| PASS | R hip pitch lid |  |
+| PASS | R knee lid |  |
+| PASS | R thigh cover |  |
+| PASS | R shin |  |
+| PASS | R shoe |  |
+| PASS | R sole |  |
+| PASS | R inner ear |  |
+| PASS | chassis |  |
+| PASS | body shell |  |
+| PASS | neck column |  |
+| PASS | neck lid |  |
+| PASS | head pitch lid |  |
+| PASS | head fork |  |
+| PASS | head yaw sheet |  |
+| PASS | head yaw bracket |  |
+| PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
+| PASS | head frame |  |
+| PASS | hood |  |
+| PASS | jaw |  |
+| PASS | jaw soft insert |  |
+| PASS | mouth roof |  |
+| PASS | face |  |
+| PASS | eye ring |  |
+| PASS | eye iris |  |
 
 ## EDGE
 
@@ -891,6 +1026,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw horn face 1 |  |
 | PASS | head roll cradle screw rear face 0 |  |
 | PASS | head roll cradle screw rear face 1 |  |
+| PASS | bus board rear screw 0 |  |
+| PASS | bus board rear screw 1 |  |
+| PASS | bus board rear screw 2 |  |
+| PASS | bus board rear screw 3 |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | head roll fork screw horn 0 |  |
@@ -914,7 +1053,6 @@ From tools/assembly.py
 
 | status | item | detail |
 |---|---|---|
-| FAIL | neck mount / body | 1 corner(s) of its pocket past the outer surface: a hole in the body |
 | PASS | servo pockets |  |
 
 ## SEAT
@@ -964,7 +1102,6 @@ From tools/assembly.py
 | PASS | part L ankle bearing inner |  |
 | PASS | part L shoe |  |
 | PASS | part L sole |  |
-| PASS | part L foot switch |  |
 | PASS | part L inner ear |  |
 | PASS | part R hip yaw servo |  |
 | PASS | part R hip yaw lid |  |
@@ -992,12 +1129,11 @@ From tools/assembly.py
 | PASS | part R ankle bearing inner |  |
 | PASS | part R shoe |  |
 | PASS | part R sole |  |
-| PASS | part R foot switch |  |
 | PASS | part R inner ear |  |
 | PASS | part chassis |  |
 | PASS | part battery |  |
 | PASS | part L 5 V regulator |  |
-| PASS | part R 5 V regulator |  |
+| PASS | part head 5 V regulator |  |
 | PASS | part IMU |  |
 | PASS | part body shell |  |
 | PASS | part neck servo |  |
@@ -1023,8 +1159,10 @@ From tools/assembly.py
 | PASS | part beak servo |  |
 | PASS | part Pi Zero 2 W |  |
 | PASS | part camera |  |
-| PASS | part servo bus board |  |
-| PASS | part U2D2 |  |
+| PASS | part Waveshare bus board |  |
+| PASS | part bus board standoffs |  |
+| PASS | part leg bus board |  |
+| PASS | part leg bus splice |  |
 | PASS | part hood |  |
 | PASS | part jaw |  |
 | PASS | part jaw soft insert |  |

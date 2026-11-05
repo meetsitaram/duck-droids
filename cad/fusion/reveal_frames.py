@@ -18,14 +18,14 @@ W, H = 1080, 1920
 FRONT_AZ = 25   # where the turn ends: degrees round from straight ahead (+X)
 STAGES = [('motors', 0, 150), ('skeleton', 150, 330), ('electronics', 360, 480), ('covers', 510, 650)]   # frames over which each stage's parts appear, from the ground up
 COVERS = ('hood', 'face', 'eye ring', 'eye iris', 'mouth roof', 'jaw', 'jaw soft insert', 'L thigh cover', 'R thigh cover', 'body shell', 'L sole', 'R sole')
-ELEC = ('camera', 'IMU', 'head 5 V regulator', 'L 5 V regulator', 'R 5 V regulator', 'U2D2', 'servo bus board', 'L foot switch', 'R foot switch')
+ELEC = ('camera', 'IMU', 'head 5 V regulator', 'L 5 V regulator', 'R 5 V regulator', 'U2D2', 'servo bus board', 'L foot switch', 'R foot switch', 'leg bus splice')
 
 
 def stage_of(body_name, comp_name):
     n = body_name
     if any(k in comp_name for k in (' XL330 ', ' STS3215 ', ' HD1910 ')) or 'actuator' in n:
         return 'motors'
-    if comp_name in ('Pi Zero 2 W', 'Waveshare bus board') or n.startswith('battery') or n in ELEC or 'cable plugs' in n or 'standoff' in n:
+    if comp_name in ('Pi Zero 2 W', 'Waveshare bus board', 'leg bus board') or n.startswith('leg bus board') or n.startswith('battery') or n in ELEC or 'cable plugs' in n or 'standoff' in n:
         return 'electronics'
     if n in COVERS or any(k in n for k in ('shoe bottom screw', 'hood rear screw', 'hinge screw', 'thigh cover screw', 'body screw')):
         return 'covers'

@@ -65,6 +65,7 @@ gates() {
   gate printable "$PY" -I tools/printable.py
   gate beak "$PY" -I tools/beak_linkage.py
   gate mass "$PY" -I tools/mass_model.py
+  if [ "$RECIPE" = hybrid ]; then gate wires "$PY" -I tools/wire_routes.py; fi
 }
 
 build() {
@@ -127,6 +128,8 @@ case $1 in
     ls -la "$D/reveal_30s.mp4" "$D/reveal.gif"
     ;;
   video)
+    # the film uses Fusion's rounded bodies, and without them falls back on the spec's sharp shapes without a word
+    [ -d "${TEMP:-/tmp}/duck_fusion_stl/$RECIPE" ] || { echo "no Fusion bodies for $RECIPE: run pipeline.sh fusion first"; exit 1; }
     take render 10 "$RECIPE 5-minute build and clips"
     gate floaters "$PY" tools/video_floaters.py
     "$PY" tools/render_pov_video.py 2>&1 | grep -v "^dry" | tail -3 | cut -c1-150
