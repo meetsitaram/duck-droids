@@ -10,7 +10,7 @@ The picture is drawn by `python -I tools/big_wiring.py`, from the 22 actuators i
 
 | Where | Connector | Status |
 |---|---|---|
-| Battery output | to match the power board's input, below | no pack chosen |
+| Battery output | the candidate pack has no connector: to match the power board's input, below | candidate only; see [its options](BOM.md#battery-options) |
 | Power board input, "BAT" | an AMASS-style right-angle socket, 7 mm between its pins off the board drawing, so probably XT60PW | **not named in the manual:** read `POWER_PCB_V1.3_1105.step` or a real board. An XT60 is less than the board's 80 A software limit: check it isn't the limit |
 | Precharge and discharge resistor, "PRE/DIS_R" | 2-way screw terminal | the board won't start without the resistor: 3-10 ohm, 50 W or more |
 | Motor branches x 4, "M+" | XT30 right-angle sockets, 5 mm between pins | as drawn; not named in the manual |
@@ -34,7 +34,7 @@ RS04 harness, from its manual: red VBAT+, black GND, blue CAN_H, brown CAN_L. It
 
 | Rail | From | Feeds | Limit, by the data sheets |
 |---|---|---|---|
-| Battery, 48 V nominal, **54.6 V full** | a 13S lithium-ion pack with BMS: not chosen. Through a main fuse and disconnect, also not chosen | the power board | the board: 20-65 V, 80 A for 30 ms, 100 A for 1 ms, then a trip |
+| Battery, 48 V nominal, **54.6 V full** | a 13S lithium-ion pack: the candidate to bench-test is Dan-Tech's 13S5P, 1200 Wh, 100 A, with a separate BMS, not chosen. Through a main fuse and disconnect, also not chosen | the power board | the board: 20-65 V, 80 A for 30 ms, 100 A for 1 ms, then a trip |
 | Left leg, branch LL | XT30 on the board, 12 AWG | 8 RS04s through a distribution | **20 A rated, 40 A peak** |
 | Right leg, branch LR | the same | 8 RS04s | **20 A rated, 40 A peak** |
 | Neck and head, branch AL | the same, 12 AWG down to the neck, 14 AWG on to the head | 3 RS04s, 2 RS03s, 1 RS00 | 20 A rated, 40 A peak. Fuse the thin leg of it |
@@ -90,7 +90,7 @@ Cable lengths, by straight lines in the model: left or right leg, board to ankle
 
 ## What is not designed
 
-- The pack, its case and how it's charged, and the fuse and disconnect.
+- The pack's BMS and case, how it's charged, and the fuse and disconnect. The pack itself is only a candidate.
 - Distribution boards for 8 actuators, in a place that survives the joint below it.
 - Strain relief, clips and guards at every joint: a wire caught in a crank or chain.
 - Anything to carry the resistor's heat.

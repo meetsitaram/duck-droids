@@ -121,6 +121,27 @@ def _occ(name):
     return occs.get(name) or next(o for n, o in occs.items() if n.startswith(name + ' '))
 
 
+def big_pictures(app, name):
+    """Each left and middle link on its own, from where its parts show. The right legs are the left's mirror, by the spec's code."""
+    if name.startswith('R_'):
+        return
+    folder_ = os.path.join(build.REPO, 'docs', 'images', 'fusion', 'big', 'links')
+    os.makedirs(folder_, exist_ok=True)
+    vp = app.activeViewport
+    vp.visualStyle = adsk.core.VisualStyles.ShadedVisualStyle
+    for k, eye in {'a': (60, 50, 30), 'b': (-60, -50, 30), 'c': (50, -40, -35)}.items():
+        cam = vp.camera
+        cam.isSmoothTransition = False
+        cam.cameraType = adsk.core.CameraTypes.PerspectiveCameraType
+        cam.target = adsk.core.Point3D.create(0, 0, 0)
+        cam.eye = adsk.core.Point3D.create(*eye)
+        cam.upVector = adsk.core.Vector3D.create(0, 0, 1)
+        vp.camera = cam
+        vp.fit()
+        vp.refresh()
+        vp.saveAsImageFile(os.path.join(folder_, f'{name}_{k}.png'), 1000, 1000)
+
+
 def big_spec():
     """The big duck's rods, chain and thigh covers are 'decal' to keep them out of the offline sweep checks, and build.link skips decals with no screw. Here they're real: mark them, in this script only, so build.py and its hash stay as they are for every other duck."""
     plain = build.spec
@@ -313,7 +334,9 @@ def run(_context: str):
         print(build.link(name))
         occ = _occ(name)
         if RECIPE == 'big':
-            print(name, 'hollowed, failed, s', big_hollow(name, s, occ))
+            r_ = big_hollow(name, s, occ)
+            print(name, 'hollowed, failed, s', r_)
+            big_pictures(app, name)
         vb = verify_link(name, parts, occ)
         points.update(points_link(name, parts, occ, vdata))
         stls_link(name, parts, occ, stl)
@@ -338,6 +361,8 @@ def run(_context: str):
         print('not yet: links left', [n for n in s['links'] if f'{RECIPE} {n}' not in have or n not in man], 'seconds so far', round(time.time() - t00))
         close_all(app)
         return
+    if RECIPE == 'big' and aname in have:         # its links are built in earlier turns, so the assembly refreshes them all here
+        rebuilt = rebuilt or list(s['links'])
     if aname not in have:
         asm, d = make_assembly(app, s, have, fd, aname)
         check_assembly(app, s, d)
@@ -354,6 +379,8 @@ def run(_context: str):
                 if r.isOutOfDate:
                     n.add(r.dataFile.name)
                     r.getLatestVersion()
+            if RECIPE == 'big':                   # its links come from earlier turns too, and a reference shows as out of date only after a while: wait for them all (one count stopped at 9 of 16, and left the old thigh in)
+                return all(asm.documentReferences.item(k).dataFile.versionNumber == asm.documentReferences.item(k).dataFile.latestVersionNumber for k in range(asm.documentReferences.count))
             return len(n) >= len(rebuilt)
         wait(latest, seconds=180, what=f'references, {sorted(n)} of {rebuilt}')
         print('refreshed', sorted(n), round(time.time() - t0), 's')
