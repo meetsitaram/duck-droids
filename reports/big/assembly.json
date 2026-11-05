@@ -1,0 +1,9188 @@
+[
+ {
+  "group": "APART",
+  "item": "deck plate / body panel FR",
+  "status": "WARN",
+  "detail": "trunk: drawn into each other, 0.60 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "deck plate / body panel FL",
+  "status": "WARN",
+  "detail": "trunk: drawn into each other, 0.61 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head main frame / bill panel 10",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 0.22 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head main frame / bill panel 12",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 0.22 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rail L / bill panel 02",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 3.31 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rail L / bill panel 12",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 5.17 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rail R / bill panel 00",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 3.31 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rail R / bill panel 10",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 5.17 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rear frame / bill panel 00",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 2.41 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rear frame / bill panel 01",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 7.27 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "head rear frame / bill panel 02",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 2.41 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "face panel 1u / eye ring",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 69.16 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "face panel 1u / eye lens",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 11.29 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "face panel 1l / eye ring",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 69.16 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "face panel 1l / eye lens",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 11.29 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "bill panel 00 / head beak mount",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 0.23 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "bill panel 02 / head beak mount",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 0.23 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "APART",
+  "item": "eye ring / eye lens",
+  "status": "WARN",
+  "detail": "head: drawn into each other, 112.92 cm3 (a printed panel: not relieved for what it meets)"
+ },
+ {
+  "group": "JOINED",
+  "item": "deck plate / body panel FR",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "deck plate / body panel FL",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "upper plate / body panel RL",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "battery 13S / body panel RL",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel RR / body panel RL",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel RR / body panel MR",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel RL / body panel ML",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel MR / body panel ML",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel MR / body panel FR",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "body panel ML / body panel FL",
+  "status": "WARN",
+  "detail": "trunk: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L thigh cover out hip / L thigh cover out rear",
+  "status": "WARN",
+  "detail": "L_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L thigh cover out hip / L thigh cover out knee",
+  "status": "WARN",
+  "detail": "L_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L thigh cover out rear / L thigh cover out knee",
+  "status": "WARN",
+  "detail": "L_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L shin cover front / L shin cover back",
+  "status": "WARN",
+  "detail": "L_knee_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R thigh cover out hip / R thigh cover out rear",
+  "status": "WARN",
+  "detail": "R_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R thigh cover out hip / R thigh cover out knee",
+  "status": "WARN",
+  "detail": "R_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R thigh cover out rear / R thigh cover out knee",
+  "status": "WARN",
+  "detail": "R_hip_pitch_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R shin cover front / R shin cover back",
+  "status": "WARN",
+  "detail": "R_knee_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L ankle ear in / L shoe rear",
+  "status": "WARN",
+  "detail": "L_foot: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "L ankle ear in / L shoe front",
+  "status": "WARN",
+  "detail": "L_foot: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R ankle ear in / R shoe rear",
+  "status": "WARN",
+  "detail": "R_foot: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "R ankle ear in / R shoe front",
+  "status": "WARN",
+  "detail": "R_foot: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head main frame / bill panel 10",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head main frame / bill panel 12",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rail L / bill panel 02",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rail L / bill panel 12",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rail R / bill panel 00",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rail R / bill panel 10",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rear frame / bill panel 00",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rear frame / bill panel 01",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "head rear frame / bill panel 02",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Ru / hood panel 0Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Ru / hood panel 0c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Ru / hood panel 1Ru",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Rl / hood panel 1Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0c / hood panel 0Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0c / hood panel 1c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Lu / hood panel 0Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Lu / hood panel 1Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 0Ll / hood panel 1Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Ru / hood panel 1Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Ru / hood panel 1c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Ru / hood panel 2Ru",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Rl / hood panel 2Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1c / hood panel 1Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1c / hood panel 2c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Lu / hood panel 1Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Lu / hood panel 2Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 1Ll / hood panel 2Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Ru / hood panel 2Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Ru / hood panel 2c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Ru / hood panel 3Ru",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Rl / hood panel 3Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2c / hood panel 2Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2c / hood panel 3c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Lu / hood panel 2Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Lu / hood panel 3Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 2Ll / hood panel 3Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 3Ru / hood panel 3Rl",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 3Ru / hood panel 3c",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 3c / hood panel 3Lu",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "hood panel 3Lu / hood panel 3Ll",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 0u / face panel 0l",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 0u / face panel 1u",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 0l / face panel 1l",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 0l / bill panel 30",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1u / face panel 1l",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1u / face panel 2u",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1u / eye ring",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1u / eye lens",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1l / face panel 2l",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1l / bill panel 31",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1l / eye ring",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 1l / eye lens",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 2u / face panel 2l",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "face panel 2l / bill panel 32",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 00 / bill panel 01",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 00 / bill panel 10",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 00 / head beak mount",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 01 / bill panel 02",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 02 / bill panel 12",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 02 / head beak mount",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 10 / bill panel 20",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 12 / bill panel 22",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 20 / bill panel 30",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 22 / bill panel 32",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 30 / bill panel 31",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "bill panel 31 / bill panel 32",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "eye ring / eye lens",
+  "status": "WARN",
+  "detail": "head: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 0 / beak panel 1",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 0 / beak panel 3",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 1 / beak panel 2",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 1 / beak panel 4",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 2 / beak panel 5",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 3 / beak panel 4",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "JOINED",
+  "item": "beak panel 4 / beak panel 5",
+  "status": "WARN",
+  "detail": "beak_link: they touch, and no screw or held joint joins them (a printed panel: its fixings aren't designed)"
+ },
+ {
+  "group": "ONE",
+  "item": "trunk",
+  "status": "PASS",
+  "detail": "26 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_hip_yaw_link",
+  "status": "PASS",
+  "detail": "10 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_hip_yaw_link",
+  "status": "PASS",
+  "detail": "10 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_hip_roll_link",
+  "status": "PASS",
+  "detail": "8 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_hip_roll_link",
+  "status": "PASS",
+  "detail": "8 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_hip_pitch_link",
+  "status": "PASS",
+  "detail": "19 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_knee_crank_I",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_knee_crank_O",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_knee_link",
+  "status": "PASS",
+  "detail": "23 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_knee_rod_I",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_knee_rod_O",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_hip_pitch_link",
+  "status": "PASS",
+  "detail": "19 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_knee_crank_I",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_knee_crank_O",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_knee_link",
+  "status": "PASS",
+  "detail": "23 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_knee_rod_I",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_knee_rod_O",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "L_foot",
+  "status": "PASS",
+  "detail": "6 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "R_foot",
+  "status": "PASS",
+  "detail": "6 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "neck_link",
+  "status": "PASS",
+  "detail": "11 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "head_pitch_link",
+  "status": "PASS",
+  "detail": "13 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "head_yaw_link",
+  "status": "PASS",
+  "detail": "9 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "head",
+  "status": "PASS",
+  "detail": "11 parts"
+ },
+ {
+  "group": "ONE",
+  "item": "beak_link",
+  "status": "PASS",
+  "detail": "3 parts"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel RR",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel RL",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel MR",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel ML",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel FR",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "body panel FL",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh cover out hip",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh cover out rear",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh cover out knee",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh cover out hip",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh cover out rear",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh cover out knee",
+  "status": "WARN",
+  "detail": "1 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "L shin cover front",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "L shin cover back",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "R shin cover front",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "R shin cover back",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 0Ru",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 0Rl",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 0c",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 0Lu",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 0Ll",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 1Ru",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 1Rl",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 1c",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 1Lu",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 1Ll",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 2Ru",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 2Rl",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 2c",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 2Lu",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 2Ll",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 3Ru",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 3Rl",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 3c",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 3Lu",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood panel 3Ll",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 0u",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 0l",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 1u",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 1l",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 2u",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "face panel 2l",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 00",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 01",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 02",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 10",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 12",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 20",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 22",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 30",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 31",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "bill panel 32",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "eye ring",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "eye lens",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 0",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 1",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 2",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 3",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 4",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak panel 5",
+  "status": "WARN",
+  "detail": "0 screw(s) and nothing else holds it: it turns about one"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 0 screw low 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 0, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 0 screw high 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 0, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 1 screw low 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 1, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 1 screw high 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 1, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 2 screw low 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 2, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 2 screw high 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 2, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 3 screw low 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 3, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "body post 3 screw high 0",
+  "status": "PASS",
+  "detail": "8.0 mm into body post 3, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie deck screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie deck screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie screw L 0",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie screw L 1",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat screw L 0",
+  "status": "PASS",
+  "detail": "6.0 mm into neck plate L, 1.20 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat deck screw L 0",
+  "status": "PASS",
+  "detail": "8.0 mm into neck cleat L, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat deck screw L 1",
+  "status": "PASS",
+  "detail": "8.0 mm into neck cleat L, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie screw R 0",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck tie screw R 1",
+  "status": "PASS",
+  "detail": "8.0 mm into neck tie, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat screw R 0",
+  "status": "PASS",
+  "detail": "6.0 mm into neck plate R, 1.20 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat deck screw R 0",
+  "status": "PASS",
+  "detail": "8.0 mm into neck cleat R, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "neck cleat deck screw R 1",
+  "status": "PASS",
+  "detail": "8.0 mm into neck cleat R, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "computer standoff 0 screw 0",
+  "status": "PASS",
+  "detail": "4.0 mm into computer standoff 0, 1.33 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "computer standoff 0 screw 1",
+  "status": "PASS",
+  "detail": "4.0 mm into computer standoff 0, 1.33 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "computer standoff 1 screw 0",
+  "status": "PASS",
+  "detail": "4.0 mm into computer standoff 1, 1.33 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "computer standoff 1 screw 1",
+  "status": "PASS",
+  "detail": "4.0 mm into computer standoff 1, 1.33 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 3",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 4",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 5",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 6",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw retainer screw 7",
+  "status": "PASS",
+  "detail": "7.0 mm into L hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 6",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 7",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 8",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw housing screw 9",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 3",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 4",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 5",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 6",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw retainer screw 7",
+  "status": "PASS",
+  "detail": "7.0 mm into R hip yaw housing, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 6",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 7",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 8",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw housing screw 9",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 0",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 1",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 2",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 3",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 4",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 5",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 6",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw inner retainer screw 7",
+  "status": "PASS",
+  "detail": "5.0 mm into L hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 6",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip yaw beam screw 7",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat F screw 0",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat F screw 1",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat F screw 2",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cheek F screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip roll cleat F, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cheek F screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip roll cleat F, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat B screw 0",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat B screw 1",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cleat B screw 2",
+  "status": "PASS",
+  "detail": "9.0 mm into L hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cheek B screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip roll cleat B, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip roll cheek B screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip roll cleat B, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 0",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 1",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 2",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 3",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 4",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 5",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 6",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw inner retainer screw 7",
+  "status": "PASS",
+  "detail": "5.0 mm into R hip yaw inner retainer, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 6",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip yaw beam screw 7",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip yaw flange, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat F screw 0",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat F screw 1",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat F screw 2",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cheek F screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip roll cleat F, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cheek F screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip roll cleat F, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat B screw 0",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat B screw 1",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cleat B screw 2",
+  "status": "PASS",
+  "detail": "9.0 mm into R hip yaw beam, 1.80 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cheek B screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip roll cleat B, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip roll cheek B screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip roll cleat B, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch upright screw 0",
+  "status": "PASS",
+  "detail": "12.0 mm into L hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch upright screw 1",
+  "status": "PASS",
+  "detail": "12.0 mm into L hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch upright screw 2",
+  "status": "PASS",
+  "detail": "12.0 mm into L hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch upright screw 3",
+  "status": "PASS",
+  "detail": "12.0 mm into L hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch upright screw 4",
+  "status": "PASS",
+  "detail": "12.0 mm into L hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch bridge screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch bridge screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch bridge screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L hip pitch bridge screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch upright screw 0",
+  "status": "PASS",
+  "detail": "12.0 mm into R hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch upright screw 1",
+  "status": "PASS",
+  "detail": "12.0 mm into R hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch upright screw 2",
+  "status": "PASS",
+  "detail": "12.0 mm into R hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch upright screw 3",
+  "status": "PASS",
+  "detail": "12.0 mm into R hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch upright screw 4",
+  "status": "PASS",
+  "detail": "12.0 mm into R hip roll yoke, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch bridge screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch bridge screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch bridge screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R hip pitch bridge screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch bridge, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer hip screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer hip screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer hip screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer hip screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer mid screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer mid screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer mid screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh spacer mid screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 3",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 4",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw I 5",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw O 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw O 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw O 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw O 3",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh screw O 4",
+  "status": "PASS",
+  "detail": "8.0 mm into L hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 0i screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 0i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 0i screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 0i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 1i screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 1i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 1i screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 1i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 0o screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 0o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 0o screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 0o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 1o screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 1o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh tie 1o screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L thigh tie 1o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh cover screw hip 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh cover screw rear 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L thigh cover screw knee 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer hip screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer hip screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer hip screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer hip screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer hip, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer mid screw in 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer mid screw in 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer mid screw out 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh spacer mid screw out 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh spacer mid, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 3",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 4",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw I 5",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output I, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw O 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw O 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw O 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw O 3",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh screw O 4",
+  "status": "PASS",
+  "detail": "8.0 mm into R hip pitch output O, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 0i screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 0i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 0i screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 0i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 1i screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 1i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 1i screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 1i, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 0o screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 0o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 0o screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 0o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 1o screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 1o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh tie 1o screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R thigh tie 1o, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh cover screw hip 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh cover screw rear 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R thigh cover screw knee 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R thigh rear plate out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin hub screw 0",
+  "status": "PASS",
+  "detail": "5.0 mm into L shin hub out, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin hub screw 1",
+  "status": "PASS",
+  "detail": "5.0 mm into L shin hub out, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin spacer screw 0",
+  "status": "PASS",
+  "detail": "12.0 mm into L shin spacer, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin spacer screw 1",
+  "status": "PASS",
+  "detail": "12.0 mm into L shin spacer, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw front 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw front 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat front wall screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin cleat front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat front wall screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin cleat front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat front cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L shin cleat front, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw back 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw back 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat back wall screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin cleat back, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat back wall screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin cleat back, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin cleat back cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L shin cleat back, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw in 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw in 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw out 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shin top screw out 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stack screw 0",
+  "status": "PASS",
+  "detail": "5.5 mm into L ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stack screw 1",
+  "status": "PASS",
+  "detail": "5.5 mm into L ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stack screw 2",
+  "status": "PASS",
+  "detail": "5.5 mm into L ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stack screw 3",
+  "status": "PASS",
+  "detail": "5.5 mm into L ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stack screw 4",
+  "status": "PASS",
+  "detail": "5.5 mm into L ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle mount plate, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle cap screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle mount plate, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stub screw 0",
+  "status": "PASS",
+  "detail": "6.0 mm into L ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stub screw 1",
+  "status": "PASS",
+  "detail": "6.0 mm into L ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle stub screw 2",
+  "status": "PASS",
+  "detail": "6.0 mm into L ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin hub screw 0",
+  "status": "PASS",
+  "detail": "5.0 mm into R shin hub out, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin hub screw 1",
+  "status": "PASS",
+  "detail": "5.0 mm into R shin hub out, 1.25 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin spacer screw 0",
+  "status": "PASS",
+  "detail": "12.0 mm into R shin spacer, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin spacer screw 1",
+  "status": "PASS",
+  "detail": "12.0 mm into R shin spacer, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw front 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw front 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat front wall screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin cleat front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat front wall screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin cleat front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat front cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R shin cleat front, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw back 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw back 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat back wall screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin cleat back, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat back wall screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin cleat back, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin cleat back cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R shin cleat back, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw in 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw in 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw out 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shin top screw out 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shin top, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stack screw 0",
+  "status": "PASS",
+  "detail": "5.5 mm into R ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stack screw 1",
+  "status": "PASS",
+  "detail": "5.5 mm into R ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stack screw 2",
+  "status": "PASS",
+  "detail": "5.5 mm into R ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stack screw 3",
+  "status": "PASS",
+  "detail": "5.5 mm into R ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stack screw 4",
+  "status": "PASS",
+  "detail": "5.5 mm into R ankle mount plate, 1.37 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle cap screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle mount plate, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle cap screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle mount plate, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stub screw 0",
+  "status": "PASS",
+  "detail": "6.0 mm into R ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stub screw 1",
+  "status": "PASS",
+  "detail": "6.0 mm into R ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle stub screw 2",
+  "status": "PASS",
+  "detail": "6.0 mm into R ankle plate in, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear out foot screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear out foot screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear out foot screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear in foot screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear in foot screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear in foot screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into L ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle ear screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle housing screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle housing screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L ankle housing screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into L ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shoe rear screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shoe rear, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shoe rear screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shoe rear, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shoe front screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into L shoe front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "L shoe front screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into L shoe front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear out foot screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear out foot screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear out foot screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear out, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear in foot screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear in foot screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear in foot screw 2",
+  "status": "PASS",
+  "detail": "7.0 mm into R ankle ear in, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle ear screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle output, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle housing screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle housing screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R ankle housing screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into R ankle bearing housing, 1.60 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shoe rear screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shoe rear, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shoe rear screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shoe rear, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shoe front screw 0",
+  "status": "PASS",
+  "detail": "7.0 mm into R shoe front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "R shoe front screw 1",
+  "status": "PASS",
+  "detail": "7.0 mm into R shoe front, 1.75 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch stator tie L screw 0",
+  "status": "PASS",
+  "detail": "16.5 mm into neck spine, 3.29 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch stator tie L screw 1",
+  "status": "PASS",
+  "detail": "16.5 mm into neck spine, 3.29 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch stator tie L screw 2",
+  "status": "PASS",
+  "detail": "16.5 mm into neck spine, 3.29 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch yoke screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head pitch yoke, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch yoke screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head pitch yoke, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch yoke R screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head pitch yoke R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head pitch yoke R screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head pitch yoke R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 0 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head yaw front post 0, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 0 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head yaw front post 0, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 1 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head yaw front post 1, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 1 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head yaw front post 1, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 2 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head yaw front post 2, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 2 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head yaw front post 2, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 3 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head yaw front post 3, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw front post 3 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head yaw front post 3, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 0",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 1",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 2",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 3",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 4",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head yaw plate screw 5",
+  "status": "PASS",
+  "detail": "6.0 mm into head yaw output, 1.50 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll cradle screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll cradle, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll cradle screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll cradle, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll cradle screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll cradle, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 0 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll front post 0, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 0 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head roll front post 0, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 1 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll front post 1, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 1 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head roll front post 1, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 2 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll front post 2, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 2 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head roll front post 2, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 3 screw top 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll front post 3, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head roll front post 3 screw base 0",
+  "status": "PASS",
+  "detail": "12.0 mm into head roll front post 3, 2.40 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 2",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 3",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 4",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head main frame screw 5",
+  "status": "PASS",
+  "detail": "8.0 mm into head roll output, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw main 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head main frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw main 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head main frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail L, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw rear 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail L, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail L, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail L screw front 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail L, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak lug L screw 0",
+  "status": "PASS",
+  "detail": "7.5 mm into head rail L, 1.87 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak lug L screw 1",
+  "status": "PASS",
+  "detail": "7.5 mm into head rail L, 1.87 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak mount screw L 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head beak mount, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak mount screw L 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head beak mount, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw main 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head main frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw main 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head main frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw rear 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw rear 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw front 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head rail R screw front 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head rail R, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak lug R screw 0",
+  "status": "PASS",
+  "detail": "7.5 mm into head rail R, 1.87 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak lug R screw 1",
+  "status": "PASS",
+  "detail": "7.5 mm into head rail R, 1.87 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak mount screw R 0",
+  "status": "PASS",
+  "detail": "8.0 mm into head beak mount, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "head beak mount screw R 1",
+  "status": "PASS",
+  "detail": "8.0 mm into head beak mount, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "beak hinge L screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into beak tray frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "beak hinge L screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into beak tray frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "beak hinge R screw 0",
+  "status": "PASS",
+  "detail": "8.0 mm into beak tray frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "beak hinge R screw 1",
+  "status": "PASS",
+  "detail": "8.0 mm into beak tray frame, 2.00 x its diameter"
+ },
+ {
+  "group": "BITE",
+  "item": "RS03 front screws, into RobStride's threads",
+  "status": "PASS",
+  "detail": "16: 8.0 mm of a 11.0 mm thread, from the spec (not measured)"
+ },
+ {
+  "group": "BITE",
+  "item": "RS03 mount screws, into RobStride's threads",
+  "status": "PASS",
+  "detail": "8: 5.0 mm of a 11.0 mm thread, from the spec (not measured)"
+ },
+ {
+  "group": "BITE",
+  "item": "RS03 output screws, into RobStride's threads",
+  "status": "PASS",
+  "detail": "12: 4.0 mm of a 9.0 mm thread, from the spec (not measured)"
+ },
+ {
+  "group": "BITE",
+  "item": "RS04 mount screws, into RobStride's threads",
+  "status": "PASS",
+  "detail": "190: 4.0 mm of a 6.0 mm thread, from the spec (not measured)"
+ },
+ {
+  "group": "BITE",
+  "item": "RS04 output screws, into RobStride's threads",
+  "status": "PASS",
+  "detail": "171: 3.0 mm of a 3.5 mm thread, from the spec (not measured)"
+ },
+ {
+  "group": "PATH",
+  "item": "1 deck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "2 L hip yaw housing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 0",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 1",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 2",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 3",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 4",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 5",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 6",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 7",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 8",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw housing screw 9",
+  "status": "PASS",
+  "detail": "step 2"
+ },
+ {
+  "group": "PATH",
+  "item": "3 L_hip_yaw actuator (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 0",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 1",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 2",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 3",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 4",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 5",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 6",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 7",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 8",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw mount screw 9",
+  "status": "PASS",
+  "detail": "step 3"
+ },
+ {
+  "group": "PATH",
+  "item": "4 R hip yaw housing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 0",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 1",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 2",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 3",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 4",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 5",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 6",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 7",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 8",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw housing screw 9",
+  "status": "PASS",
+  "detail": "step 4"
+ },
+ {
+  "group": "PATH",
+  "item": "5 R_hip_yaw actuator (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 0",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 1",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 2",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 3",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 4",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 5",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 6",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 7",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 8",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw mount screw 9",
+  "status": "PASS",
+  "detail": "step 5"
+ },
+ {
+  "group": "PATH",
+  "item": "6 body post 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "body post 0 screw low 0",
+  "status": "PASS",
+  "detail": "step 6"
+ },
+ {
+  "group": "PATH",
+  "item": "7 body post 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "body post 1 screw low 0",
+  "status": "PASS",
+  "detail": "step 7"
+ },
+ {
+  "group": "PATH",
+  "item": "8 body post 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "body post 2 screw low 0",
+  "status": "PASS",
+  "detail": "step 8"
+ },
+ {
+  "group": "PATH",
+  "item": "9 body post 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "body post 3 screw low 0",
+  "status": "PASS",
+  "detail": "step 9"
+ },
+ {
+  "group": "PATH",
+  "item": "10 neck tie",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie deck screw 0",
+  "status": "PASS",
+  "detail": "step 10"
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie deck screw 1",
+  "status": "PASS",
+  "detail": "step 10"
+ },
+ {
+  "group": "PATH",
+  "item": "11 neck plate L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie screw L 0",
+  "status": "PASS",
+  "detail": "step 11"
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie screw L 1",
+  "status": "PASS",
+  "detail": "step 11"
+ },
+ {
+  "group": "PATH",
+  "item": "12 neck plate R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie screw R 0",
+  "status": "PASS",
+  "detail": "step 12"
+ },
+ {
+  "group": "KEY",
+  "item": "neck tie screw R 1",
+  "status": "PASS",
+  "detail": "step 12"
+ },
+ {
+  "group": "PATH",
+  "item": "13 neck cleat L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat screw L 0",
+  "status": "PASS",
+  "detail": "step 13"
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat deck screw L 0",
+  "status": "PASS",
+  "detail": "step 13"
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat deck screw L 1",
+  "status": "PASS",
+  "detail": "step 13"
+ },
+ {
+  "group": "PATH",
+  "item": "14 neck cleat R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat screw R 0",
+  "status": "PASS",
+  "detail": "step 14"
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat deck screw R 0",
+  "status": "PASS",
+  "detail": "step 14"
+ },
+ {
+  "group": "KEY",
+  "item": "neck cleat deck screw R 1",
+  "status": "PASS",
+  "detail": "step 14"
+ },
+ {
+  "group": "PATH",
+  "item": "15 neck_pitch actuator L (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 0",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 1",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 2",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 3",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 4",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 5",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 6",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 7",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 8",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L mount screw 9",
+  "status": "PASS",
+  "detail": "step 15"
+ },
+ {
+  "group": "PATH",
+  "item": "16 neck_pitch actuator R (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 0",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 1",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 2",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 3",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 4",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 5",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 6",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 7",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 8",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R mount screw 9",
+  "status": "PASS",
+  "detail": "step 16"
+ },
+ {
+  "group": "PATH",
+  "item": "17 computer standoff 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "computer standoff 0 screw 0",
+  "status": "PASS",
+  "detail": "step 17"
+ },
+ {
+  "group": "KEY",
+  "item": "computer standoff 0 screw 1",
+  "status": "PASS",
+  "detail": "step 17"
+ },
+ {
+  "group": "PATH",
+  "item": "18 computer standoff 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "computer standoff 1 screw 0",
+  "status": "PASS",
+  "detail": "step 18"
+ },
+ {
+  "group": "KEY",
+  "item": "computer standoff 1 screw 1",
+  "status": "PASS",
+  "detail": "step 18"
+ },
+ {
+  "group": "PATH",
+  "item": "19 computer and power boards",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "20 battery 13S",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "21 battery BMS, fuse and case, allowance",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "22 upper plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "body post 0 screw high 0",
+  "status": "PASS",
+  "detail": "step 22"
+ },
+ {
+  "group": "KEY",
+  "item": "body post 1 screw high 0",
+  "status": "PASS",
+  "detail": "step 22"
+ },
+ {
+  "group": "KEY",
+  "item": "body post 2 screw high 0",
+  "status": "PASS",
+  "detail": "step 22"
+ },
+ {
+  "group": "KEY",
+  "item": "body post 3 screw high 0",
+  "status": "PASS",
+  "detail": "step 22"
+ },
+ {
+  "group": "PATH",
+  "item": "23 L hip yaw inner retainer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "24 L hip yaw bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "25 L hip yaw retainer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 0",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 1",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 2",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 3",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 4",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 5",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 6",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw retainer screw 7",
+  "status": "PASS",
+  "detail": "step 25"
+ },
+ {
+  "group": "PATH",
+  "item": "26 L hip yaw flange",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 0",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 1",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 2",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 3",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 4",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 5",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 6",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw inner retainer screw 7",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 0",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 1",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 2",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 3",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 4",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 5",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 6",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 7",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw screw 8",
+  "status": "PASS",
+  "detail": "step 26"
+ },
+ {
+  "group": "PATH",
+  "item": "27 L hip yaw beam",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 0",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 1",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 2",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 3",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 4",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 5",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 6",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip yaw beam screw 7",
+  "status": "PASS",
+  "detail": "step 27"
+ },
+ {
+  "group": "PATH",
+  "item": "28 L hip roll cheek F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "29 L hip roll cleat F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat F screw 0",
+  "status": "PASS",
+  "detail": "step 29"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat F screw 1",
+  "status": "PASS",
+  "detail": "step 29"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat F screw 2",
+  "status": "PASS",
+  "detail": "step 29"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cheek F screw 0",
+  "status": "PASS",
+  "detail": "step 29"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cheek F screw 1",
+  "status": "PASS",
+  "detail": "step 29"
+ },
+ {
+  "group": "PATH",
+  "item": "30 L_hip_roll actuator F (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 0",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 1",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 2",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 3",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 4",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 5",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 6",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 7",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 8",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F mount screw 9",
+  "status": "PASS",
+  "detail": "step 30"
+ },
+ {
+  "group": "PATH",
+  "item": "31 L hip roll output F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "32 L hip roll yoke",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 0",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 1",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 2",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 3",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 4",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 5",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 6",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 7",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll F screw 8",
+  "status": "PASS",
+  "detail": "step 32"
+ },
+ {
+  "group": "PATH",
+  "item": "33 L hip roll output B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "34 L_hip_roll actuator B (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 0",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 1",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 2",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 3",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 4",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 5",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 6",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 7",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B screw 8",
+  "status": "PASS",
+  "detail": "step 34"
+ },
+ {
+  "group": "PATH",
+  "item": "35 L hip roll cheek B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 0",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 1",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 2",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 3",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 4",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 5",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 6",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 7",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 8",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll B mount screw 9",
+  "status": "PASS",
+  "detail": "step 35"
+ },
+ {
+  "group": "PATH",
+  "item": "36 L hip roll cleat B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat B screw 0",
+  "status": "PASS",
+  "detail": "step 36"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat B screw 1",
+  "status": "PASS",
+  "detail": "step 36"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cleat B screw 2",
+  "status": "PASS",
+  "detail": "step 36"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cheek B screw 0",
+  "status": "PASS",
+  "detail": "step 36"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip roll cheek B screw 1",
+  "status": "PASS",
+  "detail": "step 36"
+ },
+ {
+  "group": "PATH",
+  "item": "37.1 L hip pitch upright in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "37.2 L_hip_pitch actuator I (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 0",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 1",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 2",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 3",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 4",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 5",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 6",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 7",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 8",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I mount screw 9",
+  "status": "PASS",
+  "detail": "step 37.2"
+ },
+ {
+  "group": "PATH",
+  "item": "37 L hip pitch inner upright",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch upright screw 0",
+  "status": "PASS",
+  "detail": "step 37"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch upright screw 1",
+  "status": "PASS",
+  "detail": "step 37"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch upright screw 2",
+  "status": "PASS",
+  "detail": "step 37"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch upright screw 3",
+  "status": "PASS",
+  "detail": "step 37"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch upright screw 4",
+  "status": "PASS",
+  "detail": "step 37"
+ },
+ {
+  "group": "PATH",
+  "item": "38 L hip pitch output I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 0",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 1",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 2",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 3",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 4",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 5",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 6",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 7",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch I screw 8",
+  "status": "PASS",
+  "detail": "step 38"
+ },
+ {
+  "group": "PATH",
+  "item": "39.1 L thigh plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.2 L thigh spacer hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer hip screw in 0",
+  "status": "PASS",
+  "detail": "step 39.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer hip screw in 1",
+  "status": "PASS",
+  "detail": "step 39.2"
+ },
+ {
+  "group": "PATH",
+  "item": "39.3 L thigh spacer mid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer mid screw in 0",
+  "status": "PASS",
+  "detail": "step 39.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer mid screw in 1",
+  "status": "PASS",
+  "detail": "step 39.3"
+ },
+ {
+  "group": "PATH",
+  "item": "39.4 L thigh plate out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer hip screw out 0",
+  "status": "PASS",
+  "detail": "step 39.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer hip screw out 1",
+  "status": "PASS",
+  "detail": "step 39.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer mid screw out 0",
+  "status": "PASS",
+  "detail": "step 39.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh spacer mid screw out 1",
+  "status": "PASS",
+  "detail": "step 39.4"
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.1 L thigh rear plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.2 L_knee actuator I (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 0",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 1",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 2",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 3",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 4",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 5",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 6",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 7",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 8",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I mount screw 9",
+  "status": "PASS",
+  "detail": "step 39.5.2"
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.3 L knee crank I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 0",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 1",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 2",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 3",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 4",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 5",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 6",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 7",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee I screw 8",
+  "status": "PASS",
+  "detail": "step 39.5.3"
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.4 L knee crank pin I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.5 L knee rod I, L knee rod I bush A, L knee rod I bush B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.7 L thigh tie 0i",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 0i screw rear 0",
+  "status": "PASS",
+  "detail": "step 39.5.7"
+ },
+ {
+  "group": "PATH",
+  "item": "39.5.8 L thigh tie 1i",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 1i screw rear 0",
+  "status": "PASS",
+  "detail": "step 39.5.8"
+ },
+ {
+  "group": "PATH",
+  "item": "39.5 L knee drive I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 0i screw front 0",
+  "status": "PASS",
+  "detail": "step 39.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 1i screw front 0",
+  "status": "PASS",
+  "detail": "step 39.5"
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.1 L thigh rear plate out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.2 L_knee actuator O (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 0",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 1",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 2",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 3",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 4",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 5",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 6",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 7",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 8",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O mount screw 9",
+  "status": "PASS",
+  "detail": "step 39.6.2"
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.3 L knee crank O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 0",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 1",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 2",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 3",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 4",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 5",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 6",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 7",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L knee O screw 8",
+  "status": "PASS",
+  "detail": "step 39.6.3"
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.4 L knee crank pin O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.5 L knee rod O, L knee rod O bush A, L knee rod O bush B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.7 L thigh tie 0o",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 0o screw rear 0",
+  "status": "PASS",
+  "detail": "step 39.6.7"
+ },
+ {
+  "group": "PATH",
+  "item": "39.6.8 L thigh tie 1o",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 1o screw rear 0",
+  "status": "PASS",
+  "detail": "step 39.6.8"
+ },
+ {
+  "group": "PATH",
+  "item": "39.6 L knee drive O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 0o screw front 0",
+  "status": "PASS",
+  "detail": "step 39.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh tie 1o screw front 0",
+  "status": "PASS",
+  "detail": "step 39.6"
+ },
+ {
+  "group": "PATH",
+  "item": "39 L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 0",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 1",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 2",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 3",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 4",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw I 5",
+  "status": "PASS",
+  "detail": "step 39"
+ },
+ {
+  "group": "PATH",
+  "item": "40.1 L hip pitch upright out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "40.2 L_hip_pitch actuator O (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 0",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 1",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 2",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 3",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 4",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 5",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 6",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 7",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 8",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O mount screw 9",
+  "status": "PASS",
+  "detail": "step 40.2"
+ },
+ {
+  "group": "PATH",
+  "item": "40.3 L hip pitch output O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 0",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 1",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 2",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 3",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 4",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 5",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 6",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 7",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch O screw 8",
+  "status": "PASS",
+  "detail": "step 40.3"
+ },
+ {
+  "group": "PATH",
+  "item": "40 L hip pitch outer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw O 0",
+  "status": "PASS",
+  "detail": "step 40"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw O 1",
+  "status": "PASS",
+  "detail": "step 40"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw O 2",
+  "status": "PASS",
+  "detail": "step 40"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw O 3",
+  "status": "PASS",
+  "detail": "step 40"
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh screw O 4",
+  "status": "PASS",
+  "detail": "step 40"
+ },
+ {
+  "group": "PATH",
+  "item": "41 L hip pitch bridge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch bridge screw in 0",
+  "status": "PASS",
+  "detail": "step 41"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch bridge screw in 1",
+  "status": "PASS",
+  "detail": "step 41"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch bridge screw out 0",
+  "status": "PASS",
+  "detail": "step 41"
+ },
+ {
+  "group": "KEY",
+  "item": "L hip pitch bridge screw out 1",
+  "status": "PASS",
+  "detail": "step 41"
+ },
+ {
+  "group": "PATH",
+  "item": "42.1.1 L ankle mount plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "42.1.2 L_ankle_pitch actuator (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 0",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 1",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 2",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 3",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 4",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 5",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 6",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 7",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 8",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle mount screw 9",
+  "status": "PASS",
+  "detail": "step 42.1.2"
+ },
+ {
+  "group": "PATH",
+  "item": "42.1.3 L ankle spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "42.1.4 L ankle plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stack screw 0",
+  "status": "PASS",
+  "detail": "step 42.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stack screw 1",
+  "status": "PASS",
+  "detail": "step 42.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stack screw 2",
+  "status": "PASS",
+  "detail": "step 42.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stack screw 3",
+  "status": "PASS",
+  "detail": "step 42.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stack screw 4",
+  "status": "PASS",
+  "detail": "step 42.1.4"
+ },
+ {
+  "group": "PATH",
+  "item": "42.1.5 L ankle stub",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stub screw 0",
+  "status": "PASS",
+  "detail": "step 42.1.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stub screw 1",
+  "status": "PASS",
+  "detail": "step 42.1.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle stub screw 2",
+  "status": "PASS",
+  "detail": "step 42.1.5"
+ },
+ {
+  "group": "PATH",
+  "item": "42.1 L ankle stack",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle cap screw 0",
+  "status": "PASS",
+  "detail": "step 42.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle cap screw 1",
+  "status": "PASS",
+  "detail": "step 42.2"
+ },
+ {
+  "group": "PATH",
+  "item": "42.3 L shin cleat front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat front cap screw 0",
+  "status": "PASS",
+  "detail": "step 42.3"
+ },
+ {
+  "group": "PATH",
+  "item": "42.4 L shin cleat back",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat back cap screw 0",
+  "status": "PASS",
+  "detail": "step 42.4"
+ },
+ {
+  "group": "PATH",
+  "item": "42.5 L shin tube",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat front wall screw 0",
+  "status": "PASS",
+  "detail": "step 42.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat front wall screw 1",
+  "status": "PASS",
+  "detail": "step 42.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat back wall screw 0",
+  "status": "PASS",
+  "detail": "step 42.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin cleat back wall screw 1",
+  "status": "PASS",
+  "detail": "step 42.5"
+ },
+ {
+  "group": "PATH",
+  "item": "42.6.1 L shin top",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "42.6.2 L shin spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin spacer screw 0",
+  "status": "PASS",
+  "detail": "step 42.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin spacer screw 1",
+  "status": "PASS",
+  "detail": "step 42.6.2"
+ },
+ {
+  "group": "PATH",
+  "item": "42.6.3 L shin hub in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "42.6.4 L shin hub out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin hub screw 0",
+  "status": "PASS",
+  "detail": "step 42.6.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin hub screw 1",
+  "status": "PASS",
+  "detail": "step 42.6.4"
+ },
+ {
+  "group": "PATH",
+  "item": "42.6 L knee top",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw front 0",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw front 1",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw back 0",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw back 1",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw in 0",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw in 1",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw out 0",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "KEY",
+  "item": "L shin top screw out 1",
+  "status": "PASS",
+  "detail": "step 42.6"
+ },
+ {
+  "group": "PATH",
+  "item": "42 L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "43 L knee bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "44 L knee far bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "45 L knee shaft",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "46.1 L knee lever I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "46.2 L knee lever pin I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "46 L knee lever I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "48.1 L knee lever O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "48.2 L knee lever pin O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "48 L knee lever O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "50 L ankle bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "51 L ankle output",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 0",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 1",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 2",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 3",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 4",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 5",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 6",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 7",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle screw 8",
+  "status": "PASS",
+  "detail": "step 51"
+ },
+ {
+  "group": "PATH",
+  "item": "52 L ankle bearing housing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "53.1 L foot plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "53.2 L ankle ear in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear in foot screw 0",
+  "status": "PASS",
+  "detail": "step 53.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear in foot screw 1",
+  "status": "PASS",
+  "detail": "step 53.2"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear in foot screw 2",
+  "status": "PASS",
+  "detail": "step 53.2"
+ },
+ {
+  "group": "PATH",
+  "item": "53.3 L ankle ear out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear out foot screw 0",
+  "status": "PASS",
+  "detail": "step 53.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear out foot screw 1",
+  "status": "PASS",
+  "detail": "step 53.3"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear out foot screw 2",
+  "status": "PASS",
+  "detail": "step 53.3"
+ },
+ {
+  "group": "PATH",
+  "item": "53.4 L shoe rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shoe rear screw 0",
+  "status": "PASS",
+  "detail": "step 53.4"
+ },
+ {
+  "group": "KEY",
+  "item": "L shoe rear screw 1",
+  "status": "PASS",
+  "detail": "step 53.4"
+ },
+ {
+  "group": "PATH",
+  "item": "53.5 L shoe front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L shoe front screw 0",
+  "status": "PASS",
+  "detail": "step 53.5"
+ },
+ {
+  "group": "KEY",
+  "item": "L shoe front screw 1",
+  "status": "PASS",
+  "detail": "step 53.5"
+ },
+ {
+  "group": "PATH",
+  "item": "53.6 L sole rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "53.7 L sole front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "53 L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 0",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 1",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 3",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 4",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle ear screw 5",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle housing screw 0",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle housing screw 1",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "KEY",
+  "item": "L ankle housing screw 2",
+  "status": "PASS",
+  "detail": "step 53"
+ },
+ {
+  "group": "PATH",
+  "item": "54 L thigh cover post out hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "55 L thigh cover post out rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "56 L thigh cover post out knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "57 L thigh cover out hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh cover screw hip 0",
+  "status": "PASS",
+  "detail": "step 57"
+ },
+ {
+  "group": "PATH",
+  "item": "58 L thigh cover out rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh cover screw rear 0",
+  "status": "PASS",
+  "detail": "step 58"
+ },
+ {
+  "group": "PATH",
+  "item": "59 L thigh cover out knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "L thigh cover screw knee 0",
+  "status": "PASS",
+  "detail": "step 59"
+ },
+ {
+  "group": "PATH",
+  "item": "60 R hip yaw inner retainer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "61 R hip yaw bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "62 R hip yaw retainer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 0",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 1",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 2",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 3",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 4",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 5",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 6",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw retainer screw 7",
+  "status": "PASS",
+  "detail": "step 62"
+ },
+ {
+  "group": "PATH",
+  "item": "63 R hip yaw flange",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 0",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 1",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 2",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 3",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 4",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 5",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 6",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw inner retainer screw 7",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 0",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 1",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 2",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 3",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 4",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 5",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 6",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 7",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw screw 8",
+  "status": "PASS",
+  "detail": "step 63"
+ },
+ {
+  "group": "PATH",
+  "item": "64 R hip yaw beam",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 0",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 1",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 2",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 3",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 4",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 5",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 6",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip yaw beam screw 7",
+  "status": "PASS",
+  "detail": "step 64"
+ },
+ {
+  "group": "PATH",
+  "item": "65 R hip roll cheek F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "66 R hip roll cleat F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat F screw 0",
+  "status": "PASS",
+  "detail": "step 66"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat F screw 1",
+  "status": "PASS",
+  "detail": "step 66"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat F screw 2",
+  "status": "PASS",
+  "detail": "step 66"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cheek F screw 0",
+  "status": "PASS",
+  "detail": "step 66"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cheek F screw 1",
+  "status": "PASS",
+  "detail": "step 66"
+ },
+ {
+  "group": "PATH",
+  "item": "67 R_hip_roll actuator F (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 0",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 1",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 2",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 3",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 4",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 5",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 6",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 7",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 8",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F mount screw 9",
+  "status": "PASS",
+  "detail": "step 67"
+ },
+ {
+  "group": "PATH",
+  "item": "68 R hip roll output F",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "69 R hip roll yoke",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 0",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 1",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 2",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 3",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 4",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 5",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 6",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 7",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll F screw 8",
+  "status": "PASS",
+  "detail": "step 69"
+ },
+ {
+  "group": "PATH",
+  "item": "70 R hip roll output B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "71 R_hip_roll actuator B (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 0",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 1",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 2",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 3",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 4",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 5",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 6",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 7",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B screw 8",
+  "status": "PASS",
+  "detail": "step 71"
+ },
+ {
+  "group": "PATH",
+  "item": "72 R hip roll cheek B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 0",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 1",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 2",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 3",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 4",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 5",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 6",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 7",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 8",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll B mount screw 9",
+  "status": "PASS",
+  "detail": "step 72"
+ },
+ {
+  "group": "PATH",
+  "item": "73 R hip roll cleat B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat B screw 0",
+  "status": "PASS",
+  "detail": "step 73"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat B screw 1",
+  "status": "PASS",
+  "detail": "step 73"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cleat B screw 2",
+  "status": "PASS",
+  "detail": "step 73"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cheek B screw 0",
+  "status": "PASS",
+  "detail": "step 73"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip roll cheek B screw 1",
+  "status": "PASS",
+  "detail": "step 73"
+ },
+ {
+  "group": "PATH",
+  "item": "74.1 R hip pitch upright in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "74.2 R_hip_pitch actuator I (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 0",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 1",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 2",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 3",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 4",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 5",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 6",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 7",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 8",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I mount screw 9",
+  "status": "PASS",
+  "detail": "step 74.2"
+ },
+ {
+  "group": "PATH",
+  "item": "74 R hip pitch inner upright",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch upright screw 0",
+  "status": "PASS",
+  "detail": "step 74"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch upright screw 1",
+  "status": "PASS",
+  "detail": "step 74"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch upright screw 2",
+  "status": "PASS",
+  "detail": "step 74"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch upright screw 3",
+  "status": "PASS",
+  "detail": "step 74"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch upright screw 4",
+  "status": "PASS",
+  "detail": "step 74"
+ },
+ {
+  "group": "PATH",
+  "item": "75 R hip pitch output I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 0",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 1",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 2",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 3",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 4",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 5",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 6",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 7",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch I screw 8",
+  "status": "PASS",
+  "detail": "step 75"
+ },
+ {
+  "group": "PATH",
+  "item": "76.1 R thigh plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.2 R thigh spacer hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer hip screw in 0",
+  "status": "PASS",
+  "detail": "step 76.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer hip screw in 1",
+  "status": "PASS",
+  "detail": "step 76.2"
+ },
+ {
+  "group": "PATH",
+  "item": "76.3 R thigh spacer mid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer mid screw in 0",
+  "status": "PASS",
+  "detail": "step 76.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer mid screw in 1",
+  "status": "PASS",
+  "detail": "step 76.3"
+ },
+ {
+  "group": "PATH",
+  "item": "76.4 R thigh plate out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer hip screw out 0",
+  "status": "PASS",
+  "detail": "step 76.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer hip screw out 1",
+  "status": "PASS",
+  "detail": "step 76.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer mid screw out 0",
+  "status": "PASS",
+  "detail": "step 76.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh spacer mid screw out 1",
+  "status": "PASS",
+  "detail": "step 76.4"
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.1 R thigh rear plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.2 R_knee actuator I (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 0",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 1",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 2",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 3",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 4",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 5",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 6",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 7",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 8",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I mount screw 9",
+  "status": "PASS",
+  "detail": "step 76.5.2"
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.3 R knee crank I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 0",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 1",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 2",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 3",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 4",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 5",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 6",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 7",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee I screw 8",
+  "status": "PASS",
+  "detail": "step 76.5.3"
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.4 R knee crank pin I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.5 R knee rod I, R knee rod I bush A, R knee rod I bush B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.7 R thigh tie 0i",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 0i screw rear 0",
+  "status": "PASS",
+  "detail": "step 76.5.7"
+ },
+ {
+  "group": "PATH",
+  "item": "76.5.8 R thigh tie 1i",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 1i screw rear 0",
+  "status": "PASS",
+  "detail": "step 76.5.8"
+ },
+ {
+  "group": "PATH",
+  "item": "76.5 R knee drive I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 0i screw front 0",
+  "status": "PASS",
+  "detail": "step 76.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 1i screw front 0",
+  "status": "PASS",
+  "detail": "step 76.5"
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.1 R thigh rear plate out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.2 R_knee actuator O (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 0",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 1",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 2",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 3",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 4",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 5",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 6",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 7",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 8",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O mount screw 9",
+  "status": "PASS",
+  "detail": "step 76.6.2"
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.3 R knee crank O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 0",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 1",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 2",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 3",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 4",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 5",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 6",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 7",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R knee O screw 8",
+  "status": "PASS",
+  "detail": "step 76.6.3"
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.4 R knee crank pin O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.5 R knee rod O, R knee rod O bush A, R knee rod O bush B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.7 R thigh tie 0o",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 0o screw rear 0",
+  "status": "PASS",
+  "detail": "step 76.6.7"
+ },
+ {
+  "group": "PATH",
+  "item": "76.6.8 R thigh tie 1o",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 1o screw rear 0",
+  "status": "PASS",
+  "detail": "step 76.6.8"
+ },
+ {
+  "group": "PATH",
+  "item": "76.6 R knee drive O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 0o screw front 0",
+  "status": "PASS",
+  "detail": "step 76.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh tie 1o screw front 0",
+  "status": "PASS",
+  "detail": "step 76.6"
+ },
+ {
+  "group": "PATH",
+  "item": "76 R thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 0",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 1",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 2",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 3",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 4",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw I 5",
+  "status": "PASS",
+  "detail": "step 76"
+ },
+ {
+  "group": "PATH",
+  "item": "77.1 R hip pitch upright out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "77.2 R_hip_pitch actuator O (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 0",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 1",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 2",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 3",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 4",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 5",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 6",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 7",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 8",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O mount screw 9",
+  "status": "PASS",
+  "detail": "step 77.2"
+ },
+ {
+  "group": "PATH",
+  "item": "77.3 R hip pitch output O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 0",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 1",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 2",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 3",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 4",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 5",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 6",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 7",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch O screw 8",
+  "status": "PASS",
+  "detail": "step 77.3"
+ },
+ {
+  "group": "PATH",
+  "item": "77 R hip pitch outer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw O 0",
+  "status": "PASS",
+  "detail": "step 77"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw O 1",
+  "status": "PASS",
+  "detail": "step 77"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw O 2",
+  "status": "PASS",
+  "detail": "step 77"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw O 3",
+  "status": "PASS",
+  "detail": "step 77"
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh screw O 4",
+  "status": "PASS",
+  "detail": "step 77"
+ },
+ {
+  "group": "PATH",
+  "item": "78 R hip pitch bridge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch bridge screw in 0",
+  "status": "PASS",
+  "detail": "step 78"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch bridge screw in 1",
+  "status": "PASS",
+  "detail": "step 78"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch bridge screw out 0",
+  "status": "PASS",
+  "detail": "step 78"
+ },
+ {
+  "group": "KEY",
+  "item": "R hip pitch bridge screw out 1",
+  "status": "PASS",
+  "detail": "step 78"
+ },
+ {
+  "group": "PATH",
+  "item": "79.1.1 R ankle mount plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "79.1.2 R_ankle_pitch actuator (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 0",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 1",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 2",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 3",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 4",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 5",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 6",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 7",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 8",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle mount screw 9",
+  "status": "PASS",
+  "detail": "step 79.1.2"
+ },
+ {
+  "group": "PATH",
+  "item": "79.1.3 R ankle spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "79.1.4 R ankle plate in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stack screw 0",
+  "status": "PASS",
+  "detail": "step 79.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stack screw 1",
+  "status": "PASS",
+  "detail": "step 79.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stack screw 2",
+  "status": "PASS",
+  "detail": "step 79.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stack screw 3",
+  "status": "PASS",
+  "detail": "step 79.1.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stack screw 4",
+  "status": "PASS",
+  "detail": "step 79.1.4"
+ },
+ {
+  "group": "PATH",
+  "item": "79.1.5 R ankle stub",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stub screw 0",
+  "status": "PASS",
+  "detail": "step 79.1.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stub screw 1",
+  "status": "PASS",
+  "detail": "step 79.1.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle stub screw 2",
+  "status": "PASS",
+  "detail": "step 79.1.5"
+ },
+ {
+  "group": "PATH",
+  "item": "79.1 R ankle stack",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle cap screw 0",
+  "status": "PASS",
+  "detail": "step 79.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle cap screw 1",
+  "status": "PASS",
+  "detail": "step 79.2"
+ },
+ {
+  "group": "PATH",
+  "item": "79.3 R shin cleat front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat front cap screw 0",
+  "status": "PASS",
+  "detail": "step 79.3"
+ },
+ {
+  "group": "PATH",
+  "item": "79.4 R shin cleat back",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat back cap screw 0",
+  "status": "PASS",
+  "detail": "step 79.4"
+ },
+ {
+  "group": "PATH",
+  "item": "79.5 R shin tube",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat front wall screw 0",
+  "status": "PASS",
+  "detail": "step 79.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat front wall screw 1",
+  "status": "PASS",
+  "detail": "step 79.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat back wall screw 0",
+  "status": "PASS",
+  "detail": "step 79.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin cleat back wall screw 1",
+  "status": "PASS",
+  "detail": "step 79.5"
+ },
+ {
+  "group": "PATH",
+  "item": "79.6.1 R shin top",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "79.6.2 R shin spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin spacer screw 0",
+  "status": "PASS",
+  "detail": "step 79.6.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin spacer screw 1",
+  "status": "PASS",
+  "detail": "step 79.6.2"
+ },
+ {
+  "group": "PATH",
+  "item": "79.6.3 R shin hub in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "79.6.4 R shin hub out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin hub screw 0",
+  "status": "PASS",
+  "detail": "step 79.6.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin hub screw 1",
+  "status": "PASS",
+  "detail": "step 79.6.4"
+ },
+ {
+  "group": "PATH",
+  "item": "79.6 R knee top",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw front 0",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw front 1",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw back 0",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw back 1",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw in 0",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw in 1",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw out 0",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "KEY",
+  "item": "R shin top screw out 1",
+  "status": "PASS",
+  "detail": "step 79.6"
+ },
+ {
+  "group": "PATH",
+  "item": "79 R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "80 R knee bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "81 R knee far bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "82 R knee shaft",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "83.1 R knee lever I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "83.2 R knee lever pin I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "83 R knee lever I",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "85.1 R knee lever O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "85.2 R knee lever pin O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "85 R knee lever O",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "87 R ankle bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "88 R ankle output",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 0",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 1",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 2",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 3",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 4",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 5",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 6",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 7",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle screw 8",
+  "status": "PASS",
+  "detail": "step 88"
+ },
+ {
+  "group": "PATH",
+  "item": "89 R ankle bearing housing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "90.1 R foot plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "90.2 R ankle ear in",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear in foot screw 0",
+  "status": "PASS",
+  "detail": "step 90.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear in foot screw 1",
+  "status": "PASS",
+  "detail": "step 90.2"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear in foot screw 2",
+  "status": "PASS",
+  "detail": "step 90.2"
+ },
+ {
+  "group": "PATH",
+  "item": "90.3 R ankle ear out",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear out foot screw 0",
+  "status": "PASS",
+  "detail": "step 90.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear out foot screw 1",
+  "status": "PASS",
+  "detail": "step 90.3"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear out foot screw 2",
+  "status": "PASS",
+  "detail": "step 90.3"
+ },
+ {
+  "group": "PATH",
+  "item": "90.4 R shoe rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shoe rear screw 0",
+  "status": "PASS",
+  "detail": "step 90.4"
+ },
+ {
+  "group": "KEY",
+  "item": "R shoe rear screw 1",
+  "status": "PASS",
+  "detail": "step 90.4"
+ },
+ {
+  "group": "PATH",
+  "item": "90.5 R shoe front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R shoe front screw 0",
+  "status": "PASS",
+  "detail": "step 90.5"
+ },
+ {
+  "group": "KEY",
+  "item": "R shoe front screw 1",
+  "status": "PASS",
+  "detail": "step 90.5"
+ },
+ {
+  "group": "PATH",
+  "item": "90.6 R sole rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "90.7 R sole front",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "90 R foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 0",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 1",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 3",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 4",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle ear screw 5",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle housing screw 0",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle housing screw 1",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "KEY",
+  "item": "R ankle housing screw 2",
+  "status": "PASS",
+  "detail": "step 90"
+ },
+ {
+  "group": "PATH",
+  "item": "91 R thigh cover post out hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "92 R thigh cover post out rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "93 R thigh cover post out knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "94 R thigh cover out hip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh cover screw hip 0",
+  "status": "PASS",
+  "detail": "step 94"
+ },
+ {
+  "group": "PATH",
+  "item": "95 R thigh cover out rear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh cover screw rear 0",
+  "status": "PASS",
+  "detail": "step 95"
+ },
+ {
+  "group": "PATH",
+  "item": "96 R thigh cover out knee",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "R thigh cover screw knee 0",
+  "status": "PASS",
+  "detail": "step 96"
+ },
+ {
+  "group": "PATH",
+  "item": "97 neck output L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "98 neck output R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "99 neck spine",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 0",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 1",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 2",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 3",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 4",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 5",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 6",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 7",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck L screw 8",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 0",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 1",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 2",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 3",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 4",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 5",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 6",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 7",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "KEY",
+  "item": "neck R screw 8",
+  "status": "PASS",
+  "detail": "step 99"
+ },
+ {
+  "group": "PATH",
+  "item": "100.1 head pitch stator plate L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "100.2 head_pitch actuator L (buy) RS04",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 0",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 1",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 2",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 3",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 4",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 5",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 6",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 7",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 8",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch L mount screw 9",
+  "status": "PASS",
+  "detail": "step 100.2"
+ },
+ {
+  "group": "PATH",
+  "item": "100.3 head pitch drive sprocket L (buy) 13T #40",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 0",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 1",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 2",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 3",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 4",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 5",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 6",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 7",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch screw 8",
+  "status": "PASS",
+  "detail": "step 100.3"
+ },
+ {
+  "group": "PATH",
+  "item": "100 head pitch drive",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "101 head pitch stator tie L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch stator tie L screw 0",
+  "status": "PASS",
+  "detail": "step 101"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch stator tie L screw 1",
+  "status": "PASS",
+  "detail": "step 101"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch stator tie L screw 2",
+  "status": "PASS",
+  "detail": "step 101"
+ },
+ {
+  "group": "PATH",
+  "item": "102 head pitch L bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "103 head pitch R bearing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "104 head pitch sprocket L (buy) 25T #40",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "105 head pitch yoke",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "106 head pitch yoke R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "107 head pitch shaft",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "109 head pitch bridge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch yoke screw 0",
+  "status": "PASS",
+  "detail": "step 109"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch yoke screw 1",
+  "status": "PASS",
+  "detail": "step 109"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch yoke R screw 0",
+  "status": "PASS",
+  "detail": "step 109"
+ },
+ {
+  "group": "KEY",
+  "item": "head pitch yoke R screw 1",
+  "status": "PASS",
+  "detail": "step 109"
+ },
+ {
+  "group": "PATH",
+  "item": "110 head_yaw actuator (buy) RS03",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw mount screw 0",
+  "status": "PASS",
+  "detail": "step 110"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw mount screw 1",
+  "status": "PASS",
+  "detail": "step 110"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw mount screw 2",
+  "status": "PASS",
+  "detail": "step 110"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw mount screw 3",
+  "status": "PASS",
+  "detail": "step 110"
+ },
+ {
+  "group": "PATH",
+  "item": "111 head yaw front post 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 0 screw base 0",
+  "status": "PASS",
+  "detail": "step 111"
+ },
+ {
+  "group": "PATH",
+  "item": "112 head yaw front post 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 1 screw base 0",
+  "status": "PASS",
+  "detail": "step 112"
+ },
+ {
+  "group": "PATH",
+  "item": "113 head yaw front post 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 2 screw base 0",
+  "status": "PASS",
+  "detail": "step 113"
+ },
+ {
+  "group": "PATH",
+  "item": "114 head yaw front post 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 3 screw base 0",
+  "status": "PASS",
+  "detail": "step 114"
+ },
+ {
+  "group": "PATH",
+  "item": "115 head yaw front ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 0",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 1",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 2",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 3",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 4",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 5",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 6",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front ring screw 7",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 0 screw top 0",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 1 screw top 0",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 2 screw top 0",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw front post 3 screw top 0",
+  "status": "PASS",
+  "detail": "step 115"
+ },
+ {
+  "group": "PATH",
+  "item": "116 head yaw output",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 0",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 1",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 2",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 3",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 4",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw screw 5",
+  "status": "PASS",
+  "detail": "step 116"
+ },
+ {
+  "group": "PATH",
+  "item": "117 head yaw plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 0",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 1",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 2",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 3",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 4",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "KEY",
+  "item": "head yaw plate screw 5",
+  "status": "PASS",
+  "detail": "step 117"
+ },
+ {
+  "group": "PATH",
+  "item": "118 head roll cradle",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll cradle screw 0",
+  "status": "PASS",
+  "detail": "step 118"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll cradle screw 1",
+  "status": "PASS",
+  "detail": "step 118"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll cradle screw 2",
+  "status": "PASS",
+  "detail": "step 118"
+ },
+ {
+  "group": "PATH",
+  "item": "119 head_roll actuator (buy) RS03",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll mount screw 0",
+  "status": "PASS",
+  "detail": "step 119"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll mount screw 1",
+  "status": "PASS",
+  "detail": "step 119"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll mount screw 2",
+  "status": "PASS",
+  "detail": "step 119"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll mount screw 3",
+  "status": "PASS",
+  "detail": "step 119"
+ },
+ {
+  "group": "PATH",
+  "item": "120 head roll front post 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 0 screw base 0",
+  "status": "PASS",
+  "detail": "step 120"
+ },
+ {
+  "group": "PATH",
+  "item": "121 head roll front post 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 1 screw base 0",
+  "status": "PASS",
+  "detail": "step 121"
+ },
+ {
+  "group": "PATH",
+  "item": "122 head roll front post 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 2 screw base 0",
+  "status": "PASS",
+  "detail": "step 122"
+ },
+ {
+  "group": "PATH",
+  "item": "123 head roll front post 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 3 screw base 0",
+  "status": "PASS",
+  "detail": "step 123"
+ },
+ {
+  "group": "PATH",
+  "item": "124 head roll front ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 0",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 1",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 2",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 3",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 4",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 5",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 6",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front ring screw 7",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 0 screw top 0",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 1 screw top 0",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 2 screw top 0",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll front post 3 screw top 0",
+  "status": "PASS",
+  "detail": "step 124"
+ },
+ {
+  "group": "PATH",
+  "item": "125 head roll output",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 0",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 1",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 2",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 3",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 4",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "KEY",
+  "item": "head roll screw 5",
+  "status": "PASS",
+  "detail": "step 125"
+ },
+ {
+  "group": "PATH",
+  "item": "126.1 head main frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "126.2 head rail L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw main 0",
+  "status": "PASS",
+  "detail": "step 126.2"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw main 1",
+  "status": "PASS",
+  "detail": "step 126.2"
+ },
+ {
+  "group": "PATH",
+  "item": "126.3 head rail R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw main 0",
+  "status": "PASS",
+  "detail": "step 126.3"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw main 1",
+  "status": "PASS",
+  "detail": "step 126.3"
+ },
+ {
+  "group": "PATH",
+  "item": "126.4 head rear frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw rear 0",
+  "status": "PASS",
+  "detail": "step 126.4"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw rear 1",
+  "status": "PASS",
+  "detail": "step 126.4"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw rear 0",
+  "status": "PASS",
+  "detail": "step 126.4"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw rear 1",
+  "status": "PASS",
+  "detail": "step 126.4"
+ },
+ {
+  "group": "PATH",
+  "item": "126.5 head front frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw front 0",
+  "status": "PASS",
+  "detail": "step 126.5"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail L screw front 1",
+  "status": "PASS",
+  "detail": "step 126.5"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw front 0",
+  "status": "PASS",
+  "detail": "step 126.5"
+ },
+ {
+  "group": "KEY",
+  "item": "head rail R screw front 1",
+  "status": "PASS",
+  "detail": "step 126.5"
+ },
+ {
+  "group": "PATH",
+  "item": "126.6 head beak lug L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head beak lug L screw 0",
+  "status": "PASS",
+  "detail": "step 126.6"
+ },
+ {
+  "group": "KEY",
+  "item": "head beak lug L screw 1",
+  "status": "PASS",
+  "detail": "step 126.6"
+ },
+ {
+  "group": "PATH",
+  "item": "126.7 head beak lug R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head beak lug R screw 0",
+  "status": "PASS",
+  "detail": "step 126.7"
+ },
+ {
+  "group": "KEY",
+  "item": "head beak lug R screw 1",
+  "status": "PASS",
+  "detail": "step 126.7"
+ },
+ {
+  "group": "PATH",
+  "item": "126.8 head beak mount",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head beak mount screw L 0",
+  "status": "PASS",
+  "detail": "step 126.8"
+ },
+ {
+  "group": "KEY",
+  "item": "head beak mount screw L 1",
+  "status": "PASS",
+  "detail": "step 126.8"
+ },
+ {
+  "group": "KEY",
+  "item": "head beak mount screw R 0",
+  "status": "PASS",
+  "detail": "step 126.8"
+ },
+ {
+  "group": "KEY",
+  "item": "head beak mount screw R 1",
+  "status": "PASS",
+  "detail": "step 126.8"
+ },
+ {
+  "group": "PATH",
+  "item": "126.9 beak actuator (buy) RS00",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "126.10 head boards and camera",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "126 head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 0",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 1",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 2",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 3",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 4",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "KEY",
+  "item": "head main frame screw 5",
+  "status": "PASS",
+  "detail": "step 126"
+ },
+ {
+  "group": "PATH",
+  "item": "127.1 beak tray frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "127.2 beak hinge L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "beak hinge L screw 0",
+  "status": "PASS",
+  "detail": "step 127.2"
+ },
+ {
+  "group": "KEY",
+  "item": "beak hinge L screw 1",
+  "status": "PASS",
+  "detail": "step 127.2"
+ },
+ {
+  "group": "PATH",
+  "item": "127.3 beak hinge R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "KEY",
+  "item": "beak hinge R screw 0",
+  "status": "PASS",
+  "detail": "step 127.3"
+ },
+ {
+  "group": "KEY",
+  "item": "beak hinge R screw 1",
+  "status": "PASS",
+  "detail": "step 127.3"
+ },
+ {
+  "group": "PATH",
+  "item": "127 beak",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "printed panels",
+  "status": "PASS",
+  "detail": "54 panels and covers aren't in the order: their fixings aren't designed"
+ }
+]
