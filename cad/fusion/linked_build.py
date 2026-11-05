@@ -379,6 +379,8 @@ def run(_context: str):
                 if r.isOutOfDate:
                     n.add(r.dataFile.name)
                     r.getLatestVersion()
+            if RECIPE == 'big':                   # its links come from earlier turns too, and a reference shows as out of date only after a while: wait for them all (one count stopped at 9 of 16, and left the old thigh in)
+                return all(asm.documentReferences.item(k).dataFile.versionNumber == asm.documentReferences.item(k).dataFile.latestVersionNumber for k in range(asm.documentReferences.count))
             return len(n) >= len(rebuilt)
         wait(latest, seconds=180, what=f'references, {sorted(n)} of {rebuilt}')
         print('refreshed', sorted(n), round(time.time() - t0), 's')
