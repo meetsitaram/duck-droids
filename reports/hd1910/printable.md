@@ -44,7 +44,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | head roll spacer | 0 mm2 overhang, 147 mm2 on the bed, 2 mm tall |
 | PASS | head roll rear spacer | 23 mm2 overhang, 156 mm2 on the bed, 2 mm tall |
 | PASS | head frame | 5486 mm2 overhang, 300 mm2 on the bed, 141 mm tall |
-| PASS | hood | 2919 mm2 overhang, 276 mm2 on the bed, 150 mm tall |
+| PASS | hood | 2911 mm2 overhang, 276 mm2 on the bed, 150 mm tall |
 | PASS | jaw | 925 mm2 overhang, 3037 mm2 on the bed, 42 mm tall |
 | PASS | jaw soft insert | 0 mm2 overhang, 2661 mm2 on the bed, 5 mm tall |
 | PASS | mouth roof | 15 mm2 overhang, 3935 mm2 on the bed, 3 mm tall |
@@ -212,7 +212,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | WARN | body shell | 1516 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head fork | 425 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head frame | 5486 mm2 needs support or a bridge: check it in the slicer |
-| WARN | hood | 2919 mm2 needs support or a bridge: check it in the slicer |
+| WARN | hood | 2911 mm2 needs support or a bridge: check it in the slicer |
 | WARN | jaw | 925 mm2 needs support or a bridge: check it in the slicer |
 
 ## SKIN
