@@ -23,7 +23,7 @@ ELEC = ('camera', 'IMU', 'head 5 V regulator', 'L 5 V regulator', 'R 5 V regulat
 
 def stage_of(body_name, comp_name):
     n = body_name
-    if any(k in comp_name for k in (' XL330 ', ' STS3215 ')) or 'actuator' in n:
+    if any(k in comp_name for k in (' XL330 ', ' STS3215 ', ' HD1910 ')) or 'actuator' in n:
         return 'motors'
     if comp_name in ('Pi Zero 2 W', 'Waveshare bus board') or n.startswith('battery') or n in ELEC or 'cable plugs' in n or 'standoff' in n:
         return 'electronics'

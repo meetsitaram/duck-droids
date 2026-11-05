@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1094 checks: 1094 pass, 0 warn, **0 fail**
+1174 checks: 1174 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -304,10 +304,10 @@ From tools/assembly.py
 | PASS | L knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
 | PASS | L thigh cover screw hip | M2 x 6: bites 3.0 mm |
 | PASS | L thigh cover screw knee | M2 x 6: bites 3.0 mm |
-| PASS | L ankle boss screw 0 | M2 flat x 5: bites 2.5 mm |
-| PASS | L ankle boss screw 1 | M2 flat x 5: bites 2.5 mm |
-| PASS | L ankle boss screw 2 | M2 flat x 5: bites 2.5 mm |
-| PASS | L ankle boss screw 3 | M2 flat x 5: bites 2.5 mm |
+| PASS | L ankle boss screw 0 | M2 flat x 4: bites 1.9 mm |
+| PASS | L ankle boss screw 1 | M2 flat x 4: bites 1.9 mm |
+| PASS | L ankle boss screw 2 | M2 flat x 4: bites 1.9 mm |
+| PASS | L ankle boss screw 3 | M2 flat x 4: bites 1.9 mm |
 | PASS | L ankle pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | L ankle pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | L shoe bottom screw 0 | M3 x 12: bites 6.0 mm |
@@ -340,10 +340,10 @@ From tools/assembly.py
 | PASS | R knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
 | PASS | R thigh cover screw hip | M2 x 6: bites 3.0 mm |
 | PASS | R thigh cover screw knee | M2 x 6: bites 3.0 mm |
-| PASS | R ankle boss screw 0 | M2 flat x 5: bites 2.5 mm |
-| PASS | R ankle boss screw 1 | M2 flat x 5: bites 2.5 mm |
-| PASS | R ankle boss screw 2 | M2 flat x 5: bites 2.5 mm |
-| PASS | R ankle boss screw 3 | M2 flat x 5: bites 2.5 mm |
+| PASS | R ankle boss screw 0 | M2 flat x 4: bites 1.9 mm |
+| PASS | R ankle boss screw 1 | M2 flat x 4: bites 1.9 mm |
+| PASS | R ankle boss screw 2 | M2 flat x 4: bites 1.9 mm |
+| PASS | R ankle boss screw 3 | M2 flat x 4: bites 1.9 mm |
 | PASS | R ankle pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
 | PASS | R ankle pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | R shoe bottom screw 0 | M3 x 12: bites 6.0 mm |
@@ -410,14 +410,14 @@ From tools/assembly.py
 | PASS | head pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | head pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | neck pitch fork screw horn 0 | M2 x 6: bites 2.3 mm |
-| PASS | neck pitch fork screw horn 1 | M2 x 6: bites 2.3 mm |
-| PASS | neck pitch fork screw horn 2 | M2 x 6: bites 2.3 mm |
-| PASS | neck pitch fork screw horn 3 | M2 x 6: bites 2.3 mm |
-| PASS | neck pitch fork screw rear 0 | M2 x 6: bites 2.9 mm |
-| PASS | neck pitch fork screw rear 1 | M2 x 6: bites 2.9 mm |
-| PASS | neck pitch fork screw rear 2 | M2 x 6: bites 2.9 mm |
-| PASS | neck pitch fork screw rear 3 | M2 x 6: bites 2.9 mm |
+| PASS | neck pitch fork screw horn 0 | M2 x 5: bites 1.9 mm |
+| PASS | neck pitch fork screw horn 1 | M2 x 5: bites 1.9 mm |
+| PASS | neck pitch fork screw horn 2 | M2 x 5: bites 1.9 mm |
+| PASS | neck pitch fork screw horn 3 | M2 x 5: bites 1.9 mm |
+| PASS | neck pitch fork screw rear 0 | M2 x 5: bites 2.5 mm |
+| PASS | neck pitch fork screw rear 1 | M2 x 5: bites 2.5 mm |
+| PASS | neck pitch fork screw rear 2 | M2 x 5: bites 2.5 mm |
+| PASS | neck pitch fork screw rear 3 | M2 x 5: bites 2.5 mm |
 | PASS | body screw 0 | M2 x 6: bites 3.0 mm |
 | PASS | body screw 1 | M2 x 6: bites 3.0 mm |
 | PASS | head yaw cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
@@ -442,14 +442,14 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw rear near 0 | M2 x 8: bites 4.0 mm |
 | PASS | beak cradle screw rear near 1 | M2 x 8: bites 4.0 mm |
-| PASS | head pitch fork screw horn 0 | M2 x 6: bites 2.4 mm |
-| PASS | head pitch fork screw horn 1 | M2 x 6: bites 2.4 mm |
-| PASS | head pitch fork screw horn 2 | M2 x 6: bites 2.4 mm |
-| PASS | head pitch fork screw horn 3 | M2 x 6: bites 2.4 mm |
-| PASS | head pitch fork screw rear 0 | M2 x 6: bites 2.9 mm |
-| PASS | head pitch fork screw rear 1 | M2 x 6: bites 2.9 mm |
-| PASS | head pitch fork screw rear 2 | M2 x 6: bites 2.9 mm |
-| PASS | head pitch fork screw rear 3 | M2 x 6: bites 2.9 mm |
+| PASS | head pitch fork screw horn 0 | M2 x 5: bites 2.0 mm |
+| PASS | head pitch fork screw horn 1 | M2 x 5: bites 2.0 mm |
+| PASS | head pitch fork screw horn 2 | M2 x 5: bites 2.0 mm |
+| PASS | head pitch fork screw horn 3 | M2 x 5: bites 2.0 mm |
+| PASS | head pitch fork screw rear 0 | M2 x 5: bites 2.5 mm |
+| PASS | head pitch fork screw rear 1 | M2 x 5: bites 2.5 mm |
+| PASS | head pitch fork screw rear 2 | M2 x 5: bites 2.5 mm |
+| PASS | head pitch fork screw rear 3 | M2 x 5: bites 2.5 mm |
 | PASS | head roll fork screw horn 0 | M2 x 8: bites 3.8 mm |
 | PASS | head roll fork screw horn 1 | M2 x 8: bites 3.8 mm |
 | PASS | head roll fork screw horn 2 | M2 x 8: bites 3.8 mm |
@@ -466,10 +466,10 @@ From tools/assembly.py
 | PASS | Pi screw 1 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 2 | M2 x 6: bites 3.0 mm |
 | PASS | Pi screw 3 | M2 x 6: bites 3.0 mm |
-| PASS | beak fork screw horn 0 | M2 x 6: bites 2.3 mm |
-| PASS | beak fork screw horn 1 | M2 x 6: bites 2.3 mm |
-| PASS | beak fork screw horn 2 | M2 x 6: bites 2.3 mm |
-| PASS | beak fork screw horn 3 | M2 x 6: bites 2.3 mm |
+| PASS | beak fork screw horn 0 | M2 x 5: bites 1.9 mm |
+| PASS | beak fork screw horn 1 | M2 x 5: bites 1.9 mm |
+| PASS | beak fork screw horn 2 | M2 x 5: bites 1.9 mm |
+| PASS | beak fork screw horn 3 | M2 x 5: bites 1.9 mm |
 | PASS | hood rear screw 0 | M2 x 8: bites 4.0 mm |
 | PASS | hood rear screw 1 | M2 x 8: bites 4.0 mm |
 | PASS | R hinge screw | M3 x 10: bites 4.3 mm |
@@ -1066,6 +1066,91 @@ From tools/assembly.py
 | PASS | R ankle pitch |  |
 | PASS | head yaw |  |
 | PASS | head roll |  |
+
+## HORNTIP
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip yaw fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip yaw fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip yaw fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip yaw fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip yaw fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip yaw fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip yaw fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip roll fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip roll fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip roll fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip roll fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip roll fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip roll fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip roll fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip roll fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip pitch fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip pitch fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip pitch fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L hip pitch fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip pitch fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip pitch fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip pitch fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R hip pitch fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L knee fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L knee fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L knee fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L knee fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R knee fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R knee fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R knee fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R knee fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle boss screw 0 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle boss screw 1 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle boss screw 2 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle boss screw 3 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle pitch fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle pitch fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle pitch fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | L ankle pitch fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle boss screw 0 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle boss screw 1 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle boss screw 2 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle boss screw 3 | 1.9 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle pitch fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle pitch fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle pitch fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | R ankle pitch fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw horn 0 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw horn 1 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw horn 2 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw horn 3 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw rear 0 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw rear 1 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw rear 2 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | neck pitch fork screw rear 3 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw horn 0 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw horn 1 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw horn 2 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw horn 3 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw rear 0 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw rear 1 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw rear 2 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head pitch fork screw rear 3 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | head yaw fork screw horn 0 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head yaw fork screw horn 1 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head yaw fork screw horn 2 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head yaw fork screw horn 3 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw horn 0 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw horn 1 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw horn 2 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw horn 3 | 2.5 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw rear 0 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw rear 1 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw rear 2 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | head roll fork screw rear 3 | 2.1 mm below the horn's face, 2.8 of room above the case |
+| PASS | beak fork screw horn 0 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | beak fork screw horn 1 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | beak fork screw horn 2 | 2.0 mm below the horn's face, 2.8 of room above the case |
+| PASS | beak fork screw horn 3 | 2.0 mm below the horn's face, 2.8 of room above the case |
 
 ## ALL
 

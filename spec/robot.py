@@ -346,6 +346,12 @@ def servo_geoms(j, color=BLACK):
             p_, q_ = at(f, u0, -(wh or W / 2), a0), at(f, u1, wh or W / 2, a1)
             bx.append([[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]])
         case = dict(case, kind='stepbox', boxes=bx)
+    if 'rear_stub' in a and 'ankle' not in j['name'] and (j['remote'] or not j.get('fork', True)):   # an HD-1910 with its rear horn off (an ankle keeps its, in its rear boss): the tube the horn turned on stays, 2.5 mm proud of the rear face, and whatever lies there needs a hole for it
+        f = servo_frame(j)
+        st = a['rear_stub']
+        p_, q_ = at(f, -a['shaft_x'] - st['r'], -st['r'], -H / 2 - st['h']), at(f, -a['shaft_x'] + st['r'], st['r'], -H / 2)
+        hb = [c[k] - size[k] / 2 for k in range(3)], [c[k] + size[k] / 2 for k in range(3)]
+        case = dict(case, kind='stepbox', boxes=[[list(hb[0]), list(hb[1])], [[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]]])
     # the horn as it really is: its top 'horn_top' off the case, whatever the plate's height. Where the plate is higher, a printed boss comes down onto it
     # (mount_geoms). Drawn tall enough to reach the plate, it fooled THREAD and FIT for two whole builds: the user asked what held the servo on this side
     real = a.get('horn_top', j['stack'])
@@ -646,7 +652,8 @@ def mount_geoms(j):
             u_, w_ = -sx + hr * math.cos(t), hr * math.sin(t)
             dn = 0.0016 if nm in j.get('sink', ()) else 0.0
             fk.append(fast(lcyl(f'{n} fork screw {nm} {k}', f, u_, w_, a0 - sg * dn + sg * 0.00075, sh, 0.0015, DARK, 'decal'),
-                           'M3' if sts else 'M2', (0.010 if nm in bg else 0.008) if sts else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
+                           # (an HD-1910's horn holes run out after 2.5 mm, with 0.5 mm of air to the case: an M2 x 6 through a 3 mm plate lying on its horn would drag on the case. check_horn_tips)
+                           'M3' if sts else 'M2', (0.010 if nm in bg else 0.008) if sts else 0.005 if 'centre_screw' in A and not dn and nm not in bg and hh <= A['horn_top'] + 1e-9 else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
                            [-sg * v for v in f[3]]))
     return cr, fk
 
@@ -873,7 +880,7 @@ link('L_knee_link', 0.05, [
     # (it was M3 at 45 degrees on every variant: an XL330's idler has M2 holes at 0 and 90)
     *[fast(cyl(f'L ankle boss screw {k}', (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.00175,
                                            ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), 'y', 0.0027 if 'steps' in AK else 0.0019, 0.0005, DARK, 'decal'),
-           'M3 flat' if 'steps' in AK else 'M2 flat', 0.006 if 'steps' in AK else 0.005, (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.002,
+           'M3 flat' if 'steps' in AK else 'M2 flat', 0.006 if 'steps' in AK else 0.004 if 'centre_screw' in AK else 0.005, (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.002,
                               ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), (0, 1, 0)) for k in range(4)],
     dict(cyl('L ankle bearing inner race', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 + RACE, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),

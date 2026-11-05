@@ -321,7 +321,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -339,7 +339,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -357,7 +357,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 2",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -375,7 +375,7 @@
   "group": "THREAD",
   "item": "L ankle boss screw 3",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1071,7 +1071,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1089,7 +1089,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1107,7 +1107,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 2",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -1125,7 +1125,7 @@
   "group": "THREAD",
   "item": "R ankle boss screw 3",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 flat x 4: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2535,7 +2535,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2553,7 +2553,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2571,7 +2571,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2589,7 +2589,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2607,7 +2607,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw rear 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -2625,7 +2625,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw rear 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -2643,7 +2643,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw rear 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -2661,7 +2661,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw rear 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -3219,7 +3219,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.4 mm"
+  "detail": "M2 x 5: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3237,7 +3237,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.4 mm"
+  "detail": "M2 x 5: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3255,7 +3255,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.4 mm"
+  "detail": "M2 x 5: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3273,7 +3273,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.4 mm"
+  "detail": "M2 x 5: bites 2.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3291,7 +3291,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -3309,7 +3309,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -3327,7 +3327,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -3345,7 +3345,7 @@
   "group": "THREAD",
   "item": "head pitch fork screw rear 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 5: bites 2.5 mm"
  },
  {
   "group": "ACCESS",
@@ -3681,7 +3681,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3699,7 +3699,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3717,7 +3717,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3735,7 +3735,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.3 mm"
+  "detail": "M2 x 5: bites 1.9 mm"
  },
  {
   "group": "ACCESS",
@@ -6016,6 +6016,486 @@
   "item": "head roll",
   "status": "PASS",
   "detail": ""
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip yaw fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip yaw fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip yaw fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip yaw fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip yaw fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip yaw fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip yaw fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip yaw fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip roll fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip roll fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip roll fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip roll fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip roll fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip roll fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L hip pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R hip pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L knee fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L knee fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L knee fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L knee fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R knee fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R knee fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R knee fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R knee fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle boss screw 0",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle boss screw 1",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle boss screw 2",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle boss screw 3",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "L ankle pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle boss screw 0",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle boss screw 1",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle boss screw 2",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle boss screw 3",
+  "status": "PASS",
+  "detail": "1.9 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "R ankle pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw rear 0",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw rear 1",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw rear 2",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "neck pitch fork screw rear 3",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw rear 0",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw rear 1",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw rear 2",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head pitch fork screw rear 3",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head yaw fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head yaw fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head yaw fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head yaw fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.5 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw rear 0",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw rear 1",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw rear 2",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "head roll fork screw rear 3",
+  "status": "PASS",
+  "detail": "2.1 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "beak fork screw horn 0",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "beak fork screw horn 1",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "beak fork screw horn 2",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
+ },
+ {
+  "group": "HORNTIP",
+  "item": "beak fork screw horn 3",
+  "status": "PASS",
+  "detail": "2.0 mm below the horn's face, 2.8 of room above the case"
  },
  {
   "group": "ALL",
