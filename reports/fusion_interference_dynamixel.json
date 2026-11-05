@@ -275,16 +275,6 @@
 8.19
 ],
 [
-"L shoe bottom screw 0",
-"L sole",
-8.04
-],
-[
-"L shoe bottom screw 1",
-"L sole",
-8.04
-],
-[
 "R shoe bottom screw 0",
 "R sole",
 8.04
@@ -292,6 +282,16 @@
 [
 "R shoe bottom screw 1",
 "R sole",
+8.04
+],
+[
+"L shoe bottom screw 0",
+"L sole",
+8.04
+],
+[
+"L shoe bottom screw 1",
+"L sole",
 8.04
 ],
 [
@@ -875,6 +875,11 @@
 2.16
 ],
 [
+"R shin",
+"R ankle bearing inner race",
+1.73
+],
+[
 "neck column",
 "neck lid",
 0.83
@@ -1013,6 +1018,11 @@
 "head fork",
 "head yaw sheet",
 0.32
+],
+[
+"head yaw bracket",
+"head roll lid",
+0.22
 ],
 [
 "chassis",
