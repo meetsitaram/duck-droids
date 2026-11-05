@@ -359,7 +359,11 @@ def run(_context: str):
     print(f'links: {len(rebuilt)} rebuilt {rebuilt}, {len(kept)} unchanged, {round(time.time() - t0)} s')
     print('verify', len(parts), 'bad', json.dumps(bad))
     t0 = time.time()
-    have = files(fd)
+    # (2026-11-05: a run that failed after saving its links still left them in the manifest. The next run said "nothing changed" over a stale clash report. So links stay owed until the assembly has taken them)
+    owed_path = os.path.join(os.environ['TEMP'], f'duck_fusion_owed_{RECIPE}.json')
+    owed = sorted(set(json.load(open(owed_path)) if os.path.exists(owed_path) else []) | set(rebuilt))
+    json.dump(owed, open(owed_path, 'w'))
+    have = wait(lambda: files(fd), what='the hub file list')      # just after a save it can raise status.isOk() && files
     if RECIPE == 'big' and (not BIG_ASSEMBLY or any(f'{RECIPE} {n}' not in have or n not in man for n in s['links'])):
         print('not yet: links left', [n for n in s['links'] if f'{RECIPE} {n}' not in have or n not in man], 'seconds so far', round(time.time() - t00))
         close_all(app)
@@ -370,7 +374,7 @@ def run(_context: str):
         asm, d = make_assembly(app, s, have, fd, aname)
         check_assembly(app, s, d)
         asm.save('joints checked')
-    elif rebuilt:
+    elif owed:
         asm = app.documents.open(have[aname])
         d = adsk.fusion.Design.cast(app.activeProduct)
         n = set()
@@ -388,8 +392,9 @@ def run(_context: str):
         wait(latest, seconds=180, what=f'references, {sorted(n)} of {rebuilt}')
         print('refreshed', sorted(n), round(time.time() - t0), 's')
         check_assembly(app, s, d)
-        asm.save(f'refreshed: {len(rebuilt)} links')
+        asm.save(f'refreshed: {len(owed)} links')
     else:
         print('nothing changed: the assembly stands')
+    os.remove(owed_path)
     close_all(app)
     print('assembly', round(time.time() - t0), 's, total', round(time.time() - t00), 's; open', app.documents.count)
