@@ -23,13 +23,7 @@ So it is not a fair comparison. It's quick partly because the frames have no hol
 
 ## The hang
 
-The first full build held Fusion far too long. Links, clashes and pictures were written by about 00:42, 6 minutes in. The call then didn't return, and the client gave up at its 40-minute limit. The lease ran out at 01:01, after hd1910 had waited 22 minutes. A lease that ends doesn't stop the call behind it, so the next agent's turn was no use either.
-
-At 01:21 Fusion still showed "big assembly", not responding, and using some CPU. Its top-level windows showed no dialog, but the window couldn't be captured, so a dialog isn't ruled out. The cause isn't known. The step after the pictures is saving the assembly, so that's the first place to look. So `pipeline.sh` now stops the big duck before its assembly, unless told `BIG_ASSEMBLY=True`, and the assembly isn't to be run again without asking.
-
-Fusion was force-quit at 05:52, which discarded whatever was unsaved in it. The coordinator found 17 files in my-projects / duck-droids / big, and none for this duck in tinkerbuggy: the title's project name didn't mean a file landed there. On 2026-11-05 at about 06:18, Fusion stopped responding again on the hybrid's assembly, so this isn't only the big duck's size. The same stage is the one to suspect in both, but neither cause is known.
-
-For the next try, `linked_build.py` logs each stage to `reports/big/fusion_log.txt` as it happens, takes pictures of each link, and for this duck makes its assembly in one call and checks it in another (`BIG_CHECK_ONLY=True`), closing without a second save.
+The first full build held Fusion for 25 minutes past its turn: links, clashes and pictures were done 6 minutes in, and the call never returned. It wasn't this duck's size or its assembly. The coordinator traced it to `close_all` in `linked_build.py`, which looped forever on a link that refused to close, and it stopped the hybrid's assembly the same way. It's now bounded. The printed results were lost with that call, which is why the joint limits below are unknown.
 
 ## Clashes
 
