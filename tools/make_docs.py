@@ -235,8 +235,8 @@ def guide():
             continue
         if G.RECIPE == 'feetech' and os.path.exists(os.path.join(G.out_path('docs/images/assembly'), 'clips', f'{k}.gif')):
             L += [f'## {TITLE[k]}', '', f'![{TITLE[k]}](../images/assembly/feetech/clips/{k}.gif)', '', f'[Sharper, with controls (MP4)](../images/assembly/feetech/clips/{k}.mp4)', '']
-        elif G.RECIPE == 'feetech':
-            L += [f'## {TITLE[k]}', '']
+        elif G.RECIPE == 'feetech':            # (until the build video exists: the spec's own animation, tools/render_assembly.py)
+            L += [f'## {TITLE[k]}', '', f'![{TITLE[k]}](../images/assembly/feetech/{k}.gif)', '']
         elif G.RECIPE == 'dynamixel':            # clips from the build video: tools/cut_clips.py
             L += [f'## {TITLE[k]}', '', f'![{TITLE[k]}](../images/assembly/dynamixel/clips/{k}.gif)', '', f'[Sharper, with controls (MP4)](../images/assembly/dynamixel/clips/{k}.mp4)', '']
         else:
