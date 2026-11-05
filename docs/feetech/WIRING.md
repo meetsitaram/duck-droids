@@ -67,6 +67,10 @@ Each servo has 2 sockets, wired through, and the 15 share one bus with IDs 1-15.
 
 3 bundles go through the neck joints and the head's +/- 2.5 rad of yaw: the battery pair, socket 2's lead, and 4 IMU wires. Leave a loop for each joint's whole range, tie them to the column, and move every joint by hand, end to end, before powering up.
 
+## In the head
+
+The Pi and the board stand in front of the head frame's plate, and the servos behind it. That plate runs nearly the width of the head, so everything that crosses it goes **over its top**, with about 20 mm under the hood, or round its ends. The bundles from the neck come up through the opening in the head's base, beside the yaw bracket. The board's servo sockets are on the side away from the regulator and its power terminals on the other, so the regulator's 2 input wires pass the board's edge: in the model, nothing but its plugs is there. The wires aren't modelled, so route them on the bench and check the head's whole range of roll.
+
 ## Where the wires go
 
 The sockets are on each servo's rear face, 11.4-16.5 mm from the shaft, side by side. A plug stands 7 mm off that face, and its wires need 3 mm more to turn.
