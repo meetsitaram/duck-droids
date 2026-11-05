@@ -45,13 +45,13 @@
   "group": "targets",
   "item": "body_width_m",
   "status": "PASS",
-  "detail": "0.067 (microduck 0.064 x 1.12 = 0.072 +/- 12 %)"
+  "detail": "0.074 (microduck 0.064 x 1.12 = 0.072 +/- 12 %)"
  },
  {
   "group": "targets",
   "item": "overall_width_m",
   "status": "PASS",
-  "detail": "0.141 (microduck 0.141 x 1.12 = 0.158 +/- 12 %)"
+  "detail": "0.147 (microduck 0.141 x 1.12 = 0.158 +/- 12 %)"
  },
  {
   "group": "targets",
@@ -63,7 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "0.929 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "1.024 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+ },
+ {
+  "group": "printable",
+  "item": "largest part",
+  "status": "PASS",
+  "detail": "245 printed parts; largest head: 150 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -146,6 +152,12 @@
  {
   "group": "axis",
   "item": "head_roll",
+  "status": "PASS",
+  "detail": "HD1910_C001 0.0 mm off the axis"
+ },
+ {
+  "group": "axis",
+  "item": "beak",
   "status": "PASS",
   "detail": "HD1910_C001 0.0 mm off the axis"
  },
@@ -685,19 +697,13 @@
  },
  {
   "group": "skin",
-  "item": "battery 2S 500 mAh",
+  "item": "battery 2S 450 mAh",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "servo bus board",
-  "status": "PASS",
-  "detail": "0.48 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "5 V regulator and IMU",
+  "item": "IMU",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -709,25 +715,19 @@
  },
  {
   "group": "skin",
-  "item": "L thigh plate",
+  "item": "body post 0",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "R thigh plate",
+  "item": "body post 1",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
   "item": "head frame",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "head top plate",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -751,19 +751,49 @@
  },
  {
   "group": "skin",
-  "item": "L head hinge boss",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
   "item": "R head hinge boss",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "camera mount",
+  "item": "Pi mount",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi mount 2",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi plate",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 0",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 1",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 2",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi boss 3",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -781,7 +811,55 @@
  },
  {
   "group": "skin",
-  "item": "lower shell beam",
+  "item": "Pi board tab",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "bus board standoff 0",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "bus board standoff 1",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "bus board standoff 2",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "bus board standoff 3",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Waveshare bus board",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "L base riser top",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "head 5 V regulator",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi base tab",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -825,7 +903,7 @@
   "group": "sweep",
   "item": "head_pitch",
   "status": "WARN",
-  "detail": "[-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.27 rad (pose-dependent)"
+  "detail": "[-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.20 rad (pose-dependent)"
  },
  {
   "group": "sweep",
@@ -837,7 +915,7 @@
   "group": "sweep",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "[-0.38, +0.38] rad clear"
+  "detail": "[-0.24, +0.24] rad clear"
  },
  {
   "group": "sweep",
@@ -903,7 +981,7 @@
   "group": "poses",
   "item": "single-leg stance (walking): balance",
   "status": "WARN",
-  "detail": "CoM 2.8 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll)"
+  "detail": "CoM 2.9 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll)"
  },
  {
   "group": "poses",
@@ -975,73 +1053,73 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.20 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 55 % used"
- },
- {
-  "group": "torque",
-  "item": "L_knee",
-  "status": "PASS",
-  "detail": "0.16 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 43 % used"
- },
- {
-  "group": "torque",
-  "item": "R_knee",
-  "status": "PASS",
-  "detail": "0.16 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 43 % used"
+  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 66 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.15 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 40 % used"
+  "detail": "0.18 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 50 % used"
+ },
+ {
+  "group": "torque",
+  "item": "L_knee",
+  "status": "PASS",
+  "detail": "0.18 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 49 % used"
+ },
+ {
+  "group": "torque",
+  "item": "R_knee",
+  "status": "PASS",
+  "detail": "0.18 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 49 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 20 % used"
+  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 25 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 20 % used"
+  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 25 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.18 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.47 N m (1 x HD1910_C001): 19 % used"
+  "detail": "0.21 N m x 1.5 in 'single-leg stance (walking)' vs peak 1.47 N m (1 x HD1910_C001): 21 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.06 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 15 % used"
- },
- {
-  "group": "torque",
-  "item": "R_ankle_pitch",
-  "status": "PASS",
-  "detail": "0.04 N m in 'stand (microduck stance)' vs rated 0.36 N m (1 x HD1910_C001): 10 % used"
+  "detail": "0.06 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 18 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'stand (microduck stance)' vs rated 0.36 N m (1 x HD1910_C001): 10 % used"
+  "detail": "0.04 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 11 % used"
  },
  {
   "group": "torque",
-  "item": "L_hip_yaw",
+  "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 10 % used"
+  "detail": "0.04 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 11 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_yaw",
   "status": "PASS",
-  "detail": "0.03 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 9 % used"
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 11 % used"
+ },
+ {
+  "group": "torque",
+  "item": "L_hip_yaw",
+  "status": "PASS",
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 11 % used"
  },
  {
   "group": "torque",
@@ -1051,14 +1129,14 @@
  },
  {
   "group": "torque",
-  "item": "head_yaw",
+  "item": "head_roll",
   "status": "PASS",
-  "detail": "0.00 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 1 % used"
+  "detail": "0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 1 % used"
  },
  {
   "group": "torque",
-  "item": "head_roll",
+  "item": "head_yaw",
   "status": "PASS",
-  "detail": "0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 0 % used"
+  "detail": "0.00 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 0 % used"
  }
 ]
