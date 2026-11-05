@@ -135,7 +135,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | head pitch lid | 0.2 cm3, designed 0.2: 0 % off |
 | PASS | head fork | 8.9 cm3, designed 9.0: 2 % off |
 | PASS | head yaw sheet | 0.8 cm3, designed 0.8: 0 % off |
-| PASS | head yaw bracket | 5.5 cm3, designed 5.7: 3 % off |
+| PASS | head yaw bracket | 5.6 cm3, designed 5.7: 2 % off |
 | PASS | head roll lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | head roll spacer | 0.3 cm3, designed 0.3: 0 % off |
 | PASS | head roll rear spacer | 0.3 cm3, designed 0.3: 0 % off |
@@ -208,7 +208,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L hip pitch lid | 0 % of its surface is under 0.8 mm thick |
 | PASS | L knee lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | L thigh cover | 1 % of its surface is under 0.8 mm thick |
-| PASS | L shin | 1 % of its surface is under 0.8 mm thick |
+| PASS | L shin | 2 % of its surface is under 0.8 mm thick |
 | PASS | L shoe | 5 % of its surface is under 0.8 mm thick |
 | PASS | L sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | L inner ear | 0 % of its surface is under 0.8 mm thick |

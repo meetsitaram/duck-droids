@@ -267,7 +267,7 @@
   "group": "THIN",
   "item": "L shin",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -945,7 +945,7 @@
   "group": "VOLUME",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "5.5 cm3, designed 5.7: 3 % off"
+  "detail": "5.6 cm3, designed 5.7: 2 % off"
  },
  {
   "group": "BED",
