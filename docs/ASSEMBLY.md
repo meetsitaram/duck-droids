@@ -193,6 +193,10 @@ Then the same for the right side, mirrored.
 13. 2 screws up through the band into the hood's back *(2 x M2 x 8 mm, small Phillips)*
 14. A 0.5 mm washer, and the hinge screw on the far side holds the jaw and the hood *(1 x M3 x 10 mm, 2.5 mm hex)*
 
+## 12. Try every joint
+
+Move each joint by hand, slowly, through its range, with the power off. Nothing should catch or bind.
+
 ## Wires
 
 See [WIRING.md](WIRING.md). **Tie the ankle's wires up against its rail:** the shoe's ear passes close by them past 1 rad.
