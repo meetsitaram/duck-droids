@@ -18,7 +18,9 @@ Tools: a small Phillips driver, 2 and 2.5 mm hex keys, soldering iron (a grown-u
 
 ## 1. Thighs
 
-![1. Thighs](../images/assembly/feetech/thigh_L.gif)
+![1. Thighs](../images/assembly/feetech/clips/thigh_L.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/thigh_L.mp4)
 
 > ⚠ The cable sockets are on each servo's rear face, behind a window in the plate. Plug the cables in from outside, before the cover, with room to turn the wires under it.
 
@@ -39,7 +41,9 @@ Then the same for the right side, mirrored.
 
 ## 2. Shins and ankles
 
-![2. Shins and ankles](../images/assembly/feetech/shin_L.gif)
+![2. Shins and ankles](../images/assembly/feetech/clips/shin_L.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/shin_L.mp4)
 
 > ⚠ The rear-horn screws go in before the bearing: the bearing covers them.
 
@@ -57,7 +61,9 @@ Then the same for the right side, mirrored.
 
 ## 3. Shoes
 
-![3. Shoes](../images/assembly/feetech/shoe_L.gif)
+![3. Shoes](../images/assembly/feetech/clips/shoe_L.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/shoe_L.mp4)
 
 **Screws for this section:** 2 x M3 x 12 mm (each side)
 
@@ -68,7 +74,9 @@ Then the same for the right side, mirrored.
 
 ## 4. Join each leg
 
-![4. Join each leg](../images/assembly/feetech/leg_L.gif)
+![4. Join each leg](../images/assembly/feetech/clips/leg_L.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/leg_L.mp4)
 
 > ⚠ The roll bracket goes onto the hip horn here, on the bench: once the leg is on the robot, the roll servo blocks those 4 screws.
 
@@ -85,7 +93,9 @@ Then the same for the right side, mirrored.
 
 ## 5. Chassis and hips
 
-![5. Chassis and hips](../images/assembly/feetech/body.gif)
+![5. Chassis and hips](../images/assembly/feetech/clips/body.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/body.mp4)
 
 > ⚠ Screw on the yaw brackets **before** the roll servos: the roll servos cover those screws.
 
@@ -108,7 +118,9 @@ Then the same for the right side, mirrored.
 
 ## 6. Legs onto the hips
 
-![6. Legs onto the hips](../images/assembly/feetech/legs.gif)
+![6. Legs onto the hips](../images/assembly/feetech/clips/legs.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/legs.mp4)
 
 > 🔌 Plug the leg's lead into the roll servo as it comes on, with slack for the hip's whole range.
 
@@ -121,7 +133,9 @@ Then the same for the right side, mirrored.
 
 ## 7. Neck column
 
-![7. Neck column](../images/assembly/feetech/column.gif)
+![7. Neck column](../images/assembly/feetech/clips/column.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/column.mp4)
 
 > ⚠ Fit both horns to each servo before it goes in, at mid-range.
 
@@ -137,7 +151,9 @@ Then the same for the right side, mirrored.
 
 ## 8. Neck and body shell
 
-![8. Neck and body shell](../images/assembly/feetech/torso.gif)
+![8. Neck and body shell](../images/assembly/feetech/clips/torso.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/torso.mp4)
 
 > ⚠ Do the neck before the body shell: the shell blocks the neck's horn screws. Do the shell before the head: the head will not pass through its slot.
 
@@ -153,7 +169,9 @@ Then the same for the right side, mirrored.
 
 ## 9. Head yaw and roll
 
-![9. Head yaw and roll](../images/assembly/feetech/headbench.gif)
+![9. Head yaw and roll](../images/assembly/feetech/clips/headbench.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/headbench.mp4)
 
 > ⚠ The head yaw servo's screws under the bridge go in here, on the bench: once this is on the neck, they cannot be reached.
 
@@ -173,7 +191,9 @@ Then the same for the right side, mirrored.
 
 ## 9b. The head frame and the beak servo
 
-![9b. The head frame and the beak servo](../images/assembly/feetech/framebench.gif)
+![9b. The head frame and the beak servo](../images/assembly/feetech/clips/framebench.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/framebench.mp4)
 
 > 🔌 The beak servo ends the head's chain: one lead, in its upper socket, plugged in before it goes in. Turn its wires back toward the rear at once: there is no room to leave them straight.
 
@@ -185,14 +205,18 @@ Then the same for the right side, mirrored.
 
 ## 10. The jaw
 
-![10. The jaw](../images/assembly/feetech/jawbench.gif)
+![10. The jaw](../images/assembly/feetech/clips/jawbench.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/jawbench.mp4)
 
 1. The jaw
 2. Glue in its soft insert
 
 ## 11. The head
 
-![11. The head](../images/assembly/feetech/head.gif)
+![11. The head](../images/assembly/feetech/clips/head.gif)
+
+[Sharper, with controls (MP4)](../images/assembly/feetech/clips/head.mp4)
 
 > ⚠ The beak servo goes into the head frame first, on the bench: the roll servo blocks its screws afterwards. The jaw goes in before the hood. The far hinge screw and the 2 at the back hold the hood on, so they are last.
 
