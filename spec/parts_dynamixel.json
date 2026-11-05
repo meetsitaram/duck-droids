@@ -10861,7 +10861,7 @@
 "hood rear tab 1",
 "R hood step"
 ],
-"volume_cm3": 48.685432121408354,
+"volume_cm3": 48.56819828465298,
 "print_T": [
 [
 0.0,
@@ -11844,7 +11844,8 @@
 "battery balance plug"
 ],
 "head 5 V regulator": [
-"head 5 V regulator"
+"head 5 V regulator",
+"head regulator plug"
 ],
 "IMU": [
 "IMU"
