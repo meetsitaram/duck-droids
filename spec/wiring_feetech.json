@@ -388,13 +388,21 @@
    "from": "hub.l",
    "to": "left.in",
    "kind": "servo",
-   "label": "V, G from battery"
+   "label": "V, G from battery",
+   "label_at": [
+    1385,
+    786
+   ]
   },
   {
    "from": "hub.r",
    "to": "right.in",
    "kind": "servo",
-   "label": "V, G from battery"
+   "label": "V, G from battery",
+   "label_at": [
+    1385,
+    838
+   ]
   },
   {
    "from": "battery.balance",
