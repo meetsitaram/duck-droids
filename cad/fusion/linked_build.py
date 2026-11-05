@@ -165,8 +165,28 @@ def big_hollow(name, s, occ, wall=0.003):
 
 
 def close_all(app):
-    while app.documents.count:                    # closing an assembly can close its linked documents too
-        app.documents.item(app.documents.count - 1).close(False)
+    """Closing an assembly can close its linked documents too, and a link can refuse to close while its assembly is open. So assemblies first, and this always ends.
+    (2026-11-05: `while count: item(last).close()` spun forever on a link that refused, on Fusion's main thread. It froze Fusion for 5 hours, and looked like a big model's fault)"""
+    for _ in range(300):
+        n = app.documents.count
+        if not n:
+            return
+        def refs(x):
+            try:
+                return x.documentReferences.count
+            except RuntimeError:                  # a link opened by its assembly: Fusion won't say
+                return -1
+        for doc in sorted((app.documents.item(i) for i in range(n)), key=lambda x: -refs(x)):
+            try:
+                doc.close(False)
+            except RuntimeError:
+                pass
+            adsk.doEvents()
+            if app.documents.count < n:
+                break
+        else:
+            print('close_all: these would not close:', [app.documents.item(i).name for i in range(n)])
+            return
 
 
 def make_assembly(app, s, have, fd, aname):
