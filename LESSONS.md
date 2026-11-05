@@ -344,3 +344,7 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 - **Look at the file's splits.** The first boolean to cut the rotor failed on faces nearly coincident with the cutter (ASM_INCONS_FACE). Move the cutter's faces into air: every other try worked.
 - **A long comment can go stale in the same file.** `ZP`'s said 0.634 for a value of 0.674. Print it.
 
+
+## Small fixes: STEP, videos, plugs (2026-11-05)
+
+- **A script that names its duck exports the wrong one.** `export_step.py` said `RECIPE = 'hybrid'`: run for another duck by hand it would rewrite the hybrid's STEP. Every Fusion script takes `--recipe` through `fusion_call.py`; `pipeline.sh step` runs it in a turn of its own and counts the STEP's solids (`MANIFOLD_SOLID_BREP`), as a file can be written with none.

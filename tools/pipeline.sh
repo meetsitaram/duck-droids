@@ -5,7 +5,8 @@
 #   ... pipeline.sh fusion    linked Fusion build, prints from Fusion, audit: 10 min the first time, then 1-3 min, as it rebuilds only the links that changed
 #   ... pipeline.sh final     the one-document Fusion build, for the repo's .f3d (about 12 min). Milestones only
 #   ... pipeline.sh reveal    the one-document build and the 30-second reveal's frames, in one turn (about 40 min)
-#   ... pipeline.sh video     the 5-minute build and the guide's clips (about 10 min; needs Fusion's bodies from `fusion` or `reveal`)
+#   ... pipeline.sh step      the STEP, from the document final or reveal saved in the hub, in a turn of its own (a minute or two)
+#   ... pipeline.sh video    the 5-minute build and the guide's clips (about 10 min; needs Fusion's bodies from `fusion` or `reveal`)
 #
 # Stops at the first failing gate. Reads the whole of each check's output, as a failure isn't always on its last line.
 RECIPE=${MILLI_RECIPE:?set MILLI_RECIPE}
@@ -158,6 +159,14 @@ case $1 in
     "$FF" -y -loglevel error -i "$D/reveal_30s.mp4" -vf "fps=12,scale=360:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=4" "$D/reveal.gif"
     ls -la "$D/reveal_30s.mp4" "$D/reveal.gif"
     ;;
+  step)
+    # after final or reveal, in its own turn: straight after a first save Fusion won't reopen the document, and a STEP of it has no solids
+    take fusion 5 "$RECIPE STEP export"
+    fusion_run cad/fusion/export_step.py 4
+    n=$(grep -c "MANIFOLD_SOLID_BREP" "cad/duck-droids-$RECIPE.step")
+    echo "[step] cad/duck-droids-$RECIPE.step: $(wc -c < "cad/duck-droids-$RECIPE.step") bytes, $n solids"
+    [ "$n" -gt 0 ] || { echo "STOPPED: the STEP has no solids"; exit 1; }
+    ;;
   video)
     # the film uses Fusion's rounded bodies, and without them falls back on the spec's sharp shapes without a word
     [ -d "${TEMP:-/tmp}/duck_fusion_stl/$RECIPE" ] || { echo "no Fusion bodies for $RECIPE: run pipeline.sh fusion first"; exit 1; }
@@ -172,7 +181,7 @@ case $1 in
     ls -la "$D/build_5min.mp4"
     ;;
   *)
-    echo "gates, fusion, final, reveal or video"
+    echo "gates, fusion, final, reveal, step or video"
     exit 2
     ;;
 esac
