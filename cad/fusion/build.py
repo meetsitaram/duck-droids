@@ -63,6 +63,7 @@ def finish(g):
 FIGREFS = os.path.join(os.environ.get('TEMP', ''), 'figrefs')
 BLACK_CASE, BLACK_HORN, BLACK_SCREW, CREAM, WINDOW, LABEL = '#17181A', '#141517', '#0D0E10', '#EFEBDD', '#BDC1C2', '#8E9194'
 XL_FILE, XL_O = 'koch-v1-1/Robotis_DYNAMIXEL_XL330_M288_T.STEP', (11.65, 221.06, 33.39)
+HD_FILE = 'feetech-hd1910/HD-1910-C001-20260902.stp'
 REAL = {
     'XL330': dict(
         name='XL330', o=XL_O, ux=(1, 0, 0), az=(0, 0, -1),
@@ -77,7 +78,42 @@ REAL = {
         case=('SO-ARM100/STEP/SO100/STS3215_03a.step', {'Body1': ('case', BLACK_CASE, 'matte')}),
         horn=('SO-ARM100/STEP/SO100/STS3215_03a.step', {'Body1': ('horn', ALU, 'metal')}),
         idler=('SO-ARM100/STEP/SO100/Passive_Horn_01.step', {'Body1': ('rear horn', ALU, 'metal')}), idler_frame=((0, 0, -14.9), (1, 0, 0), (0, 0, -1))),
+    # Feetech's own file, an assembly: its solids sit in nested components with repeated names, so they're told apart by where they are (HD_PIECES). In the file, mm: shaft on z at x = y = 0, the far end toward -y, horn up.
+    # The rear tube the rear horn turns on is part of its bottom case, and stays where the horn comes off. Its output gear is inside the case, and left out
+    'HD1910': dict(
+        name='HD1910', o=(0, -7.5, -8.0), ux=(0, -1, 0), az=(0, 0, 1), by_place=True,
+        case=(HD_FILE, {'case middle': ('case middle', BLACK_CASE, 'matte'), 'case top': ('case top', BLACK_CASE, 'matte'), 'case bottom': ('case bottom', BLACK_CASE, 'matte'),
+                        'case screw 0': ('case screw 0', BLACK_SCREW, 'gloss'), 'case screw 1': ('case screw 1', BLACK_SCREW, 'gloss'), 'case screw 2': ('case screw 2', BLACK_SCREW, 'gloss'), 'case screw 3': ('case screw 3', BLACK_SCREW, 'gloss'),
+                        'socket 0': ('socket 0', CREAM, 'matte'), 'socket 1': ('socket 1', CREAM, 'matte')}),
+        horn=(HD_FILE, {'horn': ('horn', BLACK_HORN, 'matte'), 'centre screw': ('centre screw', BLACK_SCREW, 'gloss')}),
+        idler=(HD_FILE, {'idler': ('idler', BLACK_HORN, 'matte'), 'idler screw': ('idler screw', BLACK_SCREW, 'gloss')})),
 }
+
+
+def hd_pieces(comp):
+    """The HD-1910 file's solids by name, from where each one lies (cm in Fusion). See REAL['HD1910']."""
+    found, screws, sockets = {}, [], []
+    occs = [comp.allOccurrences.item(i) for i in range(comp.allOccurrences.count)]
+    for b in [comp.bRepBodies.item(i) for i in range(comp.bRepBodies.count)] + [o.bRepBodies.item(i) for o in occs for i in range(o.bRepBodies.count)]:
+        lo, hi = b.boundingBox.minPoint, b.boundingBox.maxPoint
+        dx, dz, zc = (hi.x - lo.x) * 10, (hi.z - lo.z) * 10, (hi.z + lo.z) * 5
+        if dz > 20:
+            screws.append((round(lo.x, 3), round(lo.y, 3), b))
+        elif dx < 4:
+            sockets.append((round(lo.x, 3), b))
+        elif dx > 19:
+            found['case top' if zc > 0 else 'case bottom' if dz < 10 else 'case middle'] = b
+        elif dx < 6:
+            found['centre screw' if zc > -8 else 'idler screw'] = b
+        elif dz > 12:
+            found['gear'] = b
+        else:
+            found['horn' if zc > -8 else 'idler'] = b
+    for k, s in enumerate(sorted(screws, key=lambda t: t[:2])):
+        found[f'case screw {k}'] = s[2]
+    for k, s in enumerate(sorted(sockets, key=lambda t: t[0])):
+        found[f'socket {k}'] = s[1]
+    return found
 
 
 SOFT_R = 0.1            # cm: the finished part's edges. Its pockets and holes are cut afterwards, so whatever a servo or a bearing fits against stays crisp (the user)
@@ -204,7 +240,7 @@ def look_check():
 
 
 def real_model(act):
-    return 'XL330' if act.startswith(('XL330', 'XC330')) else 'STS3215' if act.startswith('STS3215') else None
+    return 'XL330' if act.startswith(('XL330', 'XC330')) else 'STS3215' if act.startswith('STS3215') else 'HD1910' if act.startswith('HD1910') else None
 
 
 def real_skip(s):
@@ -242,7 +278,7 @@ def _temp_bodies(model, piece):
         raise RuntimeError(f'{path} is missing: python -I tools/fetch_servo_cad.py')
     im = app().importManager
     src = im.importToTarget2(im.createSTEPImportOptions(path), design().rootComponent).item(0)
-    have = _bodies(src.component)
+    have = hd_pieces(src.component) if R.get('by_place') else _bodies(src.component)
     tbm = adsk.fusion.TemporaryBRepManager.get()
     out = []
     for key_, (nm, col, fin) in table.items():

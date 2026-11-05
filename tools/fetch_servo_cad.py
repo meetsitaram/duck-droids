@@ -14,7 +14,9 @@ SO = 'https://raw.githubusercontent.com/TheRobotStudio/SO-ARM100/main/STEP/SO100
 FILES = {'koch-v1-1/Robotis_DYNAMIXEL_XL330_M288_T.STEP': KOCH + 'Robotis_DYNAMIXEL_XL330_M288_T.STEP',
          'koch-v1-1/Robotis_FPX330_H101.STEP': KOCH + 'Robotis_FPX330_H101.STEP',
          'SO-ARM100/STEP/SO100/STS3215_03a.step': SO + 'STS3215_03a.step',
-         'SO-ARM100/STEP/SO100/Passive_Horn_01.step': SO + 'Passive_Horn_01.step'}
+         'SO-ARM100/STEP/SO100/Passive_Horn_01.step': SO + 'Passive_Horn_01.step',
+         # Feetech's own model of the HD-1910-C001, its horns and leads' sockets, linked from the FEETECH wiki's page for the servo. No licence stated: THIRD_PARTY_NOTICES.md
+         'feetech-hd1910/HD-1910-C001-20260902.stp': 'https://ftservo.github.io/ftservo-wiki/en/products/models/hd-1910-c001/images/HD-1910-C001-20260902.stp'}
 for rel, url in FILES.items():
     p = os.path.join(ROOT, rel)
     if os.path.exists(p):

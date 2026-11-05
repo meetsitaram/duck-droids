@@ -60,12 +60,25 @@ RECIPES = {
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
-    # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit.
-    # Its case is the XL330's but 3 mm shorter along the shaft, and its horn stands proud: the bearing seats and horn plates here allow for that, and no part of any such build is used
-    'hd1910': dict(yaw='HD1910_C001', leg='HD1910_C001', neck='HD1910_C001', head='HD1910_C001', head2='HD1910_C001', K=0.84, HK=1.14,
-                   battery=dict(name='battery 2S 500 mAh', size=(0.012, 0.050, 0.025), mass=0.030),
-                   ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.38, 0.38)),
-                   short=0.003, target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, plate_back=0.005),
+    # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit. No part of any such build is used.
+    # Built up from a draft to the all-Dynamixel duck's standard (2026-11-05): the same flags, for the same reasons, as the HD-1910's case is the XL330's size to the 0.1 mm (Feetech's STEP file and drawing). What differs is
+    # in hd_facts, from Feetech's own spec sheet: a rear horn fitted, on a 5 mm tube that stays if it comes off; 2.0 mm plugs, which don't fit the Waveshare board's 2.5 mm sockets; no idlers to buy
+    'hd1910': dict(plate_y=0.0235, plate_in=0.0022, yaw='HD1910_C001', leg='HD1910_C001', neck='HD1910_C001', head='HD1910_C001', head2='HD1910_C001', K=0.84, HK=1.14,
+                   hd_facts=dict(
+                       mass=0.021, peak_nm=1.47, rated_nm=0.363, noload_rads=11.8, gear=320.0, volts=7.4, stall_a=2.0, rated_a=0.9,
+                       connector='AMP2.0-3P, 2.0 mm pitch, 2 sockets; 15 cm lead, all 3 wires black: pin 1 signal, 2 Vcc, 3 ground',
+                       case_screw='M2 x 8 tap (bought)', horn_screw='M2 machine (the horn is drawn 8-M2.0: bought)',
+                       horn_hole_deg=[0, 90, 180, 270],   # 8 in the horn, at 45 deg; the 4 on the axes, as the XL330's, so the same plates fit
+                       horn_hole_depth=0.0025,            # the disc's 2.5 mm, open underneath, then 0.5 mm of air to the case
+                       centre_screw=dict(r=0.00242, proud=0.0008, proud_rear=0.0004),     # M2.5 x 6, standing proud of each horn: every plate needs a hole
+                       rear_stub=dict(r=0.0025, h=0.0025),   # the rear horn turns on a 5 mm tube of the case. Take the horn off and this stays
+                       mount_source="FEETECH spec sheet HD-1910-C001 A/0, 2026-09-07, and STEP HD-1910-C001-20260902.stp from the FEETECH wiki (ftservo.github.io/ftservo-wiki), measured: "
+                                    "case 34 x 20 x 23, horn top 3.0 off the case, shaft 7.5 off centre, frame holes 1.6 at 30 x 16, through: 4.5 mm of plastic at the rear, 2.3 at the front under a 1.2 mm counterbore; horn 16 dia with 8 holes on a 12 circle. "
+                                    "At 7.4 V, +/- 10 %: 15 kg cm stall, 2 A, 113 rev/min; 3.7 kg cm rated, 0.9 A. Armature, damping and friction are still estimates, from the XL330's"),
+                   battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
+                   beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
+                   ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
+                   target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005, thigh_post_r=0.0045),
     # every joint a Feetech, on the 2S pack, no 5 V servo rail. The head and neck grow round the bigger case: Q, the head's plain internal
     # lengths over the hybrid's (the case's width over the XL330's), the hood to match
     'feetech': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='STS3215_C044', head='STS3215_C044', head2='STS3215_C046', K=1.0, HK=1.46, Q=1.235,
@@ -111,6 +124,8 @@ if 'xl330_2s' in R:
     # stall from microduck's identification; rated and no-load speed scaled from ROBOTIS's 5 V numbers (rated by the stall's ratio, speed by
     # the voltage's): estimates, to measure on a real servo. Running past 6 V is microduck's choice: expect less life than ROBOTIS rates
     ACT['XL330_M288'] = dict(ACT['XL330_M288'], **R['xl330_2s'])
+if 'hd_facts' in R:
+    ACT['HD1910_C001'] = dict(ACT['HD1910_C001'], **R['hd_facts'])
 RANGE = dict(dict(hip=(-1.3, 0.43), knee=(-1.1, 1.05), ankle=(-1.3, 1.3), head_roll=(-0.44, 0.44)), **R.get('ranges', {}))
 
 LINKS, JOINTS = {}, []
@@ -353,6 +368,12 @@ def servo_geoms(j, color=BLACK):
             p_, q_ = at(f, u0, -(wh or W / 2), a0), at(f, u1, wh or W / 2, a1)
             bx.append([[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]])
         case = dict(case, kind='stepbox', boxes=bx)
+    if 'rear_stub' in a and 'ankle' not in j['name'] and (j['remote'] or not j.get('fork', True)):   # an HD-1910 with its rear horn off (an ankle keeps its, in its rear boss): the tube the horn turned on stays, 2.5 mm proud of the rear face, and whatever lies there needs a hole for it
+        f = servo_frame(j)
+        st = a['rear_stub']
+        p_, q_ = at(f, -a['shaft_x'] - st['r'], -st['r'], -H / 2 - st['h']), at(f, -a['shaft_x'] + st['r'], st['r'], -H / 2)
+        hb = [c[k] - size[k] / 2 for k in range(3)], [c[k] + size[k] / 2 for k in range(3)]
+        case = dict(case, kind='stepbox', boxes=[[list(hb[0]), list(hb[1])], [[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]]])
     # the horn as it really is: its top 'horn_top' off the case, whatever the plate's height. Where the plate is higher, a printed boss comes down onto it
     # (mount_geoms). Drawn tall enough to reach the plate, it fooled THREAD and FIT for two whole builds: the user asked what held the servo on this side
     real = a.get('horn_top', j['stack'])
@@ -658,7 +679,8 @@ def mount_geoms(j):
             u_, w_ = -sx + hr * math.cos(t), hr * math.sin(t)
             dn = 0.0016 if nm in j.get('sink', ()) else 0.0
             fk.append(fast(lcyl(f'{n} fork screw {nm} {k}', f, u_, w_, a0 - sg * dn + sg * 0.00075, sh, 0.0015, DARK, 'decal'),
-                           'M3' if sts else 'M2', (0.012 if nm == 'rear' and j.get('rear_stack') else 0.010 if nm in bg else 0.008) if sts else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
+                           # (an HD-1910's horn holes run out after 2.5 mm, with 0.5 mm of air to the case: an M2 x 6 through a 3 mm plate lying on its horn would drag on the case. check_horn_tips)
+                           'M3' if sts else 'M2', (0.012 if nm == 'rear' and j.get('rear_stack') else 0.010 if nm in bg else 0.008) if sts else 0.005 if 'centre_screw' in A and not dn and nm not in bg and hh <= A['horn_top'] + 1e-9 else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
                            [-sg * v for v in f[3]]))
     return cr, fk
 
@@ -853,7 +875,7 @@ link('L_hip_pitch_link', 0.10, [
     fast(cyl('L thigh cover screw knee', (XK, THIGH_Y[1] + 0.0003, ZK), 'y', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.006,
          (XK, THIGH_Y[1], ZK), (0, -1, 0)),
     # the plate now sits 6 mm under the cover's face: posts take those screws
-    *[dict(cyl(f'L thigh post {nm}', (x_, (YT_CASE[1] + MT - 0.0005 + THIGH_Y[1] - 0.0015) / 2, z_), 'y', 0.003, THIGH_Y[1] - 0.0015 - (YT_CASE[1] + MT - 0.0005), DARK), exposed=True)
+    *[dict(cyl(f'L thigh post {nm}', (x_, (YT_CASE[1] + MT - 0.0005 + THIGH_Y[1] - 0.0015) / 2, z_), 'y', R.get('thigh_post_r', 0.003), THIGH_Y[1] - 0.0015 - (YT_CASE[1] + MT - 0.0005), DARK), exposed=True)
       for nm, x_, z_ in (('hip', 0.0, ZP), ('knee', XK, ZK))],
     # the wires' way from the plugs round the plate to the open inside of the cover: the windows run out through its edge
     cut(box('L thigh wire notch hip', (-(SH / 2) - 0.0005, YT_CASE[1] - 0.001, ZP + 0.0090), (-0.0105, YT_CASE[1] + MT + 0.001, ZP + 0.030), DARK), 'L thigh plate'),
@@ -890,7 +912,7 @@ link('L_knee_link', 0.05, [
     # (it was M3 at 45 degrees on every variant: an XL330's idler has M2 holes at 0 and 90)
     *[fast(cyl(f'L ankle boss screw {k}', (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.00175,
                                            ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), 'y', 0.0027 if 'steps' in AK else 0.0019, 0.0005, DARK, 'decal'),
-           'M3 flat' if 'steps' in AK else 'M2 flat', 0.006 if 'steps' in AK else 0.005, (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.002,
+           'M3 flat' if 'steps' in AK else 'M2 flat', 0.006 if 'steps' in AK else 0.004 if 'centre_screw' in AK else 0.005, (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.002,
                               ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), (0, 1, 0)) for k in range(4)],
     dict(cyl('L ankle bearing inner race', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 + RACE, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),
@@ -1370,7 +1392,7 @@ def build():
         if not j['remote']:
             links[horn_link]['geoms'].append(horn)
         cradle, fork = mount_geoms(j)
-        if j['act'].startswith(('XL330', 'XC330')):      # the wires out of its side notches
+        if j['act'].startswith(('XL330', 'XC330', 'HD1910')):      # the wires out of its side notches
             f, n = servo_frame(j), j['name'].replace('_', ' ')
             if BUSES == 1 and n[2:] in XL_REAR:
                 A_ = ACT[j['act']]['box'][2] / 2
@@ -1454,6 +1476,32 @@ def build():
             c = list(j['origin'])
             c[k] += j['out'] * 0.003
             links[horn_link]['geoms'].append(cut(cyl(f'{n} horn screw access', c, j['axis'], 0.0032, 0.016, DARK, 'struct'), *names))
+    # an HD-1910's rear horn has its own centre screw, its head 0.4 mm proud: a shallow recess in whatever lies on that horn (tools/real_fit.py found it, against Feetech's model)
+    for j in joints:
+        A_ = ACT[j['act']]
+        if 'centre_screw' not in A_ or j['remote'] or not (j.get('fork', True) or 'ankle' in j['name']):
+            continue
+        n = j['name'].replace('_', ' ')
+        k = 'xyz'.index(j['axis'])
+        q_ = list(j['act_c'])
+        q_[k] -= j['out'] * (A_['box'][2] / 2 + A_['horn_top'] + 0.0003)
+        for ln_, l_ in links.items():
+            names = [g['name'] for g in l_['geoms'] if g['role'] != 'cut' and on_plate(g, q_)]
+            if names:
+                c = list(q_)
+                c[k] += j['out'] * 0.0002                      # 0.3 mm deeper than the head stands, and into the horn's own air on the other side
+                l_['geoms'].append(cut(cyl(f'{n} rear screw recess {ln_}', c, j['axis'], 0.0027, 0.0010, DARK, 'struct'), *names))
+    # its rear tube, where the horn comes off: a pocket for 2.5 mm of tube left a 0.35 mm floor in a 3 mm plate, which no printer holds. A hole right through instead
+    for j in joints:
+        A_ = ACT[j['act']]
+        if 'rear_stub' not in A_ or 'ankle' in j['name'] or j['name'][2:].replace('_', ' ') in XL_REAR or (j.get('fork', True) and not j['remote']):   # (a thigh's plate has the cover's post over the tube, so there the pocket has a floor: the post, widened to take in its corners)
+           
+            continue
+        n, f, H_ = j['name'].replace('_', ' '), servo_frame(j), A_['box'][2]
+        case_link = j['child'] if j.get('case_in') == 'child' else j['parent']
+        names = [g['name'] for g in links[case_link]['geoms'] if g['role'] != 'cut' and on_plate(g, at(f, -A_['shaft_x'], 0, -H_ / 2 - 0.0028))]
+        if names:
+            links[case_link]['geoms'].append(cut(lbox(f'{n} rear tube hole', f, (-A_['shaft_x'] - 0.0028, -A_['shaft_x'] + 0.0028), (-0.0028, 0.0028), (-H_ / 2 - 0.004, -H_ / 2 + 0.0002), DARK), *names))
     for l in links.values():
         for g in l['geoms']:
             if g['kind'] == 'rbox' and min(g['size']) <= 0:   # (another variant's numbers on a smaller body: it hung the checks for half an hour)
