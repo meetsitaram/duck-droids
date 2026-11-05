@@ -38,7 +38,10 @@ give() {
   h=$HELD
   HELD=
   [ -n "$TEAM_DIR" ] && [ -n "$h" ] || return 0
-  [ "$h" = fusion ] && turn_end
+  # only while the turn is still ours: 2026-11-05, a turn that had expired closed the next duck's build
+  if [ "$h" = fusion ]; then
+    if "$PY" "$TEAM" renew fusion --dir "$TEAM_DIR" --agent "$AGENT" --minutes 5 >/dev/null 2>&1; then turn_end; else echo "[turn end] skipped: the turn had already ended"; return 0; fi
+  fi
   "$PY" "$TEAM" release "$h" --dir "$TEAM_DIR" --agent "$AGENT"
 }
 trap give EXIT
@@ -78,11 +81,29 @@ gates() {
   echo "NOTE: prints/ now hold the spec's unrounded shapes. Before committing, run pipeline.sh fusion, or restore them: git restore prints"
 }
 
+keep_turn() {
+  [ -n "$TEAM_DIR" ] || return 0
+  while sleep 60; do
+    "$PY" "$TEAM" renew fusion --dir "$TEAM_DIR" --agent "$AGENT" --minutes 5 >/dev/null 2>&1 || return 0
+  done
+}
+fusion_run() {   # script, lines to show. A Fusion script that fails stops the chain: it used to go on, and print DONE over a stale clash report
+  keep_turn &                                      # a lease mustn't run out under a call that's still open: the next duck's script runs inside it, and both fail
+  keeper=$!
+  out=$("$PY" -I tools/fusion_call.py "$1" --write --recipe "$RECIPE" 2>&1)
+  kill $keeper 2>/dev/null
+  echo "$out" | grep -v "bodies, " | tail -"$2" | cut -c1-240
+  if echo "$out" | grep -qE "Traceback|RPC error"; then
+    echo "STOPPED: the Fusion script failed"
+    exit 1
+  fi
+}
+
 build() {
   gate verify_write "$PY" -I tools/verify_fusion.py write
   sed 's/^KEEP_OPEN = False/KEEP_OPEN = True/' cad/fusion/full_build.py > "$WORK/fb_open.py"
   s=$(date +%s)
-  "$PY" -I tools/fusion_call.py "$WORK/fb_open.py" --write --recipe "$RECIPE" 2>&1 | tail -14 | cut -c1-220
+  fusion_run "$WORK/fb_open.py" 14
   echo "[fusion build] $(( $(date +%s) - s )) s"
   gate prints "$PY" -I tools/prints_from_fusion.py
   gate audit "$PY" -I tools/audit_prints.py
@@ -93,13 +114,13 @@ linked() {
   if [ "$RECIPE" = big ]; then      # BIG_ONLY="'head'," BIG_SECONDS=600: a trial, or a turn with a time limit. It has no printed parts, so no prints, audit or compare
     sed -e "s/^BIG_ONLY = None/BIG_ONLY = ${BIG_ONLY:-None}/" -e "s/^BIG_SECONDS = 900/BIG_SECONDS = ${BIG_SECONDS:-900}/" -e "s/^BIG_ASSEMBLY = True/BIG_ASSEMBLY = ${BIG_ASSEMBLY:-False}/" -e "s/^BIG_CLASH = True/BIG_CLASH = ${BIG_CLASH:-True}/" cad/fusion/linked_build.py > "$WORK/big.py"
     s=$(date +%s)
-    "$PY" -I tools/fusion_call.py "$WORK/big.py" --write --recipe big 2>&1 | tail -30 | cut -c1-260
+    fusion_run "$WORK/big.py" 30
     echo "[linked build] $(( $(date +%s) - s )) s"
     return
   fi
   gate verify_write "$PY" -I tools/verify_fusion.py write
   s=$(date +%s)
-  "$PY" -I tools/fusion_call.py cad/fusion/linked_build.py --write --recipe "$RECIPE" 2>&1 | grep -v "bodies, " | tail -12 | cut -c1-240
+  fusion_run cad/fusion/linked_build.py 12
   echo "[linked build] $(( $(date +%s) - s )) s"
   gate prints "$PY" -I tools/prints_from_fusion.py
   gate audit "$PY" -I tools/audit_prints.py
