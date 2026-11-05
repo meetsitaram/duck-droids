@@ -8,7 +8,7 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 
 | status | item | detail |
 |---|---|---|
-| PASS | shin, under the knee horn | 8.8 MPa (allowed 15): 29 N, section 126 mm2 |
+| PASS | shin, under the knee horn | 8.9 MPa (allowed 15): 29 N, section 126 mm2 |
 | PASS | shin, at the cap | 4.4 MPa (allowed 15): 29 N, section 185 mm2 |
 | PASS | thigh, hip to knee | 0.5 MPa (allowed 15): 29 N, section 484 mm2 |
 | PASS | roll bracket, side arm | 8.7 MPa (allowed 15): 29 N, section 76 mm2 |

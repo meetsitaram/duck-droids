@@ -19264,6 +19264,27 @@
      "on_cover": true
     },
     {
+     "kind": "rbox",
+     "name": "head regulator plug room",
+     "c": [
+      0.055749999999999994,
+      -0.04165,
+      0.2515
+     ],
+     "size": [
+      0.009500000000000001,
+      0.0032999999999999974,
+      0.015000000000000013
+     ],
+     "fillet": 0.0001,
+     "color": "#ECEBE6",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "R hood step"
+     ]
+    },
+    {
      "kind": "plate",
      "name": "head base",
      "y0": 0.24021965370031986,
