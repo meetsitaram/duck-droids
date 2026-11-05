@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "99.538 kg bottom-up (budget 115.0 kg; microduck 0.8 kg)"
+  "detail": "96.947 kg bottom-up (budget 115.0 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -613,7 +613,7 @@
  },
  {
   "group": "skin",
-  "item": "battery 24S",
+  "item": "battery 13S",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -811,81 +811,81 @@
  },
  {
   "group": "torque",
-  "item": "L_knee",
+  "item": "R_knee",
   "status": "PASS",
-  "detail": "108.03 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 88 % used"
+  "detail": "105.14 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used"
  },
  {
   "group": "torque",
-  "item": "R_knee",
+  "item": "L_knee",
   "status": "PASS",
-  "detail": "108.03 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 88 % used"
+  "detail": "105.14 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 85 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "131.70 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 82 % used"
+  "detail": "128.27 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 80 % used"
  },
  {
   "group": "torque",
   "item": "beak",
   "status": "PASS",
-  "detail": "3.13 N m in 'stand (microduck stance)' vs rated 5.00 N m (1 x RS00): 63 % used"
+  "detail": "3.04 N m in 'stand (microduck stance)' vs rated 5.00 N m (1 x RS00): 61 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "48.17 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 60 % used"
+  "detail": "46.91 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 59 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "23.92 N m in 'crouch' vs rated 40.00 N m (1 x RS04): 60 % used"
+  "detail": "23.28 N m in 'crouch' vs rated 40.00 N m (1 x RS04): 58 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "46.63 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 58 % used"
+  "detail": "45.32 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "38.89 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 49 % used"
+  "detail": "37.92 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 47 % used"
  },
  {
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "77.08 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 48 % used"
+  "detail": "74.96 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "32.84 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 43 % used"
+  "detail": "31.95 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 42 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_yaw",
   "status": "PASS",
-  "detail": "10.86 N m in 'stand (microduck stance)' vs rated 40.00 N m (1 x RS04): 27 % used"
+  "detail": "10.56 N m in 'stand (microduck stance)' vs rated 40.00 N m (1 x RS04): 26 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "18.24 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 23 % used"
+  "detail": "17.60 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 22 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "18.24 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 23 % used"
+  "detail": "17.60 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 22 % used"
  },
  {
   "group": "torque",

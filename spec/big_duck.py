@@ -17,8 +17,12 @@ Choices, and why:
 - Knees and head pitch ride on 6908 bearings in the frame; RS04 outputs carry only torque where a far bearing is given.
 - Feet: an aluminium plate, printed TPU soles in two pieces. The stance is narrower than the small duck's in proportion, as a foot further out loads the hip roll more.
 
-Not checked here: stress in the plates and shafts (a hand estimate only), chain tension and fatigue, heat, wiring and how it survives a fall. Actuator numbers are the retailer's or maker's:
-confirm before ordering. RS04 holes: RobStride's page and a copy of its drawing disagree on which circle takes M4 and M5: read the real drawing before cutting metal.
+NOT SAFE TO BUILD. About 100 kg and 1.8 m, with no stress analysis, metal frames nobody has checked and joints that drop when power goes (no brakes): a failure could seriously hurt someone. See docs/big/BOM.md, "Open before ordering".
+
+Not checked here: stress in the plates and shafts (a hand estimate only), chain tension and fatigue, heat, and how it survives a fall. Actuator numbers are the retailer's or maker's: confirm before ordering.
+RS04 and RS03 holes (2026-11-05): read off the outline figure in RobStride's user manuals (RS04 260713, RS03 261013), which settles which circle takes which screw: M5 on 36 and three 6 mm pins on 35.86 for the RS04. That's a
+picture in a PDF, not a drawing read in CAD, and no actuator has been measured: read RS04-20261030.stp and measure one before cutting metal. The real case isn't the plain cylinder below either: the RS04 is 120 across for 39 mm and 94 across
+for its last 13.2, with its cable leaving through the side of that step, and the plates here don't allow for that (docs/big/BOM.md).
 """
 import copy
 import json
@@ -32,11 +36,12 @@ os.environ.pop('MILLI_RECIPE', None)
 import robot as T                                  # the small duck's shape primitives, no more
 from robot import ALU, AMBER, BLACK, CELL, DARK, GREY, LENS, ORANGE, PCB, WHITE, YELLOW, box, cut, cyl, fast, loft, mirror_geom, mirror_name, plate
 
-# echo's spec/actuators.json, where these come from: retailer numbers. Holes: robstride.com product pages (mount M4 x 10 on 106, output M5 x 9 on 35.86 for the RS04)
+# echo's spec/actuators.json, where these come from: retailer numbers. Holes: RobStride's user manuals' outline figures (2026-11-05). RS04: 10 M4 on 106 (5 mm deep on the output side, 6 on the rear), output 9 M5 6.5 deep on 36, with 3 x 6 mm pins on 35.86.
+# It was 35.86 for the screws, from the product page, which is the pins' circle. RS03: 8 M4 8 deep on 98, output 6 M4 6 deep on 30.36, with 3 x 4 mm holes: it was 8 on the output, and 90 for the head roll's mount, a guess
 ACT = {
     'RS00': dict(r=0.0285, h=0.051, mass=0.31, rated_nm=5.0, peak_nm=14.0, noload_rads=32.0, gear=10.0, rotor_kgm2=1e-05, damping_nms=0.02, friction_nm=0.3),
-    'RS03': dict(r=0.053, h=0.056, mass=0.88, rated_nm=20.0, peak_nm=60.0, noload_rads=20.0, gear=9.0, rotor_kgm2=1e-04, damping_nms=0.12, friction_nm=1.0, out_pcd=0.03036, out_n=8),
-    'RS04': dict(r=0.06, h=0.056, mass=1.42, rated_nm=40.0, peak_nm=120.0, noload_rads=21.0, gear=9.0, rotor_kgm2=2e-04, damping_nms=0.2, friction_nm=1.5, out_pcd=0.03586, out_n=9, mount_pcd=0.106, mount_n=10),
+    'RS03': dict(r=0.053, h=0.056, mass=0.88, rated_nm=20.0, peak_nm=60.0, noload_rads=20.0, gear=9.0, rotor_kgm2=1e-04, damping_nms=0.12, friction_nm=1.0, out_pcd=0.03036, out_n=6, mount_pcd=0.098, mount_n=8),
+    'RS04': dict(r=0.06, h=0.056, mass=1.42, rated_nm=40.0, peak_nm=120.0, noload_rads=21.0, gear=9.0, rotor_kgm2=2e-04, damping_nms=0.2, friction_nm=1.5, out_pcd=0.036, out_n=9, mount_pcd=0.106, mount_n=10),
 }
 CHAIN = 25 / 13                                    # #40 chain, 13T on the RS04, 25T on the joint: the head pitch
 # The knee's four-bar, from a sweep of its geometry with the stators where they were. The lever stands at CRANK_PHI at knee angle 0; a +y turn takes it down from there
@@ -205,8 +210,9 @@ link('trunk', [
     dict(side_plate('neck plate L', YN[1], PL, [(XN, ZN, 0.075), (XN - 0.10, DECK[1] + 0.029, 0.03), (XN + 0.015, DECK[1] + 0.029, 0.03)]), fill=0.6),
     dict(side_plate('neck plate R', -YN[1] - PL, PL, [(XN, ZN, 0.075), (XN - 0.10, DECK[1] + 0.029, 0.03), (XN + 0.015, DECK[1] + 0.029, 0.03)]), fill=0.6),
     metal('neck tie', (XN - 0.112, -YN[1] - 0.0005, DECK[1] - 0.0005), (XN - 0.100, YN[1] + 0.0005, ZN - 0.02), ALD),
-    # the battery (echo's), computer and bus boards on the deck
-    box('battery 24S', (-0.215, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), CELL, material='cells', mass=8.0),
+    # the battery, computer and power board on the deck. Named 24S until 2026-11-05: a 24S pack is about 100 V full, and RobStride's manuals give 60 V as the most these actuators take. 13S is 54.6 V full, as 14S's 58.8 leaves no room
+    # for what walking brakes back into the bus. Same box and mass: no pack has been chosen (docs/big/BOM.md)
+    box('battery 13S', (-0.215, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), CELL, material='cells', mass=8.0),
     box('computer and power boards', (-0.065, -0.085, DECK[1] - 0.0005), (0.025, 0.085, DECK[1] + 0.03), PCB, material='electronics', mass=1.2),
     *body_panels(),
     cut(neck_slot, 'body panel FR', 'body panel FL', 'body panel MR', 'body panel ML'),
@@ -432,7 +438,7 @@ link('head_yaw_link', [
     metal('head roll cradle', (XHR - 0.006, -0.06, ZHY + 0.025), (XHR + 0.002, 0.06, ZHY + 0.160), mat='al7075'),
     stator('head_roll actuator', 'RS03', (XHR + 0.002 + ACT['RS03']['h'] / 2, 0, ZHY + 0.095), 'x'),
     seat('head roll', (XHR + 0.002, 0, ZHY + 0.095), 'x', 0.05),
-    *bolts('head roll mount bolt', (XHR - 0.006, 0, ZHY + 0.095), 'x', 0.09, 8, 'M4', 0.012, 1),
+    *bolts('head roll mount bolt', (XHR - 0.006, 0, ZHY + 0.095), 'x', ACT['RS03']['mount_pcd'], ACT['RS03']['mount_n'], 'M4', 0.012, 1),
 ], 'turns the head; carries the head roll actuator')
 XFR = XHR + 0.002 + ACT['RS03']['h'] + 0.010       # the head's main frame, on the roll output
 
