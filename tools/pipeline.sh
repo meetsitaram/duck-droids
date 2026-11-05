@@ -83,7 +83,7 @@ build() {
 
 linked() {
   if [ "$RECIPE" = big ]; then      # BIG_ONLY="'head'," BIG_SECONDS=600: a trial, or a turn with a time limit. It has no printed parts, so no prints, audit or compare
-    sed -e "s/^BIG_ONLY = None/BIG_ONLY = ${BIG_ONLY:-None}/" -e "s/^BIG_SECONDS = 900/BIG_SECONDS = ${BIG_SECONDS:-900}/" -e "s/^BIG_ASSEMBLY = True/BIG_ASSEMBLY = ${BIG_ASSEMBLY:-False}/" -e "s/^BIG_CLASH = True/BIG_CLASH = ${BIG_CLASH:-True}/" cad/fusion/linked_build.py > "$WORK/big.py"
+    sed -e "s/^BIG_ONLY = None/BIG_ONLY = ${BIG_ONLY:-None}/" -e "s/^BIG_SECONDS = 900/BIG_SECONDS = ${BIG_SECONDS:-900}/" -e "s/^BIG_ASSEMBLY = True/BIG_ASSEMBLY = ${BIG_ASSEMBLY:-False}/" -e "s/^BIG_CLASH = True/BIG_CLASH = ${BIG_CLASH:-True}/" -e "s/^BIG_CHECK_ONLY = False/BIG_CHECK_ONLY = ${BIG_CHECK_ONLY:-False}/" cad/fusion/linked_build.py > "$WORK/big.py"
     s=$(date +%s)
     "$PY" -I tools/fusion_call.py "$WORK/big.py" --write --recipe big 2>&1 | tail -30 | cut -c1-260
     echo "[linked build] $(( $(date +%s) - s )) s"

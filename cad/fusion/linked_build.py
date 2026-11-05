@@ -30,6 +30,7 @@ BIG_ONLY = None                                   # the big duck: only these lin
 BIG_SECONDS = 900                                 # the big duck: stop starting links after this, so a turn at Fusion stays short. Built links stay built
 BIG_ASSEMBLY = True                               # the big duck: go on to the assembly once every link is built
 BIG_CLASH = True
+BIG_CHECK_ONLY = False                            # the big duck: open its saved assembly, check its joints and clashes, take pictures, close without saving
 OK_CLASH = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs', ' plug', 'camera ribbon', 'microSD')
 
 
@@ -121,6 +122,34 @@ def _occ(name):
     return occs.get(name) or next(o for n, o in occs.items() if n.startswith(name + ' '))
 
 
+def blog(msg):
+    """The big duck: each stage, to a file, as it happens. A call that hangs loses everything it printed (2026-11-05, 40 minutes and nothing to show where)."""
+    if RECIPE == 'big':
+        with open(os.path.join(build.REPO, 'reports', 'big', 'fusion_log.txt'), 'a', encoding='utf-8') as f:
+            f.write(f"{time.strftime('%H:%M:%S')} {msg}\n")
+
+
+def big_pictures(app, name):
+    """Each left and middle link on its own, from where its parts show. The right legs are the left's mirror, by the spec's code."""
+    if name.startswith('R_'):
+        return
+    folder_ = os.path.join(build.REPO, 'docs', 'images', 'fusion', 'big', 'links')
+    os.makedirs(folder_, exist_ok=True)
+    vp = app.activeViewport
+    vp.visualStyle = adsk.core.VisualStyles.ShadedVisualStyle
+    for k, eye in {'a': (60, 50, 30), 'b': (-60, -50, 30), 'c': (50, -40, -35)}.items():
+        cam = vp.camera
+        cam.isSmoothTransition = False
+        cam.cameraType = adsk.core.CameraTypes.PerspectiveCameraType
+        cam.target = adsk.core.Point3D.create(0, 0, 0)
+        cam.eye = adsk.core.Point3D.create(*eye)
+        cam.upVector = adsk.core.Vector3D.create(0, 0, 1)
+        vp.camera = cam
+        vp.fit()
+        vp.refresh()
+        vp.saveAsImageFile(os.path.join(folder_, f'{name}_{k}.png'), 1000, 1000)
+
+
 def big_spec():
     """The big duck's rods, chain and thigh covers are 'decal' to keep them out of the offline sweep checks, and build.link skips decals with no screw. Here they're real: mark them, in this script only, so build.py and its hash stay as they are for every other duck."""
     plain = build.spec
@@ -181,6 +210,7 @@ def make_assembly(app, s, have, fd, aname):
         f = have[f'{RECIPE} {name}']
         occ[name] = wait(lambda ff=f: root.occurrences.addByInsert(ff, adsk.core.Matrix3D.create(), True), what=f'insert {name}')
     print('inserted', len(occ), round(time.time() - t0), 's')
+    blog(f'inserted {len(occ)} links, {round(time.time() - t0)} s')
     occ[s['root']].isGrounded = True
     sk = root.sketches.add(root.xYConstructionPlane)
     sk.name = 'joint points'
@@ -197,14 +227,17 @@ def make_assembly(app, s, have, fd, aname):
         m.rotationLimits.minimumValue = j['lower']
         m.rotationLimits.isMaximumValueEnabled = True
         m.rotationLimits.maximumValue = j['upper']
+    blog(f'joints made, {round(time.time() - t0)} s; saving')
     print('saved', asm.saveAs(aname, fd, 'Linked: generated from spec/robot.py, github.com/meetsitaram/duck-droids', ''))
     wait(lambda: asm.dataFile, what='assembly file')
+    blog(f'assembly saved, {round(time.time() - t0)} s')
     return asm, d
 
 
 def check_assembly(app, s, d):
     root = d.rootComponent
     refused = []
+    blog('moving joints')
     for j in s['joints']:
         jt = root.asBuiltJoints.itemByName(j['name'])
         if jt is None:
@@ -217,12 +250,14 @@ def check_assembly(app, s, d):
                 refused.append(j['name'])
         m.rotationValue = 0.0
     print('joints', root.asBuiltJoints.count, 'refused', refused)
+    blog(f'joints {root.asBuiltJoints.count}, refused {refused}')
     if RECIPE == 'big' and not BIG_CLASH:
         print('clashes: not run')
         return
     occs = adsk.core.ObjectCollection.create()
     for o in root.occurrences:
         occs.add(o)
+    blog('clash check starting')
     ii = d.createInterferenceInput(occs)
     ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)
@@ -233,6 +268,7 @@ def check_assembly(app, s, d):
     clash.sort(key=lambda c: -c[2])
     same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 ', ' HD1910 '))
     json.dump(clash, open(os.path.join(build.REPO, 'reports', build._variant_file('fusion_interference')), 'w', encoding='utf-8'), indent=0)
+    blog(f'clashes {len(clash)}')
     print('clashes', len(clash), 'to explain', [c for c in clash if not any(k in c[0] + c[1] for k in OK_CLASH) and not same(c[0], c[1]) and c[2] > 1.0][:12])
     vp = app.activeViewport
     vp.visualStyle = adsk.core.VisualStyles.ShadedVisualStyle
@@ -251,6 +287,7 @@ def check_assembly(app, s, d):
         vp.fit()
         vp.refresh()
         vp.saveAsImageFile(os.path.join(pics, f'{k}.png'), 1400, 1400)
+    blog('pictures done')
 
 
 def run(_context: str):
@@ -260,6 +297,7 @@ def run(_context: str):
     build.SPEC = 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json'
     if RECIPE == 'big':
         big_spec()
+    blog('call started')
     s = build.spec()
     parts = build.parts_spec()['parts']
     code = ''.join(open(os.path.join(P, f), encoding='utf-8').read() for f in ('build.py', 'figlib.py'))
@@ -272,6 +310,15 @@ def run(_context: str):
     top, fd = folder(app, RECIPE)
     aname = f'{RECIPE} assembly'
     have = files(fd)
+    if RECIPE == 'big' and BIG_CHECK_ONLY:
+        blog('opening the saved assembly')
+        asm = app.documents.open(have[aname])
+        blog('opened')
+        check_assembly(app, s, adsk.fusion.Design.cast(app.activeProduct))
+        blog('closing without saving')
+        close_all(app)
+        blog(f'closed, total {round(time.time() - t00)} s')
+        return
     rebuilt, kept, bad = [], [], []
     t0 = time.time()
     for name in s['links']:
@@ -293,7 +340,10 @@ def run(_context: str):
         print(build.link(name))
         occ = _occ(name)
         if RECIPE == 'big':
-            print(name, 'hollowed, failed, s', big_hollow(name, s, occ))
+            r_ = big_hollow(name, s, occ)
+            print(name, 'hollowed, failed, s', r_)
+            big_pictures(app, name)
+            blog(f'{name}: built, hollowed and failed {r_}, {round(time.time() - t, 1)} s; saving')
         vb = verify_link(name, parts, occ)
         points.update(points_link(name, parts, occ, vdata))
         stls_link(name, parts, occ, stl)
@@ -306,6 +356,7 @@ def run(_context: str):
         bad += vb
         man[name] = dict(hash=h, bad=vb, seconds=round(time.time() - t, 1))
         rebuilt.append(name)
+        blog(f'{name}: saved and closed, {round(time.time() - t, 1)} s')
         if RECIPE == 'big':                       # so a turn that runs out loses nothing
             json.dump(man, open(mpath, 'w', encoding='utf-8'), indent=1)
     json.dump(man, open(mpath, 'w', encoding='utf-8'), indent=1)
@@ -317,6 +368,12 @@ def run(_context: str):
     if RECIPE == 'big' and (not BIG_ASSEMBLY or any(f'{RECIPE} {n}' not in have or n not in man for n in s['links'])):
         print('not yet: links left', [n for n in s['links'] if f'{RECIPE} {n}' not in have or n not in man], 'seconds so far', round(time.time() - t00))
         close_all(app)
+        return
+    if RECIPE == 'big' and aname not in have:     # one step at a time: the assembly saved and closed, and its checks in a call of their own (2026-11-05: this stage hung, right after its pictures)
+        asm, d = make_assembly(app, s, have, fd, aname)
+        blog('closing')
+        close_all(app)
+        blog(f'closed, total {round(time.time() - t00)} s')
         return
     if aname not in have:
         asm, d = make_assembly(app, s, have, fd, aname)
