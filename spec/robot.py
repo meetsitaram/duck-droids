@@ -47,7 +47,7 @@ RECIPES = {
     # No board fits in the body: the most room there is 15 x 8 mm across (42 x 33 x 12.6 wanted). So the legs' current stays in the body through a splice, and only data and ground go up the neck.
     # One 8 A UBEC in the body, for the head's servos; the Pi's own USB regulator in the head, as the all-Dynamixel's, in place of a second 8 A UBEC and its soldered lead)
     'hybrid': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='XC330_M288', head='XL330_M288', K=1.0, HK=1.18, shoe_horn_relief=True, seat_step_more=0.0025, foot_switch=False, pi_ports_up=True, two_boards=True, reg_head=True, reg_box=((0.0580, -0.0442, 0.2645), (0.0930, -0.0357, 0.2815)), charge_port=True,
-                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0270, 0.1496), (-0.0400, 0.0340, 0.1702))),
+                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0266, 0.1496), (-0.0400, 0.0340, 0.1702))),
                    battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052), short=0.003, ranges=dict(head_roll=(-0.33, 0.33)), mount_in=0.0008,
                    mass_budget_kg=1.65,    # 1.55 before the cable plugs, real regulators and boards and the beak's drive were modelled (2026-11-03)
                    # the real bus boards put the head's weight 11 % over the head pitch XL330's rated torque, an estimate at a third of stall, in this pose: passed
@@ -812,8 +812,9 @@ link('trunk', 0.40, [
     box('neck wall tab', (XP_FRONT - 0.002, -0.0225 * Q, PLATE[0]), (XP_FRONT + 0.0002, 0.0165 * Q, PLATE[1]), exposed=True),
     box(R['battery']['name'], (BATT_X, R.get('batt_y', 0) - BATT[1] / 2, PLATE[0] - BATT[2]), (BATT_X + BATT[0], R.get('batt_y', 0) + BATT[1] / 2, PLATE[0]), CELL,
         material='cells', mass=R['battery']['mass']),
-    # the two plugs, in the gap beside the pack's end, their faces at the port: XT30 (power, and where it switches off), balance lead (charging). Sizes as commonly sold: check on the real pack
-    *[box(nm, (x0, PORT['y'][0], z0), (x1, PORT['y'][1], z1), col, 'decal') for nm, (x0, x1, z0, z1), col in (('battery XT30', PORT['xt30'], '#F2C21A'), ('battery balance plug', PORT['balance'], '#E8E8E0')) if R.get('charge_port')],
+    # the two plugs, in the gap beside the pack's end, their faces at the port: XT30 (power, and where it switches off), balance lead (charging). Sizes as commonly sold: check on the real pack.
+    # 'decal' keeps them out of the offline sweeps (they ride on the pack's leads); in_cad: they're real things, so Fusion builds them, as it doesn't other decals
+    *[box(nm, (x0, PORT['y'][0], z0), (x1, PORT['y'][1], z1), col, 'decal', in_cad=True) for nm, (x0, x1, z0, z1), col in (('battery XT30', PORT['xt30'], '#F2C21A'), ('battery balance plug', PORT['balance'], '#E8E8E0')) if R.get('charge_port')],
     # the two 5 V regulators stand on edge in the pockets beside the yaw servos (39 x 21 x 6 mm, an 8 A UBEC's listing); the IMU
     # on the plate, behind the yaw plugs (a BNO085 board, 25.6 x 22.7 x 4.6 mm, Adafruit's listing)
     *[box(f'{nm} 5 V regulator', (-0.0300, sy * 0.0345 - 0.003, ZY + 0.0135), (0.0090, sy * 0.0345 + 0.003, ZY + 0.0347), PCB, material='electronics', mass=0.018) for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS)],
