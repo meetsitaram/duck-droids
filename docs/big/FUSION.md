@@ -11,7 +11,7 @@ The worry was its size. It turned out not to matter: Fusion's time goes with fea
 | | All Dynamixel | Big duck |
 |---|---|---|
 | Links | 16 | 16 |
-| Bodies | 514 | 474 at first count, 500 with rods, chain and covers |
+| Bodies | 514 | about 500, with rods, chain and covers |
 | Printed parts joined and rounded | 43 | 0 |
 | Holes and pockets cut | 404 and 117 | 0 |
 | Lofts, and the plane cuts on them | 10 and 3 | 54 and 206 |
@@ -23,9 +23,11 @@ So it is not a fair comparison. It's quick partly because the frames have no hol
 
 ## The hang
 
-The first full build held Fusion far too long. Links, joints, clashes and pictures finished by about 00:42, 6 minutes in. The call then didn't return, and my client gave up at its 40-minute limit. The lease ran out at 01:01, after hd1910 had waited 22 minutes.
+The first full build held Fusion far too long. Links, clashes and pictures were written by about 00:42, 6 minutes in. The call then didn't return, and the client gave up at its 40-minute limit. The lease ran out at 01:01, after hd1910 had waited 22 minutes. A lease that ends doesn't stop the call behind it, so the next agent's turn was no use either.
 
-At 01:21 Fusion still showed "big assembly", not responding, and using some CPU. Its top-level windows showed no dialog, but the window couldn't be captured, so a dialog isn't ruled out. The cause isn't known. The step after the pictures is saving the assembly, so that's the first place to look.
+At 01:21 Fusion still showed "big assembly", not responding, and using some CPU. Its top-level windows showed no dialog, but the window couldn't be captured, so a dialog isn't ruled out. The cause isn't known. The step after the pictures is saving the assembly, so that's the first place to look. So `pipeline.sh` now stops the big duck before its assembly, unless told `BIG_ASSEMBLY=True`, and the assembly isn't to be run again without asking.
+
+Whether the assembly saved, and in which hub project, isn't known either: the window's title read "big assembly (tinkerbuggy)", though the script looks for my-projects / duck-droids / big. To check once Fusion is back.
 
 ## Clashes
 
@@ -43,7 +45,7 @@ At 01:21 Fusion still showed "big assembly", not responding, and using some CPU.
 
 Mirrored ones count twice in the 22.
 
-**None of the sweep is tested for covers or rods.** This check is at the zero pose only. Fusion's joints reached their limits as far as the script could tell, but no clash check ran at any other pose, and the covers and rods are left out of the offline sweeps.
+**None of the sweep is tested for covers or rods.** This check is at the zero pose only, and the covers and rods are left out of the offline sweeps. **Whether Fusion accepted every joint's limits isn't known:** the script's printed results, the refused joints among them, were lost when the call timed out. Only the files it wrote survive: the clash list, the link times and the pictures.
 
 ### Inside one link, which are not assemblies
 
@@ -65,19 +67,20 @@ Within a link everything is one rigid lump in the model, and these overlaps say 
 
 ## What the pictures show
 
-Looked at from the front three-quarter, side and below, at full size.
+Looked at from the front three-quarter, side, back and below, at full size.
 
 - It reads as the duck: hood, eye, orange band and jaw, a long neck, the body, and the hip frames under it.
 - **The inner and outer thigh covers look like loose flat plates,** standing off the thigh on thin posts. They were designed as flat shapes and it shows. Nothing joins them, and from below they look stuck on.
 - **The head hangs 0.6 m in front of the neck,** and the side view shows how far that is from the feet. Nothing about it is checked for strength or for a fall.
 - **The hip frame sits below the body, with a clear gap** and its two drums showing. The body panels don't reach the frame.
 - **Above the jaw, from the side,** the frames show through a gap in the orange band.
+- **From behind,** the hood has a square opening onto the head's frame plates, which the small duck's doesn't, and the jaw's frame shows under it.
 - The real RS04 shape isn't here: these are plain cylinders.
 
 Not looked at: close crops of each joint, and the views at other poses.
 
 ## Not done
 
-- A rebuild with the fixes above.
+- A rebuild with the fixes above, so these pictures and clashes are from before them.
 - A one-document build for `cad/duck-droids-big.f3d` and `.step`.
 - Videos: not until those exist, and not at the risk of holding Fusion from the others.
