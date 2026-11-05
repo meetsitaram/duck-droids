@@ -22,7 +22,7 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 ## Other ducks
 
-The same design on other servos, and at 1.8 m. Their parts lists and wiring are written and their offline checks pass. None has its latest Fusion model or videos yet.
+The same design on other servos, and at 1.8 m. Their parts lists and wiring are written and their offline checks pass. HD-1910 has its Fusion model, prints and videos; the others don't have their latest yet.
 
 | Duck | Servos | Size | Parts | Wiring |
 |---|---|---|---|---|
