@@ -3,7 +3,7 @@
   "group": "POINTS",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 512 offline, 509 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 508 offline, 505 in Fusion"
  },
  {
   "group": "POINTS",
@@ -15,7 +15,7 @@
   "group": "POINTS",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 462 offline, 461 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 458 offline, 458 in Fusion"
  },
  {
   "group": "POINTS",
@@ -33,7 +33,7 @@
   "group": "POINTS",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 491 offline, 492 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 490 offline, 491 in Fusion"
  },
  {
   "group": "POINTS",
@@ -51,7 +51,7 @@
   "group": "POINTS",
   "item": "L shin",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 182 offline, 184 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 182 offline, 183 in Fusion"
  },
  {
   "group": "POINTS",
@@ -75,7 +75,7 @@
   "group": "POINTS",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 487 offline, 487 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 483 offline, 483 in Fusion"
  },
  {
   "group": "POINTS",
@@ -87,7 +87,7 @@
   "group": "POINTS",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 464 offline, 462 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 460 offline, 459 in Fusion"
  },
  {
   "group": "POINTS",
@@ -99,19 +99,19 @@
   "group": "POINTS",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 134 offline, 134 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 134 offline, 133 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 520 offline, 521 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 518 offline, 518 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "R knee lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 478 offline, 476 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 476 offline, 474 in Fusion"
  },
  {
   "group": "POINTS",
@@ -129,13 +129,13 @@
   "group": "POINTS",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 231 offline, 232 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 231 offline, 230 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "R sole",
   "status": "PASS",
-  "detail": "1.1 % of 1500 points disagree; solid in 1095 offline, 1107 in Fusion"
+  "detail": "1.3 % of 1500 points disagree; solid in 1092 offline, 1107 in Fusion"
  },
  {
   "group": "POINTS",
@@ -165,13 +165,13 @@
   "group": "POINTS",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "0.3 % of 1500 points disagree; solid in 1243 offline, 1242 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 1241 offline, 1242 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "head pitch lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 1244 offline, 1243 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 1245 offline, 1243 in Fusion"
  },
  {
   "group": "POINTS",
@@ -189,7 +189,7 @@
   "group": "POINTS",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "0.6 % of 1500 points disagree; solid in 267 offline, 260 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 267 offline, 267 in Fusion"
  },
  {
   "group": "POINTS",
@@ -231,7 +231,7 @@
   "group": "POINTS",
   "item": "jaw soft insert",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 1474 offline, 1474 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 1473 offline, 1474 in Fusion"
  },
  {
   "group": "POINTS",

@@ -5,9 +5,9 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|
-| L hip yaw lid | L_hip_yaw_lid.stl | 51 x 31 x 6 | 3.0 | PLA | 167 |
+| L hip yaw lid | L_hip_yaw_lid.stl | 6 x 31 x 51 | 2.9 | PLA | 122 |
 | L yaw bracket | L_yaw_bracket.stl | 62 x 30 x 41 | 16.5 | PLA | 579 |
-| L hip roll lid | L_hip_roll_lid.stl | 6 x 29 x 51 | 2.5 | PLA | 123 |
+| L hip roll lid | L_hip_roll_lid.stl | 6 x 29 x 51 | 2.5 | PLA | 113 |
 | L roll bracket | L_roll_bracket.stl | 23 x 36 x 37 | 5.7 | PLA | 174 |
 | L thigh frame | L_thigh_frame.stl | 81 x 46 x 61 | 18.3 | PLA | 1375 |
 | L hip pitch lid | L_hip_pitch_lid.stl | 31 x 51 x 6 | 3.0 | PLA | 167 |
@@ -17,9 +17,9 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | L shoe | L_shoe.stl | 29 x 53 x 69 | 15.7 | PLA | 708 |
 | L sole | L_sole.stl | 15 x 53 x 69 | 40.8 | TPU 95A | 478 |
 | L inner ear | L_inner_ear.stl | 29 x 48 x 4 | 2.5 | PLA | 0 (none) |
-| R hip yaw lid | R_hip_yaw_lid.stl | 6 x 31 x 51 | 2.9 | PLA | 118 |
+| R hip yaw lid | R_hip_yaw_lid.stl | 6 x 31 x 51 | 2.9 | PLA | 108 |
 | R yaw bracket | R_yaw_bracket.stl | 62 x 30 x 41 | 16.5 | PLA | 579 |
-| R hip roll lid | R_hip_roll_lid.stl | 6 x 29 x 51 | 2.5 | PLA | 123 |
+| R hip roll lid | R_hip_roll_lid.stl | 6 x 29 x 51 | 2.5 | PLA | 113 |
 | R roll bracket | R_roll_bracket.stl | 23 x 36 x 37 | 5.7 | PLA | 174 |
 | R thigh frame | R_thigh_frame.stl | 81 x 46 x 61 | 18.3 | PLA | 1375 |
 | R hip pitch lid | R_hip_pitch_lid.stl | 31 x 51 x 6 | 3.0 | PLA | 167 |

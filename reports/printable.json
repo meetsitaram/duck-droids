@@ -3,7 +3,7 @@
   "group": "ORIENT",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "167 mm2 overhang, 858 mm2 on the bed, 6 mm tall"
+  "detail": "122 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -15,7 +15,7 @@
   "group": "BED",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "51 x 31 x 6 mm, 858 mm2 on the bed"
+  "detail": "6 x 31 x 51 mm, 88 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -57,7 +57,7 @@
   "group": "ORIENT",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "123 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
+  "detail": "113 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -327,7 +327,7 @@
   "group": "ORIENT",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "118 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
+  "detail": "108 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -381,7 +381,7 @@
   "group": "ORIENT",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "123 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
+  "detail": "113 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",

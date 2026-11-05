@@ -99,6 +99,10 @@ Across each joint, leave a loop for its whole range. Then move every joint by ha
 - Wire clips and exact lengths: the numbers above are straight runs, with 15 % and 30 mm added. Measure on the build.
 - Speaker and microphone.
 
-## For you to decide
+## TODO: review the head's voltage
 
-**The head's servos on 2S, no UBEC.** It would take the UBEC (18 g, $19) and a power pair out of the neck, and give the head pitch XL330 almost twice its torque, as the all-Dynamixel's has. The XC330 at the neck would be running past its limit with no precedent; an XL330 there on 2S would give 0.96 N m, as much as the XC330 at 5 V, for $76 less and one less sold-out part. Expect a shorter life from any of them. This version stays inside ROBOTIS's ratings.
+**Chosen for now: 5 V, through the UBEC.** It stays inside ROBOTIS's 6 V limit, and the hybrid's parts and Fusion model are already built this way.
+
+**Review and compare later: the head's servos on 2S, no UBEC.** It would take the UBEC (18 g, $19) and a power pair out of the neck, and give the head pitch XL330 almost twice its torque, as the all-Dynamixel's has. The XC330 at the neck would be running past its limit with no precedent; an XL330 there on 2S would give 0.96 N m, as much as the XC330 at 5 V, for $76 less and one less sold-out part. Expect a shorter life from any of them.
+
+To compare: run one XL330 and one XC330 on a full 2S on the bench, measuring temperature and how long they last against the same servos at 5 V. The all-Dynamixel duck's XL330s run on 2S, so its first build adds evidence for the XL330 too.
