@@ -957,7 +957,7 @@
   "group": "ORIENT",
   "item": "hood",
   "status": "PASS",
-  "detail": "2919 mm2 overhang, 276 mm2 on the bed, 150 mm tall"
+  "detail": "2911 mm2 overhang, 276 mm2 on the bed, 150 mm tall"
  },
  {
   "group": "PIECES",
@@ -987,7 +987,7 @@
   "group": "SUPPORT",
   "item": "hood",
   "status": "WARN",
-  "detail": "2919 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2911 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
