@@ -12142,48 +12142,6 @@
      ]
     },
     {
-     "kind": "rbox",
-     "name": "L foot switch pocket",
-     "c": [
-      -0.014060000000000007,
-      0.04529000000000001,
-      0.013286
-     ],
-     "size": [
-      0.012999999999999998,
-      0.006000000000000005,
-      0.006699999999999998
-     ],
-     "fillet": 0.0001,
-     "color": "#E8642A",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "L shoe",
-      "L sole"
-     ]
-    },
-    {
-     "kind": "rbox",
-     "name": "L foot switch",
-     "c": [
-      -0.014060000000000007,
-      0.04529000000000001,
-      0.013186
-     ],
-     "size": [
-      0.012799999999999999,
-      0.0058,
-      0.006499999999999999
-     ],
-     "fillet": 0.001,
-     "color": "#3A3D42",
-     "role": "struct",
-     "exposed": true,
-     "material": "electronics",
-     "mass": 0.001
-    },
-    {
      "kind": "cyl",
      "name": "L shoe bottom screw 0",
      "c": [
@@ -13061,48 +13019,6 @@
      "targets": [
       "R shoe"
      ]
-    },
-    {
-     "kind": "rbox",
-     "name": "R foot switch pocket",
-     "c": [
-      -0.014060000000000007,
-      -0.04529000000000001,
-      0.013286
-     ],
-     "size": [
-      0.012999999999999998,
-      0.006000000000000005,
-      0.006699999999999998
-     ],
-     "fillet": 0.0001,
-     "color": "#E8642A",
-     "role": "cut",
-     "exposed": false,
-     "targets": [
-      "R shoe",
-      "R sole"
-     ]
-    },
-    {
-     "kind": "rbox",
-     "name": "R foot switch",
-     "c": [
-      -0.014060000000000007,
-      -0.04529000000000001,
-      0.013186
-     ],
-     "size": [
-      0.012799999999999999,
-      0.0058,
-      0.006499999999999999
-     ],
-     "fillet": 0.001,
-     "color": "#3A3D42",
-     "role": "struct",
-     "exposed": true,
-     "material": "electronics",
-     "mass": 0.001
     },
     {
      "kind": "cyl",
@@ -18127,6 +18043,90 @@
      "wire": true
     },
     {
+     "kind": "rbox",
+     "name": "Pi USB plug",
+     "c": [
+      0.08257864406779664,
+      -0.0034,
+      0.27771965370031987
+     ],
+     "size": [
+      0.0059999999999999915,
+      0.019,
+      0.009000000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#D9D4C5",
+     "role": "struct",
+     "exposed": true,
+     "material": "electronics",
+     "mass": 0.002,
+     "wire": true
+    },
+    {
+     "kind": "rbox",
+     "name": "Pi PWR plug",
+     "c": [
+      0.08257864406779664,
+      -0.025,
+      0.27771965370031987
+     ],
+     "size": [
+      0.0059999999999999915,
+      0.015,
+      0.009000000000000008
+     ],
+     "fillet": 0.0001,
+     "color": "#D9D4C5",
+     "role": "struct",
+     "exposed": true,
+     "material": "electronics",
+     "mass": 0.002,
+     "wire": true
+    },
+    {
+     "kind": "rbox",
+     "name": "Pi camera ribbon",
+     "c": [
+      0.08247864406779663,
+      -0.03425,
+      0.25821965370031985
+     ],
+     "size": [
+      0.0050000000000000044,
+      0.003499999999999996,
+      0.01200000000000001
+     ],
+     "fillet": 0.0001,
+     "color": "#D9D4C5",
+     "role": "struct",
+     "exposed": true,
+     "material": "electronics",
+     "mass": 0.0002,
+     "wire": true
+    },
+    {
+     "kind": "rbox",
+     "name": "Pi microSD",
+     "c": [
+      0.08097864406779663,
+      0.0335,
+      0.25821965370031985
+     ],
+     "size": [
+      0.0020000000000000018,
+      0.0020000000000000018,
+      0.01200000000000001
+     ],
+     "fillet": 0.0001,
+     "color": "#D9D4C5",
+     "role": "struct",
+     "exposed": true,
+     "material": "electronics",
+     "mass": 0.0002,
+     "wire": true
+    },
+    {
      "kind": "plate",
      "name": "L hood step cut",
      "y0": 0.039712369152542365,
@@ -19225,7 +19225,7 @@
      "name": "head 5 V regulator",
      "c": [
       0.0835,
-      -0.037750000000000006,
+      -0.04075000000000001,
       0.2515
      ],
      "size": [

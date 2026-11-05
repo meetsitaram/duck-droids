@@ -285,7 +285,7 @@
   "group": "VOLUME",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "11.1 cm3, designed 11.1: 0 % off"
+  "detail": "11.5 cm3, designed 11.5: 0 % off"
  },
  {
   "group": "BED",
@@ -297,7 +297,7 @@
   "group": "THIN",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "6 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -315,7 +315,7 @@
   "group": "VOLUME",
   "item": "L sole",
   "status": "PASS",
-  "detail": "24.9 cm3, designed 24.7: 1 % off"
+  "detail": "25.1 cm3, designed 24.8: 1 % off"
  },
  {
   "group": "BED",
@@ -465,7 +465,7 @@
   "group": "VOLUME",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "3.5 cm3, designed 3.5: 1 % off"
+  "detail": "3.5 cm3, designed 3.5: 0 % off"
  },
  {
   "group": "BED",
@@ -477,7 +477,7 @@
   "group": "THIN",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -645,7 +645,7 @@
   "group": "VOLUME",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "11.1 cm3, designed 11.1: 0 % off"
+  "detail": "11.5 cm3, designed 11.5: 0 % off"
  },
  {
   "group": "BED",
@@ -657,7 +657,7 @@
   "group": "THIN",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "5 % of its surface is under 0.8 mm thick"
+  "detail": "6 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -675,7 +675,7 @@
   "group": "VOLUME",
   "item": "R sole",
   "status": "PASS",
-  "detail": "24.9 cm3, designed 24.7: 1 % off"
+  "detail": "25.1 cm3, designed 24.8: 1 % off"
  },
  {
   "group": "BED",
@@ -687,7 +687,7 @@
   "group": "THIN",
   "item": "R sole",
   "status": "PASS",
-  "detail": "5 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",

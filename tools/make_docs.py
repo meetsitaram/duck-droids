@@ -228,7 +228,7 @@ def guide():
             L += [f'## {TITLE[k]}', '', f'![{TITLE[k]}](../images/assembly/dynamixel/clips/{k}.gif)', '', f'[Sharper, with controls (MP4)](../images/assembly/dynamixel/clips/{k}.mp4)', '']
         else:
             L += [f'## {TITLE[k]}', '', f"![{TITLE[k]}]({'images/assembly' if G.RECIPE == 'hybrid' else f'../images/assembly/{G.RECIPE}'}/{k}.gif)", '']
-        if k in WARN and not (G.RECIPE != 'hybrid' and k == 'thigh_L'):
+        if k in WARN and not (G.RECIPE != 'hybrid' and k == 'thigh_L') and not (G.RECIPE == 'dynamixel' and k == 'shoe_L'):
             L += [f'> ⚠ {WARN[k]}', '']
         elif k == 'thigh_L':
             L += ['> ⚠ The cable sockets are in notches at the edges of each servo\'s rear face. Plug the cables in through the windows in the thigh plate, before the cover.', '']
@@ -294,31 +294,30 @@ def bom_dynamixel(spec):
         ('Fasteners', [
             ('m2x6', 'Screw, servo mounting', 'generic', 'M2 x 6 mm', sc('M2', 6), 'in the servo box', 0, None, f'{n * per_servo[("M2", 6)]} come with the servos', 'Required'),
             ('m2x8', 'Screw, servo mounting', 'generic', 'M2 x 8 mm', sc('M2', 8), 'in the servo box', 0, None, f'{n * per_servo[("M2", 8)]} come with the servos', 'Required'),
-            ('m2f', 'Screw, flat head', 'generic', 'M2 x 5 mm', sc('M2 flat', 5), 'each', sc('M2 flat', 5), None, 'no source chosen', 'Required'),
-            ('m25', 'Screw, bus board', 'generic', 'M2.5 x 5 mm', sc('M2.5', 5), 'each', sc('M2.5', 5), None, 'no source chosen', 'Required'),
-            ('so', 'Hex standoff, bus board', 'generic', 'brass, M2.5, 5 mm across flats, 8 mm long', 4, 'each', 4, None, 'no source chosen', 'Required'),
+            ('m2f', 'Screw, flat head, machine thread', 'generic', 'M2 x 5 mm, Phillips, black oxide 304 stainless', sc('M2 flat', 5), 'pack of 50', 1, None, amz('B0H5JXD9YQ'), 'Required'),
+            ('m25', 'Screw, bus board, machine thread', 'generic', 'M2.5 x 5 mm, pan head, Phillips, black oxide 304 stainless', sc('M2.5', 5), 'pack of 50', 1, None, 'Amazon', 'Required'),
+            ('so', 'Spare hex standoffs, bus board: 4 come with the Waveshare board', 'uxcell', 'brass, M2.5, female-female, 8 mm long, 5 mm across flats', 0, 'pack of 50', 1, None, 'Amazon', 'Optional'),
             ('m3kit', 'Screws, socket cap: 1 x M3 x 10, 4 x M3 x 12', 'generic', 'kit of 610 with nuts and washers', sc('M3', 10) + sc('M3', 12), 'kit', 1, 19.99, amz('B09NR8X2LV'), 'Required'),
-            ('wash', 'Washer, far hinge tab to hood', 'generic', 'M3, 0.5 mm thick', 1, 'each', 1, None, 'no source chosen', 'Required'),
+            ('wash', 'Washer, far hinge tab to hood', 'uxcell', 'M3, 6 mm outside, 0.5 mm thick, stainless', 1, 'pack of 100', 1, None, amz('B015A39NCC'), 'Required'),
             ('m2kit', 'Spare M2 screws', 'generic', 'self-tapping pan head kit, 800 pieces', 0, 'kit', 1, 15.66, amz('B0GV338JJK'), 'Optional'),
         ]),
         ('Electronics', [
             ('pi', 'Computer', 'Raspberry Pi Zero 2 W', 'without header', 1, 'each', 1, None, link('PiShop', 'https://www.pishop.us/product/raspberry-pi-zero-2-w/') + ': out of stock on 2026-11-03', 'Required'),
-            ('sd', 'microSD card', 'as linked', '', 1, 'each', 1, None, amz('B08L5HMJVW'), 'Required'),
-            ('board', 'Servo bus board', 'Waveshare Bus Servo Adapter (A), SKU 25514', 'USB-C, 2 servo sockets', 1, 'each', 1, 9.05, link('Abra', 'https://abra-electronics.com/electromechanical/motors/motor-controllers/wave-25514-serial-bus-servo-driver-board.html') + ', ' + link('Waveshare', 'https://www.waveshare.com/bus-servo-adapter-a.htm'), 'Required'),
-            ('reg', '5 V regulator', 'hiBCTR USB buck converter QC3.0', '6-32 V in, 35 x 17 x 8.5 mm', 1, 'pack of 2', 1, 7.97, "Amazon, search 'hiBCTR USB buck converter QC3.0'", 'Required'),
-            ('imu', 'IMU', 'Adafruit 4754 (BNO085)', '', 1, 'each', 1, 29.50, link('Adafruit', 'https://www.adafruit.com/product/4754'), 'Required'),
-            ('sw', 'Foot switch', 'Omron D2F-01F', 'subminiature microswitch', 2, 'pack of 4', 1, 6.74, amz('B0062WNDLI'), 'Required'),
+            ('sd', 'microSD card', 'SanDisk Ultra', '32 GB microSDHC, A1, Class 10, UHS-I', 1, 'each', 1, None, amz('B08L5HMJVW'), 'Required'),
+            ('board', 'Servo bus board', 'Waveshare Bus Servo Adapter (A), SKU 25514', 'USB-C, 2 servo sockets, also sold as Serial Bus Servo Driver Board', 1, 'each', 1, None, amz('B0CTMM4LWK') + '. Second source ' + link('Abra', 'https://abra-electronics.com/electromechanical/motors/motor-controllers/wave-25514-serial-bus-servo-driver-board.html') + ' at $9.05', 'Required'),
+            ('reg', '5 V regulator', 'hiBCTR USB buck converter QC3.0', '6-32 V in, 35 x 17 x 8.5 mm', 1, 'pack of 2', 1, 7.97, 'Amazon', 'Required'),
+            ('imu', 'IMU', 'BNO085 module, EC Buying', 'modelled at 25.6 x 22.7 x 4.6 mm; I2C', 1, 'each', 1, None, amz('B0CDGZMLPP') + '. Second source ' + link('Adafruit 4754', 'https://www.adafruit.com/product/4754') + ' at $29.50, in stock on 2026-11-03', 'Required'),
             ('cam', 'Camera', 'Arducam 8 MP IMX219', 'board modelled at 24 x 24 mm', 1, 'each', 1, 16.99, amz('B09V576TFN'), 'Optional'),
-            ('ribbon', 'Camera ribbon, if the camera lacks one', 'generic', 'Pi Zero 22-pin to 15-pin', 1, 'each', 1, None, 'no source chosen', 'Optional'),
+            ('ribbon', 'Camera ribbon, if the camera lacks one', 'GODIYMODULES', 'Pi Zero 22-pin to 15-pin, 15 cm', 1, 'pack of 2', 1, None, amz('B0F9WJ62LV'), 'Optional'),
         ]),
         ('Power and wiring', [
             ('batt', 'Battery', 'OVONIC 2S LiPo, 100C', '450 mAh, XT30, 61.5 x 15.8 x 13.5 mm, 31 g', 1, 'pack of 4', 1, 26.39, amz('B0D2KT723L'), 'Required'),
             ('xt30', 'Battery connector', 'Nuofany XT30 pigtail', '100 mm, 16 AWG', 1, '5 pairs', 1, 9.99, amz('B0B4H4GKQL'), 'Required'),
             ('wire', 'Power wire, red and black', 'BNTECHGO silicone wire', '20 AWG', 1, '10 ft each', 1, None, amz('B01M12PSJM'), 'Required'),
-            ('thin', 'Signal wire: IMU and foot switches', 'generic silicone wire', '28 AWG, about 2 m in all', 1, 'roll', 1, None, 'no source chosen', 'Required'),
+            ('thin', 'Signal wire: IMU', 'Fermerry silicone wire', '28 AWG stranded, 4 wires, about 1 m in all', 1, '6 colours, 5 ft each', 1, None, amz('B089CR4SDM'), 'Required'),
             ('long', 'Servo cable: socket 2 to right leg, neck servo to left leg', 'ROBOTIS Robot Cable-X3P or equivalent', 'JST EH 3-pin both ends, 300-400 mm', 2, 'each', 2, None, 'no source chosen: the 300 mm found is listed with a Molex plug', 'Required'),
-            ('usb', 'Regulator to Pi power', 'LY tech flat ribbon USB', 'right-angle USB-A to right-angle micro USB, 10 cm', 1, 'each', 1, 13.50, "Amazon, search 'LY tech flat ribbon micro USB 90 degree'", 'Required'),
-            ('otg', 'Pi to bus board', 'generic', 'right-angle micro USB OTG to right-angle USB-C', 1, 'each', 1, None, 'no source chosen', 'Required'),
+            ('usb', 'Regulator to Pi power', 'LY tech flat ribbon USB', 'right-angle USB-A to right-angle micro USB, 10 cm', 1, 'each', 1, 13.50, 'Amazon', 'Required'),
+            ('otg', 'Pi to bus board', 'Veeloon', 'right-angle micro USB OTG to right-angle USB-C, 0.6 ft', 1, 'pack of 2', 1, 7.99, amz('B0DKBQ7TD3'), 'Required'),
         ]),
         ('Consumables', [
             ('fix', 'Foam tape, hook-and-loop strap, small cable ties', 'generic', '', 1, 'lot', 1, 12.00, 'any hardware shop; price estimated', 'Required'),
@@ -333,6 +332,17 @@ def bom_dynamixel(spec):
         for r in rows:
             k += 1
             num[r[0]] = k
+
+    SEARCH = {'servo': 'Dynamixel XL330-M288-T', 'm077': 'Dynamixel XL330-M077-T', 'mr2216': 'MR2216ZZ bearing 16x22x4mm', 'b6700': '6700ZZ bearing 10x15x4mm', 'idler': 'Dynamixel FPX330-H101 idler',
+              'm2x6': 'M2 x 6mm self tapping pan head screw', 'm2x8': 'M2 x 8mm self tapping pan head screw', 'm2f': 'M2 x 5mm flat head phillips machine screw', 'm25': 'M2.5 x 5mm pan head machine screw black oxide',
+              'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'M2 self tapping pan head screw kit',
+              'pi': 'Raspberry Pi Zero 2 W', 'sd': 'SanDisk 32GB Ultra microSDHC A1', 'board': 'Waveshare Serial Bus Servo Driver Board', 'reg': 'hiBCTR USB buck converter QC3.0', 'imu': 'BNO085 IMU module',
+              'cam': 'Arducam 8MP IMX219 camera module', 'ribbon': 'Raspberry Pi Zero camera cable 22 pin to 15 pin 15cm', 'batt': 'OVONIC 2S 450mAh 100C XT30', 'xt30': 'XT30 pigtail 16 AWG 100mm', 'wire': '20 AWG silicone wire red black',
+              'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': 'LY tech flat ribbon micro USB 90 degree', 'otg': 'micro USB to USB C OTG cable 90 degree',
+              'fix': 'foam tape hook and loop strap cable ties', 'joint': 'solder heat shrink CA glue', 'chg': '2S LiPo balance charger JST-XH'}
+
+    def search(key):
+        return f"[Search Amazon](https://www.amazon.com/s?k={SEARCH[key].replace(' ', '+')})"
 
     def money(v):
         return f'${v:,.2f}'
@@ -350,7 +360,7 @@ def bom_dynamixel(spec):
             elif line is not None:
                 opt += line
             o = st == 'Optional'
-            T.append(f"| {num[key]} | {'**OPTIONAL:** ' if o else ''}{part} | {mpn} | {spec_} | {(f'({q})' if o else q) if q else '-'} | {unit} | {(f'({oq})' if o else oq) if oq else '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src} |")
+            T.append(f"| {num[key]} | {'**OPTIONAL:** ' if o else ''}{part} | {mpn} | {spec_} | {(f'({q})' if o else q) if q else '-'} | {unit} | {(f'({oq})' if o else oq) if oq else '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src}<br>{search(key)} |")
         T.append('')
         tot += sub
         summary.append(f'| {g} | {money(sub) if sub else "-"} |')
@@ -399,6 +409,7 @@ def bom_dynamixel(spec):
          f"- **Items {num['servo']}, {num['batt']}:** the servos run directly from 2S, 7.4-8.4 V, above ROBOTIS's 6 V maximum. Expect a shorter life than ROBOTIS rates. The walking policies were trained at this voltage.",
          f"- **Item {num['m077']}:** with it, order {n - 1} of item {num['servo']}. It moves nearly 4 times faster, so limit its speed in software. Its gearing is lower, so check that the jaw holds when unpowered. The simulations use the M288.",
          f"- **Item {num['board']}:** set both jumpers to B. Its silkscreen says DC 9-12.6 V and the battery is 7.4-8.4 V: bench test before ordering in quantity.",
+         f"- **Item {num['imu']}:** its listing names both BNO080 and BNO085: confirm which chip arrives, its size, and that it starts in I2C mode. The model and fit come from Adafruit's board.",
          f"- **Item {num['reg']}:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.",
          f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",
          f"- **Item {num['usb']}:** check the Pi's voltage under load, as the ribbon's wires are thin.",
@@ -406,9 +417,9 @@ def bom_dynamixel(spec):
          '- Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.', '',
          '## Open before ordering', '',
          f"- **Servo supply:** item {num['servo']} is sold out at ROBOTIS US and limited at Seeed. {n} units is the longest lead time here.",
-         f"- **Sources to choose:** items {', '.join(str(num[x]) for x in ('m2f', 'm25', 'so', 'wash', 'ribbon', 'thin', 'long', 'otg'))}.",
-         f"- **Measure on the first parts:** a horn in the bore of item {num['mr2216']}; the board's standoff size, read from a photograph (item {num['so']}); the camera board (item {num['cam']}); servo cable lengths (item {num['long']}); switch travel against the TPU sole (item {num['sw']}).",
-         f"- **Amazon listings** (items {', '.join(str(num[x]) for x in ('mr2216', 'b6700', 'batt', 'xt30', 'wire', 'sw', 'cam'))}, and those found by search) are as last read: confirm each page before ordering.",
+         f"- **Sources to choose:** items {', '.join(str(num[x]) for x in ('long',))}.",
+         f"- **Measure on the first parts:** a horn in the bore of item {num['mr2216']}; the Waveshare board's standoffs against their printed hex sockets, 5 mm across flats (item {num['board']}); the camera board (item {num['cam']}); servo cable lengths (item {num['long']}).",
+         f"- **Amazon listings** (items {', '.join(str(num[x]) for x in ('mr2216', 'b6700', 'm2f', 'wash', 'board', 'imu', 'otg', 'batt', 'xt30', 'wire', 'thin', 'cam'))}, and those found by search) are as last read: confirm each page before ordering.",
          '- **Not in this design:** power switch (the XT30 is the disconnect), speaker, microphone.', '']
     folder = G.out_path('docs')
     os.makedirs(folder, exist_ok=True)

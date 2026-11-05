@@ -339,7 +339,7 @@ def real_boards(name, comp, s):
         g = gs['Pi Zero 2 W']
         x0, y0, z0 = (g['c'][k] - g['size'][k] / 2 for k in range(3))
         # its ports up, where there's room for a plug under the hood (they were down, in the base plate: the real parts' interference check found it)
-        at = lambda u, v, w: ((x0 * 1000 + 1.4 + w) / 10, (y0 * 1000 + u) / 10, (z0 * 1000 + 30 - v) / 10)
+        at = lambda u, v, w: ((x0 * 1000 + 1.4 + w) / 10, (y0 * 1000 + 65 - u) / 10, (z0 * 1000 + 30 - v) / 10)   # (65 - u: it was mirrored, with its microSD at -y. Parts toward +x and ports up puts the microSD at +y, as spec/robot.py has it)
         pads = [(8.37 + 2.54 * k, 30 - 3.5 + o, 0.75, 0, 0.05) for k in range(20) for o in (-1.27, 1.27)]
         rings = [(u, v, 2.9, 0, 0.05) for u in (3.5, 61.5) for v in (3.5, 26.5)]
         _details(comp, 'Pi Zero 2 W', [

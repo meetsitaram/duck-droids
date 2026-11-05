@@ -1,5 +1,5 @@
 diff --git a/.gitignore b/.gitignore
-index 7257287..36d04bd 100644
+index 72572872..36d04bd7 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -38,3 +38,7 @@ backup_onnx/
@@ -12,7 +12,7 @@ index 7257287..36d04bd 100644
 +train_milli_*.log
 diff --git a/scripts/milli_audit.py b/scripts/milli_audit.py
 new file mode 100644
-index 0000000..6fa4c5a
+index 00000000..6fa4c5a9
 --- /dev/null
 +++ b/scripts/milli_audit.py
 @@ -0,0 +1,51 @@
@@ -69,7 +69,7 @@ index 0000000..6fa4c5a
 +    print(" ", show(s))
 diff --git a/scripts/milli_eval.py b/scripts/milli_eval.py
 new file mode 100644
-index 0000000..88a52bb
+index 00000000..88a52bb4
 --- /dev/null
 +++ b/scripts/milli_eval.py
 @@ -0,0 +1,179 @@
@@ -254,7 +254,7 @@ index 0000000..88a52bb
 +    print(a.video)
 diff --git a/scripts/milli_ground_check.py b/scripts/milli_ground_check.py
 new file mode 100644
-index 0000000..6d3d0c5
+index 00000000..6d3d0c5c
 --- /dev/null
 +++ b/scripts/milli_ground_check.py
 @@ -0,0 +1,31 @@
@@ -291,7 +291,7 @@ index 0000000..6d3d0c5
 +print("events", list(cfg.events))
 diff --git a/scripts/milli_limits.py b/scripts/milli_limits.py
 new file mode 100644
-index 0000000..29b2ebe
+index 00000000..29b2ebef
 --- /dev/null
 +++ b/scripts/milli_limits.py
 @@ -0,0 +1,49 @@
@@ -346,7 +346,7 @@ index 0000000..29b2ebe
 +    print(f"   hard limits {lim[k].round(2)} soft {np.round(soft[k], 2)}")
 diff --git a/scripts/milli_sanity.py b/scripts/milli_sanity.py
 new file mode 100644
-index 0000000..c2d076c
+index 00000000..c2d076c2
 --- /dev/null
 +++ b/scripts/milli_sanity.py
 @@ -0,0 +1,34 @@
@@ -386,7 +386,7 @@ index 0000000..c2d076c
 +print("events", list(cfg.events))
 diff --git a/scripts/milli_skill_eval.py b/scripts/milli_skill_eval.py
 new file mode 100644
-index 0000000..d9625d8
+index 00000000..d9625d85
 --- /dev/null
 +++ b/scripts/milli_skill_eval.py
 @@ -0,0 +1,122 @@
@@ -514,7 +514,7 @@ index 0000000..d9625d8
 +    json.dump(results, open(a.out, "w"), indent=1)
 diff --git a/src/mjlab_microduck/robot/milli_constants.py b/src/mjlab_microduck/robot/milli_constants.py
 new file mode 100644
-index 0000000..bed68f7
+index 00000000..bed68f7f
 --- /dev/null
 +++ b/src/mjlab_microduck/robot/milli_constants.py
 @@ -0,0 +1,82 @@
@@ -601,7 +601,7 @@ index 0000000..bed68f7
 +STRONG_NECK = {"neck_pitch": 1.57, "head_pitch": 1.45}
 +MILLI_CONTACT_STRONG_NECK_CFG = make_milli_robot_cfg("milli_contact", _CONTACT, stronger=STRONG_NECK)
 diff --git a/src/mjlab_microduck/tasks/__init__.py b/src/mjlab_microduck/tasks/__init__.py
-index 1f75034..963689a 100644
+index 1f750342..963689a7 100644
 --- a/src/mjlab_microduck/tasks/__init__.py
 +++ b/src/mjlab_microduck/tasks/__init__.py
 @@ -81,6 +81,100 @@ from .microduck_roulade_env_cfg import (
@@ -707,7 +707,7 @@ index 1f75034..963689a 100644
      env_cfg=make_microduck_velocity_env_cfg(),
 diff --git a/src/mjlab_microduck/tasks/milli_ground_env_cfg.py b/src/mjlab_microduck/tasks/milli_ground_env_cfg.py
 new file mode 100644
-index 0000000..d14d3cd
+index 00000000..d14d3cd5
 --- /dev/null
 +++ b/src/mjlab_microduck/tasks/milli_ground_env_cfg.py
 @@ -0,0 +1,184 @@
@@ -897,10 +897,10 @@ index 0000000..d14d3cd
 +MilliRouladeStrongNeckRlCfg.run_name = "milli_roulade_strongneck"
 diff --git a/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
 new file mode 100644
-index 0000000..1ead335
+index 00000000..c29ee98f
 --- /dev/null
 +++ b/src/mjlab_microduck/tasks/milli_velocity_env_cfg.py
-@@ -0,0 +1,240 @@
+@@ -0,0 +1,242 @@
 +"""milli's walking task: microduck's velocity recipe, on milli's robot, plus the foot switches as policy inputs.
 +
 +What the recipe sets for microduck that would be wrong here, each found by reading the loaded config:
@@ -1099,11 +1099,13 @@ index 0000000..1ead335
 +        stds = dict(cfg.rewards["pose"].params[k])
 +        stds[r".*hip_yaw.*"] = HIP_YAW_STD
 +        cfg.rewards["pose"].params[k] = stds
-+    # a microswitch in each shoe (milli's spec): two booleans the real robot reads on GPIO, as Open Duck Mini's policy has
-+    cfg.observations["actor"].terms["foot_switch"] = ObservationTermCfg(
-+        func=velocity_mdp.foot_contact,
-+        params={"sensor_name": "feet_ground_contact"},
-+    )
++    # a microswitch in each shoe (milli's spec): two booleans the real robot reads on GPIO, as Open Duck Mini's policy has.
++    # Not on the all-Dynamixel duck, which has none (2026-11-05): as microduck, joints and IMU only
++    if recipe != "dynamixel":
++        cfg.observations["actor"].terms["foot_switch"] = ObservationTermCfg(
++            func=velocity_mdp.foot_contact,
++            params={"sensor_name": "feet_ground_contact"},
++        )
 +    if HEIGHT > 3:
 +        scale_for_big(cfg, HEIGHT, json.load(open(ROBOTS / folder / "home.json"))["mass_kg"], folder)
 +    cfg.events.pop("expand_bam_friction_fields", None)

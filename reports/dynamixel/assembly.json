@@ -433,12 +433,6 @@
  },
  {
   "group": "PATH",
-  "item": "shoe_L: L foot switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "shoe_L: L sole",
   "status": "PASS",
   "detail": ""
@@ -1184,12 +1178,6 @@
  {
   "group": "PATH",
   "item": "shin_R: R ankle horn",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "shoe_R: R foot switch",
   "status": "PASS",
   "detail": ""
  },
@@ -6187,12 +6175,6 @@
  },
  {
   "group": "ALL",
-  "item": "part L foot switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
   "item": "part L inner ear",
   "status": "PASS",
   "detail": ""
@@ -6350,12 +6332,6 @@
  {
   "group": "ALL",
   "item": "part R sole",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part R foot switch",
   "status": "PASS",
   "detail": ""
  },

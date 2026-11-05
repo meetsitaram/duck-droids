@@ -141,7 +141,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('beak lid', 'P', ['beak cradle horn face']),
     ('beak crank', 'P', ['beak crank', 'beak crank pin']),
     ('beak rod', 'P', ['beak rod']),
-    ('Pi Zero 2 W', 'B', ['Pi Zero 2 W']),
+    ('Pi Zero 2 W', 'B', ['Pi Zero 2 W', 'Pi USB plug', 'Pi PWR plug', 'Pi camera ribbon', 'Pi microSD']),
     ('camera', 'B', ['camera']),
     ('servo bus board', 'B', ['servo bus board']),
     ('Waveshare bus board', 'B', ['Waveshare bus board', 'bus board cable plugs servo', 'bus board cable plugs power', 'bus board cable plugs usb']),
@@ -186,7 +186,7 @@ def sections():
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),
         ]), dict(key=f'shoe_{s}', title=f'The {nm} shoe', on=[], steps=[
             ('The shoe', [(f'{s} shoe', None)], []),
-            ('Press in the foot switch, its wires soldered first', [(f'{s} foot switch', Z)], []),
+            *([('Press in the foot switch, its wires soldered first', [(f'{s} foot switch', Z)], [])] if G.RECIPE != 'dynamixel' else []),
             ('The TPU sole, 2 screws from below', [(f'{s} sole', Z)], [rf'^{s} shoe bottom screw']),
         ]), dict(key=f'leg_{s}', title=f'The {nm} leg', on=[f'thigh_{s}'], steps=[
             ('The shin onto the knee horn', [(f'@shin_{s}', OUT)], []),
@@ -250,7 +250,7 @@ def sections():
         ('The head frame, with its beak servo, down over the roll servo', [('@framebench', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^head roll fork screw']),
         ('The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, USB-C', [('Waveshare bus board', NEG(Z))], [r'^bus board top screw']),
-        ('The Pi onto its plate from the front, 4 screws', [('Pi Zero 2 W', NEG(X))], [r'^Pi screw']),
+        ('The Pi onto its plate from the front, its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket', [('Pi Zero 2 W', NEG(X))], [r'^Pi screw']),
         ('The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, a USB cable to the PWR port of the Pi', [('head 5 V regulator', NEG(Z))], []),
         ('The U2D2 on the frame, from below, foam tape', [('U2D2', Z)], []),
         ('The Feetech bus board on its rails, foam tape', [('servo bus board', NEG(Z))], []),

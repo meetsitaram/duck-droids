@@ -160,6 +160,16 @@
 30.46
 ],
 [
+"Pi USB plug",
+"Pi Zero 2 W USB port",
+20.8
+],
+[
+"Pi PWR plug",
+"Pi Zero 2 W power port",
+20.8
+],
+[
 "neck pitch XL330 idler screw",
 "neck pitch XL330 case middle",
 9.36
@@ -183,6 +193,11 @@
 "head roll XL330 case middle",
 "head roll XL330 idler screw",
 9.36
+],
+[
+"L shoe",
+"L sole",
+9.3
 ],
 [
 "neck pitch XL330 idler screw",
@@ -998,11 +1013,6 @@
 "head fork",
 "head yaw sheet",
 0.32
-],
-[
-"L shoe",
-"L sole",
-0.24
 ],
 [
 "chassis",

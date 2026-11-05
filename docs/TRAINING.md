@@ -16,6 +16,16 @@ this repo doesn't include a copy: [trainer/milli_trainer.patch](../trainer/milli
 
 This is simulation only, and nothing has run on a real robot. An earlier check, at iteration 750, had the hip yaw servos at stall a third of the time.
 
+## Train the all-Dynamixel duck
+
+No policy for its current design exists yet. Its older walks were trained with foot switches, on a model that has since changed. After the set-up below, on a machine with a big GPU, this trains the walk, the get-up and the head roll in turn, tests each and exports it to `pi/models/` for [the Pi code](../pi/README.md):
+
+```bash
+bash ../duck-droids/trainer/train_dynamixel.sh
+```
+
+The script hasn't been run yet. The head roll may well not come out: no policy has done it so far.
+
 ## Set it up
 
 You need an NVIDIA GPU (the scripts ask for `cuda:0`), Python 3.12 and [uv](https://docs.astral.sh/uv/). The steps below were tested on Windows with an RTX 5090, apart from the fresh `uv sync`, which an earlier setup ran.
@@ -64,7 +74,7 @@ python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli
 python tools/make_rl_model.py ../microduck_rl/src/mjlab_microduck/robot/milli_salvage --salvage
 ```
 
-The floor skills and the other three [servo recipes](../README.md#four-servo-recipes) need their own models too, and the trainer won't import without them. In bash:
+The floor skills and the other three [servo recipes](DETAILS.md#four-servo-recipes) need their own models too, and the trainer won't import without them. In bash:
 
 ```bash
 R=../microduck_rl/src/mjlab_microduck/robot; python tools/make_rl_model.py $R/milli_contact --contact; for r in dynamixel feetech hd1910; do MILLI_RECIPE=$r python tools/make_rl_model.py $R/milli_$r; MILLI_RECIPE=$r python tools/make_rl_model.py $R/milli_${r}_contact --contact; done
@@ -126,7 +136,7 @@ Run `scripts/milli_audit.py` in the trainer to print every setting the task has 
 
 - **The robot:** `tools/make_rl_model.py` gives milli microduck's names, joint directions and order, so the recipe's rewards and observations apply. The beak is locked.
 - **Standing pose:** level, with the feet 42 mm forward, until the centre of mass is over the soles.
-- **Foot switches:** two booleans added to the policy's inputs, from sole contact.
+- **Foot switches:** two booleans added to the policy's inputs, from sole contact, except on the all-Dynamixel duck, which has none: joints and IMU only, as microduck.
 - **Servos:** a DC motor model per servo type, with each type's own gain, stall torque and no-load speed. microduck's measured BAM model fits only the XL330.
 - **Reset height:** the recipe's 12-13 cm was microduck's; it dropped milli from 12 cm at every reset. Now 0-2 mm.
 - **Servo randomization:** friction, damping and armature each +-30 %, as they're scaled or copied. The recipe's friction setting did nothing here.
