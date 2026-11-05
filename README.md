@@ -29,7 +29,7 @@ The same design on other servos, and at 1.8 m. Their parts lists and wiring are 
 | Feetech HD-1910 | 15 HD-1910 | 1.03 kg | [BOM](docs/hd1910/BOM.md) | [Wiring](docs/hd1910/WIRING.md) |
 | All Feetech | 15 STS3215 | 37.9 cm, 1.94 kg | [BOM](docs/feetech/BOM.md) | [Wiring](docs/feetech/WIRING.md) |
 | Hybrid | STS3215 legs, Dynamixel head | 1.65 kg | [BOM](BOM.md) | [Wiring](docs/WIRING.md) |
-| Big: **not safe to build** | 22 RobStride | 1.8 m, 96.3 kg | [BOM](docs/big/BOM.md) | [Wiring](docs/big/WIRING.md) |
+| Big: **not safe to build** | 22 RobStride | 1.8 m, 97.1 kg | [BOM](docs/big/BOM.md) | [Wiring](docs/big/WIRING.md) |
 
 More in [the details](docs/DETAILS.md), and [what went wrong along the way](LESSONS.md).
 
