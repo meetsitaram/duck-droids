@@ -41,6 +41,7 @@ The power board and hub: [wiring](WIRING.md#the-boards-from-their-step-files).
 - **Stators turn to match the plates.** Each cable points along an axis. Both hole patterns are symmetric about the cable, so a right-hand actuator, turned 180 deg about its cable, has its holes where the left's mirror lands. Fusion places them that way: rotation only, never a mirror. The rotor's zero is set in software to suit.
 - **The hip yaw is new.** It was a bearing round the case's own 120 mm, on a sleeve the case left no room for. Now a fixed housing hangs from the deck round the stator, holding the bearing's outer ring below it. The inner ring is on the output's flange. The leg's moment goes housing to deck, and only torque goes through the actuator. Its cable comes out above the deck, in the body.
 - **Every output has a flange**, with holes for pins and counterbored screws sized to engage 3 mm of thread: M5 x 8 on the cranks, x 10 on hip pitch (low heads) and ankle, x 12 on hip yaw and neck, x 18 on the roll yoke, which is hollow so a key can reach them. Plates bolt to flanges by a second circle of screws, so they go in after: 16 mm screws fit in the thigh's 24 mm. The hip pitch's old M5 x 16 through 20.5, the ankle's x 20 through 20, the roll's 8 deep into 6.5 and the yaw's heads in a 2 mm gap are gone.
+  **The user's decision (2026-11-05), until a real RS04 is measured:** design for the 3.5 mm thread the STEP file shows, the conservative case. Each output screw engages about 3 mm and never reaches the bottom of its hole, and the 3 pins are taken to carry the torque, the screws only to hold the flange on.
 - **The knee's four-bar didn't close.** Giving the rods their motion showed it: at 106 mm the rod can't reach below knee -0.74, probably since the hip moved after that sweep: a comment still had it 40 mm lower. Now the same crank and lever, with a 148 mm rod and the lever at 150 deg, closes from -0.92 to +0.30. Ratio: 1.54 at its weakest and 1.89 bent, as before; 2.56 at the straight end, not 3.35. The walks use the first two.
 - **Rods have holes and bushes**, 14 x 10, on 10 mm pins, and cranks and rods are their own parts.
 - **RS03s.** Each rear plate has 4 screws and 4 clearance holes for RobStride's cap screws. The bridge and cradle moved 14 mm, as its output is nearer its shoulder than the old cylinder's end, so the head didn't move.
@@ -69,50 +70,58 @@ All 23 took 98 % of both limits with none refused. That's Fusion's joint limits,
 
 ## Clashes
 
-266, at the zero pose, down from 353 on the first build with real shapes. `reports/fusion_interference_big.json`, boxes in `reports/fusion_clash_boxes_big.json`. Each was read by type and link, and those on the left and middle links by box.
+**41**, at the zero pose (2026-11-05, after the frame joints), down from 266 before them and 353 on the first build with real shapes. `reports/fusion_interference_big.json`, boxes in `reports/fusion_clash_boxes_big.json`. Each was read by type and link.
 
-**Against the real actuators: 0.** No plate, flange, screw or pin clashes with a real case or rotor. Screws are drawn at their core diameter, so they'd clash if they missed a tap hole, ran too long or met a cap screw. The first build found 8 real ones that way:
+**Against the real actuators: 0. Metal against metal: 0. A screw in metal: 0.** Screws are drawn at their core diameter, so each would clash if it missed its tap hole, ran too long, or met another. The first build of this round found 64 such, all one drawing fault: a countersunk screw's shank drawn through its own head. Fixed in `screws()`, and with it 12 foot screws' heads standing in the solid soles, which now have pockets.
 
-- RobStride's RS03 cap screws in the bridge and cradle, and 4 mount screws run into them. Those are the 4 rear sites that aren't free.
-- A thigh cover's post into the knee's rear step, at 43 mm from its axis.
-- Hip yaw housing screws into a body post and computer standoffs.
-- The hip pitch's full screw head, 0.2 mm into the thigh plate.
+| Where | Types | Count | Largest | Meaning |
+|---|---|---|---|---|
+| across the head pitch | chain and 25T sprocket | 2 | 0.58 cm3 each strand | a chain drawn as 2 straight bars tangent to the pitch circle. Chain and tensioner aren't designed |
+| inside the neck | chain and 13T sprocket | 2 | 0.23 cm3 | the same drawing |
+| inside the head and trunk | panel and metal | 16 | head rail in a bill panel, 7.8 cm3; deck in the front body panels, 1.3 cm3 | panels have no reliefs for the frame |
+| inside the head | panel and screw | 16 | beak mount and rail screws in the bill panels | the same |
+| inside the head | panel and panel | 5 | eye ring in eye lens, 113 cm3 | the eye is solid discs |
 
-### Across a joint, where a clash is a real flaw: 2
+Before this round, 148 metal-and-metal, 23 metal-and-steel, 24 bearing and 7 box clashes were the 0.5 mm overlaps with nothing holding them, and press-fit bores drawn under size. Parts now meet face to face (Fusion leaves coincident faces out), and fits are drawn at nominal size and named in `HELD`.
 
-| Clash | What it is | Done |
-|---|---|---|
-| Chain into 25T sprocket, 0.58 cm3 each strand | a chain drawn as 2 straight bars tangent to the pitch circle | a drawing, not a flaw. Chain and tensioner aren't designed |
+## Frame joints (2026-11-05)
 
-The 4 knee-rod clashes are gone.
+Before this, every part that touched another in a link was drawn 0.5 mm into it, so the offline checks would read the link as one piece, and nothing held them together. Now parts meet face to face, and each pair that touches shares a screw or a joint named in `HELD` in `spec/big_duck.py` (a fit, a key, a strap). Each screw says what it clamps and what it threads into. [ASSEMBLY.md](ASSEMBLY.md) has the order and the screw table, from `tools/big_assembly.py`.
 
-### Inside one link: 264
+| Where | How |
+|---|---|
+| Deck to posts, upper plate | M5 into each end of a tapped square bar |
+| Neck plates | a tie between them, 2 M5 each, up through the deck; a cleat outside each at the front. Their feet cut flat on the deck |
+| Hip yaw | a flange on the housing's foot, 8 countersunk M4 for the retainer; the inner retainer 6 thick, 8 M4 up through the yaw flange; deck widened round each housing |
+| Hip roll cheeks | each hangs from the beam by a cleat outside it: 3 M5 up into the beam, 2 through the cheek |
+| Hip roll yoke | the ring to the inner upright is machined with it; 5 M5 through the upright into the ring; a slot in the ring for the stator's cable |
+| Hip pitch uprights and bridge | ribs are in the uprights now; M4 through each upright into the bridge's ends |
+| Thigh | countersunk M5 into the spacers, flush under the cranks and rods; ties tapped both ends, moved to clear the knee stators |
+| Knee | the shaft keyed to levers and hubs; the hubs stand on the shin's top, bolted through a spacer (they ran through it) |
+| Shin | a folded 6061 tube, welded seam; a top plug and a cap, M4 through the walls; the ankle's three plates through-bolted and hung from the cap |
+| Foot | ears flat on the plate, M4 from below; shoe pieces on M4 into inserts; soles bonded |
+| Neck, head pitch | a 40 mm tie with 3 M5 x 80 into the spine; yokes under the bridge, M4 down |
+| Head | rails through notches in the main frame, M4 sideways; frames on their ends; lugs and beak mount on the rails |
+| RS03s | each uses its 8 front holes too, through a ring and 4 posts to the plate behind it |
+| Rods | E-clips (DIN 6799, 8) past each rod, both lanes 2.5 mm wider for them |
 
-Within a link everything is one rigid lump, and these are where parts are drawn into each other.
-
-| Types | Count | Largest | Meaning |
-|---|---|---|---|
-| metal and metal | 148 | head rail in beak lug, 9.4 cm3; foot plate and ear, 8.8 cm3 | mostly the checks' 0.5 mm overlap, a joint read as joined. **Those are the frame joints with no fasteners.** A few are parts run into each other, like the ear into the foot plate |
-| panel and metal | 37 | foot plate in the sole, 13.6 cm3 | panels have no pockets for what they meet |
-| metal and steel | 23 | neck boss in spine, 2.4 cm3 | the same 0.5 mm, and press-fit bores 0.05 mm under size |
-| panel and panel | 21 | eye ring in eye lens, 113 cm3; thigh cover pieces, 33 cm3 | the eye is solid discs; cover pieces overlap, instead of meeting at a seam |
-| bearing and metal or steel or bearing | 24 | ankle ear in its bearing housing, 1.3 cm3 | seats 0.1-0.2 mm under size, and the foot's housing has no proper seat |
-| box and metal or box | 7 | battery in deck, 11 cm3 | the box overlaps the plate, so they read as joined |
-| steel and steel | 3 | 13T sprocket in chain | a chain drawn tangent |
-| head frame and bill panel | 1 | 5.8 cm3 | panel not relieved |
+The checker's numbers, at the zero pose: 287 parts, 743 screws, 249 steps, 1531 checks, **0 failing**; 174 warnings, all printed panels. It fails on purpose when a screw's joins are dropped, two steps are swapped, a part's way is reversed or a screw is shortened (`--bad join|order|way|bite`). What it found along the way: an inner retainer only reachable after the stator that hides its screws, the yaw housing's outer screws 11 mm off the deck (since the first build), screws under the neck tie's heads and the computer's box, two pairs of screws meeting head to head across the thigh, cleat screws under the ankle stator, and ties 0.6 cm3 into the knee stators.
 
 ## What's still not buildable
 
-- **Frame joints have no fasteners:** cheeks to beam, ties, ribs, bridges, posts, standoff rings, covers and panels, and the yaw retainers' screws. They hold the robot up. No assembly order exists, so none is checked.
-- **Rods aren't retained.** The pin ends 0.3 mm from the thigh plate, so there's no room for a circlip. The lane needs to widen, or the rod's bush needs a shoulder. A 5 mm rod with a 4 mm wall around its bush takes 2-4 kN, unchecked.
+- **Frame joints are designed for fit, not strength.** See [Frame joints](#frame-joints-2026-11-05). Many are M4 tapped into the edge of 8 mm plate; the head pitch stator plate hangs from one tie; the head roll cradle stands on 3 M4 into its edge. Nobody has checked any of them carries its load.
+- **Rods: retained, not sized.** E-clips on each pin now, with room for them. A 5 mm rod with a 4 mm wall around its bush takes 2-4 kN, unchecked.
+- **Panels have no fixings:** body, hood, face, bill, beak, shin. They touch the frame, some cut into it, and nothing holds them. Keyways for the knee and head pitch shafts are named, not drawn.
 - **Solid parts with assumed fill:** the yoke, spine and beam. Their pockets may take what they need.
 - **The 13T sprocket** has a plain face for 9 M5 and 3 pins. A bought one doesn't. The chain and tensioner aren't designed.
 - **The beak's drive** isn't designed. The head's boxes are placeholders.
-- **Cables** have a way out of each plate. Their routes and loops aren't drawn, and nobody knows they reach.
+- **Cables don't reach.** Listed, not drawn, in [CABLES.md](CABLES.md): at least 14 of 22 harnesses are too short for the boards on the deck. Each leg needs its own CAN hub and power block, or extensions. Neither is designed.
 
 ## What the pictures show
 
-Looked at: `docs/images/fusion/big/crops/`, 72 close crops, 12 joints from 6 sides each, on the left and in the middle, skin hidden, at the zero pose, as 12 contact sheets, 500 px a view. Whole robot from three-quarter. The rods only with the outer rear plate hidden, at the zero pose, where they run from crank pin to lever pin as drawn.
+**2026-11-05, after the frame joints:** 96 crops now, the 12 joints and 4 on the right leg (`r_hip_roll`, `r_hip_pitch`, `r_knee`, `r_ankle`), skin hidden, zero pose. Looked at as contact sheets: hip roll (the cleats under the beam, the cheek screws), knee stators (ties, cover posts), knee (hubs on the shin's top, its spacer), ankle (the cap, its cleats, the ankle plates' through-bolts), head yaw (the RS03's front ring and posts), and the right hip roll, which matches the left with its actuators turned. And offline, from the spec's shapes in MuJoCo, one bent pose (hip pitch -0.9, knee -0.92, ankle +0.6, roll +-0.2), from the side, three-quarter, front and back with the skin hidden: nothing visibly crossing. Not looked at this round: the hip yaw, hip pitch, neck, head pitch, head roll, beak and right knee and ankle sheets, the `links/` pictures, and any bent pose in Fusion.
+
+Before that: `docs/images/fusion/big/crops/`, 72 close crops, 12 joints from 6 sides each, on the left and in the middle, skin hidden, at the zero pose, as 12 contact sheets, 500 px a view. Whole robot from three-quarter. The rods only with the outer rear plate hidden, at the zero pose, where they run from crank pin to lever pin as drawn.
 
 - **Hips and knee stators:** real cases on real plates, each with its window and cable sleeve. Hull plates show as 24-sided polygons, a drawing limit.
 - **Hip yaw:** a plain drum from outside. Bearing and flange can't be seen in it, and I didn't cut a section to look.
@@ -122,7 +131,7 @@ Looked at: `docs/images/fusion/big/crops/`, 72 close crops, 12 joints from 6 sid
 - **Ankle:** real case, ring and two plates, 6 ear screws. The shin stops 2 mm over the case.
 - **Beak:** the RS00 lies on its mount by a line. A placeholder.
 
-Not looked at: the right leg (the left's mirror in the spec, and the same actuators turned), any other pose in Fusion, `links/` pictures one by one, and `back`, `side`, `under` and `top` of this build.
+Not looked at then: the right leg (the left's mirror in the spec, and the same actuators turned), any other pose in Fusion, `links/` pictures one by one, and `back`, `side`, `under` and `top` of this build.
 
 ## Not done
 
