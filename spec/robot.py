@@ -1268,7 +1268,7 @@ link('head', 0.12, [
     *[dict(box(n, (PI_X + 0.0028 + x0, y0, z0), (PI_X + 0.0028 + x1, y1, z1), '#D9D4C5', fillet=0.0003), material='electronics', mass=m, wire=True, exposed=True)
       for n, x0, x1, y0, y1, z0, z1, m in (('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
                                            ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002),
-                                           ('Pi camera ribbon', 0.0, 0.005, -0.0360, -0.0325, PI_Z - 0.006, PI_Z + 0.006, 0.0002),
+                                           ('Pi camera ribbon', 0.0, 0.005, -0.0355 if TWO_BOARDS else -0.0360, -0.0325, PI_Z - 0.006, PI_Z + 0.006, 0.0002),
                                            ('Pi microSD', 0.0, 0.002, 0.0325, 0.0345, PI_Z - 0.006, PI_Z + 0.006, 0.0002)) if R.get('pi_ports_up')],
     # (the Pi's pins are the bottom edge now, pin 1 at the microSD's end. 3 wires to the Feetech board and 4 to the IMU, soldered on the parts' side, round the board's end, behind its plate)
     *[dict(box('Pi GPIO wires', (PI_X + 0.0028 + 0.0052, 0.0160, PI_Z - 0.0145), (PI_X + 0.0028 + 0.0072, 0.0335, PI_Z - 0.0115), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.001, wire=True, exposed=True) for _ in range(TWO_BOARDS)],
