@@ -211,8 +211,10 @@ link('trunk', [
     dict(side_plate('neck plate R', -YN[1] - PL, PL, [(XN, ZN, 0.075), (XN - 0.10, DECK[1] + 0.029, 0.03), (XN + 0.015, DECK[1] + 0.029, 0.03)]), fill=0.6),
     metal('neck tie', (XN - 0.112, -YN[1] - 0.0005, DECK[1] - 0.0005), (XN - 0.100, YN[1] + 0.0005, ZN - 0.02), ALD),
     # the battery, computer and power board on the deck. Named 24S until 2026-11-05: a 24S pack is about 100 V full, and RobStride's manuals give 60 V as the most these actuators take. 13S is 54.6 V full, as 14S's 58.8 leaves no room
-    # for what walking brakes back into the bus. Same box and mass: no pack has been chosen (docs/big/BOM.md)
-    box('battery 13S', (-0.215, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), CELL, material='cells', mass=8.0),
+    # for what walking brakes back into the bus. The candidate to bench-test (2026-11-05, docs/big/BOM.md): Dan-Tech's 13S5P soft pack, 280 x 80 x 130, 5.2 kg, across the body between the posts. It has no BMS or case, so what was left of the
+    # old box and its 8 kg holds those as an allowance, unchosen, and the walks' total stays the same
+    box('battery 13S', (-0.215, -0.140, DECK[1] - 0.0005), (-0.135, 0.140, DECK[1] + 0.130), CELL, material='cells', mass=5.2),
+    box('battery BMS, fuse and case, allowance', (-0.135, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), PCB, material='cells', mass=2.8),
     box('computer and power boards', (-0.065, -0.085, DECK[1] - 0.0005), (0.025, 0.085, DECK[1] + 0.03), PCB, material='electronics', mass=1.2),
     *body_panels(),
     cut(neck_slot, 'body panel FR', 'body panel FL', 'body panel MR', 'body panel ML'),
