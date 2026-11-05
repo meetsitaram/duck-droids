@@ -47,8 +47,8 @@ RECIPES = {
     # No board fits in the body: the most room there is 15 x 8 mm across (42 x 33 x 12.6 wanted). So the legs' current stays in the body through a splice, and only data and ground go up the neck.
     # One 8 A UBEC in the body, for the head's servos; the Pi's own USB regulator in the head, as the all-Dynamixel's, in place of a second 8 A UBEC and its soldered lead)
     'hybrid': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='XC330_M288', head='XL330_M288', K=1.0, HK=1.18, foot_switch=False, pi_ports_up=True, two_boards=True, reg_head=True, reg_box=((0.0660, -0.0412, 0.2645), (0.1010, -0.0327, 0.2815)), charge_port=True,
-                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0275, 0.0330), cut=((-0.0620, 0.0270, 0.1490), (-0.0550, 0.0340, 0.1715))),
-                   battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052), short=0.003, ranges=dict(head_roll=(-0.34, 0.34)),
+                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0270, 0.1490), (-0.0400, 0.0340, 0.1715))),
+                   battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052), short=0.003, ranges=dict(head_roll=(-0.33, 0.33)), mount_in=0.0008,
                    mass_budget_kg=1.65,    # 1.55 before the cable plugs, real regulators and boards and the beak's drive were modelled (2026-11-03)
                    # the real bus boards put the head's weight 11 % over the head pitch XL330's rated torque, an estimate at a third of stall, in this pose: passed
                    # through, at 37 % of stall, not to be held for long. An XC330 there would hold it (0.93 N m stall) at $76 more
@@ -766,13 +766,13 @@ link('trunk', 0.40, [
       for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS) for k, x_ in enumerate((-0.030, 0.001))],
     dict(box('IMU', (R.get('imu_x', -0.0426), -0.01135, PLATE[1] + 0.0017), (R.get('imu_x', -0.0426) + 0.0256, 0.01135, PLATE[1] + 0.0063), PCB, material='electronics', mass=0.003), on_cover=True),   # (on 1.7 mm of foam tape, over 2 screw heads)
     # the legs' bus: a lead from one hip yaw servo to the other, the battery's V and G and the neck's D and G joined into it, in heat-shrink, taped to the plate between the 2 yaw plugs
-    *[dict(box('leg bus splice', (-0.0100, -0.0060, PLATE[1] + 0.0003), (0.0005, 0.0060, PLATE[1] + 0.0048), '#202226', fillet=0.0005), material='electronics', mass=0.005, wire=True, on_cover=True) for _ in range(TWO_BOARDS)],
+    *[dict(box('leg bus splice', (-0.0100, -0.0060, PLATE[1] + 0.0003), (0.0005, 0.0060, PLATE[1] + 0.0048), '#202226', fillet=0.0005), material='electronics', mass=0.005, on_cover=True) for _ in range(TWO_BOARDS)],
     # (a tray under the pack, on the yaw trays' end walls: the old strap was a solid bar through it. The shell's back wall and a hook-and-loop
     # strap round pack and tray hold it)
     box('battery strap', (BATT_X, -0.010, PLATE[0] - BATT[2] - R.get('strap', 0.003)), (BATT_X + BATT[0] + 0.0034, 0.010, PLATE[0] - BATT[2])),
     # the neck servo rides in the neck; the body holds it on both sides (round 7, the user: "one sided joints are
     # bad"): a bracket on its horn, a bracket with an idler on its other face, on a block clear of its 13 mm circle
-    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2, 0.0165 * Q, ZN - 0.016 * Q), DARK,
+    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2 - R.get('mount_in', 0.0), 0.0165 * Q, ZN - 0.016 * Q), DARK,
         exposed=True),
     box('neck bracket', (XN - XLW / 2, 0.0130 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
     box('neck idler bracket', (XN - XLW / 2, -0.0225 * Q + SHORT, ZN - 0.0165 * Q), (XN + XLW / 2, -0.0190 * Q + SHORT, ZN + 0.012 * Q), DARK,
@@ -798,6 +798,8 @@ link('trunk', 0.40, [
 # ---------------------------------------------------------------- left leg (bare servos and brackets, as microduck's)
 
 link('L_hip_yaw_link', 0.07, [
+    # (the plug window and the case's lump left a strip 0.4 mm wide between them, across the tray's rear face: no print would hold it, nor does it hold anything: WALL)
+    *[cut(box('L hip roll strip', (-0.0195, 0.0087, 0.1001), (-0.0150, 0.0283, 0.1008), DARK), 'L hip roll cradle rear face') for _ in range(RECIPE == 'hybrid')],
     box('L hip yaw plate', (-SH / 2 - (MT if BUSES == 1 else 0), YY - SW / 2, ZR + SL / 2 - SX), (SH / 2, YR + SW / 2, ZY), exposed=True),   # (it was 0.5 mm over this, onto the turning outer race)
 ])
 link('L_hip_roll_link', 0.07, [
@@ -1134,12 +1136,14 @@ def rear_board():
     X0, X1 = 0.0090, 0.0116                        # the plate: its front on the beak cradle's end and the riser's top
     pcb = X0 - 0.003
     top = pcb - BB['t']
-    Z0 = HEAD_Z + 0.0060                           # its low edge, clear of the head's base
+    Z0 = HEAD_Z + 0.0075                           # its low edge: the plate clears the head yaw tray as the head rolls
     y_ = lambda u: BB['L'] / 2 - u
     z_ = lambda v: Z0 + v
     ZC = Z0 + BB['W'] / 2
-    out = [box('rear board plate', (X0, -0.024, ZC - BB['W'] / 2 - 0.0005), (X1, 0.024, ZC + BB['W'] / 2 + 0.0005)),
-           box('rear board foot', (X0, -0.0310, HEAD_Z + 0.0045), (X1, 0.0310, Z0 + 0.003))]
+    # (its middle stops 7 mm up: as the head rolls, that low edge comes down to the head yaw tray)
+    out = [box('rear board plate', (X0, -0.024, Z0 + 0.007), (X1, 0.024, ZC + BB['W'] / 2 + 0.0005)),
+           box('rear board plate low', (X0, 0.015, Z0 - 0.0005), (X1, 0.024, Z0 + 0.0075)), box('rear board plate low 2', (X0, -0.024, Z0 - 0.0005), (X1, -0.015, Z0 + 0.0075)),
+           box('rear board foot', (X0, 0.0235, HEAD_Z + 0.0045), (X1, 0.0310, Z0 + 0.004)), box('rear board foot 2', (X0, -0.0310, HEAD_Z + 0.0045), (X1, -0.0235, Z0 + 0.004))]    # (2 feet, down onto the base's edge, either side of its opening: a full-width strip met the head yaw tray as the head rolled)
     for k, (sy, sz) in enumerate(((1, 1), (-1, 1), (1, -1), (-1, -1))):
         c = (sy * BB['hx'] / 2, ZC + sz * BB['hy'] / 2)
         out += [dict(cyl(f'rear board boss {k}', (pcb + 0.0015, c[0], c[1]), 'x', 0.0030, 0.003, DARK), exposed=True),
@@ -1153,7 +1157,7 @@ def rear_board():
     # the neck lead, plugged straight into socket 1; 3 wires on the UART pins; the 2S pair and the regulator's pair into the terminals, from below
     out += [wired('servo', top - 0.009, (5.2e-3, 15.9e-3), (z_(0.028), z_(0.033))),
             wired('uart', top - 0.0115, (29.6e-3, 37.0e-3), (z_(0.0305), z_(0.033))),
-            wired('power', top - 0.0085, (17.3e-3, 25.3e-3), (Z0 - 0.0065, Z0 - 0.0013))]
+            dict(box('leg bus board plugs power', (top - 0.008, y_(25.3e-3), Z0 - 0.0065), (top - 0.002, y_(17.3e-3), Z0 - 0.0009), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.0005, wire=True, exposed=True)]
     return out
 
 
@@ -1329,7 +1333,7 @@ def mirror_name(n):
     return 'R_' + n[2:] if n.startswith('L_') else n
 
 
-HEAD_FRAME_ORANGE = {'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
+HEAD_FRAME_ORANGE = {'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
                      'bus board post 0', 'bus board post 1', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1',
                      'lower shell', 'lower shell post', 'lower shell beam', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'head roll horn boss shoulder',
                      'head roll rear boss shoulder', 'head roll fork horn plate', 'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +', 'beak cradle end -', 'beak cradle side +', 'beak cradle end plain', 'head strip deep', 'L base riser back'}

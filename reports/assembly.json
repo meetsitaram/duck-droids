@@ -433,12 +433,6 @@
  },
  {
   "group": "PATH",
-  "item": "shoe_L: L foot switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "shoe_L: L sole",
   "status": "PASS",
   "detail": ""
@@ -1184,12 +1178,6 @@
  {
   "group": "PATH",
   "item": "shin_R: R ankle horn",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "shoe_R: R foot switch",
   "status": "PASS",
   "detail": ""
  },
@@ -2528,14 +2516,14 @@
  {
   "group": "PATH",
   "item": "torso: L 5 V regulator",
-  "status": "FAIL",
-  "detail": "cuts 0.44 cm3 into ['L yaw bracket', 'L roll bracket'], travelling (0, 0, 1)"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "PATH",
-  "item": "torso: R 5 V regulator",
-  "status": "FAIL",
-  "detail": "cuts 0.44 cm3 into ['R yaw bracket', 'R roll bracket'], travelling (0, 0, 1)"
+  "item": "torso: leg bus splice",
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "PATH",
@@ -3067,6 +3055,84 @@
  },
  {
   "group": "PATH",
+  "item": "framebench: bus board standoffs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board rear screw 0",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board rear screw 1",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board rear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board rear screw 2",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board rear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board rear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board rear screw 3",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board rear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "framebench: beak servo",
   "status": "PASS",
   "detail": ""
@@ -3451,6 +3517,84 @@
  },
  {
   "group": "PATH",
+  "item": "head: Waveshare bus board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board top screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board top screw 0",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board top screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board top screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board top screw 1",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board top screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board top screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board top screw 2",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board top screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "bus board top screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "bus board top screw 3",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "bus board top screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "head: Pi Zero 2 W",
   "status": "PASS",
   "detail": ""
@@ -3529,13 +3673,85 @@
  },
  {
   "group": "PATH",
-  "item": "head: U2D2",
+  "item": "head: head 5 V regulator",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "PATH",
-  "item": "head: servo bus board",
+  "item": "head: leg bus board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "leg bus board screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "leg bus board screw 0",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "leg bus board screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "leg bus board screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "leg bus board screw 1",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "leg bus board screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "leg bus board screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "leg bus board screw 2",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "leg bus board screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "leg bus board screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "leg bus board screw 3",
+  "status": "PASS",
+  "detail": "M2.5 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "leg bus board screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -3915,7 +4131,7 @@
   "group": "HOLD",
   "item": "head frame",
   "status": "PASS",
-  "detail": "19 screws"
+  "detail": "27 screws"
  },
  {
   "group": "HOLD",
@@ -4070,6 +4286,24 @@
  {
   "group": "APART",
   "item": "head roll cable plugs -",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "bus board cable plugs servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "bus board cable plugs power",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "APART",
+  "item": "bus board cable plugs usb",
   "status": "PASS",
   "detail": ""
  },
@@ -5605,6 +5839,30 @@
  },
  {
   "group": "EDGE",
+  "item": "bus board rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "bus board rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "bus board rear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "bus board rear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
   "item": "hood rear screw 0",
   "status": "PASS",
   "detail": ""
@@ -5710,12 +5968,6 @@
   "item": "beak fork screw horn 3",
   "status": "PASS",
   "detail": ""
- },
- {
-  "group": "PIERCE",
-  "item": "neck mount / body",
-  "status": "FAIL",
-  "detail": "1 corner(s) of its pocket past the outer surface: a hole in the body"
  },
  {
   "group": "PIERCE",
@@ -5953,12 +6205,6 @@
  },
  {
   "group": "ALL",
-  "item": "part L foot switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
   "item": "part L inner ear",
   "status": "PASS",
   "detail": ""
@@ -6121,12 +6367,6 @@
  },
  {
   "group": "ALL",
-  "item": "part R foot switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
   "item": "part R inner ear",
   "status": "PASS",
   "detail": ""
@@ -6151,7 +6391,7 @@
  },
  {
   "group": "ALL",
-  "item": "part R 5 V regulator",
+  "item": "part head 5 V regulator",
   "status": "PASS",
   "detail": ""
  },
@@ -6307,13 +6547,25 @@
  },
  {
   "group": "ALL",
-  "item": "part servo bus board",
+  "item": "part Waveshare bus board",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "ALL",
-  "item": "part U2D2",
+  "item": "part bus board standoffs",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part leg bus board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part leg bus splice",
   "status": "PASS",
   "detail": ""
  },

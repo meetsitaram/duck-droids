@@ -2,12 +2,12 @@
 
 Bottom-up: every part from its material and shape (`tools/mass_model.py`, materials in `spec/robot.py`), a 3 % wiring allowance per link on its frames.
 
-**Total 1.63 kg** (microduck: 0.8 kg).
+**Total 1.65 kg** (microduck: 0.8 kg).
 
 | material | kg | share |
 |---|---|---|
-| actuator | 0.66 | 41 % |
-| pla | 0.57 | 35 % |
+| actuator | 0.66 | 40 % |
+| pla | 0.58 | 35 % |
 | steel | 0.16 | 10 % |
 | electronics | 0.11 | 7 % |
 | tpu | 0.08 | 5 % |
@@ -15,9 +15,9 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | link | mass kg | budget kg (hand estimate) | CoM (m, world, zero pose) | principal inertia (kg m2) |
 |---|---|---|---|---|
-| trunk | 0.32 | 0.40 | -0.017 -0.000 +0.163 | 0.0002 0.0002 0.0003 |
-| L_hip_yaw_link | 0.09 | 0.07 | +0.000 +0.018 +0.110 | 0.0000 0.0000 0.0000 |
-| R_hip_yaw_link | 0.09 | 0.07 | +0.000 -0.018 +0.110 | 0.0000 0.0000 0.0000 |
+| trunk | 0.31 | 0.40 | -0.017 +0.002 +0.163 | 0.0002 0.0002 0.0003 |
+| L_hip_yaw_link | 0.09 | 0.07 | +0.000 +0.019 +0.110 | 0.0000 0.0000 0.0000 |
+| R_hip_yaw_link | 0.09 | 0.07 | +0.000 -0.019 +0.110 | 0.0000 0.0000 0.0000 |
 | L_hip_roll_link | 0.02 | 0.07 | +0.012 +0.030 +0.118 | 0.0000 0.0000 0.0000 |
 | R_hip_roll_link | 0.02 | 0.07 | +0.012 -0.030 +0.118 | 0.0000 0.0000 0.0000 |
 | L_hip_pitch_link | 0.19 | 0.10 | -0.033 +0.065 +0.109 | 0.0001 0.0001 0.0002 |
@@ -28,6 +28,6 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 | R_foot | 0.06 | 0.05 | -0.042 -0.060 +0.014 | 0.0000 0.0000 0.0000 |
 | neck_link | 0.06 | 0.02 | +0.028 -0.001 +0.190 | 0.0000 0.0000 0.0000 |
 | head_pitch_link | 0.04 | 0.03 | +0.027 -0.000 +0.242 | 0.0000 0.0000 0.0000 |
-| head_yaw_link | 0.04 | 0.02 | +0.035 +0.007 +0.277 | 0.0000 0.0000 0.0000 |
-| head | 0.23 | 0.12 | +0.054 +0.001 +0.282 | 0.0002 0.0005 0.0006 |
-| beak_link | 0.04 | 0.03 | +0.075 +0.001 +0.255 | 0.0000 0.0001 0.0001 |
+| head_yaw_link | 0.04 | 0.02 | +0.035 -0.008 +0.277 | 0.0000 0.0000 0.0000 |
+| head | 0.27 | 0.12 | +0.056 +0.001 +0.280 | 0.0003 0.0005 0.0007 |
+| beak_link | 0.04 | 0.03 | +0.078 +0.002 +0.256 | 0.0000 0.0001 0.0001 |
