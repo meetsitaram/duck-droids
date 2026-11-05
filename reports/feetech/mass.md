@@ -2,12 +2,12 @@
 
 Bottom-up: every part from its material and shape (`tools/mass_model.py`, materials in `spec/robot.py`), a 3 % wiring allowance per link on its frames.
 
-**Total 1.96 kg** (microduck: 0.8 kg).
+**Total 1.94 kg** (microduck: 0.8 kg).
 
 | material | kg | share |
 |---|---|---|
-| actuator | 0.85 | 43 % |
-| pla | 0.71 | 36 % |
+| actuator | 0.85 | 44 % |
+| pla | 0.69 | 36 % |
 | steel | 0.18 | 9 % |
 | tpu | 0.09 | 4 % |
 | electronics | 0.08 | 4 % |
@@ -15,7 +15,7 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | link | mass kg | budget kg (hand estimate) | CoM (m, world, zero pose) | principal inertia (kg m2) |
 |---|---|---|---|---|
-| trunk | 0.30 | 0.40 | -0.015 -0.001 +0.163 | 0.0002 0.0003 0.0003 |
+| trunk | 0.29 | 0.40 | -0.015 -0.001 +0.163 | 0.0002 0.0003 0.0003 |
 | L_hip_yaw_link | 0.09 | 0.07 | +0.000 +0.019 +0.110 | 0.0000 0.0000 0.0000 |
 | R_hip_yaw_link | 0.09 | 0.07 | +0.000 -0.019 +0.110 | 0.0000 0.0000 0.0000 |
 | L_hip_roll_link | 0.02 | 0.07 | +0.012 +0.030 +0.118 | 0.0000 0.0000 0.0000 |
@@ -28,6 +28,6 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 | R_foot | 0.06 | 0.05 | -0.042 -0.060 +0.014 | 0.0000 0.0000 0.0000 |
 | neck_link | 0.14 | 0.02 | +0.030 -0.002 +0.214 | 0.0000 0.0001 0.0001 |
 | head_pitch_link | 0.10 | 0.03 | +0.030 +0.001 +0.283 | 0.0000 0.0001 0.0001 |
-| head_yaw_link | 0.09 | 0.02 | +0.044 -0.012 +0.328 | 0.0000 0.0000 0.0000 |
-| head | 0.38 | 0.12 | +0.070 +0.004 +0.331 | 0.0006 0.0011 0.0014 |
-| beak_link | 0.05 | 0.03 | +0.095 +0.005 +0.304 | 0.0001 0.0001 0.0002 |
+| head_yaw_link | 0.09 | 0.02 | +0.044 -0.012 +0.330 | 0.0000 0.0000 0.0000 |
+| head | 0.36 | 0.12 | +0.066 +0.004 +0.333 | 0.0006 0.0010 0.0013 |
+| beak_link | 0.05 | 0.03 | +0.094 +0.005 +0.305 | 0.0001 0.0001 0.0002 |

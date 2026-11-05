@@ -2,17 +2,17 @@
 
 From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 
-84 checks: 80 pass, 0 warn, **4 fail**
+81 checks: 81 pass, 0 warn, **0 fail**
 
 ## LOAD
 
 | status | item | detail |
 |---|---|---|
-| FAIL | shin, under the knee horn | 15.3 MPa (allowed 15): 55 N, section 180 mm2 |
-| PASS | shin, at the cap | 0.5 MPa (allowed 15): 55 N, section 1255 mm2 |
+| PASS | shin, under the knee horn | 14.0 MPa (allowed 15): 55 N, section 189 mm2 |
+| PASS | shin, at the cap | 0.5 MPa (allowed 15): 55 N, section 1264 mm2 |
 | PASS | thigh, hip to knee | 0.5 MPa (allowed 15): 55 N, section 808 mm2 |
 | PASS | roll bracket, side arm | 14.9 MPa (allowed 15): 55 N, section 90 mm2 |
-| PASS | roll bracket, front plate | 13.5 MPa (allowed 15): 55 N, section 60 mm2 |
+| PASS | roll bracket, front plate | 13.4 MPa (allowed 15): 55 N, section 60 mm2 |
 | PASS | yaw bracket | 1.5 MPa (allowed 15): 55 N, section 920 mm2 |
 
 ## ONE
@@ -38,7 +38,6 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
 | PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
@@ -51,7 +50,7 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | status | item | detail |
 |---|---|---|
 | PASS | L hip yaw lid |  |
-| FAIL | L yaw bracket | a feature under 1 mm, 35.3 mm3 |
+| PASS | L yaw bracket |  |
 | PASS | L hip roll lid |  |
 | PASS | L roll bracket |  |
 | PASS | L thigh frame |  |
@@ -66,11 +65,10 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | neck lid |  |
 | PASS | head pitch lid |  |
 | PASS | head fork |  |
-| FAIL | head yaw bracket | a feature under 1 mm, 12.3 mm3 |
+| PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
 | PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
-| FAIL | head frame | a feature under 1 mm, 15.4 mm3 |
+| PASS | head frame |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
 | PASS | face |  |
@@ -100,7 +98,6 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | head yaw bracket | 42 x 50 x 39 mm |
 | PASS | head roll lid | 4 x 52 x 32 mm |
 | PASS | head roll spacer | 4 x 21 x 21 mm |
-| PASS | head roll rear spacer | 7 x 21 x 21 mm |
 | PASS | head frame | 182 x 132 x 66 mm |
 | PASS | jaw | 109 x 136 x 49 mm |
 | PASS | jaw soft insert | 36 x 132 x 6 mm |

@@ -82,7 +82,7 @@ RECIPES = {
                     # the neck and head servos' plugs (they were a draft: nothing but the legs had any). An STS3215's sockets are on its rear face, 11.4-16.5 mm from the shaft, so:
                     # a rear plate 3 mm further out where a fork passes them, the room for a plug and its wires' turn (rear_stack; idlers in that plane);
                     # no rear bearing on the head roll, as its 13.5 mm race would sit on the plugs; the beak's one plug (the chain's end) on the upper socket
-                    head_plugs=True, rear_stack=0.0076, neck_idler=(-0.034145, -0.031145), pitch_idler=(0.02744, 0.03044), slot_y=(-0.0365, 0.0335),
+                    head_plugs=True, rear_stack=0.0076, neck_idler=(-0.034145, -0.031145), pitch_idler=(0.02744, 0.03044), slot_y=(-0.0365, 0.0365), neck_open=True,
                     roll_bearing=('horn',), roll_sink=(), rail_steps=True,
                     # the head's base and band open round the yaw axis, wide enough for the yaw cradle's far end, 41 mm from it, to go round (a wider slot left the frame's risers hanging)
                     yaw_round=0.0435,
@@ -91,6 +91,8 @@ RECIPES = {
                     yaw_plate_up=0.0022, hood_rear_x=-0.0310,
                     # (the yaw plate's +y edge in, 8.4 mm from the axis, past the horn screws' heads: the beak's rear plate passes it as the head rolls)
                     yaw_plate_y=0.0084,
+                    # (the base's wall 1.5 mm or more at its back, where the hood narrows: it was 0.5. A rib 0.3 mm deeper on the shin: 55 N on this heavier duck put it 2 % over the beam estimate's limit, and 1 mm met the roll cradle at the knee's end)
+                    wall_in=0.0375, rib_back=0.0033, frame_back=0.0003,
                     # the eye ring, a 44 mm disc 14 mm thick at this head's scale, was 25 g of solid plastic in front of the neck: a cup, open at the back, 3 mm at its front
                     eye_cup=True),
 }
@@ -870,7 +872,7 @@ link('L_knee_link', 0.05, [
     # the shin as a real part (2026-11-03, the user: "that doesn't seem like something I can 3D print for strength"): a 3 mm
     # flat plate bent across its thin side. Below the knee's horn, 6 mm thick and 30 mm wide, a block into the corner with
     # the cap, and a collar round the servo's far end, so the load goes from the plate into the case over a box section.
-    box('L shin rib', (XK - RIB, YS[0] - 0.003, ZA + 0.0225 * K + R.get('rib_up', 0.0)), (XK + RIB, YS[1], ZK - 0.0105 * K), exposed=True),
+    box('L shin rib', (XK - RIB, YS[0] - R.get('rib_back', 0.003), ZA + 0.0225 * K + R.get('rib_up', 0.0)), (XK + RIB, YS[1], ZK - 0.0105 * K), exposed=True),
     box('L shin gusset', (XK - RIB, YS[1] - 0.0001, ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0005), (XK + RIB, YS[1] + 0.0028, ZK - 0.0178 * K), exposed=True),
     *[box(f'L shin collar {k}', (XK + sx_ * (SW / 2 + 0.0015) - 0.0015, YS[1] - 0.0001, ZA + 0.028 * K),
           (XK + sx_ * (SW / 2 + 0.0015) + 0.0015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True)
@@ -1030,6 +1032,8 @@ link('head_pitch_link', 0.03, [
         exposed=True),
 ])
 link('head_yaw_link', 0.02, [
+    # (the bearing's shoulder stops at the trimmed plate's edge: past it, a 0.6 mm flap)
+    *[cut(box('head yaw shoulder chord', (XHY - 0.02, R['yaw_plate_y'], ZHY - 0.003), (XHY + 0.02, 0.02, ZHY + 0.001), DARK), 'head yaw horn boss shoulder') for _ in range('yaw_plate_y' in R)],
     box('head yaw plate', (XHY - XLH / 2, -0.0255 * Q, ZHY - 0.0005), (XHY + XLH / 2, R.get('yaw_plate_y', 0.009 * Q), ZHY + XLHH + YAW_UP), exposed=True),
 ])
 # the beak servo: inside the head over the neck, its horn on the jaw's hinge at mid-head, as microduck's side tab
@@ -1156,7 +1160,7 @@ def bus_board():
 link('head', 0.12, [
     # the head's frame: a plate in front of the head roll servo, a plate on the beak servo behind it, two rails
     # past it either side (outside the roll servo's 27 mm reach as the head rolls)
-    box('head frame', (XHR - 0.0005, -RAIL, ZHY + 0.004 * Q), (XHR + 0.003, RAIL, HEAD_PLATE_Z + 0.003)),
+    box('head frame', (XHR - R.get('frame_back', 0.0005), -RAIL, ZHY + 0.004 * Q), (XHR + 0.003, RAIL, HEAD_PLATE_Z + 0.003)),
     # narrow at the hood's low back, wide beside the roll servo, where the rails pass it (round 9)
     # (the rails stop short of the beak servo, which goes in from the side between them)
     box('head top plate wide', (XHR - XLH - XLS - 0.0085, -RAIL, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, RAIL,
@@ -1234,7 +1238,7 @@ link('head', 0.12, [
     *[cut(cyl('head yaw round', (XHY, 0, HEAD_Z - 0.003), 'z', R['yaw_round'], 0.03, DARK), 'head base', 'head base wall', 'lower shell') for _ in range('yaw_round' in R)],
     # the band and the base, one shape: a wall all round the band's top, up into the plate (it hung from 2 small risers: the user, "why such small connections")
     dict(plate('head base wall', JAW_Z[1] - 0.0012, HEAD_Z + 0.0032 - JAW_Z[1] + 0.0012, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
-    cut(box('head base wall inside', (HEAD_BACK + 0.0105, -0.033 * Q + 0.0018, JAW_Z[1] - 0.003), (JAW_X0 + 0.04, 0.033 * Q - 0.0018, HEAD_Z + 0.005), DARK), 'head base wall'),
+    cut(box('head base wall inside', (HEAD_BACK + 0.0105, -R.get('wall_in', 0.033 * Q - 0.0018), JAW_Z[1] - 0.003), (JAW_X0 + 0.04, R.get('wall_in', 0.033 * Q - 0.0018), HEAD_Z + 0.005), DARK), 'head base wall'),
     cut(box('head base wall front', (JAW_X0 - R.get('shell_gap', 0.011), -0.08, JAW_Z[1] - 0.003), (HEAD_FRONT + 0.03, 0.08, HEAD_Z + 0.005), DARK), 'head base wall'),
     # a real driver has to reach the head roll's 4 horn screws, before the Pi and the bus board go on
     cut(cyl('Pi plate driver hole', (PI_X - 0.001, 0, ZHR), 'x', 0.0095, 0.006, DARK), 'Pi plate', 'Pi board tab', 'Pi mount'),
@@ -1405,6 +1409,8 @@ def build():
                 dict(lbox(f'{n} cable plugs', f, PLUG['u'], (-PLUG['w'], PLUG['w']), (PLUG['face'] - (0.0075 if 'ankle' in n else PLUG['h']), PLUG['face']), '#D9D4C5', 'struct', fillet=0.0004),
                      material='electronics', mass=PLUG['mass'], exposed=True),
                 cut(lbox(f'{n} plug window', f, (PLUG['u'][0] - PLUG_WINDOW, PLUG['u'][1] + PLUG_WINDOW), (-w_, w_), (-H / 2 - 0.012, -0.0135), DARK), target)]
+            if R.get('head_plugs') and n[2:] == 'hip roll':   # (a 0.4 mm web was left between the plug window and the pocket for the case's lump: one opening)
+                cradle = cradle + [cut(lbox(f'{n} plug window web', f, (PLUG['u'][1], 0.0058), (-w_, w_), (-H / 2 - 0.004, -0.0135), DARK), target)]
         links[case_link]['geoms'] += cradle
         links[horn_link]['geoms'] += fork
     # the two neck servos stand end to end, 0.5 mm apart: with their pockets' clearance, the plastic between them was a 0.2 mm sheet, which won't print. One pocket instead
@@ -1459,7 +1465,7 @@ def build():
     # the head frame is one print in one filament: the rim shows below the hood, the rest is hidden under it (2026-11-04, the user chose all orange over a filament swap)
     for lk in links.values():
         for g in lk['geoms']:
-            if g['name'] in HEAD_FRAME_ORANGE and g['role'] != 'cut':
+            if (g['name'] in HEAD_FRAME_ORANGE or (R.get('head_plugs') and g['name'] == 'head roll rear seat boss')) and g['role'] != 'cut':
                 g['color'] = ORANGE
     return dict(recipe=RECIPE, recipe_limits={k: R[k] for k in ('mass_budget_kg', 'target_tol', 'cannot', 'brief') if k in R},
                 frame='metres; X forward, Y left, Z up; floor z=0; zero pose standing, legs straight, head level',

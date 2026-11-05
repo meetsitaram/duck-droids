@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.942 kg bottom-up (budget 1.95 kg; microduck 0.8 kg)"
+  "detail": "1.939 kg bottom-up (budget 1.95 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -1065,7 +1065,7 @@
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.47 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 26 % used"
+  "detail": "0.46 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 26 % used"
  },
  {
   "group": "torque",
