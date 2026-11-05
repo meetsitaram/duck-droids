@@ -17,6 +17,7 @@ milli is licensed under the Apache License 2.0 (`LICENSE`). It is forked from ec
 - XL330-M288-T and FPX330-H101 idler: ROBOTIS's models, as published in Koch v1.1 (jess-moss/koch-v1-1, Apache-2.0, Copyright 2024 The Hugging Face team), which this project's owner has forked. That repository's licence is the one its files came under; ROBOTIS's own terms for its CAD were looked for and not found, so ROBOTIS may keep rights in them. Remove them from the exports if ROBOTIS asks.
 - STS3215 and its passive horn: SO-ARM100 (TheRobotStudio/SO-ARM100, Apache-2.0).
 - HD-1910-C001, with its horns: Feetech's own model, HD-1910-C001-20260902.stp, published on the FEETECH wiki (ftservo.github.io/ftservo-wiki). No licence terms were found with it, so Feetech may keep rights in it. Remove it from the exports if Feetech asks.
+- RS04, RS03, RS00, power board and CAN hub: RobStride's models, from github.com/RobStride/Product_Information, read and measured for the big duck. That repository has no licence file, so they're not in this repo, and no `cad/duck-droids-big` export exists. The numbers measured from them are in `spec/big_duck.py`.
 
 ## Adapted into echo: GMR, General Motion Retargeting (MIT licence)
 

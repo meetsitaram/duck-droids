@@ -5,9 +5,9 @@
 | | |
 |---|---|
 | Product | Big duck, biped, 22 actuators on 15 joints |
-| Height, mass | 1.797 m, 96.3 kg as modelled, leaning on pocketing nobody has drawn |
+| Height, mass | 1.797 m, 97.1 kg as modelled, leaning on pocketing nobody has drawn |
 | Build quantity | Quantities are for 1 robot |
-| Fabricated parts | 145 metal, 68 printed: 29.1 kg 7075, 10.9 kg 6061, 2.3 kg steel, 8.2 kg PETG, 1.2 kg TPU. No drawing or print file exists for any of them |
+| Fabricated parts | 626 metal, 68 printed: 28.1 kg 7075, 11.5 kg 6061, 2.9 kg steel, 8.2 kg PETG, 1.2 kg TPU. No drawing or print file exists for any of them |
 | Status | Design study: no part made, no actuator tested, not safe to build |
 | Prices | USD, as listed or found 2026-11-05, before tax and shipping. Confirm before ordering |
 | Related | [Wiring](WIRING.md), [its spec](../../spec/big_duck.py), [Fusion trial](FUSION.md) |
@@ -64,8 +64,8 @@ Every line is required unless it starts with **OPTIONAL**. Optional lines show t
 
 | Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source |
 |---|---|---|---|---|---|---|---|---|---|
-| 12 | Socket cap screw, actuator mounting and RS03 outputs | class 12.9, or stainless to be decided | M4. Length per joint: not chosen. The manuals' holes need 218; the model shows 128 | 218 | box of 100 | 3 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M4+socket+cap+screw+12.9) |
-| 13 | Socket cap screw, RS04 outputs | class 12.9 | M5. Thread 6.5 mm deep, so length matters: see Open before ordering. The manual's holes need 171; the model shows 72 | 171 | box of 100 | 2 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M5+socket+cap+screw+12.9) |
+| 12 | Socket cap screw, actuator mounting and RS03 outputs | class 12.9, or stainless to be decided | M4. Length per joint: not chosen. The manuals' holes need 210; the model shows 216 | 210 | box of 100 | 3 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M4+socket+cap+screw+12.9) |
+| 13 | Socket cap screw, RS04 outputs | class 12.9 | M5. Thread 3.5 mm deep in RobStride's file, 6.5 in its manual: see Open before ordering. The manual's holes need 171; the model shows 243 | 171 | box of 100 | 2 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M5+socket+cap+screw+12.9) |
 | 14 | Socket cap screw, RS00 | generic | M3. 12 for its mount and output | 12 | box of 100 | 1 | - | - | any fastener shop<br>[Search Amazon](https://www.amazon.com/s?k=M3+socket+cap+screw) |
 | 15 | Panel screws and inserts | not chosen | 59 printed panels have no screws or bosses designed | - | - | - | - | - | not designed<br>[Search Amazon](https://www.amazon.com/s?k=M3+heat+set+insert) |
 
@@ -132,100 +132,404 @@ No file for any of these exists yet: the sizes below are the spec's envelopes, n
 
 ### Metal
 
-Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 5 mm, 0.12 m2; 6061-T6 6 mm, 0.02 m2; 6061-T6 8 mm, 0.54 m2; 7075-T6 5 mm, 0.03 m2; 7075-T6 6 mm, 0.14 m2; 7075-T6 8 mm, 1.25 m2. The first idea in the spec, every metal part from one sheet thickness, does not hold: sheet thicknesses are 5, 6, 8 mm, and 16 parts are blocks standing in for machined parts.
+Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 2.2 mm, 0.05 m2; 6061-T6 3 mm, 0.03 m2; 6061-T6 4.5 mm, 0.01 m2; 6061-T6 5 mm, 0.12 m2; 6061-T6 6 mm, 0.02 m2; 6061-T6 7 mm, 0.00 m2; 6061-T6 8 mm, 0.48 m2; 7075-T6 3.1 mm, 0.03 m2; 7075-T6 5 mm, 0.06 m2; 7075-T6 6 mm, 0.13 m2; 7075-T6 8 mm, 1.32 m2. The first idea in the spec, every metal part from one sheet thickness, does not hold: sheet thicknesses are 2.2, 3, 3.1, 4.5, 5, 6, 7, 8 mm, and 18 parts are blocks standing in for machined parts.
 
 | Item | Part | Material | Envelope | How | Pocketing | Mass each | Qty per robot |
 |---|---|---|---|---|---|---|---|
-| F1 | deck plate | 7075-T6 | 495 x 340 x 8.0 mm | cut from 8 mm sheet | 45 % of solid, assumed | 1699 g | 1 |
+| F1 | deck plate | 7075-T6 | 495 x 340 x 8.0 mm | cut from 8 mm sheet | 45 % of solid, assumed | 1539 g | 1 |
 | F2 | upper plate | 6061-T6 | 325 x 300 x 8.0 mm | cut from 8 mm sheet | 40 % of solid, assumed | 840 g | 1 |
 | F3 | body post 0 | 6061-T6 | 143 x 24 x 24.0 mm | milled from solid; pockets not designed | - | 220 g | 1 |
 | F4 | body post 1 | 6061-T6 | 143 x 24 x 24.0 mm | milled from solid; pockets not designed | - | 220 g | 1 |
 | F5 | body post 2 | 6061-T6 | 143 x 24 x 24.0 mm | milled from solid; pockets not designed | - | 220 g | 1 |
 | F6 | body post 3 | 6061-T6 | 143 x 24 x 24.0 mm | milled from solid; pockets not designed | - | 220 g | 1 |
-| F7 | neck plate L | 7075-T6 | 205 x 150 x 8.0 mm | cut from 8 mm sheet | 60 % of solid, assumed | 301 g | 1 |
-| F8 | neck plate R | 7075-T6 | 205 x 150 x 8.0 mm | cut from 8 mm sheet | 60 % of solid, assumed | 301 g | 1 |
-| F9 | neck tie | 6061-T6 | 181 x 47 x 12.0 mm | turned or milled | - | 274 g | 1 |
-| F10 | L hip yaw sleeve | 6061-T6 | 125 x 125 x 28.0 mm | milled from solid; pockets not designed | - | 58 g | 1 |
-| F11 | R hip yaw sleeve | 6061-T6 | 125 x 125 x 28.0 mm | milled from solid; pockets not designed | - | 58 g | 1 |
-| F12 | hip yaw output plate | 6061-T6 | 170 x 170 x 8.0 mm | cut from 8 mm sheet | - | 489 g | 2 |
-| F13 | hip yaw beam | 7075-T6 | 260 x 110 x 12.1 mm | milled from solid; pockets not designed | - | 969 g | 2 |
-| F14 | hip yaw drum | 6061-T6 | 162 x 162 x 30.0 mm | milled from solid; pockets not designed | - | 257 g | 2 |
-| F15 | hip roll cheek F | 7075-T6 | 184 x 110 x 8.0 mm | cut from 8 mm sheet | - | 452 g | 2 |
-| F16 | hip roll cheek B | 7075-T6 | 184 x 110 x 8.0 mm | cut from 8 mm sheet | - | 452 g | 2 |
-| F17 | hip roll output F | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 108 g | 2 |
-| F18 | hip roll output B | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 108 g | 2 |
-| F19 | hip roll yoke | 7075-T6 | 110 x 108 x 90.0 mm | milled from solid; pockets not designed | 35 % of solid, assumed | 1046 g | 2 |
-| F20 | hip pitch upright in | 7075-T6 | 150 x 150 x 8.0 mm | cut from 8 mm sheet | - | 393 g | 2 |
-| F21 | hip pitch upright out | 7075-T6 | 150 x 150 x 8.0 mm | cut from 8 mm sheet | - | 393 g | 2 |
-| F22 | hip pitch bridge | 7075-T6 | 177 x 65 x 8.0 mm | cut from 8 mm sheet | - | 256 g | 2 |
-| F23 | hip pitch rib | 6061-T6 | 65 x 12 x 8.0 mm | cut from 8 mm sheet | - | 16 g | 2 |
-| F24 | hip pitch rib out | 6061-T6 | 65 x 12 x 8.0 mm | cut from 8 mm sheet | - | 16 g | 2 |
-| F25 | thigh plate in | 7075-T6 | 365 x 274 x 8.0 mm | cut from 8 mm sheet | - | 1458 g | 2 |
-| F26 | thigh plate out | 7075-T6 | 365 x 274 x 8.0 mm | cut from 8 mm sheet | - | 1458 g | 2 |
-| F27 | thigh spacer hip | 6061-T6 | 100 x 25 x 20.0 mm | milled from solid; pockets not designed | - | 134 g | 2 |
-| F28 | thigh spacer mid | 6061-T6 | 70 x 25 x 24.0 mm | milled from solid; pockets not designed | - | 112 g | 2 |
-| F29 | hip pitch output I | 6061-T6 | 80 x 80 x 12.5 mm | turned or milled | - | 169 g | 2 |
-| F30 | hip pitch output O | 6061-T6 | 80 x 80 x 12.5 mm | turned or milled | - | 169 g | 2 |
-| F31 | thigh rear plate in | 7075-T6 | 178 x 148 x 8.0 mm | cut from 8 mm sheet | - | 433 g | 2 |
-| F32 | thigh rear plate out | 7075-T6 | 178 x 148 x 8.0 mm | cut from 8 mm sheet | - | 433 g | 2 |
-| F33 | thigh tie 0i | 6061-T6 | 69 x 12 x 12.0 mm | turned or milled | - | 26 g | 2 |
-| F34 | thigh tie 0o | 6061-T6 | 69 x 12 x 12.0 mm | turned or milled | - | 26 g | 2 |
-| F35 | thigh tie 1i | 6061-T6 | 69 x 12 x 12.0 mm | turned or milled | - | 26 g | 2 |
-| F36 | thigh tie 1o | 6061-T6 | 69 x 12 x 12.0 mm | turned or milled | - | 26 g | 2 |
-| F37 | knee crank I | 7075-T6 | 85 x 84 x 6.0 mm | cut from 6 mm sheet | - | 69 g | 2 |
-| F38 | knee crank O | 7075-T6 | 85 x 84 x 6.0 mm | cut from 6 mm sheet | - | 69 g | 2 |
-| F39 | knee crank pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F40 | knee crank pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F41 | knee rod I | 7075-T6 | 120 x 64 x 5.0 mm | cut from 5 mm sheet | - | 38 g | 2 |
-| F42 | knee rod O | 7075-T6 | 120 x 64 x 5.0 mm | cut from 5 mm sheet | - | 38 g | 2 |
-| F43 | thigh cover post out hip | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F44 | thigh cover post out rear | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F45 | thigh cover post out knee | 6061-T6 | 10 x 10 x 9.0 mm | turned or milled | - | 2 g | 2 |
-| F46 | knee shaft | steel | 72 x 40 x 40.0 mm | turned | - | 705 g | 2 |
-| F47 | knee lever I | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
-| F48 | knee lever O | 7075-T6 | 118 x 106 x 6.0 mm | cut from 6 mm sheet | - | 101 g | 2 |
-| F49 | knee lever pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F50 | knee lever pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
-| F51 | shin hub in | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
-| F52 | shin hub out | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 197 g | 2 |
-| F53 | shin spacer | 6061-T6 | 70 x 30 x 12.0 mm | turned or milled | - | 67 g | 2 |
-| F54 | shin top | 7075-T6 | 110 x 90 x 8.0 mm | cut from 8 mm sheet | - | 221 g | 2 |
-| F55 | shin wall front | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
-| F56 | shin wall back | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
-| F57 | shin wall in | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
-| F58 | shin wall out | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
-| F59 | shin cap | 7075-T6 | 126 x 94 x 8.0 mm | cut from 8 mm sheet | - | 264 g | 2 |
-| F60 | ankle plate in | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 2 |
-| F61 | ankle stub | steel | 30 x 30 x 20.0 mm | turned | - | 110 g | 2 |
-| F62 | foot plate | 7075-T6 | 306 x 166 x 13.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 1111 g | 2 |
-| F63 | ankle ear out | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
-| F64 | ankle ear in | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
-| F65 | ankle output | 6061-T6 | 80 x 80 x 13.0 mm | turned or milled | - | 176 g | 2 |
-| F66 | ankle bearing housing | 7075-T6 | 80 x 80 x 16.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 91 g | 2 |
-| F67 | neck output L | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
-| F68 | neck output R | 6061-T6 | 80 x 80 x 10.0 mm | turned or milled | - | 135 g | 1 |
-| F69 | neck spine | 7075-T6 | 430 x 80 x 60.0 mm | milled from solid; pockets not designed | 25 % of solid, assumed | 1323 g | 1 |
-| F70 | head pitch stator plate L | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
-| F71 | head pitch stator tie L | 6061-T6 | 73 x 24 x 10.0 mm | turned or milled | - | 46 g | 1 |
-| F72 | head pitch shaft | steel | 150 x 40 x 40.0 mm | turned | 45 % of solid, assumed | 661 g | 1 |
-| F73 | head pitch yoke | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
-| F74 | head pitch yoke R | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 363 g | 1 |
-| F75 | head pitch bridge | 7075-T6 | 140 x 102 x 8.0 mm | cut from 8 mm sheet | - | 319 g | 1 |
-| F76 | head yaw output | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 108 g | 1 |
-| F77 | head yaw plate | 7075-T6 | 202 x 120 x 8.0 mm | cut from 8 mm sheet | - | 542 g | 1 |
-| F78 | head roll cradle | 7075-T6 | 135 x 120 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 1 |
-| F79 | head roll output | 6061-T6 | 64 x 64 x 10.0 mm | turned or milled | - | 87 g | 1 |
-| F80 | head main frame | 6061-T6 | 400 x 240 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 517 g | 1 |
-| F81 | head rail L | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
-| F82 | head rail R | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
-| F83 | head rear frame | 6061-T6 | 400 x 90 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 232 g | 1 |
-| F84 | head front frame | 6061-T6 | 400 x 200 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 517 g | 1 |
-| F85 | head beak mount | 6061-T6 | 400 x 60 x 6.0 mm | cut from 6 mm sheet | 45 % of solid, assumed | 173 g | 1 |
-| F86 | head beak lug L | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
-| F87 | head beak lug R | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
-| F88 | beak hinge L | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
-| F89 | beak hinge R | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
-| F90 | beak tray frame | 6061-T6 | 426 x 300 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 688 g | 1 |
+| F7 | neck plate L | 7075-T6 | 202 x 144 x 8.0 mm | cut from 8 mm sheet | 60 % of solid, assumed | 182 g | 1 |
+| F8 | neck plate R | 7075-T6 | 202 x 144 x 8.0 mm | cut from 8 mm sheet | 60 % of solid, assumed | 182 g | 1 |
+| F9 | neck tie | 6061-T6 | 148 x 47 x 12.0 mm | turned or milled | - | 224 g | 1 |
+| F10 | computer standoff 0 | 6061-T6 | 70 x 10 x 7.0 mm | cut from 7 mm sheet | - | 12 g | 1 |
+| F11 | computer standoff 1 | 6061-T6 | 70 x 10 x 7.0 mm | cut from 7 mm sheet | - | 12 g | 1 |
+| F12 | L hip yaw housing | 6061-T6 | 162 x 162 x 64.0 mm | milled from solid; pockets not designed | - | 1170 g | 1 |
+| F13 | L hip yaw retainer | 6061-T6 | 162 x 162 x 2.2 mm | cut from 2 mm sheet | - | 36 g | 1 |
+| F14 | L hip yaw mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F15 | L hip yaw mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F16 | L hip yaw mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F17 | L hip yaw mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F18 | L hip yaw mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F19 | L hip yaw mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F20 | L hip yaw mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F21 | L hip yaw mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F22 | L hip yaw mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F23 | L hip yaw mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F24 | L hip yaw housing screw 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F25 | L hip yaw housing screw 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F26 | L hip yaw housing screw 2 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F27 | L hip yaw housing screw 3 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F28 | L hip yaw housing screw 4 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F29 | L hip yaw housing screw 5 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F30 | L hip yaw housing screw 6 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F31 | L hip yaw housing screw 7 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F32 | L hip yaw housing screw 8 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F33 | L hip yaw housing screw 9 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F34 | R hip yaw housing | 6061-T6 | 162 x 162 x 64.0 mm | milled from solid; pockets not designed | - | 1170 g | 1 |
+| F35 | R hip yaw retainer | 6061-T6 | 162 x 162 x 2.2 mm | cut from 2 mm sheet | - | 36 g | 1 |
+| F36 | R hip yaw mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F37 | R hip yaw mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F38 | R hip yaw mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F39 | R hip yaw mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F40 | R hip yaw mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F41 | R hip yaw mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F42 | R hip yaw mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F43 | R hip yaw mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F44 | R hip yaw mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F45 | R hip yaw mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F46 | R hip yaw housing screw 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F47 | R hip yaw housing screw 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F48 | R hip yaw housing screw 2 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F49 | R hip yaw housing screw 3 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F50 | R hip yaw housing screw 4 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F51 | R hip yaw housing screw 5 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F52 | R hip yaw housing screw 6 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F53 | R hip yaw housing screw 7 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F54 | R hip yaw housing screw 8 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F55 | R hip yaw housing screw 9 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
+| F56 | neck L mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F57 | neck L mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F58 | neck L mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F59 | neck L mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F60 | neck L mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F61 | neck L mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F62 | neck L mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F63 | neck L mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F64 | neck L mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F65 | neck L mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F66 | neck R mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F67 | neck R mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F68 | neck R mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F69 | neck R mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F70 | neck R mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F71 | neck R mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F72 | neck R mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F73 | neck R mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F74 | neck R mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F75 | neck R mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F76 | hip yaw flange | 7075-T6 | 120 x 120 x 16.1 mm | milled from solid; pockets not designed | - | 483 g | 2 |
+| F77 | hip yaw flange boss | 7075-T6 | 60 x 60 x 8.0 mm | cut from 8 mm sheet | - | 58 g | 2 |
+| F78 | hip yaw flange lip | 7075-T6 | 130 x 130 x 3.1 mm | cut from 3 mm sheet | - | 109 g | 2 |
+| F79 | hip yaw inner retainer | 6061-T6 | 132 x 132 x 3.0 mm | cut from 3 mm sheet | - | 88 g | 2 |
+| F80 | hip yaw beam | 7075-T6 | 260 x 132 x 12.1 mm | milled from solid; pockets not designed | - | 1157 g | 2 |
+| F81 | hip yaw screw 0 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F82 | hip yaw screw 1 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F83 | hip yaw screw 2 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F84 | hip yaw screw 3 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F85 | hip yaw screw 4 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F86 | hip yaw screw 5 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F87 | hip yaw screw 6 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F88 | hip yaw screw 7 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F89 | hip yaw screw 8 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F90 | hip yaw beam screw 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F91 | hip yaw beam screw 1 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F92 | hip yaw beam screw 2 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F93 | hip yaw beam screw 3 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F94 | hip yaw beam screw 4 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F95 | hip yaw beam screw 5 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F96 | hip yaw beam screw 6 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F97 | hip yaw beam screw 7 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F98 | hip roll cheek F | 7075-T6 | 184 x 132 x 8.0 mm | cut from 8 mm sheet | - | 370 g | 2 |
+| F99 | hip roll cheek B | 7075-T6 | 184 x 132 x 8.0 mm | cut from 8 mm sheet | - | 370 g | 2 |
+| F100 | hip roll F mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F101 | hip roll F mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F102 | hip roll F mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F103 | hip roll F mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F104 | hip roll F mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F105 | hip roll F mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F106 | hip roll F mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F107 | hip roll F mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F108 | hip roll F mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F109 | hip roll F mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F110 | hip roll B mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F111 | hip roll B mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F112 | hip roll B mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F113 | hip roll B mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F114 | hip roll B mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F115 | hip roll B mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F116 | hip roll B mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F117 | hip roll B mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F118 | hip roll B mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F119 | hip roll B mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F120 | hip roll output F | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 103 g | 2 |
+| F121 | hip roll output B | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 103 g | 2 |
+| F122 | hip roll yoke | 7075-T6 | 110 x 109 x 90.0 mm | milled from solid; pockets not designed | 35 % of solid, assumed | 470 g | 2 |
+| F123 | hip roll F screw 0 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F124 | hip roll F screw 1 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F125 | hip roll F screw 2 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F126 | hip roll F screw 3 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F127 | hip roll F screw 4 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F128 | hip roll F screw 5 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F129 | hip roll F screw 6 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F130 | hip roll F screw 7 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F131 | hip roll F screw 8 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F132 | hip roll B screw 0 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F133 | hip roll B screw 1 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F134 | hip roll B screw 2 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F135 | hip roll B screw 3 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F136 | hip roll B screw 4 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F137 | hip roll B screw 5 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F138 | hip roll B screw 6 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F139 | hip roll B screw 7 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F140 | hip roll B screw 8 shank | steel | 18 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F141 | hip pitch standoff | 7075-T6 | 150 x 150 x 17.2 mm | milled from solid; pockets not designed | - | 334 g | 2 |
+| F142 | hip pitch upright in | 7075-T6 | 150 x 150 x 8.0 mm | cut from 8 mm sheet | - | 220 g | 2 |
+| F143 | hip pitch upright out | 7075-T6 | 150 x 150 x 8.0 mm | cut from 8 mm sheet | - | 220 g | 2 |
+| F144 | hip pitch bridge | 7075-T6 | 144 x 65 x 8.0 mm | cut from 8 mm sheet | - | 208 g | 2 |
+| F145 | hip pitch rib | 6061-T6 | 65 x 12 x 8.0 mm | cut from 8 mm sheet | - | 16 g | 2 |
+| F146 | hip pitch rib out | 6061-T6 | 65 x 12 x 8.0 mm | cut from 8 mm sheet | - | 16 g | 2 |
+| F147 | hip pitch I mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F148 | hip pitch I mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F149 | hip pitch I mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F150 | hip pitch I mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F151 | hip pitch I mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F152 | hip pitch I mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F153 | hip pitch I mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F154 | hip pitch I mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F155 | hip pitch I mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F156 | hip pitch I mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F157 | hip pitch O mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F158 | hip pitch O mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F159 | hip pitch O mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F160 | hip pitch O mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F161 | hip pitch O mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F162 | hip pitch O mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F163 | hip pitch O mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F164 | hip pitch O mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F165 | hip pitch O mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F166 | hip pitch O mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F167 | thigh plate in | 7075-T6 | 365 x 274 x 8.0 mm | cut from 8 mm sheet | - | 1455 g | 2 |
+| F168 | thigh plate out | 7075-T6 | 365 x 274 x 8.0 mm | cut from 8 mm sheet | - | 1455 g | 2 |
+| F169 | thigh spacer hip | 6061-T6 | 100 x 25 x 20.0 mm | milled from solid; pockets not designed | - | 134 g | 2 |
+| F170 | thigh spacer mid | 6061-T6 | 70 x 25 x 24.0 mm | milled from solid; pockets not designed | - | 112 g | 2 |
+| F171 | hip pitch output I | 6061-T6 | 80 x 80 x 12.3 mm | turned or milled | - | 150 g | 2 |
+| F172 | hip pitch output O | 6061-T6 | 80 x 80 x 12.3 mm | turned or milled | - | 150 g | 2 |
+| F173 | hip pitch I screw 0 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F174 | hip pitch I screw 1 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F175 | hip pitch I screw 2 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F176 | hip pitch I screw 3 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F177 | hip pitch I screw 4 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F178 | hip pitch I screw 5 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F179 | hip pitch I screw 6 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F180 | hip pitch I screw 7 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F181 | hip pitch I screw 8 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F182 | hip pitch O screw 0 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F183 | hip pitch O screw 1 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F184 | hip pitch O screw 2 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F185 | hip pitch O screw 3 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F186 | hip pitch O screw 4 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F187 | hip pitch O screw 5 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F188 | hip pitch O screw 6 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F189 | hip pitch O screw 7 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F190 | hip pitch O screw 8 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F191 | thigh screw I 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F192 | thigh screw I 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F193 | thigh screw I 2 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F194 | thigh screw I 3 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F195 | thigh screw I 4 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F196 | thigh screw I 5 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F197 | thigh screw O 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F198 | thigh screw O 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F199 | thigh screw O 2 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F200 | thigh screw O 3 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F201 | thigh screw O 4 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F202 | thigh screw O 5 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F203 | thigh rear plate in | 7075-T6 | 178 x 148 x 8.0 mm | cut from 8 mm sheet | - | 261 g | 2 |
+| F204 | thigh rear plate out | 7075-T6 | 178 x 148 x 8.0 mm | cut from 8 mm sheet | - | 261 g | 2 |
+| F205 | thigh tie 0i | 6061-T6 | 52 x 12 x 12.0 mm | turned or milled | - | 20 g | 2 |
+| F206 | thigh tie 0o | 6061-T6 | 52 x 12 x 12.0 mm | turned or milled | - | 20 g | 2 |
+| F207 | thigh tie 1i | 6061-T6 | 52 x 12 x 12.0 mm | turned or milled | - | 20 g | 2 |
+| F208 | thigh tie 1o | 6061-T6 | 52 x 12 x 12.0 mm | turned or milled | - | 20 g | 2 |
+| F209 | knee I mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F210 | knee I mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F211 | knee I mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F212 | knee I mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F213 | knee I mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F214 | knee I mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F215 | knee I mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F216 | knee I mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F217 | knee I mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F218 | knee I mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F219 | knee O mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F220 | knee O mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F221 | knee O mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F222 | knee O mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F223 | knee O mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F224 | knee O mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F225 | knee O mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F226 | knee O mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F227 | knee O mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F228 | knee O mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F229 | knee crank I | 7075-T6 | 91 x 77 x 6.0 mm | cut from 6 mm sheet | - | 61 g | 2 |
+| F230 | knee crank O | 7075-T6 | 91 x 77 x 6.0 mm | cut from 6 mm sheet | - | 61 g | 2 |
+| F231 | knee crank pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F232 | knee crank pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F233 | knee I screw 0 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F234 | knee I screw 1 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F235 | knee I screw 2 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F236 | knee I screw 3 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F237 | knee I screw 4 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F238 | knee I screw 5 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F239 | knee I screw 6 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F240 | knee I screw 7 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F241 | knee I screw 8 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F242 | knee O screw 0 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F243 | knee O screw 1 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F244 | knee O screw 2 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F245 | knee O screw 3 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F246 | knee O screw 4 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F247 | knee O screw 5 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F248 | knee O screw 6 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F249 | knee O screw 7 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F250 | knee O screw 8 shank | steel | 8 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F251 | knee rod I | 7075-T6 | 152 x 93 x 5.0 mm | cut from 5 mm sheet | - | 47 g | 2 |
+| F252 | knee rod I bush A | steel | 14 x 14 x 5.0 mm | turned | - | 3 g | 2 |
+| F253 | knee rod I bush B | steel | 14 x 14 x 5.0 mm | turned | - | 3 g | 2 |
+| F254 | knee rod O | 7075-T6 | 152 x 93 x 5.0 mm | cut from 5 mm sheet | - | 47 g | 2 |
+| F255 | knee rod O bush A | steel | 14 x 14 x 5.0 mm | turned | - | 3 g | 2 |
+| F256 | knee rod O bush B | steel | 14 x 14 x 5.0 mm | turned | - | 3 g | 2 |
+| F257 | thigh cover post out hip | 6061-T6 | 16 x 10 x 10.0 mm | turned or milled | - | 4 g | 2 |
+| F258 | thigh cover post out rear | 6061-T6 | 16 x 10 x 10.0 mm | turned or milled | - | 4 g | 2 |
+| F259 | thigh cover post out knee | 6061-T6 | 16 x 10 x 10.0 mm | turned or milled | - | 4 g | 2 |
+| F260 | knee shaft | steel | 72 x 40 x 40.0 mm | turned | - | 705 g | 2 |
+| F261 | knee lever I | 7075-T6 | 127 x 92 x 6.0 mm | cut from 6 mm sheet | - | 78 g | 2 |
+| F262 | knee lever O | 7075-T6 | 127 x 92 x 6.0 mm | cut from 6 mm sheet | - | 78 g | 2 |
+| F263 | knee lever pin I | steel | 12 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F264 | knee lever pin O | steel | 11 x 10 x 10.0 mm | turned | - | 7 g | 2 |
+| F265 | shin hub in | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 176 g | 2 |
+| F266 | shin hub out | 7075-T6 | 177 x 84 x 6.0 mm | cut from 6 mm sheet | - | 176 g | 2 |
+| F267 | shin spacer | 6061-T6 | 70 x 30 x 12.0 mm | turned or milled | - | 67 g | 2 |
+| F268 | shin top | 7075-T6 | 110 x 90 x 8.0 mm | cut from 8 mm sheet | - | 217 g | 2 |
+| F269 | shin wall front | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
+| F270 | shin wall back | 6061-T6 | 163 x 90 x 5.0 mm | cut from 5 mm sheet | - | 196 g | 2 |
+| F271 | shin wall in | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
+| F272 | shin wall out | 6061-T6 | 163 x 101 x 5.0 mm | cut from 5 mm sheet | - | 220 g | 2 |
+| F273 | shin cap | 7075-T6 | 126 x 94 x 8.0 mm | cut from 8 mm sheet | - | 260 g | 2 |
+| F274 | ankle plate in | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 362 g | 2 |
+| F275 | ankle spacer | 7075-T6 | 144 x 144 x 9.5 mm | milled from solid; pockets not designed | - | 148 g | 2 |
+| F276 | ankle mount plate | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 189 g | 2 |
+| F277 | ankle mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F278 | ankle mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F279 | ankle mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F280 | ankle mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F281 | ankle mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F282 | ankle mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F283 | ankle mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F284 | ankle mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F285 | ankle mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F286 | ankle mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F287 | ankle stub | steel | 30 x 30 x 20.0 mm | turned | - | 110 g | 2 |
+| F288 | foot plate | 7075-T6 | 306 x 166 x 13.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 1111 g | 2 |
+| F289 | ankle ear out | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 491 g | 2 |
+| F290 | ankle ear in | 7075-T6 | 190 x 172 x 8.0 mm | cut from 8 mm sheet | - | 494 g | 2 |
+| F291 | ankle output | 6061-T6 | 80 x 80 x 12.5 mm | turned or milled | - | 153 g | 2 |
+| F292 | ankle screw 0 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F293 | ankle screw 1 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F294 | ankle screw 2 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F295 | ankle screw 3 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F296 | ankle screw 4 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F297 | ankle screw 5 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F298 | ankle screw 6 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F299 | ankle screw 7 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F300 | ankle screw 8 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F301 | ankle ear screw 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F302 | ankle ear screw 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F303 | ankle ear screw 2 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F304 | ankle ear screw 3 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F305 | ankle ear screw 4 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F306 | ankle ear screw 5 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F307 | ankle bearing housing | 7075-T6 | 80 x 80 x 16.0 mm | milled from solid; pockets not designed | 60 % of solid, assumed | 91 g | 2 |
+| F308 | neck output L | 6061-T6 | 80 x 80 x 4.5 mm | cut from 5 mm sheet | - | 57 g | 1 |
+| F309 | neck output R | 6061-T6 | 80 x 80 x 4.5 mm | cut from 5 mm sheet | - | 57 g | 1 |
+| F310 | neck spine | 7075-T6 | 430 x 80 x 60.0 mm | milled from solid; pockets not designed | 25 % of solid, assumed | 1153 g | 1 |
+| F311 | neck L screw 0 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F312 | neck L screw 1 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F313 | neck L screw 2 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F314 | neck L screw 3 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F315 | neck L screw 4 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F316 | neck L screw 5 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F317 | neck L screw 6 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F318 | neck L screw 7 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F319 | neck L screw 8 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F320 | neck R screw 0 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F321 | neck R screw 1 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F322 | neck R screw 2 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F323 | neck R screw 3 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F324 | neck R screw 4 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F325 | neck R screw 5 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F326 | neck R screw 6 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F327 | neck R screw 7 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F328 | neck R screw 8 shank | steel | 12 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F329 | head pitch stator plate L | 7075-T6 | 144 x 144 x 8.0 mm | cut from 8 mm sheet | - | 189 g | 1 |
+| F330 | head pitch L mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F331 | head pitch L mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F332 | head pitch L mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F333 | head pitch L mount screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F334 | head pitch L mount screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F335 | head pitch L mount screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F336 | head pitch L mount screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F337 | head pitch L mount screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F338 | head pitch L mount screw 8 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F339 | head pitch L mount screw 9 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F340 | head pitch screw 0 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F341 | head pitch screw 1 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F342 | head pitch screw 2 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F343 | head pitch screw 3 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F344 | head pitch screw 4 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F345 | head pitch screw 5 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F346 | head pitch screw 6 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F347 | head pitch screw 7 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F348 | head pitch screw 8 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 1 |
+| F349 | head pitch stator tie L | 6061-T6 | 57 x 24 x 10.0 mm | turned or milled | - | 36 g | 1 |
+| F350 | head pitch shaft | steel | 150 x 40 x 40.0 mm | turned | 45 % of solid, assumed | 661 g | 1 |
+| F351 | head pitch yoke | 7075-T6 | 140 x 130 x 8.0 mm | cut from 8 mm sheet | - | 378 g | 1 |
+| F352 | head pitch yoke R | 7075-T6 | 140 x 130 x 8.0 mm | cut from 8 mm sheet | - | 378 g | 1 |
+| F353 | head pitch bridge | 7075-T6 | 140 x 116 x 8.0 mm | cut from 8 mm sheet | - | 235 g | 1 |
+| F354 | head yaw mount screw 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F355 | head yaw mount screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F356 | head yaw mount screw 2 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F357 | head yaw mount screw 3 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F358 | head yaw output | 6061-T6 | 80 x 80 x 8.0 mm | cut from 8 mm sheet | - | 103 g | 1 |
+| F359 | head yaw plate | 7075-T6 | 216 x 120 x 8.0 mm | cut from 8 mm sheet | - | 577 g | 1 |
+| F360 | head yaw screw 0 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F361 | head yaw screw 1 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F362 | head yaw screw 2 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F363 | head yaw screw 3 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F364 | head yaw screw 4 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F365 | head yaw screw 5 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F366 | head yaw plate screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F367 | head yaw plate screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F368 | head yaw plate screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F369 | head yaw plate screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F370 | head yaw plate screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F371 | head yaw plate screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F372 | head roll cradle | 7075-T6 | 135 x 120 x 8.0 mm | cut from 8 mm sheet | - | 234 g | 1 |
+| F373 | head roll mount screw 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F374 | head roll mount screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F375 | head roll mount screw 2 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F376 | head roll mount screw 3 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F377 | head roll output | 6061-T6 | 64 x 64 x 10.5 mm | turned or milled | - | 84 g | 1 |
+| F378 | head roll screw 0 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F379 | head roll screw 1 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F380 | head roll screw 2 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F381 | head roll screw 3 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F382 | head roll screw 4 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F383 | head roll screw 5 shank | steel | 8 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F384 | head main frame | 6061-T6 | 400 x 240 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 517 g | 1 |
+| F385 | head rail L | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
+| F386 | head rail R | 6061-T6 | 755 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 145 g | 1 |
+| F387 | head rear frame | 6061-T6 | 400 x 90 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 232 g | 1 |
+| F388 | head front frame | 6061-T6 | 400 x 200 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 517 g | 1 |
+| F389 | head beak mount | 6061-T6 | 400 x 60 x 6.0 mm | cut from 6 mm sheet | 45 % of solid, assumed | 173 g | 1 |
+| F390 | head beak lug L | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
+| F391 | head beak lug R | 6061-T6 | 40 x 40 x 16.5 mm | milled from solid; pockets not designed | - | 70 g | 1 |
+| F392 | beak hinge L | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
+| F393 | beak hinge R | 6061-T6 | 110 x 40 x 8.0 mm | cut from 8 mm sheet | - | 94 g | 1 |
+| F394 | beak tray frame | 6061-T6 | 426 x 300 x 8.0 mm | cut from 8 mm sheet | 25 % of solid, assumed | 688 g | 1 |
 
 ### Printed
 
@@ -301,7 +605,7 @@ All of these stay open. Nothing here has been settled by a test or by anyone qua
 
 - **No stress analysis.** Plates, shafts, pins, rods and screws have a hand estimate at most. Rods carry about 2 kN mid stroke and 3-4 kN at the ends on 10 mm pins, in 5 mm plate, with no bushing or bearing designed. The hip yaw beam, hip yoke and shin take the whole robot.
 - **Metal frames unchecked.** No FEA, fatigue check, weld or joint design. Many frames are solid blocks with an assumed fill, so their real strength and mass are both unknown: pocketing them may take away what they need, and leaving them solid adds mass.
-- **No real RS04 drawing has been read in CAD, and none measured.** The hole circles now in the spec are read off a figure in RobStride's manual. Download and read `RS04-20261030.stp` (RobStride's Product_Information repository), and measure a real one, before cutting metal.
+- **No real actuator has been measured.** RobStride's STEP files have now been read in Fusion (see below), and the hole circles and steps in the spec come from them. A file isn't a part: measure a real one before cutting metal.
 - **No brakes.** RobStride's manual describes damping when back-driven with the power off, not a brake. Power loss, a tripped branch, the emergency stop or a BMS cut-off all drop 100 kg. A fault in a branch is one the board can't recover from without restarting. So a hoist for every power-on, and nobody under or beside it.
 - **How it falls.** Not studied. Nothing protects the frames, the head, the battery or people nearby. A 1.2 kWh lithium pack in a falling robot needs its own case and impact design.
 - **Battery.** A candidate only, and not tested. It has no BMS: one has to take back braking current and allow the peaks, and if it cuts out, the robot drops. Fire safety for 1.2 kWh of bare soft pack in a machine that falls isn't designed.
@@ -311,11 +615,11 @@ All of these stay open. Nothing here has been settled by a test or by anyone qua
 
 ### The real actuators against the model
 
-- **Shape.** The spec has plain cylinders, 120 x 56 mm for the RS04. RobStride's figure shows 120 across for 39 mm, 94 across for the rear 13.2, 0.5 more at the output face, and 3 pins standing 3.3 mm. So 56 includes the pins. The plates that lie on rear faces in the model (hip pitch, knee) would hit the 94 mm step: they need a 95 mm hole or spacers 13.2 mm thick, and the 13.2 mm changes every lane in the legs, whose clearances are as thin as 0.2 mm.
-- **Cable.** Each RS04 has one harness out through the side of its rear step: 310 mm, then 40 mm of CAN pigtail. The RS03 has the same plugs; its figure was not read for the cable. Nothing in the frames leaves room or a route for it. Not all plates can be notched: see [wiring](WIRING.md).
-- **Pins.** The output pins, 3 x 6 mm on 35.86, have no holes in any plate. They may be what carries the torque: ask RobStride what the screws and pins are each rated for.
-- **Screws.** The model's output screws don't work as drawn. Hip pitch: M5 x 16 through a 20.5 mm stack doesn't reach the thread. Ankle: M5 x 20 through a 20 mm stack, the same. Hip roll: M5 x 16 through 8 mm goes 8 deep into a hole 6.5 deep, and the manual says not to. Hip yaw: the heads are drawn in the 2 mm gap between the plate and the actuator, where no tool goes.
-- **Missing screws.** Stators with no mounting screws in the model: hip pitch inner, knee inner, neck both, head pitch, head yaw, beak. Outputs with none: hip roll rear, hip pitch inner, both knee cranks, neck both, head pitch, head yaw, head roll, beak. So no assembly order exists either, and the tools that check one don't run on this duck: `assembly`, `buildable`, `export_prints`, `printable`, `beak_linkage`.
+- **Shape: read from the STEP files, 2026-11-05.** The RS04 is 120 across for 39 mm and 94 across for its rear 13.2, as the manual's figure says; 55.7 long pin tip to tail, 52.7 from output face to tail; the output face stands 0.5 past the stator's. The RS03 isn't a cylinder: 92.8 across with 8 lobes to 106.6, a rear step 79.5 across and 14.6 long, 56.6 long. The RS00 is 57 x 52.1. So every stator now hangs by its shoulder, through a plate bored for the step. The plates on rear faces were an error: there's no flat rear face to bolt to. No file holds a mass, so the 1.42 kg stays the retailer's.
+- **Cable.** Each RS04's leaves in a 7.3 mm sleeve, radially, 6.3 mm behind the shoulder, ending at r 58.1: each plate has a 9 mm window for it, closed at r 64, between two screws. The cable then lies on the plate's far side. Routes are sketched in [wiring](WIRING.md), not drawn: nobody has shown the 310 mm reaches, and the cable's real bend radius is unread. The RS03's plugs are on the sides of its rear step, past its plate. Not designed: strain relief, guards, and the moving loops across each joint.
+- **Pins.** 3 x 6 mm on 35.86, standing 3.0 mm in the file, not the manual's 3.3. Every flange now has holes for them, 3.5 deep. The RS03 has 3 x 4 mm holes, 7 deep, not pins: its flanges want bought dowels, modelled as holes only. They may be what carries the torque: ask RobStride what the screws and pins are each rated for.
+- **Screws: the thread is the problem.** The file's RS04 output holes are blind at 3.5 mm, where the manual says 6.5 (6.5 is the file's distance from that floor to the pin tips, so the figure may be read wrongly). Every output screw is now sized to engage 3 mm, so none bottoms. That's under 4 turns of M5, on 9 screws. **Measure a real one**: if 3.5 is right, the screws may hold little, and the pins everything. Lengths by joint are in the spec and [the Fusion notes](FUSION.md).
+- **Screws still missing.** Stators and outputs all have screws now, except the beak. Frame-to-frame joints still have none: cheeks to beam, ties, ribs, bridges, posts, standoff rings, covers. Those are the plates that hold the robot up. So no assembly order exists yet, and the tools that check one don't run on this duck: `assembly`, `buildable`, `export_prints`, `printable`, `beak_linkage`.
 - **Torque and heat.** The 40 N m rating needs the RS04 on a 345 x 345 mm aluminium plate; 35 on 220 x 200. These frames are neither, so true ratings are lower and unknown. The manual's overload table, on that large plate: 120 N m for 3 s, 100 for 15 s, 80 for 38 s, 60 for 108 s, 50 for 324 s. So the "240 N m" pair is a 3-second number. A crouch asks each knee RS04 for about 34 N m, and the first walk for about 55, RMS: minutes at best. The manual's winding limit is 145 C.
 - **Numbers disagree.** RobStride's selection table says the RS04 runs on 15-60 V, its manual 24-60. The retailer gives 1.5 kg and 1420 g on one page.
 - **The beak.** Its rod and crank aren't designed. Nor is the head's contents: 0.6 kg of "head boards and camera" is a placeholder. The RS00's real connector is on its side.
