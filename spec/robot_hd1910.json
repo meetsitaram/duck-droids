@@ -19647,7 +19647,7 @@
      "name": "head 5 V regulator",
      "c": [
       0.0835,
-      -0.04075000000000001,
+      -0.040749999999999995,
       0.2515
      ],
      "size": [
@@ -19661,6 +19661,28 @@
      "exposed": false,
      "material": "electronics",
      "mass": 0.008,
+     "on_cover": true
+    },
+    {
+     "kind": "rbox",
+     "name": "head regulator plug",
+     "c": [
+      0.059,
+      -0.039999999999999994,
+      0.2515
+     ],
+     "size": [
+      0.014000000000000005,
+      0.005999999999999998,
+      0.014000000000000012
+     ],
+     "fillet": 0.0001,
+     "color": "#D9D4C5",
+     "role": "struct",
+     "exposed": false,
+     "material": "electronics",
+     "mass": 0.002,
+     "wire": true,
      "on_cover": true
     },
     {

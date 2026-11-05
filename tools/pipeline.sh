@@ -66,6 +66,8 @@ gates() {
   gate beak "$PY" -I tools/beak_linkage.py
   gate mass "$PY" -I tools/mass_model.py
   if [ "$RECIPE" = hybrid ]; then gate wires "$PY" -I tools/wire_routes.py; fi
+  # (export writes prints/ from the spec's shapes, over any from Fusion: 2026-11-05, this nearly got committed)
+  echo "NOTE: prints/ now hold the spec's unrounded shapes. Before committing, run pipeline.sh fusion, or restore them: git restore prints"
 }
 
 build() {

@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Product | Feetech HD-1910 duck, biped, 15 servos |
-| Height, mass | 0.295 m, 1.02 kg as modelled |
+| Height, mass | 0.295 m, 1.03 kg as modelled |
 | Build quantity | Quantities are for 1 robot |
 | Fabricated parts | 43 printed parts, 435 g PLA and 54 g TPU 95A |
 | Status | Prototype: no unit built, no part test printed |

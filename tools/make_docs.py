@@ -467,6 +467,7 @@ def bom_dynamixel(spec):
          f"- **Item {num['reg']}:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.",
          f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",
          f"- **Item {num['usb']}:** check the Pi's voltage under load, as the ribbon's wires are thin.",
+         f"- **Horns:** ROBOTIS's own photos and model show the horn on the servo, though its box list names only the servo, a cable and screws. If one comes without, it's the HNX330-N102. Check the first servo before ordering the rest.",
          f"- **Items {num['m2x6']}, {num['m2x8']}:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: order item {num['m2kit']} and set each ID again if buying there.",
          '- Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.', '',
          '## Open before ordering', '',

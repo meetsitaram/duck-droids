@@ -61,7 +61,7 @@ RECIPES = {
     'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
                       # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
                       # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
-                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
+                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
@@ -80,7 +80,7 @@ RECIPES = {
                        mount_source="FEETECH spec sheet HD-1910-C001 A/0, 2026-09-07, and STEP HD-1910-C001-20260902.stp from the FEETECH wiki (ftservo.github.io/ftservo-wiki), measured: "
                                     "case 34 x 20 x 23, horn top 3.0 off the case, shaft 7.5 off centre, frame holes 1.6 at 30 x 16, through: 4.5 mm of plastic at the rear, 2.3 at the front under a 1.2 mm counterbore; horn 16 dia with 8 holes on a 12 circle. "
                                     "At 7.4 V, +/- 10 %: 15 kg cm stall, 2 A, 113 rev/min; 3.7 kg cm rated, 0.9 A. Armature, damping and friction are still estimates, from the XL330's"),
-                   battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
+                   battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                    beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                    ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                    target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005, thigh_post_r=0.0045),
@@ -1298,6 +1298,8 @@ link('head', 0.12, [
     *[dict(box('head 5 V regulator', *R.get('reg_box', ((0.0660, -0.0420 - R.get('reg_out', 0), 0.2430), (0.1010, -0.0335 - R.get('reg_out', 0), 0.2600))), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
     # (the plug in its socket: its right angle turns in toward the Pi, in the 11 mm left to the back of the face. Clear of the camera ribbon's end, inboard)
     *[dict(box('head regulator plug', (0.0930, -0.0442, 0.2650), (0.1040, -0.0357, 0.2810), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range(TWO_BOARDS)],
+    # (2026-11-05: the same for one board. Its socket stood 0.5 mm from the back of the face, so no plug fitted, right-angle or not. Found on the hybrid. So the module is turned round, its socket facing back, into the room behind it: a right-angle plug still needs 14 mm past the socket. Moving it back instead hits the hinge tab and the hood. Its input wires leave from the module's side, inboard)
+    *[dict(box('head regulator plug', *R['reg_plug'], '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range('reg_plug' in R)],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
     dict(plate('head base', HEAD_Z + 0.003, 0.0025, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
     # notches for the jaw's tabs, which come up past the plate

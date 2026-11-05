@@ -1,8 +1,8 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 01:48, 78 s
+spec: `spec/robot.json`, 2026-11-05 02:44, 66 s
 
-190 checks: 187 pass, 3 warn, **0 fail**
+191 checks: 188 pass, 3 warn, **0 fail**
 
 ## targets
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-05 01:48, 78 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.024 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 1.026 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -191,6 +191,7 @@ spec: `spec/robot.json`, 2026-11-05 01:48, 78 s
 | PASS | Waveshare bus board | 0.00 % outside the skin |
 | PASS | L base riser top | 0.00 % outside the skin |
 | PASS | head 5 V regulator | 0.00 % outside the skin |
+| PASS | head regulator plug | 0.40 % outside the skin |
 | PASS | Pi base tab | 0.00 % outside the skin |
 
 ## sweep
@@ -238,7 +239,7 @@ spec: `spec/robot.json`, 2026-11-05 01:48, 78 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.24 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 66 % used |
+| PASS | neck_pitch | 0.24 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 67 % used |
 | PASS | head_pitch | 0.18 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 50 % used |
 | PASS | L_knee | 0.18 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 49 % used |
 | PASS | R_knee | 0.18 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 49 % used |
@@ -251,5 +252,5 @@ spec: `spec/robot.json`, 2026-11-05 01:48, 78 s
 | PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 11 % used |
 | PASS | L_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 11 % used |
 | PASS | beak | 0.01 N m in 'head tucked in' vs rated 0.36 N m (1 x HD1910_C001): 4 % used |
-| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 1 % used |
+| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.36 N m (1 x HD1910_C001): 0 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.36 N m (1 x HD1910_C001): 0 % used |
