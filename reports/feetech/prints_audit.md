@@ -111,7 +111,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L knee lid | 2.9 cm3, designed 2.9: 0 % off |
 | PASS | L thigh cover | 24.4 cm3, designed 25.7: 5 % off |
 | PASS | L shin | 12.7 cm3, designed 12.8: 1 % off |
-| PASS | L shoe | 15.8 cm3, designed 15.8: 0 % off |
+| PASS | L shoe | 15.8 cm3, designed 15.7: 0 % off |
 | PASS | L sole | 41.5 cm3, designed 40.8: 2 % off |
 | PASS | L inner ear | 2.5 cm3, designed 2.5: 0 % off |
 | PASS | R hip yaw lid | 2.9 cm3, designed 2.9: 0 % off |
@@ -123,7 +123,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R knee lid | 2.9 cm3, designed 2.9: 0 % off |
 | PASS | R thigh cover | 24.4 cm3, designed 25.7: 5 % off |
 | PASS | R shin | 12.7 cm3, designed 12.8: 1 % off |
-| PASS | R shoe | 15.8 cm3, designed 15.8: 0 % off |
+| PASS | R shoe | 15.7 cm3, designed 15.7: 0 % off |
 | PASS | R sole | 41.5 cm3, designed 40.8: 2 % off |
 | PASS | R inner ear | 2.5 cm3, designed 2.5: 0 % off |
 | PASS | chassis | 55.3 cm3, designed 55.5: 0 % off |
@@ -133,10 +133,10 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | head pitch lid | 0.8 cm3, designed 0.8: 0 % off |
 | PASS | head fork | 18.8 cm3, designed 18.8: 0 % off |
 | PASS | head yaw sheet | 1.3 cm3, designed 1.3: 0 % off |
-| PASS | head yaw bracket | 14.1 cm3, designed 14.2: 1 % off |
+| PASS | head yaw bracket | 13.5 cm3, designed 13.7: 1 % off |
 | PASS | head roll lid | 3.0 cm3, designed 3.0: 0 % off |
 | PASS | head roll spacer | 0.7 cm3, designed 0.7: 0 % off |
-| PASS | head frame | 85.8 cm3, designed 85.7: 0 % off |
+| PASS | head frame | 85.4 cm3, designed 85.4: 0 % off |
 | PASS | hood | 79.0 cm3, designed 79.4: 1 % off |
 | PASS | jaw | 47.3 cm3, designed 47.3: 0 % off |
 | PASS | jaw soft insert | 22.7 cm3, designed 22.7: 0 % off |
@@ -205,7 +205,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L knee lid | 4 % of its surface is under 0.8 mm thick |
 | PASS | L thigh cover | 1 % of its surface is under 0.8 mm thick |
 | PASS | L shin | 1 % of its surface is under 0.8 mm thick |
-| PASS | L shoe | 8 % of its surface is under 0.8 mm thick |
+| PASS | L shoe | 10 % of its surface is under 0.8 mm thick |
 | PASS | L sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | L inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip yaw lid | 4 % of its surface is under 0.8 mm thick |
@@ -217,7 +217,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R knee lid | 3 % of its surface is under 0.8 mm thick |
 | PASS | R thigh cover | 2 % of its surface is under 0.8 mm thick |
 | PASS | R shin | 0 % of its surface is under 0.8 mm thick |
-| PASS | R shoe | 9 % of its surface is under 0.8 mm thick |
+| PASS | R shoe | 8 % of its surface is under 0.8 mm thick |
 | PASS | R sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | R inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | chassis | 0 % of its surface is under 0.8 mm thick |

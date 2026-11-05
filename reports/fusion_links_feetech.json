@@ -49,14 +49,14 @@
   "seconds": 20.8
  },
  "L_foot": {
-  "hash": "46422f3bcc403da2f42bcdc2e8c35a1a263f33741286fa9212795fd515b48ff5",
+  "hash": "3660da04df93769b0a414bfc698c441b789d336ed1fed17f2eb9053ab6d6fc9a",
   "bad": [],
-  "seconds": 29.1
+  "seconds": 32.5
  },
  "R_foot": {
-  "hash": "cfb40fe1afee00e62f71b0f8d720758f33c28ee04b0d3e4722cae1bde7bfbbaf",
+  "hash": "7101fdefa16a440bab910a845d8edf74aea1acee65ae4b9ce81ec27afaa33d21",
   "bad": [],
-  "seconds": 30.9
+  "seconds": 31.5
  },
  "neck_link": {
   "hash": "e04b128bc153f4d2951623a326cc901505a53596471b8cf71f3fb8dd725b82ed",
@@ -69,14 +69,14 @@
   "seconds": 16.3
  },
  "head_yaw_link": {
-  "hash": "8e194e295406a0f706388db697fde02263df701e118ce0fd844c21c78e97b2b8",
+  "hash": "2622cd89fab381c2271cf8f7cc3582cc692569a0d518c563f3b6018877dedb8b",
   "bad": [],
-  "seconds": 14.6
+  "seconds": 17.2
  },
  "head": {
-  "hash": "ba48bce2a5d06a99bd3fe2b6c72767085d2f36922ac52ccb66822dd4fb371deb",
+  "hash": "1f946d3b6ef3b4a2bd76b336b7fe0322b79a9dde0e8ca2eedf6c6c0ab6557165",
   "bad": [],
-  "seconds": 69.6
+  "seconds": 96.1
  },
  "beak_link": {
   "hash": "fbb2ba068412211cc0b9e3f1a258e145c22190a61291e8844327e8eea33cee1a",

@@ -75,24 +75,14 @@
 80.0
 ],
 [
-"R shoe",
-"R ankle pitch STS3215 horn",
-48.59
-],
-[
 "beak cable plugs",
 "beak STS3215 case",
 47.73
 ],
 [
-"L shoe",
-"L ankle pitch STS3215 horn",
-46.4
-],
-[
 "head frame",
 "beak STS3215 case",
-36.08
+32.63
 ],
 [
 "bus board cable plugs usb",
@@ -108,11 +98,6 @@
 "Pi PWR plug",
 "Pi Zero 2 W power port",
 20.8
-],
-[
-"head yaw bracket",
-"head yaw horn bearing inner race",
-15.68
 ],
 [
 "R yaw bracket",
@@ -157,7 +142,12 @@
 [
 "R shoe",
 "R sole",
-9.18
+9.49
+],
+[
+"head yaw bracket",
+"head yaw horn bearing inner race",
+8.97
 ],
 [
 "L shoe bottom screw 0",
@@ -178,11 +168,6 @@
 "R shoe bottom screw 1",
 "R sole",
 7.6
-],
-[
-"head yaw horn bearing outer race",
-"head yaw bracket",
-7.12
 ],
 [
 "L shin",
@@ -420,13 +405,13 @@
 2.98
 ],
 [
-"head yaw horn bearing inner race",
-"head yaw STS3215 horn",
+"head roll horn bearing inner race",
+"head roll STS3215 horn",
 2.98
 ],
 [
-"head roll horn bearing inner race",
-"head roll STS3215 horn",
+"head yaw horn bearing inner race",
+"head yaw STS3215 horn",
 2.98
 ],
 [
@@ -520,6 +505,11 @@
 0.35
 ],
 [
+"R shoe",
+"R ankle pitch STS3215 horn",
+0.34
+],
+[
 "chassis",
 "R hip yaw lid",
 0.32
@@ -533,6 +523,11 @@
 "head yaw bracket",
 "head roll lid",
 0.32
+],
+[
+"L shoe",
+"L ankle pitch STS3215 horn",
+0.31
 ],
 [
 "L thigh frame",
@@ -563,11 +558,6 @@
 "R yaw bracket",
 "R hip roll lid",
 0.07
-],
-[
-"head roll cable plugs",
-"head frame",
-0.05
 ],
 [
 "Pi Zero 2 W mounting rings",

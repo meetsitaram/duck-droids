@@ -285,7 +285,7 @@
   "group": "VOLUME",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "15.8 cm3, designed 15.8: 0 % off"
+  "detail": "15.8 cm3, designed 15.7: 0 % off"
  },
  {
   "group": "BED",
@@ -297,7 +297,7 @@
   "group": "THIN",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "8 % of its surface is under 0.8 mm thick"
+  "detail": "10 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -645,7 +645,7 @@
   "group": "VOLUME",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "15.8 cm3, designed 15.8: 0 % off"
+  "detail": "15.7 cm3, designed 15.7: 0 % off"
  },
  {
   "group": "BED",
@@ -657,7 +657,7 @@
   "group": "THIN",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "9 % of its surface is under 0.8 mm thick"
+  "detail": "8 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -945,7 +945,7 @@
   "group": "VOLUME",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "14.1 cm3, designed 14.2: 1 % off"
+  "detail": "13.5 cm3, designed 13.7: 1 % off"
  },
  {
   "group": "BED",
@@ -1035,7 +1035,7 @@
   "group": "VOLUME",
   "item": "head frame",
   "status": "PASS",
-  "detail": "85.8 cm3, designed 85.7: 0 % off"
+  "detail": "85.4 cm3, designed 85.4: 0 % off"
  },
  {
   "group": "BED",

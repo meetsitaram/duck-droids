@@ -14,7 +14,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | L knee lid | L_knee_lid.stl | 51 x 31 x 6 | 2.9 | PLA | 167 |
 | L thigh cover | L_thigh_cover.stl | 67 x 87 x 46 | 25.7 | PLA | 44 |
 | L shin | L_shin.stl | 79 x 42 x 31 | 12.8 | PLA | 832 |
-| L shoe | L_shoe.stl | 29 x 53 x 69 | 15.8 | PLA | 707 |
+| L shoe | L_shoe.stl | 29 x 53 x 69 | 15.7 | PLA | 708 |
 | L sole | L_sole.stl | 15 x 53 x 69 | 40.8 | TPU 95A | 478 |
 | L inner ear | L_inner_ear.stl | 29 x 48 x 4 | 2.5 | PLA | 0 (none) |
 | R hip yaw lid | R_hip_yaw_lid.stl | 6 x 31 x 51 | 2.9 | PLA | 118 |
@@ -26,7 +26,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R knee lid | R_knee_lid.stl | 51 x 31 x 6 | 2.9 | PLA | 167 |
 | R thigh cover | R_thigh_cover.stl | 67 x 87 x 46 | 25.7 | PLA | 44 |
 | R shin | R_shin.stl | 79 x 42 x 31 | 12.8 | PLA | 832 |
-| R shoe | R_shoe.stl | 29 x 53 x 69 | 15.8 | PLA | 707 |
+| R shoe | R_shoe.stl | 29 x 53 x 69 | 15.7 | PLA | 708 |
 | R sole | R_sole.stl | 15 x 53 x 69 | 40.8 | TPU 95A | 477 |
 | R inner ear | R_inner_ear.stl | 29 x 48 x 4 | 2.5 | PLA | 0 (none) |
 | chassis | chassis.stl | 52 x 101 x 65 | 55.5 | PLA | 3314 |
@@ -36,10 +36,10 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | head pitch lid | head_pitch_lid.stl | 9 x 31 x 3 | 0.8 | PLA | 0 (none) |
 | head fork | head_fork.stl | 73 x 54 x 48 | 18.8 | PLA | 838 |
 | head yaw sheet | head_yaw_sheet.stl | 51 x 31 x 4 | 1.3 | PLA | 167 |
-| head yaw bracket | head_yaw_bracket.stl | 38 x 48 x 41 | 14.2 | PLA | 523 |
+| head yaw bracket | head_yaw_bracket.stl | 38 x 41 x 48 | 13.7 | PLA | 469 |
 | head roll lid | head_roll_lid.stl | 31 x 51 x 6 | 3.0 | PLA | 167 |
 | head roll spacer | head_roll_spacer.stl | 20 x 20 x 3 | 0.7 | PLA | 0 (none) |
-| head frame | head_frame.stl | 181 x 131 x 65 | 85.7 | PLA | 7257 |
+| head frame | head_frame.stl | 181 x 131 x 65 | 85.4 | PLA | 7226 |
 | hood | hood.stl | 73 x 135 x 192 | 79.4 | PLA | 5100 |
 | jaw | jaw.stl | 48 x 135 x 108 | 47.3 | PLA | 1221 |
 | jaw soft insert | jaw_soft_insert.stl | 35 x 131 x 5 | 22.7 | TPU 95A | 0 (none) |

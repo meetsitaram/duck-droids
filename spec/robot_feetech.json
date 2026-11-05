@@ -13449,6 +13449,23 @@
     },
     {
      "kind": "cyl",
+     "name": "L shoe horn relief",
+     "c": [
+      -0.05095,
+      0.075825,
+      0.0295
+     ],
+     "axis": "y",
+     "r": 0.0104,
+     "h": 0.00175,
+     "color": "#E8642A",
+     "role": "cut",
+     "targets": [
+      "L shoe"
+     ]
+    },
+    {
+     "kind": "cyl",
      "name": "L shoe pocket",
      "c": [
       -0.05095,
@@ -14321,6 +14338,23 @@
      "open": [],
      "exposed": true,
      "material": "pla"
+    },
+    {
+     "kind": "cyl",
+     "name": "R shoe horn relief",
+     "c": [
+      -0.05095,
+      -0.075825,
+      0.0295
+     ],
+     "axis": "y",
+     "r": 0.0104,
+     "h": 0.00175,
+     "color": "#E8642A",
+     "role": "cut",
+     "targets": [
+      "R shoe"
+     ]
     },
     {
      "kind": "cyl",
@@ -16740,12 +16774,12 @@
      "c": [
       0.04285,
       -0.011546250000000001,
-      0.3173220620008236
+      0.31757206200082355
      ],
      "size": [
       0.035,
       0.0398925,
-      0.007299999999999973
+      0.006799999999999973
      ],
      "fillet": 0.0001,
      "color": "#3A3D42",
@@ -22637,6 +22671,49 @@
      "exposed": true,
      "material": "electronics",
      "mass": 0.001
+    },
+    {
+     "kind": "rbox",
+     "name": "beak rail lump pocket",
+     "c": [
+      0.022150000000000003,
+      0.016588635932203385,
+      0.3299570620008236
+     ],
+     "size": [
+      0.013599999999999998,
+      0.0022000000000000006,
+      0.019399999999999973
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L head rail"
+     ]
+    },
+    {
+     "kind": "rbox",
+     "name": "beak plug window web",
+     "c": [
+      0.028450000000000003,
+      0.017188635932203385,
+      0.3345570620008236
+     ],
+     "size": [
+      0.0017999999999999995,
+      0.007000000000000003,
+      0.010399999999999965
+     ],
+     "fillet": 0.0001,
+     "color": "#3A3D42",
+     "role": "cut",
+     "exposed": false,
+     "targets": [
+      "L head rail",
+      "beak cradle rear face"
+     ]
     },
     {
      "kind": "rbox",
