@@ -61,9 +61,10 @@ gate() {   # name, command
 }
 
 gates() {
-  if [ "$RECIPE" = big ]; then      # its own spec, and no printed parts: assembly, buildable, export, printable and beak don't apply to it, so none of that is checked
+  if [ "$RECIPE" = big ]; then      # its own spec, and no printed parts: buildable, export, printable and beak don't apply to it. Its assembly has its own checker
     gate spec "$PY" -I spec/big_duck.py
     gate checks "$PY" -I tools/checks.py
+    gate assembly "$PY" -I tools/big_assembly.py
     gate docs "$PY" -I tools/make_docs.py
     gate mass "$PY" -I tools/mass_model.py
     return
