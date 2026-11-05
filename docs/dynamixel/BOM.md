@@ -126,7 +126,7 @@ All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.m
 | P22 | Head roll spacer | `head_roll_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P23 | Head roll rear spacer | `head_roll_rear_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 67.4 g | 1 |
-| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.6 g | 1 |
+| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.4 g | 1 |
 | P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.8 g | 1 |
 | P27 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 9.5 g | 1 |
 | P28 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 9.0 g | 1 |
