@@ -10,8 +10,8 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 |---|---|---|
 | PASS | L hip yaw lid | 0.2 % of 1500 points disagree; solid in 792 offline, 791 in Fusion |
 | PASS | L yaw bracket | 0.2 % of 1500 points disagree; solid in 342 offline, 339 in Fusion |
-| PASS | L hip roll lid | 0.3 % of 1500 points disagree; solid in 690 offline, 686 in Fusion |
-| PASS | L roll bracket | 0.6 % of 1500 points disagree; solid in 319 offline, 314 in Fusion |
+| PASS | L hip roll lid | 0.3 % of 1500 points disagree; solid in 691 offline, 686 in Fusion |
+| PASS | L roll bracket | 0.5 % of 1500 points disagree; solid in 319 offline, 315 in Fusion |
 | PASS | L thigh frame | 0.1 % of 1500 points disagree; solid in 157 offline, 155 in Fusion |
 | PASS | L hip pitch lid | 0.1 % of 1500 points disagree; solid in 785 offline, 783 in Fusion |
 | PASS | L knee lid | 0.0 % of 1500 points disagree; solid in 749 offline, 749 in Fusion |
@@ -39,9 +39,9 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | head pitch lid | 0.1 % of 1500 points disagree; solid in 921 offline, 920 in Fusion |
 | PASS | head fork | 0.2 % of 1500 points disagree; solid in 187 offline, 184 in Fusion |
 | PASS | head yaw sheet | 0.1 % of 1500 points disagree; solid in 332 offline, 332 in Fusion |
-| PASS | head yaw bracket | 0.7 % of 1500 points disagree; solid in 267 offline, 258 in Fusion |
+| PASS | head yaw bracket | 0.6 % of 1500 points disagree; solid in 267 offline, 260 in Fusion |
 | PASS | head roll lid | 0.0 % of 1500 points disagree; solid in 750 offline, 750 in Fusion |
-| PASS | head roll spacer | 0.1 % of 1500 points disagree; solid in 899 offline, 899 in Fusion |
+| PASS | head roll spacer | 0.1 % of 1500 points disagree; solid in 898 offline, 899 in Fusion |
 | PASS | head roll rear spacer | 0.1 % of 1500 points disagree; solid in 1035 offline, 1036 in Fusion |
 | PASS | head frame | 0.0 % of 1500 points disagree; solid in 83 offline, 83 in Fusion |
 | PASS | hood | 0.5 % of 1500 points disagree; solid in 85 offline, 85 in Fusion |
