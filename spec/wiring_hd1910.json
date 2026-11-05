@@ -125,7 +125,7 @@
   },
   "head": {
    "label": "5 head servos",
-   "sub": "beak ... neck, in series",
+   "sub": "beak to neck",
    "picture": "servo.png",
    "x": 1420,
    "y": 125,
