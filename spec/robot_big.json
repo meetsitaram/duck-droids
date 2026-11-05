@@ -545,21 +545,41 @@
      "kind": "rbox",
      "name": "battery 13S",
      "c": [
-      -0.145,
+      -0.175,
       0.0,
-      0.9414186660470417
+      0.9380873320940835
      ],
      "size": [
-      0.14,
-      0.19,
-      0.13716266790591658
+      0.07999999999999999,
+      0.28,
+      0.13050000000000006
      ],
      "fillet": 0.001,
      "color": "#2F7DE1",
      "role": "struct",
      "exposed": false,
      "material": "cells",
-     "mass": 8.0
+     "mass": 5.2
+    },
+    {
+     "kind": "rbox",
+     "name": "battery BMS, fuse and case, allowance",
+     "c": [
+      -0.10500000000000001,
+      0.0,
+      0.9414186660470417
+     ],
+     "size": [
+      0.06000000000000001,
+      0.19,
+      0.13716266790591658
+     ],
+     "fillet": 0.001,
+     "color": "#1F5A36",
+     "role": "struct",
+     "exposed": false,
+     "material": "cells",
+     "mass": 2.8
     },
     {
      "kind": "rbox",

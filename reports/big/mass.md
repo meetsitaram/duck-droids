@@ -17,7 +17,7 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | link | mass kg | budget kg (hand estimate) | CoM (m, world, zero pose) | principal inertia (kg m2) |
 |---|---|---|---|---|
-| trunk | 21.15 | 0.00 | -0.042 -0.000 +0.918 | 0.2205 0.4442 0.5328 |
+| trunk | 21.15 | 0.00 | -0.044 -0.000 +0.918 | 0.2376 0.4514 0.5596 |
 | L_hip_yaw_link | 5.91 | 0.00 | +0.000 +0.110 +0.723 | 0.0337 0.0543 0.0743 |
 | R_hip_yaw_link | 5.91 | 0.00 | +0.000 -0.110 +0.723 | 0.0337 0.0543 0.0743 |
 | L_hip_roll_link | 5.39 | 0.00 | +0.002 +0.232 +0.678 | 0.0121 0.0493 0.0509 |
