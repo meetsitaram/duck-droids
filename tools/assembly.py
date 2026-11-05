@@ -103,7 +103,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('battery', 'B', ['battery 2S 850 mAh', 'battery XT30', 'battery balance plug']),
     ('L 5 V regulator', 'B', ['L 5 V regulator']),
     ('R 5 V regulator', 'B', ['R 5 V regulator']),
-    ('head 5 V regulator', 'B', ['head 5 V regulator']),
+    ('head 5 V regulator', 'B', ['head 5 V regulator', 'head regulator plug']),
     ('IMU', 'B', ['IMU']),
     ('body shell', 'P', ['body']),
     ('neck servo', 'B', ['neck_pitch actuator (buy) XC330_M288', 'neck_pitch flange', 'neck pitch rear horn']),
@@ -250,7 +250,7 @@ def sections():
     ]), dict(key='head', title='The head', on=['torso'], steps=[
         ('The head fork down onto the head pitch servo', [('@headbench', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^head pitch fork screw']),
-        ('The head frame, with its beak servo, down over the roll servo', [('@framebench', NEG(Z))], []),
+        ('The head frame, with its beak servo, down over the roll servo' + (', the wires from the neck up through its opening' if G.RECIPE == 'hybrid' else ''), [('@framebench', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^head roll fork screw']),
         ('The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, USB-C', [('Waveshare bus board', NEG(Z))], [r'^bus board top screw']),
         ('The Pi onto its plate from the front, its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket', [('Pi Zero 2 W', NEG(X))], [r'^Pi screw']),

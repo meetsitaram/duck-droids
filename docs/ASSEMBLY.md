@@ -228,7 +228,7 @@ Then the same for the right side, mirrored.
 
 1. The head fork down onto the head pitch servo
 2. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
-3. The head frame, with its beak servo, down over the roll servo
+3. The head frame, with its beak servo, down over the roll servo, the wires from the neck up through its opening
 4. 4 screws on each horn *(4 x M2 x 6 mm, small Phillips; 4 x M2 x 8 mm, small Phillips)*
 5. The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, USB-C *(4 x M2.5 x 5 mm, small Phillips)*
 6. The Pi onto its plate from the front, its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*

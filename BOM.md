@@ -118,7 +118,7 @@ All 3D printed. Files are in [prints/](prints/README.md), already oriented for p
 | P11 | Sole, left and right | `L_sole.stl`, `R_sole.stl` | TPU 95A | Yellow | #F2B233 | 28.2 g | 2 |
 | P12 | Inner ear, left and right | `L_inner_ear.stl`, `R_inner_ear.stl` | PLA | Orange | #E8642A | 3.1 g | 2 |
 | P13 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 45.8 g | 1 |
-| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 39.3 g | 1 |
+| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 39.2 g | 1 |
 | P15 | Neck column | `neck_column.stl` | PLA | Dark grey | #3A3D42 | 5.3 g | 1 |
 | P16 | Neck lid | `neck_lid.stl` | PLA | Dark grey | #3A3D42 | 0.3 g | 1 |
 | P17 | Head pitch lid | `head_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 0.3 g | 1 |

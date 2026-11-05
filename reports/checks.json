@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.647 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
+  "detail": "1.649 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -931,6 +931,12 @@
  },
  {
   "group": "skin",
+  "item": "head regulator plug",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
   "item": "Pi base tab",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -1131,7 +1137,7 @@
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.20 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 59 % used"
+  "detail": "0.21 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 59 % used"
  },
  {
   "group": "torque",

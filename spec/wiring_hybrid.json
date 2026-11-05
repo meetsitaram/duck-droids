@@ -1135,17 +1135,12 @@
    "what": "LY tech USB ribbon",
    "have": 0.1,
    "via": [
+    "head regulator plug",
     [
      "head",
-     0.101,
-     -0.037,
-     0.273
-    ],
-    [
-     "head",
-     0.095,
-     -0.036,
-     0.291
+     0.098,
+     -0.03,
+     0.285
     ],
     "Pi PWR plug"
    ]

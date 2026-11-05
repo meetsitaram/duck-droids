@@ -46,8 +46,8 @@ RECIPES = {
     # two_boards: the same Waveshare board for both, not an FE-URT-1 and a U2D2 (which gives no power, so a splice): one on the back of the Pi's plate on USB for the Dynamixels, as the all-Dynamixel's; one on a plate at the back of the head on the Pi's UART for the Feetechs, its 2S feeding the Pi's small regulator and its own logic.
     # No board fits in the body: the most room there is 15 x 8 mm across (42 x 33 x 12.6 wanted). So the legs' current stays in the body through a splice, and only data and ground go up the neck.
     # One 8 A UBEC in the body, for the head's servos; the Pi's own USB regulator in the head, as the all-Dynamixel's, in place of a second 8 A UBEC and its soldered lead)
-    'hybrid': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='XC330_M288', head='XL330_M288', K=1.0, HK=1.18, foot_switch=False, pi_ports_up=True, two_boards=True, reg_head=True, reg_box=((0.0660, -0.0412, 0.2645), (0.1010, -0.0327, 0.2815)), charge_port=True,
-                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0270, 0.1490), (-0.0400, 0.0340, 0.1715))),
+    'hybrid': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='XC330_M288', head='XL330_M288', K=1.0, HK=1.18, foot_switch=False, pi_ports_up=True, two_boards=True, reg_head=True, reg_box=((0.0580, -0.0442, 0.2645), (0.0930, -0.0357, 0.2815)), charge_port=True,
+                   port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0270, 0.1496), (-0.0400, 0.0340, 0.1702))),
                    battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052), short=0.003, ranges=dict(head_roll=(-0.33, 0.33)), mount_in=0.0008,
                    mass_budget_kg=1.65,    # 1.55 before the cable plugs, real regulators and boards and the beak's drive were modelled (2026-11-03)
                    # the real bus boards put the head's weight 11 % over the head pitch XL330's rated torque, an estimate at a third of stall, in this pose: passed
@@ -1235,6 +1235,8 @@ link('head', 0.12, [
                                                              ('L base riser back', (0.0074, 0.0285, 0.2347), (0.0110, 0.0315, 0.2652))) if R.get('head_fixes')],
     # (the 5 V regulator for the Pi, off the board's green terminals: one power pair up the neck, not 2. A USB buck module, 35 x 17 x 8.5 mm by its listing, on edge on the base beside the Pi, its USB socket forward, for a right-angle plug turning in toward the Pi (a straight plug hits the face); mass a guess: weigh yours)
     *[dict(box('head 5 V regulator', *R.get('reg_box', ((0.0660, -0.0420 - R.get('reg_out', 0), 0.2430), (0.1010, -0.0335 - R.get('reg_out', 0), 0.2600))), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
+    # (the plug in its socket: its right angle turns in toward the Pi, in the 11 mm left to the back of the face. Clear of the camera ribbon's end, inboard)
+    *[dict(box('head regulator plug', (0.0930, -0.0442, 0.2650), (0.1040, -0.0357, 0.2810), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range(TWO_BOARDS)],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
     dict(plate('head base', HEAD_Z + 0.003, 0.0025, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
     # notches for the jaw's tabs, which come up past the plate
