@@ -186,7 +186,7 @@ def sections():
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),
         ]), dict(key=f'shoe_{s}', title=f'The {nm} shoe', on=[], steps=[
             ('The shoe', [(f'{s} shoe', None)], []),
-            *([('Press in the foot switch, its wires soldered first', [(f'{s} foot switch', Z)], [])] if G.RECIPE != 'dynamixel' else []),
+            *([('Press in the foot switch, its wires soldered first', [(f'{s} foot switch', Z)], [])] if G.RECIPE not in ('dynamixel', 'hd1910') else []),
             ('The TPU sole, 2 screws from below', [(f'{s} sole', Z)], [rf'^{s} shoe bottom screw']),
         ]), dict(key=f'leg_{s}', title=f'The {nm} leg', on=[f'thigh_{s}'], steps=[
             ('The shin onto the knee horn', [(f'@shin_{s}', OUT)], []),
@@ -447,6 +447,27 @@ def check_ends(B, rep):
             rep.add('ENDS', n, False, f'{len(us)} screws, all at the far end: nothing holds the near end')
 
 
+def check_horn_tips(B, rep):
+    """A horn whose holes go right through it, as the HD-1910's: 2.5 mm of disc, 0.5 mm of air, then the case. A screw that's too long doesn't bite more: its tip drags on the case as the joint turns. Only for such a servo ('centre_screw'). --bad horntip."""
+    for j in B.spec['joints']:
+        A_ = B.spec['actuators'][j['act']]
+        if 'centre_screw' not in A_ or j['remote']:
+            continue
+        n = j['name'].replace('_', ' ')
+        ix = 'xyz'.index(j['axis'])
+        H, real = A_['box'][2], A_['horn_top']
+        tops = {'horn': j['act_c'][ix] + j['out'] * (H / 2 + real), 'rear': j['act_c'][ix] - j['out'] * (H / 2 + real)}
+        for k, (ln, g) in B.screws.items():
+            side = 'horn' if k.startswith(f'{n} fork screw horn') else 'rear' if k.startswith(f'{n} fork screw rear') or (k.startswith(f'{n[0]} ankle boss screw') and 'ankle' in n) else None
+            if side is None:
+                continue
+            f = g['fast']
+            tip = f['p'][ix] + f['d'][ix] * f['L']
+            into = (tops[side] - tip) * j['out'] * (1 if side == 'horn' else -1)
+            room = real - 0.0002
+            rep.add('HORNTIP', k, 0 < into <= room, f'{into * 1000:.1f} mm below the horn\'s face, {room * 1000:.1f} of room above the case')
+
+
 def check_seat(B, rep):
     """Does a printed part reach the real horn, where its screws go? (A horn drawn tall enough to reach the plate passed every check: THREAD and FIT measured the drawing.)"""
     for j in B.spec['joints']:
@@ -624,6 +645,7 @@ def check(spec, secs, rep, S=None):
     check_edge(B, rep)
     check_pierce(B, rep)
     check_seat(B, rep)
+    check_horn_tips(B, rep)
     for n, p in B.parts.items():
         c = placed.get(n, 0)
         rep.add('ALL', f'part {n}', c == 1, '' if c == 1 else f'fitted {c} times')
@@ -655,6 +677,11 @@ def main():
             for g in l['geoms']:
                 if g['name'].startswith('L knee fork screw') and 'fast' in g:
                     g['fast']['L'] = 0.003
+    elif a.bad == 'horntip':                       # a horn screw 2 mm too long: an HD-1910's tip on its case
+        for l in spec['links'].values():
+            for g in l['geoms']:
+                if g['name'].startswith('L knee fork screw') and 'fast' in g:
+                    g['fast']['L'] += 0.002
     elif a.bad == 'order':                         # a part forgotten
         body = next(s for s in secs if s['key'] == 'body')
         body['steps'] = [x for x in body['steps'] if 'push in the hip yaw' not in x[0]]

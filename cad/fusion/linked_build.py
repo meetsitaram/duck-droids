@@ -181,7 +181,7 @@ def check_assembly(app, s, d):
         r = res.item(k)
         clash.append((getattr(r.entityOne, 'name', '?'), getattr(r.entityTwo, 'name', '?'), round(r.interferenceBody.volume * 1000, 2)))
     clash.sort(key=lambda c: -c[2])
-    same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 '))
+    same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 ', ' HD1910 '))
     json.dump(clash, open(os.path.join(build.REPO, 'reports', build._variant_file('fusion_interference')), 'w', encoding='utf-8'), indent=0)
     print('clashes', len(clash), 'to explain', [c for c in clash if not any(k in c[0] + c[1] for k in OK_CLASH) and not same(c[0], c[1]) and c[2] > 1.0][:12])
     vp = app.activeViewport

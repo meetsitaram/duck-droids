@@ -14,9 +14,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import geom as G  # noqa: E402
 
 SRC = os.path.join(os.environ['TEMP'], 'duck_reveal')
-TITLES = [(0, 150, 'Motors', '15 XL330 servos'), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
+MOTORS, DUCK = ('15 HD-1910 servos', 'Feetech HD-1910 duck') if G.RECIPE == 'hd1910' else ('15 XL330 servos', 'All-Dynamixel duck')
+TITLES = [(0, 150, 'Motors', MOTORS), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
           (360, 505, 'Electronics', 'Pi Zero 2 W, bus board, battery, IMU, camera'), (510, 700, 'Covers', 'hood, jaw, thigh covers, body shell, soles'),
-          (705, 900, 'All-Dynamixel duck', '')]
+          (705, 900, DUCK, '')]
 
 
 HOLD, FADE = 30, 18                                 # the opening: 1 s on the whole duck, 0.6 s fading away

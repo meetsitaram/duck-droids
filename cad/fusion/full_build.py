@@ -40,7 +40,7 @@ def interference(d):
     # what is drawn so on purpose: horn seats, heads in their counterbores, a race on its horn
     # a real servo's own pieces overlap in its maker's model; a plug is drawn into its real socket
     ok = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs')
-    same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 '))
+    same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 ', ' HD1910 '))
     return out, [q for q in out if not any(k in q[0] + q[1] for k in ok) and not same(q[0], q[1]) and q[2] > 1.0]
 
 
