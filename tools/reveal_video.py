@@ -23,6 +23,9 @@ if G.RECIPE == 'hybrid':
               (705, 900, 'Hybrid duck', '')]
 
 
+if G.RECIPE == 'feetech':
+    TITLES[0] = (0, 150, 'Motors', '15 STS3215 servos')
+    TITLES[-1] = (705, 900, 'All-Feetech duck', '')
 HOLD, FADE = 30, 18                                 # the opening: 1 s on the whole duck, 0.6 s fading away
 
 
