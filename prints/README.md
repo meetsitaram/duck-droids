@@ -30,7 +30,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R sole | R_sole.stl | 15 x 53 x 69 | 40.8 | TPU 95A | 477 |
 | R inner ear | R_inner_ear.stl | 29 x 48 x 4 | 2.5 | PLA | 0 (none) |
 | chassis | chassis.stl | 49 x 97 x 69 | 37.5 | PLA | 3076 |
-| body shell | body_shell.stl | 49 x 80 x 98 | 32.1 | PLA | 2384 |
+| body shell | body_shell.stl | 49 x 80 x 98 | 32.1 | PLA | 2399 |
 | neck column | neck_column.stl | 29 x 26 x 28 | 4.4 | PLA | 198 |
 | neck lid | neck_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 0 (none) |
