@@ -1,6 +1,6 @@
 # Agents: start here
 
-milli is built and iterated by following one skill: `.claude/skills/humanoid-from-spec/SKILL.md`. Read it first, then
+milli is built and iterated by following one skill: the `droid-from-spec` skill, in its own repo. Read it first, then
 `LESSONS.md`, and work in the rounds it describes: one change, the checks, before/after pictures beside the
 reference, the user's review. Publish only with the user's go-ahead.
 

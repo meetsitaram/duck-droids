@@ -69,7 +69,6 @@ From tools/assembly.py
 | PASS | column: head pitch servo |  |
 | PASS | column: head pitch lid |  |
 | PASS | torso: battery |  |
-| PASS | torso: L 5 V regulator |  |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
 | PASS | torso: body shell |  |
@@ -93,6 +92,7 @@ From tools/assembly.py
 | PASS | head: @framebench |  |
 | PASS | head: Waveshare bus board |  |
 | PASS | head: Pi Zero 2 W |  |
+| PASS | head: head 5 V regulator |  |
 | PASS | head: @jawbench |  |
 | PASS | head: hood |  |
 | PASS | head: mouth roof |  |
@@ -1131,7 +1131,7 @@ From tools/assembly.py
 | PASS | part R inner ear |  |
 | PASS | part chassis |  |
 | PASS | part battery |  |
-| PASS | part L 5 V regulator |  |
+| PASS | part head 5 V regulator |  |
 | PASS | part IMU |  |
 | PASS | part body shell |  |
 | PASS | part neck servo |  |

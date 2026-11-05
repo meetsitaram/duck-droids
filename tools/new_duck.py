@@ -2,7 +2,7 @@
 
 Starts from the nearest servo recipe in spec/robot.py, finds the leg and body scale K that gives the height (the head follows it, but never below the size
 that holds its servos), writes spec/recipes/<name>.json, generates the spec and runs tools/checks.py. What this can't do it says: a servo's case sets a smallest
-duck, and the checks' failures need the design changing by hand (the humanoid-from-spec skill's duck-at-size section lists which number does what).
+duck, and the checks' failures need the design changing by hand (the droid-from-spec skill's duck-at-size section lists which number does what).
 
   --compare    try every servo in the catalog at this height, and print which reach it, their mass, strength and failing checks
   --finish     once the checks pass: measure the height each reset pose clears the floor, and write the trainer's models and its trainer.json, so its tasks register

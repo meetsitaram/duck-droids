@@ -2527,12 +2527,6 @@
  },
  {
   "group": "PATH",
-  "item": "torso: L 5 V regulator",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "torso: IMU",
   "status": "PASS",
   "detail": ""
@@ -3674,6 +3668,12 @@
  {
   "group": "ACCESS",
   "item": "Pi screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: head 5 V regulator",
   "status": "PASS",
   "detail": ""
  },
@@ -6379,7 +6379,7 @@
  },
  {
   "group": "ALL",
-  "item": "part L 5 V regulator",
+  "item": "part head 5 V regulator",
   "status": "PASS",
   "detail": ""
  },

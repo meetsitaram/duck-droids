@@ -4,7 +4,7 @@
 
 milli has microduck's look (Pollen Robotics; spec/targets.json) on the SO-101 arm's servo, the Feetech STS3215, at
 the hips, knees and ankles, and ROBOTIS XC330/XL330s at the neck and head. Forked from echo (github.com/meetsitaram/echo),
-the Figure 03 replica: use the `humanoid-from-spec` skill (`.claude/skills/humanoid-from-spec/SKILL.md`) for the
+the Figure 03 replica: use the `droid-from-spec` skill (github.com/tinkerdroids/design-and-build-skills, linked into `~/.claude/skills/droid-from-spec`; it works in phases, each with a gate) for the
 method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in its own section).
 
 - **Frame and units:** metres; X forward, Y left, Z up, floor z = 0; zero pose standing with straight legs, head
@@ -17,8 +17,8 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
   `python -I tools/make_docs.py` (BOM.md, docs/ASSEMBLY.md), `python -I tools/export_prints.py` (prints/). Fit is not strength: say which was checked. Masses from materials (`python -I tools/mass_model.py`).
 - **Also:** `python -I tools/printable.py` (the exported parts: orientation, supports, MATE, SKIN, HEADS) and `python -I tools/beak_linkage.py`, 0 failing. Then Fusion: `references/fusion-mcp.md`. Fusion shows the real servos (`python -I tools/fetch_servo_cad.py`; not in the repo) and rounds the parts; afterwards `python -I tools/prints_from_fusion.py` writes prints/ from those bodies.
 - **Branches:** `main` has STS3215 ankles. `fusion-model` adds the first Fusion build and what it found. `xc330-ankle` keeps the version with Dynamixel XC330 ankles. Robot changes go on a branch.
-- **Videos:** read `.claude/skills/humanoid-from-spec/references/assembly-videos.md` before rendering any assembly video. Dynamixel's are `docs/images/assembly/dynamixel/reveal_30s.mp4` and `build_5min.mp4`.
-- **Fusion gone quiet:** look for a modal dialog before waiting: see "When Fusion stops answering" in `references/fusion-mcp.md`.
+- **Videos:** they belong to the last phase, publish. Read `references/assembly-videos.md` in the `droid-from-spec` skill before rendering any. Dynamixel's are `docs/images/assembly/dynamixel/reveal_30s.mp4` and `build_5min.mp4`.
+- **Fusion gone quiet:** look for a modal dialog before waiting: see "When Fusion stops answering" in that skill's `references/fusion-mcp.md`.
 - **Not proven yet:** nothing has been printed. LOAD in `tools/buildable.py` is a beam estimate, not FEA. Walking is untested;
   the video's walk is kinematic.
 - **Servos:** `spec/actuators.json`: STS3215 C044 (1:191) and C046 (1:147), XC330/XL330-M288; the lower-ratio STS3215

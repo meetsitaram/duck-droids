@@ -1,6 +1,6 @@
 """The 5-minute build video, for sharing: portrait, on a plain background, parts only. docs/images/assembly/<variant>/build_5min.mp4
 
-Order, parts and paths are tools/assembly.py's: each part's last 45 mm is the path the checks tested, so nothing is shown arriving by a way that wasn't checked. Each part and screw group is filmed from the side that shows most of it (best_view counts its pixels from 18 views), and each joint moves when a builder could first try it. The servos are the spec's plain shapes (the makers' models are in Fusion only). The rules are in .claude/skills/humanoid-from-spec/references/assembly-videos.md.
+Order, parts and paths are tools/assembly.py's: each part's last 45 mm is the path the checks tested, so nothing is shown arriving by a way that wasn't checked. Each part and screw group is filmed from the side that shows most of it (best_view counts its pixels from 18 views), and each joint moves when a builder could first try it. The servos are the spec's plain shapes (the makers' models are in Fusion only). The rules are in droid-from-spec skill, references/assembly-videos.md.
 
   python tools/render_pov_video.py           the video, about 20 minutes
   python tools/render_pov_video.py --test    a contact sheet of frames instead, reports/<variant>/pov_frames.png
@@ -32,7 +32,6 @@ DRIVER = '.72 .73 .75 1'
 GRIP = '.85 .32 .12 1'
 
 EXTRA = f"""
-<geom type="plane" size="12 12 .1" pos="0 0 -0.0005" material="mat"/>
 <body name="handR" mocap="true"><geom type="ellipsoid" size=".038 .034 .012" pos="-.03 0 0" rgba="{GLOVE}"/>
  <geom type="capsule" fromto="-.07 0 0 -.42 0 -.02" size=".027" rgba=".22 .23 .26 1"/>
  <geom type="capsule" fromto="0 .022 0 .03 .024 -.006" size=".007" rgba="{GLOVE}"/><geom type="capsule" fromto="0 .007 0 .036 .008 -.006" size=".0075" rgba="{GLOVE}"/>
@@ -140,6 +139,7 @@ class Film:
             if n_ in self.B.screws:
                 self.m.geom_rgba[self.m.geom_bodyid == b_] = SCREW_RGBA
         self.seen = []
+        self.marks = {}
         self.m.vis.global_.fovy = 62       # (portrait: the height's fov, wide enough that the work fits the narrow width)
         self.link = {}
         for n in self.sc.names:
@@ -464,7 +464,7 @@ def part_kind(n):
         m = re.search(r'\(buy\) (\S+)', ' '.join(_PARTS['groups'].get(n, [])))
         return m.group(1).replace('_', '-') if m else None
     for k, v in (('ankle bearing', '6700ZZ'), ('bearing', 'MR2216ZZ'), ('rear horn', 'FPX330-H101 idler'), ('horn', 'from the servo box'), ('battery', '2S LiPo, 450 mAh'),
-                 ('regulator', '5 V 8 A UBEC'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('foot switch', 'Omron D2F-01F'), ('standoff', 'hex, M2.5'),
+                 ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('foot switch', 'Omron D2F-01F'), ('standoff', 'hex, M2.5'),
                  ('Waveshare', 'Bus Servo Adapter (A)'), ('Pi Zero', 'bought')):
         if k in n:
             return v
@@ -501,6 +501,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         key = sec['key']
         f.title = TITLE.get(key, sec['title'])
         f.detail = ''
+        f.marks[key] = [f.n, None]
         f.low = f.low or key in HEAD_SECTIONS
         speed = 3.0 if key.endswith('_R') else 1.0
         items = all_items(sec)
@@ -568,6 +569,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
                     jn = joints[0] if i <= 2 else joints[1]
                     f.test_joint(jn[0], jn[1], speed)
         done[key] = list(items)
+        f.marks[key][1] = f.n
         # park it, unless the very next section carries it on
         nxt = next((s for s in secs[secs.index(sec) + 1:]), None)
         if nxt and key not in nxt['on'] and secs.index(sec) < len(secs) - 1:
@@ -588,6 +590,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         f.work = []
     # the finished duck: every joint, one by one, then a look at it
     f.detail = ''
+    f.marks['finished'] = [f.n, None]
     f.title = 'Finished: try the joints' if quick else 'Finished: try every joint'
     f.work = list(f.sc.names)
     astray = [n for n in f.sc.names if n not in f.shown]
@@ -605,6 +608,11 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         f.rest('L')
         f.frame(np.array([0, 0, 0.15]), 0.46, np.array([math.cos(a) * 0.8, math.sin(a) * 0.8, 0.25]), rate=0.05)
     print(f'{name}: pace {pace:.2f}, {f.n} frames, {f.n / FPS:.0f} s')
+    f.marks['finished'][1] = f.n
+    globals()['LAST_MARKS'] = f.marks
+    if name == 'build_5min':
+        with open(G.out_path('reports', 'build_sections.json'), 'w', encoding='utf-8') as fo:
+            json.dump(dict(fps=FPS, frames=f.n, sections=f.marks), fo, indent=0)
     if not dry:
         print('least visible at 180 x 320 (px, section, part):', sorted(f.seen)[:16])
     if dry:

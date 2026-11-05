@@ -82,3 +82,5 @@ belong to their owners and are named only to say what was used.
 
 echo's tools import numpy, SciPy, trimesh, manifold3d, MuJoCo, mink, Pillow, imageio and matplotlib, each under its own
 licence. They are installed separately and not redistributed here.
+
+- Product photos in `docs/dynamixel/parts/`: Waveshare Bus Servo Adapter (A), OVONIC 2S LiPo, hiBCTR USB buck converter, Raspberry Pi Zero, from their product listings. Each belongs to its owner.

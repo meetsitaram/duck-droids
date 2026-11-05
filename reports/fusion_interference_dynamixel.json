@@ -235,6 +235,11 @@
 8.98
 ],
 [
+"head yaw bracket",
+"head yaw horn bearing inner race",
+8.98
+],
+[
 "L yaw bracket",
 "L hip yaw horn bearing inner race",
 8.91
@@ -248,11 +253,6 @@
 "R roll bracket",
 "R hip pitch horn bearing inner race",
 8.89
-],
-[
-"L shoe",
-"L sole",
-8.47
 ],
 [
 "R shoe",
@@ -860,16 +860,6 @@
 2.16
 ],
 [
-"L shin",
-"L ankle bearing inner race",
-1.73
-],
-[
-"R shin",
-"R ankle bearing inner race",
-1.73
-],
-[
 "neck column",
 "neck lid",
 0.83
@@ -960,14 +950,9 @@
 0.55
 ],
 [
-"chassis",
-"R hip yaw lid",
-0.35
-],
-[
-"chassis",
-"L hip yaw lid",
-0.33
+"head frame",
+"mouth roof",
+0.44
 ],
 [
 "chassis",
@@ -1013,6 +998,16 @@
 "head fork",
 "head yaw sheet",
 0.32
+],
+[
+"L shoe",
+"L sole",
+0.24
+],
+[
+"chassis",
+"R hip yaw lid",
+0.16
 ],
 [
 "L thigh frame",
@@ -1355,6 +1350,11 @@
 0.13
 ],
 [
+"head yaw bracket",
+"head roll cable plugs -",
+0.13
+],
+[
 "head roll XL330 case middle",
 "head roll XL330 case screw 0",
 0.13
@@ -1523,10 +1523,5 @@
 "beak XL330 case middle",
 "beak XL330 case front",
 0.01
-],
-[
-"jaw",
-"jaw soft insert",
-0.0
 ]
 ]

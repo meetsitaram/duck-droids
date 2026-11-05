@@ -507,7 +507,8 @@ POSES = {
     'deep squat': ({'L_hip_pitch': 0.43, 'L_knee': -1.08, 'L_ankle_pitch': 0.65}, 'double', 'peak', 0),
     'single-leg stance (walking)': ({'R_hip_pitch': -0.62, 'R_knee': -0.58, 'R_ankle_pitch': 1.2}, 'L', 'peak', 0),
     # microduck's floor pick (Pollen's launch video, 0:45-0:52): folded down, body tipped forward, head to the floor
-    'floor pick': ({'L_hip_pitch': -0.22, 'L_knee': -1.08, 'L_ankle_pitch': 0.7, 'neck_pitch': 0.8, 'head_pitch': 0.78,
+    # (all-Dynamixel, 2026-11-04: the 18 g regulator left the back of the body for a smaller one in the head, the balance moved forward, and at -0.22 the ankles needed 1.55 rad of their 1.53)
+    'floor pick': ({'L_hip_pitch': -0.18 if G.RECIPE == 'dynamixel' else -0.22, 'L_knee': -1.08, 'L_ankle_pitch': 0.7, 'neck_pitch': 0.8, 'head_pitch': 0.78,
                     'beak': 0.25}, 'double', 'peak', 0),
     # microduck tucked in (Pollen's desk photo): the neck folded forward, the head pitched back level, low in front
     'head tucked in': ({'neck_pitch': 1.55, 'head_pitch': -1.45}, 'double', 'continuous', 0),

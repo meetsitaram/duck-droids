@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
+spec: `spec/robot.json`, 2026-11-04 21:40, 60 s
 
 190 checks: 187 pass, 3 warn, **0 fail**
 
@@ -15,7 +15,7 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 | PASS | head_bottom_z | 0.226 (microduck 0.205 x 1.12 = 0.229 +/- 10 %) |
 | PASS | neck_pitch_z | 0.147 (microduck 0.139 x 1.12 = 0.155 +/- 10 %) |
 | PASS | hip_pitch_z | 0.100 (microduck 0.089 x 1.12 = 0.099 +/- 10 %) |
-| PASS | body_width_m | 0.067 (microduck 0.064 x 1.12 = 0.072 +/- 10 %) |
+| PASS | body_width_m | 0.074 (microduck 0.064 x 1.12 = 0.072 +/- 10 %) |
 | PASS | overall_width_m | 0.147 (microduck 0.141 x 1.12 = 0.158 +/- 10 %) |
 | PASS | foot_length_m | 0.058 (microduck 0.054 x 1.12 = 0.060 +/- 10 %) |
 
@@ -23,13 +23,13 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 0.976 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 0.975 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 240 printed parts; largest head: 150 mm, on a 256 mm bed |
+| PASS | largest part | 245 printed parts; largest head: 150 mm, on a 256 mm bed |
 
 ## axis
 
@@ -165,7 +165,6 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 |---|---|---|
 | PASS | top plate | 0.00 % outside the skin |
 | PASS | battery 2S 450 mAh | 0.00 % outside the skin |
-| PASS | L 5 V regulator | 0.00 % outside the skin |
 | PASS | IMU | 0.00 % outside the skin |
 | PASS | battery strap | 0.00 % outside the skin |
 | PASS | body post 0 | 0.00 % outside the skin |
@@ -191,6 +190,7 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 | PASS | bus board standoff 3 | 0.00 % outside the skin |
 | PASS | Waveshare bus board | 0.00 % outside the skin |
 | PASS | L base riser top | 0.00 % outside the skin |
+| PASS | head 5 V regulator | 0.00 % outside the skin |
 | PASS | Pi base tab | 0.00 % outside the skin |
 
 ## sweep
@@ -221,7 +221,7 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 | PASS | deep squat: balance | CoM 1.7 cm inside the feet |
 | PASS | deep squat: within limits | yes |
 | PASS | deep squat: collisions | none |
-| WARN | single-leg stance (walking): balance | CoM 2.8 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
+| WARN | single-leg stance (walking): balance | CoM 2.9 cm outside the stance foot: a dynamic gait, no static single-leg balance (no ankle roll) |
 | PASS | single-leg stance (walking): within limits | yes |
 | PASS | single-leg stance (walking): collisions | none |
 | PASS | floor pick: balance | CoM 1.7 cm inside the feet |
@@ -238,18 +238,18 @@ spec: `spec/robot.json`, 2026-11-04 18:11, 62 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 73 % used |
-| PASS | head_pitch | 0.17 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 55 % used |
-| PASS | L_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 54 % used |
-| PASS | R_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 54 % used |
-| PASS | L_hip_roll | 0.19 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 30 % used |
-| PASS | L_hip_pitch | 0.08 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 27 % used |
-| PASS | R_hip_pitch | 0.08 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 27 % used |
-| PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 19 % used |
+| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 74 % used |
+| PASS | head_pitch | 0.18 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 57 % used |
+| PASS | L_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 55 % used |
+| PASS | R_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 55 % used |
+| PASS | L_hip_roll | 0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used |
+| PASS | L_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used |
+| PASS | R_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used |
+| PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 20 % used |
 | PASS | L_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
 | PASS | R_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
+| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
 | PASS | L_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
-| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
 | PASS | beak | 0.01 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 4 % used |
-| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 2 % used |
+| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 1 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 0 % used |
