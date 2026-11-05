@@ -27,7 +27,7 @@
   "group": "THIN",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -87,7 +87,7 @@
   "group": "THIN",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "8 % of its surface is under 0.8 mm thick"
+  "detail": "9 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -177,7 +177,7 @@
   "group": "THIN",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -207,7 +207,7 @@
   "group": "THIN",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "4 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -447,7 +447,7 @@
   "group": "THIN",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "7 % of its surface is under 0.8 mm thick"
+  "detail": "9 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -537,7 +537,7 @@
   "group": "THIN",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -567,7 +567,7 @@
   "group": "THIN",
   "item": "R knee lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -927,7 +927,7 @@
   "group": "THIN",
   "item": "head yaw sheet",
   "status": "PASS",
-  "detail": "4 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -987,7 +987,7 @@
   "group": "THIN",
   "item": "head roll lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -1035,7 +1035,7 @@
   "group": "VOLUME",
   "item": "head frame",
   "status": "PASS",
-  "detail": "85.4 cm3, designed 85.4: 0 % off"
+  "detail": "84.7 cm3, designed 84.6: 0 % off"
  },
  {
   "group": "BED",

@@ -8,9 +8,9 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 
 | status | item | detail |
 |---|---|---|
-| PASS | L hip yaw lid | 123 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
+| PASS | L hip yaw lid | 113 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
 | PASS | L yaw bracket | 579 mm2 overhang, 1141 mm2 on the bed, 41 mm tall |
-| PASS | L hip roll lid | 123 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
+| PASS | L hip roll lid | 113 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
 | PASS | L roll bracket | 174 mm2 overhang, 572 mm2 on the bed, 37 mm tall |
 | PASS | L thigh frame | 1375 mm2 overhang, 478 mm2 on the bed, 61 mm tall |
 | PASS | L hip pitch lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
@@ -20,9 +20,9 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L shoe | 708 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
 | PASS | L sole | 478 mm2 overhang, 238 mm2 on the bed, 69 mm tall |
 | PASS | L inner ear | 0 mm2 overhang, 779 mm2 on the bed, 4 mm tall |
-| PASS | R hip yaw lid | 118 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
+| PASS | R hip yaw lid | 108 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
 | PASS | R yaw bracket | 579 mm2 overhang, 1141 mm2 on the bed, 41 mm tall |
-| PASS | R hip roll lid | 123 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
+| PASS | R hip roll lid | 113 mm2 overhang, 75 mm2 on the bed, 51 mm tall |
 | PASS | R roll bracket | 174 mm2 overhang, 572 mm2 on the bed, 37 mm tall |
 | PASS | R thigh frame | 1375 mm2 overhang, 478 mm2 on the bed, 61 mm tall |
 | PASS | R hip pitch lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
@@ -42,7 +42,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | head yaw bracket | 469 mm2 overhang, 749 mm2 on the bed, 48 mm tall |
 | PASS | head roll lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
 | PASS | head roll spacer | 0 mm2 overhang, 239 mm2 on the bed, 3 mm tall |
-| PASS | head frame | 7226 mm2 overhang, 450 mm2 on the bed, 181 mm tall |
+| PASS | head frame | 7206 mm2 overhang, 450 mm2 on the bed, 181 mm tall |
 | PASS | hood | 5100 mm2 overhang, 69 mm2 on the bed, 192 mm tall |
 | PASS | jaw | 1221 mm2 overhang, 1385 mm2 on the bed, 108 mm tall |
 | PASS | jaw soft insert | 0 mm2 overhang, 4548 mm2 on the bed, 5 mm tall |
@@ -211,7 +211,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | WARN | neck column | 422 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head fork | 838 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head yaw bracket | 469 mm2 needs support or a bridge: check it in the slicer |
-| WARN | head frame | 7226 mm2 needs support or a bridge: check it in the slicer |
+| WARN | head frame | 7206 mm2 needs support or a bridge: check it in the slicer |
 | WARN | hood | 5100 mm2 needs support or a bridge: check it in the slicer |
 | WARN | jaw | 1221 mm2 needs support or a bridge: check it in the slicer |
 
