@@ -60,12 +60,25 @@ RECIPES = {
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
-    # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit.
-    # Its case is the XL330's but 3 mm shorter along the shaft, and its horn stands proud: the bearing seats and horn plates here allow for that, and no part of any such build is used
-    'hd1910': dict(yaw='HD1910_C001', leg='HD1910_C001', neck='HD1910_C001', head='HD1910_C001', head2='HD1910_C001', K=0.84, HK=1.14,
-                   battery=dict(name='battery 2S 500 mAh', size=(0.012, 0.050, 0.025), mass=0.030),
-                   ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.38, 0.38)),
-                   short=0.003, target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, plate_back=0.005),
+    # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit. No part of any such build is used.
+    # Built up from a draft to the all-Dynamixel duck's standard (2026-11-05): the same flags, for the same reasons, as the HD-1910's case is the XL330's size to the 0.1 mm (Feetech's STEP file and drawing). What differs is
+    # in hd_facts, from Feetech's own spec sheet: a rear horn fitted, on a 5 mm tube that stays if it comes off; 2.0 mm plugs, which don't fit the Waveshare board's 2.5 mm sockets; no idlers to buy
+    'hd1910': dict(plate_y=0.0235, plate_in=0.0022, yaw='HD1910_C001', leg='HD1910_C001', neck='HD1910_C001', head='HD1910_C001', head2='HD1910_C001', K=0.84, HK=1.14,
+                   hd_facts=dict(
+                       mass=0.021, peak_nm=1.47, rated_nm=0.363, noload_rads=11.8, gear=320.0, volts=7.4, stall_a=2.0, rated_a=0.9,
+                       connector='AMP2.0-3P, 2.0 mm pitch, 2 sockets; 15 cm lead, all 3 wires black: pin 1 signal, 2 Vcc, 3 ground',
+                       case_screw='M2 x 8 tap (bought)', horn_screw='M2 machine (the horn is drawn 8-M2.0: bought)',
+                       horn_hole_deg=[0, 90, 180, 270],   # 8 in the horn, at 45 deg; the 4 on the axes, as the XL330's, so the same plates fit
+                       horn_hole_depth=0.0025,            # the disc's 2.5 mm, open underneath, then 0.5 mm of air to the case
+                       centre_screw=dict(r=0.00242, proud=0.0008, proud_rear=0.0004),     # M2.5 x 6, standing proud of each horn: every plate needs a hole
+                       rear_stub=dict(r=0.0025, h=0.0025),   # the rear horn turns on a 5 mm tube of the case. Take the horn off and this stays
+                       mount_source="FEETECH spec sheet HD-1910-C001 A/0, 2026-09-07, and STEP HD-1910-C001-20260902.stp from the FEETECH wiki (ftservo.github.io/ftservo-wiki), measured: "
+                                    "case 34 x 20 x 23, horn top 3.0 off the case, shaft 7.5 off centre, frame holes 1.6 at 30 x 16, through: 4.5 mm of plastic at the rear, 2.3 at the front under a 1.2 mm counterbore; horn 16 dia with 8 holes on a 12 circle. "
+                                    "At 7.4 V, +/- 10 %: 15 kg cm stall, 2 A, 113 rev/min; 3.7 kg cm rated, 0.9 A. Armature, damping and friction are still estimates, from the XL330's"),
+                   battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
+                   beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
+                   ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
+                   target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
     # every joint a Feetech, on the 2S pack, no 5 V servo rail. The head and neck grow round the bigger case: Q, the head's plain internal
     # lengths over the hybrid's (the case's width over the XL330's), the hood to match
     'feetech': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='STS3215_C044', head='STS3215_C044', head2='STS3215_C046', K=1.0, HK=1.46, Q=1.235,
@@ -89,6 +102,8 @@ if 'xl330_2s' in R:
     # stall from microduck's identification; rated and no-load speed scaled from ROBOTIS's 5 V numbers (rated by the stall's ratio, speed by
     # the voltage's): estimates, to measure on a real servo. Running past 6 V is microduck's choice: expect less life than ROBOTIS rates
     ACT['XL330_M288'] = dict(ACT['XL330_M288'], **R['xl330_2s'])
+if 'hd_facts' in R:
+    ACT['HD1910_C001'] = dict(ACT['HD1910_C001'], **R['hd_facts'])
 RANGE = dict(dict(hip=(-1.3, 0.43), knee=(-1.1, 1.05), ankle=(-1.3, 1.3), head_roll=(-0.44, 0.44)), **R.get('ranges', {}))
 
 LINKS, JOINTS = {}, []
@@ -1329,7 +1344,7 @@ def build():
         if not j['remote']:
             links[horn_link]['geoms'].append(horn)
         cradle, fork = mount_geoms(j)
-        if j['act'].startswith(('XL330', 'XC330')):      # the wires out of its side notches
+        if j['act'].startswith(('XL330', 'XC330', 'HD1910')):      # the wires out of its side notches
             f, n = servo_frame(j), j['name'].replace('_', ' ')
             if BUSES == 1 and n[2:] in XL_REAR:
                 A_ = ACT[j['act']]['box'][2] / 2
