@@ -1,0 +1,86 @@
+{
+ "trunk": {
+  "hash": "0b52d1909027173074e4c4fdfb954645e2927ba8f099fdcb146334cf11883ddd",
+  "bad": [],
+  "seconds": 62.1
+ },
+ "L_hip_yaw_link": {
+  "hash": "d34860a04ecf78d1eeb7676b251e2fdedd0105e26b588c4abd5fec37c73c4d8b",
+  "bad": [],
+  "seconds": 6.1
+ },
+ "R_hip_yaw_link": {
+  "hash": "212837971bd5647a593aa23ee95fa9a9cb2bafe2c83fb27fa73fee4aa469e75b",
+  "bad": [],
+  "seconds": 6.7
+ },
+ "L_hip_roll_link": {
+  "hash": "1d6632e3c08e95703e49136fa87f5a17de51c20a26fb3dbc94a89dd977c960f6",
+  "bad": [],
+  "seconds": 16.9
+ },
+ "R_hip_roll_link": {
+  "hash": "f39f3ba33baaba4ab12b58a7540ded934a02bc8ef9113f9d32761688891bf6fc",
+  "bad": [],
+  "seconds": 17.5
+ },
+ "L_hip_pitch_link": {
+  "hash": "02ff4b5ddf916721fecb3c16996ee9c02bfeef3a4793240470b70fcfc6c50e00",
+  "bad": [
+   "L thigh cover: Fusion 14.91 cm3, STL 15.98 (6.7 % off), solid True"
+  ],
+  "seconds": 34.7
+ },
+ "R_hip_pitch_link": {
+  "hash": "e0efe2fc6bd8ed770e285a715ddbbe665af19f8afadc67b3bbe37f78609997ac",
+  "bad": [
+   "R thigh cover: Fusion 14.85 cm3, STL 15.98 (7.1 % off), solid True"
+  ],
+  "seconds": 37.0
+ },
+ "L_knee_link": {
+  "hash": "ad59fbbd1328b44d5b1813cc35ce60f5e41683575b9ca5abea6db57203ed72cf",
+  "bad": [],
+  "seconds": 18.1
+ },
+ "R_knee_link": {
+  "hash": "956f7e44e6b6741fcc42ef6ba6036f912f9def4226716c747ccf30c7322a2808",
+  "bad": [],
+  "seconds": 17.8
+ },
+ "L_foot": {
+  "hash": "00bcbd2e4e9d04f62f9064f362773f67012a125fe7fc08f57fff1c0facb29f1f",
+  "bad": [],
+  "seconds": 36.8
+ },
+ "R_foot": {
+  "hash": "90a3cdc09fb64c8234fe8e3baa062d5d3d11b9f011d3bedb28e7eb804e452c87",
+  "bad": [],
+  "seconds": 31.2
+ },
+ "neck_link": {
+  "hash": "e342f9e594635fd63b5983b9fd16687fd77a209095652d6abcec218b7d58cce5",
+  "bad": [],
+  "seconds": 33.8
+ },
+ "head_pitch_link": {
+  "hash": "2620a16da3cf21223579e9bfffb085bd169ae542a822df4bb0a42c539a557f00",
+  "bad": [],
+  "seconds": 15.7
+ },
+ "head_yaw_link": {
+  "hash": "9ae7b35afab17801f46fe8e6b362348a676df75bb60c59eb19d15fb3085a9fad",
+  "bad": [],
+  "seconds": 19.0
+ },
+ "head": {
+  "hash": "c579564e6b3cb8531554cf2aefa5b159abcba52ea4aaeff8f6c229d3a550fae3",
+  "bad": [],
+  "seconds": 81.7
+ },
+ "beak_link": {
+  "hash": "7480b963e158cb6125cfda85eeae7ed898992ec349c5aa4de5808e6269ab6201",
+  "bad": [],
+  "seconds": 22.0
+ }
+}
