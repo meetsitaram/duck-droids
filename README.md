@@ -22,7 +22,16 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 ## Other ducks
 
-The same design on other servos, and at 1.8 m. See [the details](docs/DETAILS.md), and [what went wrong along the way](LESSONS.md).
+The same design on other servos, and at 1.8 m. Their parts lists and wiring are written and their offline checks pass. None has its latest Fusion model or videos yet.
+
+| Duck | Servos | Size | Parts | Wiring |
+|---|---|---|---|---|
+| Feetech HD-1910 | 15 HD-1910 | 1.02 kg | [BOM](docs/hd1910/BOM.md) | [Wiring](docs/hd1910/WIRING.md) |
+| All Feetech | 15 STS3215 | 37.9 cm, 1.94 kg | [BOM](docs/feetech/BOM.md) | [Wiring](docs/feetech/WIRING.md) |
+| Hybrid | STS3215 legs, Dynamixel head | 1.65 kg | [BOM](BOM.md) | [Wiring](docs/WIRING.md) |
+| Big: **not safe to build** | 22 RobStride | 1.8 m, 96.8 kg | [BOM](docs/big/BOM.md) | [Wiring](docs/big/WIRING.md) |
+
+More in [the details](docs/DETAILS.md), and [what went wrong along the way](LESSONS.md).
 
 ## Run the checks
 

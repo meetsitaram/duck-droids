@@ -11,6 +11,7 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
   level, beak shut. The renders and compare stand milli with its knees bent, as microduck's model stands.
 - **Source of truth:** `spec/robot.py` (anchors in "proportions" set every height from the servo cases and their
   clearances) -> `python -I spec/robot.py` -> `spec/robot.json`. Never hand-edit robot.json or the Fusion document.
+- **Chain:** `MILLI_RECIPE=<r> bash tools/pipeline.sh gates|fusion|final|reveal|video`. `fusion` builds linked documents, and only what changed; `final` makes the one-document build for the repo's .f3d. `gates` overwrites prints/ with the spec's shapes: don't commit those.
 - **Every change:** `python -I spec/robot.py`, `python -I tools/checks.py` (0 failing), `python tools/compare.py`
   (microduck beside milli at one scale), look at the pictures. If a part or screw changed: `python -I tools/assembly.py`
   (the build order: 0 failing), `python -I tools/buildable.py` (walls, one piece, load: a beam estimate), `python tools/render_assembly.py`,
@@ -26,7 +27,6 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
 - **References (local, never in the repo):** microduck's MJCF in %TEMP%/figrefs/microduck_rl (code Apache-2.0, meshes
   CC BY-NC-SA 4.0: look and proportions only, no geometry copied); Pollen's photos in reports/compare/photos;
   Open Duck Mini v2 (Apache-2.0, STS3215 dynamics) and SO-ARM100 (Apache-2.0, the STS3215 mesh) in %TEMP%/figrefs.
-- **Electronics:** `docs/WIRING.md`. Raspberry Pi Zero 2 W in the head, with a FE-URT-1 (Feetech bus) on its UART and a U2D2 (Dynamixel) on its USB; 2S LiPo 850 mAh, on an XT30;
-  2 8 A UBECs and the IMU in the body; camera on the back of the face.
+- **Electronics:** `docs/<recipe>/WIRING.md`, and `docs/WIRING.md` for the hybrid. Each duck has a Raspberry Pi Zero 2 W in the head, on Waveshare Bus Servo Adapter (A) boards: one for a single bus, two on the hybrid. A USB buck converter in the head feeds the Pi, the IMU is in the body, and the camera is on the back of the face. No foot switches. `pi/` drives the all-Dynamixel duck only so far.
 - **Fusion:** Preferences > General > API > Fusion MCP Server, registered in `.mcp.json`. The model comes from `cad/fusion/build.py` and `spec/parts.json`. Finished models are saved in the hub at `my-projects` / `duck-droids`, as `duck-droids <recipe>`, then closed: one document open at a time. Otherwise don't save the Fusion document or commit
   unless the user asks. The user's SO101 assemblies are in the tinkerbuggy project.
