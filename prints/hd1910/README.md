@@ -41,7 +41,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | head roll spacer | head_roll_spacer.stl | 16 x 16 x 2 | 0.3 | PLA | 0 (none) |
 | head roll rear spacer | head_roll_rear_spacer.stl | 16 x 16 x 2 | 0.3 | PLA | 23 |
 | head frame | head_frame.stl | 141 x 101 x 59 | 54.1 | PLA | 5486 |
-| hood | hood.stl | 58 x 106 x 150 | 48.7 | PLA | 2919 |
+| hood | hood.stl | 58 x 106 x 150 | 48.6 | PLA | 2911 |
 | jaw | jaw.stl | 88 x 106 x 42 | 29.6 | PLA | 925 |
 | jaw soft insert | jaw_soft_insert.stl | 27 x 101 x 5 | 13.3 | TPU 95A | 0 (none) |
 | mouth roof | mouth_roof.stl | 40 x 101 x 3 | 12.6 | TPU 95A | 15 |
