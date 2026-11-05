@@ -111,6 +111,9 @@ RECIPES = {
                     hood_tail=(0.0051, 0.0077, 0.018),
                     # (the yaw plate's +y edge in, 8.4 mm from the axis, past the horn screws' heads: the beak's rear plate passes it as the head rolls)
                     yaw_plate_y=0.0084,
+                    # found by Fusion's interference check on the real bodies, past every check on the spec's shapes: the yaw plate 0.1 mm into the bearing's outer race, which turns against it; the rail without the
+                    # pocket for the beak case's rear lump (36 mm3); and the shoe solid where the ankle horn's lower edge sits, 48 mm3 of plastic, so the shoe couldn't seat
+                    yaw_plate_low=0.0, beak_rail_pocket=True, shoe_horn_relief=True,
                     # (the base's wall 1.5 mm or more at its back, where the hood narrows: it was 0.5. A rib 0.3 mm deeper on the shin: 55 N on this heavier duck put it 2 % over the beam estimate's limit, and 1 mm met the roll cradle at the knee's end)
                     wall_in=0.0375, rib_back=0.0033, frame_back=0.0003,
                     # the eye ring, a 44 mm disc 14 mm thick at this head's scale, was 25 g of solid plastic in front of the neck: a cup, open at the back, 3 mm at its front
@@ -962,6 +965,8 @@ link('L_foot', 0.05, [
                          (FOOT['rim'] - 0.0012, SOLE_C[0], SOLE_C[1], SOLE_A - 0.0025, SOLE_B - 0.0025, 4.0),
                          (FOOT['rim'], SOLE_C[0], SOLE_C[1], SOLE_A - 0.0045, SOLE_B - 0.0045, 3.5)], ORANGE, 'struct',
               open=()), exposed=True),
+    # (the horn stands 1.55 mm off the case's face, past the cup, and its lower edge is under the shoe's rim: room for it)
+    *[cut(cyl('L shoe horn relief', (XK, YA_CASE[1] + ACT[R['leg']]['horn_top'] / 2 + 0.0001, ZA), 'y', ACT[R['leg']]['horn_r'] + 0.0004, ACT[R['leg']]['horn_top'] + 0.0002, ORANGE, 'shell'), 'L shoe') for _ in range(bool(R.get('shoe_horn_relief')))],
     # a round cup for the servo's corners (16 mm from the shaft), down into the TPU sole, as microduck's ankle cup
     cut(cyl('L shoe pocket', (XK, (YB - 0.0025 + YA_CASE[1]) / 2, ZA), 'y', 0.021 * K, YA_CASE[1] - YB + 0.0025,
             ORANGE, 'shell'), 'L shoe', 'L sole'),
@@ -1070,7 +1075,7 @@ link('head_pitch_link', 0.03, [
 link('head_yaw_link', 0.02, [
     # (the bearing's shoulder stops at the trimmed plate's edge: past it, a 0.6 mm flap)
     *[cut(box('head yaw shoulder chord', (XHY - 0.02, R['yaw_plate_y'], ZHY - 0.003), (XHY + 0.02, 0.02, ZHY + 0.001), DARK), 'head yaw horn boss shoulder') for _ in range('yaw_plate_y' in R)],
-    box('head yaw plate', (XHY - XLH / 2, -0.0255 * Q, ZHY - 0.0005), (XHY + XLH / 2, R.get('yaw_plate_y', 0.009 * Q), ZHY + XLHH + YAW_UP), exposed=True),
+    box('head yaw plate', (XHY - XLH / 2, -0.0255 * Q, ZHY - R.get('yaw_plate_low', 0.0005)), (XHY + XLH / 2, R.get('yaw_plate_y', 0.009 * Q), ZHY + XLHH + YAW_UP), exposed=True),
 ])
 # the beak servo: inside the head over the neck, its horn on the jaw's hinge at mid-head, as microduck's side tab
 # the beak servo lies flat behind the head yaw and roll servos, its top under the top plate (round 9: the head at
@@ -1471,6 +1476,12 @@ def build():
                 cradle = cradle + [dict(lbox(f'{n} cable plugs', f, PLUG['u'], (0.0, PLUG['w']) if n == 'beak' else (-PLUG['w'], PLUG['w']), (PLUG['face'] - (0.0075 if n == 'beak' else PLUG['h']), PLUG['face']), '#D9D4C5', 'struct', fillet=0.0004),
                                         material='electronics', mass=PLUG['mass'] / (2 if n == 'beak' else 1), exposed=True)]
                 w_ = PLUG['w'] + PLUG_WINDOW
+                if n == 'beak' and R.get('beak_rail_pocket'):
+                    cradle.append(cut(lbox('beak rail lump pocket', f, (0.0044, 0.018), (-0.0097, 0.0097), (-H / 2 - 0.0012, -0.0165), DARK), 'L head rail'))
+                    # (the real case's raised strip on its rear face runs -4 to +22 mm along it, +/- 7 across, past the spec's lump; measured on SO-ARM100's mesh, after Fusion still showed 33 mm3 here)
+                    cradle.append(cut(lbox('beak rear strip pocket', f, (-0.0045, 0.0228), (-0.0075, 0.0075), (-H / 2 - 0.0012, -0.0150), DARK), 'L head rail', 'beak cradle rear face'))
+                    # (a 0.4 mm web stood between the plug window and the pocket for the lump, as on the hip roll: one opening)
+                    cradle.append(cut(lbox('beak plug window web', f, (PLUG['u'][1], 0.0058), (-PLUG_WINDOW, w_), (-H / 2 - 0.003, -0.0135), DARK), 'L head rail', 'beak cradle rear face'))
                 for t_ in targets:
                     cradle.append(cut(lbox(f'{n} plug window {t_}', f, (PLUG['u'][0] - PLUG_WINDOW, PLUG['u'][1] + PLUG_WINDOW), (-PLUG_WINDOW, w_) if n == 'beak' else (-w_, w_), (-H / 2 - 0.012, -0.0135), DARK), t_))
                 links[case_link]['geoms'] += cradle
