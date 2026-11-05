@@ -29,9 +29,17 @@ take() {   # resource, minutes, why: waits its turn, if there's a team
     [ $rc -eq 3 ] || { echo "scheduler error $rc"; exit 1; }
   done
 }
+turn_end() {   # before Fusion goes to the next duck, even after a failure: saved, closed, and nothing left open. If that can't be done, nobody else gets a turn on it
+  left=$(timeout 240 "$PY" -I tools/fusion_call.py cad/fusion/turn_end.py --write 2>&1 | tail -3 | cut -c1-240)
+  echo "[turn end] $left"
+  echo "$left" | grep -q "open now 0" || "$PY" "$TEAM" hold fusion --dir "$TEAM_DIR" --why "$AGENT's turn end left Fusion unclosed: $(echo "$left" | tail -1 | cut -c1-120)"
+}
 give() {
-  [ -n "$TEAM_DIR" ] && [ -n "$HELD" ] && "$PY" "$TEAM" release "$HELD" --dir "$TEAM_DIR" --agent "$AGENT"
+  h=$HELD
   HELD=
+  [ -n "$TEAM_DIR" ] && [ -n "$h" ] || return 0
+  [ "$h" = fusion ] && turn_end
+  "$PY" "$TEAM" release "$h" --dir "$TEAM_DIR" --agent "$AGENT"
 }
 trap give EXIT
 
@@ -136,6 +144,7 @@ case $1 in
     gate floaters "$PY" tools/video_floaters.py
     "$PY" tools/render_pov_video.py 2>&1 | grep -v "^dry" | tail -3 | cut -c1-150
     "$PY" tools/cut_clips.py 2>&1 | tail -3 | cut -c1-110
+    gate parts_layout "$PY" tools/render_parts_layout.py
     FF=$("$PY" -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())")
     "$FF" -y -loglevel error -i "$D/build_5min.mp4" -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$WORK/build.mp4" && cp "$WORK/build.mp4" "$D/build_5min.mp4"
     "$PY" -I tools/make_docs.py | tail -1 | cut -c1-70

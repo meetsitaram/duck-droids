@@ -4,6 +4,12 @@ Nothing here has been built. Connector positions are from Feetech's own HD-1910-
 
 ![Wiring](wiring.png)
 
+## Every part
+
+Everything you'll handle, drawn from the model. Its counts are checked against the [BOM](BOM.md). Printed parts are the real Fusion bodies; bought parts are the model's shapes, not the makers' CAD.
+
+![Every part](parts_layout.png)
+
 The picture is drawn and checked from `spec/wiring_hd1910.json` by `python -I tools/wiring_diagram.py spec/wiring_hd1910.json docs/hd1910/parts docs/hd1910/wiring.png`: change the config, not the picture.
 
 ## Power
