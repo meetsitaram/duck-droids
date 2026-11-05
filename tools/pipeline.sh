@@ -21,7 +21,7 @@ HELD=
 take() {   # resource, minutes, why: waits its turn, if there's a team
   [ -n "$TEAM_DIR" ] || return 0
   while true; do
-    "$PY" "$TEAM" wait "$1" --dir "$TEAM_DIR" --agent "$AGENT" --minutes "$2" --why "$3" --timeout 300
+    "$PY" "$TEAM" wait "$1" --dir "$TEAM_DIR" --agent "$AGENT" --minutes "$2" --why "$3" --priority "${PRIORITY:-1}" --timeout 300
     rc=$?
     [ $rc -eq 0 ] && { HELD=$1; return 0; }
     [ $rc -eq 3 ] || { echo "scheduler error $rc"; exit 1; }
