@@ -10,6 +10,11 @@
 157.25
 ],
 [
+"beak XL330 case middle",
+"beak XL330 case rear",
+105.97
+],
+[
 "neck pitch XL330 case middle",
 "neck pitch XL330 case rear",
 105.97
@@ -20,39 +25,14 @@
 105.97
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case rear",
-105.97
-],
-[
 "head roll XL330 case middle",
 "head roll XL330 case rear",
 105.97
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case rear",
+"head yaw XL330 case middle",
+"head yaw XL330 case rear",
 105.97
-],
-[
-"L hip yaw cable plugs",
-"L hip yaw STS3215 case",
-95.46
-],
-[
-"R hip yaw cable plugs",
-"R hip yaw STS3215 case",
-95.46
-],
-[
-"L hip roll cable plugs",
-"L hip roll STS3215 case",
-95.46
-],
-[
-"R hip roll cable plugs",
-"R hip roll STS3215 case",
-95.46
 ],
 [
 "L hip pitch cable plugs",
@@ -62,6 +42,26 @@
 [
 "L knee cable plugs",
 "L knee STS3215 case",
+95.46
+],
+[
+"R ankle pitch cable plugs",
+"R ankle pitch STS3215 case",
+95.46
+],
+[
+"R hip roll cable plugs",
+"R hip roll STS3215 case",
+95.46
+],
+[
+"L hip roll cable plugs",
+"L hip roll STS3215 case",
+95.46
+],
+[
+"L ankle pitch cable plugs",
+"L ankle pitch STS3215 case",
 95.46
 ],
 [
@@ -75,13 +75,13 @@
 95.46
 ],
 [
-"L ankle pitch cable plugs",
-"L ankle pitch STS3215 case",
+"L hip yaw cable plugs",
+"L hip yaw STS3215 case",
 95.46
 ],
 [
-"R ankle pitch cable plugs",
-"R ankle pitch STS3215 case",
+"R hip yaw cable plugs",
+"R hip yaw STS3215 case",
 95.46
 ],
 [
@@ -90,23 +90,8 @@
 80.0
 ],
 [
-"neck pitch XL330 centre screw",
-"neck pitch XL330 case middle",
-34.85
-],
-[
-"head pitch XL330 case middle",
-"head pitch XL330 centre screw",
-34.85
-],
-[
-"head yaw XL330 case middle",
-"head yaw XL330 centre screw",
-34.85
-],
-[
-"head roll XL330 case middle",
 "head roll XL330 centre screw",
+"head roll XL330 case middle",
 34.85
 ],
 [
@@ -115,9 +100,29 @@
 34.85
 ],
 [
+"neck pitch XL330 case middle",
+"neck pitch XL330 centre screw",
+34.85
+],
+[
+"head pitch XL330 case middle",
+"head pitch XL330 centre screw",
+34.85
+],
+[
+"head yaw XL330 centre screw",
+"head yaw XL330 case middle",
+34.85
+],
+[
 "bus board cable plugs usb",
 "Waveshare bus board USB-C",
 30.46
+],
+[
+"battery 2S 850 mAh",
+"battery XT30",
+28.54
 ],
 [
 "Pi USB plug",
@@ -130,13 +135,13 @@
 20.8
 ],
 [
-"L roll bracket",
-"L hip pitch horn bearing inner race",
+"R roll bracket",
+"R hip roll horn bearing inner race",
 11.18
 ],
 [
-"R roll bracket",
-"R hip roll horn bearing inner race",
+"L roll bracket",
+"L hip pitch horn bearing inner race",
 11.18
 ],
 [
@@ -155,13 +160,13 @@
 11.13
 ],
 [
-"L yaw bracket",
-"L hip yaw horn bearing inner race",
+"R yaw bracket",
+"R hip yaw horn bearing inner race",
 11.12
 ],
 [
-"R yaw bracket",
-"R hip yaw horn bearing inner race",
+"L yaw bracket",
+"L hip yaw horn bearing inner race",
 11.12
 ],
 [
@@ -175,8 +180,13 @@
 9.49
 ],
 [
-"neck pitch XL330 idler screw",
+"head roll XL330 idler screw",
+"head roll XL330 case middle",
+9.36
+],
+[
 "neck pitch XL330 case middle",
+"neck pitch XL330 idler screw",
 9.36
 ],
 [
@@ -185,13 +195,13 @@
 9.36
 ],
 [
-"head roll XL330 case middle",
 "head roll XL330 idler screw",
-9.36
+"head roll XL330 case rear",
+9.23
 ],
 [
-"neck pitch XL330 idler screw",
 "neck pitch XL330 case rear",
+"neck pitch XL330 idler screw",
 9.23
 ],
 [
@@ -200,19 +210,9 @@
 9.23
 ],
 [
-"head roll XL330 case rear",
-"head roll XL330 idler screw",
-9.23
-],
-[
-"L shoe bottom screw 0",
-"L sole",
-7.6
-],
-[
-"L shoe bottom screw 1",
-"L sole",
-7.6
+"battery 2S 850 mAh",
+"battery balance plug",
+8.27
 ],
 [
 "R shoe bottom screw 0",
@@ -225,24 +225,14 @@
 7.6
 ],
 [
-"L shin",
-"L ankle boss screw 0",
-6.91
+"L shoe bottom screw 0",
+"L sole",
+7.6
 ],
 [
-"L shin",
-"L ankle boss screw 1",
-6.91
-],
-[
-"L shin",
-"L ankle boss screw 2",
-6.91
-],
-[
-"L shin",
-"L ankle boss screw 3",
-6.91
+"L shoe bottom screw 1",
+"L sole",
+7.6
 ],
 [
 "R shin",
@@ -265,6 +255,26 @@
 6.91
 ],
 [
+"L shin",
+"L ankle boss screw 0",
+6.91
+],
+[
+"L shin",
+"L ankle boss screw 1",
+6.91
+],
+[
+"L shin",
+"L ankle boss screw 2",
+6.91
+],
+[
+"L shin",
+"L ankle boss screw 3",
+6.91
+],
+[
 "leg bus board plugs power",
 "leg bus board DC terminals",
 4.8
@@ -275,59 +285,19 @@
 4.58
 ],
 [
-"head yaw horn bearing inner race",
-"head yaw XL330 horn",
+"head roll horn bearing inner race",
+"head roll XL330 horn",
 4.48
 ],
 [
-"head roll horn bearing inner race",
-"head roll XL330 horn",
+"head yaw horn bearing inner race",
+"head yaw XL330 horn",
 4.48
 ],
 [
 "R hinge screw",
 "hood",
 4.32
-],
-[
-"L hip yaw lid",
-"L hip yaw cradle screw near 0",
-4.18
-],
-[
-"L hip yaw lid",
-"L hip yaw cradle screw near 1",
-4.18
-],
-[
-"R hip yaw lid",
-"R hip yaw cradle screw near 0",
-4.18
-],
-[
-"R hip yaw lid",
-"R hip yaw cradle screw near 1",
-4.18
-],
-[
-"L hip roll lid",
-"L hip roll cradle screw near 0",
-4.18
-],
-[
-"L hip roll lid",
-"L hip roll cradle screw near 1",
-4.18
-],
-[
-"R hip roll lid",
-"R hip roll cradle screw near 0",
-4.18
-],
-[
-"R hip roll lid",
-"R hip roll cradle screw near 1",
-4.18
 ],
 [
 "L hip pitch lid",
@@ -347,6 +317,26 @@
 [
 "L knee lid",
 "L knee cradle screw near 1",
+4.18
+],
+[
+"R hip roll lid",
+"R hip roll cradle screw near 0",
+4.18
+],
+[
+"R hip roll lid",
+"R hip roll cradle screw near 1",
+4.18
+],
+[
+"L hip roll lid",
+"L hip roll cradle screw near 0",
+4.18
+],
+[
+"L hip roll lid",
+"L hip roll cradle screw near 1",
 4.18
 ],
 [
@@ -370,6 +360,36 @@
 4.18
 ],
 [
+"L hip yaw lid",
+"L hip yaw cradle screw near 0",
+4.18
+],
+[
+"L hip yaw lid",
+"L hip yaw cradle screw near 1",
+4.18
+],
+[
+"R hip yaw lid",
+"R hip yaw cradle screw near 0",
+4.18
+],
+[
+"R hip yaw lid",
+"R hip yaw cradle screw near 1",
+4.18
+],
+[
+"beak XL330 case middle",
+"beak XL330 socket 0",
+3.69
+],
+[
+"beak XL330 case middle",
+"beak XL330 socket 1",
+3.69
+],
+[
 "neck pitch XL330 case middle",
 "neck pitch XL330 socket 0",
 3.69
@@ -390,16 +410,6 @@
 3.69
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 socket 0",
-3.69
-],
-[
-"head yaw XL330 case middle",
-"head yaw XL330 socket 1",
-3.69
-],
-[
 "head roll XL330 case middle",
 "head roll XL330 socket 0",
 3.69
@@ -410,23 +420,23 @@
 3.69
 ],
 [
-"beak XL330 case middle",
-"beak XL330 socket 0",
+"head yaw XL330 case middle",
+"head yaw XL330 socket 0",
 3.69
 ],
 [
-"beak XL330 case middle",
-"beak XL330 socket 1",
+"head yaw XL330 case middle",
+"head yaw XL330 socket 1",
 3.69
 ],
 [
-"L hip yaw horn bearing inner race",
-"L hip yaw STS3215 horn",
+"R hip roll horn bearing inner race",
+"R hip roll STS3215 horn",
 2.98
 ],
 [
-"R hip yaw horn bearing inner race",
-"R hip yaw STS3215 horn",
+"R hip pitch horn bearing inner race",
+"R hip pitch STS3215 horn",
 2.98
 ],
 [
@@ -440,13 +450,18 @@
 2.98
 ],
 [
-"R hip roll horn bearing inner race",
-"R hip roll STS3215 horn",
+"R knee horn bearing inner race",
+"R knee STS3215 horn",
 2.98
 ],
 [
-"R hip pitch horn bearing inner race",
-"R hip pitch STS3215 horn",
+"R hip yaw horn bearing inner race",
+"R hip yaw STS3215 horn",
+2.98
+],
+[
+"L hip yaw horn bearing inner race",
+"L hip yaw STS3215 horn",
 2.98
 ],
 [
@@ -455,9 +470,9 @@
 2.98
 ],
 [
-"R knee horn bearing inner race",
-"R knee STS3215 horn",
-2.98
+"R shin",
+"R ankle pitch STS3215 rear horn",
+2.51
 ],
 [
 "L shin",
@@ -465,9 +480,24 @@
 2.51
 ],
 [
-"R shin",
-"R ankle pitch STS3215 rear horn",
-2.51
+"beak XL330 case rear",
+"beak XL330 case screw 0",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 1",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 2",
+2.5
+],
+[
+"beak XL330 case rear",
+"beak XL330 case screw 3",
+2.5
 ],
 [
 "neck pitch XL330 case rear",
@@ -510,26 +540,6 @@
 2.5
 ],
 [
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 0",
-2.5
-],
-[
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 1",
-2.5
-],
-[
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 2",
-2.5
-],
-[
-"head yaw XL330 case rear",
-"head yaw XL330 case screw 3",
-2.5
-],
-[
 "head roll XL330 case rear",
 "head roll XL330 case screw 0",
 2.5
@@ -550,34 +560,24 @@
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 0",
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 0",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 1",
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 1",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 2",
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 2",
 2.5
 ],
 [
-"beak XL330 case rear",
-"beak XL330 case screw 3",
+"head yaw XL330 case rear",
+"head yaw XL330 case screw 3",
 2.5
-],
-[
-"body shell",
-"body screw 0",
-2.16
-],
-[
-"body shell",
-"body screw 1",
-2.16
 ],
 [
 "L thigh cover",
@@ -597,6 +597,16 @@
 [
 "R thigh cover",
 "R thigh cover screw knee",
+2.16
+],
+[
+"body shell",
+"body screw 0",
+2.16
+],
+[
+"body shell",
+"body screw 1",
 2.16
 ],
 [
@@ -645,8 +655,8 @@
 0.8
 ],
 [
-"chassis",
 "R hip yaw STS3215 horn",
+"chassis",
 0.67
 ],
 [
@@ -675,8 +685,13 @@
 0.49
 ],
 [
-"chassis",
+"R thigh frame",
+"R hip pitch lid",
+0.45
+],
+[
 "L hip yaw STS3215 horn",
+"chassis",
 0.43
 ],
 [
@@ -690,8 +705,8 @@
 0.36
 ],
 [
-"chassis",
-"neck pitch XL330 idler",
+"head roll rear spacer",
+"head roll XL330 idler",
 0.33
 ],
 [
@@ -700,13 +715,13 @@
 0.33
 ],
 [
-"head roll rear spacer",
-"head roll XL330 idler",
+"chassis",
+"neck pitch XL330 idler",
 0.33
 ],
 [
-"chassis",
-"R hip yaw lid",
+"neck column",
+"head pitch lid",
 0.32
 ],
 [
@@ -715,13 +730,13 @@
 0.32
 ],
 [
-"neck column",
-"head pitch lid",
+"head fork",
+"head yaw sheet",
 0.32
 ],
 [
-"head fork",
-"head yaw sheet",
+"chassis",
+"R hip yaw lid",
 0.32
 ],
 [
@@ -735,6 +750,11 @@
 0.16
 ],
 [
+"beak XL330 case front",
+"beak XL330 label",
+0.14
+],
+[
 "neck pitch XL330 case front",
 "neck pitch XL330 label",
 0.14
@@ -745,19 +765,34 @@
 0.14
 ],
 [
-"head yaw XL330 case front",
-"head yaw XL330 label",
-0.14
-],
-[
 "head roll XL330 case front",
 "head roll XL330 label",
 0.14
 ],
 [
-"beak XL330 case front",
-"beak XL330 label",
+"head yaw XL330 case front",
+"head yaw XL330 label",
 0.14
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 0",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 1",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 2",
+0.13
+],
+[
+"beak XL330 case middle",
+"beak XL330 case screw 3",
+0.13
 ],
 [
 "neck pitch XL330 case middle",
@@ -800,26 +835,6 @@
 0.13
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 0",
-0.13
-],
-[
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 1",
-0.13
-],
-[
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 2",
-0.13
-],
-[
-"head yaw XL330 case middle",
-"head yaw XL330 case screw 3",
-0.13
-],
-[
 "head roll XL330 case middle",
 "head roll XL330 case screw 0",
 0.13
@@ -840,33 +855,33 @@
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 0",
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 0",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 1",
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 1",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 2",
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 2",
 0.13
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case screw 3",
+"head yaw XL330 case middle",
+"head yaw XL330 case screw 3",
 0.13
-],
-[
-"L yaw bracket",
-"L hip roll lid",
-0.07
 ],
 [
 "R yaw bracket",
 "R hip roll lid",
+0.07
+],
+[
+"L yaw bracket",
+"L hip roll lid",
 0.07
 ],
 [
@@ -875,14 +890,19 @@
 0.04
 ],
 [
+"R yaw bracket",
+"R hip roll STS3215 case",
+0.02
+],
+[
 "L yaw bracket",
 "L hip roll STS3215 case",
 0.02
 ],
 [
-"R yaw bracket",
-"R hip roll STS3215 case",
-0.02
+"beak XL330 case middle",
+"beak XL330 case front",
+0.01
 ],
 [
 "neck pitch XL330 case middle",
@@ -895,18 +915,13 @@
 0.01
 ],
 [
-"head yaw XL330 case middle",
-"head yaw XL330 case front",
-0.01
-],
-[
 "head roll XL330 case middle",
 "head roll XL330 case front",
 0.01
 ],
 [
-"beak XL330 case middle",
-"beak XL330 case front",
+"head yaw XL330 case middle",
+"head yaw XL330 case front",
 0.01
 ],
 [

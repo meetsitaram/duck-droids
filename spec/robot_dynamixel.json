@@ -881,6 +881,7 @@
      "color": "#F2C21A",
      "role": "decal",
      "exposed": false,
+     "in_cad": true,
      "material": "pla"
     },
     {
@@ -900,6 +901,7 @@
      "color": "#E8E8E0",
      "role": "decal",
      "exposed": false,
+     "in_cad": true,
      "material": "pla"
     },
     {

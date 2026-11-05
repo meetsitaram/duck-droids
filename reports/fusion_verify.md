@@ -22,21 +22,21 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | L inner ear | 0.1 % of 1500 points disagree; solid in 682 offline, 684 in Fusion |
 | PASS | R hip yaw lid | 0.0 % of 1500 points disagree; solid in 483 offline, 483 in Fusion |
 | PASS | R yaw bracket | 0.7 % of 1500 points disagree; solid in 306 offline, 301 in Fusion |
-| PASS | R hip roll lid | 0.1 % of 1500 points disagree; solid in 460 offline, 459 in Fusion |
+| PASS | R hip roll lid | 0.0 % of 1500 points disagree; solid in 459 offline, 459 in Fusion |
 | PASS | R roll bracket | 0.3 % of 1500 points disagree; solid in 298 offline, 297 in Fusion |
-| PASS | R thigh frame | 0.2 % of 1500 points disagree; solid in 134 offline, 133 in Fusion |
-| PASS | R hip pitch lid | 0.0 % of 1500 points disagree; solid in 518 offline, 518 in Fusion |
+| PASS | R thigh frame | 0.3 % of 1500 points disagree; solid in 134 offline, 132 in Fusion |
+| PASS | R hip pitch lid | 0.1 % of 1500 points disagree; solid in 517 offline, 518 in Fusion |
 | PASS | R knee lid | 0.1 % of 1500 points disagree; solid in 476 offline, 474 in Fusion |
 | PASS | R thigh cover | 1.8 % of 1500 points disagree; solid in 155 offline, 146 in Fusion |
 | PASS | R shin | 0.0 % of 1500 points disagree; solid in 189 offline, 189 in Fusion |
 | PASS | R shoe | 0.2 % of 1500 points disagree; solid in 231 offline, 230 in Fusion |
-| PASS | R sole | 1.3 % of 1500 points disagree; solid in 1092 offline, 1107 in Fusion |
+| PASS | R sole | 1.1 % of 1500 points disagree; solid in 1095 offline, 1107 in Fusion |
 | PASS | R inner ear | 0.0 % of 1500 points disagree; solid in 669 offline, 669 in Fusion |
 | PASS | chassis | 0.0 % of 1500 points disagree; solid in 164 offline, 164 in Fusion |
 | PASS | body shell | 0.5 % of 1500 points disagree; solid in 120 offline, 120 in Fusion |
 | PASS | neck column | 0.5 % of 1500 points disagree; solid in 296 offline, 288 in Fusion |
 | PASS | neck lid | 0.2 % of 1500 points disagree; solid in 1241 offline, 1242 in Fusion |
-| PASS | head pitch lid | 0.1 % of 1500 points disagree; solid in 1245 offline, 1243 in Fusion |
+| PASS | head pitch lid | 0.2 % of 1500 points disagree; solid in 1244 offline, 1243 in Fusion |
 | PASS | head fork | 0.2 % of 1500 points disagree; solid in 193 offline, 190 in Fusion |
 | PASS | head yaw sheet | 0.2 % of 1500 points disagree; solid in 333 offline, 332 in Fusion |
 | PASS | head yaw bracket | 0.0 % of 1500 points disagree; solid in 267 offline, 267 in Fusion |

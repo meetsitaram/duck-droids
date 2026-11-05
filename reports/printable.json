@@ -681,7 +681,7 @@
   "group": "ORIENT",
   "item": "body shell",
   "status": "PASS",
-  "detail": "2399 mm2 overhang, 1803 mm2 on the bed, 98 mm tall"
+  "detail": "2399 mm2 overhang, 1795 mm2 on the bed, 98 mm tall"
  },
  {
   "group": "PIECES",
@@ -693,7 +693,7 @@
   "group": "BED",
   "item": "body shell",
   "status": "PASS",
-  "detail": "49 x 80 x 98 mm, 1803 mm2 on the bed"
+  "detail": "49 x 80 x 98 mm, 1795 mm2 on the bed"
  },
  {
   "group": "SKIN",

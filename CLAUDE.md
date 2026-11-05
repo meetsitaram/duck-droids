@@ -11,7 +11,7 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
   level, beak shut. The renders and compare stand milli with its knees bent, as microduck's model stands.
 - **Source of truth:** `spec/robot.py` (anchors in "proportions" set every height from the servo cases and their
   clearances) -> `python -I spec/robot.py` -> `spec/robot.json`. Never hand-edit robot.json or the Fusion document.
-- **Chain:** `MILLI_RECIPE=<r> bash tools/pipeline.sh gates|fusion|final|reveal|video`. `fusion` builds linked documents, and only what changed; `final` makes the one-document build for the repo's .f3d. `gates` overwrites prints/ with the spec's shapes: don't commit those.
+- **Chain:** `MILLI_RECIPE=<r> bash tools/pipeline.sh gates|fusion|final|reveal|step|video`. `fusion` builds linked documents, and only what changed; `final` makes the one-document build for the repo's .f3d, and `step` its STEP from the saved document. `gates` overwrites prints/ with the spec's shapes: don't commit those.
 - **Every change:** `python -I spec/robot.py`, `python -I tools/checks.py` (0 failing), `python tools/compare.py`
   (microduck beside milli at one scale), look at the pictures. If a part or screw changed: `python -I tools/assembly.py`
   (the build order: 0 failing), `python -I tools/buildable.py` (walls, one piece, load: a beam estimate), `python tools/render_assembly.py`,
