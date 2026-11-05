@@ -57,6 +57,7 @@ gates() {
   gate printable "$PY" -I tools/printable.py
   gate beak "$PY" -I tools/beak_linkage.py
   gate mass "$PY" -I tools/mass_model.py
+  if [ "$RECIPE" = hybrid ]; then gate wires "$PY" -I tools/wire_routes.py; fi
 }
 
 build() {

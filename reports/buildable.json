@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "12.2 MPa (allowed 15): 44 N, section 180 mm2"
+  "detail": "12.9 MPa (allowed 15): 47 N, section 180 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 44 N, section 1293 mm2"
+  "detail": "0.4 MPa (allowed 15): 47 N, section 1255 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 44 N, section 815 mm2"
+  "detail": "0.5 MPa (allowed 15): 47 N, section 808 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "11.9 MPa (allowed 15): 44 N, section 90 mm2"
+  "detail": "12.6 MPa (allowed 15): 47 N, section 90 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "10.7 MPa (allowed 15): 44 N, section 60 mm2"
+  "detail": "11.4 MPa (allowed 15): 47 N, section 60 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.2 MPa (allowed 15): 44 N, section 952 mm2"
+  "detail": "1.3 MPa (allowed 15): 47 N, section 920 mm2"
  },
  {
   "group": "ONE",
@@ -177,25 +177,7 @@
   "group": "FIT",
   "item": "L shin",
   "status": "PASS",
-  "detail": "32 x 46 x 80 mm"
- },
- {
-  "group": "ONE",
-  "item": "L ankle lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "L ankle lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "L ankle lid",
-  "status": "PASS",
-  "detail": "26 x 4 x 10 mm"
+  "detail": "32 x 43 x 80 mm"
  },
  {
   "group": "ONE",
@@ -249,7 +231,7 @@
   "group": "FIT",
   "item": "L inner ear",
   "status": "PASS",
-  "detail": "50 x 6 x 30 mm"
+  "detail": "50 x 5 x 30 mm"
  },
  {
   "group": "ONE",
@@ -267,7 +249,7 @@
   "group": "FIT",
   "item": "chassis",
   "status": "PASS",
-  "detail": "98 x 77 x 50 mm"
+  "detail": "98 x 70 x 50 mm"
  },
  {
   "group": "ONE",
@@ -429,61 +411,7 @@
   "group": "FIT",
   "item": "head frame",
   "status": "PASS",
-  "detail": "124 x 96 x 51 mm"
- },
- {
-  "group": "ONE",
-  "item": "beak lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "beak lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "beak lid",
-  "status": "PASS",
-  "detail": "6 x 4 x 24 mm"
- },
- {
-  "group": "ONE",
-  "item": "beak crank",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "beak crank",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "beak crank",
-  "status": "PASS",
-  "detail": "21 x 15 x 26 mm"
- },
- {
-  "group": "ONE",
-  "item": "beak rod",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "beak rod",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "beak rod",
-  "status": "PASS",
-  "detail": "46 x 4 x 14 mm"
+  "detail": "148 x 106 x 61 mm"
  },
  {
   "group": "ONE",
@@ -501,7 +429,7 @@
   "group": "FIT",
   "item": "jaw",
   "status": "PASS",
-  "detail": "106 x 114 x 45 mm"
+  "detail": "92 x 111 x 45 mm"
  },
  {
   "group": "ONE",

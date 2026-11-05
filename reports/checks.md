@@ -1,8 +1,8 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
+spec: `spec/robot.json`, 2026-11-05 00:58, 74 s
 
-199 checks: 194 pass, 3 warn, **2 fail**
+202 checks: 199 pass, 3 warn, **0 fail**
 
 ## targets
 
@@ -23,13 +23,13 @@ spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.648 kg bottom-up (budget 1.65 kg; microduck 0.8 kg) |
+| PASS | total | 1.647 kg bottom-up (budget 1.65 kg; microduck 0.8 kg) |
 
 ## printable
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 260 printed parts; largest head: 155 mm, on a 256 mm bed |
+| PASS | largest part | 263 printed parts; largest head: 155 mm, on a 256 mm bed |
 
 ## axis
 
@@ -139,7 +139,7 @@ spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
 | PASS | head_pitch_link covers mounted |  |
 | PASS | head_yaw_link structure |  |
 | PASS | head_yaw_link covers mounted |  |
-| FAIL | head structure | rigid parts form 2 separate pieces (a bracket or frame is missing) |
+| PASS | head structure |  |
 | PASS | head covers mounted |  |
 | PASS | beak_link structure |  |
 | PASS | beak_link covers mounted |  |
@@ -196,7 +196,10 @@ spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
 | PASS | bus board standoff 3 | 0.00 % outside the skin |
 | PASS | Waveshare bus board | 0.00 % outside the skin |
 | PASS | rear board plate | 0.00 % outside the skin |
+| PASS | rear board plate low | 0.00 % outside the skin |
+| PASS | rear board plate low 2 | 0.00 % outside the skin |
 | PASS | rear board foot | 0.00 % outside the skin |
+| PASS | rear board foot 2 | 0.00 % outside the skin |
 | PASS | leg bus board | 0.00 % outside the skin |
 | PASS | L base riser top | 0.00 % outside the skin |
 | PASS | head 5 V regulator | 0.00 % outside the skin |
@@ -214,7 +217,7 @@ spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
 | PASS | neck_pitch | [-0.15, +1.60] rad clear |
 | WARN | head_pitch | [-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -0.93 rad (pose-dependent) |
 | PASS | head_yaw | [-2.50, +2.50] rad clear |
-| FAIL | head_roll | lower -0.34: blocked at -0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end + (0 cm3); upper +0.34: blocked at +0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end - (0 cm3) |
+| PASS | head_roll | [-0.33, +0.33] rad clear |
 | PASS | beak | [+0.00, +0.40] rad clear |
 
 ## poses
@@ -248,7 +251,7 @@ spec: `spec/robot.json`, 2026-11-05 00:29, 73 s
 | status | item | detail |
 |---|---|---|
 | PASS | neck_pitch | 0.21 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 67 % used |
-| PASS | head_pitch | 0.20 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 59 % used |
+| PASS | head_pitch | 0.20 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 59 % used |
 | PASS | R_knee | 0.33 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 37 % used |
 | PASS | L_knee | 0.33 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 37 % used |
 | PASS | L_hip_roll | 0.41 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 23 % used |

@@ -17,6 +17,10 @@ SRC = os.path.join(os.environ['TEMP'], 'duck_reveal')
 TITLES = [(0, 150, 'Motors', '15 XL330 servos'), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
           (360, 505, 'Electronics', 'Pi Zero 2 W, bus board, battery, IMU, camera'), (510, 700, 'Covers', 'hood, jaw, thigh covers, body shell, soles'),
           (705, 900, 'All-Dynamixel duck', '')]
+if G.RECIPE == 'hybrid':
+    TITLES = [(0, 150, 'Motors', '10 STS3215 in the legs, 5 Dynamixels at the neck and head'), (150, 355, 'Skeleton', 'printed frames, bearings and screws'),
+              (360, 505, 'Electronics', 'Pi Zero 2 W, 2 bus boards, 2 regulators, battery, IMU, camera'), (510, 700, 'Covers', 'hood, jaw, thigh covers, body shell, soles'),
+              (705, 900, 'Hybrid duck', '')]
 
 
 HOLD, FADE = 30, 18                                 # the opening: 1 s on the whole duck, 0.6 s fading away

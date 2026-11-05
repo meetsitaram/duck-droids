@@ -63,13 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.648 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
+  "detail": "1.647 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "260 printed parts; largest head: 155 mm, on a 256 mm bed"
+  "detail": "263 printed parts; largest head: 155 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -578,8 +578,8 @@
  {
   "group": "connect",
   "item": "head structure",
-  "status": "FAIL",
-  "detail": "rigid parts form 2 separate pieces (a bracket or frame is missing)"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "connect",
@@ -889,7 +889,25 @@
  },
  {
   "group": "skin",
+  "item": "rear board plate low",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "rear board plate low 2",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
   "item": "rear board foot",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "rear board foot 2",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -968,8 +986,8 @@
  {
   "group": "sweep",
   "item": "head_roll",
-  "status": "FAIL",
-  "detail": "lower -0.34: blocked at -0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end + (0 cm3); upper +0.34: blocked at +0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end - (0 cm3)"
+  "status": "PASS",
+  "detail": "[-0.33, +0.33] rad clear"
  },
  {
   "group": "sweep",
@@ -1113,7 +1131,7 @@
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.20 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 59 % used"
+  "detail": "0.20 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 59 % used"
  },
  {
   "group": "torque",
