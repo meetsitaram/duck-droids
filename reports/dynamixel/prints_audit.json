@@ -237,7 +237,7 @@
   "group": "THIN",
   "item": "L thigh cover",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -465,7 +465,7 @@
   "group": "VOLUME",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "3.5 cm3, designed 3.5: 0 % off"
+  "detail": "3.5 cm3, designed 3.5: 1 % off"
  },
  {
   "group": "BED",
@@ -477,7 +477,7 @@
   "group": "THIN",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -1095,7 +1095,7 @@
   "group": "VOLUME",
   "item": "hood",
   "status": "PASS",
-  "detail": "48.4 cm3, designed 48.7: 1 % off"
+  "detail": "48.3 cm3, designed 48.6: 1 % off"
  },
  {
   "group": "BED",
