@@ -53,11 +53,13 @@ Results so far, in simulation only, from 64 robots with the training's randomiza
 The same duck at 1.8 m, taller than [echo](https://github.com/meetsitaram/echo), on RobStride RS04 actuators, to test whether the method scales: a full design first, with
 metal frames, bearings, screws and printed panels that fit a 256 mm bed, from its own spec, [spec/big_duck.py](../spec/big_duck.py) (`MILLI_RECIPE=big`).
 
+**Not safe to build.** About 100 kg, with no stress analysis, unchecked metal frames, no real actuator measured and no brakes: a failure could seriously hurt someone. Its [BOM](big/BOM.md), [wiring](big/WIRING.md) and [Fusion trial](big/FUSION.md) are paper, and list what stays open.
+
 ![The big duck from the front and side, and a close-up of its neck with one head pitch actuator on a chain](images/big/big_duck.png)
 
 ![Its knee drawn to scale at three angles: a crank on the actuator, a rod, and a lever on the knee](images/big/knee_crank.png)
 
-- **Size:** 1.797 m tall, 99.5 kg from every part's material, 23 actuators (20 RS04, 2 RS03, 1 RS00). Masses lean on assumed pocketing: no pockets are drawn.
+- **Size:** 1.797 m tall, 96.8 kg from every part's material, 22 actuators (19 RS04, 2 RS03, 1 RS00). Masses lean on assumed pocketing: no pockets are drawn.
 - **Knee:** two RS04s, each with a crank, a rod and a lever, in place of a roller chain. 1.54:1 at its weakest, about 3.4:1 at the straight end, over 70 degrees.
 - **Given up:** deep squat and floor pick, as the crank's range won't reach them; the head roll, for a lighter neck.
 - **Strength against real humanoids,** peak torque over (weight x leg length), read from their own URDFs: knee 0.56 and hips 0.36 are in the range of
@@ -67,7 +69,7 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
 - [The walk in this video](images/big/big_walk.mp4) (MP4, 8 s) reaches about 0.33 m/s told 0.4, but overloads its knee: 170 N m RMS against 123 rated.
 - With a penalty for sustained overload, at iteration 1500 of 3000, every joint is under its rating at 0.3-0.4 m/s (knee 99 N m), on a straighter leg, and all 32 test robots stay up.
   The cost is speed: 0.20 m/s told 0.4, 0.04 m/s backward told 0.2. It drifts sideways at about 0.12 m/s whatever it's told, and barely answers sideways commands. That run wasn't finished when this was written.
-- Not done: stress analysis, the RS04's real drawing, the chain's tensioner, the rods moving in the model, wiring, how it survives a fall, the Fusion model.
+- Not done: stress analysis, reading the RS04's real CAD and measuring one, the chain's tensioner, the rods moving in the model, how it survives a fall. Wiring and the Fusion model are a first pass, with their flaws listed.
 
 ## Status
 
