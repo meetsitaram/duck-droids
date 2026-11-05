@@ -42,12 +42,12 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | head yaw bracket | 523 mm2 overhang, 301 mm2 on the bed, 41 mm tall |
 | PASS | head roll lid | 167 mm2 overhang, 858 mm2 on the bed, 6 mm tall |
 | PASS | head roll spacer | 0 mm2 overhang, 239 mm2 on the bed, 3 mm tall |
-| PASS | head frame | 7414 mm2 overhang, 300 mm2 on the bed, 181 mm tall |
-| PASS | hood | 4648 mm2 overhang, 276 mm2 on the bed, 191 mm tall |
+| PASS | head frame | 7257 mm2 overhang, 450 mm2 on the bed, 181 mm tall |
+| PASS | hood | 5100 mm2 overhang, 69 mm2 on the bed, 192 mm tall |
 | PASS | jaw | 1221 mm2 overhang, 1385 mm2 on the bed, 108 mm tall |
 | PASS | jaw soft insert | 0 mm2 overhang, 4548 mm2 on the bed, 5 mm tall |
 | PASS | mouth roof | 4 mm2 overhang, 6218 mm2 on the bed, 3 mm tall |
-| PASS | face | 88 mm2 overhang, 7085 mm2 on the bed, 3 mm tall |
+| PASS | face | 89 mm2 overhang, 7085 mm2 on the bed, 3 mm tall |
 | PASS | eye ring | 0 mm2 overhang, 1010 mm2 on the bed, 14 mm tall |
 | PASS | eye iris | 0 mm2 overhang, 400 mm2 on the bed, 6 mm tall |
 
@@ -136,8 +136,8 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | head yaw bracket | 38 x 48 x 41 mm, 301 mm2 on the bed |
 | PASS | head roll lid | 31 x 51 x 6 mm, 858 mm2 on the bed |
 | PASS | head roll spacer | 20 x 20 x 3 mm, 239 mm2 on the bed |
-| PASS | head frame | 65 x 131 x 181 mm, 300 mm2 on the bed |
-| PASS | hood | 73 x 135 x 191 mm, 276 mm2 on the bed |
+| PASS | head frame | 65 x 131 x 181 mm, 450 mm2 on the bed |
+| PASS | hood | 73 x 135 x 192 mm, 69 mm2 on the bed |
 | PASS | jaw | 48 x 135 x 108 mm, 1385 mm2 on the bed |
 | PASS | jaw soft insert | 35 x 131 x 5 mm, 4548 mm2 on the bed |
 | PASS | mouth roof | 49 x 131 x 3 mm, 6218 mm2 on the bed |
@@ -211,8 +211,8 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | WARN | neck column | 422 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head fork | 838 mm2 needs support or a bridge: check it in the slicer |
 | WARN | head yaw bracket | 523 mm2 needs support or a bridge: check it in the slicer |
-| WARN | head frame | 7414 mm2 needs support or a bridge: check it in the slicer |
-| WARN | hood | 4648 mm2 needs support or a bridge: check it in the slicer |
+| WARN | head frame | 7257 mm2 needs support or a bridge: check it in the slicer |
+| WARN | hood | 5100 mm2 needs support or a bridge: check it in the slicer |
 | WARN | jaw | 1221 mm2 needs support or a bridge: check it in the slicer |
 
 ## SKIN

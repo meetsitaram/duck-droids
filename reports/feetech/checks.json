@@ -9,7 +9,7 @@
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.191 (microduck 0.123 x 1.44 = 0.177 +/- 15 %)"
+  "detail": "0.192 (microduck 0.123 x 1.44 = 0.177 +/- 15 %)"
  },
  {
   "group": "targets",
@@ -69,7 +69,7 @@
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "255 printed parts; largest head: 191 mm, on a 256 mm bed"
+  "detail": "255 printed parts; largest head: 192 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
