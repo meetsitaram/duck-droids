@@ -31,7 +31,7 @@ The same design on other servos, and at 1.8 m. Their parts lists and wiring are 
 | Hybrid | STS3215 legs, Dynamixel head | 1.65 kg | [BOM](BOM.md) | [Wiring](docs/WIRING.md) |
 | Big: **not safe to build** | 22 RobStride | 1.8 m, 97.1 kg | [BOM](docs/big/BOM.md) | [Wiring](docs/big/WIRING.md) |
 
-More in [the details](docs/DETAILS.md), and [what went wrong along the way](LESSONS.md).
+More in [the details](docs/DETAILS.md), [the open questions](docs/OPEN_QUESTIONS.md), and [what went wrong along the way](LESSONS.md).
 
 ## Run the checks
 
