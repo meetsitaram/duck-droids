@@ -211,8 +211,10 @@ link('trunk', [
     dict(side_plate('neck plate R', -YN[1] - PL, PL, [(XN, ZN, 0.075), (XN - 0.10, DECK[1] + 0.029, 0.03), (XN + 0.015, DECK[1] + 0.029, 0.03)]), fill=0.6),
     metal('neck tie', (XN - 0.112, -YN[1] - 0.0005, DECK[1] - 0.0005), (XN - 0.100, YN[1] + 0.0005, ZN - 0.02), ALD),
     # the battery, computer and power board on the deck. Named 24S until 2026-11-05: a 24S pack is about 100 V full, and RobStride's manuals give 60 V as the most these actuators take. 13S is 54.6 V full, as 14S's 58.8 leaves no room
-    # for what walking brakes back into the bus. Same box and mass: no pack has been chosen (docs/big/BOM.md)
-    box('battery 13S', (-0.215, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), CELL, material='cells', mass=8.0),
+    # for what walking brakes back into the bus. The candidate to bench-test (2026-11-05, docs/big/BOM.md): Dan-Tech's 13S5P soft pack, 280 x 80 x 130, 5.2 kg, across the body between the posts. It has no BMS or case, so what was left of the
+    # old box and its 8 kg holds those as an allowance, unchosen, and the walks' total stays the same
+    box('battery 13S', (-0.215, -0.140, DECK[1] - 0.0005), (-0.135, 0.140, DECK[1] + 0.130), CELL, material='cells', mass=5.2),
+    box('battery BMS, fuse and case, allowance', (-0.135, -0.095, DECK[1] - 0.0005), (-0.075, 0.095, UPPER[0] - 0.005), PCB, material='cells', mass=2.8),
     box('computer and power boards', (-0.065, -0.085, DECK[1] - 0.0005), (0.025, 0.085, DECK[1] + 0.03), PCB, material='electronics', mass=1.2),
     *body_panels(),
     cut(neck_slot, 'body panel FR', 'body panel FL', 'body panel MR', 'body panel ML'),
@@ -288,14 +290,12 @@ def thigh_covers():
               ('knee', [(-0.160, ZP - 0.085, 0.020), (-0.300, ZP - 0.050, 0.030), (XK - 0.060, ZK + 0.020, 0.040), (XK + 0.040, ZK + 0.020, 0.040), (-0.115, ZP - 0.080, 0.020)]))
     for t, pts in pieces:
         out.append(dict(plate(f'L thigh cover out {t}', YO[1] + 0.008, 0.003, pts, WHITE, 'decal'), material='petg', exposed=True))
-        # No inner 'hip' piece (2026-11-05): Fusion's first clash check found it 8.4 cm3 into the rear hip roll actuator, and into the yoke and cheek. These are 'decal', so the offline checks never saw it
-        if t != 'hip':
-            out.append(dict(plate(f'L thigh cover in {t}', YI[0] - 0.011, 0.003, pts, WHITE, 'decal'), material='petg', exposed=True))
+        # No covers on the thigh's inner side (2026-11-05). Fusion's first clash check found the hip piece 8.4 cm3 into the rear hip roll actuator, and the knee piece 0.16 into the cheek. tools/big_sweep.py then found the
+        # other two reaching the body panel (10.7 cm3), cheek, deck and beam as the hip moves. They're 'decal', so the offline checks never saw any of it. Between the legs they show least, and the outer ones sweep clear.
+        # The cost: the frame shows from the inside
     # stand-offs from the rear plates: one per piece, each side
     for t, (x_, z_) in (('hip', (-0.150, ZP + 0.010)), ('rear', (-0.255, ZQ)), ('knee', (XK, ZK + 0.060))):
         out.append(metal(f'L thigh cover post out {t}', (x_ - 0.005, YO[1] - 0.0005, z_ - 0.005), (x_ + 0.005, YO[1] + 0.0085, z_ + 0.005), ALD))
-        if t != 'hip':
-            out.append(metal(f'L thigh cover post in {t}', (x_ - 0.005, YI[0] - 0.0085, z_ - 0.005), (x_ + 0.005, YI[0] + 0.0005, z_ + 0.005), ALD))
     return out
 
 
