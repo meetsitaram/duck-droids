@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-974 checks: 973 pass, 0 warn, **1 fail**
+1060 checks: 1057 pass, 0 warn, **3 fail**
 
 ## PATH
 
@@ -69,8 +69,8 @@ From tools/assembly.py
 | PASS | column: head pitch servo |  |
 | PASS | column: head pitch lid |  |
 | PASS | torso: battery |  |
-| PASS | torso: L 5 V regulator |  |
-| PASS | torso: R 5 V regulator |  |
+| FAIL | torso: L 5 V regulator | cuts 0.44 cm3 into ['L yaw bracket', 'L roll bracket'], travelling (0, 0, 1) |
+| FAIL | torso: R 5 V regulator | cuts 0.44 cm3 into ['R yaw bracket', 'R roll bracket'], travelling (0, 0, 1) |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
 | PASS | torso: body shell |  |
@@ -91,8 +91,8 @@ From tools/assembly.py
 | PASS | jawbench: jaw soft insert |  |
 | PASS | head: @headbench |  |
 | PASS | head: @framebench |  |
-| PASS | head: U2D2 |  |
 | PASS | head: Pi Zero 2 W |  |
+| PASS | head: U2D2 |  |
 | PASS | head: servo bus board |  |
 | PASS | head: @jawbench |  |
 | PASS | head: hood |  |
@@ -734,6 +734,102 @@ From tools/assembly.py
 | PASS | head yaw | 2 of 6 screws at the near end |
 | PASS | head roll | far end only: a bearing on both faces, and the fork round them |
 | PASS | beak | 2 of 4 screws at the near end |
+
+## BOUGHT
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw lid |  |
+| PASS | L yaw bracket |  |
+| PASS | L hip roll lid |  |
+| PASS | L roll bracket |  |
+| PASS | L thigh frame |  |
+| PASS | L hip pitch lid |  |
+| PASS | L knee lid |  |
+| PASS | L thigh cover |  |
+| PASS | L shin |  |
+| PASS | L shoe |  |
+| PASS | L sole |  |
+| PASS | L inner ear |  |
+| PASS | R hip yaw lid |  |
+| PASS | R yaw bracket |  |
+| PASS | R hip roll lid |  |
+| PASS | R roll bracket |  |
+| PASS | R thigh frame |  |
+| PASS | R hip pitch lid |  |
+| PASS | R knee lid |  |
+| PASS | R thigh cover |  |
+| PASS | R shin |  |
+| PASS | R shoe |  |
+| PASS | R sole |  |
+| PASS | R inner ear |  |
+| PASS | chassis |  |
+| PASS | body shell |  |
+| PASS | neck column |  |
+| PASS | neck lid |  |
+| PASS | head pitch lid |  |
+| PASS | head fork |  |
+| PASS | head yaw sheet |  |
+| PASS | head yaw bracket |  |
+| PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
+| PASS | head frame |  |
+| PASS | hood |  |
+| PASS | jaw |  |
+| PASS | jaw soft insert |  |
+| PASS | mouth roof |  |
+| PASS | face |  |
+| PASS | eye ring |  |
+| PASS | eye iris |  |
+
+## COLOUR
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw lid |  |
+| PASS | L yaw bracket |  |
+| PASS | L hip roll lid |  |
+| PASS | L roll bracket |  |
+| PASS | L thigh frame |  |
+| PASS | L hip pitch lid |  |
+| PASS | L knee lid |  |
+| PASS | L thigh cover |  |
+| PASS | L shin |  |
+| PASS | L shoe |  |
+| PASS | L sole |  |
+| PASS | L inner ear |  |
+| PASS | R hip yaw lid |  |
+| PASS | R yaw bracket |  |
+| PASS | R hip roll lid |  |
+| PASS | R roll bracket |  |
+| PASS | R thigh frame |  |
+| PASS | R hip pitch lid |  |
+| PASS | R knee lid |  |
+| PASS | R thigh cover |  |
+| PASS | R shin |  |
+| PASS | R shoe |  |
+| PASS | R sole |  |
+| PASS | R inner ear |  |
+| PASS | chassis |  |
+| PASS | body shell |  |
+| PASS | neck column |  |
+| PASS | neck lid |  |
+| PASS | head pitch lid |  |
+| PASS | head fork |  |
+| PASS | head yaw sheet |  |
+| PASS | head yaw bracket |  |
+| PASS | head roll lid |  |
+| PASS | head roll spacer |  |
+| PASS | head roll rear spacer |  |
+| PASS | head frame |  |
+| PASS | hood |  |
+| PASS | jaw |  |
+| PASS | jaw soft insert |  |
+| PASS | mouth roof |  |
+| PASS | face |  |
+| PASS | eye ring |  |
+| PASS | eye iris |  |
 
 ## EDGE
 

@@ -63,13 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.634 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
+  "detail": "1.648 kg bottom-up (budget 1.65 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "256 printed parts; largest head: 155 mm, on a 256 mm bed"
+  "detail": "260 printed parts; largest head: 155 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -578,8 +578,8 @@
  {
   "group": "connect",
   "item": "head structure",
-  "status": "PASS",
-  "detail": ""
+  "status": "FAIL",
+  "detail": "rigid parts form 2 separate pieces (a bracket or frame is missing)"
  },
  {
   "group": "connect",
@@ -709,12 +709,6 @@
  },
  {
   "group": "skin",
-  "item": "R 5 V regulator",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
   "item": "L regulator arm 0",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -722,18 +716,6 @@
  {
   "group": "skin",
   "item": "L regulator arm 1",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "R regulator arm 0",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "R regulator arm 1",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -751,19 +733,13 @@
  },
  {
   "group": "skin",
-  "item": "R regulator drop 0",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "R regulator drop 1",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
   "item": "IMU",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "leg bus splice",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -787,25 +763,7 @@
  },
  {
   "group": "skin",
-  "item": "L thigh plate",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "R thigh plate",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
   "item": "head frame",
-  "status": "PASS",
-  "detail": "0.00 % outside the skin"
- },
- {
-  "group": "skin",
-  "item": "head top plate",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -836,6 +794,12 @@
  {
   "group": "skin",
   "item": "Pi mount",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "Pi mount 2",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -883,37 +847,55 @@
  },
  {
   "group": "skin",
-  "item": "bus board rail 0",
+  "item": "Pi board tab",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "bus board rail 1",
+  "item": "bus board standoff 0",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "bus board post 0",
+  "item": "bus board standoff 1",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "bus board post 1",
+  "item": "bus board standoff 2",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "servo bus board",
+  "item": "bus board standoff 3",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "U2D2",
+  "item": "Waveshare bus board",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "rear board plate",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "rear board foot",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "leg bus board",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -925,13 +907,13 @@
  },
  {
   "group": "skin",
-  "item": "Pi base tab",
+  "item": "head 5 V regulator",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
  {
   "group": "skin",
-  "item": "lower shell beam",
+  "item": "Pi base tab",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },
@@ -986,8 +968,8 @@
  {
   "group": "sweep",
   "item": "head_roll",
-  "status": "PASS",
-  "detail": "[-0.34, +0.34] rad clear"
+  "status": "FAIL",
+  "detail": "lower -0.34: blocked at -0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end + (0 cm3); upper +0.34: blocked at +0.20 rad by head / head_pitch_link: rear board foot / head yaw cradle end - (0 cm3)"
  },
  {
   "group": "sweep",
@@ -1125,25 +1107,25 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.20 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 65 % used"
+  "detail": "0.21 N m in 'head tucked in' vs rated 0.31 N m (1 x XC330_M288): 67 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.19 N m in 'head forward and down, beak open' vs rated 0.52 N m (1 x XL330_M288): 56 % used"
+  "detail": "0.20 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 59 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.32 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 36 % used"
+  "detail": "0.33 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 37 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.32 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 36 % used"
+  "detail": "0.33 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 37 % used"
  },
  {
   "group": "torque",
@@ -1161,13 +1143,13 @@
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.21 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
+  "detail": "0.22 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.21 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
+  "detail": "0.22 N m x 1.5 in 'floor pick' vs peak 2.69 N m (1 x STS3215_C044): 12 % used"
  },
  {
   "group": "torque",
@@ -1191,24 +1173,24 @@
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.15 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.16 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 9 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.07 N m in 'head tucked in' vs rated 0.88 N m (1 x STS3215_C044): 8 % used"
+  "detail": "0.08 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 9 % used"
  },
  {
   "group": "torque",
   "item": "head_roll",
   "status": "PASS",
-  "detail": "0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 3 % used"
+  "detail": "0.00 N m in 'crouch' vs rated 0.17 N m (1 x XL330_M288): 1 % used"
  },
  {
   "group": "torque",
   "item": "head_yaw",
   "status": "PASS",
-  "detail": "0.00 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 1 % used"
+  "detail": "0.00 N m x 1.5 in 'floor pick' vs peak 0.52 N m (1 x XL330_M288): 0 % used"
  }
 ]
