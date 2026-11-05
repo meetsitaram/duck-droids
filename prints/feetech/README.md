@@ -39,12 +39,12 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | head yaw bracket | head_yaw_bracket.stl | 38 x 48 x 41 | 14.2 | PLA | 523 |
 | head roll lid | head_roll_lid.stl | 31 x 51 x 6 | 3.0 | PLA | 167 |
 | head roll spacer | head_roll_spacer.stl | 20 x 20 x 3 | 0.7 | PLA | 0 (none) |
-| head frame | head_frame.stl | 181 x 131 x 65 | 85.5 | PLA | 7414 |
-| hood | hood.stl | 73 x 135 x 191 | 79.4 | PLA | 4648 |
+| head frame | head_frame.stl | 181 x 131 x 65 | 85.7 | PLA | 7257 |
+| hood | hood.stl | 73 x 135 x 192 | 79.4 | PLA | 5100 |
 | jaw | jaw.stl | 48 x 135 x 108 | 47.3 | PLA | 1221 |
 | jaw soft insert | jaw_soft_insert.stl | 35 x 131 x 5 | 22.7 | TPU 95A | 0 (none) |
 | mouth roof | mouth_roof.stl | 49 x 131 x 3 | 19.9 | TPU 95A | 4 |
-| face | face.stl | 65 x 129 x 3 | 14.3 | PLA | 88 |
+| face | face.stl | 65 x 129 x 3 | 14.3 | PLA | 89 |
 | eye ring | eye_ring.stl | 44 x 44 x 14 | 6.5 | PLA | 0 (none) |
 | eye iris | eye_iris.stl | 25 x 25 x 6 | 2.2 | PLA | 0 (none) |
 
