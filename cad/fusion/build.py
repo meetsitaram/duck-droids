@@ -77,7 +77,7 @@ REAL = {
         name='STS3215', o=(0, 0, -0.35), ux=(-1, 0, 0), az=(0, 0, 1), shaft=(12.5, 0), horn_cut=(14.45, 21.0, 10.3),
         case=('SO-ARM100/STEP/SO100/STS3215_03a.step', {'Body1': ('case', BLACK_CASE, 'matte')}),
         horn=('SO-ARM100/STEP/SO100/STS3215_03a.step', {'Body1': ('horn', ALU, 'metal')}),
-        idler=('SO-ARM100/STEP/SO100/Passive_Horn_01.step', {'Body1': ('rear horn', ALU, 'metal')}), idler_frame=((0, 0, -14.9), (1, 0, 0), (0, 0, -1))),
+        idler=('SO-ARM100/STEP/SO100/Passive_Horn_01.step', {'Body1': ('rear horn', ALU, 'metal')}), idler_frame=((12.5, 0, -14.9), (1, 0, 0), (0, 0, -1))),      # (the STEP's axis is at its own origin, and _servo_matrix's origin is the case's middle: the shaft is 12.5 mm along. The disc stood 12.5 mm off the shaft, in Fusion only. Found by a clash with an ankle's plugs)
     # Feetech's own file, an assembly: its solids sit in nested components with repeated names, so they're told apart by where they are (HD_PIECES). In the file, mm: shaft on z at x = y = 0, the far end toward -y, horn up.
     # The rear tube the rear horn turns on is part of its bottom case, and stays where the horn comes off. Its output gear is inside the case, and left out
     'HD1910': dict(
