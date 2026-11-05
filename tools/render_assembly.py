@@ -36,7 +36,8 @@ VIEW = dict(framebench=(215, 20), thigh=(235, 20), shin=(235, 20), shoe=(40, -25
 class Scene:
     """One MuJoCo model with a body per item (a part, or a screw), moved by its mocap position, hidden far away."""
 
-    def __init__(self, spec, extra='', visual=None, asset=''):
+    def __init__(self, spec, extra='', visual=None, asset='', real_folder=None):
+        """real_folder: Fusion's own bodies, as cad/fusion/build.py export_print_stls wrote them, for the printed parts. The spec's shapes have no fillets: Fusion rounds them, so a picture from the spec shows less than you'd print."""
         self.spec = spec
         self.B = A.Build(spec)
         self.items = {}                            # item -> list of (mesh verts, faces, colour)
@@ -67,9 +68,13 @@ class Scene:
         k = 0
         for bi, n in enumerate(self.names):
             gs = ''
-            for m, col in self.items[n]:
-                mesh = m.to_mesh()
-                v, f = np.asarray(mesh.vert_properties[:, :3], float), np.asarray(mesh.tri_verts, int)
+            real = self.real_meshes(n, real_folder)
+            for m, col in (real if real else self.items[n]):
+                if isinstance(m, tuple):
+                    v, f = m
+                else:
+                    mesh = m.to_mesh()
+                    v, f = np.asarray(mesh.vert_properties[:, :3], float), np.asarray(mesh.tri_verts, int)
                 if len(f) == 0:
                     continue
                 RP.stl(os.path.join(tmp, f'm{k}.stl'), v, f)
@@ -89,6 +94,46 @@ class Scene:
         self.d = mujoco.MjData(self.m)
         self.r = mujoco.Renderer(self.m, H, W)
         self.bid = {n: self.m.body(f'b{i}').id for i, n in enumerate(self.names)}
+
+    def real_meshes(self, n, folder):
+        """This item's meshes from Fusion's body, plus its marks, or None to use the spec's shapes."""
+        if not folder or n not in self.B.parts or self.B.parts[n]['kind'] != 'P':
+            return None
+        path = os.path.join(folder, n.replace(' ', '_') + '.stl')
+        if not os.path.exists(path):
+            print('no Fusion body for', n, ': the spec shape it is')
+            return None
+        import trimesh
+        tm = trimesh.load(path)
+        tm.apply_scale(0.001)                      # mm to m
+        solids = [x for x in self.items[n] if self._not_mark(n, x)]
+        marks = [x for x in self.items[n] if not self._not_mark(n, x)]
+        if not solids:                             # a part drawn wholly as marks, like the face: Fusion's body is all of it, and already holds the others (the face's sensor pad): drawn again they share its surface and flicker
+            marks.sort(key=lambda x: -abs(x[0].volume()))
+            solids, marks = marks[:1], []
+        return self.colour_faces(n, tm, solids) + marks
+
+    def colour_faces(self, n, tm, solids):
+        """Colours as cad/fusion/build.py paints them, so a picture can't disagree with the model: a body in its part's colour, and the hood orange below the bill's cut."""
+        vols = {}
+        for m, c in solids:
+            vols[c] = vols.get(c, 0.0) + abs(m.volume())
+        main = max(vols, key=vols.get)
+        if n != 'hood':
+            return [((tm.vertices, tm.faces), main)]
+        geoms = self.spec['links'][self.B.idx['head'][0]]['geoms']
+        zcut = next(g['c'][2] - g['size'][2] / 2 for g in geoms if g['name'] == 'above the bill')
+        band = next(g['color'] for g in geoms if g['name'] == 'upper bill')
+        low = tm.triangles_center[:, 2] < zcut
+        return [((tm.vertices, tm.faces[~low]), main), ((tm.vertices, tm.faces[low]), band)]
+
+    def _not_mark(self, n, item):
+        S = self.B.S
+        for gn in self.B.parts[n]['geoms']:
+            ln, i, g = self.B.idx[gn]
+            if S.geom[(ln, i)] is item[0]:
+                return g['role'] != 'decal'
+        return False
 
     def head(self, g):
         """A screw drawn at its real length, for the fly-in."""

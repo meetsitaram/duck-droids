@@ -262,85 +262,153 @@ def guide():
 
 
 def bom_dynamixel(spec):
-    """The all-Dynamixel variant's parts: its own list, as it shares few of the first variant's."""
+    """The all-Dynamixel variant's bill of materials, written for someone building it to order: every purchased and fabricated part, one table each, nice-to-haves marked Optional and left out of the total."""
     servos, bear, screws = counts(spec)
     inert = MM.link_inertials(spec)
     ps = [p for v in inert.values() for p in v[3]]
     pla, tpu = sum(p[2] for p in ps if p[1] == 'pla'), sum(p[2] for p in ps if p[1] == 'tpu')
     total = sum(v[0] for v in inert.values())
     n = servos['XL330_M288']
-    # the prices below that have been read from a listing, and no others
-    priced = n * 27.49 + 2 * 42.72 + 6.79 + 2 * 11.27 + 26.39 + 9.99 + 29.50 + 16.99 + 6.74 + 15.66 + 19.99
-    # filament by colour, as each part is drawn, sharing out the mass model's total
+    per_servo = {('M2', 6): 6, ('M2', 8): 10}                 # the screws in each servo's box, per ROBOTIS
+    for k, each in per_servo.items():
+        assert n * each >= screws[k], k
+
+    def sc(size, ln):
+        return screws[(size, ln)]
+
+    def link(label, url):
+        return f'[{label}]({url})'
+
+    # (key, part, maker and part number, specification, quantity per robot, what is ordered, how many, price each or None, source, Required / Optional)
+    GROUPS = [
+        ('Actuators', [
+            ('servo', 'Smart servo', 'ROBOTIS XL330-M288-T', '0.52 N m stall and 103 rev/min at 5 V, 288.4:1, 18 g, model number 1200', n, 'each', n, 27.49,
+             link('ROBOTIS US', 'https://robotis.us/products/dynamixel-xl330-m288-t') + ': sold out, lead time to end of November. Second source ' + link('Seeed', 'https://www.seeedstudio.com/Servo-Motor-1-5V-103RPM-Brush-mm-p-6783.html') + ' at $31.40, limit 2 per account', 'Required'),
+            ('m077', 'Jaw servo, softer alternate', 'ROBOTIS XL330-M077-T', '0.215 N m stall and 383 rev/min at 5 V, 77.5:1, 18 g, model number 1190. Same pocket, horn and screws. Replaces 1 of the M288s', 1, 'each', 1, None, 'ROBOTIS', 'Optional'),
+        ]),
+        ('Bearings and idlers', [
+            ('mr2216', 'Ball bearing, around each horn', 'MR2216ZZ (ET2216ZZ)', '16 x 22 x 4 mm', bear['MR2216ZZ'], 'pack of 10', 2, 42.72, amz('B0C5ZCVGNP'), 'Required'),
+            ('b6700', 'Ball bearing, shoe inner ear', '6700ZZ', '10 x 15 x 4 mm', bear['6700ZZ'], 'pack of 10', 1, 6.79, amz('B0FQ4VYXRP'), 'Required'),
+            ('idler', 'Idler: neck, head pitch, head roll, both ankles', 'ROBOTIS FPX330-H101', 'set of 4', 5, 'set of 4', 2, 11.27, link('ROBOTIS US', 'https://robotis.us/fpx330-h101-4pcs-set/'), 'Required'),
+        ]),
+        ('Fasteners', [
+            ('m2x6', 'Screw, servo mounting', 'generic', 'M2 x 6 mm', sc('M2', 6), 'in the servo box', 0, None, f'{n * per_servo[("M2", 6)]} come with the servos', 'Required'),
+            ('m2x8', 'Screw, servo mounting', 'generic', 'M2 x 8 mm', sc('M2', 8), 'in the servo box', 0, None, f'{n * per_servo[("M2", 8)]} come with the servos', 'Required'),
+            ('m2f', 'Screw, flat head', 'generic', 'M2 x 5 mm', sc('M2 flat', 5), 'each', sc('M2 flat', 5), None, 'no source chosen', 'Required'),
+            ('m25', 'Screw, bus board', 'generic', 'M2.5 x 5 mm', sc('M2.5', 5), 'each', sc('M2.5', 5), None, 'no source chosen', 'Required'),
+            ('so', 'Hex standoff, bus board', 'generic', 'brass, M2.5, 5 mm across flats, 8 mm long', 4, 'each', 4, None, 'no source chosen', 'Required'),
+            ('m3kit', 'Screws, socket cap: 1 x M3 x 10, 4 x M3 x 12', 'generic', 'kit of 610 with nuts and washers', sc('M3', 10) + sc('M3', 12), 'kit', 1, 19.99, amz('B09NR8X2LV'), 'Required'),
+            ('wash', 'Washer, far hinge tab to hood', 'generic', 'M3, 0.5 mm thick', 1, 'each', 1, None, 'no source chosen', 'Required'),
+            ('m2kit', 'Spare M2 screws', 'generic', 'self-tapping pan head kit, 800 pieces', 0, 'kit', 1, 15.66, amz('B0GV338JJK'), 'Optional'),
+        ]),
+        ('Electronics', [
+            ('pi', 'Computer', 'Raspberry Pi Zero 2 W', 'without header', 1, 'each', 1, None, link('PiShop', 'https://www.pishop.us/product/raspberry-pi-zero-2-w/') + ': out of stock on 2026-11-03', 'Required'),
+            ('sd', 'microSD card', 'as linked', '', 1, 'each', 1, None, amz('B08L5HMJVW'), 'Required'),
+            ('board', 'Servo bus board', 'Waveshare Bus Servo Adapter (A), SKU 25514', 'USB-C, 2 servo sockets', 1, 'each', 1, 9.05, link('Abra', 'https://abra-electronics.com/electromechanical/motors/motor-controllers/wave-25514-serial-bus-servo-driver-board.html') + ', ' + link('Waveshare', 'https://www.waveshare.com/bus-servo-adapter-a.htm'), 'Required'),
+            ('reg', '5 V regulator', 'hiBCTR USB buck converter QC3.0', '6-32 V in, 35 x 17 x 8.5 mm', 1, 'pack of 2', 1, 7.97, "Amazon, search 'hiBCTR USB buck converter QC3.0'", 'Required'),
+            ('imu', 'IMU', 'Adafruit 4754 (BNO085)', '', 1, 'each', 1, 29.50, link('Adafruit', 'https://www.adafruit.com/product/4754'), 'Required'),
+            ('sw', 'Foot switch', 'Omron D2F-01F', 'subminiature microswitch', 2, 'pack of 4', 1, 6.74, amz('B0062WNDLI'), 'Required'),
+            ('cam', 'Camera', 'Arducam 8 MP IMX219', 'board modelled at 24 x 24 mm', 1, 'each', 1, 16.99, amz('B09V576TFN'), 'Optional'),
+            ('ribbon', 'Camera ribbon, if the camera lacks one', 'generic', 'Pi Zero 22-pin to 15-pin', 1, 'each', 1, None, 'no source chosen', 'Optional'),
+        ]),
+        ('Power and wiring', [
+            ('batt', 'Battery', 'OVONIC 2S LiPo, 100C', '450 mAh, XT30, 61.5 x 15.8 x 13.5 mm, 31 g', 1, 'pack of 4', 1, 26.39, amz('B0D2KT723L'), 'Required'),
+            ('xt30', 'Battery connector', 'Nuofany XT30 pigtail', '100 mm, 16 AWG', 1, '5 pairs', 1, 9.99, amz('B0B4H4GKQL'), 'Required'),
+            ('wire', 'Power wire, red and black', 'BNTECHGO silicone wire', '20 AWG', 1, '10 ft each', 1, None, amz('B01M12PSJM'), 'Required'),
+            ('thin', 'Signal wire: IMU and foot switches', 'generic silicone wire', '28 AWG, about 2 m in all', 1, 'roll', 1, None, 'no source chosen', 'Required'),
+            ('long', 'Servo cable: socket 2 to right leg, neck servo to left leg', 'ROBOTIS Robot Cable-X3P or equivalent', 'JST EH 3-pin both ends, 300-400 mm', 2, 'each', 2, None, 'no source chosen: the 300 mm found is listed with a Molex plug', 'Required'),
+            ('usb', 'Regulator to Pi power', 'LY tech flat ribbon USB', 'right-angle USB-A to right-angle micro USB, 10 cm', 1, 'each', 1, 13.50, "Amazon, search 'LY tech flat ribbon micro USB 90 degree'", 'Required'),
+            ('otg', 'Pi to bus board', 'generic', 'right-angle micro USB OTG to right-angle USB-C', 1, 'each', 1, None, 'no source chosen', 'Required'),
+        ]),
+        ('Consumables', [
+            ('fix', 'Foam tape, hook-and-loop strap, small cable ties', 'generic', '', 1, 'lot', 1, 12.00, 'any hardware shop; price estimated', 'Required'),
+            ('joint', 'Solder, heat-shrink tube, CA glue', 'generic', '', 1, 'lot', 1, None, 'any hardware shop', 'Required'),
+        ]),
+        ('Support equipment (not in the robot)', [
+            ('chg', 'Charger', 'as linked', '2S LiPo, to 8.4 V, must match the balance plug', 1, 'each', 1, None, amz('B0FDKX4V38'), 'Required'),
+        ]),
+    ]
+    num, k = {}, 0
+    for _, rows in GROUPS:
+        for r in rows:
+            k += 1
+            num[r[0]] = k
+
+    def money(v):
+        return f'${v:,.2f}'
+    tot, opt, unpriced, summary, T = 0.0, 0.0, 0, [], []
+    for g, rows in GROUPS:
+        T += [f'### {g}', '', '| Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source | Status |', '|---|---|---|---|---|---|---|---|---|---|---|']
+        sub = 0.0
+        for key, part, mpn, spec_, q, unit, oq, price, src, st in rows:
+            line = None if price is None else oq * price
+            if st == 'Required':
+                if line is not None:
+                    sub += line
+                elif oq:
+                    unpriced += 1
+            elif line is not None:
+                opt += line
+            T.append(f"| {num[key]} | {part} | {mpn} | {spec_} | {q or '-'} | {unit} | {oq or '-'} | {money(price) if price else '-'} | {money(line) if line else '-'} | {src} | {'**Optional**' if st == 'Optional' else 'Required'} |")
+        T.append('')
+        tot += sub
+        summary.append(f'| {g} | {money(sub) if sub else "-"} |')
+    # fabricated parts: from the spec, left and right together, each with its print file
     parts = json.load(open(G.parts_path(), encoding='utf-8'))['parts']
-    COL = {'#3A3D42': ('Dark grey', 'frames, brackets, lids, shins, chassis'), '#E8642A': ('Orange', 'head frame, jaw, shoes, inner ears'), '#ECEBE6': ('White', 'hood, body shell, thigh covers'),
-           '#9A9C98': ('Mid grey', 'face'), '#F0A030': ('Amber', 'eye ring'), '#0A1420': ('Black', 'eye iris'), '#F2B233': ('Yellow', 'soles'), '#F7AE55': ('Pale orange', 'jaw insert, mouth roof')}
-    vol = {}
-    for q in parts.values():
-        k = (q['material'], q['color'])
-        vol[k] = vol.get(k, 0) + q['volume_cm3']
-    total_v = {m: sum(v for (a, _), v in vol.items() if a == m) for m in ('pla', 'tpu')}
-    fil = []
-    for (m, c), v in sorted(vol.items(), key=lambda x: (x[0][0], -x[1])):
-        g_ = (pla if m == 'pla' else tpu) * 1000 * v / total_v[m]
-        fil.append(f"| ☐ | {COL.get(c, (c, ''))[0]} | {'PLA' if m == 'pla' else 'TPU 95A'} | {g_:.0f} g | {COL.get(c, (c, ''))[1]} |")
-    L = ['# All-Dynamixel duck: parts to buy', '', 'Generated by `tools/make_docs.py` from the spec, so the counts match the model. Shops re-read on 2026-11-03; Amazon pages refuse AI agents, so those are as read on 2026-11-02. **Confirm each before ordering.**', '',
-         f'Model mass {total:.2f} kg, 0.295 m tall. Nothing has been printed: print one joint first.', '',
-         f'**Listed prices add up to about ${priced:.0f},** of which ${n * 27.49:.0f} is servos. That leaves out what has no price read here (Pi, Waveshare board, regulator, wire, microSD, charger, M2 flat and M2.5 screws, filament), and tax and shipping. A Koch arm pair saves ${4 * 27.49:.0f} on servos.', '',
-         '## Servos: the real constraint', '',
-         f'**{n} XL330-M288-T.** ROBOTIS US: [sold out](https://robotis.us/products/dynamixel-xl330-m288-t), lead time to the end of November, $27.49. '
-         '[Seeed](https://www.seeedstudio.com/Servo-Motor-1-5V-103RPM-Brush-mm-p-6783.html): $31.40, limit 2 per account, sold as numbered Reachy Mini servos (No. 1-6, each its own listing, with an arm and a preset ID: set the ID again).', '',
-         '| From a Koch arm pair | Count | Use |', '|---|---|---|',
-         '| XL330-M288-T (follower) | 4 | the right servo: 4 of the 15 |', '| XL330-M077-T (leader) | 6 | same case, so it fits, but about 40 % of the torque: no walking joint. **Can drive the jaw:** see below |',
-         '| XL430 (follower) | 2 | a bigger case: does not fit |', '',
-         'What 4 M288s can build now: the neck and head (5 joints, with an M077 on the beak), or one leg. Either tests the fit, connectors and screws on real parts.', '',
-         '**They run past their rating:** on a 2S pack straight, as Microduck\'s trainer models its own (6.5-8.2 V), against ROBOTIS\'s 6 V maximum. Expect a shorter life than ROBOTIS rates. A 5 V supply would be within rating, but the walks here were trained at 2S.', '',
-         '## Jaw servo: choose one', '',
-         'Both fit the same pocket, horn and screws, with no change to the print.', '',
-         '| Have | Servo | Stall torque, 5 V | No-load speed, 5 V | Gear ratio | Weight | Model number |', '|---|---|---|---|---|---|---|',
-         '| ☐ | **XL330-M288-T** (as modelled; the default) | 0.52 N m | 103 rev/min | 288.4:1 | 18 g | 1200 |',
-         '| ☐ | **XL330-M077-T** (optional) | 0.215 N m | 383 rev/min | 77.5:1 | 18 g | 1190 |', '',
-         'From ROBOTIS\'s e-manual pages. The jaw weighs 33 g as modelled: 0.014 N m to hold it level, or about 0.07 N m at 5 g, so the M077 has about 3 times that on paper.', '',
-         '- **Why choose the M077:** your Koch leader arm has 6 spare, and it frees an M288 for a walking joint. You then need 14 M288s and 1 M077. It also stalls about 60 % softer against the jaw\'s stops.',
-         '- **What to check first:** it opens and shuts nearly 4 times faster, so limit its speed in software, or it will slam. With lower gearing the jaw may droop when unpowered: try it on the bench.',
-         '- **Software:** it has its own model number, so don\'t hard-code 1200. Set its ID as for the others.',
-         '- **Not tested:** the simulations and training use the M288. The numbers above are from the listing and the model, not a real jaw.', '',
-         '## Horns, idlers, bearings', '', '| Have | Part | Need | Where | Used for |', '|---|---|---|---|---|',
-         f"| ☐ | MR2216ZZ bearing, 16 x 22 x 4 mm | {bear['MR2216ZZ']} | {amz('B0C5ZCVGNP', 'Amazon, ET2216ZZ')}: 10 for $42.72, so 2 packs | round each horn. Check a horn fits the bore before printing |",
-         f"| ☐ | 6700ZZ bearing, 10 x 15 x 4 mm | {bear['6700ZZ']} | {amz('B0FQ4VYXRP')}: 10 for $6.79 | each shoe's inner ear |",
-         '| ☐ | ROBOTIS FPX330-H101 set, 4 idlers | 2 | [ROBOTIS US](https://robotis.us/fpx330-h101-4pcs-set/): $11.27 each. Your Koch arm\'s spares count | 5 idlers: the neck, head pitch, head roll and both ankles |', '',
-         "**Idlers, buy or print:** the Koch arm buys its wheels (the FPX330-H101 set) and prints only the matching frame. Buying is the default here too: ROBOTIS's wheel is made and tested. **Optional:** print your own, about 0.6 g each, from [prints/dynamixel/optional/](../../prints/dynamixel/optional/README.md): 5 `idler_wheel.stl` and 5 `idler_bushing.stl`, each held by an M2.5 x 8 mm self-tapping screw into the servo's rear hole. Same outside and same screw holes, so nothing else changes. It's untested and it's a plastic bearing, so print one, try the spin and the screw bite, and expect it to wear faster, most of all at the ankles. Use PETG or nylon if you have it, not PLA.", '',
-         '**Horns:** none to buy. Every ROBOTIS photo and ROBOTIS\'s own model have the horn on the servo, and the Koch arm\'s bill of materials buys none. If a servo of yours came without one, it is the HNX330-N102.', '',
-         '## Screws', '', 'Each Dynamixel comes with its M2 screws (6 x 6 mm, 10 x 8 mm), per ROBOTIS, so most of these you have, if you kept them.', '', '| Have | Size | Need |', '|---|---|---|']
-    for (sz, ln), c in sorted(screws.items()):
-        L.append(f'| ☐ | {sz} x {ln} mm | {c} |')
-    L += ['| ☐ | M3 washer, 0.5 mm | 1: between the far hinge tab and the hood |', '', 'If you need to buy them:', '',
-          '| Have | Pack | Price | Where | Covers |', '|---|---|---|---|---|',
-          f"| ☐ | M2 self-tapping pan head kit, 800 pieces | $15.66 | {amz('B0GV338JJK')} | M2 x 6 and x 8, 100 each, as listed: the 8 mm is short of 116 unless you kept the servos' own |",
-          f"| ☐ | M3 socket cap kit, 610 pieces, with nuts and washers | $19.99 | {amz('B09NR8X2LV')} | M3 x 10 and x 12. Its count per length is not listed |",
-          '| ☐ | M2 flat x 5 mm, M2.5 x 5 mm, one 0.5 mm M3 washer | not priced | any hardware shop | not sourced yet |',
-          '| ☐ | Foam tape, hook-and-loop strap, small cable ties | about $12 | any hardware shop | the IMU and camera on tape, the battery on a strap, wires tied |', '',
-          '## Printed parts', '', f'About {pla * 1000:.0f} g of PLA and {tpu * 1000:.0f} g of TPU 95A, as modelled. STLs and how to print them: [prints/dynamixel/](../../prints/dynamixel/README.md). A 1 kg spool of each main colour is plenty.', '',
-          '| Have | Colour | Material | Amount | Parts |', '|---|---|---|---|---|', *fil, '',
-          'The colours are the model\'s look: any will work. The hood\'s orange band is painted or split in the slicer. Add about 15 % for supports and a failed print.', '',
-          '## Electronics', '', 'One bus, so one board. Sizes are from listings, in places checked against everything that moves.', '',
-          '| Have | Part | Need | Where | Note |', '|---|---|---|---|---|',
-          '| ☐ | Raspberry Pi Zero 2 W | 1 | [PiShop](https://www.pishop.us/product/raspberry-pi-zero-2-w/): its page marked it out of stock on 2026-11-03. Look at other resellers | in the head |',
-          '| ☐ | Waveshare Bus Servo Adapter (A) | 1 | [Waveshare](https://www.waveshare.com/bus-servo-adapter-a.htm). **The one on your Koch arm: nothing to buy.** Set both jumpers to B, USB to servo. Its silkscreen says DC 9-12.6 V and this duck\'s pack is 7.4-8.4 V: the servo rail runs straight through, as your arm\'s lower supply shows, but try it on the bench | stands on the back of the Pi\'s plate. Replaces the U2D2 |',
-          '| ☐ | 4 brass hex standoffs, 5 mm across flats, 8 mm long | 1 set | **On your Koch arm\'s board.** The size was read off a photograph: measure yours | hold the board in its hex sockets |',
-          "| ☐ | OVONIC 2S LiPo, 450 mAh, 100C, XT30, 4-pack | 1 | [Amazon](https://www.amazon.com/dp/B0D2KT723L), $26.39, read by you on 2026-11-04 | 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, leads out to a port in the rear. Marked HV: charge as a normal 2S, to 8.4 V |",
-          "| ☐ | hiBCTR USB buck converter, 6-32 V input, 2-pack | 1 | Amazon, $7.97, read by you on 2026-11-04. Search 'hiBCTR USB buck converter QC3.0' | 35 x 17 x 8.5 mm. In the head, for the Pi only, from the board's green terminals: **solder 2 input wires**, and a USB-A to micro USB cable to the Pi's **PWR port only**. It can output up to 12 V if a device asks for fast charging, so **measure about 5 V first**, and plug in nothing else |",
-          "| ☐ | XT30 pigtails, 5 pairs, 100 mm, 16 AWG | 1 | [Amazon, Nuofany](https://www.amazon.com/dp/B0B4H4GKQL), $9.99, read by you on 2026-11-04 | the battery's mate, its bare ends joined to the neck wire |",
-          "| ☐ | Silicone wire, 20 AWG, 10 ft red and 10 ft black | 1 | [Amazon, BNTECHGO](https://www.amazon.com/dp/B01M12PSJM): not opened, check it | battery lead through the neck, and the converter's 2 input wires. Lever connector or solder where it joins the pigtail. **No kit or breadboard needed** |",
-          "| ☐ | Long servo cable, JST EH 3-pin, about 300-400 mm | 2 | ROBOTIS Robot Cable-X3P, or join your Koch spares: length to be confirmed | socket 2 to the right leg, and the neck servo to the left leg |",
-          "| ☐ | Flat ribbon USB cable, right-angle USB-A to right-angle micro USB, 10 cm | 1 | LY tech on Amazon, $13.50, read by you on 2026-11-04. Search 'LY tech flat ribbon micro USB 90 degree' | converter to the Pi's PWR port. A straight USB-A plug hits the face. Check the Pi's voltage under load, as the ribbon's wires are thin |",
-          "| ☐ | Right-angle micro USB OTG lead | 1 | any | Pi to board |",
-          '| ☐ | BNO085 IMU board | 1 | [Adafruit 4754](https://www.adafruit.com/product/4754), $29.50, in stock on 2026-11-03 | on the top plate |',
-          f"| ☐ | Arducam 8 MP IMX219 camera | 1 | {amz('B09V576TFN')}, $16.99 | on the back of the face. Check its board against the 24 x 24 mm modelled |",
-          f"| ☐ | Omron D2F-01F microswitch, 4 pack | 1 | {amz('B0062WNDLI')}, $6.74 | foot switches. Travel against this TPU is untested |",
-          f"| ☐ | microSD card, 2S charger | 1 each | {amz('B08L5HMJVW', 'card')}, {amz('B0FDKX4V38', 'charger')} | check the charger matches the pack's balance plug |", '',
-          'Each servo comes with a 180 mm lead. Across a joint, leave slack.', '',
-          '## Not designed yet', '', '- A power switch: unplug the XT30.', '- Speaker and microphone.', '- Exact cable lengths: measure on the build.', '']
+    COL = {'#3A3D42': 'Dark grey', '#E8642A': 'Orange', '#ECEBE6': 'White', '#9A9C98': 'Mid grey', '#F0A030': 'Amber', '#0A1420': 'Black', '#F2B233': 'Yellow', '#F7AE55': 'Pale orange'}
+    total_v = {m: sum(q['volume_cm3'] for q in parts.values() if q['material'] == m) for m in ('pla', 'tpu')}
+
+    def grams(q):
+        return (pla if q['material'] == 'pla' else tpu) * 1000 * q['volume_cm3'] / total_v[q['material']]
+    F, vol, j = [], {}, 0
+    for name, q in parts.items():
+        kk = (q['material'], q['color'])
+        vol[kk] = vol.get(kk, 0) + grams(q)
+        if name.startswith('R '):
+            continue
+        j += 1
+        fn = name.replace(' ', '_') + '.stl'
+        two = name.startswith('L ')
+        assert os.path.exists(os.path.join(G.out_path('prints'), fn)), fn
+        if two:
+            assert 'R ' + name[2:] in parts, name
+        shown = name[2:].capitalize() + ', left and right' if two else name.capitalize()
+        files = f"`{fn}`, `R_{fn[2:]}`" if two else f'`{fn}`'
+        F.append(f"| P{j} | {shown} | {files} | {'PLA' if q['material'] == 'pla' else 'TPU 95A'} | {COL.get(q['color'], q['color'])} | {q['color']} | {grams(q):.1f} g | {2 if two else 1} |")
+    fil = [f"| {COL.get(c, c)} | {c} | {'PLA' if m == 'pla' else 'TPU 95A'} | {g_:.0f} g | {g_ * 1.15:.0f} g |" for (m, c), g_ in sorted(vol.items(), key=lambda x: (x[0][0], -x[1]))]
+    L = ['# All-Dynamixel duck: bill of materials', '',
+         '| | |', '|---|---|',
+         '| Product | All-Dynamixel duck, biped, 15 servos |',
+         f'| Height, mass | 0.295 m, {total:.2f} kg as modelled |',
+         '| Build quantity | Quantities are for 1 robot |',
+         f'| Fabricated parts | {len(parts)} printed parts, {pla * 1000:.0f} g PLA and {tpu * 1000:.0f} g TPU 95A |',
+         '| Status | Prototype: no unit built, no part test printed |',
+         '| Prices | USD, as listed 2026-11-02 to 2026-11-04, before tax and shipping. Confirm before ordering |',
+         '| Related | [Print files](../../prints/dynamixel/README.md), [wiring](WIRING.md), [assembly](ASSEMBLY.md) |', '',
+         'Generated by `tools/make_docs.py` from the spec. Quantities match the model.', '',
+         '## Cost summary', '', '| Group | Required parts, priced |', '|---|---|', *summary,
+         f'| **Total of quoted lines** | **{money(tot)}** |', '',
+         f'{unpriced} required lines have no quote yet and are not in the total, nor is filament. Optional parts add {money(opt)} on the quoted lines.', '',
+         '## Purchased parts', '', *T,
+         '## Fabricated parts', '', 'All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.md), already oriented for printing, in millimetres. Mass is each piece. The hood has an orange band, painted or split in the slicer.', '',
+         '| Item | Part | File | Material | Colour | Hex | Mass each | Qty per robot |', '|---|---|---|---|---|---|---|---|', *F, '',
+         '### Filament', '', '| Colour | Hex | Material | Model mass | With 15 % for supports and scrap |', '|---|---|---|---|---|', *fil, '',
+         f"Optional alternate to item {num['idler']}: printed idlers, 5 wheels and 5 bushings in PETG or nylon, each held by an M2.5 x 8 mm self-tapping screw, from [prints/dynamixel/optional/](../../prints/dynamixel/optional/README.md). Untested.", '',
+         '## Build notes that affect ordering', '',
+         f"- **Items {num['servo']}, {num['batt']}:** the servos run directly from 2S, 7.4-8.4 V, above ROBOTIS's 6 V maximum. Expect a shorter life than ROBOTIS rates. The walking policies were trained at this voltage.",
+         f"- **Item {num['m077']}:** with it, order {n - 1} of item {num['servo']}. It moves nearly 4 times faster, so limit its speed in software. Its gearing is lower, so check that the jaw holds when unpowered. The simulations use the M288.",
+         f"- **Item {num['board']}:** set both jumpers to B. Its silkscreen says DC 9-12.6 V and the battery is 7.4-8.4 V: bench test before ordering in quantity.",
+         f"- **Item {num['reg']}:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.",
+         f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",
+         f"- **Item {num['usb']}:** check the Pi's voltage under load, as the ribbon's wires are thin.",
+         f"- **Items {num['m2x6']}, {num['m2x8']}:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: order item {num['m2kit']} and set each ID again if buying there.",
+         '- Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.', '',
+         '## Open before ordering', '',
+         f"- **Servo supply:** item {num['servo']} is sold out at ROBOTIS US and limited at Seeed. {n} units is the longest lead time here.",
+         f"- **Sources to choose:** items {', '.join(str(num[x]) for x in ('m2f', 'm25', 'so', 'wash', 'ribbon', 'thin', 'long', 'otg'))}.",
+         f"- **Measure on the first parts:** a horn in the bore of item {num['mr2216']}; the board's standoff size, read from a photograph (item {num['so']}); the camera board (item {num['cam']}); servo cable lengths (item {num['long']}); switch travel against the TPU sole (item {num['sw']}).",
+         f"- **Amazon listings** (items {', '.join(str(num[x]) for x in ('mr2216', 'b6700', 'batt', 'xt30', 'wire', 'sw', 'cam'))}, and those found by search) are as last read: confirm each page before ordering.",
+         '- **Not in this design:** power switch (the XT30 is the disconnect), speaker, microphone.', '']
     folder = G.out_path('docs')
     os.makedirs(folder, exist_ok=True)
     open(os.path.join(folder, 'BOM.md'), 'w', encoding='utf-8').write('\n'.join(L))

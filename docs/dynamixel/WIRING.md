@@ -22,7 +22,7 @@ No power switch is designed in: unplug the XT30, which sits with the balance plu
 | From | To | How |
 |---|---|---|
 | Pi micro USB (the port marked USB), right-angle OTG lead | Waveshare Bus Servo Adapter (A), USB-C | both jumpers at B. Right-angle at both ends: there is 11 mm beside the board and little under the Pi |
-| Bus board's 2 sockets | the chains | D, V, G. V is only what its DC terminals are given. Your Koch arm needed its sockets eased to take Dynamixel plugs: do it before fitting |
+| Bus board's 2 sockets | the chains | D, V, G. V is only what its DC terminals are given. The sockets may need easing to take Dynamixel plugs: do it before fitting |
 | Battery lead, in the neck | bus board's DC+ and DC- terminals, with the regulator's input alongside | feeds everything. **Its silkscreen says DC 9-12.6 V, and the pack is 7.4-8.4 V. Bench test first** |
 | Pi I2C (pins 3, 5), 3V3, ground | IMU in the body | 4 thin wires down the neck |
 | Pi GPIO, ground | foot switches | 2 wires down each leg |
