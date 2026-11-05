@@ -78,7 +78,7 @@ RECIPES = {
                    battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
                    beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                    ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
-                   target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
+                   target_tol=0.12, neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005, thigh_post_r=0.0045),
     # every joint a Feetech, on the 2S pack, no 5 V servo rail. The head and neck grow round the bigger case: Q, the head's plain internal
     # lengths over the hybrid's (the case's width over the XL330's), the hood to match
     'feetech': dict(yaw='STS3215_C046', leg='STS3215_C044', neck='STS3215_C044', head='STS3215_C044', head2='STS3215_C046', K=1.0, HK=1.46, Q=1.235,
@@ -843,7 +843,7 @@ link('L_hip_pitch_link', 0.10, [
     fast(cyl('L thigh cover screw knee', (XK, THIGH_Y[1] + 0.0003, ZK), 'y', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.006,
          (XK, THIGH_Y[1], ZK), (0, -1, 0)),
     # the plate now sits 6 mm under the cover's face: posts take those screws
-    *[dict(cyl(f'L thigh post {nm}', (x_, (YT_CASE[1] + MT - 0.0005 + THIGH_Y[1] - 0.0015) / 2, z_), 'y', 0.003, THIGH_Y[1] - 0.0015 - (YT_CASE[1] + MT - 0.0005), DARK), exposed=True)
+    *[dict(cyl(f'L thigh post {nm}', (x_, (YT_CASE[1] + MT - 0.0005 + THIGH_Y[1] - 0.0015) / 2, z_), 'y', R.get('thigh_post_r', 0.003), THIGH_Y[1] - 0.0015 - (YT_CASE[1] + MT - 0.0005), DARK), exposed=True)
       for nm, x_, z_ in (('hip', 0.0, ZP), ('knee', XK, ZK))],
     # the wires' way from the plugs round the plate to the open inside of the cover: the windows run out through its edge
     cut(box('L thigh wire notch hip', (-(SH / 2) - 0.0005, YT_CASE[1] - 0.001, ZP + 0.0090), (-0.0105, YT_CASE[1] + MT + 0.001, ZP + 0.030), DARK), 'L thigh plate'),
@@ -1440,7 +1440,8 @@ def build():
     # its rear tube, where the horn comes off: a pocket for 2.5 mm of tube left a 0.35 mm floor in a 3 mm plate, which no printer holds. A hole right through instead
     for j in joints:
         A_ = ACT[j['act']]
-        if 'rear_stub' not in A_ or 'ankle' in j['name'] or (j.get('fork', True) and not j['remote']):
+        if 'rear_stub' not in A_ or 'ankle' in j['name'] or j['name'][2:].replace('_', ' ') in XL_REAR or (j.get('fork', True) and not j['remote']):   # (a thigh's plate has the cover's post over the tube, so there the pocket has a floor: the post, widened to take in its corners)
+           
             continue
         n, f, H_ = j['name'].replace('_', ' '), servo_frame(j), A_['box'][2]
         case_link = j['child'] if j.get('case_in') == 'child' else j['parent']

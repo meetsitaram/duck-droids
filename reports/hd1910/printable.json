@@ -99,7 +99,7 @@
   "group": "ORIENT",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall"
+  "detail": "2100 mm2 overhang, 123 mm2 on the bed, 34 mm tall"
  },
  {
   "group": "PIECES",
@@ -111,7 +111,7 @@
   "group": "BED",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "51 x 66 x 34 mm, 89 mm2 on the bed"
+  "detail": "51 x 66 x 34 mm, 123 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -123,7 +123,7 @@
   "group": "SUPPORT",
   "item": "L thigh frame",
   "status": "WARN",
-  "detail": "2118 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2100 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -417,7 +417,7 @@
   "group": "ORIENT",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall"
+  "detail": "2100 mm2 overhang, 123 mm2 on the bed, 34 mm tall"
  },
  {
   "group": "PIECES",
@@ -429,7 +429,7 @@
   "group": "BED",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "51 x 66 x 34 mm, 89 mm2 on the bed"
+  "detail": "51 x 66 x 34 mm, 123 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -441,7 +441,7 @@
   "group": "SUPPORT",
   "item": "R thigh frame",
   "status": "WARN",
-  "detail": "2118 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "2100 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",

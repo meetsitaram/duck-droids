@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 01:30, 72 s
+spec: `spec/robot.json`, 2026-11-05 01:37, 82 s
 
 190 checks: 187 pass, 3 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-05 01:30, 72 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.023 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 1.024 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 

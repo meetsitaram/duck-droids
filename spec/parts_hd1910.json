@@ -1136,7 +1136,7 @@
 "L knee cradle side +",
 "L knee cradle side -"
 ],
-"volume_cm3": 10.29197243540458,
+"volume_cm3": 10.70361177152168,
 "print_T": [
 [
 0.0,
@@ -1145,14 +1145,14 @@
 0.0
 ],
 [
-1.0,
+-1.0,
 0.0,
 0.0,
 0.0
 ],
 [
 0.0,
-1.0,
+-1.0,
 0.0,
 0.0
 ],
@@ -2061,7 +2061,7 @@
 "geoms": [
 "L thigh cover"
 ],
-"volume_cm3": 15.983850242230787,
+"volume_cm3": 15.945709726989147,
 "print_T": [
 [
 0.0,
@@ -2158,12 +2158,36 @@
 ],
 "pockets": [
 {
-"exact": "L thigh post hip",
-"name": "L thigh post hip"
+"kind": "cyl",
+"name": "L thigh post hip",
+"c": [
+0.0,
+0.06859,
+0.10021965370031986
+],
+"axis": "y",
+"r": 0.0046,
+"h": 0.005099999999999993,
+"color": "#3A3D42",
+"role": "struct",
+"exposed": true,
+"material": "pla"
 },
 {
-"exact": "L thigh post knee",
-"name": "L thigh post knee"
+"kind": "cyl",
+"name": "L thigh post knee",
+"c": [
+-0.038000000000000006,
+0.06859,
+0.07688
+],
+"axis": "y",
+"r": 0.0046,
+"h": 0.005099999999999993,
+"color": "#3A3D42",
+"role": "struct",
+"exposed": true,
+"material": "pla"
 },
 {
 "kind": "stepbox",
@@ -4727,7 +4751,7 @@
 "R knee cradle side +",
 "R knee cradle side -"
 ],
-"volume_cm3": 10.29197243540458,
+"volume_cm3": 10.70361177152168,
 "print_T": [
 [
 0.0,
@@ -4736,14 +4760,14 @@
 0.0
 ],
 [
--1.0,
+1.0,
 0.0,
 0.0,
 0.0
 ],
 [
 0.0,
--1.0,
+1.0,
 0.0,
 0.0
 ],
@@ -5652,7 +5676,7 @@
 "geoms": [
 "R thigh cover"
 ],
-"volume_cm3": 15.983850242230783,
+"volume_cm3": 15.945709726989147,
 "print_T": [
 [
 0.0,
@@ -5749,12 +5773,36 @@
 ],
 "pockets": [
 {
-"exact": "R thigh post hip",
-"name": "R thigh post hip"
+"kind": "cyl",
+"name": "R thigh post hip",
+"c": [
+0.0,
+-0.06859,
+0.10021965370031986
+],
+"axis": "y",
+"r": 0.0046,
+"h": 0.005099999999999993,
+"color": "#3A3D42",
+"role": "struct",
+"exposed": true,
+"material": "pla"
 },
 {
-"exact": "R thigh post knee",
-"name": "R thigh post knee"
+"kind": "cyl",
+"name": "R thigh post knee",
+"c": [
+-0.038000000000000006,
+-0.06859,
+0.07688
+],
+"axis": "y",
+"r": 0.0046,
+"h": 0.005099999999999993,
+"color": "#3A3D42",
+"role": "struct",
+"exposed": true,
+"material": "pla"
 },
 {
 "kind": "stepbox",

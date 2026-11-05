@@ -6,7 +6,7 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | material | kg | share |
 |---|---|---|
-| pla | 0.43 | 42 % |
+| pla | 0.44 | 42 % |
 | actuator | 0.32 | 32 % |
 | steel | 0.12 | 11 % |
 | electronics | 0.06 | 6 % |
