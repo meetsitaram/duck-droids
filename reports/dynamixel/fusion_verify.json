@@ -3,7 +3,7 @@
   "group": "POINTS",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 790 offline, 789 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 792 offline, 791 in Fusion"
  },
  {
   "group": "POINTS",
@@ -51,19 +51,19 @@
   "group": "POINTS",
   "item": "L shin",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 226 offline, 225 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 226 offline, 226 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 194 offline, 196 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 194 offline, 195 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "L sole",
   "status": "PASS",
-  "detail": "1.4 % of 1500 points disagree; solid in 1093 offline, 1108 in Fusion"
+  "detail": "1.5 % of 1500 points disagree; solid in 1094 offline, 1108 in Fusion"
  },
  {
   "group": "POINTS",
@@ -75,7 +75,7 @@
   "group": "POINTS",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 727 offline, 724 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 731 offline, 728 in Fusion"
  },
  {
   "group": "POINTS",
@@ -93,7 +93,7 @@
   "group": "POINTS",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "0.6 % of 1500 points disagree; solid in 322 offline, 321 in Fusion"
+  "detail": "0.5 % of 1500 points disagree; solid in 322 offline, 322 in Fusion"
  },
  {
   "group": "POINTS",
@@ -123,7 +123,7 @@
   "group": "POINTS",
   "item": "R shin",
   "status": "PASS",
-  "detail": "0.5 % of 1500 points disagree; solid in 242 offline, 239 in Fusion"
+  "detail": "0.4 % of 1500 points disagree; solid in 242 offline, 238 in Fusion"
  },
  {
   "group": "POINTS",
@@ -147,13 +147,13 @@
   "group": "POINTS",
   "item": "chassis",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 260 offline, 261 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 252 offline, 252 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "body shell",
   "status": "PASS",
-  "detail": "0.3 % of 1500 points disagree; solid in 128 offline, 128 in Fusion"
+  "detail": "0.3 % of 1500 points disagree; solid in 129 offline, 130 in Fusion"
  },
  {
   "group": "POINTS",
@@ -165,7 +165,7 @@
   "group": "POINTS",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 905 offline, 906 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 906 offline, 906 in Fusion"
  },
  {
   "group": "POINTS",
@@ -189,7 +189,7 @@
   "group": "POINTS",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 267 offline, 267 in Fusion"
+  "detail": "0.6 % of 1500 points disagree; solid in 267 offline, 260 in Fusion"
  },
  {
   "group": "POINTS",
@@ -201,7 +201,7 @@
   "group": "POINTS",
   "item": "head roll spacer",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 899 offline, 899 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 898 offline, 899 in Fusion"
  },
  {
   "group": "POINTS",
@@ -213,7 +213,7 @@
   "group": "POINTS",
   "item": "head frame",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 81 offline, 81 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 83 offline, 83 in Fusion"
  },
  {
   "group": "POINTS",
@@ -231,7 +231,7 @@
   "group": "POINTS",
   "item": "jaw soft insert",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 1472 offline, 1473 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 1473 offline, 1473 in Fusion"
  },
  {
   "group": "POINTS",

@@ -94,7 +94,7 @@ A design, not yet built. Nothing here has been printed or tested on real parts. 
 
 ## Build it
 
-- [Parts to buy](BOM.md): counts generated from the spec. Prices are retailer listings: confirm before ordering.
+- Parts to buy: [hybrid](BOM.md), [all Dynamixel](docs/dynamixel/BOM.md). Counts generated from the spec. Prices are retailer listings: confirm before ordering.
 - [Assembly guide](docs/ASSEMBLY.md): an animation per section, in an order the checks have tested.
 - [Wiring](docs/WIRING.md): power rails, buses, and where each cable goes.
 - [What went wrong, and the fix for each](LESSONS.md).

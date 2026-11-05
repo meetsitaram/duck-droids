@@ -5,7 +5,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|
-| L hip yaw lid | L_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 4 |
+| L hip yaw lid | L_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
 | L yaw bracket | L_yaw_bracket.stl | 48 x 25 x 29 | 8.2 | PLA | 196 |
 | L hip roll lid | L_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
 | L roll bracket | L_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
@@ -17,7 +17,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | L shoe | L_shoe.stl | 30 x 43 x 58 | 11.1 | PLA | 423 |
 | L sole | L_sole.stl | 13 x 44 x 58 | 24.7 | TPU 95A | 355 |
 | L inner ear | L_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
-| R hip yaw lid | R_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 4 |
+| R hip yaw lid | R_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
 | R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.2 | PLA | 196 |
 | R hip roll lid | R_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
 | R roll bracket | R_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
@@ -29,8 +29,8 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R shoe | R_shoe.stl | 30 x 43 x 58 | 11.1 | PLA | 423 |
 | R sole | R_sole.stl | 13 x 44 x 58 | 24.7 | TPU 95A | 355 |
 | R inner ear | R_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
-| chassis | chassis.stl | 38 x 84 x 53 | 27.7 | PLA | 2255 |
-| body shell | body_shell.stl | 38 x 67 x 82 | 20.0 | PLA | 1266 |
+| chassis | chassis.stl | 38 x 53 x 84 | 27.8 | PLA | 2114 |
+| body shell | body_shell.stl | 38 x 74 x 85 | 22.1 | PLA | 1516 |
 | neck column | neck_column.stl | 26 x 28 x 27 | 3.6 | PLA | 198 |
 | neck lid | neck_lid.stl | 5 x 26 x 3 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 1 |
@@ -40,7 +40,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | head roll lid | head_roll_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | head roll spacer | head_roll_spacer.stl | 16 x 16 x 2 | 0.3 | PLA | 0 (none) |
 | head roll rear spacer | head_roll_rear_spacer.stl | 16 x 16 x 2 | 0.4 | PLA | 0 (none) |
-| head frame | head_frame.stl | 141 x 101 x 59 | 53.1 | PLA | 5208 |
+| head frame | head_frame.stl | 141 x 101 x 59 | 54.2 | PLA | 5470 |
 | hood | hood.stl | 58 x 106 x 150 | 48.7 | PLA | 2919 |
 | jaw | jaw.stl | 88 x 106 x 42 | 29.6 | PLA | 925 |
 | jaw soft insert | jaw_soft_insert.stl | 27 x 101 x 5 | 13.3 | TPU 95A | 0 (none) |

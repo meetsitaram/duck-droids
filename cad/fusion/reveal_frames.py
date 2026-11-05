@@ -18,7 +18,7 @@ W, H = 1080, 1920
 FRONT_AZ = 25   # where the turn ends: degrees round from straight ahead (+X)
 STAGES = [('motors', 0, 150), ('skeleton', 150, 330), ('electronics', 360, 480), ('covers', 510, 650)]   # frames over which each stage's parts appear, from the ground up
 COVERS = ('hood', 'face', 'eye ring', 'eye iris', 'mouth roof', 'jaw', 'jaw soft insert', 'L thigh cover', 'R thigh cover', 'body shell', 'L sole', 'R sole')
-ELEC = ('camera', 'IMU', 'L 5 V regulator', 'R 5 V regulator', 'U2D2', 'servo bus board', 'L foot switch', 'R foot switch')
+ELEC = ('camera', 'IMU', 'head 5 V regulator', 'L 5 V regulator', 'R 5 V regulator', 'U2D2', 'servo bus board', 'L foot switch', 'R foot switch')
 
 
 def stage_of(body_name, comp_name):

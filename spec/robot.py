@@ -54,8 +54,9 @@ RECIPES = {
     # ranges, where the parts allow them. A smaller pack, as the body has 28 mm under its plate (an estimate of a 2S 500 mAh:
     # confirm a part before ordering)
     'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
-                      # a real pack: Gens Ace 2S 450 mAh 60C, XT30, 43 x 23 x 13 mm, 28 g
-                      battery=dict(name='battery 2S 450 mAh', size=(0.013, 0.043, 0.023), mass=0.028), strap=0.0024, batt_x=-0.0405,
+                      # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
+                      # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
+                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True,
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
@@ -734,18 +735,23 @@ HEAD_CX = XN + 0.006 * Q                               # the head reaches as far
 
 # ---------------------------------------------------------------- body (root)
 
+BW_ = (R.get('body_wide', 0.0), R.get('body_back', 0.0) / 2)            # how much wider each side, and half how much further back, the body grows round a longer pack
+BCX_ = -0.009 * K - BW_[1]
+
 link('trunk', 0.40, [
     box('top plate', (BATT_X, -R.get('plate_y', 0.025 * K), PLATE[0]), (XP_FRONT, R.get('plate_y', 0.025 * K), PLATE[1])),
     # the wall joining the neck mount to the top plate: without it, only the hip yaw servo cases joined them
     box('neck wall', (XP_FRONT + 0.0001, -0.0225 * Q, ZY + SHH + 0.0005), (XP_FRONT + 0.003, 0.0165 * Q, PLATE[1]), exposed=True),
     box('neck wall tab', (XP_FRONT - 0.002, -0.0225 * Q, PLATE[0]), (XP_FRONT + 0.0002, 0.0165 * Q, PLATE[1]), exposed=True),
-    box(R['battery']['name'], (BATT_X, -BATT[1] / 2, PLATE[0] - BATT[2]), (BATT_X + BATT[0], BATT[1] / 2, PLATE[0]), CELL,
+    box(R['battery']['name'], (BATT_X, R.get('batt_y', 0) - BATT[1] / 2, PLATE[0] - BATT[2]), (BATT_X + BATT[0], R.get('batt_y', 0) + BATT[1] / 2, PLATE[0]), CELL,
         material='cells', mass=R['battery']['mass']),
+    # the two plugs, in the gap beside the pack's end, their faces at the port: XT30 (power, and where it switches off), balance lead (charging). Sizes as commonly sold: check on the real pack
+    *[box(nm, (x0, 0.0280, z0), (x1, 0.0335, z1), col, 'decal') for nm, x0, x1, z0, z1, col in (('battery XT30', -0.0485, -0.0325, 0.1300, 0.1415, '#F2C21A'), ('battery balance plug', -0.0480, -0.0390, 0.1425, 0.1495, '#E8E8E0')) if R.get('charge_port')],
     # the two 5 V regulators stand on edge in the pockets beside the yaw servos (39 x 21 x 6 mm, an 8 A UBEC's listing); the IMU
     # on the plate, behind the yaw plugs (a BNO085 board, 25.6 x 22.7 x 4.6 mm, Adafruit's listing)
     *[box(f'{nm} 5 V regulator', (-0.0300, sy * 0.0345 - 0.003, ZY + 0.0135), (0.0090, sy * 0.0345 + 0.003, ZY + 0.0347), PCB, material='electronics', mass=0.018) for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2],
     # (one bus and one regulator: the Pi's, on tape on the battery's back, in the 6.2 mm behind it)
-    *[dict(box('L 5 V regulator', (BATT_X - 0.0060, -0.0195, PLATE[0] - 0.0215), (BATT_X, 0.0195, PLATE[0] - 0.0005), PCB, material='electronics', mass=0.018), on_cover=True) for _ in range(BUSES == 1)],
+    *[dict(box('L 5 V regulator', (BATT_X - 0.0060, -0.0195, PLATE[0] - 0.0215), (BATT_X, 0.0195, PLATE[0] - 0.0005), PCB, material='electronics', mass=0.018), on_cover=True) for _ in range(BUSES == 1 and not R.get('reg_head'))],
     # each hangs from 2 arms off the top plate, taped and tied (they reach past the yaw plugs, which stay clear)
     *[box(f"{nm} regulator arm {k}", (x_, min(sy * 0.0245, sy * 0.0378), PLATE[0]), (x_ + 0.008, max(sy * 0.0245, sy * 0.0378), PLATE[1]), fillet=0.0005)
       for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 for k, x_ in enumerate((-0.030, 0.001))],
@@ -764,9 +770,9 @@ link('trunk', 0.40, [
         exposed=True),
     # a superellipse of power 5 round the yaw cases' front corners (power 3.2 cut through them, round 2), as narrow
     # as microduck's body in proportion (round 5)
-    loft('body', [(BODY['bottom'], -0.009 * K, 0, 0.047 * K, 0.031 * K, 6.0), (BODY['bottom'] + 0.010 * K, -0.009 * K, 0, 0.049 * K, 0.040 * K, 8.0),
-                  (BODY['top'] - 0.008, -0.009 * K, 0, 0.049 * K, 0.040 * K, 8.0), (BODY['top'] - 0.003, -0.010 * K, 0, 0.045 * K, 0.036 * K, 5.0),
-                  (BODY['top'], -0.011 * K, 0, 0.038 * K, 0.028 * K, 3.5)], WHITE, open=('bottom',)),
+    loft('body', [(BODY['bottom'], BCX_, 0, 0.047 * K + BW_[1], 0.031 * K + BW_[0], 6.0), (BODY['bottom'] + 0.010 * K, BCX_, 0, 0.049 * K + BW_[1], 0.040 * K + BW_[0], 8.0),
+                  (BODY['top'] - 0.008, BCX_, 0, 0.049 * K + BW_[1], 0.040 * K + BW_[0], 8.0), (BODY['top'] - 0.003, -0.010 * K - BW_[1], 0, 0.045 * K + BW_[1], 0.036 * K + BW_[0], 5.0),
+                  (BODY['top'], -0.011 * K - BW_[1], 0, 0.038 * K + BW_[1], 0.028 * K + BW_[0], 3.5)], WHITE, open=('bottom',)),
     # the neck comes up out of the body through a slot in its top, as microduck's (the user, round 6)
     # down through the front too: the neck folds forward 1.6 rad to tuck the head in (Pollen's desk photo)
     *[fast(cyl(f'body screw {k}', (x_, y_, BODY['top'] + 0.0003), 'z', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.006,
@@ -776,6 +782,8 @@ link('trunk', 0.40, [
     # (all-Dynamixel: the shorter body ends in front of the neck servo's front, so the slot opens to its lower edge, or the shell can't come down past it)
     cut(box('neck slot', (XP_FRONT + 0.0009, -0.026 * Q, BODY['bottom'] - 0.01 if R.get('neck_open') else ZN - 0.014 * Q), (XN + 0.040 * Q, 0.0195 * Q, BODY['top'] + 0.01), WHITE, 'shell'),
         'body'),
+    # the charge port: the plugs' faces at the back wall, only they show (2026-11-04, the user: only the leads visible, at the body's surface)
+    *[cut(box('charge port', (-0.0600, 0.0270, 0.1290), (-0.0440, 0.0340, 0.1505), WHITE, 'shell'), 'body') for _ in range(bool(R.get('charge_port')))],
 ], 'the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front')
 
 # ---------------------------------------------------------------- left leg (bare servos and brackets, as microduck's)
@@ -1169,6 +1177,12 @@ link('head', 0.12, [
     box('L base riser', (XHR - XLH - XLS - 0.0125, RAIL - 0.0055, JAW_Z[1] - 0.0015), (XHR - XLH - XLS - 0.0090, RAIL - 0.0025, HEAD_PLATE_Z + 0.003), exposed=True),
     box('L base riser top', (XHR - XLH - XLS - 0.0125, 0.020 * Q - 0.002, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, RAIL - 0.0025, HEAD_PLATE_Z + 0.003)),
     box('R base riser', (XHR - XLH - XLS - 0.0085, -RAIL, JAW_Z[1] - 0.0015), (XHR - XLH - XLS - 0.0025, -RAIL + 0.003, HEAD_Z + R.get('rail_z', 0.0075 * Q) + 0.002), exposed=True),
+    # (2026-11-04: a voxel FEA of the head frame, 60 N on the back of the head: the left riser 45 MPa, the strip 23; the jaw servo stalled: the cradle's bars 8.3. The user: why not a plain plate? So: a plain end wall, the strip 5 mm tall, the riser 7 mm deep. 22, 13 and 0.9 MPa)
+    *[box(nm, a_, b_, DARK, exposed=True) for nm, a_, b_ in (('beak cradle end plain', (0.0104, 0.0147, 0.2502), (0.0134, 0.0402, 0.2602)),
+                                                             ('head strip deep', (0.0149, -0.0310, 0.2632), (0.0169, 0.0142, 0.2662)),
+                                                             ('L base riser back', (0.0074, 0.0285, 0.2347), (0.0110, 0.0315, 0.2652))) if R.get('head_fixes')],
+    # (the 5 V regulator for the Pi, off the board's green terminals: one power pair up the neck, not 2. A USB buck module, 35 x 17 x 8.5 mm by its listing, on edge on the base beside the Pi, its USB socket forward, for a right-angle plug turning in toward the Pi (a straight plug hits the face); mass a guess: weigh yours)
+    *[dict(box('head 5 V regulator', (0.0660, -0.0420, 0.2430), (0.1010, -0.0335, 0.2600), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
     dict(plate('head base', HEAD_Z + 0.003, 0.0025, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
     # notches for the jaw's tabs, which come up past the plate
@@ -1270,7 +1284,7 @@ def mirror_name(n):
 HEAD_FRAME_ORANGE = {'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
                      'bus board post 0', 'bus board post 1', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1',
                      'lower shell', 'lower shell post', 'lower shell beam', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'head roll horn boss shoulder',
-                     'head roll rear boss shoulder', 'head roll fork horn plate', 'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +', 'beak cradle end -', 'beak cradle side +'}
+                     'head roll rear boss shoulder', 'head roll fork horn plate', 'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +', 'beak cradle end -', 'beak cradle side +', 'beak cradle end plain', 'head strip deep', 'L base riser back'}
 
 
 def build():
