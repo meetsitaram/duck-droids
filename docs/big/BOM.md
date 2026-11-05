@@ -179,14 +179,14 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F37 | computer standoff 1 screw 1 shank | steel | 12 x 2 x 2.4 mm | turned | - | 0 g | 1 |
 | F38 | L hip yaw housing | 6061-T6 | 162 x 162 x 63.0 mm | milled from solid; pockets not designed | - | 1205 g | 1 |
 | F39 | L hip yaw retainer | 6061-T6 | 184 x 184 x 3.0 mm | cut from 3 mm sheet | - | 94 g | 1 |
-| F40 | L hip yaw retainer screw 0 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F41 | L hip yaw retainer screw 1 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F42 | L hip yaw retainer screw 2 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F43 | L hip yaw retainer screw 3 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F44 | L hip yaw retainer screw 4 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F45 | L hip yaw retainer screw 5 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F46 | L hip yaw retainer screw 6 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F47 | L hip yaw retainer screw 7 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F40 | L hip yaw retainer screw 0 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F41 | L hip yaw retainer screw 1 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F42 | L hip yaw retainer screw 2 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F43 | L hip yaw retainer screw 3 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F44 | L hip yaw retainer screw 4 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F45 | L hip yaw retainer screw 5 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F46 | L hip yaw retainer screw 6 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F47 | L hip yaw retainer screw 7 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
 | F48 | L hip yaw mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F49 | L hip yaw mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F50 | L hip yaw mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
@@ -209,14 +209,14 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F67 | L hip yaw housing screw 9 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F68 | R hip yaw housing | 6061-T6 | 162 x 162 x 63.0 mm | milled from solid; pockets not designed | - | 1205 g | 1 |
 | F69 | R hip yaw retainer | 6061-T6 | 184 x 184 x 3.0 mm | cut from 3 mm sheet | - | 94 g | 1 |
-| F70 | R hip yaw retainer screw 0 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F71 | R hip yaw retainer screw 1 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F72 | R hip yaw retainer screw 2 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F73 | R hip yaw retainer screw 3 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F74 | R hip yaw retainer screw 4 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F75 | R hip yaw retainer screw 5 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F76 | R hip yaw retainer screw 6 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F77 | R hip yaw retainer screw 7 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F70 | R hip yaw retainer screw 0 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F71 | R hip yaw retainer screw 1 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F72 | R hip yaw retainer screw 2 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F73 | R hip yaw retainer screw 3 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F74 | R hip yaw retainer screw 4 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F75 | R hip yaw retainer screw 5 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F76 | R hip yaw retainer screw 6 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
+| F77 | R hip yaw retainer screw 7 shank | steel | 7 x 3 x 3.2 mm | turned | - | 0 g | 1 |
 | F78 | R hip yaw mount screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F79 | R hip yaw mount screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F80 | R hip yaw mount screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
@@ -376,14 +376,14 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F234 | thigh plate out | 7075-T6 | 365 x 274 x 8.0 mm | cut from 8 mm sheet | - | 1449 g | 2 |
 | F235 | thigh spacer hip | 6061-T6 | 100 x 24 x 20.0 mm | milled from solid; pockets not designed | - | 127 g | 2 |
 | F236 | thigh spacer mid | 6061-T6 | 70 x 24 x 24.0 mm | milled from solid; pockets not designed | - | 106 g | 2 |
-| F237 | thigh spacer hip screw in 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F238 | thigh spacer hip screw in 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F239 | thigh spacer hip screw out 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F240 | thigh spacer hip screw out 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F241 | thigh spacer mid screw in 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F242 | thigh spacer mid screw in 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F243 | thigh spacer mid screw out 0 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
-| F244 | thigh spacer mid screw out 1 shank | steel | 16 x 4 x 4.1 mm | turned | - | 2 g | 2 |
+| F237 | thigh spacer hip screw in 0 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F238 | thigh spacer hip screw in 1 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F239 | thigh spacer hip screw out 0 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F240 | thigh spacer hip screw out 1 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F241 | thigh spacer mid screw in 0 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F242 | thigh spacer mid screw in 1 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F243 | thigh spacer mid screw out 0 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
+| F244 | thigh spacer mid screw out 1 shank | steel | 13 x 4 x 4.1 mm | turned | - | 1 g | 2 |
 | F245 | hip pitch output I | 6061-T6 | 80 x 80 x 14.3 mm | milled from solid; pockets not designed | - | 174 g | 2 |
 | F246 | hip pitch output O | 6061-T6 | 80 x 80 x 14.3 mm | milled from solid; pockets not designed | - | 175 g | 2 |
 | F247 | hip pitch I screw 0 shank | steel | 10 x 4 x 4.1 mm | turned | - | 1 g | 2 |
@@ -491,8 +491,8 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F349 | shin hub in | 7075-T6 | 130 x 84 x 6.0 mm | cut from 6 mm sheet | - | 123 g | 2 |
 | F350 | shin hub out | 7075-T6 | 130 x 84 x 6.0 mm | cut from 6 mm sheet | - | 124 g | 2 |
 | F351 | shin spacer | 6061-T6 | 70 x 30 x 11.0 mm | turned or milled | - | 59 g | 2 |
-| F352 | shin hub screw 0 shank | steel | 22 x 3 x 3.2 mm | turned | - | 1 g | 2 |
-| F353 | shin hub screw 1 shank | steel | 22 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F352 | shin hub screw 0 shank | steel | 19 x 3 x 3.2 mm | turned | - | 1 g | 2 |
+| F353 | shin hub screw 1 shank | steel | 19 x 3 x 3.2 mm | turned | - | 1 g | 2 |
 | F354 | shin spacer screw 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
 | F355 | shin spacer screw 1 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 2 |
 | F356 | shin top | 7075-T6 | 100 x 80 x 8.0 mm | cut from 8 mm sheet | - | 171 g | 2 |
@@ -624,25 +624,25 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F482 | head pitch yoke R screw 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F483 | head pitch yoke R screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F484 | head yaw front ring | 7075-T6 | 144 x 144 x 6.0 mm | cut from 6 mm sheet | - | 173 g | 1 |
-| F485 | head yaw front ring screw 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F486 | head yaw front ring screw 1 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F487 | head yaw front ring screw 2 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F488 | head yaw front ring screw 3 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F489 | head yaw front ring screw 4 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F490 | head yaw front ring screw 5 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F491 | head yaw front ring screw 6 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F492 | head yaw front ring screw 7 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F485 | head yaw front ring screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F486 | head yaw front ring screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F487 | head yaw front ring screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F488 | head yaw front ring screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F489 | head yaw front ring screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F490 | head yaw front ring screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F491 | head yaw front ring screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F492 | head yaw front ring screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F493 | head yaw front post 0 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F494 | head yaw front post 0 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F494 | head yaw front post 0 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F495 | head yaw front post 0 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F496 | head yaw front post 1 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F497 | head yaw front post 1 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F497 | head yaw front post 1 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F498 | head yaw front post 1 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F499 | head yaw front post 2 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F500 | head yaw front post 2 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F500 | head yaw front post 2 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F501 | head yaw front post 2 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F502 | head yaw front post 3 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F503 | head yaw front post 3 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F503 | head yaw front post 3 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F504 | head yaw front post 3 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F505 | head yaw mount screw 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F506 | head yaw mount screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
@@ -667,25 +667,25 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F525 | head roll cradle screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F526 | head roll cradle screw 2 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F527 | head roll front ring | 7075-T6 | 144 x 144 x 6.0 mm | cut from 6 mm sheet | - | 173 g | 1 |
-| F528 | head roll front ring screw 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F529 | head roll front ring screw 1 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F530 | head roll front ring screw 2 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F531 | head roll front ring screw 3 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F532 | head roll front ring screw 4 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F533 | head roll front ring screw 5 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F534 | head roll front ring screw 6 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F535 | head roll front ring screw 7 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F528 | head roll front ring screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F529 | head roll front ring screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F530 | head roll front ring screw 2 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F531 | head roll front ring screw 3 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F532 | head roll front ring screw 4 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F533 | head roll front ring screw 5 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F534 | head roll front ring screw 6 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F535 | head roll front ring screw 7 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F536 | head roll front post 0 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F537 | head roll front post 0 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F537 | head roll front post 0 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F538 | head roll front post 0 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F539 | head roll front post 1 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F540 | head roll front post 1 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F540 | head roll front post 1 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F541 | head roll front post 1 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F542 | head roll front post 2 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F543 | head roll front post 2 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F543 | head roll front post 2 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F544 | head roll front post 2 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F545 | head roll front post 3 | 6061-T6 | 39 x 12 x 12.0 mm | turned or milled | - | 14 g | 1 |
-| F546 | head roll front post 3 screw top 0 shank | steel | 14 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F546 | head roll front post 3 screw top 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F547 | head roll front post 3 screw base 0 shank | steel | 20 x 4 x 4.1 mm | turned | - | 2 g | 1 |
 | F548 | head roll mount screw 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F549 | head roll mount screw 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
@@ -713,8 +713,8 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F571 | head rail L screw front 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F572 | head rail L screw front 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F573 | head beak lug L | 6061-T6 | 40 x 40 x 4.5 mm | cut from 5 mm sheet | - | 18 g | 1 |
-| F574 | head beak lug L screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F575 | head beak lug L screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F574 | head beak lug L screw 0 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F575 | head beak lug L screw 1 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F576 | head beak mount screw L 0 shank | steel | 20 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F577 | head beak mount screw L 1 shank | steel | 20 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F578 | head rail R | 6061-T6 | 737 x 20 x 12.0 mm | turned or milled | 30 % of solid, assumed | 140 g | 1 |
@@ -725,8 +725,8 @@ Sheet stock to cut, as outlines only, before nesting or scrap: 6061-T6 3 mm, 0.0
 | F583 | head rail R screw front 0 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F584 | head rail R screw front 1 shank | steel | 16 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F585 | head beak lug R | 6061-T6 | 40 x 40 x 4.5 mm | cut from 5 mm sheet | - | 18 g | 1 |
-| F586 | head beak lug R screw 0 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
-| F587 | head beak lug R screw 1 shank | steel | 12 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F586 | head beak lug R screw 0 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
+| F587 | head beak lug R screw 1 shank | steel | 10 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F588 | head beak mount screw R 0 shank | steel | 20 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F589 | head beak mount screw R 1 shank | steel | 20 x 3 x 3.2 mm | turned | - | 1 g | 1 |
 | F590 | head rear frame | 6061-T6 | 400 x 90 x 8.0 mm | cut from 8 mm sheet | 30 % of solid, assumed | 231 g | 1 |
@@ -758,7 +758,7 @@ Panels within a 256 mm bed by `tools/checks.py`. Masses are 3 mm walls in the sh
 | P10 | shin cover front | PETG | 170 x 122 x 71 mm | 101 g | 2 |
 | P11 | shin cover back | PETG | 170 x 122 x 71 mm | 101 g | 2 |
 | P12 | sole rear | TPU | 190 x 180 x 34 mm | 315 g | 2 |
-| P13 | sole front | TPU | 190 x 150 x 34 mm | 259 g | 2 |
+| P13 | sole front | TPU | 190 x 150 x 34 mm | 258 g | 2 |
 | P14 | shoe rear | PETG | 190 x 180 x 40 mm | 162 g | 2 |
 | P15 | shoe front | PETG | 190 x 150 x 40 mm | 276 g | 2 |
 | P16 | hood panel 0Ru | PETG | 180 x 132 x 118 mm | 62 g | 1 |

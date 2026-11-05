@@ -54,6 +54,11 @@ def run(_context: str):
         'head_yaw': ([O['head_yaw'][0], 0.0, O['head_yaw'][2] - 0.02], 0.12),
         'head_roll': ([O['head_roll'][0] - 0.03, 0.0, O['head_roll'][2]], 0.12),
         'beak': (hub('beak actuator'), 0.10),
+        # the right leg: the left's mirror in the spec, with the actuators turned, not mirrored
+        'r_hip_roll': ([0.0, O['R_hip_roll'][1], O['R_hip_roll'][2]], 0.17),
+        'r_hip_pitch': ([0.0, -0.27, O['R_hip_pitch'][2]], 0.13),
+        'r_knee': ([O['R_knee'][0], -0.27, O['R_knee'][2]], 0.13),
+        'r_ankle': ([O['R_ankle_pitch'][0], -0.27, O['R_ankle_pitch'][2]], 0.12),
     }
     hub_ = next(app.data.activeHub.dataProjects.item(i) for i in range(app.data.activeHub.dataProjects.count) if app.data.activeHub.dataProjects.item(i).name == 'my-projects')
     top = next(hub_.rootFolder.dataFolders.item(i) for i in range(hub_.rootFolder.dataFolders.count) if hub_.rootFolder.dataFolders.item(i).name == 'duck-droids')
