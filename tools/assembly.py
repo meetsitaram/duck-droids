@@ -45,6 +45,15 @@ class Past(tuple):
         return o
 
 
+class Short(tuple):
+    """A way of travel checked for less than TRAVEL: a small part that a hand brings in from the side, and only its last stretch is along its axis."""
+
+    def __new__(cls, way, travel):
+        o = super().__new__(cls, way)
+        o.travel = travel
+        return o
+
+
 def tray(n, sides='+-', rear=True):
     return ([f'{n} cradle rear face'] if rear else []) + [f'{n} cradle end +', f'{n} cradle end -'] + \
         [f'{n} cradle side {s}' for s in sides]
@@ -98,7 +107,7 @@ def leg_parts(s):
 
 PARTS = leg_parts('L') + leg_parts('R') + [
     ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
-                      'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
+                      'neck idler step', 'neck pitch horn seat boss', 'neck pitch rear seat boss', 'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
      + tray('L hip yaw') + tray('R hip yaw')),
     ('battery', 'B', ['battery 2S 850 mAh', 'battery XT30', 'battery balance plug']),
     ('L 5 V regulator', 'B', ['L 5 V regulator']),
@@ -114,10 +123,10 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('neck lid', 'P', ['neck pitch cradle horn face']),
     ('head pitch servo', 'B', ['head_pitch actuator (buy) XL330_M288', 'head_pitch flange', 'head pitch rear horn', 'head pitch cable plugs']),
     ('head pitch lid', 'P', ['head pitch cradle horn face']),
-    ('head fork', 'P', ['head pitch plate', 'head pitch idler plate', 'head pitch bridge', 'head pitch fork horn plate',
+    ('head fork', 'P', ['head pitch horn seat boss', 'head pitch rear seat boss', 'head pitch plate', 'head pitch idler plate', 'head pitch bridge', 'head pitch fork horn plate',
                         'head pitch fork rear plate'] + tray('head yaw')),
     ('head yaw servo', 'B', ['head_yaw actuator (buy) XL330_M288', 'head yaw cable plugs']),
-    ('head yaw sheet', 'P', lid('head yaw', 'seat wall')),
+    ('head yaw sheet', 'P', lid('head yaw', 'seat wall') + ['head yaw horn seat floor']),
     ('head yaw bearing', 'B', races('head yaw')),
     ('head yaw horn', 'B', ['head_yaw flange']),
     ('head yaw bracket', 'P', ['head yaw plate', 'head yaw horn boss shoulder', 'head roll cradle end +', 'head roll cradle end -',
@@ -148,7 +157,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('bus board standoffs', 'B', [f'bus board standoff {k}' for k in range(4)]),
     ('U2D2', 'B', ['U2D2']),
     ('hood', 'P', ['head', 'upper bill', 'hood rear tab 0', 'hood rear tab 1', 'L hood step', 'R hood step']),
-    ('jaw', 'P', ['jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot', 'jaw lever', 'L tab hub', 'R tab hub']),
+    ('jaw', 'P', ['beak horn seat boss', 'jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot', 'jaw lever', 'L tab hub', 'R tab hub']),
     ('jaw soft insert', 'P', ['jaw soft']),
     ('mouth roof', 'P', ['mouth roof']),
     ('face', 'P', ['face', 'sensor']),
@@ -230,16 +239,16 @@ def sections():
     ]), dict(key='headbench', title='The head yaw and roll', on=[], steps=[
         ('The head fork', [('head fork', None)], []),
         ('Head yaw servo in, 2 screws from under the bridge', [('head yaw servo', NEG(Z))], [r'^head yaw cradle screw rear']),
-        ('The thin sheet, 2 screws', [('head yaw sheet', NEG(Z))], [r'^head yaw cradle screw horn']),
+        ('The thin sheet, 2 screws', [('head yaw sheet', NEG(Z))], [r'^head yaw cradle screw (horn|near)']),
         ('Bearing and horn', [('head yaw bearing', NEG(Z)), ('head yaw horn', NEG(Z))], []),
         ('The yaw bracket, 4 screws, before its roll servo', [('head yaw bracket', NEG(Z))], [r'^head yaw fork screw']),
         ('Head roll servo in from the front', [('head roll servo', NEG(X))], [r'^head roll cradle screw rear']),
         ('The rear bearing and rear horn, from behind', [('head roll rear bearing', X), ('head roll rear horn', X), ('head roll rear spacer', X)], []),
-        ('The lid, 2 screws', [('head roll lid', NEG(X))], [r'^head roll cradle screw horn']),
+        ('The lid, 2 screws', [('head roll lid', NEG(X))], [r'^head roll cradle screw (horn|near)']),
         ('Bearing, horn and spacer', [('head roll bearing', NEG(X)), ('head roll horn', NEG(X)), ('head roll spacer', NEG(X))], []),
     ]), dict(key='framebench', title='The head frame and the beak servo', on=[], steps=[
         ('The head frame', [('head frame', None)], []),
-        ('The bus board\'s brass standoffs into their hex sockets, a screw from the front into each', [('bus board standoffs', X)], [r'^bus board rear screw']),
+        ('The bus board\'s brass standoffs into their hex sockets, a screw from the front into each', [('bus board standoffs', Short(X, 0.018) if G.RECIPE == 'feetech' else X)], [r'^bus board rear screw']),
         ('Beak servo in from the side, its horn out, servo at mid-range, 4 screws from inside (the roll servo blocks them later)', [('beak servo', NEG(Y))], [r'^beak cradle screw rear']),
     ]), dict(key='jawbench', title='The jaw', on=[], steps=[
         ('The jaw', [('jaw', None)], []),
@@ -408,6 +417,15 @@ def check_apart(B, rep):
 
 def horn_hole(spec, g):
     """A horn, as a screw meets it: as deep as its real holes go, not as high as it stands. (An STS3215's holes run on below the box's plane, where the case's drawing is.)"""
+    if g['name'].endswith(' rear horn'):           # the same horn on the rear: only where a plug's room stands its plate off, so the screw reaches further in. Its holes go as deep
+        j = next((x for x in spec['joints'] if x['name'] == g['name'][:-len(' rear horn')].replace(' ', '_')), None)
+        if j and j.get('rear_stack'):
+            A_ = spec['actuators'][j['act']]
+            ix = 'xyz'.index(j['axis'])
+            c = list(j['act_c'])
+            c[ix] -= j['out'] * (A_['box'][2] / 2 + A_['horn_top'] - A_['horn_hole_depth'] / 2)
+            return dict(g, c=c, h=A_['horn_hole_depth'])
+        return g
     if not g['name'].endswith(' flange'):
         return g
     j = next(x for x in spec['joints'] if x['name'] == g['name'][:-len(' flange')])
@@ -573,7 +591,7 @@ def check(spec, secs, rep, S=None):
                     moving = C.union([B.solid(p) for p in group])
                     base = C.overlap(moving, fixed)
                     worst = 0.0
-                    for t in np.arange(0.001, TRAVEL + 1e-9, 0.001):
+                    for t in np.arange(0.001, getattr(way, 'travel', TRAVEL) + 1e-9, 0.001):
                         v = C.overlap(moving.translate([-a * t for a in way]), fixed)
                         worst = max(worst, v - base)
                     who = []
@@ -582,7 +600,7 @@ def check(spec, secs, rep, S=None):
                             so = B.solid(o)
                             b0 = C.overlap(moving, so)
                             if max(C.overlap(moving.translate([-a * t for a in way]), so) - b0
-                                   for t in np.arange(0.002, TRAVEL + 1e-9, 0.002)) > C.TOUCH:
+                                   for t in np.arange(0.002, getattr(way, 'travel', TRAVEL) + 1e-9, 0.002)) > C.TOUCH:
                                 who.append(o)
                     rep.add('PATH', f"{sec['key']}: {item}", worst <= C.TOUCH,
                             f'cuts {worst * 1e6:.2f} cm3 into {who}, travelling {way}' if worst > C.TOUCH else '')
