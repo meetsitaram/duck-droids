@@ -2,14 +2,14 @@
  {
   "group": "LOAD",
   "item": "shin, under the knee horn",
-  "status": "FAIL",
-  "detail": "15.3 MPa (allowed 15): 55 N, section 180 mm2"
+  "status": "PASS",
+  "detail": "14.0 MPa (allowed 15): 55 N, section 189 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "0.5 MPa (allowed 15): 55 N, section 1255 mm2"
+  "detail": "0.5 MPa (allowed 15): 55 N, section 1264 mm2"
  },
  {
   "group": "LOAD",
@@ -27,7 +27,7 @@
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "13.5 MPa (allowed 15): 55 N, section 60 mm2"
+  "detail": "13.4 MPa (allowed 15): 55 N, section 60 mm2"
  },
  {
   "group": "LOAD",
@@ -62,8 +62,8 @@
  {
   "group": "WALL",
   "item": "L yaw bracket",
-  "status": "FAIL",
-  "detail": "a feature under 1 mm, 35.3 mm3"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "FIT",
@@ -332,8 +332,8 @@
  {
   "group": "WALL",
   "item": "head yaw bracket",
-  "status": "FAIL",
-  "detail": "a feature under 1 mm, 12.3 mm3"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "FIT",
@@ -379,24 +379,6 @@
  },
  {
   "group": "ONE",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": "7 x 21 x 21 mm"
- },
- {
-  "group": "ONE",
   "item": "head frame",
   "status": "PASS",
   "detail": ""
@@ -404,8 +386,8 @@
  {
   "group": "WALL",
   "item": "head frame",
-  "status": "FAIL",
-  "detail": "a feature under 1 mm, 15.4 mm3"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "FIT",

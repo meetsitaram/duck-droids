@@ -2971,12 +2971,6 @@
  },
  {
   "group": "PATH",
-  "item": "headbench: head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "headbench: head roll lid",
   "status": "PASS",
   "detail": ""
@@ -3471,7 +3465,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 0",
   "status": "PASS",
-  "detail": "M3 x 12: bites 6.0 mm"
+  "detail": "M3 x 12: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3489,7 +3483,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 1",
   "status": "PASS",
-  "detail": "M3 x 12: bites 6.0 mm"
+  "detail": "M3 x 12: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3507,7 +3501,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 2",
   "status": "PASS",
-  "detail": "M3 x 12: bites 6.0 mm"
+  "detail": "M3 x 12: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3525,7 +3519,7 @@
   "group": "THREAD",
   "item": "head roll fork screw rear 3",
   "status": "PASS",
-  "detail": "M3 x 12: bites 6.0 mm"
+  "detail": "M3 x 12: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -4063,12 +4057,6 @@
  },
  {
   "group": "HOLD",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": "4 screws"
- },
- {
-  "group": "HOLD",
   "item": "head frame",
   "status": "PASS",
   "detail": "23 screws"
@@ -4525,12 +4513,6 @@
  },
  {
   "group": "BOUGHT",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "BOUGHT",
   "item": "head frame",
   "status": "PASS",
   "detail": ""
@@ -4778,12 +4760,6 @@
  {
   "group": "COLOUR",
   "item": "head roll spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "COLOUR",
-  "item": "head roll rear spacer",
   "status": "PASS",
   "detail": ""
  },
@@ -6440,12 +6416,6 @@
  {
   "group": "ALL",
   "item": "part head roll spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part head roll rear spacer",
   "status": "PASS",
   "detail": ""
  },

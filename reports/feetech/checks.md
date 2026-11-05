@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 00:40, 78 s
+spec: `spec/robot.json`, 2026-11-05 01:10, 64 s
 
 188 checks: 184 pass, 4 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-05 00:40, 78 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.942 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
+| PASS | total | 1.939 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -240,7 +240,7 @@ spec: `spec/robot.json`, 2026-11-05 00:40, 78 s
 | PASS | R_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
 | PASS | L_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
 | PASS | head_pitch | 0.37 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 42 % used |
-| PASS | L_hip_roll | 0.47 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 26 % used |
+| PASS | L_hip_roll | 0.46 N m x 1.5 in 'single-leg stance (walking)' vs peak 2.69 N m (1 x STS3215_C044): 26 % used |
 | PASS | L_hip_pitch | 0.19 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 21 % used |
 | PASS | R_hip_pitch | 0.19 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 21 % used |
 | PASS | L_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 17 % used |

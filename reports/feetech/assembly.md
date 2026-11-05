@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1088 checks: 1088 pass, 0 warn, **0 fail**
+1083 checks: 1083 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -77,7 +77,6 @@ From tools/assembly.py
 | PASS | headbench: head yaw bracket |  |
 | PASS | headbench: head roll servo |  |
 | PASS | headbench: head roll rear horn |  |
-| PASS | headbench: head roll rear spacer |  |
 | PASS | headbench: head roll lid |  |
 | PASS | headbench: head roll bearing |  |
 | PASS | headbench: head roll horn |  |
@@ -457,10 +456,10 @@ From tools/assembly.py
 | PASS | head roll fork screw horn 1 | M3 x 10: bites 5.0 mm |
 | PASS | head roll fork screw horn 2 | M3 x 10: bites 5.0 mm |
 | PASS | head roll fork screw horn 3 | M3 x 10: bites 5.0 mm |
-| PASS | head roll fork screw rear 0 | M3 x 12: bites 6.0 mm |
-| PASS | head roll fork screw rear 1 | M3 x 12: bites 6.0 mm |
-| PASS | head roll fork screw rear 2 | M3 x 12: bites 6.0 mm |
-| PASS | head roll fork screw rear 3 | M3 x 12: bites 6.0 mm |
+| PASS | head roll fork screw rear 0 | M3 x 12: bites 2.9 mm |
+| PASS | head roll fork screw rear 1 | M3 x 12: bites 2.9 mm |
+| PASS | head roll fork screw rear 2 | M3 x 12: bites 2.9 mm |
+| PASS | head roll fork screw rear 3 | M3 x 12: bites 2.9 mm |
 | PASS | bus board top screw 0 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board top screw 1 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board top screw 2 | M2.5 x 5: bites 2.5 mm |
@@ -705,7 +704,6 @@ From tools/assembly.py
 | PASS | head yaw bracket | 6 screws |
 | PASS | head roll lid | 4 screws |
 | PASS | head roll spacer | 4 screws |
-| PASS | head roll rear spacer | 4 screws |
 | PASS | head frame | 23 screws |
 | PASS | hood | 3 screws |
 | PASS | jaw | turns on its screws |
@@ -797,7 +795,6 @@ From tools/assembly.py
 | PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
 | PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | jaw |  |
@@ -845,7 +842,6 @@ From tools/assembly.py
 | PASS | head yaw bracket |  |
 | PASS | head roll lid |  |
 | PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | jaw |  |
@@ -1142,7 +1138,6 @@ From tools/assembly.py
 | PASS | part head roll bearing |  |
 | PASS | part head roll horn |  |
 | PASS | part head roll spacer |  |
-| PASS | part head roll rear spacer |  |
 | PASS | part head frame |  |
 | PASS | part beak servo |  |
 | PASS | part Pi Zero 2 W |  |

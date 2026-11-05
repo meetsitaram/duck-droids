@@ -140,10 +140,10 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head roll horn', 'B', ['head_roll flange']),
     # (loose, not on the head frame: it drops down between them, so nothing of it can stand in a bearing's bore)
     ('head roll spacer', 'P', ['head roll horn seat boss']),
-    ('head roll rear spacer', 'P', ['head roll rear seat boss']),
+    ('head roll rear spacer', 'P', [] if G.RECIPE == 'feetech' else ['head roll rear seat boss']),   # (no rear bearing on the all-Feetech duck, so nothing for it to pass: it's part of the frame)
     ('head frame', 'P', ['head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail',
                          'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1', 'bus board post 0', 'bus board post 1', 'lower shell', 'lower shell post', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'lower shell beam',
-                         'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
+                         *(['head roll rear seat boss'] if G.RECIPE == 'feetech' else []), 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle end plain', 'head strip deep', 'L base riser back', 'beak cradle rear face', 'beak cradle end +',
                          'beak cradle end -', 'beak cradle side +']),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288', 'beak flange', 'beak cable plugs']),
