@@ -1,0 +1,82 @@
+{
+ "L_knee_link": {
+  "hash": "d52a0adf3fcad5c47519a344e5f394aa56bff2a1eee6253baa57b916f9c947fe",
+  "bad": [],
+  "seconds": 6.1
+ },
+ "trunk": {
+  "hash": "b02652aa68d2d6232792d8c8fe9c9f0f4fcd406c0a9819db72b3d97d4e45ad1a",
+  "bad": [],
+  "seconds": 36.0
+ },
+ "L_hip_yaw_link": {
+  "hash": "a75cec04c8ff0253e0acc5d0b9605171cb1cd5023c5ffa104c72e6ff5a6f4723",
+  "bad": [],
+  "seconds": 4.4
+ },
+ "R_hip_yaw_link": {
+  "hash": "4b7f12c38349b8ef6767f0a2bab2583b576e1fa3edfbb0e7b62f6ea837435336",
+  "bad": [],
+  "seconds": 3.4
+ },
+ "L_hip_roll_link": {
+  "hash": "c880c1961ca68e0fd40ccdbcadc5b0ee727f97747c0abda257436a9e6dc939e4",
+  "bad": [],
+  "seconds": 2.6
+ },
+ "R_hip_roll_link": {
+  "hash": "0e16bc751971acbb9ff5b2afd5438965f12e14ee574077b115a41fbada3a2a17",
+  "bad": [],
+  "seconds": 2.7
+ },
+ "L_hip_pitch_link": {
+  "hash": "8e2e555572e7be8f92e25b3321cff5d446fb21c7646ac1682ed96238ea1a7606",
+  "bad": [],
+  "seconds": 5.0
+ },
+ "R_hip_pitch_link": {
+  "hash": "42000fd624051a3fae384393cba9546f95b69255a9a955db764b3b8493a89834",
+  "bad": [],
+  "seconds": 5.7
+ },
+ "R_knee_link": {
+  "hash": "dc740a6eca5a2a27cf9f0dffed425b0d40da6aa3c8a6a4f087895cf8fb9e0fd9",
+  "bad": [],
+  "seconds": 4.9
+ },
+ "L_foot": {
+  "hash": "96a19d1df9f86eb02dc4974581bc5efa994694fb8b974445e9434eeefcaae83c",
+  "bad": [],
+  "seconds": 5.6
+ },
+ "R_foot": {
+  "hash": "8a73d320025fff24b245558a6659165e0ca6e51717dc583752c0d5170bd1af19",
+  "bad": [],
+  "seconds": 5.8
+ },
+ "neck_link": {
+  "hash": "d67aa9c4a0d1c8fe893249077c009018f9fe5cf34c0425a0193137355a2a322e",
+  "bad": [],
+  "seconds": 3.8
+ },
+ "head_pitch_link": {
+  "hash": "7e340bb218f7a47f544a0241733a537bd217bd09e307e9b8eb4f0a617faa58a8",
+  "bad": [],
+  "seconds": 3.2
+ },
+ "head_yaw_link": {
+  "hash": "74a83b2a8bf797419df19529fef5b29fd9688fb782dc1ed02e31b35d310a4674",
+  "bad": [],
+  "seconds": 3.3
+ },
+ "head": {
+  "hash": "239e1a26fdb2584da9298cbaa8a70f3c93bb00234708faf4abf7dae21f9aacdc",
+  "bad": [],
+  "seconds": 175.9
+ },
+ "beak_link": {
+  "hash": "bcef604837323823434ae303ef4be1496d4db5ba88c6ac741ebdc0c385c80399",
+  "bad": [],
+  "seconds": 12.5
+ }
+}
