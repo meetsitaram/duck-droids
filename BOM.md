@@ -128,7 +128,7 @@ All 3D printed. Files are in [prints/](prints/README.md), already oriented for p
 | P21 | Head roll lid | `head_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 1 |
 | P22 | Head roll spacer | `head_roll_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P23 | Head roll rear spacer | `head_roll_rear_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
-| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 74.7 g | 1 |
+| P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 74.8 g | 1 |
 | P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 63.6 g | 1 |
 | P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 40.1 g | 1 |
 | P27 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 9.9 g | 1 |
