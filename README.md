@@ -14,7 +14,7 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 |---|---|
 | Parts to buy | [BOM](docs/dynamixel/BOM.md) |
 | Files to print | [STLs](prints/dynamixel/README.md) |
-| How to build it | [Assembly guide](docs/dynamixel/ASSEMBLY.md), [wiring](docs/dynamixel/WIRING.md) |
+| How to build it | [Assembly guide](docs/dynamixel/ASSEMBLY.md), [wiring and every part](docs/dynamixel/WIRING.md) |
 | CAD | [Fusion file](cad/duck-droids-dynamixel.f3d) |
 | Teach it to walk | [Training](docs/TRAINING.md) |
 
