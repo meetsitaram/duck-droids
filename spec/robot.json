@@ -13514,6 +13514,23 @@
     },
     {
      "kind": "cyl",
+     "name": "L shoe horn relief",
+     "c": [
+      -0.05095,
+      0.07552500000000001,
+      0.0295
+     ],
+     "axis": "y",
+     "r": 0.0104,
+     "h": 0.00215,
+     "color": "#E8642A",
+     "role": "cut",
+     "targets": [
+      "L shoe"
+     ]
+    },
+    {
+     "kind": "cyl",
      "name": "L shoe bottom screw 0",
      "c": [
       -0.07245,
@@ -14385,6 +14402,23 @@
      "targets": [
       "R shoe",
       "R sole"
+     ]
+    },
+    {
+     "kind": "cyl",
+     "name": "R shoe horn relief",
+     "c": [
+      -0.05095,
+      -0.07552500000000001,
+      0.0295
+     ],
+     "axis": "y",
+     "r": 0.0104,
+     "h": 0.00215,
+     "color": "#E8642A",
+     "role": "cut",
+     "targets": [
+      "R shoe"
      ]
     },
     {
