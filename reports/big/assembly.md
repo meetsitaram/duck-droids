@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot_big.json`, 2026-11-05 15:24, 100 s
+spec: `spec/robot_big.json`, 2026-11-05 15:53, 78 s
 
 1531 checks: 1357 pass, 174 warn, **0 fail**
 

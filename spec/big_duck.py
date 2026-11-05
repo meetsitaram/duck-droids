@@ -188,7 +188,7 @@ def screws(name, pts, d, size, L, group=None, head_h=None, csk=False, **joins):
         back = tuple(-v for v in d)
         h = fast(tube(f'{name} {i}', p, d, hh, rh, DARK, 'decal', material='steel') if csk else tube(f'{name} {i}', p, back, hh, rh, DARK, 'decal', material='steel'),
                  size, L, p, d, csk=csk, head=[rh, hh], **{k: v for k, v in joins.items() if v is not None})
-        s_ = tube(f'{name} {i} shank', p, d, L, ROOT[size], DARK, 'decal', material='steel')
+        s_ = tube(f'{name} {i} shank', along(p, d, hh) if csk else p, d, L - hh if csk else L, ROOT[size], DARK, 'decal', material='steel')    # a countersunk one's length counts its head
         h['color'] = s_['color'] = T.STEEL
         h['linkage'] = s_['linkage'] = True       # bought: sits in a clearance hole, so it joins nothing in the checks' solids
         if group:
@@ -729,6 +729,9 @@ link('L_foot', [
     cut(box('L shoe opening', (XK - 0.085, YA_S[0] - PL - 0.03, FOOT['plate'] + 0.0064), (XK + 0.095, YA_S[1] + 2 * PL + 0.012, 0.2), ORANGE, 'shell'), 'L shoe rear', 'L shoe front'),
     # the shoe's pieces: M4 up through the plate into heat-set inserts, before the soles are bonded on
     *[g_ for t, x in (('rear', FX[0] + 0.020), ('front', FX[1] - 0.030)) for g_ in bolt(f'L shoe {t} screw', [(x, YC + dy, FP[0]) for dy in (-0.07, 0.07)], (0, 0, 1), 'M4', 0.020, ['L foot plate'], FP[1] - FP[0], f'L shoe {t}')],
+    # a pocket in the sole over each screw head under the plate
+    *[cut(tube(f'L sole pocket {i}', (x, y, FP[0] - 0.0045), (0, 0, 1), 0.0050, 0.0042, ALD, 'struct'), 'L sole rear', 'L sole front')
+      for i, (x, y) in enumerate([(XK + dx, y_ + PL / 2) for y_ in (EAR_O, EAR_I) for dx in (-0.070, 0.005, 0.080)] + [(x_, YC + dy) for x_ in (FX[0] + 0.020, FX[1] - 0.030) for dy in (-0.07, 0.07)])],
     *an_out,
 ], 'an aluminium plate on two ears; soles and shoe printed in two')
 # the bearings' inner rings on the stub and shaft

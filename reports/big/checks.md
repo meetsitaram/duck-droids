@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 15:22, 163 s
+spec: `spec/robot.json`, 2026-11-05 15:52, 172 s
 
 151 checks: 146 pass, 5 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-05 15:22, 163 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 98.585 kg bottom-up (budget 115.0 kg; microduck 0.8 kg) |
+| PASS | total | 98.571 kg bottom-up (budget 115.0 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -199,16 +199,16 @@ spec: `spec/robot.json`, 2026-11-05 15:22, 163 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | L_knee | 106.82 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used |
-| PASS | R_knee | 106.82 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used |
-| PASS | L_hip_roll | 129.68 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 81 % used |
+| PASS | L_knee | 106.80 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used |
+| PASS | R_knee | 106.80 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used |
+| PASS | L_hip_roll | 129.66 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 81 % used |
 | PASS | beak | 3.01 N m in 'stand (microduck stance)' vs rated 5.00 N m (1 x RS00): 60 % used |
-| PASS | L_ankle_pitch | 47.68 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 60 % used |
+| PASS | L_ankle_pitch | 47.67 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 60 % used |
 | PASS | R_ankle_pitch | 23.70 N m in 'crouch' vs rated 40.00 N m (1 x RS04): 59 % used |
-| PASS | L_hip_yaw | 45.78 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used |
+| PASS | L_hip_yaw | 45.77 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used |
 | PASS | R_hip_roll | 38.74 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 48 % used |
-| PASS | neck_pitch | 75.60 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used |
-| PASS | head_pitch | 31.84 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 41 % used |
+| PASS | neck_pitch | 75.59 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used |
+| PASS | head_pitch | 31.83 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 41 % used |
 | PASS | R_hip_yaw | 10.80 N m in 'stand (microduck stance)' vs rated 40.00 N m (1 x RS04): 27 % used |
 | PASS | L_hip_pitch | 16.44 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 21 % used |
 | PASS | R_hip_pitch | 16.44 N m in 'crouch' vs rated 80.00 N m (2 x RS04): 21 % used |

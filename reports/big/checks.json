@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "98.585 kg bottom-up (budget 115.0 kg; microduck 0.8 kg)"
+  "detail": "98.571 kg bottom-up (budget 115.0 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -819,19 +819,19 @@
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "106.82 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used"
+  "detail": "106.80 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "106.82 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used"
+  "detail": "106.80 N m in 'crouch' vs rated 123.20 N m (2 x RS04 x 1.5): 87 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "129.68 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 81 % used"
+  "detail": "129.66 N m x 1.5 in 'single-leg stance (walking)' vs peak 240.00 N m (2 x RS04): 81 % used"
  },
  {
   "group": "torque",
@@ -843,7 +843,7 @@
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "47.68 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 60 % used"
+  "detail": "47.67 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 60 % used"
  },
  {
   "group": "torque",
@@ -855,7 +855,7 @@
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "45.78 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used"
+  "detail": "45.77 N m x 1.5 in 'single-leg stance (walking)' vs peak 120.00 N m (1 x RS04): 57 % used"
  },
  {
   "group": "torque",
@@ -867,13 +867,13 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "75.60 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used"
+  "detail": "75.59 N m in 'head tucked in' vs rated 240.00 N m (2 x RS04): 47 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "31.84 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 41 % used"
+  "detail": "31.83 N m in 'crouch' vs rated 76.92 N m (1 x RS04 x 1.9): 41 % used"
  },
  {
   "group": "torque",
