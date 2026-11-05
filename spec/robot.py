@@ -1422,6 +1422,31 @@ def build():
             c = list(j['origin'])
             c[k] += j['out'] * 0.003
             links[horn_link]['geoms'].append(cut(cyl(f'{n} horn screw access', c, j['axis'], 0.0032, 0.016, DARK, 'struct'), *names))
+    # an HD-1910's rear horn has its own centre screw, its head 0.4 mm proud: a shallow recess in whatever lies on that horn (tools/real_fit.py found it, against Feetech's model)
+    for j in joints:
+        A_ = ACT[j['act']]
+        if 'centre_screw' not in A_ or j['remote'] or not (j.get('fork', True) or 'ankle' in j['name']):
+            continue
+        n = j['name'].replace('_', ' ')
+        k = 'xyz'.index(j['axis'])
+        q_ = list(j['act_c'])
+        q_[k] -= j['out'] * (A_['box'][2] / 2 + A_['horn_top'] + 0.0003)
+        for ln_, l_ in links.items():
+            names = [g['name'] for g in l_['geoms'] if g['role'] != 'cut' and on_plate(g, q_)]
+            if names:
+                c = list(q_)
+                c[k] += j['out'] * 0.0002                      # 0.3 mm deeper than the head stands, and into the horn's own air on the other side
+                l_['geoms'].append(cut(cyl(f'{n} rear screw recess {ln_}', c, j['axis'], 0.0027, 0.0010, DARK, 'struct'), *names))
+    # its rear tube, where the horn comes off: a pocket for 2.5 mm of tube left a 0.35 mm floor in a 3 mm plate, which no printer holds. A hole right through instead
+    for j in joints:
+        A_ = ACT[j['act']]
+        if 'rear_stub' not in A_ or 'ankle' in j['name'] or (j.get('fork', True) and not j['remote']):
+            continue
+        n, f, H_ = j['name'].replace('_', ' '), servo_frame(j), A_['box'][2]
+        case_link = j['child'] if j.get('case_in') == 'child' else j['parent']
+        names = [g['name'] for g in links[case_link]['geoms'] if g['role'] != 'cut' and on_plate(g, at(f, -A_['shaft_x'], 0, -H_ / 2 - 0.0028))]
+        if names:
+            links[case_link]['geoms'].append(cut(lbox(f'{n} rear tube hole', f, (-A_['shaft_x'] - 0.0028, -A_['shaft_x'] + 0.0028), (-0.0028, 0.0028), (-H_ / 2 - 0.004, -H_ / 2 + 0.0002), DARK), *names))
     for l in links.values():
         for g in l['geoms']:
             if g['kind'] == 'rbox' and min(g['size']) <= 0:   # (another variant's numbers on a smaller body: it hung the checks for half an hour)

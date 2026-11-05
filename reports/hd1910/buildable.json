@@ -33,7 +33,7 @@
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.3 MPa (allowed 15): 29 N, section 553 mm2"
+  "detail": "1.2 MPa (allowed 15): 29 N, section 553 mm2"
  },
  {
   "group": "ONE",
