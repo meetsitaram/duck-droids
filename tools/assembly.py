@@ -100,7 +100,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
                       'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
      + tray('L hip yaw') + tray('R hip yaw')),
-    ('battery', 'B', ['battery 2S 850 mAh']),
+    ('battery', 'B', ['battery 2S 850 mAh', 'battery XT30', 'battery balance plug']),
     ('L 5 V regulator', 'B', ['L 5 V regulator']),
     ('R 5 V regulator', 'B', ['R 5 V regulator']),
     ('head 5 V regulator', 'B', ['head 5 V regulator']),
@@ -487,7 +487,7 @@ def check_bought(B, rep):
 
 
 # printed parts allowed more than one colour, and why. Anything else is one filament.
-TWO_COLOURS = {'hood': 'its orange band is painted or split in the slicer: prints/README.md', 'face': 'the sensor window is a mark, not a shape',
+TWO_COLOURS = {'hood': 'its orange band is painted or split in the slicer: prints/README.md', 'face': 'the sensor window is a raised pad in the same colour, dark only if painted',
                'L shoe': 'the seat boss is hidden under the horn', 'R shoe': 'the seat boss is hidden under the horn'}
 
 

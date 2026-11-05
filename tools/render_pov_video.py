@@ -129,7 +129,7 @@ class Film:
     def __init__(self, test=False, every=30, name='first_person_build', pace=1.0, dry=False):
         spec = G.load()
         self.spec, self.R = spec, G.Robot(spec)
-        self.sc = _SC.setdefault('sc', None) or _SC.update(sc=RA.Scene(spec, extra=EXTRA, asset=ASSET, visual=VISUAL)) or _SC['sc']
+        self.sc = _SC.setdefault('sc', None) or _SC.update(sc=RA.Scene(spec, extra=EXTRA, asset=ASSET, visual=VISUAL, real_folder=os.path.join(os.environ['TEMP'], 'duck_fusion_stl', G.RECIPE))) or _SC['sc']
         self.pace, self.dry = pace, dry
         self.grip = {'R': 0.0, 'L': 0.0}
         self.m, self.d = self.sc.m, self.sc.d
@@ -600,7 +600,7 @@ def run(test=False, name='first_person_build', pace=1.0, quick=False, dry=False)
         f.step = j.replace('_', ' ')
         leg = j[:2] in ('L_', 'R_')
         f.test_joint(j, re.sub(r'^R ', 'right ', re.sub(r'^L ', 'left ', j.replace('_', ' '))), 2.2, LEG_VIEW if leg else HEAD_VIEW, 0.12 if leg else 0.21, 0.46 if leg else 0.50)
-    f.title, f.step = 'The all-Dynamixel duck', 'designed and checked, not yet printed'
+    f.title, f.step = 'The all-Dynamixel duck', ''
     nf = 75 if quick else 120
     for k in range(nf):
         a = math.radians(-90 + 90 * ease(min(1.0, k / (nf * 0.6))))     # round to the front, then hold on the face
