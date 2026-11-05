@@ -428,7 +428,10 @@ def bom_dynamixel(spec):
 
 if __name__ == '__main__':
     s = G.load()
-    if G.RECIPE == 'dynamixel':
+    if G.RECIPE == 'big':                  # plates and bearings, not printed parts: its own BOM, and no build guide until it has an assembly order
+        import big_docs
+        print('docs/big/BOM.md', big_docs.bom_big(s))
+    elif G.RECIPE == 'dynamixel':
         bom_dynamixel(s)
         guide()
         print('docs/dynamixel/BOM.md, ASSEMBLY.md')
