@@ -2528,14 +2528,14 @@
  {
   "group": "PATH",
   "item": "torso: L 5 V regulator",
-  "status": "PASS",
-  "detail": ""
+  "status": "FAIL",
+  "detail": "cuts 0.44 cm3 into ['L yaw bracket', 'L roll bracket'], travelling (0, 0, 1)"
  },
  {
   "group": "PATH",
   "item": "torso: R 5 V regulator",
-  "status": "PASS",
-  "detail": ""
+  "status": "FAIL",
+  "detail": "cuts 0.44 cm3 into ['R yaw bracket', 'R roll bracket'], travelling (0, 0, 1)"
  },
  {
   "group": "PATH",
@@ -3451,12 +3451,6 @@
  },
  {
   "group": "PATH",
-  "item": "head: U2D2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "head: Pi Zero 2 W",
   "status": "PASS",
   "detail": ""
@@ -3530,6 +3524,12 @@
  {
   "group": "ACCESS",
   "item": "Pi screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: U2D2",
   "status": "PASS",
   "detail": ""
  },
@@ -4174,6 +4174,522 @@
   "item": "beak",
   "status": "PASS",
   "detail": "2 of 4 screws at the near end"
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip yaw lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L thigh frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L knee lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L thigh cover",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L shoe",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L inner ear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip yaw lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R thigh frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R knee lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R thigh cover",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R shoe",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R inner ear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "neck column",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "neck lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head fork",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head yaw sheet",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head roll spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head roll rear spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "mouth roof",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip yaw lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L thigh frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L knee lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L thigh cover",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L shoe",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L inner ear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip yaw lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R thigh frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R knee lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R thigh cover",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R shoe",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R inner ear",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "neck column",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "neck lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head pitch lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head fork",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head yaw sheet",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head roll lid",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head roll spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head roll rear spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "jaw soft insert",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "mouth roof",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "face",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "eye ring",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "eye iris",
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "EDGE",
