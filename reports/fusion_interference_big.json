@@ -30,11 +30,6 @@
 33005.47
 ],
 [
-"R thigh cover in rear",
-"R thigh cover in knee",
-33005.47
-],
-[
 "neck output L",
 "neck spine",
 30140.84
@@ -60,9 +55,9 @@
 18512.78
 ],
 [
-"R thigh cover in hip",
-"R thigh cover in rear",
-18512.78
+"R foot plate",
+"R sole rear",
+13627.42
 ],
 [
 "L foot plate",
@@ -71,22 +66,12 @@
 ],
 [
 "R foot plate",
-"R sole rear",
-13627.42
-],
-[
-"deck plate",
-"battery 13S",
-13172.88
+"R shoe rear",
+11797.76
 ],
 [
 "L foot plate",
 "L shoe rear",
-11797.76
-],
-[
-"R foot plate",
-"R shoe rear",
 11797.76
 ],
 [
@@ -100,23 +85,28 @@
 11309.73
 ],
 [
-"L foot plate",
-"L sole front",
-11170.22
-],
-[
 "R foot plate",
 "R sole front",
 11170.22
 ],
 [
 "L foot plate",
-"L shoe front",
-10804.56
+"L sole front",
+11170.22
+],
+[
+"deck plate",
+"battery 13S",
+11061.3
 ],
 [
 "R foot plate",
 "R shoe front",
+10804.56
+],
+[
+"L foot plate",
+"L shoe front",
 10804.56
 ],
 [
@@ -145,16 +135,6 @@
 9413.46
 ],
 [
-"L foot plate",
-"L ankle ear out",
-8814.98
-],
-[
-"L foot plate",
-"L ankle ear in",
-8814.98
-],
-[
 "R foot plate",
 "R ankle ear out",
 8814.98
@@ -162,6 +142,16 @@
 [
 "R foot plate",
 "R ankle ear in",
+8814.98
+],
+[
+"L foot plate",
+"L ankle ear out",
+8814.98
+],
+[
+"L foot plate",
+"L ankle ear in",
 8814.98
 ],
 [
@@ -180,11 +170,6 @@
 8402.77
 ],
 [
-"R_hip_roll actuator B (buy) RS04",
-"R thigh cover in hip",
-8402.77
-],
-[
 "head rail R",
 "bill panel 10",
 7891.17
@@ -198,26 +183,6 @@
 "deck plate",
 "computer and power boards",
 7549.89
-],
-[
-"L knee shaft",
-"L knee lever I",
-7539.82
-],
-[
-"L knee shaft",
-"L knee lever O",
-7539.82
-],
-[
-"L knee shaft",
-"L shin hub in",
-7539.82
-],
-[
-"L knee shaft",
-"L shin hub out",
-7539.82
 ],
 [
 "R knee shaft",
@@ -237,6 +202,26 @@
 [
 "R knee shaft",
 "R shin hub out",
+7539.82
+],
+[
+"L knee shaft",
+"L knee lever I",
+7539.82
+],
+[
+"L knee shaft",
+"L knee lever O",
+7539.82
+],
+[
+"L knee shaft",
+"L shin hub in",
+7539.82
+],
+[
+"L knee shaft",
+"L shin hub out",
 7539.82
 ],
 [
@@ -260,11 +245,6 @@
 7214.7
 ],
 [
-"R thigh cover in hip",
-"R thigh cover in knee",
-7214.7
-],
-[
 "L hip yaw sleeve",
 "L hip yaw bearing inner race",
 5796.24
@@ -278,6 +258,11 @@
 "head rear frame",
 "bill panel 01 (1)",
 5759.49
+],
+[
+"deck plate",
+"battery BMS, fuse and case, allowance",
+5603.74
 ],
 [
 "head rail L",
@@ -305,14 +290,64 @@
 5174.73
 ],
 [
+"R ankle ear out",
+"R ankle output",
+5002.71
+],
+[
 "L ankle ear out",
 "L ankle output",
 5002.71
 ],
 [
-"R ankle ear out",
-"R ankle output",
-5002.71
+"L_hip_roll actuator F (buy) RS04",
+"L hip roll F seat",
+4751.66
+],
+[
+"L hip roll B seat",
+"L_hip_roll actuator B (buy) RS04",
+4751.66
+],
+[
+"R_hip_roll actuator F (buy) RS04",
+"R hip roll F seat",
+4751.66
+],
+[
+"R hip roll B seat",
+"R_hip_roll actuator B (buy) RS04",
+4751.66
+],
+[
+"L thigh rear plate in",
+"L knee I seat",
+4751.66
+],
+[
+"L thigh rear plate out",
+"L knee O seat",
+4751.66
+],
+[
+"L_knee actuator I (buy) RS04",
+"L knee I seat",
+4751.66
+],
+[
+"L knee O seat",
+"L_knee actuator O (buy) RS04",
+4751.66
+],
+[
+"R ankle plate in",
+"R ankle seat",
+4751.66
+],
+[
+"R_ankle_pitch actuator (buy) RS04",
+"R ankle seat",
+4751.66
 ],
 [
 "deck plate",
@@ -355,23 +390,23 @@
 4751.66
 ],
 [
-"L_hip_roll actuator F (buy) RS04",
-"L hip roll F seat",
+"R hip pitch upright in",
+"R hip pitch I seat",
 4751.66
 ],
 [
-"L hip roll B seat",
-"L_hip_roll actuator B (buy) RS04",
+"R hip pitch upright out",
+"R hip pitch O seat",
 4751.66
 ],
 [
-"R_hip_roll actuator F (buy) RS04",
-"R hip roll F seat",
+"R_hip_pitch actuator I (buy) RS04",
+"R hip pitch I seat",
 4751.66
 ],
 [
-"R hip roll B seat",
-"R_hip_roll actuator B (buy) RS04",
+"R hip pitch O seat",
+"R_hip_pitch actuator O (buy) RS04",
 4751.66
 ],
 [
@@ -395,43 +430,13 @@
 4751.66
 ],
 [
-"R hip pitch upright in",
-"R hip pitch I seat",
+"L ankle plate in",
+"L ankle seat",
 4751.66
 ],
 [
-"R hip pitch upright out",
-"R hip pitch O seat",
-4751.66
-],
-[
-"R_hip_pitch actuator I (buy) RS04",
-"R hip pitch I seat",
-4751.66
-],
-[
-"R hip pitch O seat",
-"R_hip_pitch actuator O (buy) RS04",
-4751.66
-],
-[
-"L thigh rear plate in",
-"L knee I seat",
-4751.66
-],
-[
-"L thigh rear plate out",
-"L knee O seat",
-4751.66
-],
-[
-"L_knee actuator I (buy) RS04",
-"L knee I seat",
-4751.66
-],
-[
-"L knee O seat",
-"L_knee actuator O (buy) RS04",
+"L_ankle_pitch actuator (buy) RS04",
+"L ankle seat",
 4751.66
 ],
 [
@@ -452,26 +457,6 @@
 [
 "R knee O seat",
 "R_knee actuator O (buy) RS04",
-4751.66
-],
-[
-"L ankle plate in",
-"L ankle seat",
-4751.66
-],
-[
-"L_ankle_pitch actuator (buy) RS04",
-"L ankle seat",
-4751.66
-],
-[
-"R ankle plate in",
-"R ankle seat",
-4751.66
-],
-[
-"R_ankle_pitch actuator (buy) RS04",
-"R ankle seat",
 4751.66
 ],
 [
@@ -505,13 +490,13 @@
 4735.26
 ],
 [
-"L hip roll yoke",
-"L hip pitch upright in",
+"R hip roll yoke",
+"R hip pitch upright in",
 4645.7
 ],
 [
-"R hip roll yoke",
-"R hip pitch upright in",
+"L hip roll yoke",
+"L hip pitch upright in",
 4645.7
 ],
 [
@@ -525,16 +510,6 @@
 4170.84
 ],
 [
-"L shin hub in",
-"L shin top",
-4007.75
-],
-[
-"L shin hub out",
-"L shin top",
-4007.75
-],
-[
 "R shin hub in",
 "R shin top",
 4007.75
@@ -545,9 +520,14 @@
 4007.75
 ],
 [
-"head_yaw actuator (buy) RS03",
-"head yaw seat",
-3926.99
+"L shin hub in",
+"L shin top",
+4007.75
+],
+[
+"L shin hub out",
+"L shin top",
+4007.75
 ],
 [
 "head roll cradle",
@@ -557,6 +537,11 @@
 [
 "head_roll actuator (buy) RS03",
 "head roll seat",
+3926.99
+],
+[
+"head_yaw actuator (buy) RS03",
+"head yaw seat",
 3926.99
 ],
 [
@@ -580,24 +565,14 @@
 3530.75
 ],
 [
-"L shin cap",
-"L ankle plate in",
-3471.63
-],
-[
 "R shin cap",
 "R ankle plate in",
 3471.63
 ],
 [
-"L hip pitch upright in",
-"L hip pitch rib",
-2526.96
-],
-[
-"L hip pitch upright out",
-"L hip pitch rib out",
-2526.96
+"L shin cap",
+"L ankle plate in",
+3471.63
 ],
 [
 "R hip pitch upright in",
@@ -607,6 +582,16 @@
 [
 "R hip pitch upright out",
 "R hip pitch rib out",
+2526.96
+],
+[
+"L hip pitch upright in",
+"L hip pitch rib",
+2526.96
+],
+[
+"L hip pitch upright out",
+"L hip pitch rib out",
 2526.96
 ],
 [
@@ -650,13 +635,8 @@
 2417.15
 ],
 [
-"L hip roll yoke",
 "L thigh cover in hip",
-2020.81
-],
-[
-"R hip roll yoke",
-"R thigh cover in hip",
+"L hip roll yoke",
 2020.81
 ],
 [
@@ -672,11 +652,6 @@
 [
 "L hip roll cheek B",
 "L thigh cover in hip",
-1877.76
-],
-[
-"R hip roll cheek B",
-"R thigh cover in hip",
 1877.76
 ],
 [
@@ -725,13 +700,13 @@
 1608.5
 ],
 [
-"L ankle ear in",
-"L ankle bearing housing",
+"R ankle ear in",
+"R ankle bearing housing",
 1256.44
 ],
 [
-"R ankle ear in",
-"R ankle bearing housing",
+"L ankle ear in",
+"L ankle bearing housing",
 1256.44
 ],
 [
@@ -745,16 +720,6 @@
 1200.83
 ],
 [
-"L shin hub in",
-"L shin spacer",
-942.85
-],
-[
-"L shin hub out",
-"L shin spacer",
-942.85
-],
-[
 "R shin hub in",
 "R shin spacer",
 942.85
@@ -762,6 +727,16 @@
 [
 "R shin hub out",
 "R shin spacer",
+942.85
+],
+[
+"L shin hub in",
+"L shin spacer",
+942.85
+],
+[
+"L shin hub out",
+"L shin spacer",
 942.85
 ],
 [
@@ -865,13 +840,13 @@
 628.32
 ],
 [
-"L ankle bearing housing",
-"L ankle bearing outer race",
+"R ankle bearing housing",
+"R ankle bearing outer race",
 601.87
 ],
 [
-"R ankle bearing housing",
-"R ankle bearing outer race",
+"L ankle bearing housing",
+"L ankle bearing outer race",
 601.87
 ],
 [
@@ -895,13 +870,13 @@
 471.24
 ],
 [
-"R knee crank I",
-"R knee crank pin I",
+"R knee lever I",
+"R knee lever pin I",
 471.24
 ],
 [
-"R knee crank O",
-"R knee crank pin O",
+"R knee lever O",
+"R knee lever pin O",
 471.24
 ],
 [
@@ -915,24 +890,14 @@
 471.24
 ],
 [
-"R knee lever I",
-"R knee lever pin I",
+"R knee crank I",
+"R knee crank pin I",
 471.24
 ],
 [
-"R knee lever O",
-"R knee lever pin O",
+"R knee crank O",
+"R knee crank pin O",
 471.24
-],
-[
-"L ankle ear out",
-"L shoe rear",
-467.12
-],
-[
-"L ankle ear in",
-"L shoe rear",
-467.12
 ],
 [
 "R ankle ear out",
@@ -945,6 +910,16 @@
 467.12
 ],
 [
+"L ankle ear out",
+"L shoe rear",
+467.12
+],
+[
+"L ankle ear in",
+"L shoe rear",
+467.12
+],
+[
 "neck spine",
 "head pitch L bearing outer race",
 465.96
@@ -953,16 +928,6 @@
 "neck spine",
 "head pitch R bearing outer race",
 465.96
-],
-[
-"body panel MR",
-"R hip yaw drum",
-410.14
-],
-[
-"body panel ML",
-"L hip yaw drum",
-410.13
 ],
 [
 "beak actuator (buy) RS00",
@@ -990,6 +955,16 @@
 392.7
 ],
 [
+"R knee lever pin I",
+"R knee rod I",
+392.7
+],
+[
+"R knee lever pin O",
+"R knee rod O",
+392.7
+],
+[
 "R knee crank pin I",
 "R knee rod I",
 392.7
@@ -997,16 +972,6 @@
 [
 "R knee crank pin O",
 "R knee rod O",
-392.7
-],
-[
-"R knee rod I",
-"R knee lever pin I",
-392.7
-],
-[
-"R knee rod O",
-"R knee lever pin O",
 392.7
 ],
 [
@@ -1030,13 +995,13 @@
 376.99
 ],
 [
-"L ankle plate in",
-"L ankle stub",
+"R ankle plate in",
+"R ankle stub",
 353.43
 ],
 [
-"R ankle plate in",
-"R ankle stub",
+"L ankle plate in",
+"L ankle stub",
 353.43
 ],
 [
@@ -1140,26 +1105,6 @@
 220.14
 ],
 [
-"L shin wall front",
-"L shin wall in",
-205.13
-],
-[
-"L shin wall front",
-"L shin wall out",
-205.13
-],
-[
-"L shin wall back",
-"L shin wall in",
-205.13
-],
-[
-"L shin wall back",
-"L shin wall out",
-205.13
-],
-[
 "R shin wall front",
 "R shin wall in",
 205.13
@@ -1177,22 +1122,32 @@
 [
 "R shin wall back",
 "R shin wall out",
+205.13
+],
+[
+"L shin wall front",
+"L shin wall in",
+205.13
+],
+[
+"L shin wall front",
+"L shin wall out",
+205.13
+],
+[
+"L shin wall back",
+"L shin wall in",
+205.13
+],
+[
+"L shin wall back",
+"L shin wall out",
 205.13
 ],
 [
 "head beak mount",
 "beak actuator (buy) RS00",
 181.03
-],
-[
-"L hip pitch bridge",
-"L hip pitch rib",
-173.12
-],
-[
-"L hip pitch bridge",
-"L hip pitch rib out",
-173.12
 ],
 [
 "R hip pitch bridge",
@@ -1205,14 +1160,29 @@
 173.12
 ],
 [
+"L hip pitch bridge",
+"L hip pitch rib",
+173.12
+],
+[
+"L hip pitch bridge",
+"L hip pitch rib out",
+173.12
+],
+[
 "L hip roll cheek B",
 "L thigh cover in knee",
 163.29
 ],
 [
-"R hip roll cheek B",
-"R thigh cover in knee",
-163.29
+"R shin wall in",
+"R shin cap",
+138.79
+],
+[
+"R shin wall out",
+"R shin cap",
+138.79
 ],
 [
 "L shin wall in",
@@ -1225,14 +1195,14 @@
 138.79
 ],
 [
+"R shin top",
 "R shin wall in",
-"R shin cap",
-138.79
+126.34
 ],
 [
+"R shin top",
 "R shin wall out",
-"R shin cap",
-138.79
+126.34
 ],
 [
 "L shin top",
@@ -1245,14 +1215,14 @@
 126.34
 ],
 [
-"R shin top",
-"R shin wall in",
-126.34
+"R shin wall front",
+"R shin cap",
+123.32
 ],
 [
-"R shin top",
-"R shin wall out",
-126.34
+"R shin wall back",
+"R shin cap",
+123.32
 ],
 [
 "L shin wall front",
@@ -1265,14 +1235,14 @@
 123.32
 ],
 [
+"R shin top",
 "R shin wall front",
-"R shin cap",
-123.32
+111.66
 ],
 [
+"R shin top",
 "R shin wall back",
-"R shin cap",
-123.32
+111.66
 ],
 [
 "L shin top",
@@ -1282,16 +1252,6 @@
 [
 "L shin top",
 "L shin wall back",
-111.66
-],
-[
-"R shin top",
-"R shin wall front",
-111.66
-],
-[
-"R shin top",
-"R shin wall back",
 111.66
 ],
 [
@@ -1315,16 +1275,6 @@
 85.01
 ],
 [
-"L ankle ear out",
-"L shoe front",
-83.12
-],
-[
-"L ankle ear in",
-"L shoe front",
-83.12
-],
-[
 "R ankle ear out",
 "R shoe front",
 83.12
@@ -1335,24 +1285,14 @@
 83.12
 ],
 [
-"computer and power boards",
-"deck bolt L 6",
-76.97
+"L ankle ear out",
+"L shoe front",
+83.12
 ],
 [
-"computer and power boards",
-"deck bolt L 7",
-76.97
-],
-[
-"computer and power boards",
-"deck bolt R 2",
-76.97
-],
-[
-"computer and power boards",
-"deck bolt R 3",
-76.97
+"L ankle ear in",
+"L shoe front",
+83.12
 ],
 [
 "L hip yaw output plate",
@@ -1445,48 +1385,23 @@
 76.97
 ],
 [
-"L hip roll yoke",
-"L hip roll output bolt F 0",
+"computer and power boards",
+"deck bolt L 6",
 76.97
 ],
 [
-"L hip roll yoke",
-"L hip roll output bolt F 1",
+"computer and power boards",
+"deck bolt L 7",
 76.97
 ],
 [
-"L hip roll yoke",
-"L hip roll output bolt F 2",
+"computer and power boards",
+"deck bolt R 2",
 76.97
 ],
 [
-"L hip roll yoke",
-"L hip roll output bolt F 3",
-76.97
-],
-[
-"L hip roll yoke",
-"L hip roll output bolt F 4",
-76.97
-],
-[
-"L hip roll yoke",
-"L hip roll output bolt F 5",
-76.97
-],
-[
-"L hip roll yoke",
-"L hip roll output bolt F 6",
-76.97
-],
-[
-"L hip roll yoke",
-"L hip roll output bolt F 7",
-76.97
-],
-[
-"L hip roll yoke",
-"L hip roll output bolt F 8",
+"computer and power boards",
+"deck bolt R 3",
 76.97
 ],
 [
@@ -1535,14 +1450,49 @@
 76.97
 ],
 [
-"L knee shaft",
-"L knee bearing inner race",
-75.3
+"L hip roll yoke",
+"L hip roll output bolt F 0",
+76.97
 ],
 [
-"L knee shaft",
-"L knee far bearing inner race",
-75.3
+"L hip roll yoke",
+"L hip roll output bolt F 1",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 2",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 3",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 4",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 5",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 6",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 7",
+76.97
+],
+[
+"L hip roll yoke",
+"L hip roll output bolt F 8",
+76.97
 ],
 [
 "R knee shaft",
@@ -1552,6 +1502,16 @@
 [
 "R knee shaft",
 "R knee far bearing inner race",
+75.3
+],
+[
+"L knee shaft",
+"L knee bearing inner race",
+75.3
+],
+[
+"L knee shaft",
+"L knee far bearing inner race",
 75.3
 ],
 [
@@ -1565,16 +1525,6 @@
 75.3
 ],
 [
-"L hip pitch upright in",
-"L hip pitch bridge",
-68.31
-],
-[
-"L hip pitch upright out",
-"L hip pitch bridge",
-68.31
-],
-[
 "R hip pitch upright in",
 "R hip pitch bridge",
 68.31
@@ -1585,9 +1535,14 @@
 68.31
 ],
 [
-"L shin wall in",
-"L ankle plate in",
-68.17
+"L hip pitch upright in",
+"L hip pitch bridge",
+68.31
+],
+[
+"L hip pitch upright out",
+"L hip pitch bridge",
+68.31
 ],
 [
 "R shin wall in",
@@ -1595,13 +1550,18 @@
 68.17
 ],
 [
-"L ankle stub",
-"L ankle bearing inner race",
-63.51
+"L shin wall in",
+"L ankle plate in",
+68.17
 ],
 [
 "R ankle stub",
 "R ankle bearing inner race",
+63.51
+],
+[
+"L ankle stub",
+"L ankle bearing inner race",
 63.51
 ],
 [
@@ -1700,11 +1660,6 @@
 39.34
 ],
 [
-"R hip roll B seat",
-"R thigh cover in hip",
-39.34
-],
-[
 "L thigh rear plate in",
 "L thigh cover post in hip",
 30.32
@@ -1785,21 +1740,6 @@
 30.32
 ],
 [
-"R thigh rear plate in",
-"R thigh cover post in hip",
-30.32
-],
-[
-"R thigh rear plate in",
-"R thigh cover post in rear",
-30.32
-],
-[
-"R thigh rear plate in",
-"R thigh cover post in knee",
-30.32
-],
-[
 "R thigh rear plate out",
 "R thigh cover post out hip",
 30.32
@@ -1820,11 +1760,6 @@
 30.32
 ],
 [
-"R thigh cover in hip",
-"R thigh cover post in hip",
-30.32
-],
-[
 "R thigh cover out rear",
 "R thigh cover post out hip",
 30.32
@@ -1840,28 +1775,8 @@
 30.32
 ],
 [
-"R thigh cover in rear",
-"R thigh cover post in hip",
-30.32
-],
-[
-"R thigh cover in rear",
-"R thigh cover post in rear",
-30.32
-],
-[
-"R thigh cover in rear",
-"R thigh cover post in knee",
-30.32
-],
-[
 "R thigh cover out knee",
 "R thigh cover post out knee",
-30.32
-],
-[
-"R thigh cover in knee",
-"R thigh cover post in knee",
 30.32
 ],
 [
@@ -1872,16 +1787,6 @@
 [
 "L hip roll mount bolt B 9",
 "L thigh cover in hip",
-5.84
-],
-[
-"R hip roll mount bolt B 0",
-"R thigh cover in hip",
-5.84
-],
-[
-"R hip roll mount bolt B 9",
-"R thigh cover in hip",
 5.84
 ],
 [
