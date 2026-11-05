@@ -65,13 +65,10 @@ Then the same for the right side, mirrored.
 
 [Sharper, with controls (MP4)](../images/assembly/dynamixel/clips/shoe_L.mp4)
 
-> ⚠ Solder the switch wires before pressing the switch in, and try the switch against the sole before printing all four parts: its travel in this TPU is untested.
-
 **Screws for this section:** 2 x M3 x 12 mm (each side)
 
 1. The shoe
-2. Press in the foot switch, its wires soldered first
-3. The TPU sole, 2 screws from below *(2 x M3 x 12 mm, 2.5 mm hex)*
+2. The TPU sole, 2 screws from below *(2 x M3 x 12 mm, 2.5 mm hex)*
 
 Then the same for the right side, mirrored.
 
@@ -230,7 +227,7 @@ Then the same for the right side, mirrored.
 3. The head frame, with its beak servo, down over the roll servo
 4. 4 screws on each horn *(4 x M2 x 6 mm, small Phillips; 4 x M2 x 8 mm, small Phillips)*
 5. The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, USB-C *(4 x M2.5 x 5 mm, small Phillips)*
-6. The Pi onto its plate from the front, 4 screws *(4 x M2 x 6 mm, small Phillips)*
+6. The Pi onto its plate from the front, its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*
 7. The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, a USB cable to the PWR port of the Pi
 8. The jaw, up from below, its tab sliding onto the horn, 4 screws *(4 x M2 x 6 mm, small Phillips)*
 9. The hood, down between the jaw's tabs

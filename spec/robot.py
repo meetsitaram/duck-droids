@@ -56,7 +56,7 @@ RECIPES = {
     'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
                       # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
                       # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
-                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True,
+                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_out=0.003,
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
@@ -904,10 +904,11 @@ link('L_foot', 0.05, [
     # foot switch (2026-11-02, the user: an input to the walking policy, as Open Duck's GPIO foot switches): a subminiature
     # microswitch pressed into the shoe's underside ahead of the ankle pocket, its plunger on the TPU sole, which gives
     # as the foot takes weight. Its travel against this TPU is untested: try it before printing all four
-    cut(box('L foot switch pocket', (XK + 0.0285 * K - 0.0065, SOLE_C[1] - 0.0030, FOOT['sole'] - 0.0015 - R.get('switch_drop', 0)),
+    # (the all-Dynamixel duck has none, 2026-11-05, the user: "too much wire", and "just servo states would be good enough": microduck has no switch either)
+    *([cut(box('L foot switch pocket', (XK + 0.0285 * K - 0.0065, SOLE_C[1] - 0.0030, FOOT['sole'] - 0.0015 - R.get('switch_drop', 0)),
             (XK + 0.0285 * K + 0.0065, SOLE_C[1] + 0.0030, FOOT['sole'] + 0.0052 - R.get('switch_drop', 0)), ORANGE, 'struct'), 'L shoe', 'L sole'),
-    box('L foot switch', (XK + 0.0285 * K - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015 - R.get('switch_drop', 0)),
-        (XK + 0.0285 * K + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005 - R.get('switch_drop', 0)), DARK, material='electronics', mass=0.001, exposed=True),
+       box('L foot switch', (XK + 0.0285 * K - 0.0064, SOLE_C[1] - 0.0029, FOOT['sole'] - 0.0015 - R.get('switch_drop', 0)),
+        (XK + 0.0285 * K + 0.0064, SOLE_C[1] + 0.0029, FOOT['sole'] + 0.005 - R.get('switch_drop', 0)), DARK, material='electronics', mass=0.001, exposed=True)] if R.get('foot_switch', True) else []),
     *[fast(cyl(f'L shoe bottom screw {k}', (XK + dx, SOLE_C[1], 0.0078 * K), 'z', 0.0027, 0.0015, DARK, 'decal'), 'M3', 0.012,
            (XK + dx, SOLE_C[1], 0.008 * K), (0, 0, 1)) for k, dx in enumerate((-0.0215 * K, 0.038 * K))],
     # the sole curls up all round underneath, toe and heel most (microduck's, round 11): sections from a smaller
@@ -1159,6 +1160,13 @@ link('head', 0.12, [
     *[box('servo bus board', (0.0585, -0.0280, BUS_Z - 0.0002), (0.0951, 0.0280, BUS_Z + 0.0113), PCB, material='electronics', mass=0.015) for _ in range(BUSES == 2)],
     *([dict(box('U2D2', (XHR + 0.0048, -0.024, HEAD_Z + 0.0034), (XHR + 0.0228, 0.024, HEAD_Z + 0.0184), PCB, material='electronics', mass=0.009), on_cover=True)] if BUSES == 2 else []),   # (flat, over what the head yaw servo's tray sweeps, under the Pi's mount)   # (on foam tape, clear of the horn's screw heads)
     *(bus_board() if BUSES == 1 else []),
+    # the Pi's connectors, 2026-11-05: it was a plain box, so nothing said which way its USB edge faced, and no check saw a plug. That edge faces up: down has 0.5 mm to the head's base, up has 15 mm under the hood. Parts toward the face, so the microSD is at +y and the camera socket at -y.
+    # Ports from Raspberry Pi's drawing: USB 41.4 and PWR 54 mm from the microSD's end. Right-angle plug bodies, 9 mm up and 15-19 mm along the edge, sizes from the listings' photos: USB leaves toward the bus board, PWR toward the regulator
+    *[dict(box(n, (PI_X + 0.0028 + x0, y0, z0), (PI_X + 0.0028 + x1, y1, z1), '#D9D4C5', fillet=0.0003), material='electronics', mass=m, wire=True, exposed=True)
+      for n, x0, x1, y0, y1, z0, z1, m in (('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+                                           ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+                                           ('Pi camera ribbon', 0.0, 0.005, -0.0360, -0.0325, PI_Z - 0.006, PI_Z + 0.006, 0.0002),
+                                           ('Pi microSD', 0.0, 0.002, 0.0325, 0.0345, PI_Z - 0.006, PI_Z + 0.006, 0.0002)) if R.get('pi_ports_up')],
     *jaw_recess(),
     loft('head', hood(), WHITE, open=(), along='x', clip=FRONT),
     cut(UNDER, 'head', 'upper bill'),
@@ -1182,7 +1190,7 @@ link('head', 0.12, [
                                                              ('head strip deep', (0.0149, -0.0310, 0.2632), (0.0169, 0.0142, 0.2662)),
                                                              ('L base riser back', (0.0074, 0.0285, 0.2347), (0.0110, 0.0315, 0.2652))) if R.get('head_fixes')],
     # (the 5 V regulator for the Pi, off the board's green terminals: one power pair up the neck, not 2. A USB buck module, 35 x 17 x 8.5 mm by its listing, on edge on the base beside the Pi, its USB socket forward, for a right-angle plug turning in toward the Pi (a straight plug hits the face); mass a guess: weigh yours)
-    *[dict(box('head 5 V regulator', (0.0660, -0.0420, 0.2430), (0.1010, -0.0335, 0.2600), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
+    *[dict(box('head 5 V regulator', (0.0660, -0.0420 - R.get('reg_out', 0), 0.2430), (0.1010, -0.0335 - R.get('reg_out', 0), 0.2600), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
     dict(plate('head base', HEAD_Z + 0.003, 0.0025, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
     # notches for the jaw's tabs, which come up past the plate
@@ -1338,7 +1346,7 @@ def build():
                 # (in a cover's 2 mm wall, a groove stops at the wires: it mustn't come through)
                 cradle.append(cut(lbox(f"{n} wire groove {'+' if sg_ > 0 else '-'}", f, (XL_WIRES['u'][0] - 0.0003, XL_WIRES['u'][1] + 0.0003), sorted((sg_ * (XL_WIRES['w'][0] - 0.0003), sg_ * (R.get('wire_w', XL_WIRES['w'][1]) + (0.0002 if 'cover' in target else 0.003)))),
                                        (XL_WIRES['a'][0] - 0.0003, XL_WIRES['a'][1] + 0.0003), DARK), target))
-        if 'steps' in ACT[j['act']]:                     # the cable plugs on the rear face, and the window behind them (PLUG)
+        if 'steps' in ACT[j['act']] and j['name'][:2] in ('L_', 'R_'):                     # the cable plugs on the rear face, and the window behind them (PLUG): legs only, as all Feetech's neck and head STS3215s are a draft
             f, n, H = servo_frame(j), j['name'].replace('_', ' '), ACT[j['act']]['box'][2]
             s_ = n[0]
             target = {'hip yaw': 'top plate', 'hip roll': f'{n} cradle rear face', 'hip pitch': f'{s_} thigh plate', 'knee': f'{s_} thigh plate',

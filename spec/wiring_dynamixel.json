@@ -2,7 +2,7 @@
  "title": "All-Dynamixel duck: wiring",
  "footer": [
   "Red to +, black to -. Lines that cross are not joined. Measure 5 V at the converter before connecting the Pi.",
-  "Bench test first: the board's label says 9-12.6 V and the battery gives 7.4-8.4 V. Also on the Pi: IMU, camera, 2 foot switches."
+  "Bench test first: the board's label says 9-12.6 V and the battery gives 7.4-8.4 V. Also on the Pi: IMU, camera."
  ],
  "parts": {
   "battery": {

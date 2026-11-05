@@ -21,7 +21,7 @@
   "group": "POINTS",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "0.6 % of 1500 points disagree; solid in 319 offline, 314 in Fusion"
+  "detail": "0.5 % of 1500 points disagree; solid in 319 offline, 315 in Fusion"
  },
  {
   "group": "POINTS",
@@ -57,13 +57,13 @@
   "group": "POINTS",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 194 offline, 195 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 204 offline, 205 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "L sole",
   "status": "PASS",
-  "detail": "1.5 % of 1500 points disagree; solid in 1094 offline, 1108 in Fusion"
+  "detail": "1.4 % of 1500 points disagree; solid in 1102 offline, 1117 in Fusion"
  },
  {
   "group": "POINTS",
@@ -93,7 +93,7 @@
   "group": "POINTS",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "0.5 % of 1500 points disagree; solid in 322 offline, 322 in Fusion"
+  "detail": "0.4 % of 1500 points disagree; solid in 322 offline, 322 in Fusion"
  },
  {
   "group": "POINTS",
@@ -129,13 +129,13 @@
   "group": "POINTS",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 214 offline, 216 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 227 offline, 228 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "R sole",
   "status": "PASS",
-  "detail": "0.4 % of 1500 points disagree; solid in 1151 offline, 1155 in Fusion"
+  "detail": "0.4 % of 1500 points disagree; solid in 1163 offline, 1167 in Fusion"
  },
  {
   "group": "POINTS",
@@ -165,7 +165,7 @@
   "group": "POINTS",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 906 offline, 906 in Fusion"
+  "detail": "0.2 % of 1500 points disagree; solid in 905 offline, 906 in Fusion"
  },
  {
   "group": "POINTS",
@@ -231,7 +231,7 @@
   "group": "POINTS",
   "item": "jaw soft insert",
   "status": "PASS",
-  "detail": "0.0 % of 1500 points disagree; solid in 1473 offline, 1473 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 1472 offline, 1473 in Fusion"
  },
  {
   "group": "POINTS",

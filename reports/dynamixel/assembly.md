@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1098 checks: 1098 pass, 0 warn, **0 fail**
+1094 checks: 1094 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -20,7 +20,6 @@ From tools/assembly.py
 | PASS | shin_L: L ankle servo |  |
 | PASS | shin_L: L ankle bearing inner |  |
 | PASS | shin_L: L ankle horn |  |
-| PASS | shoe_L: L foot switch |  |
 | PASS | shoe_L: L sole |  |
 | PASS | leg_L: @shin_L |  |
 | PASS | leg_L: @shoe_L |  |
@@ -38,7 +37,6 @@ From tools/assembly.py
 | PASS | shin_R: R ankle servo |  |
 | PASS | shin_R: R ankle bearing inner |  |
 | PASS | shin_R: R ankle horn |  |
-| PASS | shoe_R: R foot switch |  |
 | PASS | shoe_R: R sole |  |
 | PASS | leg_R: @shin_R |  |
 | PASS | leg_R: @shoe_R |  |
@@ -1099,7 +1097,6 @@ From tools/assembly.py
 | PASS | part L ankle bearing inner |  |
 | PASS | part L shoe |  |
 | PASS | part L sole |  |
-| PASS | part L foot switch |  |
 | PASS | part L inner ear |  |
 | PASS | part R hip yaw servo |  |
 | PASS | part R hip yaw lid |  |
@@ -1127,7 +1124,6 @@ From tools/assembly.py
 | PASS | part R ankle bearing inner |  |
 | PASS | part R shoe |  |
 | PASS | part R sole |  |
-| PASS | part R foot switch |  |
 | PASS | part R inner ear |  |
 | PASS | part chassis |  |
 | PASS | part battery |  |

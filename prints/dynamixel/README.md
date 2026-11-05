@@ -14,8 +14,8 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | L knee lid | L_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | L thigh cover | L_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
 | L shin | L_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 307 |
-| L shoe | L_shoe.stl | 30 x 43 x 58 | 11.1 | PLA | 423 |
-| L sole | L_sole.stl | 13 x 44 x 58 | 24.7 | TPU 95A | 355 |
+| L shoe | L_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
+| L sole | L_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
 | L inner ear | L_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
 | R hip yaw lid | R_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
 | R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.2 | PLA | 196 |
@@ -26,8 +26,8 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R knee lid | R_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | R thigh cover | R_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
 | R shin | R_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 307 |
-| R shoe | R_shoe.stl | 30 x 43 x 58 | 11.1 | PLA | 423 |
-| R sole | R_sole.stl | 13 x 44 x 58 | 24.7 | TPU 95A | 355 |
+| R shoe | R_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
+| R sole | R_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
 | R inner ear | R_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
 | chassis | chassis.stl | 38 x 53 x 84 | 27.8 | PLA | 2114 |
 | body shell | body_shell.stl | 38 x 74 x 85 | 22.1 | PLA | 1516 |

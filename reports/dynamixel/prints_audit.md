@@ -113,20 +113,20 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L knee lid | 1.4 cm3, designed 1.4: 0 % off |
 | PASS | L thigh cover | 14.9 cm3, designed 16.0: 7 % off |
 | PASS | L shin | 6.4 cm3, designed 6.5: 1 % off |
-| PASS | L shoe | 11.1 cm3, designed 11.1: 0 % off |
-| PASS | L sole | 24.9 cm3, designed 24.7: 1 % off |
+| PASS | L shoe | 11.5 cm3, designed 11.5: 0 % off |
+| PASS | L sole | 25.1 cm3, designed 24.8: 1 % off |
 | PASS | L inner ear | 2.2 cm3, designed 2.2: 0 % off |
 | PASS | R hip yaw lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | R yaw bracket | 8.1 cm3, designed 8.2: 2 % off |
 | PASS | R hip roll lid | 1.2 cm3, designed 1.2: 0 % off |
-| PASS | R roll bracket | 3.5 cm3, designed 3.5: 1 % off |
+| PASS | R roll bracket | 3.5 cm3, designed 3.5: 0 % off |
 | PASS | R thigh frame | 10.3 cm3, designed 10.5: 2 % off |
 | PASS | R hip pitch lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | R knee lid | 1.4 cm3, designed 1.4: 0 % off |
 | PASS | R thigh cover | 14.8 cm3, designed 16.0: 7 % off |
 | PASS | R shin | 6.4 cm3, designed 6.5: 1 % off |
-| PASS | R shoe | 11.1 cm3, designed 11.1: 0 % off |
-| PASS | R sole | 24.9 cm3, designed 24.7: 1 % off |
+| PASS | R shoe | 11.5 cm3, designed 11.5: 0 % off |
+| PASS | R sole | 25.1 cm3, designed 24.8: 1 % off |
 | PASS | R inner ear | 2.2 cm3, designed 2.2: 0 % off |
 | PASS | chassis | 27.6 cm3, designed 27.8: 0 % off |
 | PASS | body shell | 21.5 cm3, designed 22.1: 3 % off |
@@ -209,20 +209,20 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L knee lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | L thigh cover | 2 % of its surface is under 0.8 mm thick |
 | PASS | L shin | 1 % of its surface is under 0.8 mm thick |
-| PASS | L shoe | 6 % of its surface is under 0.8 mm thick |
+| PASS | L shoe | 5 % of its surface is under 0.8 mm thick |
 | PASS | L sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | L inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip yaw lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | R yaw bracket | 1 % of its surface is under 0.8 mm thick |
 | PASS | R hip roll lid | 3 % of its surface is under 0.8 mm thick |
-| PASS | R roll bracket | 3 % of its surface is under 0.8 mm thick |
+| PASS | R roll bracket | 1 % of its surface is under 0.8 mm thick |
 | PASS | R thigh frame | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip pitch lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | R knee lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | R thigh cover | 0 % of its surface is under 0.8 mm thick |
 | PASS | R shin | 1 % of its surface is under 0.8 mm thick |
-| PASS | R shoe | 5 % of its surface is under 0.8 mm thick |
-| PASS | R sole | 5 % of its surface is under 0.8 mm thick |
+| PASS | R shoe | 6 % of its surface is under 0.8 mm thick |
+| PASS | R sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | R inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | chassis | 0 % of its surface is under 0.8 mm thick |
 | PASS | body shell | 2 % of its surface is under 0.8 mm thick |

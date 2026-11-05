@@ -5,6 +5,7 @@
 Read-only unless --write. --recipe sets RECIPE = '...' in the script. Prints the tool's output.
 """
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -29,6 +30,10 @@ def main():
     script = open(sys.argv[1], encoding='utf-8').read()
     if '--recipe' in sys.argv:
         script = re.sub(r"^RECIPE = '.*'$", f"RECIPE = '{sys.argv[sys.argv.index('--recipe') + 1]}'", script, flags=re.M)
+    # this checkout's code, not whichever one Fusion's Python imported last: several worktrees can share one Fusion
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    script = script.replace('C:\\Users\\meets\\Projects\\duck-droids', root)
+    script = script.replace('if P not in sys.path:\n    sys.path.insert(0, P)', "sys.path[:] = [x for x in sys.path if not x.endswith(os.path.join('cad', 'fusion'))]\nsys.path.insert(0, P)")
     _, s = post({'jsonrpc': '2.0', 'id': 1, 'method': 'initialize', 'params': {'protocolVersion': '2025-06-18', 'capabilities': {}, 'clientInfo': {'name': 'duck-droids', 'version': '1'}}})
     post({'jsonrpc': '2.0', 'method': 'notifications/initialized'}, s)
     obj = {'script': script}

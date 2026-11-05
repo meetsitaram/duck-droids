@@ -2852,7 +2852,7 @@
 "L ankle ear out",
 "L ankle pitch horn seat boss"
 ],
-"volume_cm3": 11.098394217557248,
+"volume_cm3": 11.47101035128018,
 "print_T": [
 [
 0.0,
@@ -3075,28 +3075,7 @@
 "screw": "L ankle pitch fork screw horn 3"
 }
 ],
-"pockets": [
-{
-"kind": "rbox",
-"name": "L foot switch",
-"c": [
--0.014060000000000007,
-0.04529000000000001,
-0.013186
-],
-"size": [
-0.013099999999999999,
-0.0060999999999999995,
-0.006799999999999999
-],
-"fillet": 0.001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "electronics",
-"mass": 0.001
-}
-],
+"pockets": [],
 "inner": {}
 },
 "L sole": {
@@ -3104,7 +3083,7 @@
 "geoms": [
 "L sole"
 ],
-"volume_cm3": 24.6522568778906,
+"volume_cm3": 24.818193625734796,
 "print_T": [
 [
 0.0,
@@ -3271,26 +3250,6 @@
 {
 "exact": "L ankle ear out",
 "name": "L ankle ear out"
-},
-{
-"kind": "rbox",
-"name": "L foot switch",
-"c": [
--0.014060000000000007,
-0.04529000000000001,
-0.013186
-],
-"size": [
-0.013099999999999999,
-0.0060999999999999995,
-0.006799999999999999
-],
-"fillet": 0.001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "electronics",
-"mass": 0.001
 },
 {
 "exact": "L ankle ear in",
@@ -6274,7 +6233,7 @@
 "R ankle ear out",
 "R ankle pitch horn seat boss"
 ],
-"volume_cm3": 11.098395043839892,
+"volume_cm3": 11.471011177562822,
 "print_T": [
 [
 0.0,
@@ -6497,28 +6456,7 @@
 "screw": "R ankle pitch fork screw horn 3"
 }
 ],
-"pockets": [
-{
-"kind": "rbox",
-"name": "R foot switch",
-"c": [
--0.014060000000000007,
--0.04529000000000001,
-0.013186
-],
-"size": [
-0.013099999999999999,
-0.0060999999999999995,
-0.006799999999999999
-],
-"fillet": 0.001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "electronics",
-"mass": 0.001
-}
-],
+"pockets": [],
 "inner": {}
 },
 "R sole": {
@@ -6526,7 +6464,7 @@
 "geoms": [
 "R sole"
 ],
-"volume_cm3": 24.65225642113894,
+"volume_cm3": 24.81819316898314,
 "print_T": [
 [
 0.0,
@@ -6693,26 +6631,6 @@
 {
 "exact": "R ankle ear out",
 "name": "R ankle ear out"
-},
-{
-"kind": "rbox",
-"name": "R foot switch",
-"c": [
--0.014060000000000007,
--0.04529000000000001,
-0.013186
-],
-"size": [
-0.013099999999999999,
-0.0060999999999999995,
-0.006799999999999999
-],
-"fillet": 0.001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "electronics",
-"mass": 0.001
 },
 {
 "exact": "R ankle ear in",
@@ -11763,7 +11681,6 @@
 "L ankle servo",
 "L ankle horn",
 "L ankle bearing inner",
-"L foot switch",
 "R hip yaw servo",
 "R hip yaw bearing",
 "R hip yaw horn",
@@ -11779,7 +11696,6 @@
 "R ankle servo",
 "R ankle horn",
 "R ankle bearing inner",
-"R foot switch",
 "battery",
 "head 5 V regulator",
 "IMU",
@@ -11861,9 +11777,6 @@
 "L ankle bearing inner race",
 "L ankle bearing outer race"
 ],
-"L foot switch": [
-"L foot switch"
-],
 "R hip yaw servo": [
 "R_hip_yaw actuator (buy) XL330_M288",
 "R hip yaw cable plugs +",
@@ -11925,11 +11838,10 @@
 "R ankle bearing inner race",
 "R ankle bearing outer race"
 ],
-"R foot switch": [
-"R foot switch"
-],
 "battery": [
-"battery 2S 450 mAh"
+"battery 2S 450 mAh",
+"battery XT30",
+"battery balance plug"
 ],
 "head 5 V regulator": [
 "head 5 V regulator"
@@ -11989,7 +11901,11 @@
 "beak cable plugs -"
 ],
 "Pi Zero 2 W": [
-"Pi Zero 2 W"
+"Pi Zero 2 W",
+"Pi USB plug",
+"Pi PWR plug",
+"Pi camera ribbon",
+"Pi microSD"
 ],
 "camera": [
 "camera"

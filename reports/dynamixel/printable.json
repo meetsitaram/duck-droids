@@ -237,7 +237,7 @@
   "group": "ORIENT",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "423 mm2 overhang, 45 mm2 on the bed, 58 mm tall"
+  "detail": "395 mm2 overhang, 45 mm2 on the bed, 58 mm tall"
  },
  {
   "group": "PIECES",
@@ -261,13 +261,13 @@
   "group": "SUPPORT",
   "item": "L shoe",
   "status": "WARN",
-  "detail": "423 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "395 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
   "item": "L sole",
   "status": "PASS",
-  "detail": "355 mm2 overhang, 145 mm2 on the bed, 58 mm tall"
+  "detail": "347 mm2 overhang, 145 mm2 on the bed, 58 mm tall"
  },
  {
   "group": "PIECES",
@@ -291,7 +291,7 @@
   "group": "SUPPORT",
   "item": "L sole",
   "status": "WARN",
-  "detail": "355 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "347 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
@@ -555,7 +555,7 @@
   "group": "ORIENT",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "423 mm2 overhang, 45 mm2 on the bed, 58 mm tall"
+  "detail": "395 mm2 overhang, 45 mm2 on the bed, 58 mm tall"
  },
  {
   "group": "PIECES",
@@ -579,13 +579,13 @@
   "group": "SUPPORT",
   "item": "R shoe",
   "status": "WARN",
-  "detail": "423 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "395 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",
   "item": "R sole",
   "status": "PASS",
-  "detail": "355 mm2 overhang, 145 mm2 on the bed, 58 mm tall"
+  "detail": "347 mm2 overhang, 145 mm2 on the bed, 58 mm tall"
  },
  {
   "group": "PIECES",
@@ -609,7 +609,7 @@
   "group": "SUPPORT",
   "item": "R sole",
   "status": "WARN",
-  "detail": "355 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "347 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",

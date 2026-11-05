@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-04 21:40, 60 s
+spec: `spec/robot.json`, 2026-11-04 23:39, 64 s
 
 190 checks: 187 pass, 3 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-04 21:40, 60 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 0.975 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 0.978 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -238,18 +238,18 @@ spec: `spec/robot.json`, 2026-11-04 21:40, 60 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 74 % used |
-| PASS | head_pitch | 0.18 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 57 % used |
+| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 76 % used |
+| PASS | head_pitch | 0.18 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 58 % used |
 | PASS | L_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 55 % used |
 | PASS | R_knee | 0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 55 % used |
 | PASS | L_hip_roll | 0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used |
-| PASS | L_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used |
-| PASS | R_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used |
+| PASS | L_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 29 % used |
+| PASS | R_hip_pitch | 0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 29 % used |
 | PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 20 % used |
+| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
 | PASS | L_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
 | PASS | R_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
-| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
 | PASS | L_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
 | PASS | beak | 0.01 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 4 % used |
-| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 1 % used |
+| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 0 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 0 % used |
