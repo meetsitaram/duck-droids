@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 01:14, 60 s
+spec: `spec/robot.json`, 2026-11-05 06:10, 68 s
 
 188 checks: 184 pass, 4 warn, **0 fail**
 
@@ -9,7 +9,7 @@ spec: `spec/robot.json`, 2026-11-05 01:14, 60 s
 | status | item | detail |
 |---|---|---|
 | WARN | height | 0.379 m: 1.44 x microduck's 0.264 m (proportions are checked at this scale) |
-| PASS | head_length_m | 0.191 (microduck 0.123 x 1.44 = 0.177 +/- 15 %) |
+| PASS | head_length_m | 0.192 (microduck 0.123 x 1.44 = 0.177 +/- 15 %) |
 | PASS | head_width_m | 0.134 (microduck 0.092 x 1.44 = 0.132 +/- 15 %) |
 | PASS | head_height_m | 0.084 (microduck 0.059 x 1.44 = 0.085 +/- 15 %) |
 | PASS | head_bottom_z | 0.295 (microduck 0.205 x 1.44 = 0.294 +/- 15 %) |
@@ -29,7 +29,7 @@ spec: `spec/robot.json`, 2026-11-05 01:14, 60 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 255 printed parts; largest head: 191 mm, on a 256 mm bed |
+| PASS | largest part | 255 printed parts; largest head: 192 mm, on a 256 mm bed |
 
 ## axis
 

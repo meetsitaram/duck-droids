@@ -107,6 +107,8 @@ RECIPES = {
                     # everything over the yaw plate up 2.2 mm, the plate that much thicker: the beak's rear plate met the yaw bearing past 0.22 rad of head roll. Raising the beak alone put its case through the hood,
                     # and a shorter boss did too: the hood curves in over it (0.17 cm3, 3.7 mm deep along its top edge)
                     yaw_plate_up=0.0022, hood_rear_x=-0.0310,
+                    # the hood's back cap scaled with the head: at the small duck's 4 mm, it flared 28 to 67 mm wide so fast that Fusion refused the loft (ASM_BAD_UV_SKIN_DIR)
+                    hood_tail=(0.0051, 0.0077, 0.018),
                     # (the yaw plate's +y edge in, 8.4 mm from the axis, past the horn screws' heads: the beak's rear plate passes it as the head rolls)
                     yaw_plate_y=0.0084,
                     # (the base's wall 1.5 mm or more at its back, where the hood narrows: it was 0.5. A rib 0.3 mm deeper on the shin: 55 N on this heavier duck put it 2 % over the beam estimate's limit, and 1 mm met the roll cradle at the knee's end)
@@ -1023,7 +1025,8 @@ RIM = 0.0025                                       # the hood's rim round the fa
 def hood(grow=0.0, n_front=3.0, n_back=2.4):
     """The hood's sections along x, back to front: (x, lower edge, 0, height, half width, power)."""
     z0 = HEAD_Z + BILL_H                           # the hood stands on the upper bill (round 5: it overlapped it)
-    out = [(HEAD_BACK - 0.004, z0, 0, 0.006 + grow, 0.014 + grow, n_back)]
+    tail_ = R.get('hood_tail', (0.004, 0.006, 0.014))   # the back cap: how far behind the first section, its height, its half width
+    out = [(HEAD_BACK - tail_[0], z0, 0, tail_[1] + grow, tail_[2] + grow, n_back)]
     for k, (d, h, w) in enumerate(HOOD_MD):
         n = n_back + (n_front - n_back) * k / (len(HOOD_MD) - 1)
         out.append((HEAD_FRONT - HK * d, z0, 0, HK * h + grow, HK * w + grow, n))
