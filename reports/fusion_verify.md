@@ -18,7 +18,7 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | L thigh cover | 1.2 % of 1500 points disagree; solid in 138 offline, 130 in Fusion |
 | PASS | L shin | 0.1 % of 1500 points disagree; solid in 182 offline, 184 in Fusion |
 | PASS | L shoe | 0.2 % of 1500 points disagree; solid in 209 offline, 208 in Fusion |
-| PASS | L sole | 1.2 % of 1500 points disagree; solid in 1052 offline, 1070 in Fusion |
+| PASS | L sole | 1.3 % of 1500 points disagree; solid in 1051 offline, 1070 in Fusion |
 | PASS | L inner ear | 0.1 % of 1500 points disagree; solid in 682 offline, 684 in Fusion |
 | PASS | R hip yaw lid | 0.0 % of 1500 points disagree; solid in 487 offline, 487 in Fusion |
 | PASS | R yaw bracket | 0.7 % of 1500 points disagree; solid in 306 offline, 301 in Fusion |
@@ -35,13 +35,13 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | chassis | 0.0 % of 1500 points disagree; solid in 164 offline, 164 in Fusion |
 | PASS | body shell | 0.5 % of 1500 points disagree; solid in 120 offline, 120 in Fusion |
 | PASS | neck column | 0.5 % of 1500 points disagree; solid in 296 offline, 288 in Fusion |
-| PASS | neck lid | 0.1 % of 1500 points disagree; solid in 1242 offline, 1242 in Fusion |
+| PASS | neck lid | 0.2 % of 1500 points disagree; solid in 1241 offline, 1242 in Fusion |
 | PASS | head pitch lid | 0.2 % of 1500 points disagree; solid in 1244 offline, 1243 in Fusion |
 | PASS | head fork | 0.2 % of 1500 points disagree; solid in 193 offline, 190 in Fusion |
 | PASS | head yaw sheet | 0.2 % of 1500 points disagree; solid in 333 offline, 332 in Fusion |
 | PASS | head yaw bracket | 0.7 % of 1500 points disagree; solid in 267 offline, 258 in Fusion |
 | PASS | head roll lid | 0.0 % of 1500 points disagree; solid in 750 offline, 750 in Fusion |
-| PASS | head roll spacer | 0.1 % of 1500 points disagree; solid in 899 offline, 899 in Fusion |
+| PASS | head roll spacer | 0.1 % of 1500 points disagree; solid in 898 offline, 899 in Fusion |
 | PASS | head roll rear spacer | 0.1 % of 1500 points disagree; solid in 1079 offline, 1080 in Fusion |
 | PASS | head frame | 0.0 % of 1500 points disagree; solid in 98 offline, 98 in Fusion |
 | PASS | hood | 0.5 % of 1500 points disagree; solid in 82 offline, 82 in Fusion |
@@ -50,4 +50,4 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | mouth roof | 0.1 % of 1500 points disagree; solid in 1449 offline, 1451 in Fusion |
 | PASS | face | 0.1 % of 1500 points disagree; solid in 714 offline, 715 in Fusion |
 | PASS | eye ring | 0.1 % of 1500 points disagree; solid in 898 offline, 899 in Fusion |
-| PASS | eye iris | 0.1 % of 1500 points disagree; solid in 863 offline, 862 in Fusion |
+| PASS | eye iris | 0.1 % of 1500 points disagree; solid in 864 offline, 862 in Fusion |
