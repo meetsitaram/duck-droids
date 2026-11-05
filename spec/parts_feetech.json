@@ -6,7 +6,7 @@
 "L hip yaw cradle horn face",
 "L hip yaw horn seat floor"
 ],
-"volume_cm3": 2.9436456282254557,
+"volume_cm3": 2.9277099347886457,
 "print_T": [
 [
 0.0,
@@ -731,7 +731,7 @@
 "L hip roll cradle horn face",
 "L hip roll horn seat floor"
 ],
-"volume_cm3": 2.516205312178435,
+"volume_cm3": 2.500269447926952,
 "print_T": [
 [
 1.0,
@@ -1773,7 +1773,7 @@
 "L hip pitch cradle horn face",
 "L hip pitch horn seat floor"
 ],
-"volume_cm3": 3.0059407373821223,
+"volume_cm3": 2.9900048920608957,
 "print_T": [
 [
 0.0,
@@ -2129,7 +2129,7 @@
 "L knee cradle horn face",
 "L knee horn seat floor"
 ],
-"volume_cm3": 2.925701712076829,
+"volume_cm3": 2.9097658403601834,
 "print_T": [
 [
 0.0,
@@ -4354,7 +4354,7 @@
 "R hip yaw cradle horn face",
 "R hip yaw horn seat floor"
 ],
-"volume_cm3": 2.9244973788667505,
+"volume_cm3": 2.9085616854299414,
 "print_T": [
 [
 0.0,
@@ -5079,7 +5079,7 @@
 "R hip roll cradle horn face",
 "R hip roll horn seat floor"
 ],
-"volume_cm3": 2.5162053121784345,
+"volume_cm3": 2.5002694479269514,
 "print_T": [
 [
 1.0,
@@ -6121,7 +6121,7 @@
 "R hip pitch cradle horn face",
 "R hip pitch horn seat floor"
 ],
-"volume_cm3": 3.0059407373821214,
+"volume_cm3": 2.990004892060895,
 "print_T": [
 [
 0.0,
@@ -6477,7 +6477,7 @@
 "R knee cradle horn face",
 "R knee horn seat floor"
 ],
-"volume_cm3": 2.9257017120768287,
+"volume_cm3": 2.909765840360183,
 "print_T": [
 [
 0.0,
@@ -11251,7 +11251,7 @@
 "head yaw cradle horn face",
 "head yaw horn seat floor"
 ],
-"volume_cm3": 1.2889649394265252,
+"volume_cm3": 1.2730290528980686,
 "print_T": [
 [
 -1.0,
@@ -11939,7 +11939,7 @@
 "head roll cradle horn face",
 "head roll horn seat floor"
 ],
-"volume_cm3": 2.9694463343361592,
+"volume_cm3": 2.953510491816485,
 "print_T": [
 [
 0.0,
@@ -12497,7 +12497,7 @@
 "beak cradle end +",
 "beak cradle end -"
 ],
-"volume_cm3": 85.38220326426556,
+"volume_cm3": 84.60364149899257,
 "print_T": [
 [
 1.0,

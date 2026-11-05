@@ -114,6 +114,8 @@ RECIPES = {
                     # found by Fusion's interference check on the real bodies, past every check on the spec's shapes: the yaw plate 0.1 mm into the bearing's outer race, which turns against it; the rail without the
                     # pocket for the beak case's rear lump (36 mm3); and the shoe solid where the ankle horn's lower edge sits, 48 mm3 of plastic, so the shoe couldn't seat
                     yaw_plate_low=0.0, beak_rail_pocket=True, shoe_horn_relief=True,
+                    # (the case's raised top starts about 9 mm from the shaft on the maker's STEP, 11 in 'steps': the lid's seat ring stood up to 0.95 mm in it, at 2 spots on every lid, so no lid could seat)
+                    seat_step_more=0.0025,
                     # (the base's wall 1.5 mm or more at its back, where the hood narrows: it was 0.5. A rib 0.3 mm deeper on the shin: 55 N on this heavier duck put it 2 % over the beam estimate's limit, and 1 mm met the roll cradle at the knee's end)
                     wall_in=0.0375, rib_back=0.0033, frame_back=0.0003,
                     # the eye ring, a 44 mm disc 14 mm thick at this head's scale, was 25 g of solid plastic in front of the neck: a cup, open at the back, 3 mm at its front
@@ -578,7 +580,7 @@ def mount_geoms(j):
             a0_ = A['steps'][1][2][0] - H / 2 if sts and side == 'horn' else 0.0   # down the step round an STS3215's horn
             out += ring(f'{n} {side} seat floor', sg, a0_, fl, r_o, clear_in)
             if a0_:                                # clear of the far end's raised top
-                out.append(cut(lbox(f'{n} seat floor step', f, (A['steps'][1][0][0], A['steps'][1][0][0] + 0.01), (-r_o - 0.001, r_o + 0.001),
+                out.append(cut(lbox(f'{n} seat floor step', f, (A['steps'][1][0][0] - RECIPES[RECIPE].get('seat_step_more', 0.0), A['steps'][1][0][0] + 0.01), (-r_o - 0.001, r_o + 0.001),
                                     (H / 2 + a0_ - 0.001, H / 2)), f'{n} {side} seat floor'))
         else:                                      # a thin sheet is the floor; a wall round the bearing on it
             out += [cut(lcyl(f'{nm} bore', f, -sx, 0, sg * (H / 2 + cmt / 2), clear_in, cmt + 0.002, DARK, 'struct'), nm)]
@@ -1479,11 +1481,11 @@ def build():
                 if n == 'beak' and R.get('beak_rail_pocket'):
                     cradle.append(cut(lbox('beak rail lump pocket', f, (0.0044, 0.018), (-0.0097, 0.0097), (-H / 2 - 0.0012, -0.0165), DARK), 'L head rail'))
                     # (the real case's raised strip on its rear face runs -4 to +22 mm along it, +/- 7 across, past the spec's lump; measured on SO-ARM100's mesh, after Fusion still showed 33 mm3 here)
-                    cradle.append(cut(lbox('beak rear strip pocket', f, (-0.0045, 0.0228), (-0.0075, 0.0075), (-H / 2 - 0.0012, -0.0150), DARK), 'L head rail', 'beak cradle rear face'))
+                    cradle.append(cut(lbox('beak rear strip pocket', f, (-0.0075, 0.0228), (-0.0075, 0.0075), (-H / 2 - 0.0012, -0.0150), DARK), 'L head rail', 'beak cradle rear face'))
                     # (a 0.4 mm web stood between the plug window and the pocket for the lump, as on the hip roll: one opening)
-                    cradle.append(cut(lbox('beak plug window web', f, (PLUG['u'][1], 0.0058), (-PLUG_WINDOW, w_), (-H / 2 - 0.003, -0.0135), DARK), 'L head rail', 'beak cradle rear face'))
+                    cradle.append(cut(lbox('beak plug window web', f, (PLUG['u'][1], 0.0058), (-w_, w_), (-H / 2 - 0.003, -0.0135), DARK), 'L head rail', 'beak cradle rear face'))
                 for t_ in targets:
-                    cradle.append(cut(lbox(f'{n} plug window {t_}', f, (PLUG['u'][0] - PLUG_WINDOW, PLUG['u'][1] + PLUG_WINDOW), (-PLUG_WINDOW, w_) if n == 'beak' else (-w_, w_), (-H / 2 - 0.012, -0.0135), DARK), t_))
+                    cradle.append(cut(lbox(f'{n} plug window {t_}', f, (PLUG['u'][0] - PLUG_WINDOW, PLUG['u'][1] + PLUG_WINDOW), (-w_, w_), (-H / 2 - 0.012, -0.0135), DARK), t_))   # (both sockets on the beak too: the unused one's housing is still there, and stood in the plate: Fusion's box, 2026-11-05)
                 links[case_link]['geoms'] += cradle
                 links[horn_link]['geoms'] += fork
                 continue

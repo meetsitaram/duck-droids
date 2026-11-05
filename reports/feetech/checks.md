@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-05 07:50, 59 s
+spec: `spec/robot.json`, 2026-11-05 09:40, 88 s
 
 188 checks: 184 pass, 4 warn, **0 fail**
 
@@ -23,7 +23,7 @@ spec: `spec/robot.json`, 2026-11-05 07:50, 59 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 1.938 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
+| PASS | total | 1.936 kg bottom-up (budget 1.95 kg; microduck 0.8 kg) |
 
 ## printable
 
@@ -236,7 +236,7 @@ spec: `spec/robot.json`, 2026-11-05 07:50, 59 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.53 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 60 % used |
+| PASS | neck_pitch | 0.52 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 60 % used |
 | PASS | R_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
 | PASS | L_knee | 0.40 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 46 % used |
 | PASS | head_pitch | 0.37 N m in 'head forward and down, beak open' vs rated 0.88 N m (1 x STS3215_C044): 42 % used |
@@ -246,8 +246,8 @@ spec: `spec/robot.json`, 2026-11-05 07:50, 59 s
 | PASS | L_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 17 % used |
 | PASS | R_hip_yaw | 0.08 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 17 % used |
 | PASS | R_hip_roll | 0.13 N m in 'crouch' vs rated 0.88 N m (1 x STS3215_C044): 15 % used |
-| PASS | R_ankle_pitch | 0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used |
 | PASS | L_ankle_pitch | 0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used |
+| PASS | R_ankle_pitch | 0.09 N m in 'stand (microduck stance)' vs rated 0.88 N m (1 x STS3215_C044): 10 % used |
 | PASS | beak | 0.03 N m in 'head tucked in' vs rated 0.47 N m (1 x STS3215_C046): 6 % used |
 | PASS | head_roll | 0.02 N m in 'crouch' vs rated 0.47 N m (1 x STS3215_C046): 3 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.47 N m (1 x STS3215_C046): 1 % used |

@@ -3,7 +3,7 @@
   "group": "ORIENT",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "123 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
+  "detail": "113 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -57,7 +57,7 @@
   "group": "ORIENT",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "123 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
+  "detail": "113 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -327,7 +327,7 @@
   "group": "ORIENT",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "118 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
+  "detail": "108 mm2 overhang, 88 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -381,7 +381,7 @@
   "group": "ORIENT",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "123 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
+  "detail": "113 mm2 overhang, 75 mm2 on the bed, 51 mm tall"
  },
  {
   "group": "PIECES",
@@ -927,7 +927,7 @@
   "group": "ORIENT",
   "item": "head frame",
   "status": "PASS",
-  "detail": "7226 mm2 overhang, 450 mm2 on the bed, 181 mm tall"
+  "detail": "7206 mm2 overhang, 450 mm2 on the bed, 181 mm tall"
  },
  {
   "group": "PIECES",
@@ -951,7 +951,7 @@
   "group": "SUPPORT",
   "item": "head frame",
   "status": "WARN",
-  "detail": "7226 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "7206 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",

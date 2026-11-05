@@ -246,13 +246,16 @@ def check_assembly(app, s, d):
     ii = d.createInterferenceInput(occs)
     ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)
-    clash = []
+    clash, boxes = [], []
     for k in range(res.count if res else 0):
         r = res.item(k)
+        bb_ = r.interferenceBody.boundingBox              # where it is, in mm: a clash can be measured, not only named
+        boxes.append((getattr(r.entityOne, 'name', '?'), getattr(r.entityTwo, 'name', '?'), round(r.interferenceBody.volume * 1000, 2), [round(v * 10, 2) for v in (bb_.minPoint.x, bb_.minPoint.y, bb_.minPoint.z, bb_.maxPoint.x, bb_.maxPoint.y, bb_.maxPoint.z)]))
         clash.append((getattr(r.entityOne, 'name', '?'), getattr(r.entityTwo, 'name', '?'), round(r.interferenceBody.volume * 1000, 2)))
     clash.sort(key=lambda c: -c[2])
     same = lambda a, b: any(m in a and m in b and a.split(m)[0] == b.split(m)[0] for m in (' XL330 ', ' STS3215 ', ' HD1910 '))
     json.dump(clash, open(os.path.join(build.REPO, 'reports', build._variant_file('fusion_interference')), 'w', encoding='utf-8'), indent=0)
+    json.dump(sorted(boxes, key=lambda c: -c[2]), open(os.path.join(build.REPO, 'reports', build._variant_file('fusion_clash_boxes')), 'w', encoding='utf-8'), indent=0)
     print('clashes', len(clash), 'to explain', [c for c in clash if not any(k in c[0] + c[1] for k in OK_CLASH) and not same(c[0], c[1]) and c[2] > 1.0][:12])
     vp = app.activeViewport
     vp.visualStyle = adsk.core.VisualStyles.ShadedVisualStyle
