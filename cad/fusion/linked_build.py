@@ -11,6 +11,7 @@ A Fusion archive of the assembly is only references (89 KB, no geometry), so the
 import hashlib
 import importlib
 import json
+import math
 import os
 import sys
 import time
@@ -30,6 +31,7 @@ BIG_ONLY = None                                   # the big duck: only these lin
 BIG_SECONDS = 900                                 # the big duck: stop starting links after this, so a turn at Fusion stays short. Built links stay built
 BIG_ASSEMBLY = True                               # the big duck: go on to the assembly once every link is built
 BIG_CLASH = True
+BIG_REV = 'real-1'                                 # the big duck's own build code here isn't in a link's hash: change this to rebuild them all
 OK_CLASH = ('flange', 'rear horn', 'rear boss', 'screw', 'inner race', 'cable plugs', ' plug', 'camera ribbon', 'microSD')
 
 
@@ -145,15 +147,99 @@ def big_pictures(app, name):
 def big_spec():
     """The big duck's rods, chain and thigh covers are 'decal' to keep them out of the offline sweep checks, and build.link skips decals with no screw. Here they're real: mark them, in this script only, so build.py and its hash stay as they are for every other duck."""
     plain = build.spec
+    cache = {}
 
     def spec():
+        if cache:                                 # (read once: 3000 geoms, and build.link asks per link)
+            return json.loads(cache['s'])
         s = plain()
+        # the knee's cranks and rods: drawn in the thigh's link at knee 0, each its own moving part here (spec['mech'])
+        for ln in list(s['links']):
+            l = s['links'][ln]
+            moved = [g for g in l['geoms'] if g.get('group')]
+            l['geoms'] = [g for g in l['geoms'] if not g.get('group')]
+            for g in moved:
+                s['links'].setdefault(g['group'], dict(name=g['group'], budget=0.0, geoms=[], note='a moving part of the knee four-bar'))['geoms'].append(g)
+        for j in s.get('mech', dict(joints=()))['joints']:
+            s['joints'].append(dict(j, act='', act_c=j['origin'], out=1, long='-x', remote=True))
         for l in s['links'].values():
             for g in l['geoms']:
                 if g['role'] == 'decal' and 'fast' not in g:
                     g['fast'] = dict(fusion_only=True)
-        return s
+        cache['s'] = json.dumps(s)
+        return json.loads(cache['s'])
     build.spec = spec
+    # what stands in for RobStride's own shapes in the spec isn't built here: big_real places the real thing
+    build.real_skip = lambda s_: {g['name'] for l in s_['links'].values() for g in l['geoms'] if g.get('stand_in')}
+
+
+# RobStride's own models: local only, %TEMP%/figrefs/robstride (tools/fetch_servo_cad.py). Each is one solid with its rotor in it, so the rotor's cut off here (hub r and z, cm: file frame) and goes to the link it drives. See spec/big_duck.py's RS for the measurements.
+RS_FILES = {'RS04': dict(path='robstride/RS04-20261030.stp', hub=2.55, zout=1, cable=75.0, cutter=(2.8, 2.45, 3.0), keep_all=False),
+            'RS03': dict(path='robstride/RS03-20261030.stp', hub=0.0, zout=-1, cable=0.0, cutter=(3.52, -0.1, 0.22), keep_all=False),
+            'RS00': dict(path='robstride/RS00-20261030.stp', hub=-0.6, zout=-1, cable=0.0, cutter=None, keep_all=True)}
+_RS_TEMP = {}
+
+
+def _rs_bodies(model):
+    """{'case': [temp bodies], 'rotor': [...]}, in the file's frame, read once a run."""
+    if model in _RS_TEMP:
+        return _RS_TEMP[model]
+    R = RS_FILES[model]
+    app = adsk.core.Application.get()
+    im = app.importManager
+    t0 = time.time()
+    src = im.importToTarget2(im.createSTEPImportOptions(os.path.join(build.FIGREFS, R['path'])), build.design().rootComponent).item(0)
+    comp = src.component
+    bs = [comp.bRepBodies.item(i) for i in range(comp.bRepBodies.count)]
+    for i in range(comp.allOccurrences.count):
+        o = comp.allOccurrences.item(i)
+        bs += [o.bRepBodies.item(k) for k in range(o.bRepBodies.count)]
+    bs.sort(key=lambda b: -b.volume)
+    tbm = adsk.fusion.TemporaryBRepManager.get()
+    res = dict(case=[tbm.copy(b) for b in (bs if R['keep_all'] else bs[:1])], rotor=[])     # (the RS04's second solid, 2 cm3, lies wholly inside the case)
+    src.deleteMe()
+    if R['cutter']:
+        r, z0, z1 = R['cutter']
+        whole = res['case'][0]
+        rotor = tbm.copy(whole)
+        cy = lambda: tbm.createCylinderOrCone(adsk.core.Point3D.create(0, 0, z0), r, adsk.core.Point3D.create(0, 0, z1), r)
+        tbm.booleanOperation(whole, cy(), adsk.fusion.BooleanTypes.DifferenceBooleanType)
+        tbm.booleanOperation(rotor, cy(), adsk.fusion.BooleanTypes.IntersectionBooleanType)
+        res['rotor'] = [rotor]
+    print(model, 'read and split', round(time.time() - t0, 1), 's, case', round(res['case'][0].volume, 1), 'cm3, rotor', round(res['rotor'][0].volume, 2) if res['rotor'] else None)
+    _RS_TEMP[model] = res
+    return res
+
+
+def big_real(name, s, comp):
+    """RobStride's model at each actuator of this link: the case, or the rotor. Rotation only, never a mirror: the right side's is the left's turned 180 deg about its cable. Returns how many."""
+    tbm = adsk.fusion.TemporaryBRepManager.get()
+    d = build.design()
+    V = lambda v: adsk.core.Vector3D.create(*[float(x) for x in v])
+    cr = lambda a, b: (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])
+    n = 0
+    for g in s['links'][name]['geoms']:
+        for key, piece, col, fin in (('real', 'case', '#17181A', 'matte'), ('rotor', 'rotor', '#A8ACB0', 'metal')):
+            r = g.get(key)
+            if not r or not _rs_bodies(r['model'])[piece]:
+                continue
+            R = RS_FILES[r['model']]
+            a = math.radians(R['cable'])
+            f_g, f_o = (math.cos(a), math.sin(a), 0.0), (0.0, 0.0, float(R['zout']))
+            M = adsk.core.Matrix3D.create()
+            M.setToAlignCoordinateSystems(adsk.core.Point3D.create(0, 0, R['hub']), V(f_g), V(cr(f_o, f_g)), V(f_o),
+                                          adsk.core.Point3D.create(*[v * 100 for v in r['hub']]), V(r['g']), V(cr(r['out'], r['g'])), V(r['out']))
+            c = comp.occurrences.addNewComponent(adsk.core.Matrix3D.create()).component
+            label = g['name'].replace(' (buy)', '')
+            c.name = f'{label} {piece}'
+            for k, tb in enumerate(_rs_bodies(r['model'])[piece]):
+                t = tbm.copy(tb)
+                tbm.transform(t, M)
+                b = c.bRepBodies.add(t)
+                b.name = f"{label} real {piece}" + (f' {k}' if k else '')
+                b.appearance = build.F.appearance(d, col, fin)
+            n += 1
+    return n
 
 
 def big_hollow(name, s, occ, wall=0.003):
@@ -306,7 +392,7 @@ def run(_context: str):
         big_spec()
     s = build.spec()
     parts = build.parts_spec()['parts']
-    code = ''.join(open(os.path.join(P, f), encoding='utf-8').read() for f in ('build.py', 'figlib.py'))
+    code = ''.join(open(os.path.join(P, f), encoding='utf-8').read() for f in ('build.py', 'figlib.py')) + (BIG_REV if RECIPE == 'big' else '')
     mpath = os.path.join(build.REPO, 'reports', build._variant_file('fusion_links'))
     man = json.load(open(mpath, encoding='utf-8')) if os.path.exists(mpath) else {}
     pts_path = os.path.join(build.REPO, 'reports', build._variant_file('fusion_points'))
@@ -314,7 +400,7 @@ def run(_context: str):
     vdata = json.load(open(os.path.join(build.REPO, 'spec', build._variant_file('verify_points')), encoding='utf-8'))
     stl = os.path.join(os.environ['TEMP'], 'duck_fusion_stl', RECIPE)
     top, fd = folder(app, RECIPE)
-    aname = f'{RECIPE} assembly'
+    aname = f'{RECIPE} assembly real' if RECIPE == 'big' else f'{RECIPE} assembly'     # (the big duck's first assembly, with no cranks or rods as links, stays in the hub unused: joints can't be added to it by refreshing, and deleting a file is the user's)
     have = files(fd)
     rebuilt, kept, bad = [], [], []
     t0 = time.time()
@@ -338,8 +424,9 @@ def run(_context: str):
         occ = _occ(name)
         if RECIPE == 'big':
             r_ = big_hollow(name, s, occ)
-            print(name, 'hollowed, failed, s', r_)
-            big_pictures(app, name)
+            print(name, 'hollowed, failed, s', r_, 'real', big_real(name, s, occ.component))
+            if '_crank_' not in name and '_rod_' not in name:
+                big_pictures(app, name)
         vb = verify_link(name, parts, occ)
         points.update(points_link(name, parts, occ, vdata))
         stls_link(name, parts, occ, stl)

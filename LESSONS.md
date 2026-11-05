@@ -332,3 +332,15 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 - **One printed part, one colour, unless the docs say how.** The head frame was one STL in two colours, and only the hood's two colours were in the print notes. The user spotted it in a video and chose all orange. COLOUR in `tools/assembly.py` now fails a part with two colours and no print note.
 
 - **A hang blamed on the wrong thing cost 5 hours (2026-11-05).** Fusion froze on the big duck's assembly, its size was blamed, and everything waited for a restart. Then it froze on the hybrid at the same step. Fusion's log showed `close_all` retrying one close forever: an untested loop of mine. The fix is in `cad/fusion/linked_build.py`. Read the tool's log first, and suspect your latest change.
+
+## The big duck's real actuators (2026-11-05)
+
+- **A linkage that never moves can't fail.** The knee's rods sat in the model as 'decal', drawn at knee 0, for 2 builds. Given their real motion, the four-bar couldn't reach its own range below -0.74: it had been swept for an older hip height. Move every mechanism through its range offline, and test the test: flip an angle and see it fail.
+- **A test that can't fail is worse than none.** A posed clash check in Fusion read 0 clashes at 5 knee angles, and looked like the proof. With the rod's angle flipped it still read 0. API-set joints moved occurrences' boxes after `computeAll`, but not `analyzeInterference` or saved pictures. So "all joints moved to 98 %" only ever meant the numbers read back. Run a negative case before believing a pass.
+- **Read the maker's file, then doubt the manual.** The RS04's output holes are 3.5 deep in its STEP, 6.5 in its manual, and 6.5 is the file's floor to pin tip. The RS03's rear has 4 free screw sites, not 8: RobStride's own cap screws fill the rest, and only a clash found it. Neither shows in a figure.
+- **A stand-in hides what's load-bearing.** A plain cylinder gave every plate a flat rear face to lie on, and the hip yaw's bearing a case to sit on. Neither exists in the real part's terms: one needed a shoulder, the other a housing that keeps the leg's moment off the actuator.
+- **Draw screws at their core, not their head.** A shank at core diameter lies in a tap hole and clashes if it's long, misplaced or meets something: that found 12 of the first build's flaws. Heads alone hid them all.
+- **Mirrored legs and real parts.** A real actuator can't be mirrored. Choose its clock so its hole patterns are symmetric about the mirror plane, then the mirrored spec and a part turned 180 deg agree.
+- **Look at the file's splits.** The first boolean to cut the rotor failed on faces nearly coincident with the cutter (ASM_INCONS_FACE). Move the cutter's faces into air: every other try worked.
+- **A long comment can go stale in the same file.** `ZP`'s said 0.634 for a value of 0.674. Print it.
+
