@@ -220,7 +220,7 @@ def make_assembly(app, s, have, fd, aname):
     occ = {}
     for name in s['links']:
         f = have[f'{RECIPE} {name}']
-        occ[name] = wait(lambda ff=f: root.occurrences.addByInsert(ff, adsk.core.Matrix3D.create(), True), what=f'insert {name}')
+        occ[name] = wait(lambda ff=f: root.occurrences.addByInsert(ff, adsk.core.Matrix3D.create(), True), seconds=600, what=f'insert {name}')      # (a link just saved can refuse for over 240 s while the hub takes it, then insert fine: seen on 2 ducks on 2026-11-05)
     print('inserted', len(occ), round(time.time() - t0), 's')
     occ[s['root']].isGrounded = True
     sk = root.sketches.add(root.xYConstructionPlane)
