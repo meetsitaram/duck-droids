@@ -2,20 +2,20 @@
  {
   "group": "PIECES",
   "item": "L hip yaw lid",
-  "status": "FAIL",
-  "detail": "2 pieces, mm3: [2962, 23]"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "CLOSED",
   "item": "L hip yaw lid",
-  "status": "FAIL",
-  "detail": "open mesh, 21 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "3.0 cm3, designed 3.0: 1 % off"
+  "detail": "3.0 cm3, designed 3.0: 0 % off"
  },
  {
   "group": "BED",
@@ -45,7 +45,7 @@
   "group": "VOLUME",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "16.5 cm3, designed 16.5: 0 % off"
+  "detail": "16.3 cm3, designed 16.5: 1 % off"
  },
  {
   "group": "BED",
@@ -68,8 +68,8 @@
  {
   "group": "CLOSED",
   "item": "L hip roll lid",
-  "status": "FAIL",
-  "detail": "open mesh, 17 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
@@ -105,7 +105,7 @@
   "group": "VOLUME",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "5.7 cm3, designed 5.7: 0 % off"
+  "detail": "5.6 cm3, designed 5.7: 1 % off"
  },
  {
   "group": "BED",
@@ -117,7 +117,7 @@
   "group": "THIN",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -135,7 +135,7 @@
   "group": "VOLUME",
   "item": "L thigh frame",
   "status": "PASS",
-  "detail": "18.3 cm3, designed 18.3: 0 % off"
+  "detail": "18.1 cm3, designed 18.3: 1 % off"
  },
  {
   "group": "BED",
@@ -207,7 +207,7 @@
   "group": "THIN",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -225,7 +225,7 @@
   "group": "VOLUME",
   "item": "L thigh cover",
   "status": "PASS",
-  "detail": "25.7 cm3, designed 25.7: 0 % off"
+  "detail": "24.4 cm3, designed 25.7: 5 % off"
  },
  {
   "group": "BED",
@@ -267,7 +267,7 @@
   "group": "THIN",
   "item": "L shin",
   "status": "PASS",
-  "detail": "0 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -285,7 +285,7 @@
   "group": "VOLUME",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "15.8 cm3, designed 15.8: 0 % off"
+  "detail": "15.8 cm3, designed 15.7: 0 % off"
  },
  {
   "group": "BED",
@@ -297,7 +297,7 @@
   "group": "THIN",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "9 % of its surface is under 0.8 mm thick"
+  "detail": "10 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -315,19 +315,19 @@
   "group": "VOLUME",
   "item": "L sole",
   "status": "PASS",
-  "detail": "40.8 cm3, designed 40.8: 0 % off"
+  "detail": "41.5 cm3, designed 40.8: 2 % off"
  },
  {
   "group": "BED",
   "item": "L sole",
   "status": "PASS",
-  "detail": "69 x 53 x 15 mm"
+  "detail": "70 x 53 x 15 mm"
  },
  {
   "group": "THIN",
   "item": "L sole",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -357,7 +357,7 @@
   "group": "THIN",
   "item": "L inner ear",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -368,8 +368,8 @@
  {
   "group": "CLOSED",
   "item": "R hip yaw lid",
-  "status": "FAIL",
-  "detail": "open mesh, 23 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
@@ -387,7 +387,7 @@
   "group": "THIN",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "4 % of its surface is under 0.8 mm thick"
+  "detail": "3 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -405,7 +405,7 @@
   "group": "VOLUME",
   "item": "R yaw bracket",
   "status": "PASS",
-  "detail": "16.5 cm3, designed 16.5: 0 % off"
+  "detail": "16.3 cm3, designed 16.5: 1 % off"
  },
  {
   "group": "BED",
@@ -428,8 +428,8 @@
  {
   "group": "CLOSED",
   "item": "R hip roll lid",
-  "status": "FAIL",
-  "detail": "open mesh, 4 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
@@ -447,7 +447,7 @@
   "group": "THIN",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "8 % of its surface is under 0.8 mm thick"
+  "detail": "7 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -465,7 +465,7 @@
   "group": "VOLUME",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "5.7 cm3, designed 5.7: 0 % off"
+  "detail": "5.6 cm3, designed 5.7: 1 % off"
  },
  {
   "group": "BED",
@@ -477,7 +477,7 @@
   "group": "THIN",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -495,7 +495,7 @@
   "group": "VOLUME",
   "item": "R thigh frame",
   "status": "PASS",
-  "detail": "18.3 cm3, designed 18.3: 0 % off"
+  "detail": "18.2 cm3, designed 18.3: 1 % off"
  },
  {
   "group": "BED",
@@ -585,7 +585,7 @@
   "group": "VOLUME",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "25.7 cm3, designed 25.7: 0 % off"
+  "detail": "24.4 cm3, designed 25.7: 5 % off"
  },
  {
   "group": "BED",
@@ -597,7 +597,7 @@
   "group": "THIN",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -615,7 +615,7 @@
   "group": "VOLUME",
   "item": "R shin",
   "status": "PASS",
-  "detail": "12.6 cm3, designed 12.6: 0 % off"
+  "detail": "12.5 cm3, designed 12.6: 1 % off"
  },
  {
   "group": "BED",
@@ -645,7 +645,7 @@
   "group": "VOLUME",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "15.8 cm3, designed 15.8: 0 % off"
+  "detail": "15.7 cm3, designed 15.7: 0 % off"
  },
  {
   "group": "BED",
@@ -657,7 +657,7 @@
   "group": "THIN",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "10 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -668,26 +668,26 @@
  {
   "group": "CLOSED",
   "item": "R sole",
-  "status": "FAIL",
-  "detail": "open mesh, 1 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
   "item": "R sole",
   "status": "PASS",
-  "detail": "40.8 cm3, designed 40.8: 0 % off"
+  "detail": "41.5 cm3, designed 40.8: 2 % off"
  },
  {
   "group": "BED",
   "item": "R sole",
   "status": "PASS",
-  "detail": "69 x 53 x 15 mm"
+  "detail": "70 x 53 x 15 mm"
  },
  {
   "group": "THIN",
   "item": "R sole",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -765,7 +765,7 @@
   "group": "VOLUME",
   "item": "body shell",
   "status": "PASS",
-  "detail": "32.1 cm3, designed 32.1: 0 % off"
+  "detail": "31.0 cm3, designed 32.1: 3 % off"
  },
  {
   "group": "BED",
@@ -777,7 +777,7 @@
   "group": "THIN",
   "item": "body shell",
   "status": "PASS",
-  "detail": "3 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -795,7 +795,7 @@
   "group": "VOLUME",
   "item": "neck column",
   "status": "PASS",
-  "detail": "4.4 cm3, designed 4.4: 0 % off"
+  "detail": "4.3 cm3, designed 4.4: 2 % off"
  },
  {
   "group": "BED",
@@ -831,13 +831,13 @@
   "group": "BED",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "26 x 5 x 2 mm"
+  "detail": "26 x 4 x 2 mm"
  },
  {
   "group": "THIN",
   "item": "neck lid",
   "status": "PASS",
-  "detail": "6 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -861,13 +861,13 @@
   "group": "BED",
   "item": "head pitch lid",
   "status": "PASS",
-  "detail": "26 x 5 x 2 mm"
+  "detail": "26 x 4 x 2 mm"
  },
  {
   "group": "THIN",
   "item": "head pitch lid",
   "status": "PASS",
-  "detail": "5 % of its surface is under 0.8 mm thick"
+  "detail": "4 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -885,7 +885,7 @@
   "group": "VOLUME",
   "item": "head fork",
   "status": "PASS",
-  "detail": "9.1 cm3, designed 9.1: 0 % off"
+  "detail": "9.0 cm3, designed 9.1: 2 % off"
  },
  {
   "group": "BED",
@@ -897,7 +897,7 @@
   "group": "THIN",
   "item": "head fork",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -938,14 +938,14 @@
  {
   "group": "CLOSED",
   "item": "head yaw bracket",
-  "status": "FAIL",
-  "detail": "open mesh, 12 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "5.7 cm3, designed 5.7: 0 % off"
+  "detail": "5.6 cm3, designed 5.7: 2 % off"
  },
  {
   "group": "BED",
@@ -968,8 +968,8 @@
  {
   "group": "CLOSED",
   "item": "head roll lid",
-  "status": "FAIL",
-  "detail": "open mesh, 5 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
@@ -1058,14 +1058,14 @@
  {
   "group": "CLOSED",
   "item": "head frame",
-  "status": "FAIL",
-  "detail": "open mesh, 7 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
   "item": "head frame",
   "status": "PASS",
-  "detail": "61.3 cm3, designed 61.3: 0 % off"
+  "detail": "61.4 cm3, designed 61.3: 0 % off"
  },
  {
   "group": "BED",
@@ -1088,14 +1088,14 @@
  {
   "group": "CLOSED",
   "item": "hood",
-  "status": "FAIL",
-  "detail": "open mesh, 10 bits of dust"
+  "status": "PASS",
+  "detail": ""
  },
  {
   "group": "VOLUME",
   "item": "hood",
   "status": "PASS",
-  "detail": "52.1 cm3, designed 52.1: 0 % off"
+  "detail": "51.8 cm3, designed 52.1: 1 % off"
  },
  {
   "group": "BED",
@@ -1125,7 +1125,7 @@
   "group": "VOLUME",
   "item": "jaw",
   "status": "PASS",
-  "detail": "32.9 cm3, designed 32.9: 0 % off"
+  "detail": "32.8 cm3, designed 32.9: 0 % off"
  },
  {
   "group": "BED",
@@ -1221,7 +1221,7 @@
   "group": "BED",
   "item": "face",
   "status": "PASS",
-  "detail": "103 x 52 x 3 mm"
+  "detail": "103 x 52 x 4 mm"
  },
  {
   "group": "THIN",

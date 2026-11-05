@@ -17,7 +17,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L knee lid | 167 mm2 overhang, 833 mm2 on the bed, 6 mm tall |
 | PASS | L thigh cover | 44 mm2 overhang, 4273 mm2 on the bed, 46 mm tall |
 | PASS | L shin | 823 mm2 overhang, 347 mm2 on the bed, 31 mm tall |
-| PASS | L shoe | 707 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
+| PASS | L shoe | 708 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
 | PASS | L sole | 478 mm2 overhang, 238 mm2 on the bed, 69 mm tall |
 | PASS | L inner ear | 0 mm2 overhang, 779 mm2 on the bed, 4 mm tall |
 | PASS | R hip yaw lid | 118 mm2 overhang, 88 mm2 on the bed, 51 mm tall |
@@ -29,7 +29,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R knee lid | 167 mm2 overhang, 833 mm2 on the bed, 6 mm tall |
 | PASS | R thigh cover | 44 mm2 overhang, 4273 mm2 on the bed, 46 mm tall |
 | PASS | R shin | 823 mm2 overhang, 347 mm2 on the bed, 31 mm tall |
-| PASS | R shoe | 707 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
+| PASS | R shoe | 708 mm2 overhang, 84 mm2 on the bed, 69 mm tall |
 | PASS | R sole | 477 mm2 overhang, 238 mm2 on the bed, 69 mm tall |
 | PASS | R inner ear | 0 mm2 overhang, 779 mm2 on the bed, 4 mm tall |
 | PASS | chassis | 3076 mm2 overhang, 434 mm2 on the bed, 69 mm tall |
@@ -203,12 +203,12 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | WARN | L yaw bracket | 579 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L thigh frame | 1375 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L shin | 823 mm2 needs support or a bridge: check it in the slicer |
-| WARN | L shoe | 707 mm2 needs support or a bridge: check it in the slicer |
+| WARN | L shoe | 708 mm2 needs support or a bridge: check it in the slicer |
 | WARN | L sole | 478 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R yaw bracket | 579 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R thigh frame | 1375 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R shin | 823 mm2 needs support or a bridge: check it in the slicer |
-| WARN | R shoe | 707 mm2 needs support or a bridge: check it in the slicer |
+| WARN | R shoe | 708 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R sole | 477 mm2 needs support or a bridge: check it in the slicer |
 | WARN | chassis | 3076 mm2 needs support or a bridge: check it in the slicer |
 | WARN | body shell | 2399 mm2 needs support or a bridge: check it in the slicer |
