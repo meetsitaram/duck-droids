@@ -105,7 +105,7 @@ def link_inertials(spec, S=None):
         ps = parts(spec, S, ln)
         frames = [p for p in ps if p[1] == 'al7075']
         base = sum(p[2] for p in ps if p[1] != 'cells')
-        extra = WIRING * base
+        extra = spec.get('wiring_allowance', WIRING) * base   # (less where the servo leads are counted part by part: spec/robot.py leads)
         carrier = frames or ps
         fm = sum(p[2] for p in carrier)
         ps = [(n, mat, m * (1 + extra / fm), c, I * (1 + extra / fm)) if any(p[0] == n for p in carrier) else
