@@ -237,10 +237,18 @@ def main():
             L.append(f"| {part} | {name} | {e[0]:.0f} x {e[1]:.0f} x {e[2]:.0f} | {v:.1f} | {mat} | {orient[part]['overhang']:.0f}{' (none)' if orient[part]['overhang'] < 1 else ''} |")
         L += ['', 'The head frame prints in orange, in one filament: only its rim shows below the hood. The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
               'A part with an overhang figure needs support or a bridge there; tools/printable.py counts faces, not a slicer, so it overstates short bridges. Check each in your slicer.', '']
-        servo_, bear_, screws_ = ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
-        L += ['', '## Print one joint first', '', f'Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 {servo_}, 1 {bear_},',
+        servo_, bear_, screws_ = ('MG90S', 'printed bushing', 'its own ear and horn screws and 2 M2 x 8') if G.RECIPE == 'nano' else ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
+        first = '`L_thigh`, `L_knee_ear_clamp`, `L_shin`, `L_knee_rear_arm` and `L_knee_bushing`' if G.RECIPE == 'nano' else '`L_thigh_frame`, `L_knee_lid` and `L_shin`'
+        L += ['', '## Print one joint first', '', f'Before buying the rest, print {first}, with 1 {servo_}, 1 {bear_},',
               f'{screws_}. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
               'how much the shin flexes with about 1.3 kg hung from it, off-centre as a foot would load it. Note what fits, and change the spec, not the STL.']
+        if G.RECIPE == 'nano':                     # its own notes: no bearings, no orange head frame; a 21T spline in every hub
+            L = [x for x in L if not x.startswith(('The head frame prints in orange', '## Print one joint first', 'Before buying the rest', f'{screws_}. It tests', 'how much the shin flexes'))]
+            L += ['## Splines and bushings', '',
+                  "Each hub is drawn with a plain 4.9 mm bore over the SG90's 21-tooth, 4.8 mm spline (spec/actuators.json): the teeth aren't in the STL. Either print the bore 0.1 mm under the spline and press the shaft in warm,",
+                  "so it cuts its own teeth in the PLA, or glue the hub of the servo's own plastic horn into the bore. Test which holds on one joint first. The bushings print upright, 0.15 mm over their stubs: ream them if tight.", '',
+                  '## Print one joint first', '', f'Before buying the rest, print {first}, with 1 {servo_} and {screws_}. It tests: does the servo slide into its cradle and its ears onto their blocks',
+                  '(the ear holes are read off a drawing that is not to scale); does the hub grip the spline; does the bushing turn freely on its stub; how much the shin flexes with about 350 g hung from the foot. Change the spec, not the STL.']
         open(os.path.join(out, 'README.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 
 
