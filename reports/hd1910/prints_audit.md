@@ -107,7 +107,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L hip yaw lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | L yaw bracket | 8.0 cm3, designed 8.1: 2 % off |
 | PASS | L hip roll lid | 1.2 cm3, designed 1.2: 0 % off |
-| PASS | L roll bracket | 3.5 cm3, designed 3.5: 1 % off |
+| PASS | L roll bracket | 3.5 cm3, designed 3.5: 2 % off |
 | PASS | L thigh frame | 10.5 cm3, designed 10.7: 2 % off |
 | PASS | L hip pitch lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | L knee lid | 1.4 cm3, designed 1.4: 0 % off |
@@ -128,7 +128,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R shoe | 11.5 cm3, designed 11.5: 0 % off |
 | PASS | R sole | 25.1 cm3, designed 24.8: 1 % off |
 | PASS | R inner ear | 2.2 cm3, designed 2.2: 0 % off |
-| PASS | chassis | 27.4 cm3, designed 27.5: 0 % off |
+| PASS | chassis | 27.4 cm3, designed 27.5: 1 % off |
 | PASS | body shell | 21.5 cm3, designed 22.1: 3 % off |
 | PASS | neck column | 3.5 cm3, designed 3.6: 1 % off |
 | PASS | neck lid | 0.2 cm3, designed 0.2: 0 % off |
@@ -215,7 +215,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R hip yaw lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | R yaw bracket | 2 % of its surface is under 0.8 mm thick |
 | PASS | R hip roll lid | 3 % of its surface is under 0.8 mm thick |
-| PASS | R roll bracket | 2 % of its surface is under 0.8 mm thick |
+| PASS | R roll bracket | 4 % of its surface is under 0.8 mm thick |
 | PASS | R thigh frame | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip pitch lid | 1 % of its surface is under 0.8 mm thick |
 | PASS | R knee lid | 1 % of its surface is under 0.8 mm thick |
@@ -229,7 +229,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | neck column | 3 % of its surface is under 0.8 mm thick |
 | PASS | neck lid | 0 % of its surface is under 0.8 mm thick |
 | PASS | head pitch lid | 0 % of its surface is under 0.8 mm thick |
-| PASS | head fork | 1 % of its surface is under 0.8 mm thick |
+| PASS | head fork | 0 % of its surface is under 0.8 mm thick |
 | PASS | head yaw sheet | 0 % of its surface is under 0.8 mm thick |
 | PASS | head yaw bracket | 1 % of its surface is under 0.8 mm thick |
 | PASS | head roll lid | 0 % of its surface is under 0.8 mm thick |

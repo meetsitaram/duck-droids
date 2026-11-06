@@ -117,7 +117,7 @@
   "group": "THIN",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -255,7 +255,7 @@
   "group": "VOLUME",
   "item": "L shin",
   "status": "PASS",
-  "detail": "12.8 cm3, designed 12.8: 0 % off"
+  "detail": "12.7 cm3, designed 12.8: 1 % off"
  },
  {
   "group": "BED",
@@ -267,7 +267,7 @@
   "group": "THIN",
   "item": "L shin",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -297,7 +297,7 @@
   "group": "THIN",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "10 % of its surface is under 0.8 mm thick"
+  "detail": "9 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -657,7 +657,7 @@
   "group": "THIN",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "8 % of its surface is under 0.8 mm thick"
+  "detail": "7 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
