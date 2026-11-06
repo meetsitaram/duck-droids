@@ -22,7 +22,13 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 ## Other ducks
 
-The same design on other servos, and at 1.8 m. Their parts lists and wiring are written and their offline checks pass. HD-1910, all-Feetech and the hybrid have their Fusion models, prints and videos; the big duck has its Fusion links only.
+The same design on other servos, and at 1.8 m. Their parts lists and wiring are written and their offline checks pass. HD-1910, all-Feetech and the hybrid have their Fusion models, prints and videos; the big duck has its Fusion links, a [30-second reveal](docs/images/assembly/big/reveal_30s.mp4) and a [5-minute build](docs/images/assembly/big/build_5min.mp4).
+
+![The four small ducks front on at one scale, with height, width, weight and servos: all Dynamixel 29.5 cm tall, 14.7 cm wide, 0.98 kg; Feetech HD-1910 29.5 cm, 14.7 cm, 1.03 kg; hybrid 31.8 cm, 18.0 cm, 1.65 kg; all Feetech 37.9 cm, 18.0 cm, 1.94 kg](docs/images/recipes/recipes.png)
+
+![A 1.8 m white duck walking behind four small coloured ducks, each labelled with its servos, their beaks opening in turn](docs/images/family/duck_family.gif)
+
+The family ([MP4, 17 s, sharper](docs/images/family/duck_family.mp4)), in simulation only, from walks trained on 3 November, before the foot switches were taken out: today's designs have no trained walk yet.
 
 | Duck | Servos | Size | Parts | Wiring |
 |---|---|---|---|---|
