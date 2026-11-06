@@ -6,7 +6,7 @@
 "L hip yaw cradle horn face",
 "L hip yaw horn seat floor"
 ],
-"volume_cm3": 1.4661473439916406,
+"volume_cm3": 1.4634128675402915,
 "print_T": [
 [
 -1.0,
@@ -130,13 +130,13 @@
 0.12061965370031986
 ],
 "axis": "z",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "L_hip_yaw"
 },
 {
@@ -229,7 +229,7 @@
 "L hip roll cradle side +",
 "L hip yaw horn seat boss"
 ],
-"volume_cm3": 8.236716256869753,
+"volume_cm3": 8.287842097310133,
 "print_T": [
 [
 0.0,
@@ -545,7 +545,7 @@
 "L hip roll cradle horn face",
 "L hip roll horn seat floor"
 ],
-"volume_cm3": 1.2312320721759524,
+"volume_cm3": 1.2490407934704502,
 "print_T": [
 [
 0.0,
@@ -726,13 +726,13 @@
 0.10021965370031988
 ],
 "axis": "x",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "L_hip_roll"
 }
 ],
@@ -751,7 +751,7 @@
 "L hip roll horn seat boss",
 "L hip pitch horn seat boss"
 ],
-"volume_cm3": 3.521115748524744,
+"volume_cm3": 3.6175149309968155,
 "print_T": [
 [
 0.0,
@@ -1425,7 +1425,7 @@
 "L hip pitch cradle horn face",
 "L hip pitch horn seat floor"
 ],
-"volume_cm3": 1.4661514050157625,
+"volume_cm3": 1.4634171239967588,
 "print_T": [
 [
 0.0,
@@ -1625,13 +1625,13 @@
 0.10021965370031986
 ],
 "axis": "y",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "L_hip_pitch"
 }
 ],
@@ -1643,7 +1643,7 @@
 "L knee cradle horn face",
 "L knee horn seat floor"
 ],
-"volume_cm3": 1.406996210076159,
+"volume_cm3": 1.3994668979754323,
 "print_T": [
 [
 0.0,
@@ -1862,13 +1862,13 @@
 0.07688
 ],
 "axis": "y",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "L_knee"
 }
 ],
@@ -2471,7 +2471,7 @@
 "L ankle pitch cradle end -",
 "L knee horn seat boss"
 ],
-"volume_cm3": 6.49567657566666,
+"volume_cm3": 6.546802316729859,
 "print_T": [
 [
 0.0,
@@ -3387,7 +3387,7 @@
 "R hip yaw cradle horn face",
 "R hip yaw horn seat floor"
 ],
-"volume_cm3": 1.4661473439916406,
+"volume_cm3": 1.4634128675402918,
 "print_T": [
 [
 -1.0,
@@ -3511,13 +3511,13 @@
 0.12061965370031986
 ],
 "axis": "z",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "R_hip_yaw"
 },
 {
@@ -3610,7 +3610,7 @@
 "R hip roll cradle side -",
 "R hip yaw horn seat boss"
 ],
-"volume_cm3": 8.236716256869755,
+"volume_cm3": 8.287842097310133,
 "print_T": [
 [
 0.0,
@@ -3926,7 +3926,7 @@
 "R hip roll cradle horn face",
 "R hip roll horn seat floor"
 ],
-"volume_cm3": 1.2312320721759524,
+"volume_cm3": 1.2490407934704504,
 "print_T": [
 [
 0.0,
@@ -4107,13 +4107,13 @@
 0.10021965370031988
 ],
 "axis": "x",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "R_hip_roll"
 }
 ],
@@ -4132,7 +4132,7 @@
 "R hip roll horn seat boss",
 "R hip pitch horn seat boss"
 ],
-"volume_cm3": 3.5211157485247435,
+"volume_cm3": 3.617514930996815,
 "print_T": [
 [
 0.0,
@@ -4806,7 +4806,7 @@
 "R hip pitch cradle horn face",
 "R hip pitch horn seat floor"
 ],
-"volume_cm3": 1.4661514050157631,
+"volume_cm3": 1.4634171239967586,
 "print_T": [
 [
 0.0,
@@ -5006,13 +5006,13 @@
 0.10021965370031986
 ],
 "axis": "y",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "R_hip_pitch"
 }
 ],
@@ -5024,7 +5024,7 @@
 "R knee cradle horn face",
 "R knee horn seat floor"
 ],
-"volume_cm3": 1.406996210076159,
+"volume_cm3": 1.399466897975432,
 "print_T": [
 [
 0.0,
@@ -5243,13 +5243,13 @@
 0.07688
 ],
 "axis": "y",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "R_knee"
 }
 ],
@@ -5852,7 +5852,7 @@
 "R ankle pitch cradle end -",
 "R knee horn seat boss"
 ],
-"volume_cm3": 6.49567657566666,
+"volume_cm3": 6.546802316729859,
 "print_T": [
 [
 0.0,
@@ -7410,7 +7410,7 @@
 "geoms": [
 "body"
 ],
-"volume_cm3": 22.070741140634226,
+"volume_cm3": 21.998753218894752,
 "print_T": [
 [
 0.0,
@@ -9042,7 +9042,7 @@
 "head yaw cradle horn face",
 "head yaw horn seat wall"
 ],
-"volume_cm3": 0.8403455601092138,
+"volume_cm3": 0.7377373456110938,
 "print_T": [
 [
 1.0,
@@ -9242,13 +9242,13 @@
 0.2427196537003199
 ],
 "axis": "z",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "head_yaw"
 }
 ],
@@ -9267,7 +9267,7 @@
 "head roll rear seat floor",
 "head yaw horn seat boss"
 ],
-"volume_cm3": 5.672420507510734,
+"volume_cm3": 5.720839295972782,
 "print_T": [
 [
 0.0,
@@ -9519,13 +9519,13 @@
 0.25821965370031985
 ],
 "axis": "x",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "head_roll"
 }
 ],
@@ -9537,7 +9537,7 @@
 "head roll cradle horn face",
 "head roll horn seat floor"
 ],
-"volume_cm3": 1.4661496739872464,
+"volume_cm3": 1.4634153678614559,
 "print_T": [
 [
 0.0,
@@ -9737,13 +9737,13 @@
 0.25821965370031985
 ],
 "axis": "x",
-"r": 0.011049999999999999,
+"r": 0.01155,
 "h": 0.004,
 "color": "#A8ACB0",
 "role": "struct",
 "exposed": true,
 "material": "steel",
-"mass": 0.0024,
+"mass": 0.0032,
 "on_joint": "head_roll"
 }
 ],
@@ -9754,7 +9754,7 @@
 "geoms": [
 "head roll horn seat boss"
 ],
-"volume_cm3": 0.29424217581357126,
+"volume_cm3": 0.3453677213133484,
 "print_T": [
 [
 0.0,
@@ -9921,7 +9921,7 @@
 "geoms": [
 "head roll rear seat boss"
 ],
-"volume_cm3": 0.35847925184871565,
+"volume_cm3": 0.4096048925774039,
 "print_T": [
 [
 0.0,
@@ -10861,7 +10861,7 @@
 "hood rear tab 1",
 "R hood step"
 ],
-"volume_cm3": 48.56819828465298,
+"volume_cm3": 48.36699341783437,
 "print_T": [
 [
 0.0,
@@ -11697,6 +11697,7 @@
 "R ankle horn",
 "R ankle bearing inner",
 "battery",
+"power switch",
 "head 5 V regulator",
 "IMU",
 "neck servo",
@@ -11843,9 +11844,13 @@
 "battery XT30",
 "battery balance plug"
 ],
+"power switch": [
+"power switch",
+"power switch slider"
+],
 "head 5 V regulator": [
 "head 5 V regulator",
-"head regulator plug"
+"head regulator wires"
 ],
 "IMU": [
 "IMU"
@@ -11903,10 +11908,9 @@
 ],
 "Pi Zero 2 W": [
 "Pi Zero 2 W",
-"Pi USB plug",
-"Pi PWR plug",
 "Pi camera ribbon",
-"Pi microSD"
+"Pi microSD",
+"Pi GPIO wires"
 ],
 "camera": [
 "camera"
@@ -11915,7 +11919,7 @@
 "Waveshare bus board",
 "bus board cable plugs servo",
 "bus board cable plugs power",
-"bus board cable plugs usb"
+"bus board cable plugs uart"
 ],
 "bus board standoffs": [
 "bus board standoff 0",

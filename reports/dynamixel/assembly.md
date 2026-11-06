@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1094 checks: 1094 pass, 0 warn, **0 fail**
+1096 checks: 1096 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -69,6 +69,7 @@ From tools/assembly.py
 | PASS | torso: battery |  |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
+| PASS | torso: power switch |  |
 | PASS | torso: body shell |  |
 | PASS | headbench: head yaw servo |  |
 | PASS | headbench: head yaw sheet |  |
@@ -745,7 +746,7 @@ From tools/assembly.py
 | PASS | head roll cable plugs - |  |
 | PASS | bus board cable plugs servo |  |
 | PASS | bus board cable plugs power |  |
-| PASS | bus board cable plugs usb |  |
+| PASS | bus board cable plugs uart |  |
 | PASS | beak cable plugs + |  |
 | PASS | beak cable plugs - |  |
 
@@ -1127,6 +1128,7 @@ From tools/assembly.py
 | PASS | part R inner ear |  |
 | PASS | part chassis |  |
 | PASS | part battery |  |
+| PASS | part power switch |  |
 | PASS | part head 5 V regulator |  |
 | PASS | part IMU |  |
 | PASS | part body shell |  |

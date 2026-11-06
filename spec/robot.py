@@ -64,7 +64,13 @@ RECIPES = {
                       battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
-                      neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
+                      neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005,
+                      # (2026-11-06, the user's BOM, PR 6: Amazon had no 16 x 22 x 4 mm bearings till the month's end. The uxcell 6703ZZ, 17 x 23 x 4 mm, 6.4 g (32 g for 5). Its bore is
+                      # 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, on the top 2 mm, not half on the horn: test the fit on the first joint)
+                      xl_bearing=dict(part='6703ZZ', d=0.017, D=0.023, mass=0.0064, shoulder_r=0.00925),   # (the boss's shoulder stays at the old 9.25 mm: 0.75 mm of the inner race, clear of its shield; at 9.75 its thin lip hung past the head roll's plate)
+                      # (the same PR: no right-angle USB leads, hard to find. The regulator's 5 V soldered to the Pi's pins 2 and 6; the Pi's full UART, GPIO 14 and 15, and a ground
+                      # on pin 14, to the bus board's TX, RX and GND header, its jumpers at A. No plug stands on the Pi's top edge, the board's USB-C or the regulator's socket)
+                      pi_uart=True, power_switch=True, pc_port=True),
     # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit. No part of any such build is used.
     # Built up from a draft to the all-Dynamixel duck's standard (2026-11-05): the same flags, for the same reasons, as the HD-1910's case is the XL330's size to the 0.1 mm (Feetech's STEP file and drawing). What differs is
     # in hd_facts, from Feetech's own spec sheet: a rear horn fitted, on a 5 mm tube that stays if it comes off; 2.0 mm plugs, which don't fit the Waveshare board's 2.5 mm sockets; no idlers to buy
@@ -316,6 +322,7 @@ BEARINGS = {
     'XL330': dict(part='MR2216ZZ', d=0.016, D=0.022, w=0.004, floor=0.001, clear=0.0005, wall=0.0015, mass=0.0048),
     'ankle': dict(part='6700ZZ', d=0.010, D=0.015, w=0.004, mass=0.0026),
 }
+BEARINGS['XL330'] = dict(BEARINGS['XL330'], **R.get('xl_bearing', {}))
 RACE = 0.00125                                     # a race's radial thickness as drawn (the shield between them)
 
 
@@ -331,7 +338,7 @@ def stack_of(act, bearing):
 
 def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', exposed=True, remote_at=None,
           case_in='parent', fork_at=None, fork_r=None, post=True, fork=True, sides=(1, -1), faces=('horn', 'rear'),
-          bearing=(), face_t=None, stack=None, tray_full=False, sink=(), near=False, rear_stack=None):
+          bearing=(), face_t=None, stack=None, tray_full=False, sink=(), near=False, rear_stack=None, seat_wall=None):
     """A servo-driven joint. origin: the centre of the horn's outer face, on the axis. act: the servo model, its
     case in `parent`: the shaft along `axis`, the horn facing `out` (+1 / -1 along the axis) toward the child, the
     case's long side running `long` ('+x' .. '-z') from the shaft (the shaft sits shaft_x off the case's middle).
@@ -354,7 +361,7 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     j = dict(name=name, parent=parent, child=child, origin=list(origin), axis=axis, lower=lim[0], upper=lim[1],
              act=act, act_c=act_c, out=out, long=long, exposed=exposed, remote=bool(remote_at), case_in=case_in,
              fork_at=fork_at, fork_r=fork_r, post=post, fork=fork, sides=list(sides), faces=list(faces),
-             bearing=list(bearing), stack=stack, face_t=face_t, tray_full=tray_full, sink=list(sink), near=near, **({'rear_stack': rear_stack} if rear_stack else {}),
+             bearing=list(bearing), stack=stack, face_t=face_t, tray_full=tray_full, sink=list(sink), near=near, **({'rear_stack': rear_stack} if rear_stack else {}), **({'seat_wall': seat_wall} if seat_wall else {}),
              capacity=dict(model=act, count=1, ratio=1.0))
     JOINTS.append(j)
     return j
@@ -570,7 +577,7 @@ def mount_geoms(j):
         """A face plate from the far end to a seat round the shaft, and the bearing's outer race in it."""
         b = bearing_of(j['act'])
         r_d, r_o, fl = b['d'] / 2, b['D'] / 2, b['floor']
-        R, e = r_o + b['wall'], 0.001
+        R, e = r_o + j.get('seat_wall', b['wall']), 0.001
         clear_in = r_d + RACE + 0.0002             # the inner race turns free of the floor
         out = [plate(nm, *axial(sg * (H / 2 - (0.00016 if sts and side == 'horn' else 0)), sg * (H / 2 + cmt)),   # on the real far top
                      [(*pp(-sx, 0), R), (*pp(L / 2 - e, wl[0] + e), e), (*pp(L / 2 - e, wl[1] - e), e)], DARK, 'struct',
@@ -650,7 +657,7 @@ def mount_geoms(j):
             fl, r_i = b['floor'], b['d'] / 2 + RACE
             fk += ring(f'{n} {side} bearing inner race', sg, fl, fl + b['w'], r_i, b['d'] / 2 - 0.00005, ALU, material='steel',
                        mass=b['mass'] / 2, on_joint=j['name'])
-            fk.append(dict(lcyl(f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2 + 0.0001), r_i,
+            fk.append(dict(lcyl(f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2 + 0.0001), b.get('shoulder_r', r_i),
                                 b['clear'] + 0.0002, DARK, 'struct'), **ex))
     real = A.get('horn_top', hh)
     for side, sg in (('horn', 1), ('rear', -1)):   # the boss: from the plate down onto the real horn, as the horn stops short of a plate over a bearing
@@ -855,6 +862,14 @@ link('trunk', 0.40, [
         'body'),
     # the charge port: the plugs' faces at the back wall, only they show (2026-11-04, the user: only the leads visible, at the body's surface)
     *[cut(box('charge port', *PORT['cut'], WHITE, 'shell'), 'body') for _ in range(bool(R.get('charge_port')))],
+    # (power_switch, 2026-11-06, the user: "add a switch somewhere on the back or bottom": the XT30 sits inside the port, out of a finger's reach, so it can't be the
+    # off switch. Pololu's Big MOSFET Slide Switch, HP (item 2815): 25.4 x 20.3 x 4 mm, 2.7 g, about 6 A continuous with the board near 55 C. On foam tape flat
+    # against the back wall's inside, right of centre, under the battery's level; its slider out through a slot. Where the slider sits on the board is drawn from
+    # the listing's photo: check it on the part before printing. Battery + to its VIN, its VOUT to the bus board: the XT30 stays plugged)
+    *[g for _ in range(bool(R.get('power_switch'))) for g in (
+        dict(box('power switch', (-0.0484, -0.0200, 0.1270), (-0.0444, 0.0054, 0.1473), PCB, material='electronics', mass=0.0027), on_cover=True),
+        dict(box('power switch slider', (-0.0520, -0.0110, 0.1395), (-0.0484, -0.0050, 0.1425), DARK, 'decal'), material='electronics', mass=0.0002, exposed=True, on_cover=True),
+        cut(box('power switch slot', (-0.0540, -0.0125, 0.1390), (-0.0488, -0.0035, 0.1430), WHITE, 'shell'), 'body'))],
 ], 'the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front')
 
 # ---------------------------------------------------------------- left leg (bare servos and brackets, as microduck's)
@@ -1199,7 +1214,9 @@ def bus_board():
     wired = lambda n, x0, ys, bxs: dict(box(f'bus board cable plugs {n}', (x0, min(ys), z_(bxs[1])), (top, max(ys), z_(bxs[0])), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.0005, wire=True, exposed=True)
     out += [wired('servo', top - 0.008, (y_(BB['W']), y_(BB['W']) - 0.007), (5.2e-3, 28.3e-3)),
             wired('power', top - 0.010, (y_(0), y_(0) + 0.007), (17.3e-3, 25.3e-3)),
-            wired('usb', top - 0.0045, (y_(0), y_(0) + 0.0115), (28.0e-3, 35.1e-3))]
+            *([wired('usb', top - 0.0045, (y_(0), y_(0) + 0.0115), (28.0e-3, 35.1e-3))] if not R.get('pi_uart') else
+              # (pi_uart: the UART header's 3 pins snipped to 3 mm over their spacer, the wires soldered on and laid flat, out past the board's edge)
+              [wired('uart', top - 0.0055, (y_(BB['W']), y_(BB['W']) - 0.004), (29.6e-3, 37.0e-3))])]
     return out
 
 
@@ -1279,15 +1296,18 @@ link('head', 0.12, [
     # the Pi's connectors, 2026-11-05: it was a plain box, so nothing said which way its USB edge faced, and no check saw a plug. That edge faces up: down has 0.5 mm to the head's base, up has 15 mm under the hood. Parts toward the face, so the microSD is at +y and the camera socket at -y.
     # Ports from Raspberry Pi's drawing: USB 41.4 and PWR 54 mm from the microSD's end. Right-angle plug bodies, 9 mm up and 15-19 mm along the edge, sizes from the listings' photos: USB leaves toward the bus board, PWR toward the regulator
     *[dict(box(n, (PI_X + 0.0028 + x0, y0, z0), (PI_X + 0.0028 + x1, y1, z1), '#D9D4C5', fillet=0.0003), material='electronics', mass=m, wire=True, exposed=True)
-      for n, x0, x1, y0, y1, z0, z1, m in (('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
-                                           ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+      for n, x0, x1, y0, y1, z0, z1, m in (*((('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+                                             ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002)) if not R.get('pi_uart') else ()),
                                            ('Pi camera ribbon', 0.0, 0.005, -0.0355 if TWO_BOARDS else -0.0360, -0.0325, PI_Z - 0.006, PI_Z + 0.006, 0.0002),
                                            ('Pi microSD', 0.0, 0.002, 0.0325, 0.0345, PI_Z - 0.006, PI_Z + 0.006, 0.0002)) if R.get('pi_ports_up')],
     # (the Pi's pins are the bottom edge now, pin 1 at the microSD's end. 3 wires to the Feetech board and 4 to the IMU, soldered on the parts' side, round the board's end, behind its plate)
-    *[dict(box('Pi GPIO wires', (PI_X + 0.0028 + 0.0052, 0.0160, PI_Z - 0.0145), (PI_X + 0.0028 + 0.0072, 0.0335, PI_Z - 0.0115), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.001, wire=True, exposed=True) for _ in range(TWO_BOARDS)],
+    *[dict(box('Pi GPIO wires', (PI_X + 0.0028 + 0.0052, 0.0160, PI_Z - 0.0145), (PI_X + 0.0028 + 0.0072, 0.0335, PI_Z - 0.0115), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.001, wire=True, exposed=True) for _ in range(TWO_BOARDS or bool(R.get('pi_uart')))],
     *jaw_recess(),
     loft('head', hood(), WHITE, open=(), along='x', clip=FRONT),
     cut(UNDER, 'head', 'upper bill'),
+    # (pc_port, 2026-11-06, the user: "a small hole through which we can connect the pi0 to the pc, for loading models": straight over the Pi's micro USB data port,
+    # 41.4 mm from its microSD end, which is free with the bus board on the UART. A plain micro USB cable goes down through it into the port. Wi-Fi does the same without a cable)
+    *[cut(rbox('PC port hole', (PI_X + 0.0028 + 0.003, 0.0325 - 0.0414, PI_Z + 0.0385), (0.009, 0.013, 0.043), 0.0044, WHITE, 'struct'), 'head', 'upper bill') for _ in range(bool(R.get('pc_port')))],   # (a rounded slot: box() squares a printed part's corners)
     dict(plate('mouth roof', HEAD_Z - 0.0002, 0.0032, mouth_outline(MOUTH_X - 0.012), SOFT, 'shell', axis='z'), material='tpu'),
     cut(loft('face recess', arch_front(FACE_X, HEAD_FRONT + 0.01, RIM), WHITE, open=(), along='x'), 'head'),
     loft('upper bill', hood(grow=0.0006), ORANGE, open=(), along='x', clip=FRONT),
@@ -1312,7 +1332,10 @@ link('head', 0.12, [
     # (the plug in its socket: its right angle turns in toward the Pi, in the 11 mm left to the back of the face. Clear of the camera ribbon's end, inboard)
     *[dict(box('head regulator plug', (0.0930, -0.0442, 0.2650), (0.1040, -0.0357, 0.2810), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range(TWO_BOARDS)],
     # (2026-11-05: the same for one board. Its socket stood 0.5 mm from the back of the face, so no plug fitted, right-angle or not. Found on the hybrid. So the module is turned round, its socket facing back, into the room behind it: a right-angle plug still needs 14 mm past the socket. Moving it back instead hits the hinge tab and the hood. Its input wires leave from the module's side, inboard)
-    *[dict(box('head regulator plug', *R['reg_plug'], '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range('reg_plug' in R)],
+    *[dict(box('head regulator plug', *R['reg_plug'], '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range('reg_plug' in R and not R.get('pi_uart'))],
+    # (pi_uart: 2 wires soldered to the socket's VBUS and GND pins, bent along the module's side, inboard, and on to the Pi's pins 2 and 6)
+    *[dict(box('head regulator wires', (R['reg_plug'][1][0] - 0.004, R['reg_plug'][1][1] - 0.0025, R['reg_plug'][0][2] + 0.001), (R['reg_plug'][1][0], R['reg_plug'][1][1], R['reg_plug'][0][2] + 0.005), '#D9D4C5', fillet=0.0003),
+           material='electronics', mass=0.001, wire=True, on_cover=True) for _ in range('reg_plug' in R and bool(R.get('pi_uart')))],
     # (2026-11-05: the plug's back end stood 74 mm3 in the hood's step, on the inside. So that inner rib of the step now ends 1 mm short of the plug, at x = 51 mm. The head's skin isn't touched. The plug passes the hinge tab with only 0.2 mm)
     *[cut(box('head regulator plug room', (R['reg_plug'][0][0] - 0.001, -0.0433, R['reg_plug'][0][2] - 0.0005), (0.0605, -0.0400, R['reg_plug'][1][2] + 0.0005), WHITE), 'R hood step') for _ in range('reg_plug' in R)],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
@@ -1370,7 +1393,9 @@ joint('neck_pitch', 'trunk', 'neck_link', (XN, 0.013 * Q, ZN), 'y', (-0.15, 1.6)
 joint('head_pitch', 'neck_link', 'head_pitch_link', (XN, -0.016 * Q, ZH), 'y', (-1.6, 1.6), R['head'], out=-1,
       long='-z', post=False, rear_stack=R.get('rear_stack'))                       # the head pitch bridge joins the fork's plates
 joint('head_yaw', 'head_pitch_link', 'head_yaw_link', (XHY, 0, ZHY), 'z', (-2.5, 2.5), H2, out=+1, near=True,
-      long='-x', fork=False, bearing=('horn',), face_t=0.001, sink=('horn',))   # a 1 mm sheet to the far holes, as microduck's: the
+      long='-x', fork=False, bearing=('horn',), face_t=0.001, sink=('horn',),
+      seat_wall={'dynamixel': 0.0011}.get(RECIPE))   # (the 6703ZZ's seat, 0.5 mm wider, met the beak cradle at the head roll's end: its wall 1.1 mm, its outside 0.1 mm past the MR2216ZZ's)
+#     a 1 mm sheet to the far holes, as microduck's: the
 #                                                    beak servo turns over it
 # (its case to the right, as microduck's, y -24.5 to 9.5: the left is the beak servo's)
 joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', RANGE['head_roll'], H2, out=+1, long='-y', fork_at=90,
