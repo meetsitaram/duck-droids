@@ -239,7 +239,7 @@ ZYH = ZR + 7.8                                     # the hip yaw's hub: its horn
 XY, YY = 4.0, 16.0
 RANGE = dict(hip_yaw=(-0.4, 0.4), hip_roll=(-0.35, 0.35), hip_pitch=(-0.7, 0.5), knee=(-1.2, 0.2), ankle=(-0.5, 1.45), neck_pitch=(-0.2, 1.6), head_pitch=(-1.3, 0.8), beak=(0.0, 0.45))
 MASS_BUDGET = 0.38                                  # what it comes to (tools/mass_model.py), declared: the servos alone are 135 g
-LEG = dict(hip_yaw='SG90', hip_roll='MG90S', hip_pitch='SG90', knee='MG90S', ankle='SG90')
+LEG = dict(hip_yaw='SG90', hip_roll='MG90S_5V', hip_pitch='SG90', knee='MG90S_5V', ankle='SG90')   # (MG90S_5V: nano's model of the MG90S, at 5 V; the hobby-servo duck's MG90S is at 6 V)
 
 
 def leg():

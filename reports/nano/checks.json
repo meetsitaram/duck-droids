@@ -87,13 +87,13 @@
   "group": "axis",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "MG90S 0.0 mm off the axis"
+  "detail": "MG90S_5V 0.0 mm off the axis"
  },
  {
   "group": "axis",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "MG90S 0.0 mm off the axis"
+  "detail": "MG90S_5V 0.0 mm off the axis"
  },
  {
   "group": "axis",
@@ -111,13 +111,13 @@
   "group": "axis",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "MG90S 0.0 mm off the axis"
+  "detail": "MG90S_5V 0.0 mm off the axis"
  },
  {
   "group": "axis",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "MG90S 0.0 mm off the axis"
+  "detail": "MG90S_5V 0.0 mm off the axis"
  },
  {
   "group": "axis",
@@ -981,13 +981,13 @@
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.08 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S): 71 % used"
+  "detail": "0.08 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S_5V): 71 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.06 N m in 'crouch' vs rated 0.09 N m (1 x MG90S): 65 % used"
+  "detail": "0.06 N m in 'crouch' vs rated 0.09 N m (1 x MG90S_5V): 65 % used"
  },
  {
   "group": "torque",
@@ -999,13 +999,13 @@
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.05 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S): 45 % used"
+  "detail": "0.05 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S_5V): 45 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.03 N m in 'crouch' vs rated 0.09 N m (1 x MG90S): 39 % used"
+  "detail": "0.03 N m in 'crouch' vs rated 0.09 N m (1 x MG90S_5V): 39 % used"
  },
  {
   "group": "torque",

@@ -61,10 +61,17 @@ RECIPES = {
     'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
                       # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
                       # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
-                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
+                      # (2026-11-06, the user: "slightly increase the back case cover": 13 mm more at the back, for the KCD1 rocker's 22 mm behind its bezel; the charge port's plugs move back with it)
+                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.016, charge_at=dict(port=(-0.0730, -0.0570, 0.1290, 0.1505), xt30=(-0.0615, -0.0455, 0.1300, 0.1415), bal=(-0.0610, -0.0520, 0.1425, 0.1495)), charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
-                      neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005),
+                      neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005,
+                      # (2026-11-06, the user's BOM, PR 6: Amazon had no 16 x 22 x 4 mm bearings till the month's end. The uxcell 6703ZZ, 17 x 23 x 4 mm, 6.4 g (32 g for 5). Its bore is
+                      # 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, on the top 2 mm, not half on the horn: test the fit on the first joint)
+                      xl_bearing=dict(part='6703ZZ', d=0.017, D=0.023, mass=0.0064, shoulder_r=0.00925),   # (the boss's shoulder stays at the old 9.25 mm: 0.75 mm of the inner race, clear of its shield; at 9.75 its thin lip hung past the head roll's plate)
+                      # (the same PR: no right-angle USB leads, hard to find. The regulator's 5 V soldered to the Pi's pins 2 and 6; the Pi's full UART, GPIO 14 and 15, and a ground
+                      # on pin 14, to the bus board's TX, RX and GND header, its jumpers at A. No plug stands on the Pi's top edge, the board's USB-C or the regulator's socket)
+                      pi_uart=True, power_switch=True, pc_port=True),
     # the micro's layout on the servo the community's Microduck builds use (2026-11-03, the user: "add it too"), rated to 8.4 V, so no running past a maker's limit. No part of any such build is used.
     # Built up from a draft to the all-Dynamixel duck's standard (2026-11-05): the same flags, for the same reasons, as the HD-1910's case is the XL330's size to the 0.1 mm (Feetech's STEP file and drawing). What differs is
     # in hd_facts, from Feetech's own spec sheet: a rear horn fitted, on a 5 mm tube that stays if it comes off; 2.0 mm plugs, which don't fit the Waveshare board's 2.5 mm sockets; no idlers to buy
@@ -120,6 +127,31 @@ RECIPES = {
                     wall_in=0.0375, rib_back=0.0033, frame_back=0.0003,
                     # the eye ring, a 44 mm disc 14 mm thick at this head's scale, was 25 g of solid plastic in front of the neck: a cup, open at the back, 3 mm at its front
                     eye_cup=True),
+    # cheap one-way PWM hobby servos (2026-11-06, the user: "a microduck-sized duck on cheap hobby servos, driven by a PCA9685"): MG996R at the legs and neck, a DS3218
+    # where the torque checks need it (R['servo'], by joint), MG90S at the head's yaw, roll and beak, where the load is about zero. Their numbers and what is estimated:
+    # spec/actuators.json. Held by their ears (flange_cradle), the far side of a fork on a printed hub in a bearing (rear_hub). The hybrid's head and legs, round the
+    # standard-size case: its ears reach 7 mm past each end, so the knee sits further back, the ankle's cap higher, and the two neck servos further apart
+    'hobby': dict(yaw='MG996R', leg='MG996R', neck='DS3218', head='MG996R', head2='MG90S', K=1.0, HK=1.25, buses=1,
+                  servo=dict(knee='DS3218'),
+                  foot_switch=False, charge_port=True,
+                  # the computer in the body (pi_body): the Pi, its PWM bonnet, the Pi's 5 V converter, the IMU, and two 6 V BECs in the pockets beside the yaw servos;
+                  # the shell 19.5 mm taller over the plate for them, its 2 screws in front of the Pi
+                  pwm=True, pi_body=True, becs=True, reg_name='6 V BEC', body_over=0.028, imu_x=-0.020, imu_y=-0.010, body_screws=((0.012, 0.020), (0.012, -0.006)),
+                  battery=dict(name='battery 2S 850 mAh', size=(0.015, 0.054, 0.030), mass=0.052),
+                  port=dict(xt30=(-0.0565, -0.0405, 0.1500, 0.1615), balance=(-0.0560, -0.0470, 0.1625, 0.1695), y=(0.0268, 0.0330), cut=((-0.0620, 0.0266, 0.1496), (-0.0400, 0.0340, 0.1702))),
+                  port_up=0.1778935620008236,
+                  # the standard-size servos' ears: the knee 5 mm higher over the ankle's far ears, the two neck servos 77 mm apart (their far ears face each other), their brackets round the ears' sweep
+                  zk=0.062, neck_rise=0.0770, mount_drop=0.0235, zn_up=0.001, yaw_foot=0.024,
+                  neck_idler=(-0.0375, -0.0345), pitch_idler=(0.0338, 0.0368), slot_y=(-0.0405, 0.0325), neck_open=True,   # (the slot round the neck's far bracket and hub too, and on the other side round the key's way to the neck's horn screws: the wide neck stands out of the body's front)
+                  
+                  # (the neck 6 mm further forward: its servo's near ears, 20 mm from its axis, swing back past the neck wall as it folds forward 1.6 rad)
+                  xk_more=0.0015,    # (the knee 1.5 mm further back: the hip pitch lid's foot, on its far ears, and the knee's lid were 0.5 mm apart)
+                  rib_back=0.0045, roll_arm_in=0.0025,   # (and the roll bracket's arm 1 mm thicker: 1 % over at 55 N)   # (the shin's rib 1.5 mm deeper: 55 N under the knee horn put it 11 % over the beam estimate's limit)
+                  xn_out=0.006, plate_y=0.032, hood_rear_x=-0.0095, neck_plate_top=0.006,   # (the neck column's plates stop at the neck servo's top face, 6.6 mm: past it, the servo couldn't slide in)
+                  # the head roll 0.25 each way (the hybrid's 0.33): the head pitch fork's bridge spans the wider neck servo, and the head's lower shell meets it past 0.26
+                  ranges=dict(head_roll=(-0.25, 0.25)), short=0.0,
+                  # what it gives up, declared: heavier than the hybrid, and its tall neck puts its proportions within 15 %, not 10 (as the all-Feetech duck's)
+                  mass_budget_kg=1.95, target_tol=0.15),
 }
 # a duck at any height, from tools/new_duck.py
 for _f in sorted(glob.glob(os.path.join(HERE, 'recipes', '*.json'))):
@@ -315,11 +347,22 @@ BEARINGS = {
     'STS3215': dict(part='6704ZZ', d=0.020, D=0.027, w=0.004, floor=0.0006, clear=0.0004, wall=0.002, mass=0.0069),
     'XL330': dict(part='MR2216ZZ', d=0.016, D=0.022, w=0.004, floor=0.001, clear=0.0005, wall=0.0015, mass=0.0048),
     'ankle': dict(part='6700ZZ', d=0.010, D=0.015, w=0.004, mass=0.0026),
+    # the hobby servos' (2026-11-06): the same bearings, on a thicker floor, as their horns stand 6.2 mm off the case (spec/actuators.json): the race round the horn's disc, not its hub
+    'pwm_std': dict(part='6704ZZ', d=0.020, D=0.027, w=0.004, floor=0.0020, clear=0.0004, wall=0.002, mass=0.0069),
+    'pwm_micro': dict(part='MR2216ZZ', d=0.016, D=0.022, w=0.004, floor=0.0019, clear=0.0005, wall=0.0015, mass=0.0048),
 }
+BEARINGS['XL330'] = dict(BEARINGS['XL330'], **R.get('xl_bearing', {}))
 RACE = 0.00125                                     # a race's radial thickness as drawn (the shield between them)
 
 
+def flanged(act):
+    """A hobby servo: held by the 4 ears of its case, no screw holes in its faces, no rear shaft."""
+    return 'flange' in ACT[act]
+
+
 def bearing_of(act):
+    if flanged(act):
+        return BEARINGS['pwm_std' if ACT[act]['bearing'] == '6704ZZ' else 'pwm_micro']
     return BEARINGS['STS3215' if act.startswith('STS') else 'XL330']
 
 
@@ -331,7 +374,7 @@ def stack_of(act, bearing):
 
 def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', exposed=True, remote_at=None,
           case_in='parent', fork_at=None, fork_r=None, post=True, fork=True, sides=(1, -1), faces=('horn', 'rear'),
-          bearing=(), face_t=None, stack=None, tray_full=False, sink=(), near=False, rear_stack=None):
+          bearing=(), face_t=None, stack=None, tray_full=False, sink=(), near=False, rear_stack=None, seat_wall=None):
     """A servo-driven joint. origin: the centre of the horn's outer face, on the axis. act: the servo model, its
     case in `parent`: the shaft along `axis`, the horn facing `out` (+1 / -1 along the axis) toward the child, the
     case's long side running `long` ('+x' .. '-z') from the shaft (the shaft sits shaft_x off the case's middle).
@@ -346,6 +389,10 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     when not the usual; tray_full: the tray's rear wall runs the case's whole length, to reach the plate at its near
     end (the fit checks counted a tray hanging from a servo case as joined; no print would be); near: an XL/XC330's
     near end screwed down too, through its rear frame holes (its horn-side ones are under the bearing). tools/assembly.py ENDS."""
+    # a recipe can put another servo on one joint (the hobby duck: a DS3218 where the MG996R's torque falls short): R['servo'], by joint name without its side
+    act = R.get('servo', {}).get(name[2:] if name[:2] in ('L_', 'R_') else name, act)
+    if flanged(act) and fork and not remote_at and 'rear' not in bearing:
+        bearing = tuple(bearing) + ('rear',)       # no rear shaft: the fork's far side turns on a printed hub in a bearing (mount_geoms)
     a = ACT[act]
     ax = {'x': 0, 'y': 1, 'z': 2}[axis]
     act_c = list(remote_at or origin)
@@ -354,7 +401,7 @@ def joint(name, parent, child, origin, axis, lim, act, out=+1, long='-x', expose
     j = dict(name=name, parent=parent, child=child, origin=list(origin), axis=axis, lower=lim[0], upper=lim[1],
              act=act, act_c=act_c, out=out, long=long, exposed=exposed, remote=bool(remote_at), case_in=case_in,
              fork_at=fork_at, fork_r=fork_r, post=post, fork=fork, sides=list(sides), faces=list(faces),
-             bearing=list(bearing), stack=stack, face_t=face_t, tray_full=tray_full, sink=list(sink), near=near, **({'rear_stack': rear_stack} if rear_stack else {}),
+             bearing=list(bearing), stack=stack, face_t=face_t, tray_full=tray_full, sink=list(sink), near=near, **({'rear_stack': rear_stack} if rear_stack else {}), **({'seat_wall': seat_wall} if seat_wall else {}),
              capacity=dict(model=act, count=1, ratio=1.0))
     JOINTS.append(j)
     return j
@@ -380,6 +427,11 @@ def servo_geoms(j, color=BLACK):
             p_, q_ = at(f, u0, -(wh or W / 2), a0), at(f, u1, wh or W / 2, a1)
             bx.append([[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]])
         case = dict(case, kind='stepbox', boxes=bx)
+    if 'flange' in a:                              # a hobby servo's 4 ears, a plate across the case at 'under' from its middle, past both ends
+        f, fl = servo_frame(j), a['flange']
+        p_, q_ = at(f, -fl['span'] / 2, -W / 2, fl['under']), at(f, fl['span'] / 2, W / 2, fl['under'] + fl['t'])
+        hb = [c[k] - size[k] / 2 for k in range(3)], [c[k] + size[k] / 2 for k in range(3)]
+        case = dict(case, kind='stepbox', boxes=[[list(hb[0]), list(hb[1])], [[min(m, n) for m, n in zip(p_, q_)], [max(m, n) for m, n in zip(p_, q_)]]])
     if 'rear_stub' in a and 'ankle' not in j['name'] and (j['remote'] or not j.get('fork', True)):   # an HD-1910 with its rear horn off (an ankle keeps its, in its rear boss): the tube the horn turned on stays, 2.5 mm proud of the rear face, and whatever lies there needs a hole for it
         f = servo_frame(j)
         st = a['rear_stub']
@@ -392,7 +444,7 @@ def servo_geoms(j, color=BLACK):
     h_ = real + 0.0002 if j['stack'] > real + 1e-9 else j['stack'] + 0.0005
     hc = list(j['origin'])
     hc[ax] -= j['out'] * (j['stack'] - h_ / 2)
-    horn = cyl(f"{j['name']} flange", hc, j['axis'], 0.4 * W, h_, ALU, 'struct')
+    horn = cyl(f"{j['name']} flange", hc, j['axis'], a['horn_r'] - 0.0001 if 'flange' in a else 0.4 * W, h_, ALU, 'struct')
     return case, horn
 
 
@@ -504,6 +556,9 @@ def fork_post(j, u0):
     k['xyz'.index(j['axis'])] = 1.0
     sg = 1 if j['case_in'] == 'child' else -1
     rects = [(-(L / 2 - sx), L / 2 + sx, W / 2), (u0 + sx, L / 2 + sx + MT, W / 2 + MT)]   # (u from shaft), |w|
+    if 'flange' in A:                              # the ears and their rims, both ends, and the side walls that carry them
+        e2 = A['flange']['span'] / 2 + EAR_RIM
+        rects = [(-e2 + sx, -L / 2 + sx, W / 2), (-L / 2 + sx, L / 2 + sx, W / 2 + MT), (L / 2 + sx, e2 + sx, W / 2 + MT)]
     qs = [j['lower'] + (j['upper'] - j['lower']) * i / 40 for i in range(41)]
 
     def clear(psi, rho):
@@ -529,6 +584,80 @@ def fork_post(j, u0):
     return best
 
 
+# A hobby servo (2026-11-06, the hobby recipe: MG996R, DS3218, MG90S) has no screw holes in its faces and no rear shaft: it hangs by the 4 ears of its
+# case, a plate across it near the horn end, past both ends. So its cradle is a tray (side walls, a floor on its rear face, end walls with the lead's window)
+# with a RIM under each pair of ears: the far rim on the end walls, the near rim on the side walls (or on a post from the floor, where there are no sides).
+# The servo drops in from the horn side; 2 screws through the near ears into the near rim; the lid sits on the case's top round the horn, with a FOOT down
+# onto the far ears, and 2 longer screws through foot and ears into the far rim, which hold the lid too. The lead leaves the far end face, low: the end
+# walls' window. The far side of a fork has no rear horn to screw to: a printed hub through the fork's plate, into a bearing in the tray's floor (mount_geoms).
+EAR_RIM = 0.0005                                   # the rim past the ears' ends
+def flange_cradle(j, f, cmt, wl, ex):
+    A = ACT[j['act']]
+    L, W, H = A['box']
+    fl = A['flange']
+    n = j['name'].replace('_', ' ')
+    fc, sd = j.get('faces', ('horn', 'rear')), j.get('sides', (1, -1))
+    e2, a0, a1 = fl['span'] / 2 + EAR_RIM, fl['under'], fl['under'] + fl['t']
+    one = len(fl['holes']) < 4                     # one hole an ear (a micro servo): a second lid screw past the far ear's end, so the lid can't turn about one
+    e2f = fl['span'] / 2 + 0.0035 if one else e2   # (the far rim and foot that much longer)
+    m3 = fl['screw'] == 'M3'
+    rt = 0.004 if m3 else 0.0035                   # the rims' thickness: a self-tapping screw bites 3 mm
+    head = 0.0027 if m3 else 0.0019
+    win = 0.006 if m3 else 0.0045                  # the lead's window (a JR lead is 3 wires, about 3.8 x 1.3 mm), low in the far end wall
+    lo = -H / 2 - (cmt if 'rear' in fc else 0)
+    out = [lbox(f'{n} cradle end +', f, (L / 2, L / 2 + MT), (win / 2, wl[1]), (lo, a0), **ex),
+           lbox(f'{n} cradle end -', f, (L / 2, L / 2 + MT), (wl[0], -win / 2), (lo, a0), **ex),
+           lbox(f'{n} cradle rim far', f, (L / 2, e2f), wl, (a0 - rt, a0), **ex),
+           lbox(f'{n} cradle rim near', f, (-e2, -L / 2 - 0.0002), (-W / 2, W / 2), (a0 - rt, a0), **ex)]
+    # the near rim on a post from the tray's floor, no wider than the case: what turns past the near end clears 20 mm, not 22 (side walls out to the ears' ends swept wider)
+    # (over a bearing the post stops in the seat's floor, clear of the race; on the ankle it stands on the shin's stub plate, clear of the shoe's inner ear)
+    p_lo = -H / 2 - 0.002 if 'ankle' in j['name'] else -H / 2 - 0.0005 if 'rear' in j.get('bearing', ()) else lo
+    out.append(lbox(f'{n} cradle near post', f, (-e2, -L / 2 - 0.0002), (-W / 2, W / 2), (p_lo, a0 - rt + 0.0001), **ex))
+    for sg in sd:
+        out.append(lbox(f"{n} cradle side {'+' if sg > 0 else '-'}", f, (-A['shaft_x'], L / 2),   # (from the shaft out: past it, toward the near end, they swept into what the joint turns past)
+                        (W / 2, W / 2 + MT) if sg > 0 else (-W / 2 - MT, -W / 2), (-H / 2, H / 2), **ex))
+    lid = 'horn' in fc
+    if lid:                                        # the lid's foot, on the far ears, and its cap joining it to the lid
+        out += [lbox(f'{n} cradle horn face foot', f, (L / 2 + 0.0002, e2f), wl, (a1, H / 2), **ex),
+                lbox(f'{n} cradle horn face cap', f, (L / 2 - 0.001, e2f), wl, (H / 2, H / 2 + cmt), **ex)]
+    holes = sorted(fl['holes'], key=lambda p: -p[0]) + ([[fl['span'] / 2 + 0.00145, 0.0]] if one and lid else [])
+    for k, (u, w) in enumerate(holes):
+        far = u > 0
+        if far and lid:                            # through the foot and the ear into the rim
+            top = H / 2 + cmt
+            L_ = math.floor((top - (a0 - rt) - 0.0005) * 1000) / 1000
+            out.append(fast(lcyl(f'{n} cradle screw horn face {k}', f, u, w, top + 0.00075, head, 0.0015, DARK, 'decal'), fl['screw'], L_, at(f, u, w, top), [-v for v in f[3]]))
+        else:                                      # through the ear alone: its head on the ear
+            L_ = math.floor((a1 - (a0 - rt) - 0.0005) * 1000) / 1000
+            out.append(fast(lcyl(f"{n} cradle screw rear {'far' if far else 'near'} ear {k}", f, u, w, a1 + 0.00075, head, 0.0015, DARK, 'decal'), fl['screw'], L_, at(f, u, w, a1),
+                            [-v for v in f[3]], ear=True))
+    return out
+
+
+def rear_hub(j, f, hb, ex):
+    """A hobby servo's far side, on a fork: a printed hub, pushed in through a hole in the fork's rear plate once the servo is in, turns in a bearing in the tray's floor.
+    Its flange outside the plate takes 2 M2 x 4 into it. (A pin on the plate itself couldn't pass the bearing as the servo slides in between the fork's plates.)"""
+    A = ACT[j['act']]
+    H, sx = A['box'][2], A['shaft_x']
+    b = bearing_of(j['act'])
+    n = j['name'].replace('_', ' ')
+    r_i, fl = b['d'] / 2 + RACE, b['floor']
+    a_ = lambda x: -(H / 2 + x)                    # x out from the case's rear face
+    mid = lambda x0, x1: a_((x0 + x1) / 2)
+    lo = max(0.0004, fl - 0.0005)
+    out = [dict(lcyl(f'{n} rear hub boss', f, -sx, 0, mid(lo, fl + b['w'] + 0.0001), b['d'] / 2 - 0.0001, fl + b['w'] + 0.0001 - lo, DARK, 'struct'), **ex),
+           dict(lcyl(f'{n} rear hub plug', f, -sx, 0, mid(hb - 0.0001, hb + MT), r_i, MT + 0.0001, DARK, 'struct'), **ex),
+           dict(lcyl(f'{n} rear hub collar', f, -sx, 0, mid(hb + MT, hb + MT + 0.0015), r_i + 0.0045, 0.0015, DARK, 'struct'), **ex),
+           cut(lcyl(f'{n} rear hub hole', f, -sx, 0, mid(hb - 0.001, hb + MT + 0.001), r_i + 0.0002, MT + 0.002, DARK, 'struct'), f'{n} fork rear plate',
+               *{'neck pitch': ['neck idler bracket'], 'head pitch': ['head pitch idler plate'], 'head roll': ['head top plate wide']}.get(n, []))]
+    for t_ in {'head roll': ['head top plate wide']}.get(n, []):   # (room for the collar where the head's frame passes over it)
+        out.append(cut(lcyl(f'{n} rear hub collar room', f, -sx, 0, mid(hb + MT - 0.0005, hb + MT + 0.002), r_i + 0.0048, 0.0025, DARK, 'struct'), t_))
+    for k, sg in enumerate((1, -1)):
+        out.append(fast(lcyl(f'{n} hub screw {k}', f, -sx, sg * (r_i + 0.0025), a_(hb + MT + 0.0015 + 0.00075), 0.0019, 0.0015, DARK, 'decal'),
+                        'M2', 0.004, at(f, -sx, sg * (r_i + 0.0025), a_(hb + MT + 0.0015)), list(f[3])))
+    return out
+
+
 def mount_geoms(j):
     """(parts for the case's link, parts for the horn's link) for joint j."""
     A = ACT[j['act']]
@@ -537,13 +666,16 @@ def mount_geoms(j):
     f = servo_frame(j)
     n, ex = j['name'].replace('_', ' '), dict(exposed=j['exposed'])
     sts = 'case_holes_horn' in A
-    holes_h = A['case_holes_horn'] if sts else A['case_holes_through']
-    holes_r = A['case_holes_rear'] if sts else A['case_holes_through']
+    hob = 'flange' in A                            # a hobby servo, held by its ears (flange_cradle)
+    holes_h = A['case_holes_horn'] if sts else A['flange']['holes'] if hob else A['case_holes_through']
+    holes_r = A['case_holes_rear'] if sts else A['flange']['holes'] if hob else A['case_holes_through']
     # far holes: the two furthest from the shaft (the tables give them from the case's middle, the far end at -x)
     far_h = sorted(holes_h, key=lambda p: p[0])[:2]
     far_r = sorted(holes_r, key=lambda p: p[0])[:2]
     head = 0.0019                                  # M2 pan head radius
     u0 = min(-p[0] for p in far_h + far_r) - head - 0.0006
+    if hob:                                        # a lid without a bearing stops short of the horn's disc
+        u0 = -sx + A['horn_r'] + 0.0015
     win = 0.012 if W > 0.022 else 0.010            # cable window in the end wall
     cmt = j.get('face_t') or min(MT, hh - 0.0005)  # face plates under the horn's height (the fork turns over them);
     #                                                XL/XC330 screws sit in counterbores
@@ -570,7 +702,7 @@ def mount_geoms(j):
         """A face plate from the far end to a seat round the shaft, and the bearing's outer race in it."""
         b = bearing_of(j['act'])
         r_d, r_o, fl = b['d'] / 2, b['D'] / 2, b['floor']
-        R, e = r_o + b['wall'], 0.001
+        R, e = r_o + j.get('seat_wall', b['wall']), 0.001
         clear_in = r_d + RACE + 0.0002             # the inner race turns free of the floor
         out = [plate(nm, *axial(sg * (H / 2 - (0.00016 if sts and side == 'horn' else 0)), sg * (H / 2 + cmt)),   # on the real far top
                      [(*pp(-sx, 0), R), (*pp(L / 2 - e, wl[0] + e), e), (*pp(L / 2 - e, wl[1] - e), e)], DARK, 'struct',
@@ -610,37 +742,43 @@ def mount_geoms(j):
             cr.append(lbox(nm, f, (-L / 2 - 0.0005 if j.get('tray_full') else u0, L / 2), wl, (-H / 2 - cmt, rf + 0.0001), **ex))
             cr.append(cut(lbox(f'{nm} lump', f, (min(u0 - 0.001, A['steps'][3][0][0] - 0.0005), A['steps'][3][0][1] + 0.0005), (-A['steps'][3][1] - 0.0005, A['steps'][3][1] + 0.0005),
                                (-H / 2 - cmt / 2, rf)), nm))
+        elif hob and side == 'rear':               # the tray's floor, the whole case long: nothing screws into a hobby servo's faces, so the tray holds it, and with no side walls it carries the near rim's post
+            u_lo = -sx + 0.0115 if 'ankle' in j['name'] else -A['flange']['span'] / 2 - EAR_RIM   # (under the near post too; the ankle's stops clear of the shoe's inner ear, and the shin's stub plate carries its post)
+            cr.append(lbox(nm, f, (u_lo, L / 2), wl, (-H / 2 - cmt, -H / 2), **ex))
         else:
             # (tray_full: the rear wall the whole way up to the plate that holds it: on an STS3215 above, it was forgotten here, and the tray hung from nothing)
             cr.append(lbox(nm, f, (-L / 2 - 0.0005 if j.get('tray_full') and side == 'rear' else u0, L / 2), wl, sorted((sg * H / 2, sg * (H / 2 + cmt))), **ex))
-    ea = (-H / 2 - (cmt if 'rear' in fc else 0), H / 2 + (cmt if 'horn' in fc else 0))   # the end wall's height
-    cr += [lbox(f'{n} cradle end +', f, (L / 2, L / 2 + MT), (win / 2, wl[1]), ea, **ex),
-           lbox(f'{n} cradle end -', f, (L / 2, L / 2 + MT), (wl[0], -win / 2), ea, **ex)]
-    for sg in sd:
-        cr.append(lbox(f"{n} cradle side {'+' if sg > 0 else '-'}", f, (u0, L / 2),
-                       (W / 2, W / 2 + MT) if sg > 0 else (-W / 2 - MT, -W / 2), (-H / 2, H / 2), **ex))
-    for side, holes, a0 in (('horn face', far_h, H / 2 + cmt), ('rear face', far_r, -H / 2 - cmt)):
-        if side.split()[0] not in fc:
-            continue
-        sg = 1 if a0 > 0 else -1
-        for k, (x, y) in enumerate(holes):
-            cr.append(fast(lcyl(f'{n} cradle screw {side} {k}', f, -x, y, a0 + sg * 0.00075, head, 0.0015, DARK, 'decal'),
-                           'M2', (0.006 if a0 > 0 else 0.008) if sts else 0.008, at(f, -x, y, a0), [-sg * v for v in f[3]]))
-    # the near end, too: an XL330's frame holes go right through. On the horn side they're under the bearing (10.97 mm off the shaft, the bearing's radius 11), so from the rear
-    # (2026-11-04, the user: "does the servo just slide inside and only gets its screws on the other side?" Yes: it was held at one end)
-    if j.get('near') and not sts and 'rear' in fc or j.get('near') and not sts and j.get('near_plate'):
-        a0 = -H / 2 - cmt
-        for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
-            cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, a0 - 0.00075, head, 0.0015, DARK, 'decal'),
-                           'M2', 0.008, at(f, -x, y, a0), list(f[3])))
-    if sts and j.get('near') and j['name'] == 'beak' and R.get('head_plugs'):
-        for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
-            cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, -H / 2 - cmt - 0.00075, head, 0.0015, DARK, 'decal'),
-                           'M2', 0.008, at(f, -x, y, -H / 2 - cmt), list(f[3])))
+    if hob:
+        cr += flange_cradle(j, f, cmt, wl, ex)
+    else:
+        ea = (-H / 2 - (cmt if 'rear' in fc else 0), H / 2 + (cmt if 'horn' in fc else 0))   # the end wall's height
+        cr += [lbox(f'{n} cradle end +', f, (L / 2, L / 2 + MT), (win / 2, wl[1]), ea, **ex),
+               lbox(f'{n} cradle end -', f, (L / 2, L / 2 + MT), (wl[0], -win / 2), ea, **ex)]
+        for sg in sd:
+            cr.append(lbox(f"{n} cradle side {'+' if sg > 0 else '-'}", f, (u0, L / 2),
+                           (W / 2, W / 2 + MT) if sg > 0 else (-W / 2 - MT, -W / 2), (-H / 2, H / 2), **ex))
+        for side, holes, a0 in (('horn face', far_h, H / 2 + cmt), ('rear face', far_r, -H / 2 - cmt)):
+            if side.split()[0] not in fc:
+                continue
+            sg = 1 if a0 > 0 else -1
+            for k, (x, y) in enumerate(holes):
+                cr.append(fast(lcyl(f'{n} cradle screw {side} {k}', f, -x, y, a0 + sg * 0.00075, head, 0.0015, DARK, 'decal'),
+                               'M2', (0.006 if a0 > 0 else 0.008) if sts else 0.008, at(f, -x, y, a0), [-sg * v for v in f[3]]))
+        # the near end, too: an XL330's frame holes go right through. On the horn side they're under the bearing (10.97 mm off the shaft, the bearing's radius 11), so from the rear
+        # (2026-11-04, the user: "does the servo just slide inside and only gets its screws on the other side?" Yes: it was held at one end)
+        if j.get('near') and not sts and 'rear' in fc or j.get('near') and not sts and j.get('near_plate'):
+            a0 = -H / 2 - cmt
+            for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
+                cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, a0 - 0.00075, head, 0.0015, DARK, 'decal'),
+                               'M2', 0.008, at(f, -x, y, a0), list(f[3])))
+        if sts and j.get('near') and j['name'] == 'beak' and R.get('head_plugs'):
+            for k, (x, y) in enumerate(sorted(holes_r, key=lambda p: p[0])[2:]):
+                cr.append(fast(lcyl(f'{n} cradle screw rear near {k}', f, -x, y, -H / 2 - cmt - 0.00075, head, 0.0015, DARK, 'decal'),
+                               'M2', 0.008, at(f, -x, y, -H / 2 - cmt), list(f[3])))
     if j['remote']:
         return cr, []
     hr, hd = A['horn_hole_r'], A['horn_hole_deg']
-    sh = 0.0027 if sts else head                   # M3 (STS3215 horns) or M2 (XL/XC330 horns) pan head
+    sh = 0.0027 if sts or hob and A['horn_screw'].startswith('M3') else head   # M3 (STS3215 horns, a hobby servo's aluminium horn) or M2 (XL/XC330 horns) pan head
     hb = j.get('rear_stack') or hh                 # the case's rear face to the plate on its rear horn, further than the horn side where a plug is to pass under it
     top, bot = H / 2 + hh, -H / 2 - hb
     fk = [] if 'horn_top' in A else [lcyl(f'{n} horn centre screw', f, -sx, 0, top + MT + 0.00075, sh, 0.0015, DARK, 'decal')]   # (it's the servo's own, under the hole in the plate)
@@ -650,17 +788,19 @@ def mount_geoms(j):
             fl, r_i = b['floor'], b['d'] / 2 + RACE
             fk += ring(f'{n} {side} bearing inner race', sg, fl, fl + b['w'], r_i, b['d'] / 2 - 0.00005, ALU, material='steel',
                        mass=b['mass'] / 2, on_joint=j['name'])
-            fk.append(dict(lcyl(f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2 + 0.0001), r_i,
+            fk.append(dict(lcyl(f'{n} rear hub shoulder' if hob and side == 'rear' else f'{n} {side} boss shoulder', f, -sx, 0, sg * (H / 2 + fl + b['w'] + b['clear'] / 2 + 0.0001), b.get('shoulder_r', r_i),
                                 b['clear'] + 0.0002, DARK, 'struct'), **ex))
     real = A.get('horn_top', hh)
     for side, sg in (('horn', 1), ('rear', -1)):   # the boss: from the plate down onto the real horn, as the horn stops short of a plate over a bearing
-        if hh <= real + 1e-9 or (side == 'rear' and not j.get('fork', True)):
+        if hh <= real + 1e-9 or (side == 'rear' and not j.get('fork', True)) or (hob and side == 'rear'):   # (a hobby servo's rear: its hub, below)
             continue
         rb = bearing_of(j['act'])['d'] / 2 - 0.0001 if side in bg else A['horn_r']
         # up into the plate, or, over a bearing, under the shoulder that holds the race (a loose spacer on the head roll stops right there: tools/assembly.py)
         hi = (hb if side == 'rear' else hh) + 0.0002
         if side in bg:
             hi = bearing_of(j['act'])['floor'] + bearing_of(j['act'])['w'] + (0.0 if j['name'] == 'head_roll' else 0.0001)
+            if hob:                                # (a hobby servo's horn stands over its bearing: the boss runs from the horn up into the plate)
+                hi = hh + 0.0002
         mid = sg * (H / 2 + (real + hi) / 2)
         bn = f'{n} {side} seat boss'
         fk.append(dict(lcyl(bn, f, -sx, 0, mid, rb, hi - real, DARK, 'struct'), **ex))
@@ -669,8 +809,11 @@ def mount_geoms(j):
     faces_ = [(top + MT, 1, 'horn')]
     if j.get('fork', True):
         # the fork: a plate on each horn, joined by a post where the case and its cradle never go over the joint's range
-        faces_.append((bot - MT, -1, 'rear'))
+        if not hob:
+            faces_.append((bot - MT, -1, 'rear'))
         fw, pr = hr + sh + 0.001, post_r(A)
+        if hob:                                    # round the hub's hole, with room for its 2 screws
+            fw = max(fw, bearing_of(j['act'])['d'] / 2 + RACE + 0.0055)
         if j.get('post', True) or j.get('fork_r') is not None:
             psi, rho = fork_post(j, u0)
         else:
@@ -679,8 +822,11 @@ def mount_geoms(j):
         pu, pw = -sx + rho * math.cos(psi), rho * math.sin(psi)
         circ = [(*pp(-sx, 0), fw), (*pp(pu, pw), pr)]
         fk += [plate(f'{n} fork horn plate', *axial(top, top + MT), circ, DARK, 'struct', axis=ax, **ex),
-               plate(f'{n} fork rear plate', *axial(bot - MT, bot), circ, DARK, 'struct', axis=ax, **ex),
-               dict(lcyl(f'{n} rear horn', f, -sx, 0, -H / 2 - (min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005) / 2, A['horn_r'], min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005, ALU, 'struct'),
+               plate(f'{n} fork rear plate', *axial(bot - MT, bot), circ, DARK, 'struct', axis=ax, **ex)]
+        if hob:
+            fk += rear_hub(j, f, hb, ex)
+        else:
+          fk += [dict(lcyl(f'{n} rear horn', f, -sx, 0, -H / 2 - (min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005) / 2, A['horn_r'], min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005, ALU, 'struct'),
                     **ex)]
         if j.get('post', True):
             fk.append(plate(f'{n} fork post', *axial(bot - MT, top + MT), [(*pp(pu, pw), pr)], DARK, 'struct', axis=ax,
@@ -692,7 +838,7 @@ def mount_geoms(j):
             dn = 0.0016 if nm in j.get('sink', ()) else 0.0
             fk.append(fast(lcyl(f'{n} fork screw {nm} {k}', f, u_, w_, a0 - sg * dn + sg * 0.00075, sh, 0.0015, DARK, 'decal'),
                            # (an HD-1910's horn holes run out after 2.5 mm, with 0.5 mm of air to the case: an M2 x 6 through a 3 mm plate lying on its horn would drag on the case. check_horn_tips)
-                           'M3' if sts else 'M2', (0.012 if nm == 'rear' and j.get('rear_stack') else 0.010 if nm in bg else 0.008) if sts else 0.005 if 'centre_screw' in A and not dn and nm not in bg and hh <= A['horn_top'] + 1e-9 else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
+                           'M3' if sts or sh > 0.002 else 'M2', (0.004 if dn else 0.006) if hob else (0.012 if nm == 'rear' and j.get('rear_stack') else 0.010 if nm in bg else 0.008) if sts else 0.005 if 'centre_screw' in A and not dn and nm not in bg and hh <= A['horn_top'] + 1e-9 else (0.006 if dn else 0.008 if nm in bg else 0.006), at(f, u_, w_, a0 - sg * dn),
                            [-sg * v for v in f[3]]))
     return cr, fk
 
@@ -707,6 +853,13 @@ SHH = stack_of(R['leg'], True)       # the case's face to the plate on its horn,
 XLL, XLW, XLH = XL['box']                  # 34 x 20 x 26 mm
 XLX, XLHH = XL['shaft_x'], XL['horn_h']
 XLS = stack_of(H2, True)         # the same on the head's XL330s that carry a bearing (5.5 mm)
+# the neck's own servo (it was the head's: the same case on every recipe until the hobby duck, whose neck is a standard-size servo and its head micro ones)
+NKL, NKW, NKH = ACT[R['neck']]['box']
+NKX = ACT[R['neck']]['shaft_x']
+HOB = flanged(R['leg'])                    # hobby servos, held by their ears (flange_cradle)
+# how far a leg servo reaches from its shaft along its length, toward its near end and its far end: its ears and their rims, on a hobby servo
+NEAR = (STS['flange']['span'] / 2 + EAR_RIM if HOB else SL / 2) - SX
+FAR = (STS['flange']['span'] / 2 + EAR_RIM if HOB else SL / 2) + SX
 GAP = 0.003                                # clearance between parts of different links that move against each other
 
 # ---------------------------------------------------------------- proportions (iterate here)
@@ -725,9 +878,9 @@ STANCE = 1.02                                      # microduck's thigh angle bac
 ZA = R.get('za', 0.0295)                                        # ankle: microduck's 25 mm at 1.18; its case's lower end clears the shoe
 #   knee: the STS3215 ankle's far end, its 3 mm cap and 1.5 mm to the thigh cover's 17.4 mm circle round the knee: it takes
 #   up the gap under the thigh (the user, 2026-11-03), 4 mm taller than with an XC330
-ZK = ZA + 0.057 * K
+ZK = ZA + R.get('zk', 0.057 * K)
 #   hip pitch: the knee servo just behind the hip pitch servo's back end, both in the thigh
-XK = -(SL / 2 + SX) - SW / 2 - 0.0035              # -0.051: the knee behind the hip, one cradle wall (3 mm) between
+XK = -FAR - SW / 2 - 0.0035 - R.get('xk_more', 0.0)              # -0.051: the knee behind the hip, one cradle wall (3 mm) between
 #                                                    the hip pitch case's end and the knee case (2026-11-02, mounts)
 COVER_R = R.get('cover_r', 0.29)                    # the thigh cover's corners, over the thigh's length: microduck's. (a small duck's servo corners came through it: 0.33)
 THIGH = -XK / math.sin(STANCE)                     # 57 mm (microduck's 42 at 1.36)
@@ -735,7 +888,7 @@ ZP = ZK - XK / math.tan(STANCE)                    # 0.111
 ZR = ZP                                            # hip roll: at the hip pitch axis' height, as microduck's
 #   hip yaw: its horn on a plate on the roll case's top (the roll shaft 10 mm below that top): 13 mm above the roll
 #            axis (microduck's: 12.5)
-ZY = ZR + SL / 2 - SX + 0.010 * K                      # a 10 mm spacer: room under the body for the thigh covers to roll
+ZY = ZR + NEAR + 0.010 * K                      # a 10 mm spacer: room under the body for the thigh covers to roll
 
 # Lateral (left leg, y > 0), from the middle out
 YY = 0.016 * K                                         # hip yaw and roll: the two yaw cases side by side, 7 mm apart
@@ -743,6 +896,9 @@ YY = 0.016 * K                                         # hip yaw and roll: the t
 YR = YY + 0.0025
 XRH = SH / 2 + SHH                                 # hip roll horn face, in front of the roll case (0.022)
 YRS = (YR + SW / 2 + 0.0061, YR + SW / 2 + 0.0091)  # the roll bracket's side plate, clear of the rolling roll case
+if HOB:                                            # (a narrower case: the roll lid's bearing seat, 15.5 mm round the axis, is then what the side plate has to clear)
+    _rs = bearing_of(R['leg'])['D'] / 2 + bearing_of(R['leg'])['wall'] + GAP
+    YRS = (YR + _rs, YR + _rs + 0.003)
 YT_CASE = (YRS[1] + SHH, YRS[1] + SHH + SH)        # the thigh's two servo cases (0.042 .. 0.077)
 YP = YRS[1]                                        # hip pitch horn face, inward onto the roll bracket
 YK = YRS[1]                                        # knee horn face, inward onto the shin plate
@@ -751,13 +907,14 @@ YS = (YRS[0], YRS[1])                              # the shin plate
 # spacer on the shin plate takes up the knee's stack, so the leg reads as one column, the feet 5 mm further out
 YA_CASE = (YS[1], YS[1] + AK['box'][2])            # the ankle case, outside the shin plate
 # ankle horn face, outward: no bearing here, so only the real horn and its centre screw (3.05 mm on SO-101's mesh)
-ANKLE_STACK = 0.0035
+AK_FAR = FAR if HOB else AK['box'][0] / 2 + AK['shaft_x']   # the ankle servo's reach up the shin: over its far ears and their rim, on a hobby servo
+ANKLE_STACK = ACT[R['leg']]['horn_top'] + 0.0002 if HOB else 0.0035   # (a hobby servo's horn stands 6.2 mm off its case: the shoe's ear sits on it)
 RIB = R.get('cap', 0.015) * K if 'cap' not in R else R['cap']
 CAP = R.get('cap', 0.015)                          # the shin cap's half width
 XCHH, ANK = 0.0031, BEARINGS['ankle']              # the rear horn's disc, in the case's step (0.5 mm proud of the box)
-YB = YA_CASE[0] - (0.0005 if 'steps' in AK else XCHH)   # the top of the ankle servo's rear boss
+YB = YA_CASE[0] - (0.0005 if 'steps' in AK else 0.0001 if HOB else XCHH)   # the top of the ankle servo's rear boss
 YA = YA_CASE[1] + ANKLE_STACK
-XP_FRONT = SL / 2 - SX                             # hip pitch case's front end (0.0101; it runs back)
+XP_FRONT = NEAR                             # hip pitch case's front end (0.0101; it runs back)
 # microduck's shoe at 1.18 (its foot_left, sole_left and ankle_left meshes): a 13 mm yellow sole (15 here), the orange
 # upper rising at the toe and heel to 22 mm, the ears round the ankle; low in the middle, where the ankle servo swings
 # (the STS3215 ankle: 3 mm wider than with an XC330, and 4 mm longer to keep the shoe's shape: 68 x 52 mm)
@@ -777,17 +934,18 @@ PLATE = (YAW_TOP, YAW_TOP + 0.0035)                # the body's top plate
 # microduck's; the body holds the yaw servos, the battery and a thin servo-bus board behind it, and its front is flush
 # with the neck servo's (microduck's neck column stands at its body's front edge): 98 mm long (microduck's: 96 at 1.18)
 # (8.5 mm over the plate, was 4: the yaw servos' plugs come up through it, 6.6 mm over their case's plane, plus the shell's wall)
-BODY = dict(x=(-0.058 * K, 0.040 * K), top=PLATE[1] + 0.0085, bottom=ZY + 0.003)
+BODY = dict(x=(-0.058 * K, 0.040 * K), top=PLATE[1] + R.get('body_over', 0.0085), bottom=ZY + 0.003)   # (body_over: the hobby duck's Pi and servo bonnet stand over the plate)
 BATT = R['battery']['size']
 BATT_X = R.get('batt_x', -0.0535 * K)                               # the battery's back face: 15 mm thick (a real 850 mAh pack), just behind the yaw trays' end walls (-0.0381)
-XN = XP_FRONT + XLW / 2 + 0.0079                                         # neck pitch axis: its case in the body's front, as microduck's
-ZN = ZY + SHH - 0.001 + XLL / 2 + XLX              # its case's foot level with the yaw cases' (0.207)
+XN = XP_FRONT + NKW / 2 + 0.0079 + R.get('xn_out', 0.0)                                         # neck pitch axis: its case in the body's front, as microduck's
+ZN = ZY + SHH - 0.001 + NKL / 2 + NKX + R.get('zn_up', 0.0)            # its case's foot level with the yaw cases' (0.207)
+NECK_MD = R.get('mount_drop', 0.016 * Q)                # the neck mount's top, under the neck pitch axis: clear of what the neck servo's near end sweeps
 ZH = ZN + R.get('neck_rise', 0.0514 * Q)                                   # head pitch: straight above, the neck one column (round 6)
 # head yaw: its case forward of the head pitch case (clear of its 13 mm circle), so it can sit low
 # head yaw (round 6, the user: "neck needs improvement"): microduck's neck is one straight column of servos, the head
 # yaw servo on top of it inside the head's underside. Its case straight over the head pitch servo, clear of its 13 mm
 # circle (round 5 had it 14 mm ahead: an L-shaped neck)
-YAW_FOOT = ZH + 0.0131 * Q + GAP + 0.004               # the head pitch U's bridge: clear of its servo's 13 mm circle
+YAW_FOOT = ZH + R.get('yaw_foot', 0.0131 * Q + GAP + 0.004)              # the head pitch U's bridge: clear of its servo's 13 mm circle
 XHY, ZHY = XN + XLX, YAW_FOOT + XLH + XLS
 YAW_UP = R.get('yaw_plate_up', 0.0)
 XHR, ZHR = XHY + XLH / 2 + XLS, ZHY + XLHH + YAW_UP + XLW / 2            # head roll horn face and axis height
@@ -803,7 +961,38 @@ BW_ = (R.get('body_wide', 0.0), R.get('body_back', 0.0) / 2)            # how mu
 BCX_ = -0.009 * K - BW_[1]
 CHARGE_PORT = R.get('charge_at', {}).get('port', (-0.0600, -0.0440, 0.1290, 0.1505))
 PORT = R.get('port') or dict(xt30=R.get('charge_at', {}).get('xt30', (-0.0485, -0.0325, 0.1300, 0.1415)), balance=R.get('charge_at', {}).get('bal', (-0.0480, -0.0390, 0.1425, 0.1495)), y=(0.0280, 0.0335), cut=((CHARGE_PORT[0], 0.0270, CHARGE_PORT[2]), (CHARGE_PORT[1], 0.0340, CHARGE_PORT[3])))
+if 'port_up' in R:                                 # the hybrid's charge port, as high over its plate as on the hybrid (port_up: its plate's height there)
+    _dz = PLATE[0] - R['port_up']
+    PORT = dict(PORT, xt30=PORT['xt30'][:2] + tuple(v + _dz for v in PORT['xt30'][2:]), balance=PORT['balance'][:2] + tuple(v + _dz for v in PORT['balance'][2:]),
+                cut=tuple((a, b, c + _dz) for a, b, c in PORT['cut']))
 TWO_BOARDS = R.get('two_boards', False)             # a Waveshare board for each bus, in the head
+# the hobby duck (2026-11-06, the user: "Pi, battery, IMU, BEC and PCA9685 all go in the body, so only the head's servo leads (and a camera ribbon) cross the neck"):
+# its computer in the body, on 4 posts on the top plate behind the IMU, with Adafruit's 16-channel PWM / Servo Bonnet (a PCA9685, 65 x 30.4 mm, its page) on its
+# GPIO header; the Pi's 5 V from a USB buck converter, the servos' 6 V from two BECs in the pockets beside the yaw servos (docs/hobby/WIRING.md)
+PI_BODY = R.get('pi_body', False)
+REG_NAME = R.get('reg_name', '5 V regulator')
+PX_ = -0.0373                                      # the Pi's middle, its 65 mm across the body
+PZ_ = PLATE[1] + 0.003                             # its board's underside, on its posts
+BON_Z = PZ_ + 0.0095                               # the bonnet's underside, on an 8.5 mm stacking header over the Pi's 1 mm board
+
+def body_computer():
+    """The hobby duck's Pi Zero 2 W on 4 posts (its M2.5 holes, 58 x 23 mm), the PWM bonnet on its GPIO header, the servo plugs off the bonnet's front edge on
+    right-angle headers, and the Pi's 5 V buck converter beside the IMU. Sizes: the Pi's 65 x 30 mm; the bonnet's 65 x 30.4 (Adafruit 3416's page); the converter as the
+    other ducks' (35 x 17 x 8.5 mm, a listing's): confirm the parts you buy."""
+    holes = [(PX_ + sx_ * 0.0115, sy_ * 0.029) for sx_, sy_ in ((1, 1), (-1, 1), (1, -1), (-1, -1))]
+    out = [box('Pi Zero 2 W', (PX_ - 0.015, -0.0325, PZ_), (PX_ + 0.015, 0.0325, PZ_ + 0.0052), PCB, material='electronics', mass=0.011)]
+    for k, (x_, y_) in enumerate(holes):
+        out += [box(f'Pi post {k}', (x_ - 0.0025, y_ - 0.0025, PLATE[1] - 0.0002), (x_ + 0.0025, y_ + 0.0025, PZ_), fillet=0.0005),
+                fast(cyl(f'Pi screw {k}', (x_, y_, PZ_ + 0.001 + 0.0009), 'z', 0.00225, 0.0018, DARK, 'decal'), 'M2.5', 0.006, (x_, y_, PZ_ + 0.001), (0, 0, -1))]
+    wired = lambda n, lo, hi, m: dict(box(n, lo, hi, '#D9D4C5', fillet=0.0003), material='electronics', mass=m, wire=True, exposed=True)
+    out += [dict(box('PWM bonnet', (PX_ - 0.0152, -0.0325, BON_Z), (PX_ + 0.0152, 0.0325, BON_Z + 0.0046), PCB, material='electronics', mass=0.0085)),
+            dict(box('PWM bonnet header', (PX_ - 0.0130, -0.0255, PZ_ + 0.0052), (PX_ - 0.0080, 0.0255, BON_Z + 0.0001), '#202226', fillet=0.0003), material='electronics', mass=0.003),
+            wired('PWM bonnet plugs', (PX_ + 0.0152, -0.0260, BON_Z + 0.0016), (PX_ + 0.0302, 0.0260, BON_Z + 0.0101), 0.004),
+            wired('Pi camera ribbon', (PX_ - 0.008, 0.0325, PZ_), (PX_ + 0.008, 0.0355, PZ_ + 0.0012), 0.0002),
+            wired('Pi microSD', (PX_ - 0.006, -0.0345, PZ_), (PX_ + 0.006, -0.0325, PZ_ + 0.0012), 0.0002),
+            dict(box('Pi 5 V converter', (-0.0200, -0.0300, PLATE[1] + 0.0005), (0.0150, -0.0130, PLATE[1] + 0.0090), PCB, material='electronics', mass=0.008), on_cover=True)]
+    return out
+
 
 link('trunk', 0.40, [
     box('top plate', (BATT_X, -R.get('plate_y', 0.025 * K), PLATE[0]), (XP_FRONT, R.get('plate_y', 0.025 * K), PLATE[1])),
@@ -818,26 +1007,29 @@ link('trunk', 0.40, [
     # the two 5 V regulators stand on edge in the pockets beside the yaw servos (39 x 21 x 6 mm, an 8 A UBEC's listing); the IMU
     # on the plate, behind the yaw plugs (a BNO085 board, 25.6 x 22.7 x 4.6 mm, Adafruit's listing)
     *[box(f'{nm} 5 V regulator', (-0.0300, sy * 0.0345 - 0.003, ZY + 0.0135), (0.0090, sy * 0.0345 + 0.003, ZY + 0.0347), PCB, material='electronics', mass=0.018) for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS)],
+    *[box(f'{nm} {REG_NAME}', (-0.0300, sy * 0.0345 - 0.003, ZY + 0.0135), (0.0090, sy * 0.0345 + 0.003, ZY + 0.0347), PCB, material='electronics', mass=0.023) for nm, sy in (('L', 1), ('R', -1)) if R.get('becs')],   # (the hobby duck's: 18 g as the hybrid's listing, and 5 g of its side's 6 V bus spliced on)
     # (one bus and one regulator: the Pi's, on tape on the battery's back, in the 6.2 mm behind it)
-    *[dict(box('L 5 V regulator', (BATT_X - 0.0060, -0.0195, PLATE[0] - 0.0215), (BATT_X, 0.0195, PLATE[0] - 0.0005), PCB, material='electronics', mass=0.018), on_cover=True) for _ in range(BUSES == 1 and not R.get('reg_head'))],
+    *[dict(box('L 5 V regulator', (BATT_X - 0.0060, -0.0195, PLATE[0] - 0.0215), (BATT_X, 0.0195, PLATE[0] - 0.0005), PCB, material='electronics', mass=0.018), on_cover=True) for _ in range(BUSES == 1 and not R.get('reg_head') and not PI_BODY)],
     # each hangs from 2 arms off the top plate, taped and tied (they reach past the yaw plugs, which stay clear)
     *[box(f"{nm} regulator arm {k}", (x_, min(sy * 0.0245, sy * 0.0378), PLATE[0]), (x_ + 0.008, max(sy * 0.0245, sy * 0.0378), PLATE[1]), fillet=0.0005)
-      for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS) for k, x_ in enumerate((-0.030, 0.001))],
+      for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS) or R.get('becs') for k, x_ in enumerate((-0.030, 0.001))],
     *[box(f"{nm} regulator drop {k}", (x_, min(sy * 0.0292, sy * 0.0378), ZY + 0.0345), (x_ + 0.008, max(sy * 0.0292, sy * 0.0378), PLATE[0] + 0.0002), fillet=0.0005)
-      for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS) for k, x_ in enumerate((-0.030, 0.001))],
-    dict(box('IMU', (R.get('imu_x', -0.0426), -0.01135, PLATE[1] + 0.0017), (R.get('imu_x', -0.0426) + 0.0256, 0.01135, PLATE[1] + 0.0063), PCB, material='electronics', mass=0.003), on_cover=True),   # (on 1.7 mm of foam tape, over 2 screw heads)
+      for nm, sy in (('L', 1), ('R', -1)) if BUSES == 2 and (sy > 0 or not TWO_BOARDS) or R.get('becs') for k, x_ in enumerate((-0.030, 0.001))],
+    dict(box('IMU', (R.get('imu_x', -0.0426), R.get('imu_y', -0.01135), PLATE[1] + 0.0017), (R.get('imu_x', -0.0426) + 0.0256, R.get('imu_y', -0.01135) + 0.0227, PLATE[1] + 0.0063), PCB, material='electronics', mass=0.003), on_cover=True),   # (on 1.7 mm of foam tape, over 2 screw heads)
     # the legs' bus: a lead from one hip yaw servo to the other, the battery's V and G and the neck's D and G joined into it, in heat-shrink, taped to the plate between the 2 yaw plugs
     *[dict(box('leg bus splice', (-0.0100, -0.0060, PLATE[1] + 0.0003), (0.0005, 0.0060, PLATE[1] + 0.0048), '#202226', fillet=0.0005), material='electronics', mass=0.005, on_cover=True) for _ in range(TWO_BOARDS)],
+    *(body_computer() if PI_BODY else []),
     # (a tray under the pack, on the yaw trays' end walls: the old strap was a solid bar through it. The shell's back wall and a hook-and-loop
     # strap round pack and tray hold it)
     box('battery strap', (BATT_X, -0.010, PLATE[0] - BATT[2] - R.get('strap', 0.003)), (BATT_X + BATT[0] + 0.0034, 0.010, PLATE[0] - BATT[2])),
+    *[box(f'pack hanger {k}', (BATT_X + BATT[0], sy_ * 0.0045 - 0.0015, PLATE[0] - BATT[2] - R.get('strap', 0.003)), (BATT_X + BATT[0] + 0.002, sy_ * 0.0045 + 0.0015, PLATE[0] + 0.0002)) for k, sy_ in enumerate((1, -1)) if HOB],
     # the neck servo rides in the neck; the body holds it on both sides (round 7, the user: "one sided joints are
     # bad"): a bracket on its horn, a bracket with an idler on its other face, on a block clear of its 13 mm circle
-    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + XLW / 2 - R.get('mount_in', 0.0), 0.0165 * Q, ZN - 0.016 * Q), DARK,
+    box('neck mount', (XP_FRONT - 0.0005, -0.0225 * Q, ZY + SHH + 0.0005), (XN + NKW / 2 - R.get('mount_in', 0.0), 0.0165 * Q, ZN - NECK_MD), DARK,
         exposed=True),
-    box('neck bracket', (XN - XLW / 2, 0.0130 * Q, ZN - 0.0165 * Q), (XN + XLW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
-    *[box('neck idler step', (XN - XLW / 2, NECK_IDLER[0], ZN - 0.0165 * Q), (XN + XLW / 2, -0.0225 * Q + 0.0001, ZN - 0.0165 * Q + 0.004), DARK, exposed=True) for _ in range(NECK_IDLER[0] < -0.0225 * Q - 1e-6)],
-    box('neck idler bracket', (XN - XLW / 2, NECK_IDLER[0], ZN - 0.0165 * Q), (XN + XLW / 2, NECK_IDLER[1], ZN + 0.012 * Q), DARK,
+    box('neck bracket', (XN - NKW / 2, 0.0130 * Q, ZN - NECK_MD - 0.0005 * Q), (XN + NKW / 2, 0.0165 * Q, ZN + 0.012 * Q), DARK, exposed=True),
+    *[box('neck idler step', (XN - NKW / 2, NECK_IDLER[0], ZN - NECK_MD - 0.0005 * Q), (XN + NKW / 2, -0.0225 * Q + 0.0001, ZN - NECK_MD - 0.0005 * Q + 0.004), DARK, exposed=True) for _ in range(NECK_IDLER[0] < -0.0225 * Q - 1e-6)],
+    box('neck idler bracket', (XN - NKW / 2, NECK_IDLER[0], ZN - NECK_MD - 0.0005 * Q), (XN + NKW / 2, NECK_IDLER[1], ZN + 0.012 * Q), DARK,
         exposed=True),
     # a superellipse of power 5 round the yaw cases' front corners (power 3.2 cut through them, round 2), as narrow
     # as microduck's body in proportion (round 5)
@@ -847,14 +1039,25 @@ link('trunk', 0.40, [
     # the neck comes up out of the body through a slot in its top, as microduck's (the user, round 6)
     # down through the front too: the neck folds forward 1.6 rad to tuck the head in (Pollen's desk photo)
     *[fast(cyl(f'body screw {k}', (x_, y_, BODY['top'] + 0.0003), 'z', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.006,
-           (x_, y_, BODY['top']), (0, 0, -1)) for k, (x_, y_) in enumerate(((-0.0455 * K, 0.0), (0.005 * K, 0.0)))],
+           (x_, y_, BODY['top']), (0, 0, -1)) for k, (x_, y_) in enumerate(R.get('body_screws', ((-0.0455 * K, 0.0), (0.005 * K, 0.0))))],
     # (the shell's top is 8.5 mm over the plate: posts under those screws)
-    *[box(f'body post {k}', (x_ - 0.003, y_ - 0.003, PLATE[1] - 0.0002), (x_ + 0.003, y_ + 0.003, BODY['top'] - 0.0014), fillet=0.0005) for k, (x_, y_) in enumerate(((-0.0455 * K, 0.0), (0.005 * K, 0.0)))],
+    *[box(f'body post {k}', (x_ - 0.003, y_ - 0.003, PLATE[1] - 0.0002), (x_ + 0.003, y_ + 0.003, BODY['top'] - 0.0014), fillet=0.0005) for k, (x_, y_) in enumerate(R.get('body_screws', ((-0.0455 * K, 0.0), (0.005 * K, 0.0))))],
     # (all-Dynamixel: the shorter body ends in front of the neck servo's front, so the slot opens to its lower edge, or the shell can't come down past it)
     cut(box('neck slot', (XP_FRONT + 0.0009, R.get('slot_y', (-0.026 * Q, 0))[0], BODY['bottom'] - 0.01 if R.get('neck_open') else ZN - 0.014 * Q), (XN + 0.040 * Q, R.get('slot_y', (0, 0.0195 * Q))[1], BODY['top'] + 0.01), WHITE, 'shell'),
         'body'),
     # the charge port: the plugs' faces at the back wall, only they show (2026-11-04, the user: only the leads visible, at the body's surface)
     *[cut(box('charge port', *PORT['cut'], WHITE, 'shell'), 'body') for _ in range(bool(R.get('charge_port')))],
+    # (power_switch, 2026-11-06, the user: "add a switch somewhere on the back or bottom", then "standard and easily accessible parts for anyone to buy": the XT30 sits inside the
+    # port, out of a finger's reach. A standard KCD1 mini rocker, SPST (DaierTek's pre-wired 10-pack, Amazon B07S2QJKTX: hole 19.2 x 13.2 mm, bezel 21 x 15, 13.2 mm of housing and
+    # 8.2 of terminals under it; 20 A 12 V DC as listed, 6 A 250 V AC on the part). The back has 8-10 mm behind its wall and the floor opens onto the left hip yaw, so the body's back grows 13 mm
+    # (the user: "slightly increase the back case cover") and it sits in the back wall, right of centre, clear of the charge port: 22 mm to the battery. In the battery's red lead, its 2 leads spliced in; the XT30 stays plugged)
+    *[g for _ in range(bool(R.get('power_switch'))) for g in (
+        dict(box('power switch', (-0.0626, -0.0194, 0.13265), (-0.0513, -0.0006, 0.14535), DARK, material='electronics', mass=0.0031), on_cover=True),
+        dict(box('power switch neck', (-0.0649, -0.0194, 0.13265), (-0.0626, -0.0006, 0.14535), DARK, material='electronics', mass=0.0004), exposed=True, on_cover=True),
+        dict(box('power switch leads', (-0.0513, -0.0160, 0.1350), (-0.0431, -0.0040, 0.1430), '#D9D4C5', material='electronics', mass=0.001, wire=True), on_cover=True),
+        dict(box('power switch bezel', (-0.0669, -0.0205, 0.1315), (-0.0649, 0.0005, 0.1465), DARK, material='electronics', mass=0.0005), exposed=True, on_cover=True),
+        dict(box('power switch rocker', (-0.0694, -0.0175, 0.1330), (-0.0669, -0.0025, 0.1450), DARK, material='electronics', mass=0.0003), exposed=True, on_cover=True),
+        cut(rbox('power switch hole', (-0.06395, -0.0100, 0.1390), (0.0026, 0.0192, 0.0132), 0.0005, WHITE, 'shell'), 'body'))],
 ], 'the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front')
 
 # ---------------------------------------------------------------- left leg (bare servos and brackets, as microduck's)
@@ -862,14 +1065,14 @@ link('trunk', 0.40, [
 link('L_hip_yaw_link', 0.07, [
     # (the plug window and the case's lump left a strip 0.4 mm wide between them, across the tray's rear face: no print would hold it, nor does it hold anything: WALL)
     *[cut(box('L hip roll strip', (-0.0195, 0.0087, 0.1001), (-0.0150, 0.0283, 0.1008), DARK), 'L hip roll cradle rear face') for _ in range(RECIPE == 'hybrid')],
-    box('L hip yaw plate', (-SH / 2 - (MT if not LEG_STS else 0), YY - SW / 2, ZR + SL / 2 - SX), (SH / 2, YR + SW / 2, ZY), exposed=True),   # (it was 0.5 mm over this, onto the turning outer race)
+    box('L hip yaw plate', (-SH / 2 - (MT if not LEG_STS and not HOB else 0), YY - SW / 2, ZR + NEAR), (SH / 2, YR + SW / 2, ZY), exposed=True),   # (it was 0.5 mm over this, onto the turning outer race)
 ])
 link('L_hip_roll_link', 0.07, [
     # microduck's hip_l: from the roll horn at the front, out to the side, where the hip pitch horn turns
     box('L hip roll front', (XRH, YR - 0.011 * K, ZR - 0.010 * K), (XRH + 0.003, YRS[1], ZR + 0.010 * K), exposed=True),
     box('L hip roll side', (-0.012 * K, YRS[0], ZR - 0.010 * K), (XRH + MT, YRS[1], ZR + 0.010 * K), exposed=True),
     # (the arm from the pitch horn to the front plate carries the whole leg: 1.5 mm thicker, past the horn's screws)
-    box('L hip roll arm', (0.0115 * K, YRS[0] - 0.0015, ZR - 0.010 * K), (XRH + MT, YRS[1], ZR + 0.010 * K), exposed=True),
+    box('L hip roll arm', (0.0115 * K, YRS[0] - R.get('roll_arm_in', 0.0015), ZR - 0.010 * K), (XRH + MT, YRS[1], ZR + 0.010 * K), exposed=True),
     # gussets in the corner the leg's load turns through (2026-11-04, the user: "a 3d printed part like that will break so easily"; LOAD's beam estimate has no corner in it, and a sharp inside
     # corner multiplies the stress 2-3 x). Top and bottom only, outside the lid's rim as the roll case turns: its middle is taken
     *[plate(f'L roll gusset {k}', ZR + sz_ * 0.0055 * K if sz_ > 0 else ZR - 0.010 * K, 0.0045 * K,
@@ -902,27 +1105,27 @@ link('L_hip_pitch_link', 0.10, [
     # the plate has to pass through the cover's open side as it goes on: its outline, cut all the way (a lip smaller than the plate: it could never go on. A 20 mm path check hid it)
     cut(plate('L thigh cover way', THIGH_Y[0] - 0.001, YT_CASE[1] + MT + 0.0002 - THIGH_Y[0] + 0.001, [(0.0, ZP, COVER_R * THIGH - R.get('plate_in', 0.003) + 0.0003), (XK, ZK, COVER_R * THIGH - R.get('plate_in', 0.003) + 0.0003), (-0.868 * THIGH, ZP + 0.018 * THIGH, COVER_R * THIGH - R.get('plate_in', 0.003) + 0.0003)], WHITE, 'shell'), 'L thigh cover'),
     # open on the inside, where the two servos and their horns come out
-    cut(box('L thigh cover slot', (XK - SW / 2 - 0.001, YS[0] - 0.004, ZK - (SL / 2 - SX) - 0.0015),
+    cut(box('L thigh cover slot', (XK - SW / 2 - 0.001, YS[0] - 0.004, ZK - NEAR - 0.0015),
             (XP_FRONT + 0.0004, YT_CASE[1] - 0.0003, ZP + SW / 2 + 0.0003), WHITE, 'shell'), 'L thigh cover'),   # (its corner cut a slit through the cover's top: seen only in Fusion)
 ])
 link('L_knee_link', 0.05, [
     box('L shin plate', (XK - 0.011 * K, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.001), (XK + 0.011 * K, YS[1],
                                                                                            ZK + 0.011 * K), exposed=True),
-    box('L shin cap', (XK - CAP, YS[0], ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0002),
-        (XK + CAP, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True),
+    box('L shin cap', (XK - CAP, YS[0], ZA + AK_FAR - 0.0002),
+        (XK + CAP, YA_CASE[1], ZA + AK_FAR + 0.003), exposed=True),
     # the shin as a real part (2026-11-03, the user: "that doesn't seem like something I can 3D print for strength"): a 3 mm
     # flat plate bent across its thin side. Below the knee's horn, 6 mm thick and 30 mm wide, a block into the corner with
     # the cap, and a collar round the servo's far end, so the load goes from the plate into the case over a box section.
     box('L shin rib', (XK - RIB, YS[0] - R.get('rib_back', 0.003), ZA + 0.0225 * K + R.get('rib_up', 0.0)), (XK + RIB, YS[1], ZK - 0.0105 * K), exposed=True),
-    box('L shin gusset', (XK - RIB, YS[1] - 0.0001, ZA + AK['box'][0] / 2 + AK['shaft_x'] - 0.0005), (XK + RIB, YS[1] + 0.0028, ZK - 0.0178 * K), exposed=True),
+    box('L shin gusset', (XK - RIB, YS[1] - 0.0001, ZA + AK_FAR - 0.0005), (XK + RIB, YS[1] + 0.0028, ZK - 0.0178 * K), exposed=True),
     *[box(f'L shin collar {k}', (XK + sx_ * (SW / 2 + 0.0015) - 0.0015, YS[1] - 0.0001, ZA + 0.028 * K),
-          (XK + sx_ * (SW / 2 + 0.0015) + 0.0015, YA_CASE[1], ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.003), exposed=True)
+          (XK + sx_ * (SW / 2 + 0.0015) + 0.0015, YA_CASE[1], ZA + AK_FAR + 0.003), exposed=True)
       for k, sx_ in enumerate((1, -1) if R.get('collars', True) else ())],
     # the ankle's far side, as microduck's: a plate on the servo's rear horn (4 M3 x 6), up to the shin plate, and a stub
     # from it through a small bearing in the shoe's inner ear
-    dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', AK['horn_r'], XCHH, ALU), exposed=True),
+    *[dict(cyl('L ankle rear boss', (XK, YB + XCHH / 2, ZA), 'y', AK['horn_r'], XCHH, ALU), exposed=True) for _ in range(not HOB)],   # (a hobby servo has no rear horn: the plate lies on its rear face)
     # (the ankle servo's plugs come through this plate: PLUG. Two rails carry it past them, each side of the window)
-    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0105 * K), (XK - 0.0020, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0103 * K), (XK + 0.0020, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0103 * K)],
+    plate('L ankle stub plate', YB - 0.002, 0.0021, [(XK, ZA, 0.0105 * K), *([(XK, ZA - NEAR + 0.0045, 0.0045)] if HOB else []), (XK - 0.0020, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0103 * K), (XK + 0.0020, ZA + AK['box'][0] / 2 + AK['shaft_x'] + 0.002, 0.0103 * K)],
           DARK, 'struct', exposed=True),
     *[box(f'L ankle rail {k}', (XK + sx_ * 0.01095 - 0.0011, YB - 0.0034, ZA + 0.0090), (XK + sx_ * 0.01095 + 0.0011, YB + 0.0001, ZA + 0.0250), DARK, exposed=True)
       for k, sx_ in enumerate((1, -1)) if LEG_STS],
@@ -932,7 +1135,7 @@ link('L_knee_link', 0.05, [
     *[fast(cyl(f'L ankle boss screw {k}', (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.00175,
                                            ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), 'y', 0.0027 if 'steps' in AK else 0.0019, 0.0005, DARK, 'decal'),
            'M3 flat' if 'steps' in AK else 'M2 flat', 0.006 if 'steps' in AK else 0.004 if 'centre_screw' in AK else 0.005, (XK + AK['horn_hole_r'] * math.cos(math.radians(AK['horn_hole_deg'][k])), YB - 0.002,
-                              ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), (0, 1, 0)) for k in range(4)],
+                              ZA + AK['horn_hole_r'] * math.sin(math.radians(AK['horn_hole_deg'][k]))), (0, 1, 0)) for k in range(0 if HOB else 4)],
     dict(cyl('L ankle bearing inner race', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 + RACE, ANK['w'], ALU), exposed=True,
          material='steel', mass=ANK['mass'] / 2, on_joint='L_ankle_pitch'),
     cut(cyl('L ankle bearing inner race bore', (XK, YB - 0.0042, ZA), 'y', ANK['d'] / 2 - 0.00005, ANK['w'] + 0.002),
@@ -1066,15 +1269,15 @@ RAIL = R.get('rail', 0.034)                        # the head frame's half width
 BOSS_IN = R.get('boss_in', 0.003)                  # the hinge boss's outer face, in from the hood: 1 mm clear of its 2 mm wall. Closer, its corners came through where the hood curves in
 YAW_R = math.hypot(XLL / 2 + XLX, XLW / 2) + GAP   # what turns under the head with its yaw: the yaw case's reach
 link('neck_link', 0.02, [
-    box('neck front plate', (XN + XLW / 2 - 0.0005, -0.0098 * Q, ZN + 0.008 * Q), (XN + XLW / 2 + 0.0025, 0.010 * Q, ZH - 0.0145 * Q),   # (it stops under the head pitch servo's wires)
+    box('neck front plate', (XN + NKW / 2 - 0.0005, -0.0098 * Q, ZN + 0.008 * Q), (XN + NKW / 2 + 0.0025, R.get('neck_plate_top', 0.010 * Q), ZH - 0.0145 * Q),   # (it stops under the head pitch servo's wires)
         exposed=True),
-    box('neck back plate', (XN - XLW / 2 - 0.0025, -0.0098 * Q, ZN + 0.008 * Q), (XN - XLW / 2 + 0.0005, 0.010 * Q, ZH - 0.0145 * Q),
+    box('neck back plate', (XN - NKW / 2 - 0.0025, -0.0098 * Q, ZN + 0.008 * Q), (XN - NKW / 2 + 0.0005, R.get('neck_plate_top', 0.010 * Q), ZH - 0.0145 * Q),
         exposed=True),
 ])
 link('head_pitch_link', 0.03, [
     box('head pitch plate', (XN - 0.010 * Q, -0.019 * Q, ZH - 0.011 * Q), (XN + 0.010 * Q, -0.0155 * Q, YAW_FOOT), exposed=True),
     box('head pitch idler plate', (XN - 0.010 * Q, PITCH_IDLER[0], ZH - 0.011 * Q), (XN + 0.010 * Q, PITCH_IDLER[1], YAW_FOOT), exposed=True),
-    box('head pitch bridge', (XN - XLL / 2, -0.019 * Q, YAW_FOOT - 0.003), (XN + XLL / 2, max(0.020 * Q, PITCH_IDLER[1]), YAW_FOOT),
+    box('head pitch bridge', (XN - NKL / 2, -0.019 * Q, YAW_FOOT - 0.003), (XN + NKL / 2, max(0.020 * Q, PITCH_IDLER[1]), YAW_FOOT),
         exposed=True),
 ])
 link('head_yaw_link', 0.02, [
@@ -1199,7 +1402,9 @@ def bus_board():
     wired = lambda n, x0, ys, bxs: dict(box(f'bus board cable plugs {n}', (x0, min(ys), z_(bxs[1])), (top, max(ys), z_(bxs[0])), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.0005, wire=True, exposed=True)
     out += [wired('servo', top - 0.008, (y_(BB['W']), y_(BB['W']) - 0.007), (5.2e-3, 28.3e-3)),
             wired('power', top - 0.010, (y_(0), y_(0) + 0.007), (17.3e-3, 25.3e-3)),
-            wired('usb', top - 0.0045, (y_(0), y_(0) + 0.0115), (28.0e-3, 35.1e-3))]
+            *([wired('usb', top - 0.0045, (y_(0), y_(0) + 0.0115), (28.0e-3, 35.1e-3))] if not R.get('pi_uart') else
+              # (pi_uart: the UART header's 3 pins snipped to 3 mm over their spacer, the wires soldered on and laid flat, out past the board's edge)
+              [wired('uart', top - 0.0055, (y_(BB['W']), y_(BB['W']) - 0.004), (29.6e-3, 37.0e-3))])]
     return out
 
 
@@ -1260,11 +1465,11 @@ link('head', 0.12, [
       [box('Pi mount', (XHR + 0.0025, 0.029, EYE['z'] - 0.005), (PI_X, 0.0325, EYE['z'] + 0.005)), box('Pi mount 2', (XHR + 0.0025, -0.0325, EYE['z'] - 0.005), (PI_X, -0.029, EYE['z'] + 0.005))]),
     box('Pi plate', (PI_X - 0.002, -0.0325, PI_Z - 0.015), (PI_X, 0.0325, PI_Z + 0.014)),
     *[box(f'Pi boss {k}', (PI_X - 0.0001, sy_ * 0.029 - 0.0025, PI_Z + sz_ * 0.0115 - 0.0025), (PI_X + 0.0028, sy_ * 0.029 + 0.0025, PI_Z + sz_ * 0.0115 + 0.0025), fillet=0.0005)
-      for k, (sy_, sz_) in enumerate(((1, 1), (-1, 1), (1, -1), (-1, -1))) if not (sz_ > 0 and False)],
+      for k, (sy_, sz_) in enumerate(((1, 1), (-1, 1), (1, -1), (-1, -1))) if not PI_BODY],
     *[fast(cyl(f'Pi screw {k}', (PI_X + 0.0028 + 0.0019, sy_ * 0.029, PI_Z + sz_ * 0.0115), 'x', 0.0019, 0.001, DARK, 'decal'), 'M2', 0.006,
-           (PI_X + 0.0028 + 0.0014, sy_ * 0.029, PI_Z + sz_ * 0.0115), (-1, 0, 0)) for k, (sy_, sz_) in enumerate(((1, 1), (-1, 1), (1, -1), (-1, -1)))],
-    box('Pi Zero 2 W', (PI_X + 0.0028, -0.0325, PI_Z - 0.015), (PI_X + 0.0028 + PI_T, 0.0325, PI_Z + 0.015), PCB,
-        material='electronics', mass=0.011),
+           (PI_X + 0.0028 + 0.0014, sy_ * 0.029, PI_Z + sz_ * 0.0115), (-1, 0, 0)) for k, (sy_, sz_) in enumerate(((1, 1), (-1, 1), (1, -1), (-1, -1))) if not PI_BODY],
+    *[box('Pi Zero 2 W', (PI_X + 0.0028, -0.0325, PI_Z - 0.015), (PI_X + 0.0028 + PI_T, 0.0325, PI_Z + 0.015), PCB,
+          material='electronics', mass=0.011) for _ in range(not PI_BODY)],
     dict(box('camera', (FACE_X - 0.012, EYE['y'] - 0.012, EYE['z'] - 0.012), (FACE_X - 0.0015, EYE['y'] + 0.012, EYE['z'] + 0.012),
              PCB, material='electronics', mass=0.004), on_cover=True),
     # the 2 servo buses, up here by the Pi. Sized from their listings: FE-URT-1, 55.8 x 36.6 x 11.5 mm, on the Pi's UART, its servo power left
@@ -1274,20 +1479,23 @@ link('head', 0.12, [
     *[box(f'bus board post {k}', (XHR - 0.0005, sy_ * 0.0244 - 0.003, HEAD_PLATE_Z + 0.0028), (XHR + 0.003, sy_ * 0.0244 + 0.003, BUS_Z), fillet=0.0005) for k, sy_ in enumerate((1, -1)) if BUSES == 2 and not TWO_BOARDS],
     *[box('servo bus board', (0.0585, -0.0280, BUS_Z - 0.0002), (0.0951, 0.0280, BUS_Z + 0.0113), PCB, material='electronics', mass=0.015) for _ in range(BUSES == 2 and not TWO_BOARDS)],
     *([dict(box('U2D2', (XHR + 0.0048, -0.024, HEAD_Z + 0.0034), (XHR + 0.0228, 0.024, HEAD_Z + 0.0184), PCB, material='electronics', mass=0.009), on_cover=True)] if BUSES == 2 and not TWO_BOARDS else []),   # (flat, over what the head yaw servo's tray sweeps, under the Pi's mount)   # (on foam tape, clear of the horn's screw heads)
-    *(bus_board() if BUSES == 1 or TWO_BOARDS else []),
+    *(bus_board() if (BUSES == 1 or TWO_BOARDS) and not PI_BODY else []),
     *(rear_board() if TWO_BOARDS else []),
     # the Pi's connectors, 2026-11-05: it was a plain box, so nothing said which way its USB edge faced, and no check saw a plug. That edge faces up: down has 0.5 mm to the head's base, up has 15 mm under the hood. Parts toward the face, so the microSD is at +y and the camera socket at -y.
     # Ports from Raspberry Pi's drawing: USB 41.4 and PWR 54 mm from the microSD's end. Right-angle plug bodies, 9 mm up and 15-19 mm along the edge, sizes from the listings' photos: USB leaves toward the bus board, PWR toward the regulator
     *[dict(box(n, (PI_X + 0.0028 + x0, y0, z0), (PI_X + 0.0028 + x1, y1, z1), '#D9D4C5', fillet=0.0003), material='electronics', mass=m, wire=True, exposed=True)
-      for n, x0, x1, y0, y1, z0, z1, m in (('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
-                                           ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+      for n, x0, x1, y0, y1, z0, z1, m in (*((('Pi USB plug', -0.0004, 0.0056, -0.0129, 0.0061, PI_Z + 0.015, PI_Z + 0.024, 0.002),
+                                             ('Pi PWR plug', -0.0004, 0.0056, -0.0325, -0.0175, PI_Z + 0.015, PI_Z + 0.024, 0.002)) if not R.get('pi_uart') else ()),
                                            ('Pi camera ribbon', 0.0, 0.005, -0.0355 if TWO_BOARDS else -0.0360, -0.0325, PI_Z - 0.006, PI_Z + 0.006, 0.0002),
                                            ('Pi microSD', 0.0, 0.002, 0.0325, 0.0345, PI_Z - 0.006, PI_Z + 0.006, 0.0002)) if R.get('pi_ports_up')],
     # (the Pi's pins are the bottom edge now, pin 1 at the microSD's end. 3 wires to the Feetech board and 4 to the IMU, soldered on the parts' side, round the board's end, behind its plate)
-    *[dict(box('Pi GPIO wires', (PI_X + 0.0028 + 0.0052, 0.0160, PI_Z - 0.0145), (PI_X + 0.0028 + 0.0072, 0.0335, PI_Z - 0.0115), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.001, wire=True, exposed=True) for _ in range(TWO_BOARDS)],
+    *[dict(box('Pi GPIO wires', (PI_X + 0.0028 + 0.0052, 0.0160, PI_Z - 0.0145), (PI_X + 0.0028 + 0.0072, 0.0335, PI_Z - 0.0115), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.001, wire=True, exposed=True) for _ in range(TWO_BOARDS or bool(R.get('pi_uart')))],
     *jaw_recess(),
     loft('head', hood(), WHITE, open=(), along='x', clip=FRONT),
     cut(UNDER, 'head', 'upper bill'),
+    # (pc_port, 2026-11-06, the user: "a small hole through which we can connect the pi0 to the pc, for loading models": straight over the Pi's micro USB data port,
+    # 41.4 mm from its microSD end, which is free with the bus board on the UART. A plain micro USB cable goes down through it into the port. Wi-Fi does the same without a cable)
+    *[cut(rbox('PC port hole', (PI_X + 0.0028 + 0.003, 0.0325 - 0.0414, PI_Z + 0.0385), (0.009, 0.013, 0.043), 0.0044, WHITE, 'struct'), 'head', 'upper bill') for _ in range(bool(R.get('pc_port')))],   # (a rounded slot: box() squares a printed part's corners)
     dict(plate('mouth roof', HEAD_Z - 0.0002, 0.0032, mouth_outline(MOUTH_X - 0.012), SOFT, 'shell', axis='z'), material='tpu'),
     cut(loft('face recess', arch_front(FACE_X, HEAD_FRONT + 0.01, RIM), WHITE, open=(), along='x'), 'head'),
     loft('upper bill', hood(grow=0.0006), ORANGE, open=(), along='x', clip=FRONT),
@@ -1312,7 +1520,10 @@ link('head', 0.12, [
     # (the plug in its socket: its right angle turns in toward the Pi, in the 11 mm left to the back of the face. Clear of the camera ribbon's end, inboard)
     *[dict(box('head regulator plug', (0.0930, -0.0442, 0.2650), (0.1040, -0.0357, 0.2810), '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range(TWO_BOARDS)],
     # (2026-11-05: the same for one board. Its socket stood 0.5 mm from the back of the face, so no plug fitted, right-angle or not. Found on the hybrid. So the module is turned round, its socket facing back, into the room behind it: a right-angle plug still needs 14 mm past the socket. Moving it back instead hits the hinge tab and the hood. Its input wires leave from the module's side, inboard)
-    *[dict(box('head regulator plug', *R['reg_plug'], '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range('reg_plug' in R)],
+    *[dict(box('head regulator plug', *R['reg_plug'], '#D9D4C5', fillet=0.0003), material='electronics', mass=0.002, wire=True, on_cover=True) for _ in range('reg_plug' in R and not R.get('pi_uart'))],
+    # (pi_uart: 2 wires soldered to the socket's VBUS and GND pins, bent along the module's side, inboard, and on to the Pi's pins 2 and 6)
+    *[dict(box('head regulator wires', (R['reg_plug'][1][0] - 0.004, R['reg_plug'][1][1] - 0.0025, R['reg_plug'][0][2] + 0.001), (R['reg_plug'][1][0], R['reg_plug'][1][1], R['reg_plug'][0][2] + 0.005), '#D9D4C5', fillet=0.0003),
+           material='electronics', mass=0.001, wire=True, on_cover=True) for _ in range('reg_plug' in R and bool(R.get('pi_uart')))],
     # (2026-11-05: the plug's back end stood 74 mm3 in the hood's step, on the inside. So that inner rib of the step now ends 1 mm short of the plug, at x = 51 mm. The head's skin isn't touched. The plug passes the hinge tab with only 0.2 mm)
     *[cut(box('head regulator plug room', (R['reg_plug'][0][0] - 0.001, -0.0433, R['reg_plug'][0][2] - 0.0005), (0.0605, -0.0400, R['reg_plug'][1][2] + 0.0005), WHITE), 'R hood step') for _ in range('reg_plug' in R)],
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
@@ -1370,7 +1581,9 @@ joint('neck_pitch', 'trunk', 'neck_link', (XN, 0.013 * Q, ZN), 'y', (-0.15, 1.6)
 joint('head_pitch', 'neck_link', 'head_pitch_link', (XN, -0.016 * Q, ZH), 'y', (-1.6, 1.6), R['head'], out=-1,
       long='-z', post=False, rear_stack=R.get('rear_stack'))                       # the head pitch bridge joins the fork's plates
 joint('head_yaw', 'head_pitch_link', 'head_yaw_link', (XHY, 0, ZHY), 'z', (-2.5, 2.5), H2, out=+1, near=True,
-      long='-x', fork=False, bearing=('horn',), face_t=0.001, sink=('horn',))   # a 1 mm sheet to the far holes, as microduck's: the
+      long='-x', fork=False, bearing=('horn',), face_t=0.001, sink=('horn',),
+      seat_wall={'dynamixel': 0.0011}.get(RECIPE))   # (the 6703ZZ's seat, 0.5 mm wider, met the beak cradle at the head roll's end: its wall 1.1 mm, its outside 0.1 mm past the MR2216ZZ's)
+#     a 1 mm sheet to the far holes, as microduck's: the
 #                                                    beak servo turns over it
 # (its case to the right, as microduck's, y -24.5 to 9.5: the left is the beak servo's)
 joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', RANGE['head_roll'], H2, out=+1, long='-y', fork_at=90,
@@ -1415,10 +1628,42 @@ def mirror_name(n):
     return 'R_' + n[2:] if n.startswith('L_') else n
 
 
-HEAD_FRAME_ORANGE = {'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'beak horn seat boss', 'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
+HEAD_FRAME_ORANGE = {'beak cradle rim far', 'beak cradle rim near', 'beak cradle near post', 'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'beak horn seat boss', 'head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail', 'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab',
                      'bus board post 0', 'bus board post 1', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1',
                      'lower shell', 'lower shell post', 'lower shell beam', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'head roll horn boss shoulder',
                      'head roll rear boss shoulder', 'head roll fork horn plate', 'head roll fork rear plate', 'head roll fork post', 'beak cradle rear face', 'beak cradle end +', 'beak cradle end -', 'beak cradle side +', 'beak cradle end plain', 'head strip deep', 'L base riser back'}
+
+
+# Each PWM servo's own lead to the PWM board, a star (2026-11-06, the user: "PWM servos can't be daisy-chained"): from where it leaves the case (its far end) along its
+# chain, joint by joint, to the bonnet's plugs in the body, with a service loop at each joint it crosses. Its copper and PVC are counted on the links it lies on.
+LEAD_KG_M = 0.008                                  # a 3-wire lead, 3 x 0.2 mm2 (24 AWG) of copper, 1.8 g/m each, and its PVC: an ESTIMATE, weigh one
+LOOP = 0.03                                        # the service loop at each joint a lead crosses
+
+
+def leads(links, joints):
+    """{joint: (length m, [(link, length)])}, and the mass added to each link (on its first printed part, as 'add_mass')."""
+    J = {j['child']: j for j in joints}
+    plug = (PX_ + 0.0302, 0.0, BON_Z + 0.006)
+    out = {}
+    for j in joints:
+        A_ = ACT[j['act']]
+        f = servo_frame(j)
+        p = at(f, A_['box'][0] / 2, 0.0, -A_['box'][2] / 2 + 0.004)    # the lead leaves the far end face, low
+        ln = j['child'] if j.get('case_in') == 'child' else j['parent']
+        segs = []
+        while ln != 'trunk':
+            jp = J[ln]
+            q = jp['origin']
+            segs.append((ln, math.dist(p, q) + LOOP))
+            p, ln = q, jp['parent']
+        segs.append(('trunk', math.dist(p, plug)))
+        out[j['name']] = (sum(s for _, s in segs), segs)
+    for name, (_, segs) in out.items():
+        for ln, s in segs:
+            g = next(g for g in links[ln]['geoms'] if g['role'] == 'struct' and 'fast' not in g and g.get('material') not in ('steel', 'electronics') and 'mass' not in g and g['color'] != ALU)
+            g['add_mass'] = g.get('add_mass', 0.0) + s * LEAD_KG_M
+            g['add_what'] = 'servo leads'
+    return out
 
 
 def build():
@@ -1582,9 +1827,11 @@ def build():
     # the head frame is one print in one filament: the rim shows below the hood, the rest is hidden under it (2026-11-04, the user chose all orange over a filament swap)
     for lk in links.values():
         for g in lk['geoms']:
-            if (g['name'] in HEAD_FRAME_ORANGE or (R.get('head_plugs') and g['name'] == 'head roll rear seat boss')) and g['role'] != 'cut':
+            if (g['name'] in HEAD_FRAME_ORANGE or (R.get('head_plugs') and g['name'] == 'head roll rear seat boss') or (PI_BODY and g['name'] == 'head roll horn seat boss')) and g['role'] != 'cut':
                 g['color'] = ORANGE
+    lead = leads(links, joints) if R.get('pwm') else None
     return dict(recipe=RECIPE, recipe_limits={k: R[k] for k in ('mass_budget_kg', 'target_tol', 'cannot', 'brief') if k in R},
+                **({'leads': {k: dict(length_m=round(v[0], 3), links={ln: round(s, 3) for ln, s in v[1]}) for k, v in lead.items()}, 'lead_kg_m': LEAD_KG_M, 'wiring_allowance': 0.01} if lead else {}),
                 frame='metres; X forward, Y left, Z up; floor z=0; zero pose standing, legs straight, head level',
                 actuators=ACT, bearings=BEARINGS, materials=MATERIALS, links=links, joints=joints, root='trunk',
                 beak=dict(crank_c=[XBK, ZBK], pin=list(BEAK_PIN), jaw_pin=list(JAW_PIN), jaw_c=[XJ, ZJ]))

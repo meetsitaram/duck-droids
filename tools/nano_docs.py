@@ -56,7 +56,7 @@ def write(s):
     for k, n in acts.items():
         a = A[k]
         src = 'towerpro.com.tw/product/sg90-7/ (1.8 kg.cm at 4.8 V) and docs.m5stack.com/en/accessory/SG90_Servo (1.6 at 4.8 V): the lower' if k == 'SG90' else 'towerpro.com.tw/product/mg90s-3/ (1.8 kg.cm at 4.8 V, 2.2 at 6.6 V)'
-        L.append(f"| {n} | {k} | {', '.join(where[k])} | {a['peak_nm']:.3f} N m | {a['mass'] * 1000:.1f} g | {src} |")
+        L.append(f"| {n} | {a.get('name', k)} | {', '.join(where[k])} | {a['peak_nm']:.3f} N m | {a['mass'] * 1000:.1f} g | {src} |")
     L += ['', 'The MG90S, metal geared, where a joint carries the duck in a step: knees and hip roll (`tools/nano_sweep.py`). At 4.8 V it is no stronger than an SG90 by TowerPro\'s own figures; it is less likely to strip a gear. '
           'Stall current: an SG90 360 mA measured (protosupplies.com/product/servo-motor-micro-sg90/), up to about 650 mA listed (pcboard.ca/sg90-servo); an MG90S 700 mA measured (protosupplies.com/product/servo-motor-micro-mg90s/).', '',
           '## Electronics', '', '| Qty | Part | Source | What for |', '|---|---|---|---|']

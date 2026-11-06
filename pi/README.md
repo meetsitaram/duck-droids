@@ -50,7 +50,7 @@ Lift the duck on a stand, away from its joint limits, before any of this. Nothin
 2. **Measure the centres,** with the duck posed at zero by hand: legs straight, head level, beak shut:
 
 ```bash
-python -m duck.calibrate --port /dev/ttyACM0
+python -m duck.calibrate --port /dev/serial0
 ```
 
 3. **Check the directions on the stand.** Every joint starts at `direction: 1` in `config/dynamixel.json`, and some will be wrong. Flip those that move the wrong way:

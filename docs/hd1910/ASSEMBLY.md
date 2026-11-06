@@ -222,7 +222,7 @@ Then the same for the right side, mirrored.
 
 > ⚠ The beak servo goes into the head frame first, on the bench: the roll servo blocks its screws afterwards. The jaw goes in before the hood. The far hinge screw and the 2 at the back hold the hood on, so they are last.
 
-> 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and the right-angle USB-C lead to the Pi, before the board goes on.
+> 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and solder the 3 UART wires to its header, before the board goes on. Solder the Pi's 5 wires before it goes on its plate.
 
 **Screws for this section:** 12 x M2 x 5 mm, 8 x M2 x 6 mm, 6 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 10 mm
 

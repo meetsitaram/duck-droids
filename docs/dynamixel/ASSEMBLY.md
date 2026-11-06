@@ -9,7 +9,7 @@ See it whole first: [the 30-second reveal](../images/assembly/dynamixel/reveal_3
 
 ## 0. Before you start
 
-1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
+1. **Print one joint first** ([prints/dynamixel/README.md](../../prints/dynamixel/README.md)), then everything. None of it has been test printed yet.
 2. **Set each servo's ID on its own**, before any are chained: Dynamixel 1-15. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.
@@ -164,6 +164,7 @@ Then the same for the right side, mirrored.
 3. The column down into the chassis fork
 4. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
 5. The body shell, 2 screws *(2 x M2 x 6 mm, small Phillips)*
+6. The rocker switch: its 2 leads spliced into the battery's red lead before the shell goes on, then pushed out through the hole in the back. Once the shell is on, push the rocker in from outside till it clicks. The XT30 stays plugged
 
 ## 9. Head yaw and roll
 
@@ -218,7 +219,7 @@ Then the same for the right side, mirrored.
 
 > ⚠ The beak servo goes into the head frame first, on the bench: the roll servo blocks its screws afterwards. The jaw goes in before the hood. The far hinge screw and the 2 at the back hold the hood on, so they are last.
 
-> 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and the right-angle USB-C lead to the Pi, before the board goes on.
+> 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and solder the 3 UART wires to its header, before the board goes on. Solder the Pi's 5 wires before it goes on its plate.
 
 **Screws for this section:** 20 x M2 x 6 mm, 6 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 10 mm
 
@@ -226,9 +227,9 @@ Then the same for the right side, mirrored.
 2. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
 3. The head frame, with its beak servo, down over the roll servo
 4. 4 screws on each horn *(4 x M2 x 6 mm, small Phillips; 4 x M2 x 8 mm, small Phillips)*
-5. The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, USB-C *(4 x M2.5 x 5 mm, small Phillips)*
-6. The Pi onto its plate from the front, its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*
-7. The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, a USB cable to the PWR port of the Pi
+5. The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, and the 3 UART wires soldered to its header, the pins snipped to 3 mm; both jumpers at A *(4 x M2.5 x 5 mm, small Phillips)*
+6. The Pi onto its plate from the front, its 5 wires soldered first: 5 V and ground on pins 2 and 6, GPIO 14 and 15 and ground on pins 8, 10 and 14. Its microSD card in, 4 screws, the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*
+7. The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, its USB socket's 5 V and ground pins soldered to the Pi's 2 wires from pins 2 and 6. Measure 5 V first
 8. The jaw, up from below, its tab sliding onto the horn, 4 screws *(4 x M2 x 6 mm, small Phillips)*
 9. The hood, down between the jaw's tabs
 10. Open the jaw and glue in the soft mouth roof through the gap

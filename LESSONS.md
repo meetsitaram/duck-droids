@@ -368,6 +368,19 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 - **What another machine needs must be in the repo, or fetchable.** The big duck's trainer models were never kept: `tools/big_trainer.py` now makes them and the `trainer.json` that registers its tasks, and `docs/big/REPRODUCE.md` says where each outside file comes from.
 - **Two motors on one joint is published practice, with one controller.** A joint controller gives one torque, split between them in torque mode, with a small opposing bias against backlash (Robertz et al., ICRA 2010). The knee's two separate rods are the weak part: see `docs/big/PAIRED_ACTUATORS.md`.
 
+## The hobby-servo duck (2026-11-06)
+
+| Issue | Do instead |
+|---|---|
+| A hobby servo has no screw holes in its faces and no rear shaft: every cradle in the spec screwed into a case's faces, and every fork onto a rear horn | A third mount, `flange_cradle`: a tray with a rim under each pair of ears, the lid's foot down onto the far ears, the screws through the ears into the rims; the fork's far side on a printed hub through its plate, in a bearing in the tray's floor (`rear_hub`). A pin printed on the fork's plate couldn't pass the bearing as the servo slides in between the plates |
+| The ears reach 7 mm past each end of the case: the formulas that placed the knee, the hips' spacer, the neck wall and the ankle's cap from the case's length put parts in the ears | `NEAR` and `FAR` in spec/robot.py: a servo's reach from its shaft, its ears' if it has them. Side walls out to the ears' ends swept 2 mm wider than a post under the near rim, no wider than the case: the neck's fold forward needed that 2 mm |
+| The neck's layout used the head's servo's size (`XLW`, `XLL`): true until a recipe had a standard-size neck and micro head servos | `NKL`, `NKW`, `NKH`, `NKX`: the neck's own servo |
+| Two standard-size servos end to end, their far ears facing, make a 77 mm neck: the duck stands 37 cm, past the 30-35 asked | Said, not hidden: `target_tol` 0.15, as the all-Feetech duck's. A shorter neck needs the two servos side by side, or a smaller head pitch servo than its torque allows |
+| `0.0165 * Q` rewritten as `NECK_MD + 0.0005`: right on the hybrid (Q = 1), 0.1 mm off on the all-Feetech duck | Regenerate every recipe after a shared edit and diff its links against HEAD: only the catalogue may change |
+| Absolute coordinates copied from another recipe (the charge port, the hood's rear screws) sat in air once the body rose 20 mm | Derive them from the plate or the head (`port_up`, `hood_rear_x`), or the checks find the plugs and screws one by one |
+| PWM servos can't be chained, and the user wanted the Pi, its board, the BECs and the IMU in the body | A star of leads from a PCA9685 bonnet on the Pi; each lead's length measured along its chain with a 30 mm loop a joint, its mass counted on the links it lies on (`leads`); a 6 V / GND bus a side, so no leg's stall current goes through the board's copper |
+| A neck column as wide as the body: the shell, lowered last, passed through the head pitch servo | The shell before the neck column on this duck, and the battery's plugs, on their leads, pulled out through the port after it |
+
 ## The nano duck: SG90s, PWM (2026-11-06)
 
 | Issue | Do instead |

@@ -123,7 +123,7 @@ def pockets(B, part, m):
                     if C.overlap(m, tool) > 1e-12:
                         out.append((dict(exact=n, name=n), tool))
                     continue
-            elif g['role'] == 'actuator' or n in ('Pi Zero 2 W', 'U2D2', 'Waveshare bus board', 'IMU', 'battery 2S 850 mAh', 'servo bus board', 'camera') or n.endswith('5 V regulator') or n.endswith('foot switch'):
+            elif g['role'] == 'actuator' or n in ('Pi Zero 2 W', 'U2D2', 'Waveshare bus board', 'IMU', 'battery 2S 850 mAh', 'servo bus board', 'camera', 'PWM bonnet', 'Pi 5 V converter') or n.endswith(('5 V regulator', '6 V BEC')) or n.endswith('foot switch'):
                 t = grown(g, SERVO_GAP)
             elif n.endswith('outer race'):
                 t = dict(g, r=g['r'] + BEARING_GAP)
@@ -237,7 +237,7 @@ def main():
             L.append(f"| {part} | {name} | {e[0]:.0f} x {e[1]:.0f} x {e[2]:.0f} | {v:.1f} | {mat} | {orient[part]['overhang']:.0f}{' (none)' if orient[part]['overhang'] < 1 else ''} |")
         L += ['', 'The head frame prints in orange, in one filament: only its rim shows below the hood. The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
               'A part with an overhang figure needs support or a bridge there; tools/printable.py counts faces, not a slicer, so it overstates short bridges. Check each in your slicer.', '']
-        servo_, bear_, screws_ = ('MG90S', 'printed bushing', 'its own ear and horn screws and 2 M2 x 8') if G.RECIPE == 'nano' else ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
+        servo_, bear_, screws_ = ('MG90S', 'printed bushing', 'its own ear and horn screws and 2 M2 x 8') if G.RECIPE == 'nano' else ('XL330-M288', '6703ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('MG996R, its 25T aluminium disc horn and its 4 M3 horn screws', '6704ZZ', '4 M3 x 16 and 2 M3 x 10 self-tapping through its ears') if G.RECIPE == 'hobby' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
         first = '`L_thigh`, `L_knee_ear_clamp`, `L_shin`, `L_knee_rear_arm` and `L_knee_bushing`' if G.RECIPE == 'nano' else '`L_thigh_frame`, `L_knee_lid` and `L_shin`'
         L += ['', '## Print one joint first', '', f'Before buying the rest, print {first}, with 1 {servo_}, 1 {bear_},',
               f'{screws_}. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
@@ -250,6 +250,8 @@ def main():
                   '## Print one joint first', '', f'Before buying the rest, print {first}, with 1 {servo_} and {screws_}. It tests: does the servo slide into its cradle and its ears onto their blocks',
                   '(the ear holes are read off a drawing that is not to scale); does the hub grip the spline; does the bushing turn freely on its stub; how much the shin flexes with about 350 g hung from the foot. Change the spec, not the STL.']
         open(os.path.join(out, 'README.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+        import variant_banner
+        variant_banner.stamp(os.path.join(out, 'README.md'), G.RECIPE, 'prints')
 
 
 if __name__ == '__main__':

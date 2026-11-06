@@ -21,8 +21,10 @@ SPEC_FILE = 'robot.json' if RECIPE == 'hybrid' else f'robot_{RECIPE}.json'
 
 
 def out_path(folder, name=''):
-    """A variant's own copy of an output: hybrid, the original, keeps the top level; others, reports/dynamixel/..., prints/dynamixel/..."""
-    return os.path.join(ROOT, folder, *([] if RECIPE == 'hybrid' else [RECIPE]), *([name] if name else []))
+    """A variant's own copy of an output: reports/dynamixel/..., prints/dynamixel/... Every duck's prints and docs (BOM, assembly, wiring) are in a folder
+    of their own, the hybrid's too (2026-11-06, the user: "so I don't accidentally order parts for a different variant"); the hybrid's reports stay at the top level."""
+    own = RECIPE != 'hybrid' or folder in ('prints', 'docs')
+    return os.path.join(ROOT, folder, *([RECIPE] if own else []), *([name] if name else []))
 
 
 def parts_path(name='parts'):
