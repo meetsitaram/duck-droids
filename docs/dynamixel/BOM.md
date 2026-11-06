@@ -5,7 +5,7 @@
 | Product | All-Dynamixel duck, biped, 15 servos |
 | Height, mass | 0.295 m, 1.00 kg as modelled |
 | Build quantity | Quantities are for 1 robot |
-| Fabricated parts | 43 printed parts, 435 g PLA and 54 g TPU 95A |
+| Fabricated parts | 43 printed parts, 438 g PLA and 54 g TPU 95A |
 | Status | Prototype: no unit built, no part test printed |
 | Prices | USD, as listed 2026-11-02 to 2026-11-06, before tax and shipping. Confirm before ordering |
 | Related | [Print files](../../prints/dynamixel/README.md), [wiring](WIRING.md), [assembly](ASSEMBLY.md) |
@@ -82,7 +82,7 @@ Every line is required unless it starts with **OPTIONAL**. Optional lines show t
 | 25 | Servo cable: socket 2 to right leg, neck servo to left leg | made up: JST ASEHSEH22K305 leads in JST EHR-3 housings | JST EH 3-pin both ends, 305 mm: 3 leads, pre-crimped with SEH contacts at both ends, and 2 housings for each cable. No crimping, just push the contacts in, matching pin 1 to pin 1. ROBOTIS only sells X3P cables 180 mm long | 2 | set of 3 leads and 2 housings | 2 | - | - | [Digi-Key ASEHSEH22K305](https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASEHSEH22K305/6009480) (about $0.70 a lead; price not confirmed) and [Digi-Key EHR-3](https://www.digikey.com/en/products/detail/jst-sales-america-inc/EHR-3/527225) (stock varies by region; Adam Tech 25CH-C-03 is its listed substitute)<br>[Search Amazon](https://www.amazon.com/s?k=JST+EH+2.5mm+3+pin+cable+double+ended+300mm) |
 | 26 | Regulator to Pi power | from the 20 AWG wire above | soldered from the regulator's 5 V output to the Pi's 5 V and GND pins (2 and 6), about 10 cm. Replaces the right-angle USB ribbon, hard to find. Solder it to the 5 V and ground pins of the converter's USB socket | 1 | in the wire above | 1 | - | - | in the wire above<br>[Search Amazon](https://www.amazon.com/s?k=20+AWG+silicone+wire+red+black) |
 | 27 | Pi to bus board, UART | female-female jumper wires | 3 wires, 10 cm, soldered: the Pi's GPIO 14 (pin 8) to the board's RX, GPIO 15 (pin 10) to its TX, pin 14 to its GND, both jumpers at A. Replaces the right-angle USB OTG cable, hard to find | 1 | pack | 1 | - | - | any electronics shop<br>[Search Amazon](https://www.amazon.com/s?k=female+female+dupont+jumper+wires+10cm) |
-| 28 | Power switch | Pololu Big MOSFET Slide Switch with Reverse Voltage Protection, HP | item 2815, 25.4 x 20.3 x 4 mm, 2.7 g, about 6 A continuous with the board near 55 C. On foam tape inside the body's back wall, its slider out through the slot: the battery's red lead to VIN, VOUT up the neck, GND tapped off the black lead. The XT30 stays plugged. Check how warm it runs at walking current | 1 | each | 1 | - | - | [Pololu](https://www.pololu.com/product/2815)<br>[Search Amazon](https://www.amazon.com/s?k=Pololu+big+MOSFET+slide+switch+HP+2815) |
+| 28 | Power switch | DaierTek KCD1 mini rocker, SPST, pre-wired | ON-OFF, 2 pins: snap-in, mounting hole 19.2 x 13.2 mm, bezel 21 x 15 mm, 13.2 mm of housing and 8.2 mm of #187 (4.8 x 0.5 mm) quick-connect terminals behind it, with leads fitted. Rated 20 A at 12 V DC as listed (6 A 250 V AC / 10 A 125 V AC on the part). In the battery's red lead, its 2 leads spliced in; the XT30 stays plugged. Feel it after a long walk | 1 | pack of 10 | 1 | - | - | [Amazon](https://www.amazon.com/dp/B07S2QJKTX)<br>[Search Amazon](https://www.amazon.com/s?k=KCD1+mini+rocker+switch+SPST+pre-wired+12V+20A) |
 
 ### Consumables
 
@@ -116,18 +116,18 @@ All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.m
 | P11 | Sole, left and right | `L_sole.stl`, `R_sole.stl` | TPU 95A | Yellow | #F2B233 | 17.7 g | 2 |
 | P12 | Inner ear, left and right | `L_inner_ear.stl`, `R_inner_ear.stl` | PLA | Orange | #E8642A | 2.7 g | 2 |
 | P13 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 34.5 g | 1 |
-| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 27.4 g | 1 |
+| P14 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 30.5 g | 1 |
 | P15 | Neck column | `neck_column.stl` | PLA | Dark grey | #3A3D42 | 4.5 g | 1 |
 | P16 | Neck lid | `neck_lid.stl` | PLA | Dark grey | #3A3D42 | 0.2 g | 1 |
 | P17 | Head pitch lid | `head_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 0.2 g | 1 |
-| P18 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.3 g | 1 |
+| P18 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.4 g | 1 |
 | P19 | Head yaw sheet | `head_yaw_sheet.stl` | PLA | Dark grey | #3A3D42 | 0.9 g | 1 |
 | P20 | Head yaw bracket | `head_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 7.1 g | 1 |
 | P21 | Head roll lid | `head_roll_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 1 |
 | P22 | Head roll spacer | `head_roll_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P23 | Head roll rear spacer | `head_roll_rear_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.5 g | 1 |
 | P24 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 67.4 g | 1 |
-| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.4 g | 1 |
+| P25 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.2 g | 1 |
 | P26 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.8 g | 1 |
 | P27 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 9.5 g | 1 |
 | P28 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 9.0 g | 1 |
@@ -139,9 +139,9 @@ All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.m
 
 | Colour | Hex | Material | Model mass | With 15 % for supports and scrap |
 |---|---|---|---|---|
-| Dark grey | #3A3D42 | PLA | 147 g | 170 g |
+| Dark grey | #3A3D42 | PLA | 148 g | 170 g |
 | Orange | #E8642A | PLA | 138 g | 159 g |
-| White | #ECEBE6 | PLA | 128 g | 147 g |
+| White | #ECEBE6 | PLA | 130 g | 150 g |
 | Mid grey | #9A9C98 | PLA | 10 g | 12 g |
 | Amber | #F0A030 | PLA | 9 g | 11 g |
 | Black | #0A1420 | PLA | 2 g | 3 g |
@@ -155,7 +155,7 @@ Optional alternate to item 5: printed idlers, 5 wheels and 5 bushings in PETG or
 - **Items 1, 21:** the servos run directly from 2S, 7.4-8.4 V, above ROBOTIS's 6 V maximum. Expect a shorter life than ROBOTIS rates. The walking policies were trained at this voltage.
 - **Item 2:** with it, order 14 of item 1. It moves nearly 4 times faster, so limit its speed in software. Its gearing is lower, so check that the jaw holds when unpowered. The simulations use the M288.
 - **Item 16:** set both jumpers to A, for UART. Its silkscreen says DC 9-12.6 V and the battery is 7.4-8.4 V: bench test before ordering in quantity. Before wiring it to the Pi, measure its TX pin against GND with the board powered: the Pi's pins take 3.3 V, not 5 V.
-- **Item 27:** the Pi's full UART must drive GPIO 14 and 15: `dtoverlay=disable-bt` in config.txt and the serial console off (`pi/setup_pi.sh` does both). If no servo answers, swap TX and RX: Waveshare's wiki couldn't be read to confirm which way its header is labelled.
+- **Item 27:** the Pi's full UART must drive GPIO 14 and 15: Bluetooth moved to the mini UART (`dtoverlay=miniuart-bt`, `core_freq=250`), so a gamepad still pairs, and the serial console off (`pi/setup_pi.sh` does both). If no servo answers, swap TX and RX: Waveshare's wiki couldn't be read to confirm which way its header is labelled.
 - **Item 18:** its listing names both BNO080 and BNO085: confirm which chip arrives, its size, and that it starts in I2C mode. The model and fit come from Adafruit's board.
 - **Item 17:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.
 - **Item 21:** marked HV. Charge as a normal 2S, to 8.4 V.

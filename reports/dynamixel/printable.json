@@ -669,7 +669,7 @@
   "group": "ORIENT",
   "item": "body shell",
   "status": "PASS",
-  "detail": "1516 mm2 overhang, 1096 mm2 on the bed, 85 mm tall"
+  "detail": "1460 mm2 overhang, 879 mm2 on the bed, 98 mm tall"
  },
  {
   "group": "PIECES",
@@ -681,7 +681,7 @@
   "group": "BED",
   "item": "body shell",
   "status": "PASS",
-  "detail": "38 x 74 x 85 mm, 1096 mm2 on the bed"
+  "detail": "38 x 74 x 98 mm, 879 mm2 on the bed"
  },
  {
   "group": "SKIN",
@@ -699,7 +699,7 @@
   "group": "SUPPORT",
   "item": "body shell",
   "status": "WARN",
-  "detail": "1516 mm2 needs support or a bridge: check it in the slicer"
+  "detail": "1460 mm2 needs support or a bridge: check it in the slicer"
  },
  {
   "group": "ORIENT",

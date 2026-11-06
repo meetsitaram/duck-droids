@@ -6,16 +6,16 @@ Bottom-up: every part from its material and shape (`tools/mass_model.py`, materi
 
 | material | kg | share |
 |---|---|---|
-| pla | 0.43 | 44 % |
+| pla | 0.44 | 44 % |
 | actuator | 0.28 | 28 % |
-| steel | 0.13 | 14 % |
-| electronics | 0.06 | 6 % |
+| steel | 0.13 | 13 % |
+| electronics | 0.07 | 7 % |
 | tpu | 0.05 | 5 % |
 | cells | 0.03 | 3 % |
 
 | link | mass kg | budget kg (hand estimate) | CoM (m, world, zero pose) | principal inertia (kg m2) |
 |---|---|---|---|---|
-| trunk | 0.16 | 0.40 | -0.012 -0.001 +0.139 | 0.0001 0.0001 0.0001 |
+| trunk | 0.16 | 0.40 | -0.014 -0.001 +0.139 | 0.0001 0.0001 0.0002 |
 | L_hip_yaw_link | 0.04 | 0.07 | +0.000 +0.016 +0.099 | 0.0000 0.0000 0.0000 |
 | R_hip_yaw_link | 0.04 | 0.07 | +0.000 -0.016 +0.099 | 0.0000 0.0000 0.0000 |
 | L_hip_roll_link | 0.02 | 0.07 | +0.009 +0.027 +0.100 | 0.0000 0.0000 0.0000 |

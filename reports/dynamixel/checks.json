@@ -63,7 +63,7 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "0.997 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "1.003 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
@@ -733,6 +733,12 @@
  },
  {
   "group": "skin",
+  "item": "power switch leads",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
   "item": "head frame",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
@@ -1095,19 +1101,19 @@
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 29 % used"
+  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 29 % used"
+  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 20 % used"
+  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 21 % used"
  },
  {
   "group": "torque",
@@ -1119,13 +1125,13 @@
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
  },
  {
   "group": "torque",

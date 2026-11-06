@@ -2671,12 +2671,6 @@
  },
  {
   "group": "PATH",
-  "item": "torso: power switch",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "torso: body shell",
   "status": "PASS",
   "detail": ""
@@ -2714,6 +2708,12 @@
  {
   "group": "ACCESS",
   "item": "body screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "torso: power switch",
   "status": "PASS",
   "detail": ""
  },

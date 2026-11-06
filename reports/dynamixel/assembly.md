@@ -69,8 +69,8 @@ From tools/assembly.py
 | PASS | torso: battery |  |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
-| PASS | torso: power switch |  |
 | PASS | torso: body shell |  |
+| PASS | torso: power switch |  |
 | PASS | headbench: head yaw servo |  |
 | PASS | headbench: head yaw sheet |  |
 | PASS | headbench: head yaw bearing |  |

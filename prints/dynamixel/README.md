@@ -3,7 +3,7 @@
 From `python -I tools/export_prints.py`, in millimetres: every part, left and right, already turned the way it should print, its long overhangs down
 (tools/printable.py chooses). Pockets are cut 0.3 mm over each bought part and bearing seats 0.1 mm over. None has been test printed: print one joint first.
 
-**2026-11-06, for the 6703ZZ bearings (17 x 23 x 4 mm):** 19 files were redrawn offline, without Fusion's rounding, until the Fusion model is rebuilt: the hip yaw, hip roll and hip pitch lids, roll and yaw brackets, knee lids and shins (left and right), and the head yaw sheet and bracket, head roll lid and both head roll spacers. Also offline: the body shell, for the power switch's slot low on its back, and the hood, for the PC cable's hole over the Pi's USB port. The rest are Fusion's bodies, unchanged.
+**2026-11-06, for the 6703ZZ bearings (17 x 23 x 4 mm):** 19 files were redrawn offline, without Fusion's rounding, until the Fusion model is rebuilt: the hip yaw, hip roll and hip pitch lids, roll and yaw brackets, knee lids and shins (left and right), and the head yaw sheet and bracket, head roll lid and both head roll spacers. Also offline: the body shell, 13 mm longer at the back, for the KCD1 rocker switch's hole there, and the hood, for the PC cable's hole over the Pi's USB port. The rest are Fusion's bodies, unchanged.
 
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|

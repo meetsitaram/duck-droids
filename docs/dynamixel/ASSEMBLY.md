@@ -163,8 +163,8 @@ Then the same for the right side, mirrored.
 2. The IMU on the top plate, double-sided tape
 3. The column down into the chassis fork
 4. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
-5. The power switch on foam tape inside the shell's back wall, its slider out through the slot, before the shell goes on. The battery's red lead to its VIN, its VOUT on to the lead up the neck: the XT30 stays plugged
-6. The body shell, 2 screws *(2 x M2 x 6 mm, small Phillips)*
+5. The body shell, 2 screws *(2 x M2 x 6 mm, small Phillips)*
+6. The rocker switch: its 2 leads spliced into the battery's red lead before the shell goes on, then pushed out through the hole in the back. Once the shell is on, push the rocker in from outside till it clicks. The XT30 stays plugged
 
 ## 9. Head yaw and roll
 
