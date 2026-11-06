@@ -54,13 +54,25 @@ class Short(tuple):
         return o
 
 
+# a hobby servo's tray also has the rims its ears screw down on, and a post under the near rim; its lid a foot down onto the far ears (spec/robot.py flange_cradle)
+EARS = ('cradle rim far', 'cradle rim near', 'cradle near post')
+
+
 def tray(n, sides='+-', rear=True):
     return ([f'{n} cradle rear face'] if rear else []) + [f'{n} cradle end +', f'{n} cradle end -'] + \
-        [f'{n} cradle side {s}' for s in sides]
+        [f'{n} cradle side {s}' for s in sides] + [f'{n} {e}' for e in EARS]
 
 
 def lid(n, seat='seat floor'):
-    return [f'{n} cradle horn face', f'{n} horn {seat}']
+    return [f'{n} cradle horn face', f'{n} horn {seat}', f'{n} cradle horn face foot', f'{n} cradle horn face cap']
+
+
+def hub(n):
+    """A hobby servo's far side on a fork: the printed hub through the fork's plate into a bearing in the tray's floor."""
+    return (f'{n} rear hub', 'P', [f'{n} rear hub shoulder', f'{n} rear hub boss', f'{n} rear hub plug', f'{n} rear hub collar'])
+
+
+BODY_PI = G.RECIPE == 'hobby'                      # the hobby duck's Pi is in its body: it goes in with the torso, not the head
 
 
 def races(n, side='horn'):
@@ -93,7 +105,7 @@ def leg_parts(s):
         (f'{s} knee horn', 'B', [f'{s}_knee flange']),
         (f'{s} thigh cover', 'P', [f'{s} thigh cover']),
         (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin rib', f'{s} shin gusset', f'{s} shin collar 0', f'{s} shin collar 1', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle rail 0', f'{s} ankle rail 1', f'{s} ankle stub',
-                            f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -']),
+                            f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -'] + [f'{a} {e}' for e in EARS]),
         (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', f'{s} ankle rear boss', f'{a} cable plugs']),
         (f'{s} ankle lid', 'P', [f'{a} cradle horn face']),
         (f'{s} ankle horn', 'B', [f'{s}_ankle_pitch flange']),
@@ -106,10 +118,11 @@ def leg_parts(s):
 
 
 PARTS = leg_parts('L') + leg_parts('R') + [
-    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap',
-                      'neck idler step', 'neck pitch horn seat boss', 'neck pitch rear seat boss', 'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
+    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap', 'pack hanger 0', 'pack hanger 1',
+                      'neck idler step', 'Pi post 0', 'Pi post 1', 'Pi post 2', 'Pi post 3', 'neck pitch horn seat boss', 'neck pitch rear seat boss', 'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
      + tray('L hip yaw') + tray('R hip yaw')),
-    ('battery', 'B', ['battery 2S 850 mAh', 'battery XT30', 'battery balance plug']),
+    ('battery', 'B', ['battery 2S 850 mAh'] + ([] if BODY_PI else ['battery XT30', 'battery balance plug'])),
+    ('battery plugs', 'B', ['battery XT30', 'battery balance plug'] if BODY_PI else []),   # (on their leads: pulled out through the port once the taller shell is on)
     ('L 5 V regulator', 'B', ['L 5 V regulator']),
     ('R 5 V regulator', 'B', ['R 5 V regulator']),
     ('power switch', 'B', ['power switch', 'power switch neck', 'power switch leads', 'power switch bezel', 'power switch rocker']),
@@ -120,10 +133,18 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('neck column', 'P', ['neck front plate', 'neck back plate', 'neck pitch cradle rear face', 'neck pitch cradle end +',
                           'neck pitch cradle end -', 'neck pitch cradle side +', 'neck pitch cradle side -',
                           'head pitch cradle rear face', 'head pitch cradle end +', 'head pitch cradle end -',
-                          'head pitch cradle side +', 'head pitch cradle side -']),
-    ('neck lid', 'P', ['neck pitch cradle horn face']),
+                          'head pitch cradle side +', 'head pitch cradle side -', 'neck pitch rear seat floor', 'head pitch rear seat floor']
+     + [f'{n} {e}' for n in ('neck pitch', 'head pitch') for e in EARS]),
+    ('neck lid', 'P', ['neck pitch cradle horn face', 'neck pitch cradle horn face foot', 'neck pitch cradle horn face cap']),
+    ('neck pitch rear bearing', 'B', races('neck pitch', 'rear')),
+    ('head pitch rear bearing', 'B', races('head pitch', 'rear')),
+    hub('neck pitch'), hub('head pitch'), hub('head roll'),
+    ('L 6 V BEC', 'B', ['L 6 V BEC']),
+    ('R 6 V BEC', 'B', ['R 6 V BEC']),
+    ('Pi 5 V converter', 'B', ['Pi 5 V converter']),
+    ('PWM bonnet', 'B', ['PWM bonnet', 'PWM bonnet header', 'PWM bonnet plugs']),
     ('head pitch servo', 'B', ['head_pitch actuator (buy) XL330_M288', 'head_pitch flange', 'head pitch rear horn', 'head pitch cable plugs']),
-    ('head pitch lid', 'P', ['head pitch cradle horn face']),
+    ('head pitch lid', 'P', ['head pitch cradle horn face', 'head pitch cradle horn face foot', 'head pitch cradle horn face cap']),
     ('head fork', 'P', ['head pitch horn seat boss', 'head pitch rear seat boss', 'head pitch plate', 'head pitch idler plate', 'head pitch bridge', 'head pitch fork horn plate',
                         'head pitch fork rear plate'] + tray('head yaw')),
     ('head yaw servo', 'B', ['head_yaw actuator (buy) XL330_M288', 'head yaw cable plugs']),
@@ -132,7 +153,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head yaw horn', 'B', ['head_yaw flange']),
     ('head yaw bracket', 'P', ['head yaw plate', 'head yaw horn boss shoulder', 'head roll cradle end +', 'head roll cradle end -',
                                'head roll cradle side +', 'head roll cradle side -', 'head roll cradle rear face',
-                               'head roll rear seat floor']),
+                               'head roll rear seat floor'] + [f'head roll {e}' for e in EARS]),
     ('head roll servo', 'B', ['head_roll actuator (buy) XL330_M288', 'head roll cable plugs']),
     ('head roll rear bearing', 'B', races('head roll', 'rear')),
     ('head roll rear horn', 'B', ['head roll rear horn']),
@@ -140,13 +161,13 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head roll bearing', 'B', races('head roll')),
     ('head roll horn', 'B', ['head_roll flange']),
     # (loose, not on the head frame: it drops down between them, so nothing of it can stand in a bearing's bore)
-    ('head roll spacer', 'P', ['head roll horn seat boss']),
+    ('head roll spacer', 'P', [] if BODY_PI else ['head roll horn seat boss']),   # (the hobby duck's is 0.4 mm, too thin to print alone: part of the frame)
     ('head roll rear spacer', 'P', [] if G.RECIPE == 'feetech' else ['head roll rear seat boss']),   # (no rear bearing on the all-Feetech duck, so nothing for it to pass: it's part of the frame)
     ('head frame', 'P', ['head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail',
                          'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1', 'bus board post 0', 'bus board post 1', 'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'lower shell', 'lower shell post', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'lower shell beam',
                          *(['head roll rear seat boss'] if G.RECIPE == 'feetech' else []), 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle end plain', 'head strip deep', 'L base riser back', 'beak cradle rear face', 'beak cradle end +',
-                         'beak cradle end -', 'beak cradle side +']),
+                         'beak cradle end -', 'beak cradle side +'] + [f'beak {e}' for e in EARS]),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288', 'beak flange', 'beak cable plugs']),
     ('beak lid', 'P', ['beak cradle horn face']),
     ('beak crank', 'P', ['beak crank', 'beak crank pin']),
@@ -192,7 +213,7 @@ def sections():
         ]), dict(key=f'shin_{s}', title=f'The {nm} shin', on=[], steps=[
             ('The shin', [(f'{s} shin', None)], []),
             ('Plug in the cable, slide in the ankle servo', [(f'{s} ankle servo', IN)], []),
-            ('Screws: 4 flat-head into the rear horn, 2 at the far end', [], [rf'^{s} ankle boss screw', rf'^{a} cradle screw rear']),
+            ('Screws: 2 through the far ears, 2 through the near ears' if BODY_PI else 'Screws: 4 flat-head into the rear horn, 2 at the far end', [], ([] if BODY_PI else [rf'^{s} ankle boss screw']) + [rf'^{a} cradle screw rear']),
             ('The lid, 2 screws', [(f'{s} ankle lid', IN)], [rf'^{a} cradle screw horn']),
             ('Press the small bearing onto the stub', [(f'{s} ankle bearing inner', OUT)], []),
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),
@@ -221,6 +242,7 @@ def sections():
         ('The lids and their screws', [('L hip roll lid', NEG(X)), ('R hip roll lid', NEG(X))], [r'^[LR] hip roll cradle screw (horn|near)']),
         ('Press in the bearings', [('L hip roll bearing', NEG(X)), ('R hip roll bearing', NEG(X))], []),
         ('Horns on, servos at mid-range', [('L hip roll horn', NEG(X)), ('R hip roll horn', NEG(X))], []),
+        ('A 6 V BEC up into each side pocket, tied to its 2 arms, before the legs', [('L 6 V BEC', Z), ('R 6 V BEC', Z)], []),
     ]), dict(key='legs', title='Legs onto the hips', on=['body'], steps=[
         ('The left leg onto the roll horn', [('@leg_L', NEG(X))], []),
         ('4 screws from the front', [], [r'^L hip roll fork screw']),
@@ -232,14 +254,21 @@ def sections():
         ('Its lid, 2 screws', [('neck lid', NEG(Y))], [r'^neck pitch cradle screw horn']),
         ('Head pitch servo in, horns on', [('head pitch servo', Y)], [r'^head pitch cradle screw rear']),
         ('Its lid, 2 screws', [('head pitch lid', Y)], [r'^head pitch cradle screw horn']),
+        ('Press the rear bearings into the trays\' floors', [('neck pitch rear bearing', Y), ('head pitch rear bearing', NEG(Y))], []),
     ]), dict(key='torso', title='Neck and body shell', on=['legs'], steps=[
         ('Battery into its slot from behind, onto its tray; a hook-and-loop strap round both', [('battery', X)], []),
         *([('The 5 V regulator into its side pocket from outside, tied to its 2 arms', [('L 5 V regulator', NEG(Y))], []),
            ('The legs\' bus splice on the top plate, foam tape, both hip yaw leads plugged in', [('leg bus splice', NEG(Z))], [])] if G.RECIPE == 'hybrid' else [('A 5 V regulator into each side pocket', [('L 5 V regulator', Z), ('R 5 V regulator', Z)], [])]),
         ('The IMU on the top plate, double-sided tape', [('IMU', NEG(Z))], []),
+        ('The Pi\'s 5 V converter on the plate beside it, foam tape', [('Pi 5 V converter', NEG(Z))], []),
+        *([('The Pi onto its 4 posts, microSD in, camera ribbon on, 4 screws', [('Pi Zero 2 W', NEG(Z))], [r'^Pi screw']),
+           ('The PWM bonnet onto the Pi\'s GPIO header, then each servo\'s lead into its channel', [('PWM bonnet', NEG(Z))], [])] if BODY_PI else []),
+        *([('The body shell, 2 screws, before the neck: the neck column is as wide as the body', [('body shell', NEG(Z))], [r'^body screw']),
+           ('The battery\'s two plugs out through the port in its back', [('battery plugs', Short(NEG(X), 0.004))], [])] if BODY_PI else []),
         ('The column down into the chassis fork', [('@column', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^neck pitch fork screw']),
-        ('The body shell, 2 screws', [('body shell', NEG(Z))], [r'^body screw']),
+        ('The rear hub through the fork into its bearing, 2 screws', [('neck pitch rear hub', Y)], [r'^neck pitch hub screw']),
+        *([] if BODY_PI else [('The body shell, 2 screws', [('body shell', NEG(Z))], [r'^body screw'])]),
         *([("The rocker switch: its 2 leads spliced into the battery's red lead before the shell goes on, then pushed out through the hole in the back. Once the shell is on, push the rocker in from outside till it clicks. The XT30 stays plugged", [('power switch', X)], [])] if G.RECIPE == 'dynamixel' else []),
     ]), dict(key='headbench', title='The head yaw and roll', on=[], steps=[
         ('The head fork', [('head fork', None)], []),
@@ -261,10 +290,12 @@ def sections():
     ]), dict(key='head', title='The head', on=['torso'], steps=[
         ('The head fork down onto the head pitch servo', [('@headbench', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^head pitch fork screw']),
+        ('The rear hub through the fork into its bearing, 2 screws', [('head pitch rear hub', NEG(Y))], [r'^head pitch hub screw']),
         ('The head frame, with its beak servo, down over the roll servo' + (', the wires from the neck up through its opening' if G.RECIPE == 'hybrid' else ''), [('@framebench', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^head roll fork screw']),
+        ('The rear hub through the fork into its bearing, 2 screws', [('head roll rear hub', X)], [r'^head roll hub screw']),
         ('The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, ' + ('and the 3 UART wires soldered to its header, the pins snipped to 3 mm; both jumpers at A' if G.RECIPE == 'dynamixel' else 'USB-C'), [('Waveshare bus board', NEG(Z))], [r'^bus board top screw']),
-        ('The Pi onto its plate from the front, ' + ('its 5 wires soldered first: 5 V and ground on pins 2 and 6, GPIO 14 and 15 and ground on pins 8, 10 and 14. Its microSD card in, 4 screws, the camera ribbon out of its socket' if G.RECIPE == 'dynamixel' else 'its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket'), [('Pi Zero 2 W', NEG(X))], [r'^Pi screw']),
+        *([] if BODY_PI else [('The Pi onto its plate from the front, ' + ('its 5 wires soldered first: 5 V and ground on pins 2 and 6, GPIO 14 and 15 and ground on pins 8, 10 and 14. Its microSD card in, 4 screws, the camera ribbon out of its socket' if G.RECIPE == 'dynamixel' else 'its USB ports up and its microSD card in, 4 screws. Then its 2 right-angle plugs, and the camera ribbon out of its socket'), [('Pi Zero 2 W', NEG(X))], [r'^Pi screw'])]),
         ('The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, ' + ("its USB socket's 5 V and ground pins soldered to the Pi's 2 wires from pins 2 and 6. Measure 5 V first" if G.RECIPE == 'dynamixel' else 'a USB cable to the PWR port of the Pi'), [('head 5 V regulator', NEG(Z))], []),
         ('The U2D2 on the frame, from below, foam tape', [('U2D2', Z)], []),
         ('The Feetech bus board on its rails, foam tape', [('servo bus board', NEG(Z))], []),
@@ -642,7 +673,8 @@ def check(spec, secs, rep, S=None):
                     f = g['fast']
                     p, d = np.array(f['p']), np.array(f['d'])
                     # HELD: a part under the head
-                    under = [q for q, (l2, i2, g2) in B.idx.items() if l2 == ln and g2['role'] in ('struct', 'shell')
+                    # (or, on a hobby servo's ear screw, the ear itself: that is what it clamps down onto the printed rim)
+                    under = [q for q, (l2, i2, g2) in B.idx.items() if l2 == ln and (g2['role'] in ('struct', 'shell') or f.get('ear') and g2['role'] == 'actuator')
                              and B.inside(g2, (p + d * 0.0002)[None]).any()]
                     clamp = {B.owner.get(q) for q in under}
                     if not f.get('pivot'):

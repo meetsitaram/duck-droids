@@ -7,18 +7,18 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAMES = {'dynamixel': 'all-Dynamixel duck', 'hd1910': 'Feetech HD-1910 duck', 'feetech': 'all-Feetech duck',
-         'hybrid': 'hybrid duck (STS3215 legs, Dynamixel head)', 'big': 'big duck'}
-SHORT = {'dynamixel': 'all-Dynamixel', 'hd1910': 'HD-1910', 'feetech': 'all-Feetech', 'hybrid': 'hybrid', 'big': 'big'}
+         'hybrid': 'hybrid duck (STS3215 legs, Dynamixel head)', 'hobby': 'hobby-servo duck', 'nano': 'nano duck', 'big': 'big duck'}
+SHORT = {'dynamixel': 'all-Dynamixel', 'hd1910': 'HD-1910', 'feetech': 'all-Feetech', 'hybrid': 'hybrid', 'hobby': 'hobby-servo', 'nano': 'nano', 'big': 'big'}
 MARK = '<!-- variant banner -->'
 
 
 def banner(recipe, kind):
     """kind 'bom' (docs/<duck>/BOM.md) or 'prints' (prints/<duck>/README.md)."""
     if kind == 'bom':
-        others = [f'[{SHORT[r]}](../{r}/BOM.md)' for r in NAMES if r != recipe]
+        others = [f'[{SHORT[r]}](../{r}/BOM.md)' for r in NAMES if r != recipe and os.path.exists(os.path.join(ROOT, 'docs', r, 'BOM.md'))]
         what = 'This is the parts list'
     else:
-        others = [f'[{SHORT[r]}](../{r}/README.md)' for r in NAMES if r not in (recipe, 'big')]
+        others = [f'[{SHORT[r]}](../{r}/README.md)' for r in NAMES if r != recipe and os.path.exists(os.path.join(ROOT, 'prints', r, 'README.md'))]
         what = 'These are the print files'
     return (f'> **{what} for the {NAMES[recipe]} only.** Each duck has its own parts, prints and BOM, and they don\'t mix. '
             f'Other ducks: {" · ".join(others)}. {MARK}')
