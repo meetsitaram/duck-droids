@@ -112,7 +112,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('battery', 'B', ['battery 2S 850 mAh', 'battery XT30', 'battery balance plug']),
     ('L 5 V regulator', 'B', ['L 5 V regulator']),
     ('R 5 V regulator', 'B', ['R 5 V regulator']),
-    ('power switch', 'B', ['power switch', 'power switch slider']),
+    ('power switch', 'B', ['power switch', 'power switch neck', 'power switch leads', 'power switch bezel', 'power switch rocker']),
     ('head 5 V regulator', 'B', ['head 5 V regulator', 'head regulator plug', 'head regulator wires']),
     ('IMU', 'B', ['IMU']),
     ('body shell', 'P', ['body']),
@@ -239,8 +239,8 @@ def sections():
         ('The IMU on the top plate, double-sided tape', [('IMU', NEG(Z))], []),
         ('The column down into the chassis fork', [('@column', NEG(Z))], []),
         ('4 screws on each horn', [], [r'^neck pitch fork screw']),
-        *([("The power switch on foam tape inside the shell's back wall, its slider out through the slot, before the shell goes on. The battery's red lead to its VIN, its VOUT on to the lead up the neck: the XT30 stays plugged", [('power switch', NEG(Z))], [])] if G.RECIPE == 'dynamixel' else []),
         ('The body shell, 2 screws', [('body shell', NEG(Z))], [r'^body screw']),
+        *([("The rocker switch: its 2 leads spliced into the battery's red lead before the shell goes on, then pushed out through the hole in the back. Once the shell is on, push the rocker in from outside till it clicks. The XT30 stays plugged", [('power switch', X)], [])] if G.RECIPE == 'dynamixel' else []),
     ]), dict(key='headbench', title='The head yaw and roll', on=[], steps=[
         ('The head fork', [('head fork', None)], []),
         ('Head yaw servo in, 2 screws from under the bridge', [('head yaw servo', NEG(Z))], [r'^head yaw cradle screw rear']),

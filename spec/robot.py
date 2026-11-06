@@ -61,7 +61,8 @@ RECIPES = {
     'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
                       # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
                       # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
-                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.003, charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
+                      # (2026-11-06, the user: "slightly increase the back case cover": 13 mm more at the back, for the KCD1 rocker's 22 mm behind its bezel; the charge port's plugs move back with it)
+                      battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.016, charge_at=dict(port=(-0.0730, -0.0570, 0.1290, 0.1505), xt30=(-0.0615, -0.0455, 0.1300, 0.1415), bal=(-0.0610, -0.0520, 0.1425, 0.1495)), charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0320, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.43), knee=(-1.1, 1.57), ankle=(-1.535, 1.535), head_roll=(-0.24, 0.24)), short=0.003,
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005,
@@ -862,14 +863,17 @@ link('trunk', 0.40, [
         'body'),
     # the charge port: the plugs' faces at the back wall, only they show (2026-11-04, the user: only the leads visible, at the body's surface)
     *[cut(box('charge port', *PORT['cut'], WHITE, 'shell'), 'body') for _ in range(bool(R.get('charge_port')))],
-    # (power_switch, 2026-11-06, the user: "add a switch somewhere on the back or bottom": the XT30 sits inside the port, out of a finger's reach, so it can't be the
-    # off switch. Pololu's Big MOSFET Slide Switch, HP (item 2815): 25.4 x 20.3 x 4 mm, 2.7 g, about 6 A continuous with the board near 55 C. On foam tape flat
-    # against the back wall's inside, right of centre, under the battery's level; its slider out through a slot. Where the slider sits on the board is drawn from
-    # the listing's photo: check it on the part before printing. Battery + to its VIN, its VOUT to the bus board: the XT30 stays plugged)
+    # (power_switch, 2026-11-06, the user: "add a switch somewhere on the back or bottom", then "standard and easily accessible parts for anyone to buy": the XT30 sits inside the
+    # port, out of a finger's reach. A standard KCD1 mini rocker, SPST (DaierTek's pre-wired 10-pack, Amazon B07S2QJKTX: hole 19.2 x 13.2 mm, bezel 21 x 15, 13.2 mm of housing and
+    # 8.2 of terminals under it; 20 A 12 V DC as listed, 6 A 250 V AC on the part). The back has 8-10 mm behind its wall and the floor opens onto the left hip yaw, so the body's back grows 13 mm
+    # (the user: "slightly increase the back case cover") and it sits in the back wall, right of centre, clear of the charge port: 22 mm to the battery. In the battery's red lead, its 2 leads spliced in; the XT30 stays plugged)
     *[g for _ in range(bool(R.get('power_switch'))) for g in (
-        dict(box('power switch', (-0.0484, -0.0200, 0.1270), (-0.0444, 0.0054, 0.1473), PCB, material='electronics', mass=0.0027), on_cover=True),
-        dict(box('power switch slider', (-0.0520, -0.0110, 0.1395), (-0.0484, -0.0050, 0.1425), DARK, 'decal'), material='electronics', mass=0.0002, exposed=True, on_cover=True),
-        cut(box('power switch slot', (-0.0540, -0.0125, 0.1390), (-0.0488, -0.0035, 0.1430), WHITE, 'shell'), 'body'))],
+        dict(box('power switch', (-0.0626, -0.0194, 0.13265), (-0.0513, -0.0006, 0.14535), DARK, material='electronics', mass=0.0031), on_cover=True),
+        dict(box('power switch neck', (-0.0649, -0.0194, 0.13265), (-0.0626, -0.0006, 0.14535), DARK, material='electronics', mass=0.0004), exposed=True, on_cover=True),
+        dict(box('power switch leads', (-0.0513, -0.0160, 0.1350), (-0.0431, -0.0040, 0.1430), '#D9D4C5', material='electronics', mass=0.001, wire=True), on_cover=True),
+        dict(box('power switch bezel', (-0.0669, -0.0205, 0.1315), (-0.0649, 0.0005, 0.1465), DARK, material='electronics', mass=0.0005), exposed=True, on_cover=True),
+        dict(box('power switch rocker', (-0.0694, -0.0175, 0.1330), (-0.0669, -0.0025, 0.1450), DARK, material='electronics', mass=0.0003), exposed=True, on_cover=True),
+        cut(rbox('power switch hole', (-0.06395, -0.0100, 0.1390), (0.0026, 0.0192, 0.0132), 0.0005, WHITE, 'shell'), 'body'))],
 ], 'the body: hip yaw servos, battery, Pi Zero 2 W and servo hat, regulator, IMU; the neck servo in front')
 
 # ---------------------------------------------------------------- left leg (bare servos and brackets, as microduck's)

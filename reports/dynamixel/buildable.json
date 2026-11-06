@@ -3,7 +3,7 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "8.6 MPa (allowed 15): 28 N, section 126 mm2"
+  "detail": "8.7 MPa (allowed 15): 28 N, section 126 mm2"
  },
  {
   "group": "LOAD",
@@ -21,13 +21,13 @@
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "8.4 MPa (allowed 15): 28 N, section 76 mm2"
+  "detail": "8.5 MPa (allowed 15): 28 N, section 76 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "6.8 MPa (allowed 15): 28 N, section 50 mm2"
+  "detail": "6.9 MPa (allowed 15): 28 N, section 50 mm2"
  },
  {
   "group": "LOAD",
