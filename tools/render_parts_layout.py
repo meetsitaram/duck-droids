@@ -184,14 +184,14 @@ def main():
     img[seg[..., 0] < 0] = (np.array(BACK) * 255).astype(np.uint8)
 
     from PIL import Image
-    out = os.path.join('docs', 'parts_layout.png') if recipe == 'hybrid' else os.path.join('docs', recipe, 'parts_layout.png')
+    out = os.path.join('docs', recipe, 'parts_layout.png')
     Image.fromarray(img).save(out, optimize=True)
 
     counts = {'printed': len(printed), 'servo': sum(n.endswith(' servo') for n in B.parts)}
     for (s, L), c in types.items():
         k = f'{s.split()[0]} x {L}'
         counts[k] = counts.get(k, 0) + len(c)
-    bom_path = os.path.join('BOM.md') if recipe == 'hybrid' else os.path.join('docs', recipe, 'BOM.md')
+    bom_path = os.path.join('docs', recipe, 'BOM.md')
     bom = bom_counts(bom_path)
     bad = [f'{k}: picture {counts.get(k)}, BOM {bom.get(k)}' for k in sorted(set(counts) | set(bom)) if counts.get(k) != bom.get(k)]
     print(f'{out}: {W} x {H}, {len(printed)} printed, {len(bought)} bought items, {len(B.screws)} screws, {len(spec_shapes)} printed parts in spec shapes {spec_shapes}')
