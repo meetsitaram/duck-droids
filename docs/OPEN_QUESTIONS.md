@@ -8,6 +8,7 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 |---|---|---|---|---|
 | Big | How deep is the RS04's M5 output thread: 3.5 or 6.5 mm? | **3.5 mm.** About 3 mm of thread engaged, never reaching the bottom, and the 3 dowel pins carry the torque | It's what RobStride's STEP file shows (blind at z +22 mm). 6.5 mm is the distance from the floor to the pin tips, the figure the spec had. Designing for the shallower hole is safe if the real one is deeper, but not the other way round | Measure a real RS04 with a depth gauge, or ask RobStride. If it's 6.5 mm, longer screws can be used. If it's 3.5 mm, ask what the screws and pins are each rated for. 9 M5 screws with under 4 turns each are weak in pull-out |
 | Hybrid | The head's servos at 5 V through a UBEC, or straight from 2S? | **5 V** | Inside ROBOTIS's 6 V limit, and the parts and model are already built this way | Bench-test one XL330 and one XC330 on a full 2S against 5 V, for temperature and life. See [WIRING.md](WIRING.md#todo-review-the-heads-voltage) |
+| HD-1910 | Keep Feetech's own HD-1910 model inside `cad/duck-droids-hd1910.f3d` and `.step`? It came with no licence terms | **Keep, for now** (2026-11-05) | It shows the real servo, and THIRD_PARTY_NOTICES says where it came from | Ask Feetech for terms. If they object, re-export without it: the spec's own servo shape can stand in |
 
 ## Waiting for you
 
