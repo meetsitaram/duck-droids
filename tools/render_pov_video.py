@@ -483,14 +483,14 @@ def part_kind(n):
         return m.group(1).replace('_', '-') if m else None
     if G.RECIPE == 'hybrid':
         dx = n.startswith(('neck', 'head', 'beak'))
-        for k, v in (('ankle bearing', '6700ZZ'), ('bearing', 'MR2216ZZ' if dx else '6704ZZ'), ('rear horn', 'FPX330-H101 idler' if dx else 'from the servo box'), ('horn', 'HNX330-N102' if dx else 'from the servo box'), ('battery', '2S LiPo, 850 mAh'),
+        for k, v in (('ankle bearing', '6700ZZ'), ('bearing', ('6703ZZ' if G.RECIPE == 'dynamixel' else 'MR2216ZZ') if dx else '6704ZZ'), ('rear horn', 'FPX330-H101 idler' if dx else 'from the servo box'), ('horn', 'HNX330-N102' if dx else 'from the servo box'), ('battery', '2S LiPo, 850 mAh'),
                      ('L 5 V regulator', '8 A UBEC'), ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('standoff', 'hex, M2.5'),
                      ('leg bus board', 'Bus Servo Adapter (A), on UART'), ('Waveshare', 'Bus Servo Adapter (A), on USB'), ('splice', 'lead joined in heat-shrink'), ('Pi Zero', 'bought')):
             if k in n:
                 return v
         return None
     fe_ = G.RECIPE == 'feetech'
-    for k, v in (('ankle bearing', '6700ZZ'), ('bearing', '6704ZZ' if fe_ else 'MR2216ZZ'), ('rear horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box' if fe_ else 'FPX330-H101 idler'), ('horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box'), ('battery', '2S LiPo, 850 mAh' if fe_ else '2S LiPo, 450 mAh'),
+    for k, v in (('ankle bearing', '6700ZZ'), ('bearing', '6704ZZ' if fe_ else '6703ZZ' if G.RECIPE == 'dynamixel' else 'MR2216ZZ'), ('rear horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box' if fe_ else 'FPX330-H101 idler'), ('horn', 'on the servo' if G.RECIPE == 'hd1910' else 'from the servo box'), ('battery', '2S LiPo, 850 mAh' if fe_ else '2S LiPo, 450 mAh'),
                  ('regulator', '5 V USB converter'), ('IMU', 'BNO085 board'), ('camera', 'Arducam IMX219'), ('foot switch', 'Omron D2F-01F'), ('standoff', 'hex, M2.5'),
                  ('Waveshare', 'Bus Servo Adapter (A)'), ('Pi Zero', 'bought')):
         if k in n:

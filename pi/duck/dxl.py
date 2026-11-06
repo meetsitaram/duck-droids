@@ -87,7 +87,7 @@ class DxlError(IOError):
 
 
 class Bus:
-    """port: a device like /dev/ttyACM0, or socket://127.0.0.1:9000 for the simulated bus."""
+    """port: a device like /dev/serial0 (the Pi's UART), or socket://127.0.0.1:9000 for the simulated bus."""
 
     def __init__(self, port, baud=1_000_000, timeout=0.02):
         self.s = serial.serial_for_url(port, baudrate=baud, timeout=timeout)
