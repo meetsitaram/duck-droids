@@ -1,0 +1,3386 @@
+[
+ {
+  "group": "PATH",
+  "item": "thigh_L: L hip pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_L: L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_L: L knee servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_L: L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L knee cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L knee cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "shin_L: L ankle pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "shin_L: L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: @shin_L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L knee horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L knee rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L knee rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_L: L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_R: R hip pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_R: R hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_R: R knee servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "thigh_R: R knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R knee cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R knee cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "shin_R: R ankle pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "shin_R: R ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: @shin_R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R knee horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R knee rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R knee rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "leg_R: R hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: L hip yaw servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: R hip yaw servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: R hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: neck pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "neck pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "neck pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "neck pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "neck pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "neck pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "neck pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: Pi Zero 2 W",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: battery",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: L 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: R 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: servo header board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: IMU",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip yaw horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: L hip roll servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: R yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip yaw horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: R hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: R hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: R hip roll servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "hips: R hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: @leg_L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: @leg_R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: R hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "legs: R hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll rear screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll rear screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "shell: body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "body screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "body screw 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "body screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "body screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "body screw 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "body screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "headbench: head pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "headbench: head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head pitch cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head pitch cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "headbench: beak servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "headbench: beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak cradle screw near",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak cradle screw far",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "headbench: jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "beak horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "beak horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "beak horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "neckhead: neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "neck pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "neck pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "neck pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "neckhead: @headbench",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head pitch horn screw",
+  "status": "PASS",
+  "detail": "M2 x 5: bites 2.5 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "neckhead: hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "hood screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "hood screw 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "hood screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "hood screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "hood screw 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 3.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "hood screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "neckhead: upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HOLD",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": "5 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": "5 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": "3 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R foot",
+  "status": "PASS",
+  "detail": "3 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R ankle pitch rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R ankle pitch bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R knee ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R thigh",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R knee rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R knee bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip pitch rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip pitch bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip roll ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": "5 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R yaw link",
+  "status": "PASS",
+  "detail": "5 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip roll rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip roll bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip yaw ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": "8 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip yaw rear arm",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R hip yaw bushing",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": "turns on its screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": "glued"
+ },
+ {
+  "group": "HOLD",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "hood",
+  "status": "PASS",
+  "detail": "2 screws"
+ },
+ {
+  "group": "APART",
+  "item": "bought parts",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ENDS",
+  "item": "L ankle pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "R ankle pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "L knee",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "R knee",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "L hip pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "R hip pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "L hip roll",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "R hip roll",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "L hip yaw",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "R hip yaw",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "neck pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "head pitch",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "ENDS",
+  "item": "beak",
+  "status": "PASS",
+  "detail": "1 of 2 screws at the near end"
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R knee horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R knee rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R knee rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R knee cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R knee cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip pitch rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip pitch rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip yaw horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip yaw rear screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip yaw rear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "neck pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "neck pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "body screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "body screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip yaw cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip yaw cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "neck pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head pitch horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head pitch cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head pitch cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "beak cradle screw near",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "beak cradle screw far",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "hood screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "hood screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "beak horn screw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PIERCE",
+  "item": "servo pockets",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L ankle pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R ankle pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L knee servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R knee servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip roll servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip roll servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip yaw servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip yaw servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part neck pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part head pitch servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part beak servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part Pi Zero 2 W",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part battery",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part L 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part R 5 V regulator",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part servo header board",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part IMU",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part body shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part hood",
+  "status": "PASS",
+  "detail": ""
+ }
+]

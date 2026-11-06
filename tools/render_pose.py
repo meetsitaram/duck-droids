@@ -100,11 +100,19 @@ class Scene:
             r = mujoco.Renderer(m, h, w)
             r.update_scene(d, cam)
             img = r.render().copy()
-            r.enable_segmentation_rendering()
-            r.update_scene(d, cam)
-            seg = r.render()[:, :, 0]
+            try:
+                r.enable_segmentation_rendering()
+                r.update_scene(d, cam)
+                bg = r.render()[:, :, 0] < 0
+            except IndexError:
+                # (2026-11-06, the nano duck's 330 geoms: MuJoCo's segmentation read an id past the scene's geoms, a blended edge pixel. The far plane instead: what nothing covers)
+                r.disable_segmentation_rendering()
+                r.enable_depth_rendering()
+                r.update_scene(d, cam)
+                depth = r.render()
+                bg = depth >= depth.max() - 1e-6
             r.close()
-        img[seg < 0] = background
+        img[bg] = background
         return Image.fromarray(img)
 
 

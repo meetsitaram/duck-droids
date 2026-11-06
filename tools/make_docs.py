@@ -810,6 +810,9 @@ if __name__ == '__main__':
     if G.RECIPE == 'big':                  # plates and bearings, not printed parts: its own BOM, and no build guide until it has an assembly order
         import big_docs
         print('docs/big/BOM.md', big_docs.bom_big(s))
+    elif G.RECIPE == 'nano':               # its own spec, parts and order (spec/nano_duck.py)
+        import nano_docs
+        print(nano_docs.write(s))
     elif G.RECIPE == 'feetech':
         bom_feetech(s)
         guide()

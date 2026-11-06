@@ -912,6 +912,105 @@
    },
    "case_screw": "M2 x 8 through the lid foot and the ear, or M2 x 6 through the ear, into the printed rim (self-tapping)",
    "mount_source": "TowerPro's MG90S page (towerpro.com.tw/product/mg90s-3/, read 2026-11-06): 13.4 g, 22.8 x 12.2 x 28.5 mm, 1.8 kg cm at 4.8 V and 2.2 at 6.6 V, 0.10 s/60 deg at 4.8 V and 0.08 at 6.0 V, dead band 1 us, JR plug. Stall at 6.0 V interpolated linearly: 2.07 kg cm (an estimate). The page gives no drawing: the ears (32.5 mm across, 2.5 mm thick, one 2 mm hole each, 27.8 mm apart, their underside 15.9 mm up), the case height under the spline (22.7 mm), the shaft 5.9 mm off the middle and the stall current are ESTIMATES from the usual drawing of this case: measure one. The horn: a round horn trimmed to 16 mm, 4 M2 holes on an 11 mm circle, its top 6.2 mm over the case (an estimate). Armature, damping and friction: the XL330's, placeholders. Rated torque: a third of stall, assumed."
+  },
+  "SG90": {
+   "box": [
+    0.0227,
+    0.0122,
+    0.0225
+   ],
+   "shaft_x": 0.0056,
+   "horn_h": 0.009,
+   "tower": [
+    0.0057,
+    0.0045
+   ],
+   "spline": {
+    "teeth": 21,
+    "d": 0.0048,
+    "h": 0.0033
+   },
+   "ears": {
+    "span": 0.0323,
+    "t": 0.0025,
+    "under": 0.017,
+    "hole_d": 0.002,
+    "hole_u": 0.0144
+   },
+   "lead": {
+    "out": 0.0012,
+    "w": 0.0036,
+    "a": [
+     0.0006,
+     0.0034
+    ]
+   },
+   "volts": 5.0,
+   "bus": "pwm",
+   "case_screw": "the 2 self-tapping screws in the servo's bag (about M2 x 8), through the ears",
+   "horn_screw": "the servo's own horn screw (in its bag), into the output shaft",
+   "mass": 0.009,
+   "peak_nm": 0.157,
+   "rated_nm": 0.0785,
+   "noload_rads": 10.47,
+   "gear": 300.0,
+   "armature_kgm2": 0.0002,
+   "damping_nms": 0.01,
+   "friction_nm": 0.003,
+   "stall_a": 0.65,
+   "stall_a_measured": 0.36,
+   "colour": "blue",
+   "mount_source": "TowerPro SG90 page and drawing; M5Stack SG90 page (21T spline); see _sources_hobby_micro"
+  },
+  "MG90S_5V": {
+   "box": [
+    0.0228,
+    0.0122,
+    0.0225
+   ],
+   "shaft_x": 0.0056,
+   "horn_h": 0.009,
+   "tower": [
+    0.0057,
+    0.0045
+   ],
+   "spline": {
+    "teeth": 21,
+    "d": 0.0048,
+    "h": 0.0033
+   },
+   "ears": {
+    "span": 0.0323,
+    "t": 0.0025,
+    "under": 0.017,
+    "hole_d": 0.002,
+    "hole_u": 0.0144
+   },
+   "lead": {
+    "out": 0.0012,
+    "w": 0.0036,
+    "a": [
+     0.0006,
+     0.0034
+    ]
+   },
+   "volts": 5.0,
+   "bus": "pwm",
+   "case_screw": "the 2 self-tapping screws in the servo's bag (about M2 x 8), through the ears",
+   "horn_screw": "the servo's own horn screw (in its bag), into the output shaft",
+   "mass": 0.0134,
+   "peak_nm": 0.177,
+   "rated_nm": 0.088,
+   "noload_rads": 10.47,
+   "gear": 300.0,
+   "armature_kgm2": 0.0002,
+   "damping_nms": 0.01,
+   "friction_nm": 0.003,
+   "stall_a": 0.7,
+   "stall_a_measured": 0.7,
+   "colour": "black",
+   "mount_source": "TowerPro MG90S page; case shape taken as the SG90 drawing's (an estimate); see _sources_hobby_micro. Keyed MG90S_5V: the hobby-servo duck models the same servo at 6 V as MG90S",
+   "name": "MG90S"
   }
  },
  "bearings": {

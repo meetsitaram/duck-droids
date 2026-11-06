@@ -43,6 +43,8 @@ def sections(spec):
     o = lambda n: np.array(J[n]['origin'])
     k, h, an = o('L_knee'), o('L_hip_pitch'), o('L_ankle_pitch')
     r_ = o('L_hip_roll')
+    if 'load_sections' in spec:                    # a spec with its own parts says where its load goes: spec/nano_duck.py
+        return k, h, an, r_, [(w, ps, tuple(pt), tuple(n)) for w, ps, pt, n in spec['load_sections']]
     return k, h, an, r_, [
         ('shin, under the knee horn', ['L shin'], (k[0], 0, k[2] - 0.0115), Z),
         ('shin, at the cap', ['L shin'], (k[0], 0, k[2] - 0.019), Z),
