@@ -17,6 +17,8 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 | Big | The shin is a 5 mm 6061 tube with one welded seam. Accept a weld there? |
 | Big | The hip roll yoke and its standoff ring are one machined billet part, as there's no room for screws. Acceptable to machine? |
 | Big | 14 of the 22 actuator harnesses don't reach the boards on the deck: even the shortest route past the hips needs about 420 mm against 350. A CAN hub and power block in each leg, or extension cables? See [CABLES.md](big/CABLES.md) |
+| Big | The knee's two RS04s each drive their own crank and rod into one lever: two linkages constrain the joint twice, and unequal rods preload each other. Keep it with adjustable rods, put both RS04s on one crank shaft with one rod, or rebuild the hip roll and pitch as a differential? See [PAIRED_ACTUATORS.md](big/PAIRED_ACTUATORS.md) |
+| Big | Paired actuators' control: one joint controller, torque split between the pair, a small anti-backlash bias, a joint calibration and fault check at start. Designed in [PAIRED_ACTUATORS.md](big/PAIRED_ACTUATORS.md), not written or tested. Read Robertz et al. (ICRA 2010) in full before citing its figures |
 | Big | Delete the old `big assembly` document in the Fusion hub, now that `big assembly real` replaces it? |
 | All Feetech | Bench-test one STS3215 at a full 8.4 V before fitting? Sellers disagree on whether the 7.4 V servo takes it |
 | All Feetech | A fuse at the XT30? To decide once walking current is measured |

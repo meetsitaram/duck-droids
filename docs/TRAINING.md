@@ -156,6 +156,8 @@ Run `scripts/milli_audit.py` in the trainer to print every setting the task has 
 
 ## A robot far bigger than its recipe
 
+Its set-up, training and evaluation, step by step: [big/REPRODUCE.md](big/REPRODUCE.md#5-train-the-walk).
+
 The big duck (`Mjlab-Velocity-Flat-Milli-Big`) showed what scaling this recipe does and doesn't do. `scale_for_big` in the velocity task handles any robot over 3 times microduck's height:
 
 - **Units.** Speeds by the square root of size. The angular momentum penalty by (mass x height^1.5)^2: at 113 kg it was millions of times too strong. Foot slip, clearance and swing penalties by height. Self-collision's force threshold by mass.
