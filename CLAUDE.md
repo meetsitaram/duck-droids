@@ -12,7 +12,7 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
 - **Source of truth:** `spec/robot.py` (anchors in "proportions" set every height from the servo cases and their
   clearances) -> `python -I spec/robot.py` -> `spec/robot.json`. Never hand-edit robot.json or the Fusion document.
 - **Chain:** `MILLI_RECIPE=<r> bash tools/pipeline.sh gates|fusion|final|reveal|step|video`. `fusion` builds linked documents, and only what changed; `final` makes the one-document build for the repo's .f3d, and `step` its STEP from the saved document. `gates` overwrites prints/ with the spec's shapes: don't commit those.
-- **Every change:** `python -I spec/robot.py`, `python -I tools/checks.py` (0 failing), `python tools/compare.py`
+- **Every change:** `python -I spec/robot.py`, `python -I tools/checks.py` (0 failing), `python -I tools/family_compare.py` (a new duck's head against the family's: 0 failing), `python tools/compare.py`
   (microduck beside milli at one scale), look at the pictures. If a part or screw changed: `python -I tools/assembly.py`
   (the build order: 0 failing), `python -I tools/buildable.py` (walls, one piece, load: a beam estimate), `python tools/render_assembly.py`,
   `python -I tools/make_docs.py` (BOM.md, docs/ASSEMBLY.md), `python -I tools/export_prints.py` (prints/). Fit is not strength: say which was checked. Masses from materials (`python -I tools/mass_model.py`).
