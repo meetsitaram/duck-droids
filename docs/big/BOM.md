@@ -1,5 +1,7 @@
 # Big duck: bill of materials
 
+> **This is the parts list for the big duck only.** Each duck has its own parts, prints and BOM, and they don't mix. Other ducks: [all-Dynamixel](../dynamixel/BOM.md) · [HD-1910](../hd1910/BOM.md) · [all-Feetech](../feetech/BOM.md) · [hybrid](../hybrid/BOM.md) · [hobby-servo](../hobby/BOM.md). <!-- variant banner -->
+
 **NOT SAFE TO BUILD.** This is a design study. It would stand 1.8 m and weigh about 100 kg, with no stress analysis, metal frames nobody has checked, no real actuator measured, and no brakes: its joints let go when the power does. A failure could seriously hurt someone. Don't order parts for it, or build any of it, until everything under [Open before ordering](#open-before-ordering) is closed, by someone able to sign off a machine of this size.
 
 | | |

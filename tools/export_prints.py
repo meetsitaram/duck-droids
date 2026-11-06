@@ -237,11 +237,13 @@ def main():
             L.append(f"| {part} | {name} | {e[0]:.0f} x {e[1]:.0f} x {e[2]:.0f} | {v:.1f} | {mat} | {orient[part]['overhang']:.0f}{' (none)' if orient[part]['overhang'] < 1 else ''} |")
         L += ['', 'The head frame prints in orange, in one filament: only its rim shows below the hood. The hood is modelled in two colours, a white top and an orange 5 mm band at its rim: one STL, so print it white and paint the band, or split the colour in a multi-material slicer.',
               'A part with an overhang figure needs support or a bridge there; tools/printable.py counts faces, not a slicer, so it overstates short bridges. Check each in your slicer.', '']
-        servo_, bear_, screws_ = ('XL330-M288', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('MG996R, its 25T aluminium disc horn and its 4 M3 horn screws', '6704ZZ', '4 M3 x 16 and 2 M3 x 10 self-tapping through its ears') if G.RECIPE == 'hobby' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
+        servo_, bear_, screws_ = ('XL330-M288', '6703ZZ', 'its M2 screws') if G.RECIPE == 'dynamixel' else ('MG996R, its 25T aluminium disc horn and its 4 M3 horn screws', '6704ZZ', '4 M3 x 16 and 2 M3 x 10 self-tapping through its ears') if G.RECIPE == 'hobby' else ('HD-1910-C001', 'MR2216ZZ', 'its M2 screws') if G.RECIPE == 'hd1910' else ('STS3215-C044', '6704ZZ', '6 M2 x 6, 2 M2 x 8 and 4 M3 x 10')
         L += ['', '## Print one joint first', '', f'Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 {servo_}, 1 {bear_},',
               f'{screws_}. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
               'how much the shin flexes with about 1.3 kg hung from it, off-centre as a foot would load it. Note what fits, and change the spec, not the STL.']
         open(os.path.join(out, 'README.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+        import variant_banner
+        variant_banner.stamp(os.path.join(out, 'README.md'), G.RECIPE, 'prints')
 
 
 if __name__ == '__main__':

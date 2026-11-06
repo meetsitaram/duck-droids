@@ -94,6 +94,6 @@ A design, not yet built. Nothing here has been printed or tested on real parts. 
 - **Bearings, as microduck's:** a thin bearing round each horn, on the joint's axis, in place of a fork round the servo.
 - **Foot switches:** a microswitch in each shoe, as an input to a walking policy, as Open Duck Mini's.
 - **The Fusion model:** built from the spec, one body per printed part with its holes and pockets, 15 joints, each part checked point by point against its STL: [cad/duck-droids-hybrid.f3d](../cad/duck-droids-hybrid.f3d), [.step](../cad/duck-droids-hybrid.step), [picture](images/fusion/fusion_34.png). The build video above is from before this round.
-- **Printable parts:** STLs with their screw holes and pockets in [prints/](../prints/README.md), left and right, turned the way they should print. Strength so far is a hand estimate: print one joint first.
+- **Printable parts:** STLs with their screw holes and pockets in [prints/](../prints/hybrid/README.md), left and right, turned the way they should print. Strength so far is a hand estimate: print one joint first.
 - **Head limits:** head roll over 0.1 rad only while head yaw is under 0.5 rad, or the head meets the yaw servo. The head pitch XL330 can pass through, but not hold, the head forward and down.
 - **Open:** a power switch, speaker and microphone, and retraining: the servo cases are 3 mm thinner than the walks were trained on, the model 90 g heavier, with wider thighs.

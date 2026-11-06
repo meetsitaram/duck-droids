@@ -1,6 +1,6 @@
 """Measure each servo's centre tick on the real robot, with its torque off, posed by hand at the model's zero pose: legs straight, head level, beak shut.
 
-  python -m duck.calibrate --port /dev/ttyACM0
+  python -m duck.calibrate --port /dev/serial0
 
 Saves the centres into the config. Directions aren't measured here: run `python run.py --policy wave --no-fall` next, on a stand, and fix a joint's `direction` if it moves the wrong way.
 """
@@ -14,7 +14,7 @@ from .hardware import load_config
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--port', default='/dev/ttyACM0')
+ap.add_argument('--port', default='/dev/serial0')
 ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
 a = ap.parse_args()
 cfg = load_config(a.config)
