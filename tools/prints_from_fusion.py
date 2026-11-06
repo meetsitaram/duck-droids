@@ -19,7 +19,7 @@ import geom as G  # noqa: E402
 def main():
     P = json.load(open(G.parts_path('parts'), encoding='utf-8'))['parts']
     out = G.out_path('prints')
-    raw = os.path.join(os.environ['TEMP'], 'duck_fusion_stl', G.RECIPE)      # (hybrid's prints are at the top level: its folder's name was 'prints', where nothing is written)
+    raw = os.path.join(os.environ['TEMP'], 'duck_fusion_stl', G.RECIPE)      # (the hybrid's prints are in prints/hybrid/ like every duck's)
     done, refused = 0, []
     for part, p in P.items():
         f = os.path.join(raw, part.replace(' ', '_') + '.stl')

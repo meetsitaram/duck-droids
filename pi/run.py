@@ -16,7 +16,7 @@ sys.path.insert(0, HERE)
 from duck import controller, hardware, policy  # noqa: E402
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--port', default='/dev/ttyACM0', help='the servo bus, or socket://host:port for the simulator')
+ap.add_argument('--port', default='/dev/serial0', help='the servo bus, or socket://host:port for the simulator')
 ap.add_argument('--imu', default='bno085', help='bno085, or host:port for the simulator')
 ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
 ap.add_argument('--policy', default='hold')

@@ -2713,6 +2713,12 @@
  },
  {
   "group": "PATH",
+  "item": "torso: power switch",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "headbench: head yaw servo",
   "status": "PASS",
   "detail": ""
@@ -4273,7 +4279,7 @@
  },
  {
   "group": "APART",
-  "item": "bus board cable plugs usb",
+  "item": "bus board cable plugs uart",
   "status": "PASS",
   "detail": ""
  },
@@ -6350,6 +6356,12 @@
  {
   "group": "ALL",
   "item": "part battery",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part power switch",
   "status": "PASS",
   "detail": ""
  },

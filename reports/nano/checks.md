@@ -1,6 +1,6 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-06 06:00, 29 s
+spec: `spec/robot.json`, 2026-11-06 11:23, 23 s
 
 176 checks: 171 pass, 5 warn, **0 fail**
 
@@ -37,12 +37,12 @@ spec: `spec/robot.json`, 2026-11-06 06:00, 29 s
 |---|---|---|
 | PASS | L_ankle_pitch | SG90 0.0 mm off the axis |
 | PASS | R_ankle_pitch | SG90 0.0 mm off the axis |
-| PASS | L_knee | MG90S 0.0 mm off the axis |
-| PASS | R_knee | MG90S 0.0 mm off the axis |
+| PASS | L_knee | MG90S_5V 0.0 mm off the axis |
+| PASS | R_knee | MG90S_5V 0.0 mm off the axis |
 | PASS | L_hip_pitch | SG90 0.0 mm off the axis |
 | PASS | R_hip_pitch | SG90 0.0 mm off the axis |
-| PASS | L_hip_roll | MG90S 0.0 mm off the axis |
-| PASS | R_hip_roll | MG90S 0.0 mm off the axis |
+| PASS | L_hip_roll | MG90S_5V 0.0 mm off the axis |
+| PASS | R_hip_roll | MG90S_5V 0.0 mm off the axis |
 | PASS | L_hip_yaw | SG90 0.0 mm off the axis |
 | PASS | R_hip_yaw | SG90 0.0 mm off the axis |
 | PASS | neck_pitch | SG90 0.0 mm off the axis |
@@ -226,11 +226,11 @@ spec: `spec/robot.json`, 2026-11-06 06:00, 29 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | L_knee | 0.08 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S): 71 % used |
-| PASS | R_knee | 0.06 N m in 'crouch' vs rated 0.09 N m (1 x MG90S): 65 % used |
+| PASS | L_knee | 0.08 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S_5V): 71 % used |
+| PASS | R_knee | 0.06 N m in 'crouch' vs rated 0.09 N m (1 x MG90S_5V): 65 % used |
 | PASS | L_ankle_pitch | 0.05 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.16 N m (1 x SG90): 50 % used |
-| PASS | L_hip_roll | 0.05 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S): 45 % used |
-| PASS | R_hip_roll | 0.03 N m in 'crouch' vs rated 0.09 N m (1 x MG90S): 39 % used |
+| PASS | L_hip_roll | 0.05 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.18 N m (1 x MG90S_5V): 45 % used |
+| PASS | R_hip_roll | 0.03 N m in 'crouch' vs rated 0.09 N m (1 x MG90S_5V): 39 % used |
 | PASS | L_hip_pitch | 0.04 N m x 1.5 in 'floor pick' vs peak 0.16 N m (1 x SG90): 34 % used |
 | PASS | R_hip_pitch | 0.04 N m x 1.5 in 'floor pick' vs peak 0.16 N m (1 x SG90): 34 % used |
 | PASS | R_ankle_pitch | 0.03 N m in 'stand (microduck stance)' vs rated 0.08 N m (1 x SG90): 33 % used |
