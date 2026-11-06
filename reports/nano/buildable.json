@@ -1,0 +1,566 @@
+[
+ {
+  "group": "LOAD",
+  "item": "shin spine",
+  "status": "PASS",
+  "detail": "2.8 MPa (allowed 15): 10 N, section 130 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "shin, the knee bar",
+  "status": "PASS",
+  "detail": "0.1 MPa (allowed 15): 10 N, section 423 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "foot, the hub arm",
+  "status": "PASS",
+  "detail": "11.0 MPa (allowed 15): 10 N, section 67 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "thigh web",
+  "status": "PASS",
+  "detail": "1.2 MPa (allowed 15): 10 N, section 175 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "roll bracket, the hip bar",
+  "status": "PASS",
+  "detail": "6.7 MPa (allowed 15): 10 N, section 32 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "roll bracket, the post",
+  "status": "PASS",
+  "detail": "5.7 MPa (allowed 15): 10 N, section 106 mm2"
+ },
+ {
+  "group": "LOAD",
+  "item": "yaw link, the bar",
+  "status": "PASS",
+  "detail": "11.3 MPa (allowed 15): 10 N, section 48 mm2"
+ },
+ {
+  "group": "ONE",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L ankle pitch ear clamp",
+  "status": "PASS",
+  "detail": "15 x 3 x 34 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L shin",
+  "status": "PASS",
+  "detail": "20 x 39 x 55 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L foot",
+  "status": "PASS",
+  "detail": "55 x 36 x 23 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L ankle pitch rear arm",
+  "status": "PASS",
+  "detail": "26 x 4 x 24 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L ankle pitch bushing",
+  "status": "PASS",
+  "detail": "11 x 6 x 11 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L knee ear clamp",
+  "status": "PASS",
+  "detail": "15 x 3 x 34 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L thigh",
+  "status": "PASS",
+  "detail": "50 x 24 x 35 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L knee rear arm",
+  "status": "PASS",
+  "detail": "15 x 4 x 24 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L knee bushing",
+  "status": "PASS",
+  "detail": "11 x 6 x 11 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip pitch ear clamp",
+  "status": "PASS",
+  "detail": "34 x 3 x 15 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L roll bracket",
+  "status": "PASS",
+  "detail": "36 x 36 x 38 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip pitch rear arm",
+  "status": "PASS",
+  "detail": "24 x 4 x 12 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip pitch bushing",
+  "status": "PASS",
+  "detail": "11 x 6 x 11 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip roll ear clamp",
+  "status": "PASS",
+  "detail": "3 x 34 x 15 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L yaw link",
+  "status": "PASS",
+  "detail": "32 x 34 x 50 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip roll rear arm",
+  "status": "PASS",
+  "detail": "4 x 12 x 22 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip roll bushing",
+  "status": "PASS",
+  "detail": "6 x 11 x 11 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip yaw ear clamp",
+  "status": "PASS",
+  "detail": "34 x 15 x 3 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "chassis",
+  "status": "PASS",
+  "detail": "116 x 56 x 37 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip yaw rear arm",
+  "status": "PASS",
+  "detail": "26 x 12 x 4 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L hip yaw bushing",
+  "status": "PASS",
+  "detail": "11 x 11 x 6 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "L sole",
+  "status": "PASS",
+  "detail": "55 x 36 x 3 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "neck pitch ear clamp",
+  "status": "PASS",
+  "detail": "15 x 3 x 34 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "neck plate",
+  "status": "PASS",
+  "detail": "16 x 6 x 48 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head pitch ear clamp",
+  "status": "PASS",
+  "detail": "34 x 3 x 15 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head frame",
+  "status": "PASS",
+  "detail": "50 x 59 x 28 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "beak ear clamp",
+  "status": "PASS",
+  "detail": "34 x 3 x 15 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "jaw",
+  "status": "PASS",
+  "detail": "46 x 35 x 15 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "upper bill",
+  "status": "PASS",
+  "detail": "27 x 45 x 12 mm"
+ }
+]
