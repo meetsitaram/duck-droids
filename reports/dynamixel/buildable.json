@@ -3,31 +3,31 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "8.5 MPa (allowed 15): 28 N, section 126 mm2"
+  "detail": "8.6 MPa (allowed 15): 28 N, section 126 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "4.2 MPa (allowed 15): 28 N, section 185 mm2"
+  "detail": "4.3 MPa (allowed 15): 28 N, section 185 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 28 N, section 484 mm2"
+  "detail": "0.4 MPa (allowed 15): 28 N, section 485 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "8.3 MPa (allowed 15): 28 N, section 76 mm2"
+  "detail": "8.4 MPa (allowed 15): 28 N, section 76 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "6.7 MPa (allowed 15): 28 N, section 50 mm2"
+  "detail": "6.8 MPa (allowed 15): 28 N, section 50 mm2"
  },
  {
   "group": "LOAD",
@@ -87,7 +87,7 @@
   "group": "FIT",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "4 x 26 x 38 mm"
+  "detail": "4 x 27 x 39 mm"
  },
  {
   "group": "ONE",
@@ -159,7 +159,7 @@
   "group": "FIT",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "27 x 4 x 38 mm"
+  "detail": "27 x 4 x 39 mm"
  },
  {
   "group": "ONE",
@@ -339,7 +339,7 @@
   "group": "FIT",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "30 x 41 x 30 mm"
+  "detail": "30 x 42 x 30 mm"
  },
  {
   "group": "ONE",
@@ -375,7 +375,7 @@
   "group": "FIT",
   "item": "head roll spacer",
   "status": "PASS",
-  "detail": "3 x 17 x 17 mm"
+  "detail": "3 x 18 x 18 mm"
  },
  {
   "group": "ONE",
@@ -393,7 +393,7 @@
   "group": "FIT",
   "item": "head roll rear spacer",
   "status": "PASS",
-  "detail": "3 x 17 x 17 mm"
+  "detail": "3 x 18 x 18 mm"
  },
  {
   "group": "ONE",

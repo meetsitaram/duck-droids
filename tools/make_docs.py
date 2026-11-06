@@ -77,7 +77,7 @@ WIRES_NOTE = {
     'column': 'A lead between the two neck servos, and one down toward the body, with slack for the neck\'s range.',
     'headbench': 'A lead between the yaw and roll servos, with slack for the yaw\'s range of +/- 2.5 rad: it winds round.',
     'framebench': 'The beak servo is the end of the head\'s chain: one lead, plugged in before it goes in.',
-    'head': 'The bus board\'s 2 sockets feed the head chain and the legs. Plug in its leads, and the right-angle USB-C lead to the Pi, before the board goes on.',
+    'head': 'The bus board\'s 2 sockets feed the head chain and the legs. Plug in its leads, and solder the 3 UART wires to its header, before the board goes on. Solder the Pi\'s 5 wires before it goes on its plate.',
 }
 
 
@@ -341,7 +341,7 @@ def bom_dynamixel(spec):
             ('m077', 'Jaw servo, softer alternate', 'ROBOTIS XL330-M077-T', '0.215 N m stall and 383 rev/min at 5 V, 77.5:1, 18 g, model number 1190. Same pocket, horn and screws. Replaces 1 of the M288s', 1, 'each', 1, None, 'ROBOTIS', 'Optional'),
         ]),
         ('Bearings and idlers', [
-            ('mr2216', 'Ball bearing, around each horn', 'uxcell 6703ZZ', '17 x 23 x 4 mm, chrome steel, double shielded. Replaces the 16 x 22 x 4 mm MR2216ZZ, out of stock until the end of the month: the print files are still drawn for the MR2216ZZ, so wait for the seats to be redrawn before printing', bear['MR2216ZZ'], 'pack of 5', 3, 6.29, amz('B082PSB4DZ'), 'Required'),
+            ('mr2216', 'Ball bearing, around each horn', 'uxcell 6703ZZ', '17 x 23 x 4 mm, chrome steel, double shielded. Replaces the 16 x 22 x 4 mm MR2216ZZ, out of stock until the end of the month. Its bore is 1 mm over the horn, so its inner race sits on the printed boss alone: check the fit on the first joint', bear['6703ZZ'], 'pack of 5', 3, 6.29, amz('B082PSB4DZ'), 'Required'),
             ('b6700', 'Ball bearing, shoe inner ear', '6700ZZ', '10 x 15 x 4 mm', bear['6700ZZ'], 'pack of 10', 1, 6.79, amz('B0FQ4VYXRP'), 'Required'),
             ('idler', 'Idler: neck, head pitch, head roll, both ankles', 'ROBOTIS FPX330-H101', 'set of 4', 5, 'set of 4', 2, 11.27, link('ROBOTIS US', 'https://robotis.us/fpx330-h101-4pcs-set/'), 'Required'),
         ]),
@@ -370,8 +370,9 @@ def bom_dynamixel(spec):
             ('wire', 'Power wire, red and black', 'BNTECHGO silicone wire', '20 AWG', 1, '10 ft each', 1, None, amz('B01M12PSJM'), 'Required'),
             ('thin', 'Signal wire: IMU', 'Fermerry silicone wire', '28 AWG stranded, 4 wires, about 1 m in all', 1, '6 colours, 5 ft each', 1, None, amz('B089CR4SDM'), 'Required'),
             ('long', 'Servo cable: socket 2 to right leg, neck servo to left leg', 'made up: JST ASEHSEH22K305 leads in JST EHR-3 housings', 'JST EH 3-pin both ends, 305 mm: 3 leads, pre-crimped with SEH contacts at both ends, and 2 housings for each cable. No crimping, just push the contacts in, matching pin 1 to pin 1. ROBOTIS only sells X3P cables 180 mm long', 2, 'set of 3 leads and 2 housings', 2, None, link('Digi-Key ASEHSEH22K305', 'https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASEHSEH22K305/6009480') + ' (about $0.70 a lead; price not confirmed) and ' + link('Digi-Key EHR-3', 'https://www.digikey.com/en/products/detail/jst-sales-america-inc/EHR-3/527225') + ' (stock varies by region; Adam Tech 25CH-C-03 is its listed substitute)', 'Required'),
-            ('usb', 'Regulator to Pi power', 'from the 20 AWG wire above', "soldered from the regulator's 5 V output to the Pi's 5 V and GND pins (2 and 6), about 10 cm. Replaces the right-angle USB ribbon, hard to find: the wiring drawings still show the ribbon", 1, 'in the wire above', 1, None, 'in the wire above', 'Required'),
-            ('otg', 'Pi to bus board, UART', 'female-female jumper wires', "3 wires, 10 cm: the Pi's GPIO 14, GPIO 15 and GND to the board's TX, RX and GND header, its jumper set to UART. Replaces the right-angle USB OTG cable: the wiring drawings still show the cable", 1, 'pack', 1, None, 'any electronics shop', 'Required'),
+            ('usb', 'Regulator to Pi power', 'from the 20 AWG wire above', "soldered from the regulator's 5 V output to the Pi's 5 V and GND pins (2 and 6), about 10 cm. Replaces the right-angle USB ribbon, hard to find. Solder it to the 5 V and ground pins of the converter's USB socket", 1, 'in the wire above', 1, None, 'in the wire above', 'Required'),
+            ('otg', 'Pi to bus board, UART', 'female-female jumper wires', "3 wires, 10 cm, soldered: the Pi's GPIO 14 (pin 8) to the board's RX, GPIO 15 (pin 10) to its TX, pin 14 to its GND, both jumpers at A. Replaces the right-angle USB OTG cable, hard to find", 1, 'pack', 1, None, 'any electronics shop', 'Required'),
+            ('switch', 'Power switch', 'Pololu Big MOSFET Slide Switch with Reverse Voltage Protection, HP', "item 2815, 25.4 x 20.3 x 4 mm, 2.7 g, about 6 A continuous with the board near 55 C. On foam tape inside the body's back wall, its slider out through the slot: the battery's red lead to VIN, VOUT up the neck, GND tapped off the black lead. The XT30 stays plugged. Check how warm it runs at walking current", 1, 'each', 1, None, link('Pololu', 'https://www.pololu.com/product/2815'), 'Required'),
         ]),
         ('Consumables', [
             ('fix', 'Foam tape, hook-and-loop strap, small cable ties', 'generic', '', 1, 'lot', 1, 12.00, 'any hardware shop; price estimated', 'Required'),
@@ -387,12 +388,12 @@ def bom_dynamixel(spec):
             k += 1
             num[r[0]] = k
 
-    SEARCH = {'servo': 'Dynamixel XL330-M288-T', 'm077': 'Dynamixel XL330-M077-T', 'mr2216': 'MR2216ZZ bearing 16x22x4mm', 'b6700': '6700ZZ bearing 10x15x4mm', 'idler': 'Dynamixel FPX330-H101 idler',
+    SEARCH = {'servo': 'Dynamixel XL330-M288-T', 'm077': 'Dynamixel XL330-M077-T', 'mr2216': '6703ZZ bearing 17x23x4mm', 'b6700': '6700ZZ bearing 10x15x4mm', 'idler': 'Dynamixel FPX330-H101 idler',
               'm2x6': 'M2 x 6mm self tapping pan head screw', 'm2x8': 'M2 x 8mm self tapping pan head screw', 'm2f': 'M2 x 5mm flat head phillips machine screw', 'm25': 'M2.5 x 5mm pan head machine screw black oxide',
               'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'M2 self tapping pan head screw kit',
               'pi': 'Raspberry Pi Zero 2 W', 'sd': 'SanDisk 32GB Ultra microSDHC A1', 'board': 'Waveshare Serial Bus Servo Driver Board', 'reg': 'hiBCTR USB buck converter QC3.0', 'imu': 'BNO085 IMU module',
               'cam': 'Arducam 8MP IMX219 camera module', 'ribbon': 'Raspberry Pi Zero camera cable 22 pin to 15 pin 15cm', 'batt': 'OVONIC 2S 450mAh 100C XT30', 'xt30': 'XT30 pigtail 16 AWG 100mm', 'wire': '20 AWG silicone wire red black',
-              'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': '20 AWG silicone wire red black', 'otg': 'female female dupont jumper wires 10cm',
+              'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': '20 AWG silicone wire red black', 'otg': 'female female dupont jumper wires 10cm', 'switch': 'Pololu big MOSFET slide switch HP 2815',
               'fix': 'foam tape hook and loop strap cable ties', 'joint': 'solder heat shrink CA glue', 'chg': '2S LiPo balance charger JST-XH'}
 
     def search(key):
@@ -462,7 +463,8 @@ def bom_dynamixel(spec):
          '## Build notes that affect ordering', '',
          f"- **Items {num['servo']}, {num['batt']}:** the servos run directly from 2S, 7.4-8.4 V, above ROBOTIS's 6 V maximum. Expect a shorter life than ROBOTIS rates. The walking policies were trained at this voltage.",
          f"- **Item {num['m077']}:** with it, order {n - 1} of item {num['servo']}. It moves nearly 4 times faster, so limit its speed in software. Its gearing is lower, so check that the jaw holds when unpowered. The simulations use the M288.",
-         f"- **Item {num['board']}:** set both jumpers to B. Its silkscreen says DC 9-12.6 V and the battery is 7.4-8.4 V: bench test before ordering in quantity.",
+         f"- **Item {num['board']}:** set both jumpers to A, for UART. Its silkscreen says DC 9-12.6 V and the battery is 7.4-8.4 V: bench test before ordering in quantity. Before wiring it to the Pi, measure its TX pin against GND with the board powered: the Pi's pins take 3.3 V, not 5 V.",
+         f"- **Item {num['otg']}:** the Pi's full UART must drive GPIO 14 and 15: `dtoverlay=disable-bt` in config.txt and the serial console off (`pi/setup_pi.sh` does both). If no servo answers, swap TX and RX: Waveshare's wiki couldn't be read to confirm which way its header is labelled.",
          f"- **Item {num['imu']}:** its listing names both BNO080 and BNO085: confirm which chip arrives, its size, and that it starts in I2C mode. The model and fit come from Adafruit's board.",
          f"- **Item {num['reg']}:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.",
          f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",

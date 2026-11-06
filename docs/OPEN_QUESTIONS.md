@@ -26,7 +26,7 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 
 ## Design changes to make (2026-11-06)
 
-The all-Dynamixel BOM already lists these parts. The spec, print files, wiring drawings and Fusion model still show the old ones. Make the changes on a branch, then run the checks in CLAUDE.md.
+The all-Dynamixel BOM already lists these parts. **All-Dynamixel: done on branch `dynamixel-6703-uart`** (spec, print files, BOM, assembly, wiring drawing and WIRING.md, Pi setup), with the checks in CLAUDE.md at 0 failing. Still to do there: rebuild it in Fusion and run `tools/prints_from_fusion.py`, as the 21 print files it changed are the offline shapes, without Fusion's rounding (19 for the bearings; the body shell for the power switch's slot; the hood for the PC cable's hole); and redraw `parts_layout.png` from those bodies. The hd1910 and the hybrid's head still use the MR2216ZZ.
 
 - **Horn bearings: MR2216ZZ (16 x 22 x 4 mm) to 6703ZZ (17 x 23 x 4 mm).** Amazon had no 16 x 22 x 4 mm bearings until the end of the month. The uxcell 6703ZZ (B082PSB4DZ, 5 for $6.29) is in stock. In `spec/robot.py`, `BEARINGS['XL330']` becomes `d=0.017, D=0.023`, and the mass is about 6.4 g, from uxcell's 32 g for 5.
   - The 17 mm bore is 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, not half on the horn as before. Check that the boss holds it, and test the fit on the first printed joint.
