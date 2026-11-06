@@ -145,6 +145,11 @@ case $1 in
     ;;
   reveal)
     gates
+    if [ "$RECIPE" = big ]; then      # offline, in MuJoCo from the spec's shapes: no Fusion turn (tools/render_big_video.py)
+      take render 10 "$RECIPE reveal, offline"
+      "$PY" tools/render_big_video.py reveal 2>&1 | tail -3 | cut -c1-150
+      give
+    else
     take fusion 40 "$RECIPE build and reveal frames"
     build
     for a in 0 150 300 450 600 750; do
@@ -155,6 +160,7 @@ case $1 in
     done
     "$PY" -I tools/reveal_video.py 2>&1 | tail -1 | cut -c1-140      # the frames' folder is shared: join them before giving Fusion up
     give
+    fi
     FF=$("$PY" -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())")
     "$FF" -y -loglevel error -i "$D/reveal_30s.mp4" -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p -movflags +faststart "$WORK/reveal.mp4" && cp "$WORK/reveal.mp4" "$D/reveal_30s.mp4"
     "$FF" -y -loglevel error -i "$D/reveal_30s.mp4" -vf "fps=12,scale=360:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=4" "$D/reveal.gif"
@@ -169,6 +175,12 @@ case $1 in
     [ "$n" -gt 0 ] || { echo "STOPPED: the STEP has no solids"; exit 1; }
     ;;
   video)
+    if [ "$RECIPE" = big ]; then      # big_assembly's order, offline in MuJoCo; no printed parts, so no Fusion bodies, floaters or parts layout
+      gate assembly "$PY" -I tools/big_assembly.py
+      take render 45 "$RECIPE 5-minute build and clips"
+      "$PY" tools/render_big_video.py build 2>&1 | tail -6 | cut -c1-200
+      "$PY" tools/cut_clips.py 2>&1 | tail -3 | cut -c1-110
+    else
     # the film uses Fusion's rounded bodies, and without them falls back on the spec's sharp shapes without a word
     [ -d "${TEMP:-/tmp}/duck_fusion_stl/$RECIPE" ] || { echo "no Fusion bodies for $RECIPE: run pipeline.sh fusion first"; exit 1; }
     take render 10 "$RECIPE 5-minute build and clips"
@@ -176,6 +188,7 @@ case $1 in
     "$PY" tools/render_pov_video.py 2>&1 | grep -v "^dry" | tail -3 | cut -c1-150
     "$PY" tools/cut_clips.py 2>&1 | tail -3 | cut -c1-110
     gate parts_layout "$PY" tools/render_parts_layout.py
+    fi
     FF=$("$PY" -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())")
     "$FF" -y -loglevel error -i "$D/build_5min.mp4" -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart "$WORK/build.mp4" && cp "$WORK/build.mp4" "$D/build_5min.mp4"
     "$PY" -I tools/make_docs.py | tail -1 | cut -c1-70
