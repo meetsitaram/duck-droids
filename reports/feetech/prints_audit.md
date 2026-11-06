@@ -110,7 +110,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L hip pitch lid | 3.0 cm3, designed 3.0: 0 % off |
 | PASS | L knee lid | 2.9 cm3, designed 2.9: 0 % off |
 | PASS | L thigh cover | 24.4 cm3, designed 25.7: 5 % off |
-| PASS | L shin | 12.8 cm3, designed 12.8: 0 % off |
+| PASS | L shin | 12.7 cm3, designed 12.8: 1 % off |
 | PASS | L shoe | 15.8 cm3, designed 15.7: 0 % off |
 | PASS | L sole | 41.5 cm3, designed 40.8: 2 % off |
 | PASS | L inner ear | 2.5 cm3, designed 2.5: 0 % off |
@@ -199,13 +199,13 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | L hip yaw lid | 4 % of its surface is under 0.8 mm thick |
 | PASS | L yaw bracket | 0 % of its surface is under 0.8 mm thick |
 | PASS | L hip roll lid | 9 % of its surface is under 0.8 mm thick |
-| PASS | L roll bracket | 2 % of its surface is under 0.8 mm thick |
+| PASS | L roll bracket | 1 % of its surface is under 0.8 mm thick |
 | PASS | L thigh frame | 0 % of its surface is under 0.8 mm thick |
 | PASS | L hip pitch lid | 4 % of its surface is under 0.8 mm thick |
 | PASS | L knee lid | 5 % of its surface is under 0.8 mm thick |
 | PASS | L thigh cover | 1 % of its surface is under 0.8 mm thick |
-| PASS | L shin | 1 % of its surface is under 0.8 mm thick |
-| PASS | L shoe | 10 % of its surface is under 0.8 mm thick |
+| PASS | L shin | 0 % of its surface is under 0.8 mm thick |
+| PASS | L shoe | 9 % of its surface is under 0.8 mm thick |
 | PASS | L sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | L inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip yaw lid | 4 % of its surface is under 0.8 mm thick |
@@ -217,7 +217,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R knee lid | 5 % of its surface is under 0.8 mm thick |
 | PASS | R thigh cover | 2 % of its surface is under 0.8 mm thick |
 | PASS | R shin | 0 % of its surface is under 0.8 mm thick |
-| PASS | R shoe | 8 % of its surface is under 0.8 mm thick |
+| PASS | R shoe | 7 % of its surface is under 0.8 mm thick |
 | PASS | R sole | 4 % of its surface is under 0.8 mm thick |
 | PASS | R inner ear | 0 % of its surface is under 0.8 mm thick |
 | PASS | chassis | 0 % of its surface is under 0.8 mm thick |

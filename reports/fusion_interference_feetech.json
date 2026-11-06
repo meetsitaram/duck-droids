@@ -115,24 +115,24 @@
 11.18
 ],
 [
-"R shin",
-"R knee horn bearing inner race",
-11.18
-],
-[
 "R roll bracket",
 "R hip pitch horn bearing inner race",
 11.14
 ],
 [
-"L roll bracket",
-"L hip roll horn bearing inner race",
+"R shin",
+"R knee horn bearing inner race",
 11.13
 ],
 [
 "L yaw bracket",
 "L hip yaw horn bearing inner race",
 11.12
+],
+[
+"L roll bracket",
+"L hip roll horn bearing inner race",
+11.11
 ],
 [
 "R shoe",
@@ -400,6 +400,11 @@
 2.16
 ],
 [
+"L shin",
+"L ankle bearing inner race",
+1.6
+],
+[
 "bus board top screw 0",
 "Waveshare bus board mounting rings",
 0.8
@@ -418,6 +423,11 @@
 "bus board top screw 3",
 "Waveshare bus board mounting rings",
 0.8
+],
+[
+"neck column",
+"neck lid",
+0.61
 ],
 [
 "Pi screw 0",
@@ -445,14 +455,9 @@
 0.37
 ],
 [
-"neck column",
-"neck lid",
-0.35
-],
-[
 "R shoe",
 "R ankle pitch STS3215 horn",
-0.34
+0.36
 ],
 [
 "chassis",
@@ -475,13 +480,13 @@
 0.31
 ],
 [
-"neck column",
-"head pitch lid",
-0.17
-],
-[
 "L thigh frame",
 "L hip pitch lid",
+0.16
+],
+[
+"neck column",
+"head pitch lid",
 0.16
 ],
 [
