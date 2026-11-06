@@ -55,11 +55,11 @@ The family ([MP4, 17 s, sharper](docs/images/family/duck_family.mp4)), in simula
 
 [BOM](docs/hybrid/BOM.md) · [STLs](prints/hybrid/README.md) · [assembly](docs/hybrid/ASSEMBLY.md) · [wiring](docs/hybrid/WIRING.md) · [Fusion](cad/duck-droids-hybrid.f3d) · [30-second reveal](docs/images/assembly/hybrid/reveal_30s.mp4)
 
-### Hobby-servo duck (in review: [meetsitaram/duck-droids#3](https://github.com/meetsitaram/duck-droids/pull/3))
+### Hobby-servo duck
 
 37.3 cm, 1.94 kg, 15 one-way PWM servos (9 MG996R, 3 DS3218, 3 MG90S) on a PCA9685 board, all the electronics in the body. Hobby servos don't report their angles, so it would walk on its IMU alone. Spec, checks and docs only; no Fusion model yet.
 
-[BOM](https://github.com/meetsitaram/duck-droids/blob/hobby-recipe/docs/hobby/BOM.md) · [STLs](https://github.com/meetsitaram/duck-droids/blob/hobby-recipe/prints/hobby/README.md) · [assembly](https://github.com/meetsitaram/duck-droids/blob/hobby-recipe/docs/hobby/ASSEMBLY.md) · [wiring](https://github.com/meetsitaram/duck-droids/blob/hobby-recipe/docs/hobby/WIRING.md), on its branch until the PR merges
+[BOM](docs/hobby/BOM.md) · [STLs](prints/hobby/README.md) · [assembly](docs/hobby/ASSEMBLY.md) · [wiring](docs/hobby/WIRING.md)
 
 ### Nano duck (in review: [meetsitaram/duck-droids#4](https://github.com/meetsitaram/duck-droids/pull/4))
 

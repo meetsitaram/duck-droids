@@ -48,6 +48,18 @@ Results so far, in simulation only, from 64 robots with the training's randomiza
 - **The head roll:** set aside. No policy does it: all Dynamixel, the only recipe that reached 3000 iterations on it, turned 35 degrees at best. Scripted
   searches (`tools/flip_search.py`) didn't get a clean flip either.
 
+## Hobby servos
+
+A fifth recipe, spec only (`MILLI_RECIPE=hobby`): the same duck on cheap one-way PWM servos, driven by a PCA9685 (Adafruit's PWM / Servo Bonnet) on the Pi, with the Pi, the
+board, the IMU, the battery and two 6 V BECs all in the body. MG996Rs at the hips, hip yaw, ankles and head pitch; DS3218s at the knees and the neck pitch, where an MG996R's
+torque falls short; MG90Ss at the head's yaw, roll and beak. Its [parts list](hobby/BOM.md), [wiring](hobby/WIRING.md), [build order](hobby/ASSEMBLY.md) and
+[printable files](../prints/hobby/README.md) come from its spec, with every check passing; nothing is built, printed or measured, and no walk is trained.
+
+- **Size:** about 37 cm and 1.9 kg, past the 30-35 cm asked: the two standard-size neck servos stand end to end with their ears facing, 77 mm between the pitch axes. Its proportions are held within 15 %, as the all-Feetech duck's.
+- **How they're held:** a hobby servo has no screw holes in its faces and no rear shaft. Each sits in a tray by its 4 ears, on printed rims; the far side of a fork turns on a printed hub in a bearing.
+- **No feedback:** a PWM servo reports nothing. A policy trained on joint positions would have to be fed what it commanded. Untested.
+- **Estimated, to measure:** the servos' ears, shaft offsets and case heights (no maker's drawing labelled them), every hobby servo's "rated" torque (a third of stall, assumed), the DS3218's and MG90S's stall currents, the leads' mass.
+
 ## A big duck
 
 The same duck at 1.8 m, taller than [echo](https://github.com/meetsitaram/echo), on RobStride RS04 actuators, to test whether the method scales: a full design first, with
