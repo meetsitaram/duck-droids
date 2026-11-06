@@ -338,7 +338,7 @@ class Build:
                     return next((x for x in self.idx if x.startswith(head)), None)
             return None
         self.parts = {}
-        for n, k, gs in PARTS:
+        for n, k, gs in (spec.get('parts') or PARTS):   # (a spec with its own parts list: spec/nano_duck.py's)
             have = [x for x in (real(g) for g in gs) if x]
             if have:
                 self.parts[n] = dict(kind=k, geoms=have)
@@ -407,8 +407,12 @@ def check_hold(B, rep):
                     if not any(np.allclose(p, a[0]) for a in lines[part]):
                         lines[part].append((p, d))
     for part, ls in lines.items():
-        if part in GLUED or part in PIVOTS:
-            rep.add('HOLD', part, True, 'glued' if part in GLUED else 'turns on its screws')
+        glued = GLUED | set(B.spec.get('glued', []))
+        if part in glued or part in PIVOTS:
+            rep.add('HOLD', part, True, 'glued' if part in glued else 'turns on its screws')
+            continue
+        if part in B.spec.get('splined', []) and len(ls) == 1:   # a hub on a servo's spline can't turn about its one horn screw
+            rep.add('HOLD', part, True, 'on its servo\'s spline, held by the horn screw')
             continue
         if len(ls) < 2:
             rep.add('HOLD', part, False, f'{len(ls)} screw: it can turn about it')
@@ -720,7 +724,10 @@ def main():
     ap.add_argument('--bad')
     a = ap.parse_args()
     spec = G.load()
-    secs = sections()
+    # (a spec with its own order: spec/nano_duck.py's. Its ways are lists, which the checks take as they take tuples)
+    # (a 4th number: Short, checked for that many mm)
+    way = lambda w: None if not w else Short(tuple(w[:3]), w[3] / 1000) if len(w) > 3 else tuple(w)
+    secs = [dict(s_, steps=[(c, [(p, way(w)) for p, w in it], pats) for c, it, pats in s_['steps']]) for s_ in spec['assembly']] if 'assembly' in spec else sections()
     if a.bad == 'seal':                            # the yaw bracket's screws after its roll servo is in
         body = next(s for s in secs if s['key'] == 'body')
         st = body['steps']

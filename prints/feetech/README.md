@@ -1,6 +1,6 @@
 # Printed parts
 
-> **These are the print files for the all-Feetech duck only.** Each duck has its own parts, prints and BOM, and they don't mix. Other ducks: [all-Dynamixel](../dynamixel/README.md) · [HD-1910](../hd1910/README.md) · [hybrid](../hybrid/README.md) · [hobby-servo](../hobby/README.md). <!-- variant banner -->
+> **These are the print files for the all-Feetech duck only.** Each duck has its own parts, prints and BOM, and they don't mix. Other ducks: [all-Dynamixel](../dynamixel/README.md) · [HD-1910](../hd1910/README.md) · [hybrid](../hybrid/README.md) · [hobby-servo](../hobby/README.md) · [nano](../nano/README.md). <!-- variant banner -->
 
 From `python -I tools/export_prints.py`, in millimetres: every part, left and right, already turned the way it should print, its long overhangs down
 (tools/printable.py chooses). Pockets are cut 0.3 mm over each bought part and bearing seats 0.1 mm over. None has been test printed: print one joint first.

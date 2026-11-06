@@ -61,11 +61,11 @@ The family ([MP4, 17 s, sharper](docs/images/family/duck_family.mp4)), in simula
 
 [BOM](docs/hobby/BOM.md) · [STLs](prints/hobby/README.md) · [assembly](docs/hobby/ASSEMBLY.md) · [wiring](docs/hobby/WIRING.md)
 
-### Nano duck (in review: [meetsitaram/duck-droids#4](https://github.com/meetsitaram/duck-droids/pull/4))
+### Nano duck
 
 20.6 cm, 370 g, 13 SG90 and MG90S micro servos driven by the Pi's own PWM. The smallest these servos allow. Spec, checks and docs only; its looks still need work.
 
-[BOM](https://github.com/meetsitaram/duck-droids/blob/nano-duck/docs/nano/BOM.md) · [STLs](https://github.com/meetsitaram/duck-droids/blob/nano-duck/prints/nano/README.md) · [assembly](https://github.com/meetsitaram/duck-droids/blob/nano-duck/docs/nano/ASSEMBLY.md) · [wiring](https://github.com/meetsitaram/duck-droids/blob/nano-duck/docs/nano/WIRING.md), on its branch until the PR merges
+[BOM](docs/nano/BOM.md) · [STLs](prints/nano/README.md) · [assembly](docs/nano/ASSEMBLY.md) · [wiring](docs/nano/WIRING.md)
 
 ### Big duck: **not safe to build**
 

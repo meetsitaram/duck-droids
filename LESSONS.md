@@ -380,3 +380,17 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 | Absolute coordinates copied from another recipe (the charge port, the hood's rear screws) sat in air once the body rose 20 mm | Derive them from the plate or the head (`port_up`, `hood_rear_x`), or the checks find the plugs and screws one by one |
 | PWM servos can't be chained, and the user wanted the Pi, its board, the BECs and the IMU in the body | A star of leads from a PCA9685 bonnet on the Pi; each lead's length measured along its chain with a 30 mm loop a joint, its mass counted on the links it lies on (`leads`); a 6 V / GND bus a side, so no leg's stall current goes through the board's copper |
 | A neck column as wide as the body: the shell, lowered last, passed through the head pitch servo | The shell before the neck column on this duck, and the battery's plugs, on their leads, pulled out through the port after it |
+
+## The nano duck: SG90s, PWM (2026-11-06)
+
+| Issue | Do instead |
+|---|---|
+| Asked for 12-15 cm on SG90s with 5-joint legs, the duck came to 20.6 cm at its smallest. Each joint's U must pass 13 mm from its axis (the ear's tip is 12.2), the sole under the ankle so, the ankle case stands 22 mm above the ankle, and the hip yaw's 31.5 mm stacks over the roll | Find the smallest size the servo's module allows, from the spec, before sizing by torque. Fewer joints (no hip yaw), no rear bushings or a smaller servo are what would go smaller |
+| The torque rule alone (the largest under 50 % of stall) pointed at about 27 cm: the hip roll's lever is the legs' spacing, which height doesn't change | Read what the rule is for. A palm-sized duck is the smallest that keeps the margins; show the user where the rule alone would put it |
+| The body's heights were absolute numbers, so a stretched duck's legs grew under a body that stayed put, and the sweep's heights barely moved | Write every height relative to what carries it (here the yaw servo's hub) |
+| Boxes that only touch read as separate pieces to the connectivity check: a servo on its floor, a gear tower on its case | Seat them 0.05-0.3 mm into each other; tools/export_prints.py cuts the real pocket with its clearance |
+| A bracket through the body shell's wall: no way to lower the shell onto it (tools/assembly.py PATH) | Route the bracket under the shell's open rim |
+| The head can't slide sideways onto its spline with a hood round the neck plate | Fit the hood after the head is on its servo |
+| A yaw horn screw's head sat 0.15 mm into the roll servo under it: only printable.py's HEADS saw it | Leave a screw head's height and a clearance under every hub |
+| A closed box shell exports as a sealed void; a 1.2 mm lip and 1.2 mm walls read as thin to buildable.py's 0.25 mm voxels | Hollow a block from one open side; 1.5 mm for anything that must pass WALL |
+| render_pose's segmentation pass read an id past the scene's geoms on the nano duck (330 geoms), and stopped compare.py | Fall back to the depth buffer for the background when segmentation fails |

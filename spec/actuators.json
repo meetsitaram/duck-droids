@@ -905,5 +905,105 @@
   "mount_source": "TowerPro's MG90S page (towerpro.com.tw/product/mg90s-3/, read 2026-11-06): 13.4 g, 22.8 x 12.2 x 28.5 mm, 1.8 kg cm at 4.8 V and 2.2 at 6.6 V, 0.10 s/60 deg at 4.8 V and 0.08 at 6.0 V, dead band 1 us, JR plug. Stall at 6.0 V interpolated linearly: 2.07 kg cm (an estimate). The page gives no drawing: the ears (32.5 mm across, 2.5 mm thick, one 2 mm hole each, 27.8 mm apart, their underside 15.9 mm up), the case height under the spline (22.7 mm), the shaft 5.9 mm off the middle and the stall current are ESTIMATES from the usual drawing of this case: measure one. The horn: a round horn trimmed to 16 mm, 4 M2 holes on an 11 mm circle, its top 6.2 mm over the case (an estimate). Armature, damping and friction: the XL330's, placeholders. Rated torque: a third of stall, assumed."
  },
  "_sources_hobby": "Read 2026-11-06 for the hobby recipe: towerpro.com.tw/product/mg996r/ and towerpro.com.tw/product/mg90s-3/ (the maker), servodatabase.com/servo/dsservo/ds3218-mg (third party). Each entry's mount_source says which numbers are the page's and which are estimates. 'flange': the 4-ear case, in the servo frame: span over the ears, thickness t, 'under' the ears' underside from the case's middle toward the horn, holes (u, w) from the case's middle. One-way PWM: no position, load or temperature comes back.",
- "_sources": "Read 2026-11-03. XL330-M288 and XC330-M288: ROBOTIS e-Manual (emanual.robotis.com/docs/en/dxl/x/xl330-m288/), official: 3.7-6.0 V, 5.0 recommended; at 5 V 0.52 and 0.93 N m, 103 and 81 rpm; at 6 V 0.60 and 1.10 N m. STS3215-C001: feetechrc.com via search, 19.5 kg.cm and 52 rpm at 7.4 V; 5 kg.cm rated on a retailer. STS3215-C044: retailers only (Seeed, openelab, rcdrone): 27.4 kg.cm stall, 9 rated, 86 rpm at 7.4 V; WowRobo says about 16 kg.cm. No Feetech page found: 'core motor', so not the C001's motor geared down, and the old values scaled from the C001 were wrong by 2.5 x. STS3215-C046: retailers only: 14.4 kg.cm, 4.8 rated, 106 rpm. STS3215-C018, measured independently (robonine.com): about 35 kg.cm at 12 V; consistent to about 15 kg.cm in motion; overload protection cuts output to about 20 % under prolonged load; backlash 0.57-0.87 deg. The C044 and C046's armature and damping are still scaled from the C001 by gear ratio, which a different motor makes doubtful: measure them."
+ "_sources": "Read 2026-11-03. XL330-M288 and XC330-M288: ROBOTIS e-Manual (emanual.robotis.com/docs/en/dxl/x/xl330-m288/), official: 3.7-6.0 V, 5.0 recommended; at 5 V 0.52 and 0.93 N m, 103 and 81 rpm; at 6 V 0.60 and 1.10 N m. STS3215-C001: feetechrc.com via search, 19.5 kg.cm and 52 rpm at 7.4 V; 5 kg.cm rated on a retailer. STS3215-C044: retailers only (Seeed, openelab, rcdrone): 27.4 kg.cm stall, 9 rated, 86 rpm at 7.4 V; WowRobo says about 16 kg.cm. No Feetech page found: 'core motor', so not the C001's motor geared down, and the old values scaled from the C001 were wrong by 2.5 x. STS3215-C046: retailers only: 14.4 kg.cm, 4.8 rated, 106 rpm. STS3215-C018, measured independently (robonine.com): about 35 kg.cm at 12 V; consistent to about 15 kg.cm in motion; overload protection cuts output to about 20 % under prolonged load; backlash 0.57-0.87 deg. The C044 and C046's armature and damping are still scaled from the C001 by gear ratio, which a different motor makes doubtful: measure them.",
+ "SG90": {
+  "box": [
+   0.0227,
+   0.0122,
+   0.0225
+  ],
+  "shaft_x": 0.0056,
+  "horn_h": 0.009,
+  "tower": [
+   0.0057,
+   0.0045
+  ],
+  "spline": {
+   "teeth": 21,
+   "d": 0.0048,
+   "h": 0.0033
+  },
+  "ears": {
+   "span": 0.0323,
+   "t": 0.0025,
+   "under": 0.017,
+   "hole_d": 0.002,
+   "hole_u": 0.0144
+  },
+  "lead": {
+   "out": 0.0012,
+   "w": 0.0036,
+   "a": [
+    0.0006,
+    0.0034
+   ]
+  },
+  "volts": 5.0,
+  "bus": "pwm",
+  "case_screw": "the 2 self-tapping screws in the servo's bag (about M2 x 8), through the ears",
+  "horn_screw": "the servo's own horn screw (in its bag), into the output shaft",
+  "mass": 0.009,
+  "peak_nm": 0.157,
+  "rated_nm": 0.0785,
+  "noload_rads": 10.47,
+  "gear": 300.0,
+  "armature_kgm2": 0.0002,
+  "damping_nms": 0.01,
+  "friction_nm": 0.003,
+  "stall_a": 0.65,
+  "stall_a_measured": 0.36,
+  "colour": "blue",
+  "mount_source": "TowerPro SG90 page and drawing; M5Stack SG90 page (21T spline); see _sources_hobby_micro"
+ },
+ "MG90S_5V": {
+  "box": [
+   0.0228,
+   0.0122,
+   0.0225
+  ],
+  "shaft_x": 0.0056,
+  "horn_h": 0.009,
+  "tower": [
+   0.0057,
+   0.0045
+  ],
+  "spline": {
+   "teeth": 21,
+   "d": 0.0048,
+   "h": 0.0033
+  },
+  "ears": {
+   "span": 0.0323,
+   "t": 0.0025,
+   "under": 0.017,
+   "hole_d": 0.002,
+   "hole_u": 0.0144
+  },
+  "lead": {
+   "out": 0.0012,
+   "w": 0.0036,
+   "a": [
+    0.0006,
+    0.0034
+   ]
+  },
+  "volts": 5.0,
+  "bus": "pwm",
+  "case_screw": "the 2 self-tapping screws in the servo's bag (about M2 x 8), through the ears",
+  "horn_screw": "the servo's own horn screw (in its bag), into the output shaft",
+  "mass": 0.0134,
+  "peak_nm": 0.177,
+  "rated_nm": 0.088,
+  "noload_rads": 10.47,
+  "gear": 300.0,
+  "armature_kgm2": 0.0002,
+  "damping_nms": 0.01,
+  "friction_nm": 0.003,
+  "stall_a": 0.7,
+  "stall_a_measured": 0.7,
+  "colour": "black",
+  "mount_source": "TowerPro MG90S page; case shape taken as the SG90 drawing's (an estimate); see _sources_hobby_micro. Keyed MG90S_5V: the hobby-servo duck models the same servo at 6 V as MG90S",
+  "name": "MG90S"
+ },
+ "_sources_hobby_micro": "SG90 and MG90S (2026-11-06, for the nano recipe), each page opened and read that day. SG90: TowerPro's page (towerpro.com.tw/product/sg90-7/): 9 g, 23 x 12.2 x 29 mm, 1.8 kg.cm stall at 4.8 V, 0.1 s/60 deg at 4.8 V, 4.8 V operating, 1 us dead band, POM gears, 25 cm lead; its drawing's table: A 30.3 (bottom to the spline's top), B 22.7 (case length), C 27 (bottom to the top of the gear tower), D 12.2 (width), E 32.3 (across the ears), F 17 (bottom to the ears' underside). The drawing is not to scale. M5Stack's SG90 page (docs.m5stack.com/en/accessory/SG90_Servo) says less: 1.6 kg.cm at 4.8 V, 1.8 at 6.0 V, 4.8-6.0 V, and gives the spline as 21T. Pololu's micro-servo wheels (pololu.com/product/4909) are for '4.8 mm diameter splines with 21 teeth' (named for FEETECH's FS90R, the same 9 g class): the 4.8 mm is from there, not from TowerPro. Stall current: ProtoSupplies measured 360 mA on an SG90 (protosupplies.com/product/servo-motor-micro-sg90/); PCBoard.ca lists up to about 650 mA (pcboard.ca/sg90-servo). MG90S: TowerPro (towerpro.com.tw/product/mg90s-3/): 13.4 g, 22.8 x 12.2 x 28.5 mm, 1.8 kg.cm at 4.8 V and 2.2 at 6.6 V, 0.10 s/60 deg at 4.8 V and 0.08 at 6.0 V, 1 us dead band, 6061-T6 aluminium gears and shaft; ProtoSupplies measured 700 mA at stall (protosupplies.com/product/servo-motor-micro-mg90s/). Design figures: peak_nm is the LOWER published stall at about 5 V (SG90 1.6 kg.cm = 0.157 N m, M5Stack's; MG90S 1.8 kg.cm = 0.177 N m, TowerPro's): a 5 V supply. rated_nm is half of that: not a maker's rating (hobby servos have none) but the nano duck's limit for a held pose (tools/checks.py holds continuous poses to rated). Estimated, not published: the case's top at 22.5 mm (C less the tower), the ears 2.5 mm thick, the ear holes 2.0 mm at +/-14.4 mm from the case's middle, the shaft 5.6 mm from the middle (all read off the drawing, which is not to scale: measure one), the MG90S's case taken as the SG90's, and armature, damping and friction (scaled guesses, for a simulation only). Measure a real servo before printing the brackets."
 }

@@ -83,6 +83,15 @@ metal frames, bearings, screws and printed panels that fit a 256 mm bed, from it
   The cost is speed: 0.20 m/s told 0.4, 0.04 m/s backward told 0.2. It drifts sideways at about 0.12 m/s whatever it's told, and barely answers sideways commands. That run wasn't finished when this was written.
 - Not done: stress analysis, reading the RS04's real CAD and measuring one, the chain's tensioner, the rods moving in the model, how it survives a fall. Wiring and the Fusion model are a first pass, with their flaws listed.
 
+## The nano duck
+
+The same layout on 9 g hobby servos, driven by PWM: 9 SG90 and 4 MG90S (knees and hip roll), 13 joints (no head yaw or roll), from its own spec, [spec/nano_duck.py](../spec/nano_duck.py) (`MILLI_RECIPE=nano`). Every joint is one module: a cradle holding the servo by its ears under a printed clamp, a printed hub on its 21T spline, and on the 10 leg joints a U round the case to a printed bushing on the axis opposite the output shaft.
+
+- **Size:** 20.6 cm, 370 g from every part's material. That is the smallest its servo modules allow: 12-18 cm can't be built in this layout ([size sweep](../reports/nano/size_sweep.md)). Microduck's proportions within 35 %.
+- **Torque, as a share of stall at about 5 V:** knees in a crouch 32 %, hip roll in single-leg stance x 1.5 45 %, neck holding the head 8 %. In single-leg stance x 1.5 the knee reaches 71 % and the ankle 50 %.
+- **Electronics:** a Pi Zero 2 W in the body driving the servos from its GPIO with pigpio, a 2S 300 mAh pack, two 5 V 5 A regulators sized for every servo stalled at once, an MPU-6050: [WIRING.md](nano/WIRING.md), [BOM.md](nano/BOM.md), [ASSEMBLY.md](nano/ASSEMBLY.md). About 5-9 minutes of walking, an estimate.
+- **Given up:** the head tucked in (head pitch reaches -1.3 rad of the -1.45 it needs). No Fusion model, simulation or training yet; nothing printed.
+
 ## Status
 
 A design, not yet built. Nothing here has been printed or tested on real parts. Fusion models so far: hybrid and [all Dynamixel](dynamixel/BOM.md), in [cad/](../cad/). milli has STS3215 ankles; branch
