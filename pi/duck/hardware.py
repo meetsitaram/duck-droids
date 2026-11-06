@@ -75,7 +75,15 @@ class Bno085:
         import busio
         from adafruit_bno08x import BNO_REPORT_GAME_ROTATION_VECTOR, BNO_REPORT_GYROSCOPE
         from adafruit_bno08x.i2c import BNO08X_I2C
-        self.imu = BNO08X_I2C(busio.I2C(board.SCL, board.SDA, frequency=400_000))
+        i2c = busio.I2C(board.SCL, board.SDA, frequency=400_000)
+        # 0x4A on Adafruit's board; the GY-BNO08X's AD0 pad can make it 0x4B. Try both (i2cdetect -y 1 shows which)
+        for addr in (0x4A, 0x4B):
+            try:
+                self.imu = BNO08X_I2C(i2c, address=addr)
+                break
+            except (ValueError, OSError, RuntimeError):
+                if addr == 0x4B:
+                    raise
         self.imu.enable_feature(BNO_REPORT_GYROSCOPE)
         self.imu.enable_feature(BNO_REPORT_GAME_ROTATION_VECTOR)
         self.R = np.array(cfg['imu_to_robot'], float)

@@ -1,31 +1,35 @@
 # Printed parts
 
+> **These are the print files for the all-Dynamixel duck only.** Each duck has its own parts, prints and BOM, and they don't mix. Other ducks: [HD-1910](../hd1910/README.md) · [all-Feetech](../feetech/README.md) · [hybrid](../hybrid/README.md) · [hobby-servo](../hobby/README.md). <!-- variant banner -->
+
 From `python -I tools/export_prints.py`, in millimetres: every part, left and right, already turned the way it should print, its long overhangs down
 (tools/printable.py chooses). Pockets are cut 0.3 mm over each bought part and bearing seats 0.1 mm over. None has been test printed: print one joint first.
+
+**2026-11-06, for the 6703ZZ bearings (17 x 23 x 4 mm):** 19 files were redrawn offline, without Fusion's rounding, until the Fusion model is rebuilt: the hip yaw, hip roll and hip pitch lids, roll and yaw brackets, knee lids and shins (left and right), and the head yaw sheet and bracket, head roll lid and both head roll spacers. Also offline: the body shell, 13 mm longer at the back, for the KCD1 rocker switch's hole there, and the hood, for the PC cable's hole over the Pi's USB port. The rest are Fusion's bodies, unchanged.
 
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|
 | L hip yaw lid | L_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
-| L yaw bracket | L_yaw_bracket.stl | 48 x 25 x 29 | 8.2 | PLA | 196 |
-| L hip roll lid | L_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
-| L roll bracket | L_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
+| L yaw bracket | L_yaw_bracket.stl | 48 x 25 x 29 | 8.3 | PLA | 198 |
+| L hip roll lid | L_hip_roll_lid.stl | 38 x 25 x 3 | 1.2 | PLA | 0 (none) |
+| L roll bracket | L_roll_bracket.stl | 19 x 31 x 30 | 3.6 | PLA | 110 |
 | L thigh frame | L_thigh_frame.stl | 51 x 66 x 34 | 10.5 | PLA | 2118 |
 | L hip pitch lid | L_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
-| L knee lid | L_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
+| L knee lid | L_knee_lid.stl | 38 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | L thigh cover | L_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
-| L shin | L_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 307 |
+| L shin | L_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 309 |
 | L shoe | L_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
 | L sole | L_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
 | L inner ear | L_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
 | R hip yaw lid | R_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
-| R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.2 | PLA | 196 |
-| R hip roll lid | R_hip_roll_lid.stl | 37 x 24 x 3 | 1.2 | PLA | 0 (none) |
-| R roll bracket | R_roll_bracket.stl | 19 x 31 x 30 | 3.5 | PLA | 108 |
+| R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.3 | PLA | 198 |
+| R hip roll lid | R_hip_roll_lid.stl | 38 x 25 x 3 | 1.2 | PLA | 0 (none) |
+| R roll bracket | R_roll_bracket.stl | 19 x 31 x 30 | 3.6 | PLA | 110 |
 | R thigh frame | R_thigh_frame.stl | 51 x 66 x 34 | 10.5 | PLA | 2118 |
 | R hip pitch lid | R_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
-| R knee lid | R_knee_lid.stl | 37 x 26 x 3 | 1.4 | PLA | 0 (none) |
+| R knee lid | R_knee_lid.stl | 38 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | R thigh cover | R_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
-| R shin | R_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 307 |
+| R shin | R_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 309 |
 | R shoe | R_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
 | R sole | R_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
 | R inner ear | R_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
@@ -35,11 +39,11 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | neck lid | neck_lid.stl | 5 x 26 x 3 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 1 |
 | head fork | head_fork.stl | 55 x 39 x 37 | 9.1 | PLA | 408 |
-| head yaw sheet | head_yaw_sheet.stl | 37 x 26 x 4 | 0.8 | PLA | 0 (none) |
-| head yaw bracket | head_yaw_bracket.stl | 28 x 29 x 40 | 5.7 | PLA | 218 |
+| head yaw sheet | head_yaw_sheet.stl | 37 x 26 x 4 | 0.7 | PLA | 0 (none) |
+| head yaw bracket | head_yaw_bracket.stl | 28 x 29 x 41 | 5.7 | PLA | 222 |
 | head roll lid | head_roll_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
-| head roll spacer | head_roll_spacer.stl | 16 x 16 x 2 | 0.3 | PLA | 0 (none) |
-| head roll rear spacer | head_roll_rear_spacer.stl | 16 x 16 x 2 | 0.4 | PLA | 0 (none) |
+| head roll spacer | head_roll_spacer.stl | 17 x 17 x 2 | 0.3 | PLA | 0 (none) |
+| head roll rear spacer | head_roll_rear_spacer.stl | 17 x 17 x 2 | 0.4 | PLA | 0 (none) |
 | head frame | head_frame.stl | 141 x 101 x 59 | 54.2 | PLA | 5470 |
 | hood | hood.stl | 58 x 106 x 150 | 48.6 | PLA | 2911 |
 | jaw | jaw.stl | 88 x 106 x 42 | 29.6 | PLA | 925 |
@@ -55,6 +59,6 @@ A part with an overhang figure needs support or a bridge there; tools/printable.
 
 ## Print one joint first
 
-Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 XL330-M288, 1 MR2216ZZ,
+Before buying the rest, print `L_thigh_frame`, `L_knee_lid` and `L_shin`, with 1 XL330-M288, 1 6703ZZ,
 its M2 screws. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;
 how much the shin flexes with about 1.3 kg hung from it, off-centre as a foot would load it. Note what fits, and change the spec, not the STL.
