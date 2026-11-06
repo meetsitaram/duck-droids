@@ -341,7 +341,7 @@ def bom_dynamixel(spec):
             ('m077', 'Jaw servo, softer alternate', 'ROBOTIS XL330-M077-T', '0.215 N m stall and 383 rev/min at 5 V, 77.5:1, 18 g, model number 1190. Same pocket, horn and screws. Replaces 1 of the M288s', 1, 'each', 1, None, 'ROBOTIS', 'Optional'),
         ]),
         ('Bearings and idlers', [
-            ('mr2216', 'Ball bearing, around each horn', 'MR2216ZZ (ET2216ZZ)', '16 x 22 x 4 mm', bear['MR2216ZZ'], 'pack of 10', 2, 42.72, amz('B0C5ZCVGNP'), 'Required'),
+            ('mr2216', 'Ball bearing, around each horn', 'uxcell 6703ZZ', '17 x 23 x 4 mm, chrome steel, double shielded. Replaces the 16 x 22 x 4 mm MR2216ZZ, out of stock until the end of the month: the print files are still drawn for the MR2216ZZ, so wait for the seats to be redrawn before printing', bear['MR2216ZZ'], 'pack of 5', 3, 6.29, amz('B082PSB4DZ'), 'Required'),
             ('b6700', 'Ball bearing, shoe inner ear', '6700ZZ', '10 x 15 x 4 mm', bear['6700ZZ'], 'pack of 10', 1, 6.79, amz('B0FQ4VYXRP'), 'Required'),
             ('idler', 'Idler: neck, head pitch, head roll, both ankles', 'ROBOTIS FPX330-H101', 'set of 4', 5, 'set of 4', 2, 11.27, link('ROBOTIS US', 'https://robotis.us/fpx330-h101-4pcs-set/'), 'Required'),
         ]),
@@ -370,8 +370,8 @@ def bom_dynamixel(spec):
             ('wire', 'Power wire, red and black', 'BNTECHGO silicone wire', '20 AWG', 1, '10 ft each', 1, None, amz('B01M12PSJM'), 'Required'),
             ('thin', 'Signal wire: IMU', 'Fermerry silicone wire', '28 AWG stranded, 4 wires, about 1 m in all', 1, '6 colours, 5 ft each', 1, None, amz('B089CR4SDM'), 'Required'),
             ('long', 'Servo cable: socket 2 to right leg, neck servo to left leg', 'made up: JST ASEHSEH22K305 leads in JST EHR-3 housings', 'JST EH 3-pin both ends, 305 mm: 3 leads, pre-crimped with SEH contacts at both ends, and 2 housings for each cable. No crimping, just push the contacts in, matching pin 1 to pin 1. ROBOTIS only sells X3P cables 180 mm long', 2, 'set of 3 leads and 2 housings', 2, None, link('Digi-Key ASEHSEH22K305', 'https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASEHSEH22K305/6009480') + ' (about $0.70 a lead; price not confirmed) and ' + link('Digi-Key EHR-3', 'https://www.digikey.com/en/products/detail/jst-sales-america-inc/EHR-3/527225') + ' (stock varies by region; Adam Tech 25CH-C-03 is its listed substitute)', 'Required'),
-            ('usb', 'Regulator to Pi power', 'LY tech flat ribbon USB', 'right-angle USB-A to right-angle micro USB, 10 cm', 1, 'each', 1, 13.50, 'Amazon', 'Required'),
-            ('otg', 'Pi to bus board', 'Veeloon', 'right-angle micro USB OTG to right-angle USB-C, 0.6 ft', 1, 'pack of 2', 1, 7.99, amz('B0DKBQ7TD3'), 'Required'),
+            ('usb', 'Regulator to Pi power', 'from the 20 AWG wire above', "soldered from the regulator's 5 V output to the Pi's 5 V and GND pins (2 and 6), about 10 cm. Replaces the right-angle USB ribbon, hard to find: the wiring drawings still show the ribbon", 1, 'in the wire above', 1, None, 'in the wire above', 'Required'),
+            ('otg', 'Pi to bus board, UART', 'female-female jumper wires', "3 wires, 10 cm: the Pi's GPIO 14, GPIO 15 and GND to the board's TX, RX and GND header, its jumper set to UART. Replaces the right-angle USB OTG cable: the wiring drawings still show the cable", 1, 'pack', 1, None, 'any electronics shop', 'Required'),
         ]),
         ('Consumables', [
             ('fix', 'Foam tape, hook-and-loop strap, small cable ties', 'generic', '', 1, 'lot', 1, 12.00, 'any hardware shop; price estimated', 'Required'),
@@ -392,7 +392,7 @@ def bom_dynamixel(spec):
               'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'M2 self tapping pan head screw kit',
               'pi': 'Raspberry Pi Zero 2 W', 'sd': 'SanDisk 32GB Ultra microSDHC A1', 'board': 'Waveshare Serial Bus Servo Driver Board', 'reg': 'hiBCTR USB buck converter QC3.0', 'imu': 'BNO085 IMU module',
               'cam': 'Arducam 8MP IMX219 camera module', 'ribbon': 'Raspberry Pi Zero camera cable 22 pin to 15 pin 15cm', 'batt': 'OVONIC 2S 450mAh 100C XT30', 'xt30': 'XT30 pigtail 16 AWG 100mm', 'wire': '20 AWG silicone wire red black',
-              'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': 'LY tech flat ribbon micro USB 90 degree', 'otg': 'micro USB to USB C OTG cable 90 degree',
+              'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': '20 AWG silicone wire red black', 'otg': 'female female dupont jumper wires 10cm',
               'fix': 'foam tape hook and loop strap cable ties', 'joint': 'solder heat shrink CA glue', 'chg': '2S LiPo balance charger JST-XH'}
 
     def search(key):
@@ -466,7 +466,7 @@ def bom_dynamixel(spec):
          f"- **Item {num['imu']}:** its listing names both BNO080 and BNO085: confirm which chip arrives, its size, and that it starts in I2C mode. The model and fit come from Adafruit's board.",
          f"- **Item {num['reg']}:** feeds the Pi's PWR port only. It can output up to 12 V if a device asks for fast charging, so measure about 5 V before connecting.",
          f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",
-         f"- **Item {num['usb']}:** check the Pi's voltage under load, as the ribbon's wires are thin.",
+         f"- **Item {num['usb']}:** check the Pi's voltage under load, at its 5 V pin.",
          f"- **Horns:** ROBOTIS's own photos and model show the horn on the servo, though its box list names only the servo, a cable and screws. If one comes without, it's the HNX330-N102. Check the first servo before ordering the rest.",
          f"- **Items {num['m2x6']}, {num['m2x8']}:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: order item {num['m2kit']} and set each ID again if buying there.",
          '- Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.', '',

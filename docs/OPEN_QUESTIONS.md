@@ -24,6 +24,20 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 | All Feetech | Bench-test one STS3215 at a full 8.4 V before fitting? Sellers disagree on whether the 7.4 V servo takes it |
 | All Feetech | A fuse at the XT30? To decide once walking current is measured |
 
+## Design changes to make (2026-11-06)
+
+The all-Dynamixel BOM already lists these parts. The spec, print files, wiring drawings and Fusion model still show the old ones. Make the changes on a branch, then run the checks in CLAUDE.md.
+
+- **Horn bearings: MR2216ZZ (16 x 22 x 4 mm) to 6703ZZ (17 x 23 x 4 mm).** Amazon had no 16 x 22 x 4 mm bearings until the end of the month. The uxcell 6703ZZ (B082PSB4DZ, 5 for $6.29) is in stock. In `spec/robot.py`, `BEARINGS['XL330']` becomes `d=0.017, D=0.023`, and the mass is about 6.4 g, from uxcell's 32 g for 5.
+  - The 17 mm bore is 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, not half on the horn as before. Check that the boss holds it, and test the fit on the first printed joint.
+  - The seats grow 0.5 mm in radius. Rerun the clash and wall checks.
+  - The other XL330 ducks change too: hd1910, and the hybrid's head. Update their BOMs (`tools/bom_hd1910.py`, `tools/make_docs.py`).
+- **No right-angle USB cables.** They're hard to find.
+  - **Power:** solder the 5 V regulator's output to the Pi's 5 V and GND pins (2 and 6), or use a 5 V buck with wire outputs.
+  - **Data:** connect the Pi's UART (GPIO 14, GPIO 15 and GND) to the Waveshare board's TX, RX and GND header, with its jumper set to UART. Use the Pi's full UART, not the mini one: set `dtoverlay=disable-bt` or `miniuart-bt`.
+  - Redraw the leads in the head and update WIRING.md and the wiring pictures.
+  - The hybrid has two buses, and the Pi Zero 2 W has only one full UART, so one of its boards may stay on USB.
+
 ## Settled
 
 - **Big, RS03 mounting:** each RS03 now uses its 8 free front holes, through a 6 mm ring with countersunk M4 screws, as well as the 4 rear ones.
