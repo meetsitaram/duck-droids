@@ -242,6 +242,8 @@ def main():
               f'{screws_}. It tests: does the servo sit in its tray; does the bearing press into the seat and over the horn; do the screws bite;',
               'how much the shin flexes with about 1.3 kg hung from it, off-centre as a foot would load it. Note what fits, and change the spec, not the STL.']
         open(os.path.join(out, 'README.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+        import variant_banner
+        variant_banner.stamp(os.path.join(out, 'README.md'), G.RECIPE, 'prints')
 
 
 if __name__ == '__main__':

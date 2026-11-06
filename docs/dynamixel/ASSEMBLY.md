@@ -9,7 +9,7 @@ See it whole first: [the 30-second reveal](../images/assembly/dynamixel/reveal_3
 
 ## 0. Before you start
 
-1. **Print one joint first** ([prints/README.md](../prints/README.md)), then everything. None of it has been test printed yet.
+1. **Print one joint first** ([prints/dynamixel/README.md](../../prints/dynamixel/README.md)), then everything. None of it has been test printed yet.
 2. **Set each servo's ID on its own**, before any are chained: Dynamixel 1-15. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.

@@ -1,5 +1,7 @@
 # All-Feetech duck: bill of materials
 
+> **This is the parts list for the all-Feetech duck only.** Each duck has its own parts, prints and BOM, and they don't mix. Other ducks: [all-Dynamixel](../dynamixel/BOM.md) · [HD-1910](../hd1910/BOM.md) · [hybrid](../hybrid/BOM.md) · [big](../big/BOM.md). <!-- variant banner -->
+
 | | |
 |---|---|
 | Product | All-Feetech duck, biped, 15 servos |
