@@ -118,8 +118,8 @@ def margin(name, trainer):
     return stall / (mass.sum() * 9.81 * lever), stall
 
 
-def clearances(name, trainer):
-    """The root height at which each reset pose just clears the floor: lower, and the overlap throws the robot up for free."""
+def clearances(name, trainer, top=0.6):
+    """The root height at which each reset pose just clears the floor: lower, and the overlap throws the robot up for free. top: where the search starts, above the tallest pose (0.6 m for a small duck; the big duck needs more)."""
     import mujoco
     folder = os.path.join(trainer, f'milli_{name}_contact')
     x = open(os.path.join(folder, 'milli.xml')).read().replace('<worldbody>', '<worldbody><geom name="floor" type="plane" size="5 5 .1"/>', 1)
@@ -137,7 +137,7 @@ def clearances(name, trainer):
         D.qpos[3:7] = quat
         for k, v in {**home['joint_pos'], **(extra or {})}.items():
             D.qpos[M.joint(k).qposadr[0]] = v
-        for z in np.arange(0.6, 0.0, -0.002):
+        for z in np.arange(top, 0.0, -0.002):
             D.qpos[2] = z
             mujoco.mj_forward(M, D)
             if any(f in (D.contact[i].geom1, D.contact[i].geom2) and D.contact[i].dist < 0 for i in range(D.ncon)):

@@ -359,3 +359,11 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 - **Two engagements that need opposite motions can't both be fixed parts.** The hip roll's back stator must move toward the yoke onto its pins while its rear step goes the other way into its cheek: so the cheek is bolted to the beam last, through a cleat, after the stator and cheek go on together.
 - **A path check backs a screw out only until its tip leaves its hole.** Further, and a 16 mm screw in a 24 mm gap reads as blocked when it isn't.
 - **Mirror every name a part carries.** The trunk's right yaw bearing was mirrored by hand, outside `build()`, and kept the left's `unit` name: the checker joined the left bearing to the right housing.
+
+## The big duck's videos and training hand-off (2026-11-05)
+
+- **Render a big robot offline.** Its films come from the spec's shapes in MuJoCo (`tools/render_big_video.py`), so they need no Fusion turn and no third-party CAD. The cost: the actuators are outlines, not the maker's models.
+- **Frame by the robot, per angle.** One zoom for a 1.8 m robot's whole turn left it filling half the picture; close-ups at a part's own size filled the picture with a plate. Fit each angle to every part's points, and stand back to about 3 times a part's size.
+- **Fusion and renders share one machine's memory.** A render beside a Fusion build on 16 GB paged Fusion for 2 hours, and Fusion didn't recover when the render ended: it had grown to 15.7 GB over 14 hours. Restart it between long runs.
+- **What another machine needs must be in the repo, or fetchable.** The big duck's trainer models were never kept: `tools/big_trainer.py` now makes them and the `trainer.json` that registers its tasks, and `docs/big/REPRODUCE.md` says where each outside file comes from.
+- **Two motors on one joint is published practice, with one controller.** A joint controller gives one torque, split between them in torque mode, with a small opposing bias against backlash (Robertz et al., ICRA 2010). The knee's two separate rods are the weak part: see `docs/big/PAIRED_ACTUATORS.md`.
