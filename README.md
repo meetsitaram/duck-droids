@@ -37,6 +37,10 @@ The same design on other servos, and at 1.8 m. Each has its own parts list, prin
 
 The family ([MP4, 17 s, sharper](docs/images/family/duck_family.mp4)), in simulation only, from walks trained on 3 November, before the foot switches were taken out: today's designs have no trained walk yet. The hobby-servo and nano ducks aren't in it yet.
 
+![All seven ducks standing to scale in a row in a room, from the 21 cm nano duck to the 1.8 m big duck beside a sofa, each labelled](docs/images/family_lineup.png)
+
+All seven to scale ([MP4, 62 s](docs/images/family_lineup.mp4)): the camera goes along the row, and each duck nods, bites and turns, with its servos, height, width and weight. Made by `tools/lineup_video.py`; the motion is scripted, not a trained walk.
+
 ### Feetech HD-1910 duck
 
 29.5 cm, 1.03 kg, 15 Feetech HD-1910 servos: the all-Dynamixel duck's layout on the servo the community's Microduck builds use.
