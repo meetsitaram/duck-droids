@@ -21,7 +21,7 @@
   "group": "BED",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm"
+  "detail": "38 x 26 x 3 mm"
  },
  {
   "group": "THIN",
@@ -45,7 +45,7 @@
   "group": "VOLUME",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "8.1 cm3, designed 8.2: 2 % off"
+  "detail": "8.2 cm3, designed 8.3: 2 % off"
  },
  {
   "group": "BED",
@@ -81,7 +81,7 @@
   "group": "BED",
   "item": "L hip roll lid",
   "status": "PASS",
-  "detail": "37 x 24 x 3 mm"
+  "detail": "38 x 25 x 3 mm"
  },
  {
   "group": "THIN",
@@ -105,7 +105,7 @@
   "group": "VOLUME",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "3.5 cm3, designed 3.5: 1 % off"
+  "detail": "3.6 cm3, designed 3.6: 1 % off"
  },
  {
   "group": "BED",
@@ -117,7 +117,7 @@
   "group": "THIN",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -171,13 +171,13 @@
   "group": "BED",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm"
+  "detail": "38 x 26 x 3 mm"
  },
  {
   "group": "THIN",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "0 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -207,7 +207,7 @@
   "group": "THIN",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -237,7 +237,7 @@
   "group": "THIN",
   "item": "L thigh cover",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -255,7 +255,7 @@
   "group": "VOLUME",
   "item": "L shin",
   "status": "PASS",
-  "detail": "6.4 cm3, designed 6.5: 1 % off"
+  "detail": "6.5 cm3, designed 6.5: 1 % off"
  },
  {
   "group": "BED",
@@ -285,7 +285,7 @@
   "group": "VOLUME",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "11.5 cm3, designed 11.5: 0 % off"
+  "detail": "11.4 cm3, designed 11.5: 0 % off"
  },
  {
   "group": "BED",
@@ -381,7 +381,7 @@
   "group": "BED",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm"
+  "detail": "38 x 26 x 3 mm"
  },
  {
   "group": "THIN",
@@ -405,7 +405,7 @@
   "group": "VOLUME",
   "item": "R yaw bracket",
   "status": "PASS",
-  "detail": "8.1 cm3, designed 8.2: 2 % off"
+  "detail": "8.2 cm3, designed 8.3: 2 % off"
  },
  {
   "group": "BED",
@@ -441,7 +441,7 @@
   "group": "BED",
   "item": "R hip roll lid",
   "status": "PASS",
-  "detail": "37 x 24 x 3 mm"
+  "detail": "38 x 25 x 3 mm"
  },
  {
   "group": "THIN",
@@ -465,7 +465,7 @@
   "group": "VOLUME",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "3.5 cm3, designed 3.5: 1 % off"
+  "detail": "3.6 cm3, designed 3.6: 1 % off"
  },
  {
   "group": "BED",
@@ -477,7 +477,7 @@
   "group": "THIN",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -531,13 +531,13 @@
   "group": "BED",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm"
+  "detail": "38 x 26 x 3 mm"
  },
  {
   "group": "THIN",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -567,7 +567,7 @@
   "group": "THIN",
   "item": "R knee lid",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -585,7 +585,7 @@
   "group": "VOLUME",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "14.8 cm3, designed 16.0: 7 % off"
+  "detail": "14.9 cm3, designed 16.0: 7 % off"
  },
  {
   "group": "BED",
@@ -597,7 +597,7 @@
   "group": "THIN",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "0 % of its surface is under 0.8 mm thick"
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -615,7 +615,7 @@
   "group": "VOLUME",
   "item": "R shin",
   "status": "PASS",
-  "detail": "6.4 cm3, designed 6.5: 1 % off"
+  "detail": "6.5 cm3, designed 6.5: 1 % off"
  },
  {
   "group": "BED",
@@ -645,7 +645,7 @@
   "group": "VOLUME",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "11.5 cm3, designed 11.5: 0 % off"
+  "detail": "11.4 cm3, designed 11.5: 0 % off"
  },
  {
   "group": "BED",
@@ -657,7 +657,7 @@
   "group": "THIN",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "6 % of its surface is under 0.8 mm thick"
+  "detail": "5 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -735,7 +735,7 @@
   "group": "VOLUME",
   "item": "chassis",
   "status": "PASS",
-  "detail": "27.6 cm3, designed 27.8: 0 % off"
+  "detail": "27.6 cm3, designed 27.8: 1 % off"
  },
  {
   "group": "BED",
@@ -765,19 +765,19 @@
   "group": "VOLUME",
   "item": "body shell",
   "status": "PASS",
-  "detail": "21.5 cm3, designed 22.1: 3 % off"
+  "detail": "23.8 cm3, designed 24.6: 3 % off"
  },
  {
   "group": "BED",
   "item": "body shell",
   "status": "PASS",
-  "detail": "85 x 74 x 38 mm"
+  "detail": "98 x 74 x 38 mm"
  },
  {
   "group": "THIN",
   "item": "body shell",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "3 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -915,7 +915,7 @@
   "group": "VOLUME",
   "item": "head yaw sheet",
   "status": "PASS",
-  "detail": "0.8 cm3, designed 0.8: 0 % off"
+  "detail": "0.7 cm3, designed 0.7: 0 % off"
  },
  {
   "group": "BED",
@@ -945,7 +945,7 @@
   "group": "VOLUME",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "5.6 cm3, designed 5.7: 2 % off"
+  "detail": "5.7 cm3, designed 5.7: 0 % off"
  },
  {
   "group": "BED",
@@ -957,7 +957,7 @@
   "group": "THIN",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -981,7 +981,7 @@
   "group": "BED",
   "item": "head roll lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm"
+  "detail": "38 x 26 x 3 mm"
  },
  {
   "group": "THIN",
@@ -1011,13 +1011,13 @@
   "group": "BED",
   "item": "head roll spacer",
   "status": "PASS",
-  "detail": "16 x 16 x 2 mm"
+  "detail": "17 x 17 x 2 mm"
  },
  {
   "group": "THIN",
   "item": "head roll spacer",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -1041,13 +1041,13 @@
   "group": "BED",
   "item": "head roll rear spacer",
   "status": "PASS",
-  "detail": "16 x 16 x 2 mm"
+  "detail": "17 x 17 x 2 mm"
  },
  {
   "group": "THIN",
   "item": "head roll rear spacer",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -1095,7 +1095,7 @@
   "group": "VOLUME",
   "item": "hood",
   "status": "PASS",
-  "detail": "48.3 cm3, designed 48.6: 1 % off"
+  "detail": "48.1 cm3, designed 48.4: 1 % off"
  },
  {
   "group": "BED",
@@ -1125,7 +1125,7 @@
   "group": "VOLUME",
   "item": "jaw",
   "status": "PASS",
-  "detail": "29.6 cm3, designed 29.6: 0 % off"
+  "detail": "29.5 cm3, designed 29.6: 0 % off"
  },
  {
   "group": "BED",

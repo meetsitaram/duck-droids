@@ -5,8 +5,6 @@
 From `python -I tools/export_prints.py`, in millimetres: every part, left and right, already turned the way it should print, its long overhangs down
 (tools/printable.py chooses). Pockets are cut 0.3 mm over each bought part and bearing seats 0.1 mm over. None has been test printed: print one joint first.
 
-**2026-11-06, for the 6703ZZ bearings (17 x 23 x 4 mm):** 19 files were redrawn offline, without Fusion's rounding, until the Fusion model is rebuilt: the hip yaw, hip roll and hip pitch lids, roll and yaw brackets, knee lids and shins (left and right), and the head yaw sheet and bracket, head roll lid and both head roll spacers. Also offline: the body shell, 13 mm longer at the back, for the KCD1 rocker switch's hole there, and the hood, for the PC cable's hole over the Pi's USB port. The rest are Fusion's bodies, unchanged.
-
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|
 | L hip yaw lid | L_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
@@ -34,7 +32,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | R sole | R_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
 | R inner ear | R_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
 | chassis | chassis.stl | 38 x 53 x 84 | 27.8 | PLA | 2114 |
-| body shell | body_shell.stl | 38 x 74 x 85 | 22.1 | PLA | 1516 |
+| body shell | body_shell.stl | 38 x 74 x 98 | 24.6 | PLA | 1460 |
 | neck column | neck_column.stl | 26 x 28 x 27 | 3.6 | PLA | 198 |
 | neck lid | neck_lid.stl | 5 x 26 x 3 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 1 |
@@ -45,7 +43,7 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | head roll spacer | head_roll_spacer.stl | 17 x 17 x 2 | 0.3 | PLA | 0 (none) |
 | head roll rear spacer | head_roll_rear_spacer.stl | 17 x 17 x 2 | 0.4 | PLA | 0 (none) |
 | head frame | head_frame.stl | 141 x 101 x 59 | 54.2 | PLA | 5470 |
-| hood | hood.stl | 58 x 106 x 150 | 48.6 | PLA | 2911 |
+| hood | hood.stl | 58 x 106 x 150 | 48.4 | PLA | 2933 |
 | jaw | jaw.stl | 88 x 106 x 42 | 29.6 | PLA | 925 |
 | jaw soft insert | jaw_soft_insert.stl | 27 x 101 x 5 | 13.3 | TPU 95A | 0 (none) |
 | mouth roof | mouth_roof.stl | 40 x 101 x 3 | 12.6 | TPU 95A | 15 |
