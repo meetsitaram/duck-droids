@@ -111,7 +111,7 @@ def check_mate(B, solids, rep):
     for n, (ln, g) in B.screws.items():
         f = g['fast']
         sz = f['size'].split()[0]
-        tool = E.cylinder(np.array(f['p']), np.array(f['d']), E.HEAD_R[sz], -0.0015, -0.00005)
+        tool = E.cylinder(np.array(f['p']), np.array(f['d']), E.HEAD_R[sz], *((0.00005, 0.0012) if f['size'].endswith('flat') else (-0.0015, -0.00005)))   # (a flat head's p is its top: the head is below it, in its seat)
         hit = [h for h, l2, m in hard if l2 == ln and C.overlap(tool, m) > 1e-10]
         rep.add('HEADS', n, not hit, f'its head stands inside {hit}' if hit else '')
 

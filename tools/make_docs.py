@@ -110,7 +110,7 @@ def driver(sz):
 SCREW_USE = {('M2.5', 5): 'the bus board, into its brass standoffs. Kept with the board, if yours came with them',
              ('M2', 6): 'STS3215 cases; XL/XC330 horns; shoe, cover and body screws. Self-tapping',
              ('M2', 8): 'XL/XC330 frame holes, inner ears, horns over a bearing. Self-tapping',
-             ('M3 flat', 6): 'ankle rear horn: flat heads, flush under the bearing', ('M2 flat', 5): 'ankle idler: flat heads, flush under the bearing',
+             ('M3 flat', 6): 'ankle rear horn: flat heads, flush under the bearing', ('M2 flat', 5): 'ankle idler: flat heads, in a shallow seat under the bearing',
              ('M3', 10): 'STS3215 horns, through the bracket and its boss', ('M3', 8): 'ankle horns, through the outer ear', ('M3', 12): 'soles, from below', ('M3', 14): 'jaw hinges'}
 
 
@@ -121,7 +121,7 @@ def counts(spec):
         servos[j['act']] += 1
         for _ in j.get('bearing', []):     # (a hobby servo names its own: spec/actuators.json)
             bear[spec['actuators'][j['act']].get('bearing') or spec['bearings']['STS3215' if j['act'].startswith('STS') else 'XL330']['part']] += 1
-    bear[spec['bearings']['ankle']['part']] = 2
+    bear[spec['bearings']['ankle']['part']] = 2 if any('ankle bearing' in g['name'] for l in spec['links'].values() for g in l['geoms']) else 0
     for l in spec['links'].values():
         for g in l['geoms']:
             if 'fast' in g:
@@ -346,18 +346,18 @@ def bom_dynamixel(spec):
         ]),
         ('Bearings and idlers', [
             ('mr2216', 'Ball bearing, around each horn', 'uxcell 6703ZZ', '17 x 23 x 4 mm, chrome steel, double shielded. Replaces the 16 x 22 x 4 mm MR2216ZZ, out of stock until the end of the month. Its bore is 1 mm over the horn, so its inner race sits on the printed boss alone: check the fit on the first joint', bear['6703ZZ'], 'pack of 5', 3, 6.29, amz('B082PSB4DZ'), 'Required'),
-            ('b6700', 'Ball bearing, shoe inner ear', '6700ZZ', '10 x 15 x 4 mm', bear['6700ZZ'], 'pack of 10', 1, 6.79, amz('B0FQ4VYXRP'), 'Required'),
+            *([('b6700', 'Ball bearing, shoe inner ear', '6700ZZ', '10 x 15 x 4 mm', bear['6700ZZ'], 'pack of 10', 1, 6.79, amz('B0FQ4VYXRP'), 'Required')] if bear['6700ZZ'] else []),
             ('idler', 'Idler: neck, head pitch, head roll, both ankles', 'ROBOTIS FPX330-H101', 'set of 4', 5, 'set of 4', 2, 11.27, link('ROBOTIS US', 'https://robotis.us/fpx330-h101-4pcs-set/'), 'Required'),
         ]),
         ('Fasteners', [
             ('m2x6', 'Screw, servo mounting', 'generic', 'M2 x 6 mm', sc('M2', 6), 'in the servo box', 0, None, f'{n * per_servo[("M2", 6)]} come with the servos', 'Required'),
             ('m2x8', 'Screw, servo mounting', 'generic', 'M2 x 8 mm', sc('M2', 8), 'in the servo box', 0, None, f'{n * per_servo[("M2", 8)]} come with the servos', 'Required'),
-            ('m2f', 'Screw, flat head, machine thread', 'generic', 'M2 x 5 mm, Phillips, black oxide 304 stainless', sc('M2 flat', 5), 'pack of 50', 1, None, amz('B0H5JXD9YQ'), 'Required'),
+            *([('m2f', 'Screw, flat head, machine thread', 'generic', 'M2 x 5 mm, Phillips, black oxide 304 stainless', sc('M2 flat', 5), 'pack of 50', 1, None, amz('B0H5JXD9YQ'), 'Required')] if sc('M2 flat', 5) else []),
             ('m25', 'Screw, bus board, machine thread', 'generic', 'M2.5 x 5 mm, pan head, Phillips, black oxide 18-8 stainless, DIN 7985', sc('M2.5', 5), 'pack of 100', 1, 5.59, link('Zoro G816462679', 'https://www.zoro.com/zoro-select-m25x045-x-5-mm-phillips-pan-machine-screw-black-oxide-stainless-steel-100-pk-31-bpm-25-5/i/G816462679/') + ': $5.59 by a search result; the page refuses automated reading, so confirm it', 'Required'),
             ('so', 'Spare hex standoffs, bus board: 4 come with the Waveshare board', 'uxcell', 'brass, M2.5, female-female, 8 mm long, 5 mm across flats', 0, 'pack of 50', 1, None, 'Amazon', 'Optional'),
             ('m3kit', 'Screws, socket cap: 1 x M3 x 10, 4 x M3 x 12', 'generic', 'kit of 610 with nuts and washers', sc('M3', 10) + sc('M3', 12), 'kit', 1, 19.99, amz('B09NR8X2LV'), 'Required'),
             ('wash', 'Washer, far hinge tab to hood', 'uxcell', 'M3, 6 mm outside, 0.5 mm thick, stainless', 1, 'pack of 100', 1, None, amz('B015A39NCC'), 'Required'),
-            ('m2kit', 'Spare M2 screws', 'generic', 'self-tapping pan head kit, 800 pieces', 0, 'kit', 1, 15.66, amz('B0GV338JJK'), 'Optional'),
+            ('m2kit', 'Spare M2 screws', 'HELIFOUNER', 'M2 pan head Phillips machine screws, 304 stainless: 4, 6, 8, 10, 12, 16 and 20 mm, 20 of each, with nuts and washers (560 pieces). Machine thread, not self-tapping: the servo box screws go in the horns and cases', 0, 'kit', 1, None, amz('B0B6HVS3SJ'), 'Optional'),
         ]),
         ('Electronics', [
             ('pi', 'Computer', 'Raspberry Pi Zero 2 W', 'without header', 1, 'each', 1, None, link('PiShop', 'https://www.pishop.us/product/raspberry-pi-zero-2-w/') + ': out of stock on 2026-11-03', 'Required'),
@@ -394,7 +394,7 @@ def bom_dynamixel(spec):
 
     SEARCH = {'servo': 'Dynamixel XL330-M288-T', 'm077': 'Dynamixel XL330-M077-T', 'mr2216': '6703ZZ bearing 17x23x4mm', 'b6700': '6700ZZ bearing 10x15x4mm', 'idler': 'Dynamixel FPX330-H101 idler',
               'm2x6': 'M2 x 6mm self tapping pan head screw', 'm2x8': 'M2 x 8mm self tapping pan head screw', 'm2f': 'M2 x 5mm flat head phillips machine screw', 'm25': 'M2.5 x 5mm pan head machine screw black oxide',
-              'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'M2 self tapping pan head screw kit',
+              'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'HELIFOUNER M2 pan head machine screw kit 560',
               'pi': 'Raspberry Pi Zero 2 W', 'sd': 'SanDisk 32GB Ultra microSDHC A1', 'board': 'Waveshare Serial Bus Servo Driver Board', 'reg': 'hiBCTR USB buck converter QC3.0', 'imu': 'BNO085 IMU module',
               'cam': 'Arducam 8MP IMX219 camera module', 'ribbon': 'Raspberry Pi Zero camera cable 22 pin to 15 pin 15cm', 'batt': 'OVONIC 2S 450mAh 100C XT30', 'xt30': 'XT30 pigtail 16 AWG 100mm', 'wire': '20 AWG silicone wire red black',
               'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': '20 AWG silicone wire red black', 'otg': 'female female dupont jumper wires 10cm', 'switch': 'KCD1 mini rocker switch SPST pre-wired 12V 20A',
@@ -474,13 +474,13 @@ def bom_dynamixel(spec):
          f"- **Item {num['batt']}:** marked HV. Charge as a normal 2S, to 8.4 V.",
          f"- **Item {num['usb']}:** check the Pi's voltage under load, at its 5 V pin.",
          f"- **Horns:** ROBOTIS's own photos and model show the horn on the servo, though its box list names only the servo, a cable and screws. If one comes without, it's the HNX330-N102. Check the first servo before ordering the rest.",
-         f"- **Items {num['m2x6']}, {num['m2x8']}:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: order item {num['m2kit']} and set each ID again if buying there.",
+         f"- **Items {num['m2x6']}, {num['m2x8']}:** come in ROBOTIS's servo box. Seeed sells the servo as a numbered Reachy Mini part, with an arm and a preset ID: check it comes with M2 x 6 and M2 x 8 self-tapping pan head screws, and set each ID again if buying there.",
          '- Each servo includes a 180 mm cable, which covers every link in the chains except the 2 long ones.', '',
          '## Open before ordering', '',
          f"- **Servo supply:** item {num['servo']} is sold out at ROBOTIS US and limited at Seeed. {n} units is the longest lead time here.",
          f"- **Item {num['long']}:** made up from JST's pre-crimped leads, as ROBOTIS only sells 180 mm cables. Check the first one fits a servo socket before making the second.",
          f"- **Measure on the first parts:** a horn in the bore of item {num['mr2216']}; the Waveshare board's standoffs against their printed hex sockets, 5 mm across flats (item {num['board']}); the camera board (item {num['cam']}); servo cable lengths (item {num['long']}).",
-         f"- **Amazon listings** (items {', '.join(str(num[x]) for x in ('mr2216', 'b6700', 'm2f', 'wash', 'board', 'imu', 'otg', 'batt', 'xt30', 'wire', 'thin', 'cam'))}, and those found by search) are as last read: confirm each page before ordering.",
+         f"- **Amazon listings** (items {', '.join(str(num[x]) for x in ('mr2216', 'b6700', 'm2f', 'wash', 'board', 'imu', 'otg', 'batt', 'xt30', 'wire', 'thin', 'cam') if x in num)}, and those found by search) are as last read: confirm each page before ordering.",
          '- **Not in this design:** power switch (the XT30 is the disconnect), speaker, microphone.', '']
     folder = G.out_path('docs')
     os.makedirs(folder, exist_ok=True)
