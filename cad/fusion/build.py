@@ -123,8 +123,22 @@ SOFT_SECONDS = 12.0     # for one part: what can't be rounded in that time stays
 SOFT_SKIP = ('body shell', 'hood', ' lid', 'sheet', 'spacer', 'inner ear', 'crank', 'rod', 'eye ', 'sole', 'soft', 'mouth roof', 'face')   # small parts, and what a bearing or a servo fits in
 
 
-def soften(body, comp, r=SOFT_R):
+SEAT_WORDS = ('seat boss', 'boss shoulder', 'ankle stub', 'ear hub', 'rear hub boss', 'rear hub shoulder')   # what a bearing's ring presses onto or sits against
+
+
+def seats_of(link_geoms, names):
+    """(centre, axis, radius, half height), in cm, of every bearing seat among these geoms: soften() rounds nothing there."""
+    out = []
+    for g in link_geoms:
+        if g['name'] in names and g.get('kind') == 'cyl' and any(w in g['name'] for w in SEAT_WORDS):
+            a = {'x': (1, 0, 0), 'y': (0, 1, 0), 'z': (0, 0, 1)}[g['axis']]
+            out.append(([v * 100 for v in g['c']], a, g['r'] * 100, g['h'] * 50))
+    return out
+
+
+def soften(body, comp, r=SOFT_R, seats=()):
     """Round a joined part's outside edges, and its straight inside corners (where a print cracks), but not a round inside corner: that's a boss on a plate, and a bearing's race sits there.
+    seats: (centre, axis, radius, half height) of bearing seats; no edge on a seat or its shoulder is rounded (a rounded seat let the ring rock: 2026-11-10, the user).
     Fusion refuses a set if any one edge fails, so it halves the set until the rest go through. A result that lost over 3 % is thrown away: on a thin part a fillet can eat the part
     (an inner ear went from 2.4 cm3 to nothing, and the build called it a success). Returns (body, edges rounded, left sharp)."""
     t0, skip, chunk = time.time(), set(), 10 ** 6
@@ -137,8 +151,19 @@ def soften(body, comp, r=SOFT_R):
         p = e.pointOnEdge
         return (round(p.x, 3), round(p.y, 3), round(p.z, 3))
 
+    def on_seat(p):
+        for c, a, rr, hh in seats:
+            d = (p.x - c[0], p.y - c[1], p.z - c[2])
+            al = d[0] * a[0] + d[1] * a[1] + d[2] * a[2]
+            rad = sum((d[i] - al * a[i]) ** 2 for i in range(3)) ** 0.5
+            if abs(al) <= hh + 0.06 and rad <= rr + 0.06:
+                return True
+        return False
+
     def wanted(e):
         p = e.pointOnEdge
+        if on_seat(p):
+            return False
         ok0, n0 = e.faces.item(0).evaluator.getNormalAtPoint(p)
         ok1, n1 = e.faces.item(1).evaluator.getNormalAtPoint(p)
         if abs(n0.dotProduct(n1)) >= 0.95:             # two faces that already run smoothly into each other
@@ -545,7 +570,7 @@ def link(name):
         whole = b.join(bodies, pn)
         whole.name = pn
         if not any(k in pn for k in SOFT_SKIP):
-            whole, nr_, ns_ = soften(whole, comp)
+            whole, nr_, ns_ = soften(whole, comp, seats=seats_of(s['links'][name]['geoms'], set(p['geoms'])))
             soft[0] += nr_
             if ns_ < 0:
                 soft[2].append(pn)

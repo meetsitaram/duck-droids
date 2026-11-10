@@ -49,13 +49,12 @@ Then the same for the right side, mirrored.
 
 > 🔌 The ankle is the end of its leg's chain: one lead up to the knee. Leave slack across the knee and tie it to the rail.
 
-**Screws for this section:** 2 x M2 x 8 mm, 4 x M2 flat x 5 mm (each side)
+**Screws for this section:** 4 x M2 x 8 mm (each side)
 
 1. The shin
 2. Plug in the cable, slide in the ankle servo
-3. Screws: 4 flat-head into the rear horn, 2 at the far end *(2 x M2 x 8 mm, small Phillips; 4 x M2 flat x 5 mm, small Phillips)*
-4. Press the small bearing onto the stub
-5. Horn on, servo at mid-range
+3. 4 screws at the far end, 2 on each face *(4 x M2 x 8 mm, small Phillips)*
+4. Horn on, servo at mid-range
 
 Then the same for the right side, mirrored.
 
@@ -80,13 +79,13 @@ Then the same for the right side, mirrored.
 
 > ⚠ The roll bracket goes onto the hip horn here, on the bench: once the leg is on the robot, the roll servo blocks those 4 screws.
 
-**Screws for this section:** 4 x M2 x 6 mm, 10 x M2 x 8 mm (each side)
+**Screws for this section:** 8 x M2 x 6 mm, 8 x M2 x 8 mm (each side)
 
 1. The shin onto the knee horn
 2. 4 screws from the inside *(4 x M2 x 8 mm, small Phillips)*
 3. Lift the shoe onto the ankle servo
 4. 4 screws through the outer ear *(4 x M2 x 6 mm, small Phillips)*
-5. The inner ear onto the stub, 2 screws *(2 x M2 x 8 mm, small Phillips)*
+5. 4 screws through the inner ear, into the idler *(4 x M2 x 6 mm, small Phillips)*
 6. The roll bracket onto the hip horn, 4 screws *(4 x M2 x 8 mm, small Phillips)*
 
 Then the same for the right side, mirrored.
@@ -101,7 +100,7 @@ Then the same for the right side, mirrored.
 
 > 🔌 One lead from each hip yaw servo to the body, and one on to its roll servo, before each servo goes in.
 
-**Screws for this section:** 32 x M2 x 8 mm
+**Screws for this section:** 28 x M2 x 8 mm
 
 1. The chassis, upside down
 2. Plug in the cables, push in the hip yaw servos
@@ -110,11 +109,9 @@ Then the same for the right side, mirrored.
 5. Press in the bearings
 6. Horns on, servos at mid-range
 7. The yaw brackets, 4 screws each, before the roll servos *(8 x M2 x 8 mm, small Phillips)*
-8. Plug in the cables, slide in the hip roll servos
-9. 2 screws each, from behind *(8 x M2 x 8 mm, small Phillips)*
-10. The lids and their screws *(4 x M2 x 8 mm, small Phillips)*
-11. Press in the bearings
-12. Horns on, servos at mid-range
+8. Plug in the cables, slide the hip roll servos up into the yaw brackets, horns on
+9. 4 screws each, 2 on each face, at the top *(8 x M2 x 8 mm, small Phillips)*
+10. Idlers on, servos at mid-range
 
 ## 6. Legs onto the hips
 
@@ -124,12 +121,12 @@ Then the same for the right side, mirrored.
 
 > 🔌 Plug the leg's lead into the roll servo as it comes on, with slack for the hip's whole range.
 
-**Screws for this section:** 8 x M2 x 8 mm
+**Screws for this section:** 16 x M2 x 6 mm
 
-1. The left leg onto the roll horn
-2. 4 screws from the front *(4 x M2 x 8 mm, small Phillips)*
+1. The left leg onto the roll horn and idler, its fork round the servo from inside
+2. 4 screws from the front, 4 from behind *(8 x M2 x 6 mm, small Phillips)*
 3. The right leg
-4. 4 screws from the front *(4 x M2 x 8 mm, small Phillips)*
+4. 4 screws from the front, 4 from behind *(8 x M2 x 6 mm, small Phillips)*
 
 ## 7. Neck column
 

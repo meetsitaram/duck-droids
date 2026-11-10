@@ -168,8 +168,10 @@ def hole_list(B, part):
                     out.append((p, d, HEAD_R[sz] + 0.0002, -HEAD_H, 0.0, n))
             continue
         if under or ' spacer' in part:             # it clamps this part: a clearance hole, its head's counterbore above
-            out.append((p, d, CLEAR[sz], -0.0005, f['L'], n))
+            out.append((p, d, f.get('clear', CLEAR[sz]), -0.0005, f['L'], n))
             out.append((p, d, {'M3': 0.0029, 'M2.5': 0.0024}.get(sz, 0.0021), -0.03, 0.0, n))
+            if f.get('recess'):                    # a shallow seat in the plate itself, for a flat head
+                out.append((p, d, f['recess'][0], -0.0005, f['recess'][1], n))
         else:
             out.append((p, d, PILOT[sz], -0.0005, f['L'] + 0.0005, n))
     return out
@@ -202,13 +204,23 @@ def main():
         mesh = m.to_mesh()
         tm = trimesh.Trimesh(np.asarray(mesh.vert_properties[:, :3], float) * 1000, np.asarray(mesh.tri_verts, int))
         best = PR.best_orientation(tm)
+        if G.RECIPE == 'dynamixel' and part.endswith((' shoe', ' sole')):     # on their flat faces, the shoe's underside and the sole's top (2026-11-09, the user)
+            ax = ('z', -1) if part.endswith(' shoe') else ('z', 1)
+            best = PR.score(tm, next(T for x, sg, T in PR.orientations() if (x, sg) == ax))
         if part == 'head frame':
             # (least overhang area stood it 141 mm tall on 330 mm2, its supports trapped inside. With its band on the bed: 60 mm, 3 x the first layer, and under half the support landing on the part)
             best = dict(best, T=trimesh.transformations.rotation_matrix(np.radians(90), [0, 1, 0]) @ np.asarray(best['T'], float))
         tm.apply_transform(best['T'])
         tm.apply_translation(-tm.bounds[0])
         name = part.replace(' ', '_') + '.stl'
-        tm.export(os.path.join(out, name))
+        for _try in range(6):                      # (Windows refuses a write now and then, OSError 22, a scanner holding the file: try again)
+            try:
+                tm.export(os.path.join(out, name))
+                break
+            except OSError:
+                if _try == 5:
+                    raise
+                __import__('time').sleep(1.0)
         e = tm.extents
         gs = B.parts[part]['geoms']
         solid = solid_part(B, part)

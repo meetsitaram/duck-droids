@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "8.7 MPa (allowed 15): 28 N, section 126 mm2"
+  "detail": "8.3 MPa (allowed 15): 27 N, section 126 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "4.3 MPa (allowed 15): 28 N, section 185 mm2"
+  "detail": "4.1 MPa (allowed 15): 27 N, section 185 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 28 N, section 485 mm2"
+  "detail": "0.4 MPa (allowed 15): 27 N, section 485 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "8.5 MPa (allowed 15): 28 N, section 76 mm2"
+  "detail": "6.8 MPa (allowed 15): 27 N, section 83 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "6.9 MPa (allowed 15): 28 N, section 50 mm2"
+  "detail": "2.7 MPa (allowed 15): 27 N, section 110 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.2 MPa (allowed 15): 28 N, section 553 mm2"
+  "detail": "1.0 MPa (allowed 15): 27 N, section 626 mm2"
  },
  {
   "group": "ONE",
@@ -69,25 +69,7 @@
   "group": "FIT",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "30 x 27 x 49 mm"
- },
- {
-  "group": "ONE",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": "4 x 27 x 39 mm"
+  "detail": "29 x 24 x 16 mm"
  },
  {
   "group": "ONE",
@@ -105,7 +87,7 @@
   "group": "FIT",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "31 x 32 x 20 mm"
+  "detail": "36 x 32 x 20 mm"
  },
  {
   "group": "ONE",
@@ -177,7 +159,7 @@
   "group": "FIT",
   "item": "L shin",
   "status": "PASS",
-  "detail": "22 x 34 x 67 mm"
+  "detail": "24 x 33 x 40 mm"
  },
  {
   "group": "ONE",
@@ -195,7 +177,7 @@
   "group": "FIT",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "59 x 45 x 32 mm"
+  "detail": "59 x 45 x 28 mm"
  },
  {
   "group": "ONE",
@@ -213,25 +195,7 @@
   "group": "FIT",
   "item": "L sole",
   "status": "PASS",
-  "detail": "59 x 45 x 14 mm"
- },
- {
-  "group": "ONE",
-  "item": "L inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "L inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "L inner ear",
-  "status": "PASS",
-  "detail": "44 x 5 x 32 mm"
+  "detail": "59 x 45 x 13 mm"
  },
  {
   "group": "ONE",
@@ -249,7 +213,7 @@
   "group": "FIT",
   "item": "chassis",
   "status": "PASS",
-  "detail": "85 x 54 x 40 mm"
+  "detail": "74 x 54 x 47 mm"
  },
  {
   "group": "ONE",
@@ -321,7 +285,7 @@
   "group": "FIT",
   "item": "head fork",
   "status": "PASS",
-  "detail": "38 x 40 x 56 mm"
+  "detail": "46 x 40 x 56 mm"
  },
  {
   "group": "ONE",

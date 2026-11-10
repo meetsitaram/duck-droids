@@ -72,6 +72,7 @@ def hub(n):
     return (f'{n} rear hub', 'P', [f'{n} rear hub shoulder', f'{n} rear hub boss', f'{n} rear hub plug', f'{n} rear hub collar'])
 
 
+AV2 = RF2 = G.RECIPE == 'dynamixel'                      # (the ankle of 2026-11-09: spec/robot.py's ankle_v2)
 BODY_PI = G.RECIPE == 'hobby'                      # the hobby duck's Pi is in its body: it goes in with the torso, not the head
 
 
@@ -87,12 +88,11 @@ def leg_parts(s):
         (f'{s} hip yaw lid', 'P', lid(y)),
         (f'{s} hip yaw bearing', 'B', races(y)),
         (f'{s} hip yaw horn', 'B', [f'{s}_hip_yaw flange']),
-        (f'{s} yaw bracket', 'P', [f'{s} hip yaw plate', f'{y} horn boss shoulder'] + tray(r, '+' if s == 'L' else '-')),
+        (f'{s} yaw bracket', 'P', [f'{s} hip yaw plate', f'{y} horn boss shoulder'] + ([f'{s} hip yaw near tab {f}{q}' for f in 'hr' for q in (0, 1)] if RF2 else tray(r, '+' if s == 'L' else '-'))),
         (f'{s} hip roll servo', 'B', [f'{s}_hip_roll actuator (buy) STS3215_C044', f'{r} cable plugs']),
-        (f'{s} hip roll lid', 'P', lid(r)),
-        (f'{s} hip roll bearing', 'B', races(r)),
+        *([(f'{s} hip roll idler', 'B', [f'{r} rear horn'])] if RF2 else [(f'{s} hip roll lid', 'P', lid(r)), (f'{s} hip roll bearing', 'B', races(r))]),
         (f'{s} hip roll horn', 'B', [f'{s}_hip_roll flange']),
-        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{s} roll gusset 0', f'{s} roll gusset 1', f'{r} horn boss shoulder',
+        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{s} roll gusset 0', f'{s} roll gusset 1', *([f'{s} hip roll back arm', f'{r} fork horn plate', f'{r} fork rear plate', f'{r} horn seat boss', f'{r} rear seat boss'] if RF2 else [f'{r} horn boss shoulder']),
                                     f'{p} horn boss shoulder']),
         (f'{s} thigh frame', 'P', [f'{s} thigh plate', f'{s} thigh post hip', f'{s} thigh post knee'] + tray(p) + tray(k)),
         (f'{s} hip pitch servo', 'B', [f'{s}_hip_pitch actuator (buy) STS3215_C044', f'{p} cable plugs']),
@@ -104,21 +104,21 @@ def leg_parts(s):
         (f'{s} hip pitch horn', 'B', [f'{s}_hip_pitch flange']),
         (f'{s} knee horn', 'B', [f'{s}_knee flange']),
         (f'{s} thigh cover', 'P', [f'{s} thigh cover']),
-        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin rib', f'{s} shin gusset', f'{s} shin collar 0', f'{s} shin collar 1', f'{s} shin cap', f'{s} ankle stub plate', f'{s} ankle rail 0', f'{s} ankle rail 1', f'{s} ankle stub',
+        (f'{s} shin', 'P', [f'{s} shin plate', f'{s} shin rib', f'{s} shin gusset', f'{s} shin collar 0', f'{s} shin collar 1', f'{s} shin cap', *([f'{s} shin arm', f'{s} shin sleeve rear'] if AV2 else [f'{s} ankle stub plate', f'{s} ankle rail 0', f'{s} ankle rail 1', f'{s} ankle stub']),
                             f'{k} horn boss shoulder', f'{a} cradle rear face', f'{a} cradle end +', f'{a} cradle end -'] + [f'{a} {e}' for e in EARS]),
-        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', f'{s} ankle rear boss', f'{a} cable plugs']),
+        (f'{s} ankle servo', 'B', [f'{s}_ankle_pitch actuator (buy) STS3215_C044', *([] if AV2 else [f'{s} ankle rear boss']), f'{a} cable plugs']),
         (f'{s} ankle lid', 'P', [f'{a} cradle horn face']),
         (f'{s} ankle horn', 'B', [f'{s}_ankle_pitch flange']),
-        (f'{s} ankle bearing inner', 'B', [f'{s} ankle bearing inner race', f'{s} ankle bearing outer race']),
-        (f'{s} shoe', 'P', [f'{s} shoe', f'{s} ankle ear out']),
+        *([(f'{s} ankle idler', 'B', [f'{s} ankle rear boss'])] if AV2 else [(f'{s} ankle bearing inner', 'B', [f'{s} ankle bearing inner race', f'{s} ankle bearing outer race'])]),
+        (f'{s} shoe', 'P', [f'{s} shoe', f'{s} ankle ear out', *([f'{s} ankle ear in'] if AV2 else [])]),
         (f'{s} sole', 'P', [f'{s} sole']),
         (f'{s} foot switch', 'B', [f'{s} foot switch']),
-        (f'{s} inner ear', 'P', [f'{s} ankle ear in', f'{s} ankle ear hub']),
+        *([] if AV2 else [(f'{s} inner ear', 'P', [f'{s} ankle ear in', f'{s} ankle ear hub'])]),
     ]
 
 
 PARTS = leg_parts('L') + leg_parts('R') + [
-    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap', 'pack hanger 0', 'pack hanger 1',
+    ('chassis', 'P', ['top plate', 'neck wall', 'neck wall tab', 'L neck side wall', 'L neck side wall top', 'R neck side wall', 'R neck side wall top', 'neck mount wings', 'neck top bracket horn', 'neck top bracket rear', 'neck mount', 'neck bracket', 'neck idler bracket', 'battery strap', 'pack hanger 0', 'pack hanger 1',
                       'neck idler step', 'Pi post 0', 'Pi post 1', 'Pi post 2', 'Pi post 3', 'neck pitch horn seat boss', 'neck pitch rear seat boss', 'neck pitch fork horn plate', 'neck pitch fork rear plate', 'neck pitch fork post', 'body post 0', 'body post 1', 'L regulator arm 0', 'L regulator arm 1', 'R regulator arm 0', 'R regulator arm 1', 'L regulator drop 0', 'L regulator drop 1', 'R regulator drop 0', 'R regulator drop 1']
      + tray('L hip yaw') + tray('R hip yaw')),
     ('battery', 'B', ['battery 2S 850 mAh'] + ([] if BODY_PI else ['battery XT30', 'battery balance plug'])),
@@ -212,10 +212,10 @@ def sections():
             ('The cover, 2 screws', [(f'{s} thigh cover', IN)], [rf'^{s} thigh cover screw']),
         ]), dict(key=f'shin_{s}', title=f'The {nm} shin', on=[], steps=[
             ('The shin', [(f'{s} shin', None)], []),
-            ('Plug in the cable, slide in the ankle servo', [(f'{s} ankle servo', IN)], []),
-            ('Screws: 2 through the far ears, 2 through the near ears' if BODY_PI else 'Screws: 4 flat-head into the rear horn, 2 at the far end', [], ([] if BODY_PI else [rf'^{s} ankle boss screw']) + [rf'^{a} cradle screw rear']),
+            ('Plug in the cable, slide in the ankle servo', [(f'{s} ankle servo', Z if AV2 else IN)], []),
+            ('Screws: 2 through the far ears, 2 through the near ears' if BODY_PI else '4 screws at the far end, 2 on each face' if AV2 else 'Screws: 4 flat-head into the rear horn, 2 at the far end', [], ([] if BODY_PI or AV2 else [rf'^{s} ankle boss screw']) + ([rf'^{s} shin arm screw'] if AV2 else []) + [rf'^{a} cradle screw rear']),
             ('The lid, 2 screws', [(f'{s} ankle lid', IN)], [rf'^{a} cradle screw horn']),
-            ('Press the small bearing onto the stub', [(f'{s} ankle bearing inner', OUT)], []),
+            *([] if AV2 else [('Press the small bearing onto the stub', [(f'{s} ankle bearing inner', OUT)], [])]),
             ('Horn on, servo at mid-range', [(f'{s} ankle horn', IN)], []),
         ]), dict(key=f'shoe_{s}', title=f'The {nm} shoe', on=[], steps=[
             ('The shoe', [(f'{s} shoe', None)], []),
@@ -226,7 +226,7 @@ def sections():
             ('4 screws from the inside', [], [rf'^{k} fork screw']),
             ('Lift the shoe onto the ankle servo', [(f'@shoe_{s}', Z)], []),
             ('4 screws through the outer ear', [], [rf'^{a} fork screw']),
-            ('The inner ear onto the stub, 2 screws', [(f'{s} inner ear', OUT)], [rf'^{s} ankle ear screw']),
+            ('4 screws through the inner ear, into the idler', [(f'{s} ankle idler', None)], [rf'^{s} ankle ear screw']) if AV2 else ('The inner ear onto the stub, 2 screws', [(f'{s} inner ear', OUT)], [rf'^{s} ankle ear screw']),
             ('The roll bracket onto the hip horn, 4 screws', [(f'{s} roll bracket', OUT)], [rf'^{p} fork screw']),
         ])]
     out += [dict(key='body', title='The chassis and hips', on=[], steps=[
@@ -237,17 +237,20 @@ def sections():
         ('Press in the bearings', [('L hip yaw bearing', Z), ('R hip yaw bearing', Z)], []),
         ('Horns on, servos at mid-range', [('L hip yaw horn', Z), ('R hip yaw horn', Z)], []),
         ('The yaw brackets, 4 screws each, before the roll servos', [('L yaw bracket', Z), ('R yaw bracket', Z)], [r'^[LR] hip yaw fork screw']),
+        *([('Plug in the cables, slide the hip roll servos up into the yaw brackets, horns on', [('L hip roll servo', Z), ('L hip roll horn', Z), ('R hip roll servo', Z), ('R hip roll horn', Z)], []),
+           ('4 screws each, 2 on each face, at the top', [], [r'^[LR] hip roll cradle screw near']),
+           ('Idlers on, servos at mid-range', [('L hip roll idler', X), ('R hip roll idler', X)], [])] if RF2 else [
         ('Plug in the cables, slide in the hip roll servos', [('L hip roll servo', NEG(X)), ('R hip roll servo', NEG(X))], []),
         ('2 screws each, from behind', [], [r'^[LR] hip roll cradle screw rear']),
         ('The lids and their screws', [('L hip roll lid', NEG(X)), ('R hip roll lid', NEG(X))], [r'^[LR] hip roll cradle screw (horn|near)']),
         ('Press in the bearings', [('L hip roll bearing', NEG(X)), ('R hip roll bearing', NEG(X))], []),
-        ('Horns on, servos at mid-range', [('L hip roll horn', NEG(X)), ('R hip roll horn', NEG(X))], []),
+        ('Horns on, servos at mid-range', [('L hip roll horn', NEG(X)), ('R hip roll horn', NEG(X))], [])]),
         ('A 6 V BEC up into each side pocket, tied to its 2 arms, before the legs', [('L 6 V BEC', Z), ('R 6 V BEC', Z)], []),
     ]), dict(key='legs', title='Legs onto the hips', on=['body'], steps=[
-        ('The left leg onto the roll horn', [('@leg_L', NEG(X))], []),
-        ('4 screws from the front', [], [r'^L hip roll fork screw']),
-        ('The right leg', [('@leg_R', NEG(X))], []),
-        ('4 screws from the front', [], [r'^R hip roll fork screw']),
+        ('The left leg onto the roll horn' + (' and idler, its fork round the servo from inside' if RF2 else ''), [('@leg_L', NEG(Y) if RF2 else NEG(X))], []),
+        ('4 screws from the front' + (', 4 from behind' if RF2 else ''), [], [r'^L hip roll fork screw']),
+        ('The right leg', [('@leg_R', Y if RF2 else NEG(X))], []),
+        ('4 screws from the front' + (', 4 from behind' if RF2 else ''), [], [r'^R hip roll fork screw']),
     ]), dict(key='column', title='The neck column', on=[], steps=[
         ('The neck column', [('neck column', None)], []),
         ('Neck servo in, horns on', [('neck servo', NEG(Y))], [r'^neck pitch cradle screw rear']),
@@ -684,13 +687,14 @@ def check(spec, secs, rep, S=None):
                     if not f.get('pivot'):
                         rep.add('HELD', n, bool(under), '' if under else 'nothing under the head to clamp')
                     # THREAD: the tip half in something else
-                    ts = np.linspace(f['L'] / 2, f['L'], 21)
+                    t0 = 0.0 if f['L'] < 0.005 else f['L'] / 2     # (a short screw in a recess, as the Koch arm's: 3.6 mm long, its tip half could never bite the 2 mm asked)
+                    ts = np.linspace(t0, f['L'], 21)
                     pts = p + np.outer(ts, d)
                     bite = np.zeros(len(pts), bool)
                     for q, (l2, i2, g2) in B.idx.items():
                         if l2 == ln and g2['role'] in G.RIGID and B.owner.get(q) not in clamp:
                             bite |= B.inside(horn_hole(spec, g2), pts)
-                    mm = bite.mean() * f['L'] / 2
+                    mm = bite.mean() * (f['L'] - t0)
                     rep.add('THREAD', n, mm >= MIN_BITE - 1e-4, f"{f['size']} x {f['L'] * 1000:.0f}: bites {mm * 1000:.1f} mm")
                     # ACCESS: a key from the head, past parts on now (its own counterbore is printed to suit)
                     key = tube(p, -d, 0.0016, KEY_REACH - 0.0016)

@@ -41,7 +41,14 @@ def main():
             continue
         m.apply_transform(np.array(p['print_T']))
         m.apply_translation(-m.bounds[0])
-        m.export(os.path.join(out, part.replace(' ', '_') + '.stl'))
+        for _try in range(6):                      # (Windows refuses a write now and then, OSError 22: try again)
+            try:
+                m.export(os.path.join(out, part.replace(' ', '_') + '.stl'))
+                break
+            except OSError:
+                if _try == 5:
+                    raise
+                __import__('time').sleep(1.0)
         done += 1
     for r in refused:
         print('KEPT OFFLINE', r[0], r[1])
