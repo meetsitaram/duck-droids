@@ -3,73 +3,73 @@
   "group": "targets",
   "item": "height",
   "status": "WARN",
-  "detail": "0.295 m: 1.12 x microduck's 0.264 m (proportions are checked at this scale)"
+  "detail": "0.305 m: 1.15 x microduck's 0.264 m (proportions are checked at this scale)"
  },
  {
   "group": "targets",
   "item": "head_length_m",
   "status": "PASS",
-  "detail": "0.150 (microduck 0.123 x 1.12 = 0.137 +/- 10 %)"
+  "detail": "0.150 (microduck 0.123 x 1.15 = 0.142 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_width_m",
   "status": "PASS",
-  "detail": "0.105 (microduck 0.092 x 1.12 = 0.103 +/- 10 %)"
+  "detail": "0.105 (microduck 0.092 x 1.15 = 0.106 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_height_m",
   "status": "PASS",
-  "detail": "0.069 (microduck 0.059 x 1.12 = 0.066 +/- 10 %)"
+  "detail": "0.069 (microduck 0.059 x 1.15 = 0.068 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "head_bottom_z",
   "status": "PASS",
-  "detail": "0.226 (microduck 0.205 x 1.12 = 0.229 +/- 10 %)"
+  "detail": "0.235 (microduck 0.205 x 1.15 = 0.237 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "neck_pitch_z",
   "status": "PASS",
-  "detail": "0.147 (microduck 0.139 x 1.12 = 0.155 +/- 10 %)"
+  "detail": "0.157 (microduck 0.139 x 1.15 = 0.160 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "hip_pitch_z",
   "status": "PASS",
-  "detail": "0.100 (microduck 0.089 x 1.12 = 0.099 +/- 10 %)"
+  "detail": "0.100 (microduck 0.089 x 1.15 = 0.103 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "body_width_m",
   "status": "PASS",
-  "detail": "0.074 (microduck 0.064 x 1.12 = 0.072 +/- 10 %)"
+  "detail": "0.074 (microduck 0.064 x 1.15 = 0.074 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "overall_width_m",
   "status": "PASS",
-  "detail": "0.147 (microduck 0.141 x 1.12 = 0.158 +/- 10 %)"
+  "detail": "0.147 (microduck 0.141 x 1.15 = 0.163 +/- 10 %)"
  },
  {
   "group": "targets",
   "item": "foot_length_m",
   "status": "PASS",
-  "detail": "0.058 (microduck 0.054 x 1.12 = 0.060 +/- 10 %)"
+  "detail": "0.058 (microduck 0.054 x 1.15 = 0.062 +/- 10 %)"
  },
  {
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "1.003 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "0.962 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "245 printed parts; largest head: 150 mm, on a 256 mm bed"
+  "detail": "243 printed parts; largest head: 150 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -181,39 +181,15 @@
  },
  {
   "group": "bearing",
-  "item": "L hip roll horn bearing outer race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on L_hip_yaw_link"
- },
- {
-  "group": "bearing",
   "item": "R hip yaw horn bearing inner race",
   "status": "PASS",
   "detail": "0.0 mm off the axis, on R_hip_yaw_link"
  },
  {
   "group": "bearing",
-  "item": "R hip roll horn bearing outer race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on R_hip_yaw_link"
- },
- {
-  "group": "bearing",
-  "item": "L hip roll horn bearing inner race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on L_hip_roll_link"
- },
- {
-  "group": "bearing",
   "item": "L hip pitch horn bearing inner race",
   "status": "PASS",
   "detail": "0.0 mm off the axis, on L_hip_roll_link"
- },
- {
-  "group": "bearing",
-  "item": "R hip roll horn bearing inner race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on R_hip_roll_link"
  },
  {
   "group": "bearing",
@@ -247,39 +223,15 @@
  },
  {
   "group": "bearing",
-  "item": "L ankle bearing inner race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on L_knee_link"
- },
- {
-  "group": "bearing",
   "item": "L knee horn bearing inner race",
   "status": "PASS",
   "detail": "0.0 mm off the axis, on L_knee_link"
  },
  {
   "group": "bearing",
-  "item": "R ankle bearing inner race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on R_knee_link"
- },
- {
-  "group": "bearing",
   "item": "R knee horn bearing inner race",
   "status": "PASS",
   "detail": "0.0 mm off the axis, on R_knee_link"
- },
- {
-  "group": "bearing",
-  "item": "L ankle bearing outer race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on L_foot"
- },
- {
-  "group": "bearing",
-  "item": "R ankle bearing outer race",
-  "status": "PASS",
-  "detail": "0.0 mm off the axis, on R_foot"
  },
  {
   "group": "bearing",
@@ -331,18 +283,6 @@
  },
  {
   "group": "bearing",
-  "item": "L hip roll horn races",
-  "status": "PASS",
-  "detail": "on ['L_hip_yaw_link', 'L_hip_roll_link']"
- },
- {
-  "group": "bearing",
-  "item": "R hip roll horn races",
-  "status": "PASS",
-  "detail": "on ['R_hip_yaw_link', 'R_hip_roll_link']"
- },
- {
-  "group": "bearing",
   "item": "L hip pitch horn races",
   "status": "PASS",
   "detail": "on ['L_hip_roll_link', 'L_hip_pitch_link']"
@@ -364,18 +304,6 @@
   "item": "R knee horn races",
   "status": "PASS",
   "detail": "on ['R_hip_pitch_link', 'R_knee_link']"
- },
- {
-  "group": "bearing",
-  "item": "L ankle races",
-  "status": "PASS",
-  "detail": "on ['L_knee_link', 'L_foot']"
- },
- {
-  "group": "bearing",
-  "item": "R ankle races",
-  "status": "PASS",
-  "detail": "on ['R_knee_link', 'R_foot']"
  },
  {
   "group": "bearing",
@@ -897,7 +825,7 @@
   "group": "sweep",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "[-1.57, +0.43] rad clear"
+  "detail": "[-1.57, +0.95] rad clear"
  },
  {
   "group": "sweep",
@@ -909,13 +837,13 @@
   "group": "sweep",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "[-1.53, +1.53] rad clear"
+  "detail": "[-1.50, +1.53] rad clear"
  },
  {
   "group": "sweep",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "[-0.15, +1.60] rad clear"
+  "detail": "[-1.05, +1.60] rad clear"
  },
  {
   "group": "sweep",
@@ -1071,73 +999,73 @@
   "group": "torque",
   "item": "neck_pitch",
   "status": "PASS",
-  "detail": "0.24 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 76 % used"
+  "detail": "0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 74 % used"
  },
  {
   "group": "torque",
   "item": "head_pitch",
   "status": "PASS",
-  "detail": "0.18 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 58 % used"
+  "detail": "0.16 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 53 % used"
  },
  {
   "group": "torque",
   "item": "L_knee",
   "status": "PASS",
-  "detail": "0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 56 % used"
+  "detail": "0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 52 % used"
  },
  {
   "group": "torque",
   "item": "R_knee",
   "status": "PASS",
-  "detail": "0.17 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 56 % used"
+  "detail": "0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 52 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 32 % used"
+  "detail": "0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used"
+  "detail": "0.15 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 23 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.09 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 28 % used"
+  "detail": "0.15 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 23 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_roll",
   "status": "PASS",
-  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 21 % used"
- },
- {
-  "group": "torque",
-  "item": "R_hip_yaw",
-  "status": "PASS",
-  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+  "detail": "0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 20 % used"
  },
  {
   "group": "torque",
   "item": "L_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
  },
  {
   "group": "torque",
   "item": "R_ankle_pitch",
   "status": "PASS",
-  "detail": "0.04 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used"
+ },
+ {
+  "group": "torque",
+  "item": "R_hip_yaw",
+  "status": "PASS",
+  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 11 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_yaw",
   "status": "PASS",
-  "detail": "0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 12 % used"
+  "detail": "0.03 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 11 % used"
  },
  {
   "group": "torque",

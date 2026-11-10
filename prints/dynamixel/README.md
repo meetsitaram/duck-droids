@@ -5,48 +5,42 @@
 From `python -I tools/export_prints.py`, in millimetres: every part, left and right, already turned the way it should print, its long overhangs down
 (tools/printable.py chooses). Pockets are cut 0.3 mm over each bought part and bearing seats 0.1 mm over. None has been test printed: print one joint first.
 
-**2026-11-06, for the 6703ZZ bearings (17 x 23 x 4 mm):** 19 files were redrawn offline, without Fusion's rounding, until the Fusion model is rebuilt: the hip yaw, hip roll and hip pitch lids, roll and yaw brackets, knee lids and shins (left and right), and the head yaw sheet and bracket, head roll lid and both head roll spacers. Also offline: the body shell, 13 mm longer at the back, for the KCD1 rocker switch's hole there, and the hood, for the PC cable's hole over the Pi's USB port. The rest are Fusion's bodies, unchanged.
-
 | Part | File | Size on the bed (mm) | Volume (cm3) | Material | Overhang to support (mm2) |
 |---|---|---|---|---|---|
 | L hip yaw lid | L_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
-| L yaw bracket | L_yaw_bracket.stl | 48 x 25 x 29 | 8.3 | PLA | 198 |
-| L hip roll lid | L_hip_roll_lid.stl | 38 x 25 x 3 | 1.2 | PLA | 0 (none) |
-| L roll bracket | L_roll_bracket.stl | 19 x 31 x 30 | 3.6 | PLA | 110 |
+| L yaw bracket | L_yaw_bracket.stl | 15 x 28 x 23 | 5.5 | PLA | 241 |
+| L roll bracket | L_roll_bracket.stl | 35 x 31 x 19 | 4.8 | PLA | 209 |
 | L thigh frame | L_thigh_frame.stl | 51 x 66 x 34 | 10.5 | PLA | 2118 |
 | L hip pitch lid | L_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | L knee lid | L_knee_lid.stl | 38 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | L thigh cover | L_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
-| L shin | L_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 309 |
-| L shoe | L_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
-| L sole | L_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
-| L inner ear | L_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
+| L shin | L_shin.stl | 38 x 32 x 23 | 5.9 | PLA | 399 |
+| L shoe | L_shoe.stl | 58 x 44 x 26 | 13.1 | PLA | 89 |
+| L sole | L_sole.stl | 58 x 44 x 12 | 25.7 | TPU 95A | 0 (none) |
 | R hip yaw lid | R_hip_yaw_lid.stl | 37 x 26 x 3 | 1.5 | PLA | 0 (none) |
-| R yaw bracket | R_yaw_bracket.stl | 48 x 25 x 29 | 8.3 | PLA | 198 |
-| R hip roll lid | R_hip_roll_lid.stl | 38 x 25 x 3 | 1.2 | PLA | 0 (none) |
-| R roll bracket | R_roll_bracket.stl | 19 x 31 x 30 | 3.6 | PLA | 110 |
+| R yaw bracket | R_yaw_bracket.stl | 15 x 28 x 23 | 5.5 | PLA | 241 |
+| R roll bracket | R_roll_bracket.stl | 35 x 31 x 19 | 4.9 | PLA | 194 |
 | R thigh frame | R_thigh_frame.stl | 51 x 66 x 34 | 10.5 | PLA | 2118 |
 | R hip pitch lid | R_hip_pitch_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | R knee lid | R_knee_lid.stl | 38 x 26 x 3 | 1.4 | PLA | 0 (none) |
 | R thigh cover | R_thigh_cover.stl | 55 x 70 x 34 | 16.0 | PLA | 0 (none) |
-| R shin | R_shin.stl | 66 x 32 x 21 | 6.5 | PLA | 309 |
-| R shoe | R_shoe.stl | 30 x 43 x 58 | 11.5 | PLA | 395 |
-| R sole | R_sole.stl | 13 x 44 x 58 | 24.8 | TPU 95A | 347 |
-| R inner ear | R_inner_ear.stl | 30 x 42 x 4 | 2.2 | PLA | 0 (none) |
-| chassis | chassis.stl | 38 x 53 x 84 | 27.8 | PLA | 2114 |
-| body shell | body_shell.stl | 38 x 74 x 85 | 22.1 | PLA | 1516 |
+| R shin | R_shin.stl | 38 x 32 x 23 | 5.9 | PLA | 399 |
+| R shoe | R_shoe.stl | 58 x 44 x 26 | 13.1 | PLA | 89 |
+| R sole | R_sole.stl | 58 x 44 x 12 | 25.7 | TPU 95A | 0 (none) |
+| chassis | chassis.stl | 45 x 53 x 73 | 15.1 | PLA | 983 |
+| body shell | body_shell.stl | 38 x 74 x 98 | 22.4 | PLA | 1460 |
 | neck column | neck_column.stl | 26 x 28 x 27 | 3.6 | PLA | 198 |
 | neck lid | neck_lid.stl | 5 x 26 x 3 | 0.2 | PLA | 0 (none) |
 | head pitch lid | head_pitch_lid.stl | 5 x 26 x 2 | 0.2 | PLA | 1 |
-| head fork | head_fork.stl | 55 x 39 x 37 | 9.1 | PLA | 408 |
+| head fork | head_fork.stl | 55 x 39 x 45 | 10.0 | PLA | 416 |
 | head yaw sheet | head_yaw_sheet.stl | 37 x 26 x 4 | 0.7 | PLA | 0 (none) |
-| head yaw bracket | head_yaw_bracket.stl | 28 x 29 x 41 | 5.7 | PLA | 222 |
+| head yaw bracket | head_yaw_bracket.stl | 29 x 29 x 41 | 5.7 | PLA | 223 |
 | head roll lid | head_roll_lid.stl | 26 x 37 x 3 | 1.5 | PLA | 0 (none) |
 | head roll spacer | head_roll_spacer.stl | 17 x 17 x 2 | 0.3 | PLA | 0 (none) |
 | head roll rear spacer | head_roll_rear_spacer.stl | 17 x 17 x 2 | 0.4 | PLA | 0 (none) |
-| head frame | head_frame.stl | 141 x 101 x 59 | 54.2 | PLA | 5470 |
-| hood | hood.stl | 58 x 106 x 150 | 48.6 | PLA | 2911 |
-| jaw | jaw.stl | 88 x 106 x 42 | 29.6 | PLA | 925 |
+| head frame | head_frame.stl | 141 x 101 x 60 | 54.2 | PLA | 5467 |
+| hood | hood.stl | 58 x 106 x 150 | 48.4 | PLA | 3059 |
+| jaw | jaw.stl | 42 x 106 x 88 | 29.6 | PLA | 900 |
 | jaw soft insert | jaw_soft_insert.stl | 27 x 101 x 5 | 13.3 | TPU 95A | 0 (none) |
 | mouth roof | mouth_roof.stl | 40 x 101 x 3 | 12.6 | TPU 95A | 15 |
 | face | face.stl | 50 x 99 x 3 | 8.3 | PLA | 40 |

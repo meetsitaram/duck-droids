@@ -155,23 +155,18 @@
 34.85
 ],
 [
-"bus board cable plugs usb",
-"Waveshare bus board USB-C",
-30.46
-],
-[
-"Pi USB plug",
-"Pi Zero 2 W USB port",
-20.8
-],
-[
-"Pi PWR plug",
-"Pi Zero 2 W power port",
-20.8
-],
-[
 "neck pitch XL330 idler screw",
 "neck pitch XL330 case middle",
+9.36
+],
+[
+"L hip roll XL330 case middle",
+"L hip roll XL330 idler screw",
+9.36
+],
+[
+"R hip roll XL330 case middle",
+"R hip roll XL330 idler screw",
 9.36
 ],
 [
@@ -195,13 +190,18 @@
 9.36
 ],
 [
-"L shoe",
-"L sole",
-9.3
-],
-[
 "neck pitch XL330 idler screw",
 "neck pitch XL330 case rear",
+9.23
+],
+[
+"L hip roll XL330 case rear",
+"L hip roll XL330 idler screw",
+9.23
+],
+[
+"R hip roll XL330 case rear",
+"R hip roll XL330 idler screw",
 9.23
 ],
 [
@@ -225,56 +225,6 @@
 9.23
 ],
 [
-"L roll bracket",
-"L hip roll horn bearing inner race",
-8.98
-],
-[
-"L roll bracket",
-"L hip pitch horn bearing inner race",
-8.98
-],
-[
-"R roll bracket",
-"R hip roll horn bearing inner race",
-8.98
-],
-[
-"L shin",
-"L knee horn bearing inner race",
-8.98
-],
-[
-"R shin",
-"R knee horn bearing inner race",
-8.98
-],
-[
-"head yaw bracket",
-"head yaw horn bearing inner race",
-8.98
-],
-[
-"L yaw bracket",
-"L hip yaw horn bearing inner race",
-8.91
-],
-[
-"R yaw bracket",
-"R hip yaw horn bearing inner race",
-8.91
-],
-[
-"R roll bracket",
-"R hip pitch horn bearing inner race",
-8.89
-],
-[
-"R shoe",
-"R sole",
-8.19
-],
-[
 "L shoe bottom screw 0",
 "L sole",
 8.04
@@ -293,61 +243,6 @@
 "R shoe bottom screw 1",
 "R sole",
 8.04
-],
-[
-"head roll rear bearing inner race",
-"head roll XL330 idler",
-4.58
-],
-[
-"L hip yaw horn bearing inner race",
-"L hip yaw XL330 horn",
-4.48
-],
-[
-"R hip yaw horn bearing inner race",
-"R hip yaw XL330 horn",
-4.48
-],
-[
-"L hip roll horn bearing inner race",
-"L hip roll XL330 horn",
-4.48
-],
-[
-"L hip pitch horn bearing inner race",
-"L hip pitch XL330 horn",
-4.48
-],
-[
-"R hip roll horn bearing inner race",
-"R hip roll XL330 horn",
-4.48
-],
-[
-"R hip pitch horn bearing inner race",
-"R hip pitch XL330 horn",
-4.48
-],
-[
-"L knee horn bearing inner race",
-"L knee XL330 horn",
-4.48
-],
-[
-"R knee horn bearing inner race",
-"R knee XL330 horn",
-4.48
-],
-[
-"head yaw horn bearing inner race",
-"head yaw XL330 horn",
-4.48
-],
-[
-"head roll horn bearing inner race",
-"head roll XL330 horn",
-4.48
 ],
 [
 "R hinge screw",
@@ -503,46 +398,6 @@
 "beak XL330 case middle",
 "beak XL330 socket 1",
 3.69
-],
-[
-"L shin",
-"L ankle boss screw 0",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 1",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 2",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 3",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 0",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 1",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 2",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 3",
-3.59
 ],
 [
 "L hip yaw XL330 case rear",
@@ -875,9 +730,9 @@
 2.16
 ],
 [
-"neck column",
-"neck lid",
-0.83
+"battery XT30",
+"body shell",
+1.04
 ],
 [
 "bus board top screw 0",
@@ -903,6 +758,11 @@
 "neck column",
 "head pitch lid",
 0.69
+],
+[
+"battery balance plug",
+"body shell",
+0.62
 ],
 [
 "L hip pitch cable plugs +",
@@ -967,21 +827,16 @@
 [
 "head frame",
 "mouth roof",
-0.44
+0.45
+],
+[
+"neck column",
+"neck lid",
+0.35
 ],
 [
 "chassis",
 "neck pitch XL330 idler",
-0.33
-],
-[
-"L shin",
-"L ankle pitch XL330 idler",
-0.33
-],
-[
-"R shin",
-"R ankle pitch XL330 idler",
 0.33
 ],
 [
@@ -990,9 +845,24 @@
 0.33
 ],
 [
+"head yaw bracket",
+"head roll lid",
+0.33
+],
+[
 "head roll rear spacer",
 "head roll XL330 idler",
 0.33
+],
+[
+"chassis",
+"L hip yaw lid",
+0.32
+],
+[
+"chassis",
+"R hip yaw lid",
+0.32
 ],
 [
 "L thigh frame",
@@ -1013,11 +883,6 @@
 "head fork",
 "head yaw sheet",
 0.32
-],
-[
-"chassis",
-"R hip yaw lid",
-0.16
 ],
 [
 "L thigh frame",
@@ -1360,11 +1225,6 @@
 0.13
 ],
 [
-"head yaw bracket",
-"head roll cable plugs -",
-0.13
-],
-[
 "head roll XL330 case middle",
 "head roll XL330 case screw 0",
 0.13
@@ -1405,14 +1265,9 @@
 0.13
 ],
 [
-"L yaw bracket",
-"L hip roll lid",
-0.05
-],
-[
-"R yaw bracket",
-"R hip roll lid",
-0.05
+"head yaw bracket",
+"head roll cable plugs -",
+0.12
 ],
 [
 "Pi Zero 2 W mounting rings",
@@ -1533,5 +1388,10 @@
 "beak XL330 case middle",
 "beak XL330 case front",
 0.01
+],
+[
+"jaw",
+"jaw soft insert",
+0.0
 ]
 ]
