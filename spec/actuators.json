@@ -619,7 +619,7 @@
   "horn_r": 0.008,
   "mount_source": "XL330 mesh (microduck_rl assets/xl330.stl, measured only): horn holes on 6 mm radius both ends; 4 frame holes through the case parallel to the shaft at +/-15 mm along, +/-8 mm across; screws from ROBOTIS box contents (6 x M2x6 TAP horn, 10 x M2x8 TAP frame)",
   "horn_top": 0.003,
-  "horn_hole_depth": 0.0033
+  "horn_hole_depth": 0.0029
  },
  "XC330_M288": {
   "box": [

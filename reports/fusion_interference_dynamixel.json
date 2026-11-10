@@ -160,6 +160,16 @@
 9.36
 ],
 [
+"L hip roll XL330 case middle",
+"L hip roll XL330 idler screw",
+9.36
+],
+[
+"R hip roll XL330 case middle",
+"R hip roll XL330 idler screw",
+9.36
+],
+[
 "L ankle pitch XL330 case middle",
 "L ankle pitch XL330 idler screw",
 9.36
@@ -180,13 +190,18 @@
 9.36
 ],
 [
-"L shoe",
-"L sole",
-9.3
-],
-[
 "neck pitch XL330 idler screw",
 "neck pitch XL330 case rear",
+9.23
+],
+[
+"L hip roll XL330 case rear",
+"L hip roll XL330 idler screw",
+9.23
+],
+[
+"R hip roll XL330 case rear",
+"R hip roll XL330 idler screw",
 9.23
 ],
 [
@@ -208,51 +223,6 @@
 "head roll XL330 case rear",
 "head roll XL330 idler screw",
 9.23
-],
-[
-"L roll bracket",
-"L hip roll horn bearing inner race",
-9.0
-],
-[
-"L shin",
-"L knee horn bearing inner race",
-9.0
-],
-[
-"R shin",
-"R knee horn bearing inner race",
-9.0
-],
-[
-"L roll bracket",
-"L hip pitch horn bearing inner race",
-8.72
-],
-[
-"L yaw bracket",
-"L hip yaw horn bearing inner race",
-8.41
-],
-[
-"R yaw bracket",
-"R hip yaw horn bearing inner race",
-8.41
-],
-[
-"R roll bracket",
-"R hip roll horn bearing inner race",
-8.41
-],
-[
-"R roll bracket",
-"R hip pitch horn bearing inner race",
-8.38
-],
-[
-"R shoe",
-"R sole",
-8.19
 ],
 [
 "L shoe bottom screw 0",
@@ -428,46 +398,6 @@
 "beak XL330 case middle",
 "beak XL330 socket 1",
 3.69
-],
-[
-"L shin",
-"L ankle boss screw 0",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 1",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 2",
-3.59
-],
-[
-"L shin",
-"L ankle boss screw 3",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 0",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 1",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 2",
-3.59
-],
-[
-"R shin",
-"R ankle boss screw 3",
-3.59
 ],
 [
 "L hip yaw XL330 case rear",
@@ -800,24 +730,9 @@
 2.16
 ],
 [
-"L shin",
-"L ankle bearing inner race",
-1.73
-],
-[
-"R shin",
-"R ankle bearing inner race",
-1.73
-],
-[
 "battery XT30",
 "body shell",
 1.04
-],
-[
-"neck column",
-"neck lid",
-0.83
 ],
 [
 "bus board top screw 0",
@@ -912,21 +827,16 @@
 [
 "head frame",
 "mouth roof",
-0.44
+0.45
+],
+[
+"neck column",
+"neck lid",
+0.35
 ],
 [
 "chassis",
 "neck pitch XL330 idler",
-0.33
-],
-[
-"L shin",
-"L ankle pitch XL330 idler",
-0.33
-],
-[
-"R shin",
-"R ankle pitch XL330 idler",
 0.33
 ],
 [
@@ -935,9 +845,24 @@
 0.33
 ],
 [
+"head yaw bracket",
+"head roll lid",
+0.33
+],
+[
 "head roll rear spacer",
 "head roll XL330 idler",
 0.33
+],
+[
+"chassis",
+"L hip yaw lid",
+0.32
+],
+[
+"chassis",
+"R hip yaw lid",
+0.32
 ],
 [
 "L thigh frame",
@@ -958,16 +883,6 @@
 "head fork",
 "head yaw sheet",
 0.32
-],
-[
-"chassis",
-"L hip yaw lid",
-0.22
-],
-[
-"chassis",
-"R hip yaw lid",
-0.16
 ],
 [
 "L thigh frame",
@@ -1350,14 +1265,9 @@
 0.13
 ],
 [
-"L yaw bracket",
-"L hip roll lid",
-0.1
-],
-[
-"R yaw bracket",
-"R hip roll lid",
-0.1
+"head yaw bracket",
+"head roll cable plugs -",
+0.12
 ],
 [
 "Pi Zero 2 W mounting rings",

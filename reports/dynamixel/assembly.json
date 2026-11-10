@@ -313,73 +313,37 @@
  },
  {
   "group": "HELD",
-  "item": "L ankle boss screw 0",
+  "item": "L shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "THREAD",
-  "item": "L ankle boss screw 0",
+  "item": "L shin arm screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 x 8: bites 4.0 mm"
  },
  {
   "group": "ACCESS",
-  "item": "L ankle boss screw 0",
+  "item": "L shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "HELD",
-  "item": "L ankle boss screw 1",
+  "item": "L shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "THREAD",
-  "item": "L ankle boss screw 1",
+  "item": "L shin arm screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 x 8: bites 4.0 mm"
  },
  {
   "group": "ACCESS",
-  "item": "L ankle boss screw 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L ankle boss screw 2",
-  "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L ankle boss screw 3",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L ankle boss screw 3",
-  "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L ankle boss screw 3",
+  "item": "L shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
@@ -416,12 +380,6 @@
  {
   "group": "ACCESS",
   "item": "L ankle pitch cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "shin_L: L ankle bearing inner",
   "status": "PASS",
   "detail": ""
  },
@@ -630,12 +588,6 @@
   "detail": ""
  },
  {
-  "group": "PATH",
-  "item": "leg_L: L inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
   "group": "HELD",
   "item": "L ankle ear screw 0",
   "status": "PASS",
@@ -645,7 +597,7 @@
   "group": "THREAD",
   "item": "L ankle ear screw 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 3.8 mm"
+  "detail": "M2 x 6: bites 2.4 mm"
  },
  {
   "group": "ACCESS",
@@ -663,11 +615,47 @@
   "group": "THREAD",
   "item": "L ankle ear screw 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 3.8 mm"
+  "detail": "M2 x 6: bites 2.4 mm"
  },
  {
   "group": "ACCESS",
   "item": "L ankle ear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L ankle ear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L ankle ear screw 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L ankle ear screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -1063,73 +1051,37 @@
  },
  {
   "group": "HELD",
-  "item": "R ankle boss screw 0",
+  "item": "R shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "THREAD",
-  "item": "R ankle boss screw 0",
+  "item": "R shin arm screw 0",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 x 8: bites 4.0 mm"
  },
  {
   "group": "ACCESS",
-  "item": "R ankle boss screw 0",
+  "item": "R shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "HELD",
-  "item": "R ankle boss screw 1",
+  "item": "R shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "THREAD",
-  "item": "R ankle boss screw 1",
+  "item": "R shin arm screw 1",
   "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
+  "detail": "M2 x 8: bites 4.0 mm"
  },
  {
   "group": "ACCESS",
-  "item": "R ankle boss screw 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R ankle boss screw 2",
-  "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R ankle boss screw 3",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R ankle boss screw 3",
-  "status": "PASS",
-  "detail": "M2 flat x 5: bites 2.5 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R ankle boss screw 3",
+  "item": "R shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
@@ -1166,12 +1118,6 @@
  {
   "group": "ACCESS",
   "item": "R ankle pitch cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "shin_R: R ankle bearing inner",
   "status": "PASS",
   "detail": ""
  },
@@ -1380,12 +1326,6 @@
   "detail": ""
  },
  {
-  "group": "PATH",
-  "item": "leg_R: R inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
   "group": "HELD",
   "item": "R ankle ear screw 0",
   "status": "PASS",
@@ -1395,7 +1335,7 @@
   "group": "THREAD",
   "item": "R ankle ear screw 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 3.8 mm"
+  "detail": "M2 x 6: bites 2.4 mm"
  },
  {
   "group": "ACCESS",
@@ -1413,11 +1353,47 @@
   "group": "THREAD",
   "item": "R ankle ear screw 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 3.8 mm"
+  "detail": "M2 x 6: bites 2.4 mm"
  },
  {
   "group": "ACCESS",
   "item": "R ankle ear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R ankle ear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R ankle ear screw 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R ankle ear screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -1927,259 +1903,175 @@
  },
  {
   "group": "PATH",
-  "item": "body: R hip roll servo",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "body: L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "body: R hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "L hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "L hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "L hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "HELD",
-  "item": "R hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "THREAD",
-  "item": "R hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": "M2 x 8: bites 4.0 mm"
- },
- {
-  "group": "ACCESS",
-  "item": "R hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "body: L hip roll bearing",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "body: R hip roll bearing",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "body: L hip roll horn",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "PATH",
+  "item": "body: R hip roll servo",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "body: R hip roll horn",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: L hip roll idler",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "body: R hip roll idler",
   "status": "PASS",
   "detail": ""
  },
@@ -2199,7 +2091,7 @@
   "group": "THREAD",
   "item": "L hip roll fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2217,7 +2109,7 @@
   "group": "THREAD",
   "item": "L hip roll fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2235,7 +2127,7 @@
   "group": "THREAD",
   "item": "L hip roll fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2253,11 +2145,83 @@
   "group": "THREAD",
   "item": "L hip roll fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
   "item": "L hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "L hip roll fork screw rear 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "L hip roll fork screw rear 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "L hip roll fork screw rear 3",
   "status": "PASS",
   "detail": ""
  },
@@ -2277,7 +2241,7 @@
   "group": "THREAD",
   "item": "R hip roll fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2295,7 +2259,7 @@
   "group": "THREAD",
   "item": "R hip roll fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2313,7 +2277,7 @@
   "group": "THREAD",
   "item": "R hip roll fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -2331,11 +2295,83 @@
   "group": "THREAD",
   "item": "R hip roll fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 8: bites 2.5 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
   "item": "R hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "R hip roll fork screw rear 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "R hip roll fork screw rear 3",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "R hip roll fork screw rear 3",
   "status": "PASS",
   "detail": ""
  },
@@ -2535,7 +2571,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2553,7 +2589,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2571,7 +2607,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -2589,7 +2625,7 @@
   "group": "THREAD",
   "item": "neck pitch fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.9 mm"
+  "detail": "M2 x 6: bites 2.7 mm"
  },
  {
   "group": "ACCESS",
@@ -3687,7 +3723,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3705,7 +3741,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3723,7 +3759,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3741,7 +3777,7 @@
   "group": "THREAD",
   "item": "beak fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 3.0 mm"
+  "detail": "M2 x 6: bites 2.9 mm"
  },
  {
   "group": "ACCESS",
@@ -3847,15 +3883,9 @@
  },
  {
   "group": "HOLD",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": "2 screws"
- },
- {
-  "group": "HOLD",
   "item": "L roll bracket",
   "status": "PASS",
-  "detail": "8 screws"
+  "detail": "12 screws"
  },
  {
   "group": "HOLD",
@@ -3885,23 +3915,17 @@
   "group": "HOLD",
   "item": "L shin",
   "status": "PASS",
-  "detail": "10 screws"
+  "detail": "8 screws"
  },
  {
   "group": "HOLD",
   "item": "L shoe",
   "status": "PASS",
-  "detail": "8 screws"
+  "detail": "10 screws"
  },
  {
   "group": "HOLD",
   "item": "L sole",
-  "status": "PASS",
-  "detail": "4 screws"
- },
- {
-  "group": "HOLD",
-  "item": "L inner ear",
   "status": "PASS",
   "detail": "2 screws"
  },
@@ -3919,15 +3943,9 @@
  },
  {
   "group": "HOLD",
-  "item": "R hip roll lid",
-  "status": "PASS",
-  "detail": "2 screws"
- },
- {
-  "group": "HOLD",
   "item": "R roll bracket",
   "status": "PASS",
-  "detail": "8 screws"
+  "detail": "12 screws"
  },
  {
   "group": "HOLD",
@@ -3957,23 +3975,17 @@
   "group": "HOLD",
   "item": "R shin",
   "status": "PASS",
-  "detail": "10 screws"
+  "detail": "8 screws"
  },
  {
   "group": "HOLD",
   "item": "R shoe",
   "status": "PASS",
-  "detail": "8 screws"
+  "detail": "10 screws"
  },
  {
   "group": "HOLD",
   "item": "R sole",
-  "status": "PASS",
-  "detail": "4 screws"
- },
- {
-  "group": "HOLD",
-  "item": "R inner ear",
   "status": "PASS",
   "detail": "2 screws"
  },
@@ -4311,13 +4323,13 @@
   "group": "ENDS",
   "item": "L hip roll",
   "status": "PASS",
-  "detail": "2 of 6 screws at the near end"
+  "detail": "4 of 4 screws at the near end"
  },
  {
   "group": "ENDS",
   "item": "R hip roll",
   "status": "PASS",
-  "detail": "2 of 6 screws at the near end"
+  "detail": "4 of 4 screws at the near end"
  },
  {
   "group": "ENDS",
@@ -4399,12 +4411,6 @@
  },
  {
   "group": "BOUGHT",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "BOUGHT",
   "item": "L roll bracket",
   "status": "PASS",
   "detail": ""
@@ -4453,12 +4459,6 @@
  },
  {
   "group": "BOUGHT",
-  "item": "L inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "BOUGHT",
   "item": "R hip yaw lid",
   "status": "PASS",
   "detail": ""
@@ -4466,12 +4466,6 @@
  {
   "group": "BOUGHT",
   "item": "R yaw bracket",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "BOUGHT",
-  "item": "R hip roll lid",
   "status": "PASS",
   "detail": ""
  },
@@ -4520,12 +4514,6 @@
  {
   "group": "BOUGHT",
   "item": "R sole",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "BOUGHT",
-  "item": "R inner ear",
   "status": "PASS",
   "detail": ""
  },
@@ -4657,12 +4645,6 @@
  },
  {
   "group": "COLOUR",
-  "item": "L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "COLOUR",
   "item": "L roll bracket",
   "status": "PASS",
   "detail": ""
@@ -4711,12 +4693,6 @@
  },
  {
   "group": "COLOUR",
-  "item": "L inner ear",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "COLOUR",
   "item": "R hip yaw lid",
   "status": "PASS",
   "detail": ""
@@ -4724,12 +4700,6 @@
  {
   "group": "COLOUR",
   "item": "R yaw bracket",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "COLOUR",
-  "item": "R hip roll lid",
   "status": "PASS",
   "detail": ""
  },
@@ -4778,12 +4748,6 @@
  {
   "group": "COLOUR",
   "item": "R sole",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "COLOUR",
-  "item": "R inner ear",
   "status": "PASS",
   "detail": ""
  },
@@ -5035,6 +4999,30 @@
  },
  {
   "group": "EDGE",
+  "item": "L hip roll cradle screw near h0",
+  "status": "PASS",
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll cradle screw near h1",
+  "status": "PASS",
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll cradle screw near r0",
+  "status": "PASS",
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll cradle screw near r1",
+  "status": "PASS",
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
+ },
+ {
+  "group": "EDGE",
   "item": "L hip yaw fork screw horn 0",
   "status": "PASS",
   "detail": ""
@@ -5059,39 +5047,27 @@
  },
  {
   "group": "EDGE",
-  "item": "L hip roll cradle screw horn face 0",
+  "item": "R hip roll cradle screw near h0",
   "status": "PASS",
-  "detail": ""
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
  },
  {
   "group": "EDGE",
-  "item": "L hip roll cradle screw horn face 1",
+  "item": "R hip roll cradle screw near h1",
   "status": "PASS",
-  "detail": ""
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
  },
  {
   "group": "EDGE",
-  "item": "L hip roll cradle screw rear face 0",
+  "item": "R hip roll cradle screw near r0",
   "status": "PASS",
-  "detail": ""
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
  },
  {
   "group": "EDGE",
-  "item": "L hip roll cradle screw rear face 1",
+  "item": "R hip roll cradle screw near r1",
   "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "L hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "L hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
+  "detail": "0 % of the ring runs into the bearing bore: under the race, watch it on the first print"
  },
  {
   "group": "EDGE",
@@ -5119,42 +5095,6 @@
  },
  {
   "group": "EDGE",
-  "item": "R hip roll cradle screw horn face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R hip roll cradle screw horn face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R hip roll cradle screw rear face 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R hip roll cradle screw rear face 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R hip roll cradle screw rear near 0",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R hip roll cradle screw rear near 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
   "item": "L hip roll fork screw horn 0",
   "status": "PASS",
   "detail": ""
@@ -5174,6 +5114,30 @@
  {
   "group": "EDGE",
   "item": "L hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L hip roll fork screw rear 3",
   "status": "PASS",
   "detail": ""
  },
@@ -5222,6 +5186,30 @@
  {
   "group": "EDGE",
   "item": "R hip roll fork screw horn 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll fork screw rear 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll fork screw rear 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll fork screw rear 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R hip roll fork screw rear 3",
   "status": "PASS",
   "detail": ""
  },
@@ -5419,25 +5407,13 @@
  },
  {
   "group": "EDGE",
-  "item": "L ankle boss screw 0",
+  "item": "L shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "EDGE",
-  "item": "L ankle boss screw 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "L ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "L ankle boss screw 3",
+  "item": "L shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
@@ -5479,25 +5455,13 @@
  },
  {
   "group": "EDGE",
-  "item": "R ankle boss screw 0",
+  "item": "R shin arm screw 0",
   "status": "PASS",
   "detail": ""
  },
  {
   "group": "EDGE",
-  "item": "R ankle boss screw 1",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R ankle boss screw 2",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "EDGE",
-  "item": "R ankle boss screw 3",
+  "item": "R shin arm screw 1",
   "status": "PASS",
   "detail": ""
  },
@@ -5551,6 +5515,18 @@
  },
  {
   "group": "EDGE",
+  "item": "L ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "L ankle ear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
   "item": "L shoe bottom screw 0",
   "status": "PASS",
   "detail": ""
@@ -5594,6 +5570,18 @@
  {
   "group": "EDGE",
   "item": "R ankle ear screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle ear screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "R ankle ear screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -5965,18 +5953,6 @@
  },
  {
   "group": "SEAT",
-  "item": "L hip roll",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "SEAT",
-  "item": "R hip roll",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "SEAT",
   "item": "L hip pitch",
   "status": "PASS",
   "detail": ""
@@ -6061,13 +6037,7 @@
  },
  {
   "group": "ALL",
-  "item": "part L hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part L hip roll bearing",
+  "item": "part L hip roll idler",
   "status": "PASS",
   "detail": ""
  },
@@ -6163,7 +6133,7 @@
  },
  {
   "group": "ALL",
-  "item": "part L ankle bearing inner",
+  "item": "part L ankle idler",
   "status": "PASS",
   "detail": ""
  },
@@ -6176,12 +6146,6 @@
  {
   "group": "ALL",
   "item": "part L sole",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part L inner ear",
   "status": "PASS",
   "detail": ""
  },
@@ -6223,13 +6187,7 @@
  },
  {
   "group": "ALL",
-  "item": "part R hip roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part R hip roll bearing",
+  "item": "part R hip roll idler",
   "status": "PASS",
   "detail": ""
  },
@@ -6325,7 +6283,7 @@
  },
  {
   "group": "ALL",
-  "item": "part R ankle bearing inner",
+  "item": "part R ankle idler",
   "status": "PASS",
   "detail": ""
  },
@@ -6338,12 +6296,6 @@
  {
   "group": "ALL",
   "item": "part R sole",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "ALL",
-  "item": "part R inner ear",
   "status": "PASS",
   "detail": ""
  },
