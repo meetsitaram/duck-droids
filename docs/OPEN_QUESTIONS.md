@@ -23,6 +23,7 @@ Questions that still need an answer, from a measurement, a maker or you. Where o
 | Big | Delete the old `big assembly` document in the Fusion hub, now that `big assembly real` replaces it? |
 | All Feetech | Bench-test one STS3215 at a full 8.4 V before fitting? Sellers disagree on whether the 7.4 V servo takes it |
 | All Feetech | A fuse at the XT30? To decide once walking current is measured |
+| All-Dynamixel | **To do (2026-11-11):** the head rolls only ±0.24 rad, microduck ±0.44. At −0.44 the beak servo's lower corner swings into the head yaw servo and its bearing ring (and at +0.40 the lower shell meets the head pitch bridge). Options: move the beak servo and its jaw hinge about 4.5 mm outward (the head wider), raise it about 7 mm (the head taller), or settle for about ±0.3. Left at ±0.24 for now, so the head parts can be printed. Check any change with `tools/checks.py` (sweep) at the new range |
 
 ## Design changes to make (2026-11-06)
 

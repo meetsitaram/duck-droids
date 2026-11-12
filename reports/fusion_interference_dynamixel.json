@@ -245,11 +245,6 @@
 8.04
 ],
 [
-"R hinge screw",
-"hood",
-4.32
-],
-[
 "L hip yaw XL330 case middle",
 "L hip yaw XL330 socket 0",
 3.69
@@ -755,11 +750,6 @@
 0.8
 ],
 [
-"neck column",
-"head pitch lid",
-0.69
-],
-[
 "battery balance plug",
 "body shell",
 0.62
@@ -825,14 +815,9 @@
 0.55
 ],
 [
-"head frame",
-"mouth roof",
-0.45
-],
-[
-"neck column",
-"neck lid",
-0.35
+"chassis",
+"R hip yaw lid",
+0.36
 ],
 [
 "chassis",
@@ -845,24 +830,9 @@
 0.33
 ],
 [
-"head yaw bracket",
-"head roll lid",
-0.33
-],
-[
-"head roll rear spacer",
+"head frame",
 "head roll XL330 idler",
 0.33
-],
-[
-"chassis",
-"L hip yaw lid",
-0.32
-],
-[
-"chassis",
-"R hip yaw lid",
-0.32
 ],
 [
 "L thigh frame",
@@ -880,13 +850,18 @@
 0.32
 ],
 [
-"head fork",
-"head yaw sheet",
-0.32
+"chassis",
+"L hip yaw lid",
+0.31
 ],
 [
 "L thigh frame",
 "L hip pitch lid",
+0.16
+],
+[
+"head fork",
+"head yaw sheet",
 0.16
 ],
 [
@@ -1265,14 +1240,14 @@
 0.13
 ],
 [
-"head yaw bracket",
-"head roll cable plugs -",
-0.12
-],
-[
 "Pi Zero 2 W mounting rings",
 "Pi Zero 2 W microSD socket",
 0.04
+],
+[
+"head frame",
+"mouth roof",
+0.03
 ],
 [
 "L hip yaw XL330 case middle",

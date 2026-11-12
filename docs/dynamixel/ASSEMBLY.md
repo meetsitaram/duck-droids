@@ -26,13 +26,13 @@ Tools: a small Phillips driver, 2 and 2.5 mm hex keys, soldering iron (a grown-u
 
 > 🔌 Each thigh servo has 2 sockets, wired through. A lead from the knee to the hip pitch, and one out of the hip pitch toward the roll servo. Plug them in now: the plate covers the sockets.
 
-**Screws for this section:** 2 x M2 x 6 mm, 12 x M2 x 8 mm (each side)
+**Screws for this section:** 4 x M2 x 6 mm, 10 x M2 x 8 mm (each side)
 
 1. The thigh frame
 2. Plug in the cables, then drop in both servos
 3. The screws from the outside *(8 x M2 x 8 mm, small Phillips)*
 4. The lids
-5. The lid screws *(4 x M2 x 8 mm, small Phillips)*
+5. The lid screws *(2 x M2 x 6 mm, small Phillips; 2 x M2 x 8 mm, small Phillips)*
 6. Press in the bearings
 7. Horns on, servos at mid-range
 8. The cover, 2 screws *(2 x M2 x 6 mm, small Phillips)*
@@ -141,10 +141,8 @@ Then the same for the right side, mirrored.
 **Screws for this section:** 8 x M2 x 8 mm
 
 1. The neck column
-2. Neck servo in, horns on *(2 x M2 x 8 mm, small Phillips)*
-3. Its lid, 2 screws *(2 x M2 x 8 mm, small Phillips)*
-4. Head pitch servo in, horns on *(2 x M2 x 8 mm, small Phillips)*
-5. Its lid, 2 screws *(2 x M2 x 8 mm, small Phillips)*
+2. Neck servo up into it from below, horns on, 4 screws *(4 x M2 x 8 mm, small Phillips)*
+3. Head pitch servo down into it from above, horns on, 4 screws *(4 x M2 x 8 mm, small Phillips)*
 
 ## 8. Neck and body shell
 
@@ -173,17 +171,14 @@ Then the same for the right side, mirrored.
 
 > 🔌 A lead between the yaw and roll servos, with slack for the yaw's range of +/- 2.5 rad: it winds round.
 
-**Screws for this section:** 4 x M2 x 6 mm, 10 x M2 x 8 mm
+**Screws for this section:** 8 x M2 x 6 mm, 6 x M2 x 8 mm
 
 1. The head fork
 2. Head yaw servo in, 2 screws from under the bridge *(4 x M2 x 8 mm, small Phillips)*
 3. The thin sheet, 2 screws *(2 x M2 x 8 mm, small Phillips)*
 4. Bearing and horn
 5. The yaw bracket, 4 screws, before its roll servo *(4 x M2 x 6 mm, small Phillips)*
-6. Head roll servo in from the front *(2 x M2 x 8 mm, small Phillips)*
-7. The rear bearing and rear horn, from behind
-8. The lid, 2 screws *(2 x M2 x 8 mm, small Phillips)*
-9. Bearing, horn and spacer
+6. Head roll servo, its horn and idler on, down onto the plate into its U, 4 screws from the sides *(4 x M2 x 6 mm, small Phillips)*
 
 ## 9b. The head frame and the beak servo
 
@@ -218,12 +213,12 @@ Then the same for the right side, mirrored.
 
 > 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and solder the 3 UART wires to its header, before the board goes on. Solder the Pi's 5 wires before it goes on its plate.
 
-**Screws for this section:** 20 x M2 x 6 mm, 6 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 10 mm
+**Screws for this section:** 24 x M2 x 6 mm, 2 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 12 mm
 
 1. The head fork down onto the head pitch servo
 2. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
 3. The head frame, with its beak servo, down over the roll servo
-4. 4 screws on each horn *(4 x M2 x 6 mm, small Phillips; 4 x M2 x 8 mm, small Phillips)*
+4. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
 5. The bus board down onto them, 4 screws. Its leads on first: servo sockets, power terminals, and the 3 UART wires soldered to its header, the pins snipped to 3 mm; both jumpers at A *(4 x M2.5 x 5 mm, small Phillips)*
 6. The Pi onto its plate from the front, its 5 wires soldered first: 5 V and ground on pins 2 and 6, GPIO 14 and 15 and ground on pins 8, 10 and 14. Its microSD card in, 4 screws, the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*
 7. The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, its USB socket's 5 V and ground pins soldered to the Pi's 2 wires from pins 2 and 6. Measure 5 V first
@@ -232,7 +227,7 @@ Then the same for the right side, mirrored.
 10. Open the jaw and glue in the soft mouth roof through the gap
 11. The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris
 12. 2 screws up through the band into the hood's back *(2 x M2 x 8 mm, small Phillips)*
-13. A 0.5 mm washer, and the hinge screw on the far side holds the jaw and the hood *(1 x M3 x 10 mm, 2.5 mm hex)*
+13. The hinge sleeve in through the far tab and the hood, its flange over the tab, and the hinge screw through it into the frame: the tab turns on the sleeve *(1 x M3 x 12 mm, 2.5 mm hex)*
 
 ## 12. Try every joint
 

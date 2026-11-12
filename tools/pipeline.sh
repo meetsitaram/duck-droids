@@ -95,7 +95,7 @@ fusion_run() {   # script, lines to show. A Fusion script that fails stops the c
   out=$("$PY" -I tools/fusion_call.py "$1" --write --recipe "$RECIPE" 2>&1)
   kill $keeper 2>/dev/null
   echo "$out" | grep -v "bodies, " | tail -"$2" | cut -c1-240
-  if echo "$out" | grep -qE "Traceback|RPC error"; then
+  if echo "$out" | grep -qE "Traceback|RPC error|Cannot perform|dialog is open"; then   # (a dialog open in Fusion: it refused the script, and the chain went on with the last build's STLs and passed them, 2026-11-11)
     echo "STOPPED: the Fusion script failed"
     exit 1
   fi

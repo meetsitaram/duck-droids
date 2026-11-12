@@ -1,35 +1,35 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
+spec: `spec/robot.json`, 2026-11-11 15:25, 62 s
 
-181 checks: 178 pass, 3 warn, **0 fail**
+174 checks: 168 pass, 3 warn, **3 fail**
 
 ## targets
 
 | status | item | detail |
 |---|---|---|
-| WARN | height | 0.305 m: 1.15 x microduck's 0.264 m (proportions are checked at this scale) |
-| PASS | head_length_m | 0.150 (microduck 0.123 x 1.15 = 0.142 +/- 10 %) |
-| PASS | head_width_m | 0.105 (microduck 0.092 x 1.15 = 0.106 +/- 10 %) |
-| PASS | head_height_m | 0.069 (microduck 0.059 x 1.15 = 0.068 +/- 10 %) |
-| PASS | head_bottom_z | 0.235 (microduck 0.205 x 1.15 = 0.237 +/- 10 %) |
-| PASS | neck_pitch_z | 0.157 (microduck 0.139 x 1.15 = 0.160 +/- 10 %) |
-| PASS | hip_pitch_z | 0.100 (microduck 0.089 x 1.15 = 0.103 +/- 10 %) |
-| PASS | body_width_m | 0.074 (microduck 0.064 x 1.15 = 0.074 +/- 10 %) |
-| PASS | overall_width_m | 0.147 (microduck 0.141 x 1.15 = 0.163 +/- 10 %) |
-| PASS | foot_length_m | 0.058 (microduck 0.054 x 1.15 = 0.062 +/- 10 %) |
+| WARN | height | 0.302 m: 1.14 x microduck's 0.264 m (proportions are checked at this scale) |
+| PASS | head_length_m | 0.150 (microduck 0.123 x 1.14 = 0.141 +/- 10 %) |
+| PASS | head_width_m | 0.105 (microduck 0.092 x 1.14 = 0.105 +/- 10 %) |
+| PASS | head_height_m | 0.069 (microduck 0.059 x 1.14 = 0.067 +/- 10 %) |
+| PASS | head_bottom_z | 0.233 (microduck 0.205 x 1.14 = 0.235 +/- 10 %) |
+| PASS | neck_pitch_z | 0.157 (microduck 0.139 x 1.14 = 0.159 +/- 10 %) |
+| PASS | hip_pitch_z | 0.100 (microduck 0.089 x 1.14 = 0.102 +/- 10 %) |
+| PASS | body_width_m | 0.074 (microduck 0.064 x 1.14 = 0.073 +/- 10 %) |
+| PASS | overall_width_m | 0.147 (microduck 0.141 x 1.14 = 0.161 +/- 10 %) |
+| PASS | foot_length_m | 0.058 (microduck 0.054 x 1.14 = 0.062 +/- 10 %) |
 
 ## mass
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 0.962 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 0.935 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 243 printed parts; largest head: 150 mm, on a 256 mm bed |
+| PASS | largest part | 223 printed parts; largest head: 150 mm, on a 256 mm bed |
 
 ## axis
 
@@ -69,10 +69,6 @@ spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
 | PASS | R knee horn bearing inner race | 0.0 mm off the axis, on R_knee_link |
 | PASS | head yaw horn bearing outer race | 0.0 mm off the axis, on head_pitch_link |
 | PASS | head yaw horn bearing inner race | 0.0 mm off the axis, on head_yaw_link |
-| PASS | head roll horn bearing outer race | 0.0 mm off the axis, on head_yaw_link |
-| PASS | head roll rear bearing outer race | 0.0 mm off the axis, on head_yaw_link |
-| PASS | head roll horn bearing inner race | 0.0 mm off the axis, on head |
-| PASS | head roll rear bearing inner race | 0.0 mm off the axis, on head |
 | PASS | L hip yaw horn races | on ['trunk', 'L_hip_yaw_link'] |
 | PASS | R hip yaw horn races | on ['trunk', 'R_hip_yaw_link'] |
 | PASS | L hip pitch horn races | on ['L_hip_roll_link', 'L_hip_pitch_link'] |
@@ -80,8 +76,6 @@ spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
 | PASS | L knee horn races | on ['L_hip_pitch_link', 'L_knee_link'] |
 | PASS | R knee horn races | on ['R_hip_pitch_link', 'R_knee_link'] |
 | PASS | head yaw horn races | on ['head_pitch_link', 'head_yaw_link'] |
-| PASS | head roll horn races | on ['head_yaw_link', 'head'] |
-| PASS | head roll rear races | on ['head_yaw_link', 'head'] |
 
 ## static
 
@@ -161,7 +155,6 @@ spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
 | PASS | power switch leads | 0.00 % outside the skin |
 | PASS | head frame | 0.00 % outside the skin |
 | PASS | head top plate wide | 0.00 % outside the skin |
-| PASS | L head rail | 0.00 % outside the skin |
 | PASS | R head rail | 0.00 % outside the skin |
 | PASS | R head hinge boss | 0.00 % outside the skin |
 | PASS | Pi mount | 0.00 % outside the skin |
@@ -189,15 +182,15 @@ spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
 | status | item | detail |
 |---|---|---|
 | PASS | L_hip_yaw | [-0.45, +0.45] rad clear |
-| PASS | L_hip_roll | [-0.33, +0.33] rad clear |
-| PASS | L_hip_pitch | [-1.57, +0.95] rad clear |
+| FAIL | L_hip_roll | lower -0.33: blocked at -0.29 rad by L hip roll cable plugs + / L hip roll back arm thick (across the joint: under 0.3 mm apart) (0 cm3); upper +0.33: blocked at +0.28 rad by L hip yaw plate / L roll gusset 0 (across the joint: under 0.3 mm apart) (0 cm3) |
+| FAIL | L_hip_pitch | upper +0.95: blocked at +0.91 rad by L_hip_pitch_link / trunk: L knee horn bearing outer race / body (0 cm3) |
 | PASS | L_knee | [-1.10, +1.57] rad clear |
-| PASS | L_ankle_pitch | [-1.50, +1.53] rad clear |
+| FAIL | L_ankle_pitch | lower -1.50: blocked at -1.50 rad by L ankle pitch cable plugs + / L shoe (across the joint) (0 cm3); upper +1.53: blocked at +1.47 rad by L ankle pitch cable plugs - / L shoe (across the joint: under 0.3 mm apart) (0 cm3) |
 | PASS | neck_pitch | [-1.05, +1.60] rad clear |
 | WARN | head_pitch | [-1.60, +1.60] rad clear; lower: head / trunk: lower shell / body at -1.20 rad (pose-dependent) |
 | PASS | head_yaw | [-2.50, +2.50] rad clear |
 | PASS | head_roll | [-0.24, +0.24] rad clear |
-| PASS | beak | [+0.00, +0.40] rad clear |
+| PASS | beak | [+0.00, +0.39] rad clear |
 
 ## poses
 
@@ -229,18 +222,18 @@ spec: `spec/robot.json`, 2026-11-10 08:54, 45 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | neck_pitch | 0.23 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 74 % used |
-| PASS | head_pitch | 0.16 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 53 % used |
-| PASS | L_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 52 % used |
-| PASS | R_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 52 % used |
-| PASS | L_hip_roll | 0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used |
-| PASS | L_hip_pitch | 0.15 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 23 % used |
-| PASS | R_hip_pitch | 0.15 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 23 % used |
-| PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 20 % used |
-| PASS | L_ankle_pitch | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
-| PASS | R_ankle_pitch | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 13 % used |
-| PASS | R_hip_yaw | 0.04 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 11 % used |
-| PASS | L_hip_yaw | 0.03 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 11 % used |
+| PASS | neck_pitch | 0.22 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 70 % used |
+| PASS | L_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 50 % used |
+| PASS | R_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 50 % used |
+| PASS | head_pitch | 0.15 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 49 % used |
+| PASS | L_hip_roll | 0.19 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 30 % used |
+| PASS | L_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used |
+| PASS | R_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used |
+| PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 19 % used |
+| PASS | L_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
+| PASS | R_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
+| PASS | R_hip_yaw | 0.03 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 10 % used |
+| PASS | L_hip_yaw | 0.03 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 9 % used |
 | PASS | beak | 0.01 N m in 'head tucked in' vs rated 0.31 N m (1 x XL330_M288): 4 % used |
-| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 1 % used |
+| PASS | head_roll | 0.00 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 0 % used |
 | PASS | head_yaw | 0.00 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 0 % used |

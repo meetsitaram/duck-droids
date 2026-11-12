@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "8.3 MPa (allowed 15): 27 N, section 126 mm2"
+  "detail": "8.1 MPa (allowed 15): 26 N, section 126 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "4.1 MPa (allowed 15): 27 N, section 185 mm2"
+  "detail": "4.0 MPa (allowed 15): 26 N, section 185 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 27 N, section 485 mm2"
+  "detail": "0.4 MPa (allowed 15): 26 N, section 485 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "6.8 MPa (allowed 15): 27 N, section 83 mm2"
+  "detail": "5.9 MPa (allowed 15): 26 N, section 89 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "2.7 MPa (allowed 15): 27 N, section 110 mm2"
+  "detail": "2.7 MPa (allowed 15): 26 N, section 110 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.0 MPa (allowed 15): 27 N, section 626 mm2"
+  "detail": "1.1 MPa (allowed 15): 26 N, section 584 mm2"
  },
  {
   "group": "ONE",
@@ -69,7 +69,7 @@
   "group": "FIT",
   "item": "L yaw bracket",
   "status": "PASS",
-  "detail": "29 x 24 x 16 mm"
+  "detail": "29 x 23 x 16 mm"
  },
  {
   "group": "ONE",
@@ -213,7 +213,7 @@
   "group": "FIT",
   "item": "chassis",
   "status": "PASS",
-  "detail": "74 x 54 x 47 mm"
+  "detail": "74 x 59 x 47 mm"
  },
  {
   "group": "ONE",
@@ -231,43 +231,7 @@
   "group": "FIT",
   "item": "neck column",
   "status": "PASS",
-  "detail": "27 x 29 x 28 mm"
- },
- {
-  "group": "ONE",
-  "item": "neck lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "neck lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "neck lid",
-  "status": "PASS",
-  "detail": "27 x 4 x 6 mm"
- },
- {
-  "group": "ONE",
-  "item": "head pitch lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "head pitch lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "head pitch lid",
-  "status": "PASS",
-  "detail": "27 x 4 x 6 mm"
+  "detail": "27 x 29 x 10 mm"
  },
  {
   "group": "ONE",
@@ -285,7 +249,7 @@
   "group": "FIT",
   "item": "head fork",
   "status": "PASS",
-  "detail": "46 x 40 x 56 mm"
+  "detail": "46 x 40 x 54 mm"
  },
  {
   "group": "ONE",
@@ -303,61 +267,7 @@
   "group": "FIT",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "30 x 42 x 30 mm"
- },
- {
-  "group": "ONE",
-  "item": "head roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "head roll lid",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "head roll lid",
-  "status": "PASS",
-  "detail": "4 x 38 x 27 mm"
- },
- {
-  "group": "ONE",
-  "item": "head roll spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "head roll spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "head roll spacer",
-  "status": "PASS",
-  "detail": "3 x 18 x 18 mm"
- },
- {
-  "group": "ONE",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "WALL",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "FIT",
-  "item": "head roll rear spacer",
-  "status": "PASS",
-  "detail": "3 x 18 x 18 mm"
+  "detail": "29 x 36 x 27 mm"
  },
  {
   "group": "ONE",
@@ -376,6 +286,24 @@
   "item": "head frame",
   "status": "PASS",
   "detail": "143 x 103 x 61 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "hinge sleeve",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "hinge sleeve",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "hinge sleeve",
+  "status": "PASS",
+  "detail": "10 x 8 x 10 mm"
  },
  {
   "group": "ONE",

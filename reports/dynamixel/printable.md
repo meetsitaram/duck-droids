@@ -2,15 +2,15 @@
 
 From tools/printable.py. Overhang from faces, not a slicer: none of this has been printed.
 
-359 checks: 349 pass, 10 warn, **0 fail**
+344 checks: 333 pass, 11 warn, **0 fail**
 
 ## ORIENT
 
 | status | item | detail |
 |---|---|---|
 | PASS | L hip yaw lid | 0 mm2 overhang, 561 mm2 on the bed, 3 mm tall |
-| PASS | L yaw bracket | 241 mm2 overhang, 250 mm2 on the bed, 23 mm tall |
-| PASS | L roll bracket | 209 mm2 overhang, 209 mm2 on the bed, 19 mm tall |
+| PASS | L yaw bracket | 241 mm2 overhang, 250 mm2 on the bed, 22 mm tall |
+| PASS | L roll bracket | 214 mm2 overhang, 214 mm2 on the bed, 19 mm tall |
 | PASS | L thigh frame | 2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall |
 | PASS | L hip pitch lid | 0 mm2 overhang, 561 mm2 on the bed, 3 mm tall |
 | PASS | L knee lid | 0 mm2 overhang, 540 mm2 on the bed, 3 mm tall |
@@ -19,8 +19,8 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L shoe | 89 mm2 overhang, 1902 mm2 on the bed, 26 mm tall |
 | PASS | L sole | 0 mm2 overhang, 2362 mm2 on the bed, 12 mm tall |
 | PASS | R hip yaw lid | 0 mm2 overhang, 561 mm2 on the bed, 3 mm tall |
-| PASS | R yaw bracket | 241 mm2 overhang, 250 mm2 on the bed, 23 mm tall |
-| PASS | R roll bracket | 194 mm2 overhang, 209 mm2 on the bed, 19 mm tall |
+| PASS | R yaw bracket | 241 mm2 overhang, 250 mm2 on the bed, 22 mm tall |
+| PASS | R roll bracket | 199 mm2 overhang, 214 mm2 on the bed, 19 mm tall |
 | PASS | R thigh frame | 2118 mm2 overhang, 89 mm2 on the bed, 34 mm tall |
 | PASS | R hip pitch lid | 0 mm2 overhang, 561 mm2 on the bed, 3 mm tall |
 | PASS | R knee lid | 0 mm2 overhang, 540 mm2 on the bed, 3 mm tall |
@@ -28,20 +28,16 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R shin | 399 mm2 overhang, 133 mm2 on the bed, 23 mm tall |
 | PASS | R shoe | 89 mm2 overhang, 1902 mm2 on the bed, 26 mm tall |
 | PASS | R sole | 0 mm2 overhang, 2362 mm2 on the bed, 12 mm tall |
-| PASS | chassis | 983 mm2 overhang, 241 mm2 on the bed, 73 mm tall |
+| PASS | chassis | 1050 mm2 overhang, 257 mm2 on the bed, 73 mm tall |
 | PASS | body shell | 1460 mm2 overhang, 879 mm2 on the bed, 98 mm tall |
-| PASS | neck column | 198 mm2 overhang, 89 mm2 on the bed, 27 mm tall |
-| PASS | neck lid | 0 mm2 overhang, 73 mm2 on the bed, 3 mm tall |
-| PASS | head pitch lid | 1 mm2 overhang, 73 mm2 on the bed, 2 mm tall |
-| PASS | head fork | 416 mm2 overhang, 389 mm2 on the bed, 45 mm tall |
+| PASS | neck column | 41 mm2 overhang, 246 mm2 on the bed, 10 mm tall |
+| PASS | head fork | 426 mm2 overhang, 389 mm2 on the bed, 45 mm tall |
 | PASS | head yaw sheet | 0 mm2 overhang, 539 mm2 on the bed, 4 mm tall |
-| PASS | head yaw bracket | 223 mm2 overhang, 451 mm2 on the bed, 41 mm tall |
-| PASS | head roll lid | 0 mm2 overhang, 561 mm2 on the bed, 3 mm tall |
-| PASS | head roll spacer | 0 mm2 overhang, 171 mm2 on the bed, 2 mm tall |
-| PASS | head roll rear spacer | 0 mm2 overhang, 203 mm2 on the bed, 2 mm tall |
-| PASS | head frame | 5467 mm2 overhang, 300 mm2 on the bed, 141 mm tall |
-| PASS | hood | 3059 mm2 overhang, 276 mm2 on the bed, 150 mm tall |
-| PASS | jaw | 900 mm2 overhang, 1084 mm2 on the bed, 88 mm tall |
+| PASS | head yaw bracket | 270 mm2 overhang, 190 mm2 on the bed, 28 mm tall |
+| PASS | head frame | 6027 mm2 overhang, 300 mm2 on the bed, 141 mm tall |
+| PASS | hood | 3117 mm2 overhang, 276 mm2 on the bed, 150 mm tall |
+| PASS | hinge sleeve | 0 mm2 overhang, 57 mm2 on the bed, 7 mm tall |
+| PASS | jaw | 913 mm2 overhang, 1084 mm2 on the bed, 88 mm tall |
 | PASS | jaw soft insert | 0 mm2 overhang, 2661 mm2 on the bed, 5 mm tall |
 | PASS | mouth roof | 15 mm2 overhang, 3935 mm2 on the bed, 3 mm tall |
 | PASS | face | 40 mm2 overhang, 4167 mm2 on the bed, 3 mm tall |
@@ -75,16 +71,12 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | chassis |  |
 | PASS | body shell |  |
 | PASS | neck column |  |
-| PASS | neck lid |  |
-| PASS | head pitch lid |  |
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
-| PASS | head roll lid |  |
-| PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | hood |  |
+| PASS | hinge sleeve |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
 | PASS | mouth roof |  |
@@ -97,8 +89,8 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | status | item | detail |
 |---|---|---|
 | PASS | L hip yaw lid | 37 x 26 x 3 mm, 561 mm2 on the bed |
-| PASS | L yaw bracket | 15 x 28 x 23 mm, 250 mm2 on the bed |
-| PASS | L roll bracket | 35 x 31 x 19 mm, 209 mm2 on the bed |
+| PASS | L yaw bracket | 15 x 28 x 22 mm, 250 mm2 on the bed |
+| PASS | L roll bracket | 35 x 31 x 19 mm, 214 mm2 on the bed |
 | PASS | L thigh frame | 51 x 66 x 34 mm, 89 mm2 on the bed |
 | PASS | L hip pitch lid | 26 x 37 x 3 mm, 561 mm2 on the bed |
 | PASS | L knee lid | 38 x 26 x 3 mm, 540 mm2 on the bed |
@@ -107,8 +99,8 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | L shoe | 58 x 44 x 26 mm, 1902 mm2 on the bed |
 | PASS | L sole | 58 x 44 x 12 mm, 2362 mm2 on the bed |
 | PASS | R hip yaw lid | 37 x 26 x 3 mm, 561 mm2 on the bed |
-| PASS | R yaw bracket | 15 x 28 x 23 mm, 250 mm2 on the bed |
-| PASS | R roll bracket | 35 x 31 x 19 mm, 209 mm2 on the bed |
+| PASS | R yaw bracket | 15 x 28 x 22 mm, 250 mm2 on the bed |
+| PASS | R roll bracket | 35 x 31 x 19 mm, 214 mm2 on the bed |
 | PASS | R thigh frame | 51 x 66 x 34 mm, 89 mm2 on the bed |
 | PASS | R hip pitch lid | 26 x 37 x 3 mm, 561 mm2 on the bed |
 | PASS | R knee lid | 38 x 26 x 3 mm, 540 mm2 on the bed |
@@ -116,20 +108,16 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | R shin | 38 x 32 x 23 mm, 133 mm2 on the bed |
 | PASS | R shoe | 58 x 44 x 26 mm, 1902 mm2 on the bed |
 | PASS | R sole | 58 x 44 x 12 mm, 2362 mm2 on the bed |
-| PASS | chassis | 45 x 53 x 73 mm, 241 mm2 on the bed |
+| PASS | chassis | 45 x 58 x 73 mm, 257 mm2 on the bed |
 | PASS | body shell | 38 x 74 x 98 mm, 879 mm2 on the bed |
-| PASS | neck column | 26 x 28 x 27 mm, 89 mm2 on the bed |
-| PASS | neck lid | 5 x 26 x 3 mm, 73 mm2 on the bed |
-| PASS | head pitch lid | 5 x 26 x 2 mm, 73 mm2 on the bed |
-| PASS | head fork | 55 x 39 x 45 mm, 389 mm2 on the bed |
+| PASS | neck column | 26 x 28 x 10 mm, 246 mm2 on the bed |
+| PASS | head fork | 53 x 39 x 45 mm, 389 mm2 on the bed |
 | PASS | head yaw sheet | 37 x 26 x 4 mm, 539 mm2 on the bed |
-| PASS | head yaw bracket | 29 x 29 x 41 mm, 451 mm2 on the bed |
-| PASS | head roll lid | 26 x 37 x 3 mm, 561 mm2 on the bed |
-| PASS | head roll spacer | 17 x 17 x 2 mm, 171 mm2 on the bed |
-| PASS | head roll rear spacer | 17 x 17 x 2 mm, 203 mm2 on the bed |
-| PASS | head frame | 60 x 101 x 141 mm, 300 mm2 on the bed |
+| PASS | head yaw bracket | 26 x 35 x 28 mm, 190 mm2 on the bed |
+| PASS | head frame | 59 x 101 x 141 mm, 300 mm2 on the bed |
 | PASS | hood | 58 x 106 x 150 mm, 276 mm2 on the bed |
-| PASS | jaw | 42 x 106 x 88 mm, 1084 mm2 on the bed |
+| PASS | hinge sleeve | 9 x 9 x 7 mm, 57 mm2 on the bed |
+| PASS | jaw | 43 x 106 x 88 mm, 1084 mm2 on the bed |
 | PASS | jaw soft insert | 27 x 101 x 5 mm, 2661 mm2 on the bed |
 | PASS | mouth roof | 40 x 101 x 3 mm, 3935 mm2 on the bed |
 | PASS | face | 50 x 99 x 3 mm, 4167 mm2 on the bed |
@@ -163,16 +151,12 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | PASS | chassis |  |
 | PASS | body shell |  |
 | PASS | neck column |  |
-| PASS | neck lid |  |
-| PASS | head pitch lid |  |
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
-| PASS | head roll lid |  |
-| PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
 | PASS | head frame |  |
 | PASS | hood |  |
+| PASS | hinge sleeve |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
 | PASS | mouth roof |  |
@@ -188,12 +172,13 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 | WARN | L shin | 399 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R thigh frame | 2118 mm2 needs support or a bridge: check it in the slicer |
 | WARN | R shin | 399 mm2 needs support or a bridge: check it in the slicer |
-| WARN | chassis | 983 mm2 needs support or a bridge: check it in the slicer |
+| WARN | chassis | 1050 mm2 needs support or a bridge: check it in the slicer |
 | WARN | body shell | 1460 mm2 needs support or a bridge: check it in the slicer |
-| WARN | head fork | 416 mm2 needs support or a bridge: check it in the slicer |
-| WARN | head frame | 5467 mm2 needs support or a bridge: check it in the slicer |
-| WARN | hood | 3059 mm2 needs support or a bridge: check it in the slicer |
-| WARN | jaw | 900 mm2 needs support or a bridge: check it in the slicer |
+| WARN | head fork | 426 mm2 needs support or a bridge: check it in the slicer |
+| WARN | head yaw bracket | 270 mm2 needs support or a bridge: check it in the slicer |
+| WARN | head frame | 6027 mm2 needs support or a bridge: check it in the slicer |
+| WARN | hood | 3117 mm2 needs support or a bridge: check it in the slicer |
+| WARN | jaw | 913 mm2 needs support or a bridge: check it in the slicer |
 
 ## SKIN
 
@@ -209,7 +194,7 @@ From tools/printable.py. Overhang from faces, not a slicer: none of this has bee
 
 | status | item | detail |
 |---|---|---|
-| PASS | parts that share a link | 39 parts: 0 clashes |
+| PASS | parts that share a link | 35 parts: 0 clashes |
 
 ## HEADS
 
