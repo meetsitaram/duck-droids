@@ -394,3 +394,15 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 | A yaw horn screw's head sat 0.15 mm into the roll servo under it: only printable.py's HEADS saw it | Leave a screw head's height and a clearance under every hub |
 | A closed box shell exports as a sealed void; a 1.2 mm lip and 1.2 mm walls read as thin to buildable.py's 0.25 mm voxels | Hollow a block from one open side; 1.5 mm for anything that must pass WALL |
 | render_pose's segmentation pass read an id past the scene's geoms on the nano duck (330 geoms), and stopped compare.py | Fall back to the depth buffer for the background when segmentation fails |
+
+## The head frame that couldn't move (2026-11-11)
+
+The user found it in Fusion: the head yaw bracket's 4 side screws stood 1.5 mm into the head frame's walls, and its sleeve lay flat on the front wall. The head could not roll. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| The sweep's allowance, `TOUCH = 0.02e-6` m3, was 20 mm3, read as "0.02 cm3, nothing". A whole M2 screw head (17 mm3) in a wall passed; so did a knee bearing race 15 mm3 into the body, the jaw's far hinge 2 mm off the beak servo's axis, the head floor over the fork's cradle ends, and a beak servo corner 1 mm in the hood | An allowance is mesh noise: 0.5 mm3. Write volumes in mm3 |
+| Screw heads were role `decal`, so the sweep never saw them | A screw is steel: its head is a solid in every collision check |
+| Two faces flat on each other overlap by 0: "no collision" for parts that turn past each other | Across a joint, parts stay 0.3 mm apart (`gap_under`); only the servo's own horn and idler, and a hinge's sleeve, ride on it |
+| A full rear wall went in because the user asked for one and the checks passed; nobody asked what turns beside it | Before a wall goes next to a joint, list what moves there through the joint's range |
+| A Fusion dialog left open made it refuse the build; the chain went on with the last build's STLs and passed them, and compare matched them too | Stop when Fusion refuses (`fusion_run`); look at the renders, not only the reports |

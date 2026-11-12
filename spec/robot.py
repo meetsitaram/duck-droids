@@ -58,14 +58,14 @@ RECIPES = {
     # below: the head at 1.14: the beak servo and the head roll's reach don't fit in 1.0. Microduck's
     # ranges, where the parts allow them. A smaller pack, as the body has 28 mm under its plate (an estimate of a 2S 500 mAh:
     # confirm a part before ordering)
-    'dynamixel': dict(plate_y=0.0235, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
+    'dynamixel': dict(plate_y=0.0260, plate_in=0.0022, yaw='XL330_M288', leg='XL330_M288', neck='XL330_M288', head='XL330_M288', xl330_2s=dict(peak_nm=0.96, rated_nm=0.31, noload_rads=16.0, volts=7.4), K=0.84, HK=1.14,
                       # a real pack on Amazon (2026-11-04, the user read its listing): OVONIC 2S 450 mAh 100C, XT30, 61.5 x 15.8 x 13.5 mm, 31 g. Across the back of the body, off-centre, so its
                       # leads have about 8 mm beside its end. Lead lengths aren't known, so the room is generous: both plugs sit in that gap, with a port in the shell's back wall
                       # (2026-11-06, the user: "slightly increase the back case cover": 13 mm more at the back, for the KCD1 rocker's 22 mm behind its bezel; the charge port's plugs move back with it)
                       battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.016, horn_recess=True, ankle_v2=True, roll_fork=True, charge_at=dict(port=(-0.0730, -0.0570, 0.1290, 0.1505), xt30=(-0.0615, -0.0455, 0.1300, 0.1415), bal=(-0.0610, -0.0520, 0.1425, 0.1495)), charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0400, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.95), knee=(-1.1, 1.57), ankle=(-1.50, 1.535), head_roll=(-0.24, 0.24), neck_pitch=(-1.05, 1.6)), short=0.003,
-                      neck_top=True, yaw_over_neck=True, xn_out=-0.005, zn_up=0.0095, slot_back=0.024, notch_z=0.003, body_screws=((-0.0382, -0.0155), (-0.0175, 0.0165)),   # (2026-11-10, the user: the neck nearer the hip servos, held by walls at their sides, the head yaw horn over the neck, and microduck's neck range: back 1.05, forward 1.6. Then (the user): no mount in front of the hip servos at all, the neck's fork plates slanting down onto the top plate over them. So the neck 9.5 mm up, as microduck's sits over its hip servos, a notch 24 mm back in the shell's top, 3 mm over the plate, the IMU 8 mm back and the shell's 2 screws to the sides, out from under the notch)
+                      neck_top=True, yaw_over_neck=True, neck_one_piece=True, yaw_foot=0.0175, head_roll_sleeve=True, plug_windows={'hip yaw': ('top plate',), 'head yaw': ('head pitch bridge',), 'beak': ('L head rail',)}, plug_one={'beak': -1}, beak_wall=True, hinge_hub=True, sink_screws={'head roll cradle screw': (0.0016, 0.006), 'L knee cradle screw horn face': (0.0016, 0.006), 'R knee cradle screw horn face': (0.0016, 0.006)}, roll_clear=True, beak_max=0.39, driver_holes={'beak cradle screw rear': ('R head rail', 'R base riser'), 'hood rear screw': ('lower shell',)}, roll_bearing=(), roll_sink=(), xn_out=-0.005, zn_up=0.0095, slot_back=0.024, notch_z=0.003, body_screws=((-0.0382, -0.0155), (-0.0175, 0.0165)),   # (2026-11-10, the user: the neck nearer the hip servos, held by walls at their sides, the head yaw horn over the neck, and microduck's neck range: back 1.05, forward 1.6. Then (the user): no mount in front of the hip servos at all, the neck's fork plates slanting down onto the top plate over them. So the neck 9.5 mm up, as microduck's sits over its hip servos, a notch 24 mm back in the shell's top, 3 mm over the plate, the IMU 8 mm back and the shell's 2 screws to the sides, out from under the notch)
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005,
                       # (2026-11-06, the user's BOM, PR 6: Amazon had no 16 x 22 x 4 mm bearings till the month's end. The uxcell 6703ZZ, 17 x 23 x 4 mm, 6.4 g (32 g for 5). Its bore is
                       # 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, on the top 2 mm, not half on the horn: test the fit on the first joint)
@@ -813,6 +813,7 @@ def mount_geoms(j):
         if not hob:
             faces_.append((bot - MT, -1, 'rear'))
         fw, pr = hr + sh + 0.001, post_r(A)
+        rfill = 0.0                                # (see ROLL_IN: the frame's strips come to the plate, not the plate to them)
         if hob:                                    # round the hub's hole, with room for its 2 screws
             fw = max(fw, bearing_of(j['act'])['d'] / 2 + RACE + 0.0055)
         if j.get('post', True) or j.get('fork_r') is not None:
@@ -823,14 +824,14 @@ def mount_geoms(j):
         pu, pw = -sx + rho * math.cos(psi), rho * math.sin(psi)
         circ = [(*pp(-sx, 0), fw), (*pp(pu, pw), pr)]
         fk += [plate(f'{n} fork horn plate', *axial(top, top + MT), circ, DARK, 'struct', axis=ax, **ex),
-               plate(f'{n} fork rear plate', *axial(bot - MT, bot), circ, DARK, 'struct', axis=ax, **ex)]
+               plate(f'{n} fork rear plate', *axial(bot - MT - rfill, bot), circ, DARK, 'struct', axis=ax, **ex)]
         if hob:
             fk += rear_hub(j, f, hb, ex)
         else:
           fk += [dict(lcyl(f'{n} rear horn', f, -sx, 0, -H / 2 - (min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005) / 2, A['horn_r'], min(real + 0.0002, hh + 0.0005) if hh > real + 1e-9 else hh + 0.0005, ALU, 'struct'),
                     **ex)]
         if j.get('post', True):
-            fk.append(plate(f'{n} fork post', *axial(bot - MT, top + MT), [(*pp(pu, pw), pr)], DARK, 'struct', axis=ax,
+            fk.append(plate(f'{n} fork post', *axial(bot - MT - rfill, top + MT), [(*pp(pu, pw), pr)], DARK, 'struct', axis=ax,
                             **ex))
     for a0, sg, nm in faces_:
         for k, dg in enumerate(hd):
@@ -857,6 +858,11 @@ SHH = stack_of(R['leg'], True)       # the case's face to the plate on its horn,
 XLL, XLW, XLH = XL['box']                  # 34 x 20 x 26 mm
 XLX, XLHH = XL['shaft_x'], XL['horn_h']
 XLS = stack_of(H2, True)         # the same on the head's XL330s that carry a bearing (5.5 mm)
+# the head roll without its bearings (2026-11-11, the user): its rear plate sits on the idler, 5 mm nearer the case than the bearings had it (the case 2.5 mm nearer
+# its horn plate, the rear stack 2.5 less), so the strips of the head's frame that join that plate move in with it. (A plate thickened 5 mm back to the strips' old place
+# was a drum round 4 screws sunk 5 mm deep: the user, "why would we need that bulge?")
+PLUG_SIDES = lambda n: (R.get('plug_one', {})[n],) if n in R.get('plug_one', {}) else (1, -1)   # the last servo on a chain: one lead, so one plug and one window
+ROLL_IN = 2 * (stack_of(H2, True) - stack_of(H2, False)) if 'roll_bearing' in R and not R['roll_bearing'] else 0.0
 # the neck's own servo (it was the head's: the same case on every recipe until the hobby duck, whose neck is a standard-size servo and its head micro ones)
 NKL, NKW, NKH = ACT[R['neck']]['box']
 NKX = ACT[R['neck']]['shaft_x']
@@ -895,10 +901,10 @@ ZR = ZP                                            # hip roll: at the hip pitch 
 ZY = ZR + NEAR + 0.010 * K                      # a 10 mm spacer: room under the body for the thigh covers to roll
 
 # Lateral (left leg, y > 0), from the middle out
-YY = 0.016 * K                                         # hip yaw and roll: the two yaw cases side by side, 7 mm apart
+YY = 0.016 * K + (0.0025 if R.get('roll_fork') else 0.0)   # hip yaw and roll: the two yaw cases side by side, 7 mm apart (roll_fork: 12, the yaw servos out under the roll servos, so the legs stay put)
 # hip roll 2.5 mm outboard of the yaw axis: its bearing is wider than its case, and the two would meet as a leg yaws in
-YR = YY + 0.0025
-XRH = SH / 2 + SHH                                 # hip roll horn face, in front of the roll case (0.022)
+YR = YY + (0.0 if R.get('roll_fork') else 0.0025)   # roll_fork: no roll bearing, so the roll servo straight under the yaw horn and the yaw bracket the same both ways round (2026-11-10, the user)
+XRH = SH / 2 + (ACT[R['leg']]['horn_h'] if R.get('roll_fork') else SHH)   # hip roll horn face, in front of the roll case (0.022). roll_fork: no bearing, the plate on the horn, the case centred on the hip axes so the bracket is the same both ways round (2026-11-10, the user: flipped front to back by mistake, it would move the centre of mass)
 YRS = (YR + SW / 2 + 0.0061, YR + SW / 2 + 0.0091)  # the roll bracket's side plate, clear of the rolling roll case
 if HOB:                                            # (a narrower case: the roll lid's bearing seat, 15.5 mm round the axis, is then what the side plate has to clear)
     _rs = bearing_of(R['leg'])['D'] / 2 + bearing_of(R['leg'])['wall'] + GAP
@@ -927,7 +933,7 @@ ROLLF = bool(R.get('roll_fork'))                   # (2026-11-09, the user's ske
 RC, TT = (XRH - SH / 2 - ACT[R['leg']]['horn_h'] if ROLLF else 0.0), 0.0025   # the roll servo's middle, x: its horn straight on the fork's plate, no spacer (the user, 2026-11-09); the yaw bracket's tabs, 2.5 mm, under the horn's height so the fork's plate passes over them
 RH = 0.0092 if ROLLF else 0.010 * K               # the roll bracket's plates, half their height: round the fork's discs (8.9 mm), so both sides are the same rectangle (the user: one side round, one square, easy to fit wrong)
 ROLL_PLATE = [(YR, ZR, RH), (YRS[1] - 0.0005, ZR - RH + 0.0005, 0.0005), (YRS[1] - 0.0005, ZR + RH - 0.0005, 0.0005)]   # both plates the same: round about the shaft, for clearance (the user), square where they meet the side
-YP0, YP1 = (min(YY, YR) - SW / 2, YR + SW / 2 + (0.001 if ROLLF else 0.0))   # the yaw bracket's plate across, its tabs flush with its edges
+YP0, YP1 = (min(YY, YR) - SW / 2 - (0.001 if ROLLF else 0.0), YR + SW / 2 + (0.001 if ROLLF else 0.0))   # the yaw bracket's plate across, its tabs flush with its edges
 AV = bool(R.get('ankle_v2'))                       # 2026-11-09, the user, from the first real shin and shoe: the shoe bolts straight to the servo's idler (no stub, no second bearing, no separate inner ear), the shin holds the servo on both faces, and the shoe and sole meet on flat faces
 ZS0 = ZA + AK_FAR - 0.002 - 0.0037                 # how far the shin's four walls come down the servo: 3.7 mm past the far screw holes, as the Koch v1.1 arm's bracket (measured on its STL; 2026-11-09, the user: barely enough to fit the holes), so the horn stays on and the servo slides in whole, clear of its sockets
 ARM, EAR_T, EAR_GAP, ZF = 0.0025, 0.0035, 0.0004, FOOT['sole'] - 0.001      # the shin's outer arm; the inner ear's thickness and its gap to the idler as the shoe slides on (Koch's forks: 0.4 mm over): an M2 x 6 goes 2.1 mm into the idler, and 2.5 mm when it has pulled the ear down onto it; the seam between shoe and sole
@@ -1113,11 +1119,15 @@ link('L_hip_roll_link', 0.07, [
     *[plate('L hip roll back arm', RC - SH / 2 - 0.0065, 0.003, ROLL_PLATE, DARK, 'struct', axis='x', exposed=True) for _ in range(ROLLF)],   # (the fork's idler plate, the same outline as the horn side's, out to the side: the bridge round the roll servo's outer side)
     # (the arm from the pitch horn to the front plate carries the whole leg: 1.5 mm thicker, past the horn's screws)
     box('L hip roll arm', (0.0115 * K, YRS[0] - R.get('roll_arm_in', 0.0015), ZR - RH), (XRH + MT, YRS[1], ZR + RH), exposed=True),
+    *[box('L hip roll back arm thick', (RC - SH / 2 - 0.0065, YRS[0] - R.get('roll_arm_in', 0.0015), ZR - RH), (2 * RC - 0.0115 * K, YRS[1], ZR + RH), exposed=True) for _ in range(ROLLF)],   # (the fork: both arms carry the leg, so both the same)
     # gussets in the corner the leg's load turns through (2026-11-04, the user: "a 3d printed part like that will break so easily"; LOAD's beam estimate has no corner in it, and a sharp inside
     # corner multiplies the stress 2-3 x). Top and bottom only, outside the lid's rim as the roll case turns: its middle is taken
     *[plate(f'L roll gusset {k}', ZR + sz_ * 0.0055 * K if sz_ > 0 else ZR - 0.010 * K, 0.0045 * K,
             [(XRH + 0.0001, YRS[0] - 0.0014, 1e-5), (XRH + 0.0001, YR + math.sqrt((bearing_of(R['leg'])['D'] / 2 + bearing_of(R['leg'])['wall'] + 0.0007) ** 2 - (0.0055 * K) ** 2), 1e-5), (XRH - 0.0030, YRS[0] - 0.0014, 1e-5)],
             DARK, 'struct', axis='z', exposed=True) for k, sz_ in enumerate((1, -1))],
+    *[plate(f'L roll gusset back {k}', ZR + sz_ * 0.0055 * K if sz_ > 0 else ZR - 0.010 * K, 0.0045 * K,
+            [(XRB - 0.0001, YRS[0] - 0.0014, 1e-5), (XRB - 0.0001, YR + math.sqrt((bearing_of(R['leg'])['D'] / 2 + bearing_of(R['leg'])['wall'] + 0.0007) ** 2 - (0.0055 * K) ** 2), 1e-5), (XRB + 0.0030, YRS[0] - 0.0014, 1e-5)],
+            DARK, 'struct', axis='z', exposed=True) for k, sz_ in enumerate((1, -1)) for XRB in (RC - SH / 2 - 0.0035,) if ROLLF],
 ])
 link('L_hip_pitch_link', 0.10, [
     # the thigh: the hip pitch servo lying flat (from the joint, case in the thigh) and the knee servo standing at
@@ -1492,7 +1502,7 @@ link('head', 0.12, [
     box('head frame', (XHR - R.get('frame_back', 0.0005), -RAIL, ZHY + 0.004 * Q), (XHR + 0.003, RAIL, HEAD_PLATE_Z + 0.003)),
     # narrow at the hood's low back, wide beside the roll servo, where the rails pass it (round 9)
     # (the rails stop short of the beak servo, which goes in from the side between them)
-    box('head top plate wide', (XHR - XLH - XLS - 0.0085, -RAIL, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, RAIL,
+    box('head top plate wide', (XHR - XLH - XLS - 0.0085 + ROLL_IN, -RAIL, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065 + ROLL_IN, RAIL,
                                                                                    HEAD_PLATE_Z + 0.003)),
     # the left rail is the beak servo's rear plate now, inside the servo
     box('L head rail', (XHR - XLH - XLS - 0.0085, TAB_Y_ - BEAK_STACK - XL['box'][2] - 0.003, HEAD_Z + R.get('rail_z', 0.0075 * Q) + 0.004), ((XJ + XL['box'][0] / 2 - XL['shaft_x'] + 0.0006) if R.get('rail_steps') else XHR + 0.003, TAB_Y_ - BEAK_STACK - XL['box'][2], HEAD_PLATE_Z + 0.003)),
@@ -1557,11 +1567,11 @@ link('head', 0.12, [
     # (beside the beak servo, on its cradle's rear plate: 2026-11-02, they ran through its case)
     # the band's two arms tied straight up into the frame, so the head's base and its frame are one structure, as microduck's bottom shell is its base (the user, 2026-11-04: "why not the same part?"; it hung on one thin post)
     box('L base riser', (XHR - XLH - XLS - 0.0125, RAIL - 0.0055, JAW_Z[1] - 0.0015), (XHR - XLH - XLS - 0.0090, RAIL - 0.0025, HEAD_PLATE_Z + 0.003), exposed=True),
-    box('L base riser top', (XHR - XLH - XLS - 0.0125, 0.020 * Q - 0.002, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065, RAIL - 0.0025, HEAD_PLATE_Z + 0.003)),
+    box('L base riser top', (XHR - XLH - XLS - 0.0125, 0.020 * Q - 0.002, HEAD_PLATE_Z), (XHR - XLH - XLS - 0.0065 + ROLL_IN, RAIL - 0.0025, HEAD_PLATE_Z + 0.003)),   # (on to the top plate's strip, ROLL_IN)
     box('R base riser', (XHR - XLH - XLS - 0.0085, -RAIL, JAW_Z[1] - 0.0015), (XHR - XLH - XLS - 0.0025, -RAIL + 0.003, HEAD_Z + R.get('rail_z', 0.0075 * Q) + 0.002), exposed=True),
     # (2026-11-04: a voxel FEA of the head frame, 60 N on the back of the head: the left riser 45 MPa, the strip 23; the jaw servo stalled: the cradle's bars 8.3. The user: why not a plain plate? So: a plain end wall, the strip 5 mm tall, the riser 7 mm deep. 22, 13 and 0.9 MPa)
     *[box(nm, a_, b_, DARK, exposed=True) for nm, a_, b_ in ((n_, HO(a0), HO(b0)) for n_, a0, b0 in (('beak cradle end plain', (0.0104, 0.0147, 0.2502), (0.0134, 0.0402, 0.2602)),
-                                                             ('head strip deep', (0.0149, -0.0310, 0.2632), (0.0169, 0.0142, 0.2662)),
+                                                             ('head strip deep', (0.0149 + ROLL_IN, -0.0310, 0.2632), (0.0169 + ROLL_IN, 0.0142, 0.2662)),
                                                              ('L base riser back', (0.0074, 0.0285, 0.2347), (0.0110, 0.0315, 0.2652)))) if R.get('head_fixes')],
     # (the 5 V regulator for the Pi, off the board's green terminals: one power pair up the neck, not 2. A USB buck module, 35 x 17 x 8.5 mm by its listing, on edge on the base beside the Pi, its USB socket forward, for a right-angle plug turning in toward the Pi (a straight plug hits the face); mass a guess: weigh yours)
     *[dict(box('head 5 V regulator', *map(HO, R.get('reg_box', ((0.0660, -0.0420 - R.get('reg_out', 0), 0.2430), (0.1010, -0.0335 - R.get('reg_out', 0), 0.2600)))), PCB, material='electronics', mass=0.008), on_cover=True) for _ in range(bool(R.get('reg_head')))],
@@ -1573,7 +1583,7 @@ link('head', 0.12, [
     *[dict(box('head regulator wires', HO((R['reg_plug'][1][0] - 0.004, R['reg_plug'][1][1] - 0.0025, R['reg_plug'][0][2] + 0.001)), HO((R['reg_plug'][1][0], R['reg_plug'][1][1], R['reg_plug'][0][2] + 0.005)), '#D9D4C5', fillet=0.0003),
            material='electronics', mass=0.001, wire=True, on_cover=True) for _ in range('reg_plug' in R and bool(R.get('pi_uart')))],
     # (2026-11-05: the plug's back end stood 74 mm3 in the hood's step, on the inside. So that inner rib of the step now ends 1 mm short of the plug, at x = 51 mm. The head's skin isn't touched. The plug passes the hinge tab with only 0.2 mm)
-    *[cut(box('head regulator plug room', HO((R['reg_plug'][0][0] - 0.001, -0.0433, R['reg_plug'][0][2] - 0.0005)), HO((0.0605, -0.0400, R['reg_plug'][1][2] + 0.0005)), WHITE), 'R hood step') for _ in range('reg_plug' in R)],
+    *[cut(box('head regulator plug room', HO((R['reg_plug'][0][0] - 0.001, -0.0433, R['reg_plug'][0][2] - 0.0005)), HO((0.0605, -0.0400, R['reg_plug'][1][2] + 0.0005)), WHITE), 'R hood step') for _ in range('reg_plug' in R and not R.get('pi_uart'))],   # (only where there's a plug: on the all-Dynamixel duck, with bare wires, it cut through the step's floor into the tab's slot: a hole in the hood, 2026-11-11, the user)
     # the head's base: one plate from the back band to the lip, as microduck's bottom shell, with an opening where the neck turns. The frame and the Pi's plate stand on it, the mouth pad is glued under it (the user: "one single piece from front to back")
     dict(plate('head base', HEAD_Z + 0.003, 0.0025, mouth_outline(HEAD_BACK + 0.008), DARK, 'struct', axis='z'), exposed=True),
     # notches for the jaw's tabs, which come up past the plate
@@ -1634,7 +1644,7 @@ joint('head_yaw', 'head_pitch_link', 'head_yaw_link', (XHY, 0, ZHY), 'z', (-2.5,
 #     a 1 mm sheet to the far holes, as microduck's: the
 #                                                    beak servo turns over it
 # (its case to the right, as microduck's, y -24.5 to 9.5: the left is the beak servo's)
-joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', RANGE['head_roll'], H2, out=+1, long='-y', fork_at=90,
+joint('head_roll', 'head_yaw_link', 'head', (XHR, 0, ZHR), 'x', RANGE['head_roll'], H2, out=+1, long='-y', fork_at=90, post=not R.get('head_roll_sleeve'),   # (no arch over the roll servo on the all-Dynamixel: the head's frame joins the 2 plates, 2026-11-11)
       bearing=R.get('roll_bearing', ('horn', 'rear')), sink=R.get('roll_sink', ('rear',)), rear_stack=R.get('rear_stack') if 'rear' not in R.get('roll_bearing', ('rear',)) else None)    # a bearing each side, as microduck's
 # The jaw on the servo's horn, its shaft on the hinge, as microduck's (2026-11-04, the user: "get rid of the rod", "for simplicity". It had a crank, a rod and a lever from a servo 45 mm behind, which we took to be
 # microduck's way: its model has none of them). 4 screws in the rear plate, no lid; a screw on the far side's hinge
@@ -1758,7 +1768,14 @@ def build():
                                        cut(lbox(f"{n} wire window {'+' if sg > 0 else '-'}", f, (XL_WIRES['u'][0] - 0.0003, XL_WIRES['u'][1] + 0.0003), sorted((sg * 0.0059, sg * 0.0101)), (-A_ - 0.008, -A_ + 0.001), DARK), f'{n[0]} thigh plate')]
             else:
                 cradle = cradle + [dict(lbox(f"{n} cable plugs {'+' if sg > 0 else '-'}", f, XL_WIRES['u'], sorted((sg * XL_WIRES['w'][0], sg * R.get('wire_w', XL_WIRES['w'][1]))), XL_WIRES['a'], '#D9D4C5', 'struct', fillet=0.0004),
-                                        material='electronics', mass=XL_WIRES['mass'], exposed=True, wire=True) for sg in (1, -1)]
+                                        material='electronics', mass=XL_WIRES['mass'], exposed=True, wire=True) for sg in (1, -1) if sg in PLUG_SIDES(n)]
+            # a window over each socket where a plate lies over the rear face, so a lead can be plugged in and out once the servo is in (tools/assembly.py check_plugs:
+            # the top plate sat 1.5 mm over the hip yaw servos' sockets, 2026-11-11)
+            for target in R.get('plug_windows', {}).get(n[2:] if n[:2] in ('L ', 'R ') else n, ()):
+                so_, A_ = ACT[j['act']].get('socket'), ACT[j['act']]['box'][2] / 2
+                if so_:
+                    cradle += [cut(lbox(f"{n} plug window {'+' if sg > 0 else '-'}", f, (so_['u'][0] - 0.0005, so_['u'][1] + 0.0005), sorted((sg * (so_['w'][0] - 0.0005), sg * (so_['w'][1] + 0.0005))),
+                                        (-A_ - so_['plug_out'] - 0.003, -A_ + 0.0002), DARK), target) for sg in (1, -1) if sg in PLUG_SIDES(n)]
             # a groove for the wires where a plate lies against that side of the case
             for sg_, target in XL_GROOVES.get(n, ()) if RECIPE == 'hybrid' else XL_GROOVES_ALL.get(n[2:] if n[:2] in ('L ', 'R ') else n, ()):
                 target = target.format(s=n[0])
@@ -1864,6 +1881,138 @@ def build():
         names = [g['name'] for g in links[case_link]['geoms'] if g['role'] != 'cut' and on_plate(g, at(f, -A_['shaft_x'], 0, -H_ / 2 - 0.0028))]
         if names:
             links[case_link]['geoms'].append(cut(lbox(f'{n} rear tube hole', f, (-A_['shaft_x'] - 0.0028, -A_['shaft_x'] + 0.0028), (-0.0028, 0.0028), (-H_ / 2 - 0.004, -H_ / 2 + 0.0002), DARK), *names))
+    if R.get('neck_one_piece'):
+        # the neck column: one plain sleeve round the two servos' far ends, which slide into it from each end, 2 screws each side into each servo. No lids, end walls, tall side
+        # plates or steps: its lids split their screw holes with the strips beside them, and the rest was more than it needed (2026-11-11, the user: "a very simple piece that both
+        # servos slide into and screwed")
+        nl = links['neck_link']['geoms']
+        old = {'neck front plate', 'neck back plate'} | {f'{n_} cradle {w}' for n_ in ('neck pitch', 'head pitch') for w in ('horn face', 'rear face', 'end +', 'end -', 'side +', 'side -')}
+        strips = [g for g in nl if g['name'] in old and 'face' in g['name']]
+        zs = [g['c'][2] + sg_ * g['size'][2] / 2 for g in strips for sg_ in (-1, 1)]
+        sv = next(g for g in nl if g['name'].startswith('neck_pitch actuator'))
+        (cx, cy, _), (sx_, sy_, _) = sv['c'], sv['size']
+        lo, hi = (cx - sx_ / 2 - MT, cy - sy_ / 2 - 0.0025, min(zs)), (cx + sx_ / 2 + MT, cy + sy_ / 2 + 0.0025, max(zs))
+        nl[:] = [g for g in nl if g['name'] not in old and not (g['role'] == 'cut' and g.get('targets') and set(g['targets']) <= old)]
+        nl += [dict(box('neck column', lo, hi, DARK, 'struct'), exposed=True),
+               cut(box('neck column bore', (cx - sx_ / 2, cy - sy_ / 2, min(zs) - 0.001), (cx + sx_ / 2, cy + sy_ / 2, max(zs) + 0.001), DARK, 'struct'), 'neck column')]
+    if R.get('head_roll_sleeve'):
+        # the head yaw bracket, from scratch: the plate on the yaw horn, and a plain U round the roll servo's far end, open at the top, its 4 screws in from the sides. The servo drops
+        # in from above, horn and idler on, its lower plug into the plate's slot; its plugs' end is open. (It was a cradle of 6 strips and a lid, its plug covered, its screws hard to
+        # reach: 2026-11-11, the user. A band closed over the top meant sliding it in along the plate, and the plug's groove for that cut into a horn screw's hole)
+        yl = links['head_yaw_link']['geoms']
+        old = {f'head roll cradle {w}' for w in ('horn face', 'rear face', 'end +', 'end -', 'side +', 'side -')}
+        sv = next(g for g in yl if g['name'].startswith('head_roll actuator'))
+        pl = next(g for g in yl if g['name'] == 'head yaw plate')
+        (cx, cy, cz), (sx_, sy_, sz_) = sv['c'], sv['size']
+        far, band = cy - sy_ / 2, 0.0050                   # its far end (-y); the band 5 mm along it, round the holes 2 mm in
+        cmt_ = min(MT, ACT[sv['name'].split()[-1]]['horn_h'] - 0.0005)   # under the horn's height: the fork's plates turn over it
+        lo = (cx - sx_ / 2 - cmt_, far - 0.0005, pl['c'][2] - pl['size'][2] / 2)
+        hi = (cx + sx_ / 2 + cmt_, far + band, cz + sz_ / 2)
+        yl[:] = [g for g in yl if g['name'] not in old and not (g['role'] == 'cut' and g.get('targets') and set(g['targets']) <= old)]
+        yl += [dict(box('head roll sleeve', lo, hi, DARK, 'struct'), exposed=True),
+               cut(box('head roll sleeve bore', (cx - sx_ / 2, far - 0.002, cz - sz_ / 2), (cx + sx_ / 2, far + band + 0.002, cz + sz_ / 2 + 0.001), DARK, 'struct'), 'head roll sleeve')]
+    if R.get('beak_wall'):
+        # the head frame round the beak servo, from scratch: one plain wall on its rear face, its 4 screws through it, and one end block. It was the rail (3 mm), the cradle's
+        # rear face (2.5 mm, lower and further back) and an end in 3 pieces with a gap: steps, a recessed strip and slots where they didn't line up (2026-11-11, the user).
+        # And the fork's rear plate on the roll idler a tab up into the bar over it, not a disc that only touched the bar at its top
+        hg = links['head']['geoms']
+        G_ = {g['name']: g for g in hg}
+        lo_hi = lambda g: ([g['c'][i] - g['size'][i] / 2 for i in range(3)], [g['c'][i] + g['size'][i] / 2 for i in range(3)])
+        (rf0, rf1), (rl0, rl1), (e0, e1) = lo_hi(G_['beak cradle rear face']), lo_hi(G_['L head rail']), lo_hi(G_['beak cradle end plain'])
+        ends = [lo_hi(G_[k]) for k in ('beak cradle end +', 'beak cradle end -', 'beak cradle end plain')]
+        old = {'beak cradle rear face', 'L head rail', 'beak cradle end +', 'beak cradle end -', 'beak cradle end plain'}
+        wall = dict(box('L head rail', (e0[0], rf0[1], rf0[2]), (rl1[0], rf1[1], rl1[2]), ORANGE, 'struct'), exposed=True)
+        end = dict(box('beak cradle end', (e0[0], e0[1], min(a[2] for a, _ in ends)), (e1[0], e1[1], max(b[2] for _, b in ends)), ORANGE, 'struct'), exposed=True)
+        for g in hg:
+            if g['role'] == 'cut' and g.get('targets'):
+                g['targets'] = list(dict.fromkeys('L head rail' if t in ('beak cradle rear face', 'L head rail') else 'beak cradle end' if t.startswith('beak cradle end') else t for t in g['targets']))
+        hg[:] = [g for g in hg if g['name'] not in old]
+        hg += [wall, end]
+        rr = G_['R head rail']                     # the far rail as long as the beak wall, so the screwdriver's holes in it are whole, not notches in its end
+        r0_, r1_ = lo_hi(rr)
+        r0_[0] = e0[0]
+        hb_ = next(g for g in hg if g['name'] == 'head base')
+        r0_[2] = min(r0_[2], hb_['y0'] + hb_['t'] - 0.0002)   # and down onto the head's floor: the screwdriver's lower holes cut its edge
+        rr['c'], rr['size'] = [(r0_[i] + r1_[i]) / 2 for i in range(3)], [r1_[i] - r0_[i] for i in range(3)]
+        rp, bar = G_['head roll fork rear plate'], G_['head top plate wide']
+        ys, zs = [p[0] for p in rp['pts']], [p[1] for p in rp['pts']]
+        zc, ztop = (max(zs) + min(zs)) / 2, bar['c'][2] + bar['size'][2] / 2
+        # a full rear wall, as the front one: from the far rail to the beak wall, the idler's 4 screws through it. The frame is then a plain box round the roll servo
+        # (a disc, then a tab hanging off the bar: the user, 2026-11-11). Nothing of the yaw link is behind the servo's rear face, so the roll never brings it here
+        y_r, y_l = r1_[1], wall['c'][1] - wall['size'][1] / 2
+        # nearly to the floor: one wall, bottom to top (the user: "the whole side as a wall", easier to print). Its bottom edge 4 mm over the floor: on the floor, its corners
+        # swung into the head fork's plate under the floor at 0.23 rad of roll. z 253.5 keeps 1 mm over that plate at 0.24 rad, out to 20 mm either side as the yaw turns it
+        z_f = 0.2535 if RECIPE == 'dynamixel' else r0_[2]
+        # (0.5 mm into the rail and the beak wall, not face to face with them, and the strip it buries gone: Fusion's rounding hit slivers there and failed)
+        rp['pts'] = [[y_r - 0.0005, z_f], [y_l + 0.0005, z_f], [y_l + 0.0005, ztop], [y_r - 0.0005, ztop]]
+        hg[:] = [g for g in hg if g['name'] != 'head strip deep' and not (g['role'] == 'cut' and g.get('targets') and set(g['targets']) <= {'head strip deep'})]
+        for g in hg:
+            if g['role'] == 'cut' and 'head strip deep' in g.get('targets', []):
+                g['targets'] = [t for t in g['targets'] if t != 'head strip deep']
+    if R.get('hinge_hub'):
+        # the jaw's far hinge as an idler: a round hub on the hood, the tab's round hole turning on it. The screw clamps the hub to a round boss on the frame, through a
+        # flange over the tab, so it never turns in the screw. It was the screw itself through the tab into a square block (2026-11-11, the user: "why can't we have
+        # an idler style ring spinning one inside the other?")
+        hg, bl = links['head']['geoms'], links['beak_link']['geoms']
+        bo = next(g for g in hg if g['name'] == 'R head hinge boss')
+        sc = next(g for g in hg if g['name'] == 'R hinge screw')
+        x_, z_ = XJ, ZJ                                # on the beak servo's axis: the screw stood 2 mm over it, so the jaw would have bound as it opened (found 2026-11-11 once the sweep's 20 mm3 allowance went)
+        lo_, hi_ = bo['c'][1] - bo['size'][1] / 2, bo['c'][1] + bo['size'][1] / 2
+        hg[hg.index(bo)] = dict(cyl('R head hinge boss', (x_, (lo_ + hi_) / 2, z_), 'y', 0.005, hi_ - lo_, ORANGE, 'struct'), exposed=False)
+        face, outer, hub_r = -TAB_Y_, -TAB_Y_ - 0.004, 0.0035       # the hood's face under the tab, the tab's outer face
+        end = outer + 0.0012                                         # the sleeve's end, under its lip: 1.2 mm in from the tab's face (0.8 was under WALL's 1 mm)
+        # (a sleeve of its own, in from outside once the hood and jaw are on: a hub on the hood would have run into the tab as the hood went down over it)
+        # (its flange over the tab holds it on, in place of a washer, and is what it stands on to print: the bare 7 mm tube had 29 mm2 on the bed)
+        hg += [dict(cyl('R hinge sleeve', (x_, (lo_ + end) / 2, z_), 'y', hub_r, lo_ - end, ORANGE, 'struct'), exposed=True),
+               dict(cyl('R hinge sleeve lip', (x_, (end + outer) / 2, z_), 'y', 0.0046, end - outer, ORANGE, 'struct'), exposed=True),
+               *[cut(cyl(f'R hinge sleeve hole {k}', (x_, (lo_ - 0.0004 + end - 0.001) / 2, z_), 'y', hub_r + 0.0001, lo_ - 0.0004 - end + 0.001, WHITE, 'shell'), t_) for k, t_ in enumerate(('head', 'R hood step'))]]
+        bl += [cut(cyl('R tab hub hole', (x_, (face + outer) / 2, z_), 'y', hub_r + 0.0002, 0.0045, ORANGE, 'struct'), 'R hinge tab'),
+               cut(cyl('R tab flange seat', (x_, outer, z_), 'y', 0.0048, 0.0028, ORANGE, 'struct'), 'R hinge tab')]   # 0.2 mm play under the flange
+        sc['fast'] = dict(sc['fast'], p=[x_, outer, z_], L=0.012)
+        sc['c'] = [x_, outer - 0.0009, z_]; sc['h'] = 0.0018; sc['r'] = 0.00275   # (the head, as drawn)
+    for pre, (dep, L_) in R.get('sink_screws', {}).items():
+        # a screw head sunk in a counterbore, flush: where something turns past it. The head yaw bracket's side screws stood 1.5 mm into the head frame's walls,
+        # the knee's into the body shell at 0.63 rad of hip pitch (2026-11-11, found once screws counted in the sweep). Shorter by about as much, as deep in the servo
+        for l in links.values():
+            for g in l['geoms']:
+                if 'fast' in g and g['name'].startswith(pre):
+                    d_ = g['fast']['d']
+                    g['fast'] = dict(g['fast'], p=[g['fast']['p'][i] + d_[i] * dep for i in range(3)], L=L_)
+                    g['c'] = [g['c'][i] + d_[i] * dep for i in range(3)]
+    if R.get('roll_clear'):
+        # the head turns round the roll servo and its bracket: 0.5 mm between the bracket's sleeve and the head frame's front wall (they lay face to face, 0 mm), and the
+        # beak servo snug at both ends: a block from its front end to that wall, where 4 mm stood empty (the user: "why can't that servo fit snugly in there?")
+        hg, yl = links['head']['geoms'], links['head_yaw_link']['geoms']
+        sl = next(g for g in yl if g['name'] == 'head roll sleeve')
+        fw = next(g for g in hg if g['name'] == 'head frame')
+        x0, x1 = sl['c'][0] + sl['size'][0] / 2 + 0.0005, fw['c'][0] + fw['size'][0] / 2
+        fw['c'][0], fw['size'][0] = (x0 + x1) / 2, x1 - x0
+        bs = next(g for g in hg if g['name'].startswith('beak actuator'))
+        b0 = [bs['c'][i] - bs['size'][i] / 2 for i in range(3)]; b1 = [bs['c'][i] + bs['size'][i] / 2 for i in range(3)]
+        hg.append(dict(box('beak cradle front', (b1[0] + 0.0002, b0[1], b0[2]), (x0 + 0.0005, min(b1[1], fw['c'][1] + fw['size'][1] / 2), b1[2]), ORANGE, 'struct'), exposed=True))
+        # the beak servo's top back corner stood 1 mm in the hood's wall: a 1.3 mm pocket inside the hood over it
+        hg.append(cut(box('hood beak servo pocket', (b0[0] - 0.0005, b1[1] - 0.0013, b1[2] - 0.003), (b0[0] + 0.0105, b1[1] + 0.0013, b1[2] + 0.0003), WHITE), 'head'))
+        # and the yaw bracket's plate off the bearing's outer race (it lay on it: the race stands still, the plate turns): 0.5 mm relief, the plate on the inner race's shoulder
+        pl = next(g for g in yl if g['name'] == 'head yaw plate')
+        orc = next(g for l in links.values() for g in l['geoms'] if g['name'] == 'head yaw horn bearing outer race')
+        z0 = orc['c'][2] + orc['h'] / 2
+        # the beak wall's bottom notch on to x 30 mm: its edge swung into the head fork's yaw horn seat at 0.18 rad of roll. 254.4 keeps 0.3 mm over it at 0.24 rad
+        wl = next(g for g in hg if g['name'] == 'L head rail')
+        hg.append(cut(box('beak wall roll relief', (0.0214, wl['c'][1] - wl['size'][1] / 2 - 0.001, 0.240), (0.0300, wl['c'][1] + wl['size'][1] / 2 + 0.001, 0.2544), ORANGE), 'L head rail'))
+        # and a shallow round pocket under the head's floor round the yaw axis: the fork's cradle ends passed 0.5 mm into the floor from 0.94 rad of yaw on
+        hb = next(g for g in hg if g['name'] == 'head base')
+        ya = next(j_ for j_ in JOINTS if j_['name'] == 'head_yaw')['origin']
+        hg.append(cut(cyl('head floor yaw pocket', (ya[0], ya[1], hb['y0'] + 0.0004), 'z', 0.031, 0.0016, ORANGE), 'head base'))
+        yl.append(cut(cyl('head yaw plate race relief', (orc['c'][0], orc['c'][1], z0 + 0.00025), 'z', orc['r'] + 0.0005, 0.0005 + 0.0002, DARK, 'struct'), 'head yaw plate'))
+    for pre, targets in R.get('driver_holes', {}).items():
+        # a hole for a screwdriver where a part stands in front of a screw: 5 mm, straight out from its head (tools/assembly.py DRIVER)
+        for l in links.values():
+            for g in list(l['geoms']):
+                if 'fast' in g and g['name'].startswith(pre):
+                    p_, d_ = g['fast']['p'], g['fast']['d']
+                    c_ = [p_[i] - d_[i] * (0.0016 + 0.03) for i in range(3)]
+                    ax_ = 'xyz'[max(range(3), key=lambda i: abs(d_[i]))]
+                    l['geoms'].append(cut(cyl(f"{g['name']} driver hole", tuple(c_), ax_, 0.0026, 0.06, DARK, 'struct'), *targets))
     for l in links.values():
         for g in l['geoms']:
             if g['kind'] == 'rbox' and min(g['size']) <= 0:   # (another variant's numbers on a smaller body: it hung the checks for half an hour)

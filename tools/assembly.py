@@ -13,6 +13,7 @@ The checks, at the zero pose:
   THREAD  a screw's tip half bites 2 mm into something it is not clamping: a servo, a horn or a printed part
   HELD    under its head, the screw clamps a printed part
   ACCESS  a key reaches the head: 15 mm straight out from it clear of everything already on (CDX-3R's KEY_REACH)
+  DRIVER  a screwdriver reaches it: a 3 mm shaft 60 mm straight out, clear of everything already on
 """
 import argparse
 import os
@@ -28,7 +29,9 @@ import geom as G  # noqa: E402
 # Printed parts that are glued or that turn on their screws, on purpose
 GLUED = {'jaw soft insert', 'mouth roof', 'face', 'eye ring', 'eye iris'}
 PIVOTS = {'jaw'}
-KEY_REACH, KEY_R = 0.015, 0.0012                   # a hex key's short arm, and its radius
+ROUND = {'hinge sleeve'}                          # round on its one screw: turning about it changes nothing
+KEY_REACH, KEY_R = 0.015, 0.0012
+DRIVER_REACH, DRIVER_NEAR, DRIVER_TILT = 0.060, 0.008, np.radians(3)                              # a precision screwdriver's shaft, clear of everything on                   # a hex key's short arm, and its radius
 MIN_BITE = 0.002
 TRAVEL = 0.045                                     # how far a part is checked along its path
 
@@ -72,7 +75,7 @@ def hub(n):
     return (f'{n} rear hub', 'P', [f'{n} rear hub shoulder', f'{n} rear hub boss', f'{n} rear hub plug', f'{n} rear hub collar'])
 
 
-AV2 = RF2 = G.RECIPE == 'dynamixel'                      # (the ankle of 2026-11-09: spec/robot.py's ankle_v2)
+AV2 = RF2 = NECK1 = HEAD1 = G.RECIPE == 'dynamixel'                      # (the ankle of 2026-11-09: spec/robot.py's ankle_v2)
 BODY_PI = G.RECIPE == 'hobby'                      # the hobby duck's Pi is in its body: it goes in with the torso, not the head
 
 
@@ -92,7 +95,7 @@ def leg_parts(s):
         (f'{s} hip roll servo', 'B', [f'{s}_hip_roll actuator (buy) STS3215_C044', f'{r} cable plugs']),
         *([(f'{s} hip roll idler', 'B', [f'{r} rear horn'])] if RF2 else [(f'{s} hip roll lid', 'P', lid(r)), (f'{s} hip roll bearing', 'B', races(r))]),
         (f'{s} hip roll horn', 'B', [f'{s}_hip_roll flange']),
-        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{s} roll gusset 0', f'{s} roll gusset 1', *([f'{s} hip roll back arm', f'{r} fork horn plate', f'{r} fork rear plate', f'{r} horn seat boss', f'{r} rear seat boss'] if RF2 else [f'{r} horn boss shoulder']),
+        (f'{s} roll bracket', 'P', [f'{s} hip roll front', f'{s} hip roll side', f'{s} hip roll arm', f'{s} roll gusset 0', f'{s} roll gusset 1', *([f'{s} hip roll back arm', f'{s} hip roll back arm thick', f'{s} roll gusset back 0', f'{s} roll gusset back 1', f'{r} fork horn plate', f'{r} fork rear plate', f'{r} horn seat boss', f'{r} rear seat boss'] if RF2 else [f'{r} horn boss shoulder']),
                                     f'{p} horn boss shoulder']),
         (f'{s} thigh frame', 'P', [f'{s} thigh plate', f'{s} thigh post hip', f'{s} thigh post knee'] + tray(p) + tray(k)),
         (f'{s} hip pitch servo', 'B', [f'{s}_hip_pitch actuator (buy) STS3215_C044', f'{p} cable plugs']),
@@ -134,8 +137,11 @@ PARTS = leg_parts('L') + leg_parts('R') + [
                           'neck pitch cradle end -', 'neck pitch cradle side +', 'neck pitch cradle side -',
                           'head pitch cradle rear face', 'head pitch cradle end +', 'head pitch cradle end -',
                           'head pitch cradle side +', 'head pitch cradle side -', 'neck pitch rear seat floor', 'head pitch rear seat floor']
-     + [f'{n} {e}' for n in ('neck pitch', 'head pitch') for e in EARS]),
-    ('neck lid', 'P', ['neck pitch cradle horn face', 'neck pitch cradle horn face foot', 'neck pitch cradle horn face cap']),
+     + [f'{n} {e}' for n in ('neck pitch', 'head pitch') for e in EARS]
+     # NECK1: the lids are part of it. Each lid lay beside the other servo's rear strip with its 2 holes at the seam, half a hole in each part, and neither held its screw (2026-11-11, the user:
+     # "they can be combined into one piece"). The servos slide in lengthwise instead, the neck servo up from below and the head pitch servo down from above, their far ends between the strips
+     + (['neck column', 'neck pitch cradle horn face', 'head pitch cradle horn face'] if NECK1 else [])),
+    *([] if NECK1 else [('neck lid', 'P', ['neck pitch cradle horn face', 'neck pitch cradle horn face foot', 'neck pitch cradle horn face cap'])]),
     ('neck pitch rear bearing', 'B', races('neck pitch', 'rear')),
     ('head pitch rear bearing', 'B', races('head pitch', 'rear')),
     hub('neck pitch'), hub('head pitch'), hub('head roll'),
@@ -144,14 +150,14 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('Pi 5 V converter', 'B', ['Pi 5 V converter']),
     ('PWM bonnet', 'B', ['PWM bonnet', 'PWM bonnet header', 'PWM bonnet plugs']),
     ('head pitch servo', 'B', ['head_pitch actuator (buy) XL330_M288', 'head_pitch flange', 'head pitch rear horn', 'head pitch cable plugs']),
-    ('head pitch lid', 'P', ['head pitch cradle horn face', 'head pitch cradle horn face foot', 'head pitch cradle horn face cap']),
+    *([] if NECK1 else [('head pitch lid', 'P', ['head pitch cradle horn face', 'head pitch cradle horn face foot', 'head pitch cradle horn face cap'])]),
     ('head fork', 'P', ['head pitch horn seat boss', 'head pitch rear seat boss', 'head pitch plate', 'head pitch idler plate', 'head pitch bridge', 'head pitch fork horn plate',
                         'head pitch fork rear plate'] + tray('head yaw')),
     ('head yaw servo', 'B', ['head_yaw actuator (buy) XL330_M288', 'head yaw cable plugs']),
     ('head yaw sheet', 'P', lid('head yaw', 'seat wall') + ['head yaw horn seat floor']),
     ('head yaw bearing', 'B', races('head yaw')),
     ('head yaw horn', 'B', ['head_yaw flange']),
-    ('head yaw bracket', 'P', ['head yaw plate', 'head yaw horn boss shoulder', 'head roll cradle end +', 'head roll cradle end -',
+    ('head yaw bracket', 'P', ['head roll sleeve', 'head yaw plate', 'head yaw horn boss shoulder', 'head roll cradle end +', 'head roll cradle end -',
                                'head roll cradle side +', 'head roll cradle side -', 'head roll cradle rear face',
                                'head roll rear seat floor'] + [f'head roll {e}' for e in EARS]),
     ('head roll servo', 'B', ['head_roll actuator (buy) XL330_M288', 'head roll cable plugs']),
@@ -167,7 +173,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
                          'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1', 'bus board post 0', 'bus board post 1', 'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'lower shell', 'lower shell post', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'lower shell beam',
                          *(['head roll rear seat boss'] if G.RECIPE == 'feetech' else []), 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle end plain', 'head strip deep', 'L base riser back', 'beak cradle rear face', 'beak cradle end +',
-                         'beak cradle end -', 'beak cradle side +'] + [f'beak {e}' for e in EARS]),
+                         'beak cradle end -', 'beak cradle end', 'beak cradle front', 'beak cradle side +'] + [f'beak {e}' for e in EARS]),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288', 'beak flange', 'beak cable plugs']),
     ('beak lid', 'P', ['beak cradle horn face']),
     ('beak crank', 'P', ['beak crank', 'beak crank pin']),
@@ -181,6 +187,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('leg bus board', 'B', ['leg bus board', 'leg bus board plugs servo', 'leg bus board plugs uart', 'leg bus board plugs power']),
     ('leg bus splice', 'B', ['leg bus splice']),
     ('hood', 'P', ['head', 'upper bill', 'hood rear tab 0', 'hood rear tab 1', 'L hood step', 'R hood step']),
+    ('hinge sleeve', 'P', ['R hinge sleeve', 'R hinge sleeve lip']),
     ('jaw', 'P', ['beak horn seat boss', 'jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot', 'jaw lever', 'L tab hub', 'R tab hub']),
     ('jaw soft insert', 'P', ['jaw soft']),
     ('mouth roof', 'P', ['mouth roof']),
@@ -253,10 +260,12 @@ def sections():
         ('4 screws from the front' + (', 4 from behind' if RF2 else ''), [], [r'^R hip roll fork screw']),
     ]), dict(key='column', title='The neck column', on=[], steps=[
         ('The neck column', [('neck column', None)], []),
-        ('Neck servo in, horns on', [('neck servo', NEG(Y))], [r'^neck pitch cradle screw rear']),
-        ('Its lid, 2 screws', [('neck lid', NEG(Y))], [r'^neck pitch cradle screw horn']),
-        ('Head pitch servo in, horns on', [('head pitch servo', Y)], [r'^head pitch cradle screw rear']),
-        ('Its lid, 2 screws', [('head pitch lid', Y)], [r'^head pitch cradle screw horn']),
+        *([('Neck servo up into it from below, horns on, 4 screws', [('neck servo', Z)], [r'^neck pitch cradle screw']),
+           ('Head pitch servo down into it from above, horns on, 4 screws', [('head pitch servo', NEG(Z))], [r'^head pitch cradle screw'])] if NECK1 else [
+          ('Neck servo in, horns on', [('neck servo', NEG(Y))], [r'^neck pitch cradle screw rear']),
+          ('Its lid, 2 screws', [('neck lid', NEG(Y))], [r'^neck pitch cradle screw horn']),
+          ('Head pitch servo in, horns on', [('head pitch servo', Y)], [r'^head pitch cradle screw rear']),
+          ('Its lid, 2 screws', [('head pitch lid', Y)], [r'^head pitch cradle screw horn'])]),
         ('Press the rear bearings into the trays\' floors', [('neck pitch rear bearing', Y), ('head pitch rear bearing', NEG(Y))], []),
     ]), dict(key='torso', title='Neck and body shell', on=['legs'], steps=[
         ('Battery into its slot from behind, onto its tray; a hook-and-loop strap round both', [('battery', X)], []),
@@ -279,13 +288,15 @@ def sections():
         ('The thin sheet, 2 screws', [('head yaw sheet', NEG(Z))], [r'^head yaw cradle screw (horn|near)']),
         ('Bearing and horn', [('head yaw bearing', NEG(Z)), ('head yaw horn', NEG(Z))], []),
         ('The yaw bracket, 4 screws, before its roll servo', [('head yaw bracket', NEG(Z))], [r'^head yaw fork screw']),
-        ('Head roll servo in from the front', [('head roll servo', NEG(X))], [r'^head roll cradle screw rear']),
-        ('The rear bearing and rear horn, from behind', [('head roll rear bearing', X), ('head roll rear horn', X), ('head roll rear spacer', X)], []),
-        ('The lid, 2 screws', [('head roll lid', NEG(X))], [r'^head roll cradle screw (horn|near)']),
-        ('Bearing, horn and spacer', [('head roll bearing', NEG(X)), ('head roll horn', NEG(X)), ('head roll spacer', NEG(X))], []),
+        *([('Head roll servo, its horn and idler on, down onto the plate into its U, 4 screws from the sides', [('head roll servo', NEG(Z)), ('head roll horn', NEG(Z)), ('head roll rear horn', NEG(Z))],
+            [r'^head roll cradle screw'])] if HEAD1 else [
+          ('Head roll servo in from the front', [('head roll servo', NEG(X))], [r'^head roll cradle screw rear']),
+          ('The rear bearing and rear horn, from behind', [('head roll rear bearing', X), ('head roll rear horn', X), ('head roll rear spacer', X)], []),
+          ('The lid, 2 screws', [('head roll lid', NEG(X))], [r'^head roll cradle screw (horn|near)']),
+          ('Bearing, horn and spacer', [('head roll bearing', NEG(X)), ('head roll horn', NEG(X)), ('head roll spacer', NEG(X))], [])]),
     ]), dict(key='framebench', title='The head frame and the beak servo', on=[], steps=[
         ('The head frame', [('head frame', None)], []),
-        ('The bus board\'s brass standoffs into their hex sockets, a screw from the front into each', [('bus board standoffs', Short(X, 0.018) if G.RECIPE == 'feetech' else X)], [r'^bus board rear screw']),
+        ('The bus board\'s brass standoffs into their hex sockets, a screw from the front into each', [('bus board standoffs', Short(X, 0.018) if G.RECIPE == 'feetech' else Short(X, 0.012) if G.RECIPE == 'dynamixel' else X)], [r'^bus board rear screw']),
         ('Beak servo in from the side, its horn out, servo at mid-range, 4 screws from inside (the roll servo blocks them later)', [('beak servo', NEG(Y))], [r'^beak cradle screw rear']),
     ]), dict(key='jawbench', title='The jaw', on=[], steps=[
         ('The jaw', [('jaw', None)], []),
@@ -308,7 +319,7 @@ def sections():
         ('Open the jaw and glue in the soft mouth roof through the gap', [('mouth roof', Past(Z, ['jaw', 'jaw soft insert']))], []),
         ('The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris', [('camera', NEG(X)), ('face', NEG(X)), ('eye ring', NEG(X)), ('eye iris', NEG(X))], []),
         ('2 screws up through the band into the hood\'s back', [], [r'^hood rear screw']),
-        ('A 0.5 mm washer, and the hinge screw on the far side holds the jaw and the hood', [], [r'^[LR] hinge screw']),
+        ("The hinge sleeve in through the far tab and the hood, its flange over the tab, and the hinge screw through it into the frame: the tab turns on the sleeve" if G.RECIPE == 'dynamixel' else 'A 0.5 mm washer, and the hinge screw on the far side holds the jaw and the hood', [('hinge sleeve', Y)] if G.RECIPE == 'dynamixel' else [], [r'^[LR] hinge screw']),
     ])]
     return out
 
@@ -411,8 +422,8 @@ def check_hold(B, rep):
                         lines[part].append((p, d))
     for part, ls in lines.items():
         glued = GLUED | set(B.spec.get('glued', []))
-        if part in glued or part in PIVOTS:
-            rep.add('HOLD', part, True, 'glued' if part in glued else 'turns on its screws')
+        if part in glued or part in PIVOTS or part in ROUND:
+            rep.add('HOLD', part, True, 'glued' if part in glued else 'round on its screw' if part in ROUND else 'turns on its screws')
             continue
         if part in B.spec.get('splined', []) and len(ls) == 1:   # a hub on a servo's spline can't turn about its one horn screw
             rep.add('HOLD', part, True, 'on its servo\'s spline, held by the horn screw')
@@ -637,6 +648,103 @@ def check_edge(B, rep):
         rep.add('EDGE', n, ok, '' if ok else f'{(~hit).mean() * 100:.0f} % of the ring {EDGE_MIN * 1000:.1f} mm round its hole is outside {owners[0]}: it would split')
 
 
+def check_plugs(B, rep):
+    """An XL/XC330's 2 sockets are in notches in its side faces, open to its rear face: a lead's plug goes in from the rear face's side and stands about 4.5 mm proud of it,
+    its wires leaving sideways or to the rear (spec/actuators.json 'socket', measured on ROBOTIS's model). A plate over the rear face, or a wall beside the notch, and the lead
+    can't go in. The model's plug boxes (the wires) didn't show it: every check passed and the printed head fork covered its yaw servo's socket (2026-11-11, the user's photos)."""
+    printed = [(n, [B.idx[x][2] for x in p['geoms'] if B.idx[x][2]['role'] in ('struct', 'shell') and not B.idx[x][2].get('wire')]) for n, p in B.parts.items() if p['kind'] == 'P']
+    act = B.spec['actuators']
+    for ln, l in B.spec['links'].items():
+        for sv in l['geoms']:
+            if sv['role'] != 'actuator' or sv['kind'] != 'rbox' or ' actuator (buy) ' not in sv['name']:
+                continue
+            model = sv['name'].split(' actuator (buy) ')[1]
+            if 'socket' not in act.get(model, {}):
+                continue
+            so = act[model]['socket']
+            jn = sv['name'].split(' actuator')[0].replace('_', ' ')
+            plugs = [g for g in l['geoms'] if g['name'].startswith(f'{jn} cable plugs ') and g['kind'] == 'rbox']
+            sc, ss = np.array(sv['c']), np.array(sv['size'])
+            slo, shi = sc - ss / 2, sc + ss / 2
+            for pg in plugs:
+                pc, ps = np.array(pg['c']), np.array(pg['size'])
+                plo, phi = pc - ps / 2, pc + ps / 2
+                out_ = [i for i in range(3) if plo[i] >= shi[i] - 2e-4 or phi[i] <= slo[i] + 2e-4]
+                if out_:                           # the wires out of the notch sideways: w is the axis it stands out on, a the one it meets a face on
+                    w = out_[0]
+                    a = min((i for i in range(3) if i != w), key=lambda i: min(abs(plo[i] - slo[i]), abs(phi[i] - shi[i])))
+                    rear = -1 if abs(plo[a] - slo[a]) < abs(phi[a] - shi[a]) else 1
+                    side = 1 if plo[w] >= shi[w] - 2e-4 else -1
+                else:                              # the lead out past the rear face (a thigh's): a is the axis it stands out on
+                    a = next(i for i in range(3) if plo[i] < slo[i] - 2e-4 or phi[i] > shi[i] + 2e-4)
+                    rear = -1 if plo[a] < slo[a] - 2e-4 else 1
+                    w = min((i for i in range(3) if i != a), key=lambda i: min(abs(plo[i] - slo[i]), abs(phi[i] - shi[i])))
+                    side = 1 if abs(phi[w] - shi[w]) < abs(plo[w] - slo[w]) else -1
+                u = 3 - a - w
+                face_a = shi[a] if rear > 0 else slo[a]
+                face_w = shi[w] if side > 0 else slo[w]
+                def box(a0, a1, w0, w1):           # a0..a1 out from the rear face (+ is out), w0..w1 out from the side face (+ is out)
+                    lo, hi = np.zeros(3), np.zeros(3)
+                    lo[u], hi[u] = plo[u], phi[u]
+                    va = sorted((face_a + rear * a0, face_a + rear * a1)); vw = sorted((face_w + side * w0, face_w + side * w1))
+                    lo[a], hi[a], lo[w], hi[w] = va[0], va[1], vw[0], vw[1]
+                    return lo, hi
+                def blocked(lo, hi):
+                    pts = np.stack(np.meshgrid(*[np.linspace(lo[i] + 1e-4, hi[i] - 1e-4, 7) for i in range(3)]), -1).reshape(-1, 3)
+                    hit, who = np.zeros(len(pts), bool), {}
+                    for n, gs in printed:
+                        h = np.zeros(len(pts), bool)
+                        for g2 in gs:
+                            if B.idx[g2['name']][0] == ln:
+                                h |= B.inside(g2, pts)
+                        if h.any():
+                            who[n] = h.mean()
+                        hit |= h
+                    return hit.mean(), who
+                notch_d = so['w'][1] - so['w'][0]
+                tests = [('notch', box(-so['a_rear'][0], 0.0, -notch_d, 0.0)), ('plug way in', box(0.0, so['plug_out'], -notch_d, 0.0))]
+                bad = []
+                for nm, (lo, hi) in tests:
+                    f, who = blocked(lo, hi)
+                    if f > 0.02:
+                        bad.append(f"{nm} {f * 100:.0f} % under {', '.join(who)}")
+                side_f, _ = blocked(*box(-so['a_rear'][0], so['plug_out'], 0.0, 0.004))
+                rear_f, _ = blocked(*box(so['plug_out'], so['plug_out'] + 0.005, -notch_d, 0.0))
+                if min(side_f, rear_f) > 0.5:      # (3 thin wires: half the way out is room enough)
+                    bad.append(f'no way out for its wires: sideways {side_f * 100:.0f} %, to the rear {rear_f * 100:.0f} % blocked')
+                rep.add('PLUG', pg['name'], not bad, '; '.join(bad))
+
+
+def check_split(B, rep):
+    """A screw's hole split between two printed parts: half a hole in each, and neither holds the screw. check_edge took the parts round a hole together, so it passed
+    (2026-11-11, the user, on the neck lids beside the neck column). A screw through one part into the next is fine: each has the whole ring."""
+    printed = {n: [B.idx[x][2] for x in p['geoms'] if B.idx[x][2]['role'] in ('struct', 'shell')] for n, p in B.parts.items() if p['kind'] == 'P'}
+    for n, (ln, g) in B.screws.items():
+        f = g['fast']
+        if f.get('pivot'):
+            continue
+        p, d = np.array(f['p']), np.array(f['d'])
+        a = np.cross(d, [1.0, 0, 0] if abs(d[0]) < 0.9 else [0, 1.0, 0])
+        a /= np.linalg.norm(a)
+        b = np.cross(d, a)
+        r = CLEAR_R[f['size'].split()[0]] + EDGE_MIN
+        bad = None
+        for t in np.linspace(0.0002, f['L'], 12):
+            ring = np.array([p + d * t + r * (np.cos(s_) * a + np.sin(s_) * b) for s_ in np.linspace(0, 2 * np.pi, 24, endpoint=False)])
+            frac = {}
+            for part, gs in printed.items():
+                hit = np.zeros(len(ring), bool)
+                for g2 in gs:
+                    hit |= B.inside(g2, ring)
+                if hit.any():
+                    frac[part] = hit.mean()
+            part_ = [k for k, v in frac.items() if v < 0.9]
+            if len(frac) >= 2 and part_ and sorted(frac.values())[-2] > 0.1:
+                bad = f'{t * 1000:.1f} mm in: ' + ', '.join(f'{k} {v * 100:.0f} %' for k, v in frac.items())
+                break
+        rep.add('SPLIT', n, bad is None, bad or '')
+
+
 def check(spec, secs, rep, S=None):
     B = Build(spec, S)
     placed, used, done = {}, set(), {}
@@ -700,6 +808,21 @@ def check(spec, secs, rep, S=None):
                     key = tube(p, -d, 0.0016, KEY_REACH - 0.0016)
                     blocked = [o for o in have if o not in clamp and C.overlap(key, B.solid(o)) > 1e-9]
                     rep.add('ACCESS', n, not blocked, f'blocked by {blocked[:3]}' if blocked else '')
+                    # DRIVER: a screwdriver straight out from the head, 3 mm shaft, 60 mm (a precision driver), past parts on now. A hex key's 15 mm arm
+                    # passed screws a driver can't get at: the beak servo's, behind the far rail (2026-11-11, the user: "how am I going to screw something in there")
+                    # (its own part too, past its counterbore, which the solids don't draw: the far rail is the same print as the plate under the head. The first 8 mm
+                    # leave out that part and a bought board the screw goes through, its hole not drawn either)
+                    # (straight out, or tilted up to 3 degrees, as a hand holds a driver on a screw it can see)
+                    e1 = np.cross(d, [1.0, 0, 0] if abs(d[0]) < 0.9 else [0, 1.0, 0]); e1 /= np.linalg.norm(e1); e2 = np.cross(d, e1)
+                    for k, dd in enumerate([d] + [d * np.cos(DRIVER_TILT) + np.sin(DRIVER_TILT) * (np.cos(t) * e1 + np.sin(t) * e2) for t in np.linspace(0, 2 * np.pi, 8, endpoint=False)]):
+                        near, far_ = tube(p, -dd, 0.0015, DRIVER_NEAR - 0.0015), tube(p, -dd, DRIVER_NEAR, DRIVER_REACH - DRIVER_NEAR)
+                        bl_ = [o for o in have if C.overlap(far_, B.solid(o)) > 1e-9
+                               or o not in clamp and B.parts[o].get('kind') != 'B' and C.overlap(near, B.solid(o)) > 1e-9]
+                        if k == 0:
+                            blocked = bl_
+                        if not bl_:
+                            break
+                    rep.add('DRIVER', n, not bl_, f'blocked by {blocked[:3]}' if bl_ else '' if not blocked else 'tilted 3 degrees')
         done[sec['key']] = have
     check_hold(B, rep)
     check_apart(B, rep)
@@ -710,6 +833,8 @@ def check(spec, secs, rep, S=None):
     check_pierce(B, rep)
     check_seat(B, rep)
     check_horn_tips(B, rep)
+    check_split(B, rep)
+    check_plugs(B, rep)
     for n, p in B.parts.items():
         c = placed.get(n, 0)
         rep.add('ALL', f'part {n}', c == 1, '' if c == 1 else f'fitted {c} times')

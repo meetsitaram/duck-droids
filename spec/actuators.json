@@ -619,7 +619,23 @@
   "horn_r": 0.008,
   "mount_source": "XL330 mesh (microduck_rl assets/xl330.stl, measured only): horn holes on 6 mm radius both ends; 4 frame holes through the case parallel to the shaft at +/-15 mm along, +/-8 mm across; screws from ROBOTIS box contents (6 x M2x6 TAP horn, 10 x M2x8 TAP frame)",
   "horn_top": 0.003,
-  "horn_hole_depth": 0.0029
+  "horn_hole_depth": 0.0029,
+  "socket": {
+   "u": [
+    -0.0035,
+    0.0065
+   ],
+   "w": [
+    0.0061,
+    0.01
+   ],
+   "a_rear": [
+    0.0031,
+    0.0123
+   ],
+   "plug_out": 0.0045,
+   "note": "the 2 JST EH sockets, one in a notch in each side face, open to the rear face: the plug goes in from the rear face's side. u along the case from its middle (+ to the far end), w from the shaft's plane, a_rear in from the rear face. Measured on ROBOTIS's STEP (Koch v1.1 repository) in Fusion, 2026-11-11; plug_out: how far a plugged lead stands past the rear face (the thigh's measurement)"
+  }
  },
  "XC330_M288": {
   "box": [
@@ -672,7 +688,23 @@
   "horn_r": 0.008,
   "mount_source": "XL330 mesh (microduck_rl assets/xl330.stl, measured only): horn holes on 6 mm radius both ends; 4 frame holes through the case parallel to the shaft at +/-15 mm along, +/-8 mm across; screws from ROBOTIS box contents (6 x M2x6 TAP horn, 10 x M2x8 TAP frame)",
   "horn_top": 0.003,
-  "horn_hole_depth": 0.0033
+  "horn_hole_depth": 0.0033,
+  "socket": {
+   "u": [
+    -0.0035,
+    0.0065
+   ],
+   "w": [
+    0.0061,
+    0.01
+   ],
+   "a_rear": [
+    0.0031,
+    0.0123
+   ],
+   "plug_out": 0.0045,
+   "note": "the 2 JST EH sockets, one in a notch in each side face, open to the rear face: the plug goes in from the rear face's side. u along the case from its middle (+ to the far end), w from the shaft's plane, a_rear in from the rear face. Measured on ROBOTIS's STEP (Koch v1.1 repository) in Fusion, 2026-11-11; plug_out: how far a plugged lead stands past the rear face (the thigh's measurement)"
+  }
  },
  "HD1910_C001": {
   "box": [
