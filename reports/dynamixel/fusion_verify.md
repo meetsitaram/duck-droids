@@ -2,7 +2,7 @@
 
 From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 
-35 checks: 35 pass, 0 warn, **0 fail**
+37 checks: 37 pass, 0 warn, **0 fail**
 
 ## POINTS
 
@@ -18,7 +18,7 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | L shin | 0.3 % of 1500 points disagree; solid in 341 offline, 341 in Fusion |
 | PASS | L shoe | 0.1 % of 1500 points disagree; solid in 283 offline, 283 in Fusion |
 | PASS | L sole | 0.5 % of 1500 points disagree; solid in 1267 offline, 1272 in Fusion |
-| PASS | R hip yaw lid | 0.1 % of 1500 points disagree; solid in 757 offline, 758 in Fusion |
+| PASS | R hip yaw lid | 0.0 % of 1500 points disagree; solid in 758 offline, 758 in Fusion |
 | PASS | R yaw bracket | 1.2 % of 1500 points disagree; solid in 819 offline, 805 in Fusion |
 | PASS | R roll bracket | 0.6 % of 1500 points disagree; solid in 384 offline, 377 in Fusion |
 | PASS | R thigh frame | 0.1 % of 1500 points disagree; solid in 130 offline, 130 in Fusion |
@@ -33,13 +33,15 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | neck column | 0.1 % of 1500 points disagree; solid in 482 offline, 481 in Fusion |
 | PASS | head fork | 0.3 % of 1500 points disagree; solid in 171 offline, 169 in Fusion |
 | PASS | head yaw sheet | 0.1 % of 1500 points disagree; solid in 305 offline, 305 in Fusion |
-| PASS | head yaw bracket | 0.2 % of 1500 points disagree; solid in 180 offline, 177 in Fusion |
-| PASS | head frame | 0.1 % of 1500 points disagree; solid in 103 offline, 104 in Fusion |
-| PASS | hood | 0.5 % of 1500 points disagree; solid in 78 offline, 73 in Fusion |
-| PASS | hinge sleeve | 0.3 % of 1500 points disagree; solid in 600 offline, 602 in Fusion |
-| PASS | jaw | 0.1 % of 1500 points disagree; solid in 97 offline, 98 in Fusion |
-| PASS | jaw soft insert | 0.0 % of 1500 points disagree; solid in 1478 offline, 1478 in Fusion |
-| PASS | mouth roof | 0.1 % of 1500 points disagree; solid in 1452 offline, 1453 in Fusion |
-| PASS | face | 0.1 % of 1500 points disagree; solid in 728 offline, 729 in Fusion |
-| PASS | eye ring | 0.1 % of 1500 points disagree; solid in 882 offline, 883 in Fusion |
-| PASS | eye iris | 0.1 % of 1500 points disagree; solid in 793 offline, 794 in Fusion |
+| PASS | head yaw bracket | 0.3 % of 1500 points disagree; solid in 280 offline, 275 in Fusion |
+| PASS | head yaw spacer | 0.1 % of 1500 points disagree; solid in 901 offline, 900 in Fusion |
+| PASS | head lower shell | 0.5 % of 1500 points disagree; solid in 414 offline, 417 in Fusion |
+| PASS | head frame | 0.1 % of 1500 points disagree; solid in 89 offline, 87 in Fusion |
+| PASS | hood | 0.4 % of 1500 points disagree; solid in 78 offline, 80 in Fusion |
+| PASS | hinge sleeve | 0.1 % of 1500 points disagree; solid in 597 offline, 598 in Fusion |
+| PASS | jaw | 0.0 % of 1500 points disagree; solid in 112 offline, 112 in Fusion |
+| PASS | jaw soft insert | 0.1 % of 1500 points disagree; solid in 1471 offline, 1473 in Fusion |
+| PASS | mouth roof | 0.2 % of 1500 points disagree; solid in 1445 offline, 1448 in Fusion |
+| PASS | face | 0.1 % of 1500 points disagree; solid in 697 offline, 698 in Fusion |
+| PASS | eye ring | 0.2 % of 1500 points disagree; solid in 880 offline, 883 in Fusion |
+| PASS | eye iris | 0.1 % of 1500 points disagree; solid in 817 offline, 815 in Fusion |

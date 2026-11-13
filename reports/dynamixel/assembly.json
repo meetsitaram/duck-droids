@@ -3715,6 +3715,12 @@
  },
  {
   "group": "PATH",
+  "item": "headbench: head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
   "item": "headbench: head yaw bracket",
   "status": "PASS",
   "detail": ""
@@ -3729,7 +3735,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 0",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.1 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3753,7 +3759,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 1",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.1 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3777,7 +3783,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 2",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.1 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3801,7 +3807,7 @@
   "group": "THREAD",
   "item": "head yaw fork screw horn 3",
   "status": "PASS",
-  "detail": "M2 x 6: bites 2.1 mm"
+  "detail": "M2 x 6: bites 3.0 mm"
  },
  {
   "group": "ACCESS",
@@ -3926,6 +3932,108 @@
  {
   "group": "DRIVER",
   "item": "head roll cradle screw rear face 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "framebench: head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "head chin screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "head chin screw 3",
+  "status": "PASS",
+  "detail": "M2 x 8: bites 4.0 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "head chin screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "head chin screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -5113,9 +5221,21 @@
  },
  {
   "group": "HOLD",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": "4 screws"
+ },
+ {
+  "group": "HOLD",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": "6 screws"
+ },
+ {
+  "group": "HOLD",
   "item": "head frame",
   "status": "PASS",
-  "detail": "23 screws"
+  "detail": "25 screws"
  },
  {
   "group": "HOLD",
@@ -5611,6 +5731,18 @@
  },
  {
   "group": "BOUGHT",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "BOUGHT",
   "item": "head frame",
   "status": "PASS",
   "detail": ""
@@ -5816,6 +5948,18 @@
  {
   "group": "COLOUR",
   "item": "head yaw bracket",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "COLOUR",
+  "item": "head lower shell",
   "status": "PASS",
   "detail": ""
  },
@@ -6914,6 +7058,30 @@
  {
   "group": "EDGE",
   "item": "beak cradle screw rear near 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "head chin screw 3",
   "status": "PASS",
   "detail": ""
  },
@@ -8095,6 +8263,30 @@
  },
  {
   "group": "SPLIT",
+  "item": "head chin screw 0",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
+  "item": "head chin screw 1",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
+  "item": "head chin screw 2",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
+  "item": "head chin screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
   "item": "beak fork screw horn 0",
   "status": "PASS",
   "detail": ""
@@ -8683,6 +8875,12 @@
  },
  {
   "group": "ALL",
+  "item": "part head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
   "item": "part head roll servo",
   "status": "PASS",
   "detail": ""
@@ -8696,6 +8894,12 @@
  {
   "group": "ALL",
   "item": "part head roll horn",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "ALL",
+  "item": "part head lower shell",
   "status": "PASS",
   "detail": ""
  },

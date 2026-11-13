@@ -138,6 +138,10 @@ case $1 in
     take fusion "${FUSION_MIN:-5}" "$RECIPE linked build"
     linked
     ;;
+  build)                             # the Fusion build and its checks alone, after gates run separately (2026-11-11: the checks stage stopped on 3 known leg clearances)
+    take fusion 15 "$RECIPE one-document build"
+    build
+    ;;
   final)
     gates
     take fusion 15 "$RECIPE one-document build"

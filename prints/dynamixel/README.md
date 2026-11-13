@@ -30,16 +30,18 @@ From `python -I tools/export_prints.py`, in millimetres: every part, left and ri
 | chassis | chassis.stl | 45 x 58 x 73 | 15.3 | PLA | 1050 |
 | body shell | body_shell.stl | 38 x 74 x 98 | 22.4 | PLA | 1460 |
 | neck column | neck_column.stl | 26 x 28 x 10 | 2.4 | PLA | 41 |
-| head fork | head_fork.stl | 53 x 39 x 45 | 9.3 | PLA | 426 |
+| head fork | head_fork.stl | 53 x 39 x 45 | 9.3 | PLA | 705 |
 | head yaw sheet | head_yaw_sheet.stl | 37 x 26 x 4 | 0.7 | PLA | 0 (none) |
-| head yaw bracket | head_yaw_bracket.stl | 26 x 35 x 28 | 3.1 | PLA | 270 |
-| head frame | head_frame.stl | 141 x 101 x 59 | 54.7 | PLA | 6027 |
-| hood | hood.stl | 58 x 106 x 150 | 48.4 | PLA | 3117 |
+| head yaw bracket | head_yaw_bracket.stl | 28 x 37 x 26 | 5.4 | PLA | 161 |
+| head yaw spacer | head_yaw_spacer.stl | 17 x 17 x 2 | 0.3 | PLA | 0 (none) |
+| head lower shell | head_lower_shell.stl | 53 x 92 x 14 | 19.4 | PLA | 691 |
+| head frame | head_frame.stl | 129 x 101 x 45 | 37.2 | PLA | 1297 |
+| hood | hood.stl | 58 x 106 x 150 | 48.4 | PLA | 3368 |
 | hinge sleeve | hinge_sleeve.stl | 9 x 9 x 7 | 0.2 | PLA | 0 (none) |
-| jaw | jaw.stl | 43 x 106 x 88 | 29.4 | PLA | 913 |
+| jaw | jaw.stl | 88 x 106 x 43 | 29.4 | PLA | 939 |
 | jaw soft insert | jaw_soft_insert.stl | 27 x 101 x 5 | 13.3 | TPU 95A | 0 (none) |
-| mouth roof | mouth_roof.stl | 40 x 101 x 3 | 12.6 | TPU 95A | 15 |
-| face | face.stl | 50 x 99 x 3 | 8.3 | PLA | 40 |
+| mouth roof | mouth_roof.stl | 40 x 101 x 3 | 12.6 | TPU 95A | 3 |
+| face | face.stl | 50 x 99 x 3 | 8.3 | PLA | 4173 |
 | eye ring | eye_ring.stl | 34 x 34 x 11 | 7.4 | PLA | 0 (none) |
 | eye iris | eye_iris.stl | 20 x 20 x 9 | 1.9 | PLA | 0 (none) |
 

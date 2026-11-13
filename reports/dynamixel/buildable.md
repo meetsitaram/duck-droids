@@ -2,18 +2,18 @@
 
 From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 
-66 checks: 66 pass, 0 warn, **0 fail**
+72 checks: 72 pass, 0 warn, **0 fail**
 
 ## LOAD
 
 | status | item | detail |
 |---|---|---|
-| PASS | shin, under the knee horn | 8.1 MPa (allowed 15): 26 N, section 126 mm2 |
-| PASS | shin, at the cap | 4.0 MPa (allowed 15): 26 N, section 185 mm2 |
-| PASS | thigh, hip to knee | 0.4 MPa (allowed 15): 26 N, section 485 mm2 |
-| PASS | roll bracket, side arm | 5.9 MPa (allowed 15): 26 N, section 89 mm2 |
-| PASS | roll bracket, front plate | 2.7 MPa (allowed 15): 26 N, section 110 mm2 |
-| PASS | yaw bracket | 1.1 MPa (allowed 15): 26 N, section 584 mm2 |
+| PASS | shin, under the knee horn | 8.1 MPa (allowed 15): 27 N, section 126 mm2 |
+| PASS | shin, at the cap | 4.0 MPa (allowed 15): 27 N, section 185 mm2 |
+| PASS | thigh, hip to knee | 0.4 MPa (allowed 15): 27 N, section 485 mm2 |
+| PASS | roll bracket, side arm | 6.0 MPa (allowed 15): 27 N, section 89 mm2 |
+| PASS | roll bracket, front plate | 2.7 MPa (allowed 15): 27 N, section 110 mm2 |
+| PASS | yaw bracket | 1.1 MPa (allowed 15): 27 N, section 584 mm2 |
 
 ## ONE
 
@@ -32,6 +32,8 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | neck column |  |
 | PASS | head fork |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hinge sleeve |  |
 | PASS | jaw |  |
@@ -57,6 +59,8 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | neck column |  |
 | PASS | head fork |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hinge sleeve |  |
 | PASS | jaw |  |
@@ -81,8 +85,10 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | chassis | 74 x 59 x 47 mm |
 | PASS | neck column | 27 x 29 x 10 mm |
 | PASS | head fork | 46 x 40 x 54 mm |
-| PASS | head yaw bracket | 29 x 36 x 27 mm |
-| PASS | head frame | 143 x 103 x 61 mm |
+| PASS | head yaw bracket | 29 x 38 x 28 mm |
+| PASS | head yaw spacer | 18 x 18 x 3 mm |
+| PASS | head lower shell | 143 x 103 x 16 mm |
+| PASS | head frame | 130 x 103 x 52 mm |
 | PASS | hinge sleeve | 10 x 8 x 10 mm |
 | PASS | jaw | 89 x 107 x 44 mm |
 | PASS | jaw soft insert | 28 x 103 x 6 mm |

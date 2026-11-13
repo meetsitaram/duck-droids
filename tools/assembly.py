@@ -160,6 +160,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('head yaw bracket', 'P', ['head roll sleeve', 'head yaw plate', 'head yaw horn boss shoulder', 'head roll cradle end +', 'head roll cradle end -',
                                'head roll cradle side +', 'head roll cradle side -', 'head roll cradle rear face',
                                'head roll rear seat floor'] + [f'head roll {e}' for e in EARS]),
+    *([('head yaw spacer', 'P', ['head yaw horn seat boss'])] if G.RECIPE == 'dynamixel' else []),   # (loose, so the bracket prints flat on its plate: on the bracket it stood 2 mm under the plate. 2026-11-13)
     ('head roll servo', 'B', ['head_roll actuator (buy) XL330_M288', 'head roll cable plugs']),
     ('head roll rear bearing', 'B', races('head roll', 'rear')),
     ('head roll rear horn', 'B', ['head roll rear horn']),
@@ -169,11 +170,12 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     # (loose, not on the head frame: it drops down between them, so nothing of it can stand in a bearing's bore)
     ('head roll spacer', 'P', [] if BODY_PI else ['head roll horn seat boss']),   # (the hobby duck's is 0.4 mm, too thin to print alone: part of the frame)
     ('head roll rear spacer', 'P', [] if G.RECIPE == 'feetech' else ['head roll rear seat boss']),   # (no rear bearing on the all-Feetech duck, so nothing for it to pass: it's part of the frame)
+    *([('head lower shell', 'P', ['lower shell', 'lower shell post', 'lower shell beam', 'head base wall', 'head chin ledge'])] if G.RECIPE == 'dynamixel' else []),   # (the frame's floor hung over the bed on it: 2 prints, 2026-11-11)
     ('head frame', 'P', ['head frame', 'head top plate', 'head top plate wide', 'L head rail', 'L head rail front', 'R head rail',
-                         'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1', 'bus board post 0', 'bus board post 1', 'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', 'lower shell', 'lower shell post', 'head base', 'head base wall', 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', 'lower shell beam',
+                         'L head hinge boss', 'R head hinge boss', 'Pi mount', 'Pi mount 2', 'Pi board tab', 'bus board post 2', 'bus board post 3', 'Pi plate', 'Pi boss 0', 'Pi boss 1', 'Pi boss 2', 'Pi boss 3', 'bus board rail 0', 'bus board rail 1', 'bus board post 0', 'bus board post 1', 'rear board plate', 'rear board plate low', 'rear board plate low 2', 'rear board foot', 'rear board foot 2', 'rear board boss 0', 'rear board boss 1', 'rear board boss 2', 'rear board boss 3', *([] if G.RECIPE == 'dynamixel' else ['lower shell', 'lower shell post']), 'head base', *([] if G.RECIPE == 'dynamixel' else ['head base wall']), 'Pi base tab', 'L base riser', 'L base riser top', 'R base riser', *([] if G.RECIPE == 'dynamixel' else ['lower shell beam']),
                          *(['head roll rear seat boss'] if G.RECIPE == 'feetech' else []), 'head roll horn boss shoulder', 'head roll rear boss shoulder', 'head roll fork horn plate',
                          'head roll fork rear plate', 'head roll fork post', 'beak cradle end plain', 'head strip deep', 'L base riser back', 'beak cradle rear face', 'beak cradle end +',
-                         'beak cradle end -', 'beak cradle end', 'beak cradle front', 'beak cradle side +'] + [f'beak {e}' for e in EARS]),
+                         'beak cradle end -', 'beak cradle end', 'beak cradle front', 'beak cradle end foot', 'beak cradle front foot', 'beak cradle side +'] + [f'beak {e}' for e in EARS]),
     ('beak servo', 'B', ['beak actuator (buy) XL330_M288', 'beak flange', 'beak cable plugs']),
     ('beak lid', 'P', ['beak cradle horn face']),
     ('beak crank', 'P', ['beak crank', 'beak crank pin']),
@@ -287,7 +289,7 @@ def sections():
         ('Head yaw servo in, 2 screws from under the bridge', [('head yaw servo', NEG(Z))], [r'^head yaw cradle screw rear']),
         ('The thin sheet, 2 screws', [('head yaw sheet', NEG(Z))], [r'^head yaw cradle screw (horn|near)']),
         ('Bearing and horn', [('head yaw bearing', NEG(Z)), ('head yaw horn', NEG(Z))], []),
-        ('The yaw bracket, 4 screws, before its roll servo', [('head yaw bracket', NEG(Z))], [r'^head yaw fork screw']),
+        ('The yaw bracket, ' + ('its spacer under it on the horn, ' if G.RECIPE == 'dynamixel' else '') + '4 screws, before its roll servo', [*([('head yaw spacer', NEG(Z))] if G.RECIPE == 'dynamixel' else []), ('head yaw bracket', NEG(Z))], [r'^head yaw fork screw']),
         *([('Head roll servo, its horn and idler on, down onto the plate into its U, 4 screws from the sides', [('head roll servo', NEG(Z)), ('head roll horn', NEG(Z)), ('head roll rear horn', NEG(Z))],
             [r'^head roll cradle screw'])] if HEAD1 else [
           ('Head roll servo in from the front', [('head roll servo', NEG(X))], [r'^head roll cradle screw rear']),
@@ -296,6 +298,7 @@ def sections():
           ('Bearing, horn and spacer', [('head roll bearing', NEG(X)), ('head roll horn', NEG(X)), ('head roll spacer', NEG(X))], [])]),
     ]), dict(key='framebench', title='The head frame and the beak servo', on=[], steps=[
         ('The head frame', [('head frame', None)], []),
+        *([('The lower shell up under its floor, 4 screws down through the floor', [('head lower shell', Z)], [r'^head chin screw'])] if G.RECIPE == 'dynamixel' else []),
         ('The bus board\'s brass standoffs into their hex sockets, a screw from the front into each', [('bus board standoffs', Short(X, 0.018) if G.RECIPE == 'feetech' else Short(X, 0.012) if G.RECIPE == 'dynamixel' else X)], [r'^bus board rear screw']),
         ('Beak servo in from the side, its horn out, servo at mid-range, 4 screws from inside (the roll servo blocks them later)', [('beak servo', NEG(Y))], [r'^beak cradle screw rear']),
     ]), dict(key='jawbench', title='The jaw', on=[], steps=[

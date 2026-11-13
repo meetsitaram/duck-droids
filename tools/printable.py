@@ -7,12 +7,16 @@
   PIECES  it exports as one piece, with no sealed void a slicer would fill or trap supports in
   BED     it fits a 220 mm bed that way, and enough of it touches the bed to stay down
   HOLES   every pilot and clearance hole is at least 1.5 mm across: smaller doesn't print round. No hole is sliced open by its edge
-  SUPPORT what needs support is named: a warning, not a failure, but it decides how a part is sliced
+  SUPPORT the part as exported (its print file's orientation) needs at most 300 mm2 of real support: overhangs past 45 degrees, less its first 2 mm off the bed
+          and flat ceilings up to 12 mm wide (bridges). A part printed already, with supports, is named in PRINTED_WITH_SUPPORT: a warning until it is redesigned
   MATE    two exported parts of a link never share space, nor a part and a bought part: what a printer makes has to go together. Horn seats excepted (drawn 0.5 mm into their plates)
   HEADS   no screw's head stands inside a servo or a board, once fitted
   SKIN    a cover has holes only for its own screws: nothing else drills through what shows
+  NECK    no section under 12 mm2 is all that holds 150 mm3 or more to the rest of the part, holes and counterbores cut: it snaps there. Fit, not a load case
 
-A part's overhangs are found from its faces, not by slicing, so bridges over a short gap count too: they print well, and this overstates them.
+A part's overhangs are found from its faces, not by slicing. ORIENT's area counts bridges too; SUPPORT leaves them out.
+(2026-11-11: SUPPORT was a warning, and it judged the orientation this file liked best, not the one export_prints wrote. The one-piece head frame passed with
+5,900 mm2 of real support under a floor 14.5 mm off the bed, and the print failed after 2 hours of tree supports.)
 """
 import argparse
 import itertools
@@ -20,6 +24,7 @@ import os
 import sys
 
 import numpy as np
+from scipy import ndimage
 import trimesh
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -29,6 +34,11 @@ MIN_CONTACT = 40.0                                 # mm2 on the bed, or it comes
 MIN_HOLE = 0.0015                                  # m
 OVERHANG = np.cos(np.radians(45))
 SUPPORT_WARN = 250.0                               # mm2
+NECK_AREA, NECK_CARRY = 12.0, 150.0                # mm2, mm3 (2026-11-13: the head yaw bracket's arm, 5.5 x 2.5 mm less a counterbore at its root, broke off printed)
+SUPPORT_LIMIT = 300.0                              # mm2 of real support (bridges and the first 2 mm left out)
+NEAR_BED, BRIDGE_W = 2.0, 12.0                     # mm
+# printed with supports in the 2026-11-09 batch, before SUPPORT failed: redesign before they are printed again
+PRINTED_WITH_SUPPORT = {'dynamixel': {'L thigh frame', 'R thigh frame', 'body shell'}}
 
 
 def orientations():
@@ -53,11 +63,106 @@ def score(tm, T):
     return dict(overhang=float(a[over].sum()), contact=float(contact), height=float(m.extents[2]), extents=m.extents.copy(), T=T)
 
 
+def real_support(tm):
+    """mm2 a slicer would hold up, the mesh as it lies on the bed: (total, [(area, lowest corner, size), ...] the 3 biggest)."""
+    n, z = tm.face_normals, tm.triangles[:, :, 2]
+    idx = np.where((n[:, 2] < -OVERHANG) & (z.max(axis=1) > tm.bounds[0][2] + NEAR_BED))[0]
+    if not len(idx):
+        return 0.0, []
+    s_ = np.zeros(len(tm.faces), bool)
+    s_[idx] = True
+    adj = tm.face_adjacency[s_[tm.face_adjacency].all(axis=1)]
+    tot, big = 0.0, []
+    for c in trimesh.graph.connected_components(adj, nodes=idx, min_len=1):
+        c = np.asarray(c)
+        A = tm.area_faces[c].sum()
+        v = tm.vertices[tm.faces[c].reshape(-1)]
+        ext = v.max(0) - v.min(0)
+        flat = ext[2] <= 1.5 or tm.area_faces[c][n[c, 2] < -0.98].sum() > 0.6 * A
+        if flat and min(ext[0], ext[1]) <= BRIDGE_W:   # a bridge between two walls: it prints without support
+            continue
+        tot += A
+        big.append((float(A), v.min(0), ext))
+    return float(tot), sorted(big, key=lambda b: -b[0])[:3]
+
+
+def necks(tm, pitch=0.5, area_max=NECK_AREA, carry_min=NECK_CARRY, merge=1.5):
+    """Sections under area_max mm2 that are the only thing holding carry_min mm3 to the rest: [(area, carried, axis, at mm)]."""
+    g = tm.voxelized(pitch).fill().matrix
+    g = np.pad(g, 1)
+    out = []
+    total = int(g.sum())
+    for ax in range(3):
+        st = np.ones((3, 3, 3), bool)
+        idx = [slice(None)] * 3
+        idx[ax] = [0, 2]
+        st[tuple(idx)] = False                     # joined within a slice only
+        k = int(round(merge / pitch))
+        fat = ndimage.binary_dilation(g, np.broadcast_to(st, (3, 3, 3)), iterations=k)   # slivers either side of a hole count as one section
+        lab, n = ndimage.label(fat, st)
+        lab = np.where(g, lab, 0)
+        w = np.bincount(lab.ravel(), minlength=n + 1).astype(np.int64)
+        a = np.moveaxis(lab, ax, 0)
+        lo_, hi_ = a[:-1].ravel(), a[1:].ravel()
+        m = (lo_ > 0) & (hi_ > 0)
+        e = np.unique(np.stack([lo_[m], hi_[m]], 1), axis=0)
+        adj = [[] for _ in range(n + 1)]
+        for u, v in e:
+            adj[u].append(v); adj[v].append(u)
+        pos = np.zeros(n + 1, int)
+        first = ndimage.find_objects(lab)
+        disc = np.zeros(n + 1, int); low = np.zeros(n + 1, int); sub = w.copy(); t = 0
+        for root in range(1, n + 1):
+            if disc[root] or not w[root]:
+                continue
+            t += 1; disc[root] = low[root] = t
+            stack = [(root, 0, iter(adj[root]))]
+            comp_nodes = [root]
+            cuts = []                              # (node, child subtree weight)
+            while stack:
+                u, par, it = stack[-1]
+                adv = False
+                for v in it:
+                    if not disc[v]:
+                        t += 1; disc[v] = low[v] = t
+                        stack.append((v, u, iter(adj[v]))); comp_nodes.append(v); adv = True
+                        break
+                    elif v != par:
+                        low[u] = min(low[u], disc[v])
+                if adv:
+                    continue
+                stack.pop()
+                if par:
+                    low[par] = min(low[par], low[u]); sub[par] += sub[u]
+                    if low[u] >= disc[par]:
+                        cuts.append((par, int(sub[u])))
+            tot = int(sub[root])
+            for v, cw in cuts:
+                rest = tot - cw - int(w[v])
+                A = w[v] * pitch ** 2
+                carried = min(cw, rest) * pitch ** 3
+                if A < area_max and carried > carry_min:
+                    sl = first[v - 1]
+                    out.append((float(A), float(carried), 'xyz'[ax], float(sl[ax].start * pitch)))
+    best = {}
+    for A, c, ax, at in out:                       # one row for each run of slices through the same neck
+        key = (ax, round(c / 20))
+        if key not in best or A < best[key][0]:
+            best[key] = (A, c, ax, at)
+    return sorted(best.values())
+
+
 def best_orientation(tm):
-    """The least overhang; a low print breaks a tie; a part that wouldn't stay down loses."""
-    opts = [score(tm, T) for _, _, T in orientations()]
+    """The least real support (SUPPORT); a low print breaks a tie; a part that wouldn't stay down loses."""
+    opts = []
+    for _, _, T in orientations():
+        o = score(tm, T)
+        m = tm.copy()
+        m.apply_transform(T)
+        o['support'] = real_support(m)[0]
+        opts.append(o)
     fine = [o for o in opts if o['contact'] >= MIN_CONTACT] or opts
-    return min(fine, key=lambda o: (round(o['overhang'] / 50), o['height']))
+    return min(fine, key=lambda o: (round(o['support'] / 50), o['height']))
 
 
 def check(rep):
@@ -119,7 +224,14 @@ def check_mate(B, solids, rep):
 def check_part(B, part, m, E, rep):
     mesh = m.to_mesh()
     tm = trimesh.Trimesh(np.asarray(mesh.vert_properties[:, :3], float) * 1000, np.asarray(mesh.tri_verts, int))
-    b = best_orientation(tm)
+    import json
+    import geom as G
+    try:                                           # as export_prints laid it: what the printer gets
+        T = np.asarray(json.load(open(G.parts_path('parts'), encoding='utf-8'))['parts'][part]['print_T'], float)
+        b = score(tm, T)
+    except (OSError, KeyError):
+        b = best_orientation(tm)
+        T = b['T']
     rep.add('ORIENT', part, True, f"{b['overhang']:.0f} mm2 overhang, {b['contact']:.0f} mm2 on the bed, {b['height']:.0f} mm tall")
     ps = m.decompose()
     n_, voids = len([q for q in ps if q.volume() > 1e-9]), [q for q in ps if q.volume() < -1e-10]
@@ -132,8 +244,16 @@ def check_part(B, part, m, E, rep):
         rep.add('SKIN', part, len(own) == len(names) and len(names) <= 6, f'{len(names)} screws drill it: {names[:6]}')
     bad = [f"{c[5]} {2 * c[2] * 1000:.1f} mm" for c in E.hole_list(B, part) if 2 * c[2] < MIN_HOLE]
     rep.add('HOLES', part, not bad, ', '.join(bad[:3]))
-    if b['overhang'] > SUPPORT_WARN:
-        rep.add('SUPPORT', part, False, f"{b['overhang']:.0f} mm2 needs support or a bridge: check it in the slicer", warn=True)
+    nk = necks(tm)
+    rep.add('NECK', part, not nk, '; '.join(f"{a_:.0f} mm2 holds {c_:.0f} mm3, across {ax_}" for a_, c_, ax_, _ in nk[:3]))
+    lying = tm.copy()
+    lying.apply_transform(T)
+    sup, big = real_support(lying)
+    where = '; '.join(f"{a:.0f} mm2 {e[0]:.0f} x {e[1]:.0f} mm, {lo[2] - lying.bounds[0][2]:.0f} mm up" for a, lo, e in big)
+    if sup > SUPPORT_LIMIT and part in PRINTED_WITH_SUPPORT.get(G.RECIPE, ()):
+        rep.add('SUPPORT', part, False, f"{sup:.0f} mm2 of real support ({where}): printed already, redesign before printing it again", warn=True)
+    else:
+        rep.add('SUPPORT', part, sup <= SUPPORT_LIMIT, f"{sup:.0f} mm2 of real support" + (f": {where}" if sup > SUPPORT_LIMIT else ''))
 
 
 def main():

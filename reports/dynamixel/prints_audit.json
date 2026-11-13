@@ -495,7 +495,7 @@
   "group": "VOLUME",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "14.9 cm3, designed 16.0: 7 % off"
+  "detail": "14.8 cm3, designed 16.0: 7 % off"
  },
  {
   "group": "BED",
@@ -507,7 +507,7 @@
   "group": "THIN",
   "item": "R thigh cover",
   "status": "PASS",
-  "detail": "1 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -765,19 +765,79 @@
   "group": "VOLUME",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "3.0 cm3, designed 3.1: 2 % off"
+  "detail": "5.3 cm3, designed 5.4: 1 % off"
  },
  {
   "group": "BED",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "35 x 28 x 26 mm"
+  "detail": "37 x 28 x 26 mm"
  },
  {
   "group": "THIN",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "5 % of its surface is under 0.8 mm thick"
+  "detail": "2 % of its surface is under 0.8 mm thick"
+ },
+ {
+  "group": "PIECES",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "CLOSED",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "VOLUME",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": "0.3 cm3, designed 0.3: 0 % off"
+ },
+ {
+  "group": "BED",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": "17 x 17 x 2 mm"
+ },
+ {
+  "group": "THIN",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": "0 % of its surface is under 0.8 mm thick"
+ },
+ {
+  "group": "PIECES",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "CLOSED",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "VOLUME",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": "19.5 cm3, designed 19.4: 1 % off"
+ },
+ {
+  "group": "BED",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": "92 x 53 x 15 mm"
+ },
+ {
+  "group": "THIN",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": "1 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",
@@ -795,13 +855,13 @@
   "group": "VOLUME",
   "item": "head frame",
   "status": "PASS",
-  "detail": "54.6 cm3, designed 54.7: 0 % off"
+  "detail": "36.9 cm3, designed 37.2: 1 % off"
  },
  {
   "group": "BED",
   "item": "head frame",
   "status": "PASS",
-  "detail": "141 x 101 x 60 mm"
+  "detail": "129 x 101 x 45 mm"
  },
  {
   "group": "THIN",
@@ -1213,6 +1273,12 @@
  },
  {
   "group": "FILE",
+  "item": "head_lower_shell.stl",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FILE",
   "item": "head_yaw_bracket.stl",
   "status": "PASS",
   "detail": ""
@@ -1220,6 +1286,12 @@
  {
   "group": "FILE",
   "item": "head_yaw_sheet.stl",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FILE",
+  "item": "head_yaw_spacer.stl",
   "status": "PASS",
   "detail": ""
  },

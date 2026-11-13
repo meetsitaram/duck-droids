@@ -7,7 +7,7 @@
 | Product | All-Dynamixel duck, biped, 15 servos |
 | Height, mass | 0.295 m, 0.94 kg as modelled |
 | Build quantity | Quantities are for 1 robot |
-| Fabricated parts | 35 printed parts, 404 g PLA and 52 g TPU 95A |
+| Fabricated parts | 37 printed parts, 408 g PLA and 52 g TPU 95A |
 | Status | Prototype: no unit built, no part test printed |
 | Prices | USD, as listed 2026-11-02 to 2026-11-06, before tax and shipping. Confirm before ordering |
 | Related | [Print files](../../prints/dynamixel/README.md), [wiring](WIRING.md), [assembly](ASSEMBLY.md) |
@@ -52,7 +52,7 @@ Every line is required unless it starts with **OPTIONAL**. Optional lines show t
 | Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | 5 | Screw, servo mounting | generic | M2 x 6 mm | 82 | in the servo box | - | - | - | 90 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+6mm+self+tapping+pan+head+screw) |
-| 6 | Screw, servo mounting | generic | M2 x 8 mm | 92 | in the servo box | - | - | - | 150 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+8mm+self+tapping+pan+head+screw) |
+| 6 | Screw, servo mounting | generic | M2 x 8 mm | 96 | in the servo box | - | - | - | 150 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+8mm+self+tapping+pan+head+screw) |
 | 7 | Screw, bus board, machine thread | generic | M2.5 x 5 mm, pan head, Phillips, black oxide 18-8 stainless, DIN 7985 | 8 | pack of 100 | 1 | $5.59 | $5.59 | [Zoro G816462679](https://www.zoro.com/zoro-select-m25x045-x-5-mm-phillips-pan-machine-screw-black-oxide-stainless-steel-100-pk-31-bpm-25-5/i/G816462679/): $5.59 by a search result; the page refuses automated reading, so confirm it<br>[Search Amazon](https://www.amazon.com/s?k=M2.5+x+5mm+pan+head+machine+screw+black+oxide) |
 | 8 | **OPTIONAL:** Spare hex standoffs, bus board: 4 come with the Waveshare board | uxcell | brass, M2.5, female-female, 8 mm long, 5 mm across flats | - | pack of 50 | (1) | - | - | Amazon<br>[Search Amazon](https://www.amazon.com/s?k=uxcell+M2.5+x+8mm+female+female+hex+brass+standoff) |
 | 9 | Screws, socket cap: 5 x M3 x 12 | generic | kit of 610 with nuts and washers | 5 | kit | 1 | $19.99 | $19.99 | [Amazon](https://www.amazon.com/dp/B09NR8X2LV)<br>[Search Amazon](https://www.amazon.com/s?k=M3+socket+cap+screw+kit) |
@@ -104,37 +104,39 @@ All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.m
 |---|---|---|---|---|---|---|---|
 | P1 | Hip yaw lid, left and right | `L_hip_yaw_lid.stl`, `R_hip_yaw_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
 | P2 | Yaw bracket, left and right | `L_yaw_bracket.stl`, `R_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.4 g | 2 |
-| P3 | Roll bracket, left and right | `L_roll_bracket.stl`, `R_roll_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.2 g | 2 |
-| P4 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 13.2 g | 2 |
+| P3 | Roll bracket, left and right | `L_roll_bracket.stl`, `R_roll_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.1 g | 2 |
+| P4 | Thigh frame, left and right | `L_thigh_frame.stl`, `R_thigh_frame.stl` | PLA | Dark grey | #3A3D42 | 13.1 g | 2 |
 | P5 | Hip pitch lid, left and right | `L_hip_pitch_lid.stl`, `R_hip_pitch_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
-| P6 | Knee lid, left and right | `L_knee_lid.stl`, `R_knee_lid.stl` | PLA | Dark grey | #3A3D42 | 1.8 g | 2 |
-| P7 | Thigh cover, left and right | `L_thigh_cover.stl`, `R_thigh_cover.stl` | PLA | White | #ECEBE6 | 20.0 g | 2 |
+| P6 | Knee lid, left and right | `L_knee_lid.stl`, `R_knee_lid.stl` | PLA | Dark grey | #3A3D42 | 1.7 g | 2 |
+| P7 | Thigh cover, left and right | `L_thigh_cover.stl`, `R_thigh_cover.stl` | PLA | White | #ECEBE6 | 19.9 g | 2 |
 | P8 | Shin, left and right | `L_shin.stl`, `R_shin.stl` | PLA | Dark grey | #3A3D42 | 7.4 g | 2 |
-| P9 | Shoe, left and right | `L_shoe.stl`, `R_shoe.stl` | PLA | Orange | #E8642A | 16.4 g | 2 |
+| P9 | Shoe, left and right | `L_shoe.stl`, `R_shoe.stl` | PLA | Orange | #E8642A | 16.3 g | 2 |
 | P10 | Sole, left and right | `L_sole.stl`, `R_sole.stl` | TPU 95A | Yellow | #F2B233 | 17.1 g | 2 |
-| P11 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 19.2 g | 1 |
-| P12 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 28.0 g | 1 |
+| P11 | Chassis | `chassis.stl` | PLA | Dark grey | #3A3D42 | 19.1 g | 1 |
+| P12 | Body shell | `body_shell.stl` | PLA | White | #ECEBE6 | 27.8 g | 1 |
 | P13 | Neck column | `neck_column.stl` | PLA | Dark grey | #3A3D42 | 2.9 g | 1 |
-| P14 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.7 g | 1 |
+| P14 | Head fork | `head_fork.stl` | PLA | Dark grey | #3A3D42 | 11.6 g | 1 |
 | P15 | Head yaw sheet | `head_yaw_sheet.stl` | PLA | Dark grey | #3A3D42 | 0.9 g | 1 |
-| P16 | Head yaw bracket | `head_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 4.1 g | 1 |
-| P17 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 67.4 g | 1 |
-| P18 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.6 g | 1 |
-| P19 | Hinge sleeve | `hinge_sleeve.stl` | PLA | Orange | #E8642A | 0.3 g | 1 |
-| P20 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.9 g | 1 |
-| P21 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 8.9 g | 1 |
-| P22 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 8.4 g | 1 |
-| P23 | Face | `face.stl` | PLA | Mid grey | #9A9C98 | 10.4 g | 1 |
-| P24 | Eye ring | `eye_ring.stl` | PLA | Amber | #F0A030 | 9.3 g | 1 |
-| P25 | Eye iris | `eye_iris.stl` | PLA | Black | #0A1420 | 2.4 g | 1 |
+| P16 | Head yaw bracket | `head_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.7 g | 1 |
+| P17 | Head yaw spacer | `head_yaw_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
+| P18 | Head lower shell | `head_lower_shell.stl` | PLA | Orange | #E8642A | 24.1 g | 1 |
+| P19 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 46.2 g | 1 |
+| P20 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.2 g | 1 |
+| P21 | Hinge sleeve | `hinge_sleeve.stl` | PLA | Orange | #E8642A | 0.3 g | 1 |
+| P22 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.6 g | 1 |
+| P23 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 8.9 g | 1 |
+| P24 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 8.4 g | 1 |
+| P25 | Face | `face.stl` | PLA | Mid grey | #9A9C98 | 10.4 g | 1 |
+| P26 | Eye ring | `eye_ring.stl` | PLA | Amber | #F0A030 | 9.2 g | 1 |
+| P27 | Eye iris | `eye_iris.stl` | PLA | Black | #0A1420 | 2.3 g | 1 |
 
 ### Filament
 
 | Colour | Hex | Material | Model mass | With 15 % for supports and scrap |
 |---|---|---|---|---|
-| Orange | #E8642A | PLA | 137 g | 158 g |
-| White | #ECEBE6 | PLA | 129 g | 148 g |
-| Dark grey | #3A3D42 | PLA | 116 g | 134 g |
+| Orange | #E8642A | PLA | 140 g | 161 g |
+| White | #ECEBE6 | PLA | 128 g | 147 g |
+| Dark grey | #3A3D42 | PLA | 118 g | 136 g |
 | Mid grey | #9A9C98 | PLA | 10 g | 12 g |
 | Amber | #F0A030 | PLA | 9 g | 11 g |
 | Black | #0A1420 | PLA | 2 g | 3 g |

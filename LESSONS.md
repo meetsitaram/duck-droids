@@ -406,3 +406,26 @@ The user found it in Fusion: the head yaw bracket's 4 side screws stood 1.5 mm i
 | Two faces flat on each other overlap by 0: "no collision" for parts that turn past each other | Across a joint, parts stay 0.3 mm apart (`gap_under`); only the servo's own horn and idler, and a hinge's sleeve, ride on it |
 | A full rear wall went in because the user asked for one and the checks passed; nobody asked what turns beside it | Before a wall goes next to a joint, list what moves there through the joint's range |
 | A Fusion dialog left open made it refuse the build; the chain went on with the last build's STLs and passed them, and compare matched them too | Stop when Fusion refuses (`fusion_run`); look at the renders, not only the reports |
+
+## The head frame that needed a forest of supports (2026-11-11)
+
+The one-piece head frame stood on its lower shell, with its floor 14.5 mm over the bed. The slicer grew tree supports under the whole floor; the print failed after 2 hours of supports (a filament swap jammed). The user: "that's what happens when we don't design printer friendly parts". Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| `printable.py` SUPPORT was a warning, never a failure | Real support fails the part: more than 300 mm2, leaving out bridges up to 12 mm wide and the first 2 mm off the bed |
+| SUPPORT and ORIENT judged the orientation `printable.py` liked best; `export_prints.py` turned the head frame 90 degrees after that, and the turned one was never checked | Check the print file as exported, in its `print_T` |
+| The overhang count added bridges and real overhangs together, so the area meant little, and a 6,000 mm2 floor over air looked like "a big part" | Count what a slicer holds up: flat ceilings between walls print as bridges, a floor over air doesn't |
+| One part carried both a floor on the bed and a shell under it at another height: no face of it could sit flat | Split a part where its flat faces are at different heights, and screw the pieces where a driver reaches. The frame now prints on its floor, the shell on its bottom: 5,900 mm2 of support down to 93 |
+| A holder built at its servo's height started 2.5 mm over the floor, on air | Anything printed over a floor reaches down to it, or bridges between two things that do |
+
+## The head yaw bracket that snapped (2026-11-13)
+
+Printed, one of the 2 arms that hold the head roll servo broke off at its root. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| Each arm was 5.5 x 2.5 mm, with a screw's counterbore (4.2 mm across, 1.6 deep) 2 mm above its root: about 5 mm2 of plastic held the arm | `printable.py` NECK: no section under 12 mm2 is all that holds 150 mm3 or more to the rest of a part, holes and counterbores cut |
+| `buildable.py` WALL voxelizes a part's shapes without its screw holes, and LOAD covers the leg's sections only | Judge the part as exported, with its holes. A sunk screw head takes most of a thin wall: widen the wall round it |
+| The arms stood free, joined only at the floor, and the upper one printed as a 20 mm cantilever over air | Walls that hold a servo join each other: 2 arms and an end wall, a cup, not 2 fingers |
+| The horn's seat boss stood 2 mm under the plate, so the plate could not lie on the bed | A boss under a flat plate is a loose spacer, as the head roll's: then the plate is the print's first layer |

@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1464 checks: 1464 pass, 0 warn, **0 fail**
+1498 checks: 1498 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -67,10 +67,12 @@ From tools/assembly.py
 | PASS | headbench: head yaw sheet |  |
 | PASS | headbench: head yaw bearing |  |
 | PASS | headbench: head yaw horn |  |
+| PASS | headbench: head yaw spacer |  |
 | PASS | headbench: head yaw bracket |  |
 | PASS | headbench: head roll servo |  |
 | PASS | headbench: head roll horn |  |
 | PASS | headbench: head roll rear horn |  |
+| PASS | framebench: head lower shell |  |
 | PASS | framebench: bus board standoffs |  |
 | PASS | framebench: beak servo |  |
 | PASS | jawbench: jaw soft insert |  |
@@ -240,6 +242,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw horn face 1 |  |
 | PASS | head roll cradle screw rear face 0 |  |
 | PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | bus board rear screw 0 |  |
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
@@ -423,14 +429,18 @@ From tools/assembly.py
 | PASS | head yaw cradle screw rear near 1 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 0 | M2 x 6: bites 2.1 mm |
-| PASS | head yaw fork screw horn 1 | M2 x 6: bites 2.1 mm |
-| PASS | head yaw fork screw horn 2 | M2 x 6: bites 2.1 mm |
-| PASS | head yaw fork screw horn 3 | M2 x 6: bites 2.1 mm |
+| PASS | head yaw fork screw horn 0 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 1 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 2 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 3 | M2 x 6: bites 3.0 mm |
 | PASS | head roll cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
 | PASS | head roll cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
 | PASS | head roll cradle screw rear face 0 | M2 x 6: bites 3.0 mm |
 | PASS | head roll cradle screw rear face 1 | M2 x 6: bites 3.0 mm |
+| PASS | head chin screw 0 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 1 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 2 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 3 | M2 x 8: bites 4.0 mm |
 | PASS | bus board rear screw 0 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board rear screw 1 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board rear screw 2 | M2.5 x 5: bites 2.5 mm |
@@ -623,6 +633,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw horn face 1 |  |
 | PASS | head roll cradle screw rear face 0 |  |
 | PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | bus board rear screw 0 |  |
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
@@ -815,6 +829,10 @@ From tools/assembly.py
 | PASS | head roll cradle screw horn face 1 |  |
 | PASS | head roll cradle screw rear face 0 |  |
 | PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | bus board rear screw 0 |  |
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
@@ -885,7 +903,9 @@ From tools/assembly.py
 | PASS | head fork | 12 screws |
 | PASS | head yaw sheet | 2 screws |
 | PASS | head yaw bracket | 8 screws |
-| PASS | head frame | 23 screws |
+| PASS | head yaw spacer | 4 screws |
+| PASS | head lower shell | 6 screws |
+| PASS | head frame | 25 screws |
 | PASS | hood | 3 screws |
 | PASS | hinge sleeve | round on its screw |
 | PASS | jaw | turns on its screws |
@@ -983,6 +1003,8 @@ From tools/assembly.py
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | hinge sleeve |  |
@@ -1023,6 +1045,8 @@ From tools/assembly.py
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | hinge sleeve |  |
@@ -1211,6 +1235,10 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw rear near 0 |  |
 | PASS | beak cradle screw rear near 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | beak fork screw horn 0 |  |
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
@@ -1422,6 +1450,10 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw rear near 0 |  |
 | PASS | beak cradle screw rear near 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | beak fork screw horn 0 |  |
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
@@ -1530,9 +1562,11 @@ From tools/assembly.py
 | PASS | part head yaw bearing |  |
 | PASS | part head yaw horn |  |
 | PASS | part head yaw bracket |  |
+| PASS | part head yaw spacer |  |
 | PASS | part head roll servo |  |
 | PASS | part head roll rear horn |  |
 | PASS | part head roll horn |  |
+| PASS | part head lower shell |  |
 | PASS | part head frame |  |
 | PASS | part beak servo |  |
 | PASS | part Pi Zero 2 W |  |

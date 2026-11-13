@@ -3,37 +3,37 @@
   "group": "LOAD",
   "item": "shin, under the knee horn",
   "status": "PASS",
-  "detail": "8.1 MPa (allowed 15): 26 N, section 126 mm2"
+  "detail": "8.1 MPa (allowed 15): 27 N, section 126 mm2"
  },
  {
   "group": "LOAD",
   "item": "shin, at the cap",
   "status": "PASS",
-  "detail": "4.0 MPa (allowed 15): 26 N, section 185 mm2"
+  "detail": "4.0 MPa (allowed 15): 27 N, section 185 mm2"
  },
  {
   "group": "LOAD",
   "item": "thigh, hip to knee",
   "status": "PASS",
-  "detail": "0.4 MPa (allowed 15): 26 N, section 485 mm2"
+  "detail": "0.4 MPa (allowed 15): 27 N, section 485 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, side arm",
   "status": "PASS",
-  "detail": "5.9 MPa (allowed 15): 26 N, section 89 mm2"
+  "detail": "6.0 MPa (allowed 15): 27 N, section 89 mm2"
  },
  {
   "group": "LOAD",
   "item": "roll bracket, front plate",
   "status": "PASS",
-  "detail": "2.7 MPa (allowed 15): 26 N, section 110 mm2"
+  "detail": "2.7 MPa (allowed 15): 27 N, section 110 mm2"
  },
  {
   "group": "LOAD",
   "item": "yaw bracket",
   "status": "PASS",
-  "detail": "1.1 MPa (allowed 15): 26 N, section 584 mm2"
+  "detail": "1.1 MPa (allowed 15): 27 N, section 584 mm2"
  },
  {
   "group": "ONE",
@@ -267,7 +267,43 @@
   "group": "FIT",
   "item": "head yaw bracket",
   "status": "PASS",
-  "detail": "29 x 36 x 27 mm"
+  "detail": "29 x 38 x 28 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head yaw spacer",
+  "status": "PASS",
+  "detail": "18 x 18 x 3 mm"
+ },
+ {
+  "group": "ONE",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "WALL",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "FIT",
+  "item": "head lower shell",
+  "status": "PASS",
+  "detail": "143 x 103 x 16 mm"
  },
  {
   "group": "ONE",
@@ -285,7 +321,7 @@
   "group": "FIT",
   "item": "head frame",
   "status": "PASS",
-  "detail": "143 x 103 x 61 mm"
+  "detail": "130 x 103 x 52 mm"
  },
  {
   "group": "ONE",

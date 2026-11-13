@@ -2,7 +2,7 @@
 
 From tools/audit_prints.py: the STL files themselves.
 
-210 checks: 210 pass, 0 warn, **0 fail**
+222 checks: 222 pass, 0 warn, **0 fail**
 
 ## PIECES
 
@@ -34,6 +34,8 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | hinge sleeve |  |
@@ -74,6 +76,8 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
 | PASS | hinge sleeve |  |
@@ -104,7 +108,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R thigh frame | 10.3 cm3, designed 10.5: 2 % off |
 | PASS | R hip pitch lid | 1.5 cm3, designed 1.5: 0 % off |
 | PASS | R knee lid | 1.4 cm3, designed 1.4: 0 % off |
-| PASS | R thigh cover | 14.9 cm3, designed 16.0: 7 % off |
+| PASS | R thigh cover | 14.8 cm3, designed 16.0: 7 % off |
 | PASS | R shin | 5.9 cm3, designed 5.9: 1 % off |
 | PASS | R shoe | 13.2 cm3, designed 13.1: 0 % off |
 | PASS | R sole | 25.9 cm3, designed 25.7: 1 % off |
@@ -113,8 +117,10 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | neck column | 2.3 cm3, designed 2.4: 0 % off |
 | PASS | head fork | 9.2 cm3, designed 9.3: 2 % off |
 | PASS | head yaw sheet | 0.7 cm3, designed 0.7: 0 % off |
-| PASS | head yaw bracket | 3.0 cm3, designed 3.1: 2 % off |
-| PASS | head frame | 54.6 cm3, designed 54.7: 0 % off |
+| PASS | head yaw bracket | 5.3 cm3, designed 5.4: 1 % off |
+| PASS | head yaw spacer | 0.3 cm3, designed 0.3: 0 % off |
+| PASS | head lower shell | 19.5 cm3, designed 19.4: 1 % off |
+| PASS | head frame | 36.9 cm3, designed 37.2: 1 % off |
 | PASS | hood | 48.1 cm3, designed 48.4: 1 % off |
 | PASS | hinge sleeve | 0.2 cm3, designed 0.2: 0 % off |
 | PASS | jaw | 29.3 cm3, designed 29.4: 0 % off |
@@ -153,8 +159,10 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | neck column | 28 x 26 x 10 mm |
 | PASS | head fork | 52 x 44 x 39 mm |
 | PASS | head yaw sheet | 37 x 26 x 4 mm |
-| PASS | head yaw bracket | 35 x 28 x 26 mm |
-| PASS | head frame | 141 x 101 x 60 mm |
+| PASS | head yaw bracket | 37 x 28 x 26 mm |
+| PASS | head yaw spacer | 17 x 17 x 2 mm |
+| PASS | head lower shell | 92 x 53 x 15 mm |
+| PASS | head frame | 129 x 101 x 45 mm |
 | PASS | hood | 150 x 106 x 58 mm |
 | PASS | hinge sleeve | 9 x 9 x 7 mm |
 | PASS | jaw | 106 x 88 x 43 mm |
@@ -184,7 +192,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | R thigh frame | 0 % of its surface is under 0.8 mm thick |
 | PASS | R hip pitch lid | 0 % of its surface is under 0.8 mm thick |
 | PASS | R knee lid | 2 % of its surface is under 0.8 mm thick |
-| PASS | R thigh cover | 1 % of its surface is under 0.8 mm thick |
+| PASS | R thigh cover | 0 % of its surface is under 0.8 mm thick |
 | PASS | R shin | 1 % of its surface is under 0.8 mm thick |
 | PASS | R shoe | 0 % of its surface is under 0.8 mm thick |
 | PASS | R sole | 0 % of its surface is under 0.8 mm thick |
@@ -193,7 +201,9 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | neck column | 1 % of its surface is under 0.8 mm thick |
 | PASS | head fork | 0 % of its surface is under 0.8 mm thick |
 | PASS | head yaw sheet | 0 % of its surface is under 0.8 mm thick |
-| PASS | head yaw bracket | 5 % of its surface is under 0.8 mm thick |
+| PASS | head yaw bracket | 2 % of its surface is under 0.8 mm thick |
+| PASS | head yaw spacer | 0 % of its surface is under 0.8 mm thick |
+| PASS | head lower shell | 1 % of its surface is under 0.8 mm thick |
 | PASS | head frame | 0 % of its surface is under 0.8 mm thick |
 | PASS | hood | 1 % of its surface is under 0.8 mm thick |
 | PASS | hinge sleeve | 0 % of its surface is under 0.8 mm thick |
@@ -235,8 +245,10 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | face.stl |  |
 | PASS | head_fork.stl |  |
 | PASS | head_frame.stl |  |
+| PASS | head_lower_shell.stl |  |
 | PASS | head_yaw_bracket.stl |  |
 | PASS | head_yaw_sheet.stl |  |
+| PASS | head_yaw_spacer.stl |  |
 | PASS | hinge_sleeve.stl |  |
 | PASS | hood.stl |  |
 | PASS | jaw.stl |  |
