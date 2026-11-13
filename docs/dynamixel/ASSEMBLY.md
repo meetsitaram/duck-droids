@@ -177,7 +177,7 @@ Then the same for the right side, mirrored.
 2. Head yaw servo in, 2 screws from under the bridge *(4 x M2 x 8 mm, small Phillips)*
 3. The thin sheet, 2 screws *(2 x M2 x 8 mm, small Phillips)*
 4. Bearing and horn
-5. The yaw bracket, 4 screws, before its roll servo *(4 x M2 x 6 mm, small Phillips)*
+5. The yaw bracket, its spacer under it on the horn, 4 screws, before its roll servo *(4 x M2 x 6 mm, small Phillips)*
 6. Head roll servo, its horn and idler on, down onto the plate into its U, 4 screws from the sides *(4 x M2 x 6 mm, small Phillips)*
 
 ## 9b. The head frame and the beak servo
@@ -188,11 +188,12 @@ Then the same for the right side, mirrored.
 
 > 🔌 The beak servo is the end of the head's chain: one lead, plugged in before it goes in.
 
-**Screws for this section:** 4 x M2 x 8 mm, 4 x M2.5 x 5 mm
+**Screws for this section:** 8 x M2 x 8 mm, 4 x M2.5 x 5 mm
 
 1. The head frame
-2. The bus board's brass standoffs into their hex sockets, a screw from the front into each *(4 x M2.5 x 5 mm, small Phillips)*
-3. Beak servo in from the side, its horn out, servo at mid-range, 4 screws from inside (the roll servo blocks them later) *(4 x M2 x 8 mm, small Phillips)*
+2. The lower shell up under its floor, 4 screws down through the floor *(4 x M2 x 8 mm, small Phillips)*
+3. The bus board's brass standoffs into their hex sockets, a screw from the front into each *(4 x M2.5 x 5 mm, small Phillips)*
+4. Beak servo in from the side, its horn out, servo at mid-range, 4 screws from inside (the roll servo blocks them later) *(4 x M2 x 8 mm, small Phillips)*
 
 ## 10. The jaw
 

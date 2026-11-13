@@ -63,13 +63,13 @@
   "group": "mass",
   "item": "total",
   "status": "PASS",
-  "detail": "0.935 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
+  "detail": "0.940 kg bottom-up (budget 1.55 kg; microduck 0.8 kg)"
  },
  {
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "223 printed parts; largest head: 150 mm, on a 256 mm bed"
+  "detail": "226 printed parts; largest head: 150 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -768,6 +768,18 @@
   "detail": "0.00 % outside the skin"
  },
  {
+  "group": "skin",
+  "item": "beak cradle end foot",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "beak cradle front foot",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
   "group": "sweep",
   "item": "L_hip_yaw",
   "status": "PASS",
@@ -981,19 +993,19 @@
   "group": "torque",
   "item": "L_hip_roll",
   "status": "PASS",
-  "detail": "0.19 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 30 % used"
+  "detail": "0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used"
  },
  {
   "group": "torque",
   "item": "L_hip_pitch",
   "status": "PASS",
-  "detail": "0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used"
+  "detail": "0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 22 % used"
  },
  {
   "group": "torque",
   "item": "R_hip_pitch",
   "status": "PASS",
-  "detail": "0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used"
+  "detail": "0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 22 % used"
  },
  {
   "group": "torque",

@@ -207,7 +207,10 @@ def main():
         if G.RECIPE == 'dynamixel' and part.endswith((' shoe', ' sole')):     # on their flat faces, the shoe's underside and the sole's top (2026-11-09, the user)
             ax = ('z', -1) if part.endswith(' shoe') else ('z', 1)
             best = PR.score(tm, next(T for x, sg, T in PR.orientations() if (x, sg) == ax))
-        if part == 'head frame':
+        if G.RECIPE == 'dynamixel' and part in ('head frame', 'head lower shell'):
+            # (on their flat undersides: the frame on its floor, the shell on its bottom. 2026-11-11: stood on the shell, the floor hung 14.5 mm up and the print failed)
+            best = PR.score(tm, next(T for x, sg, T in PR.orientations() if (x, sg) == ('z', -1)))
+        elif part == 'head frame':
             # (least overhang area stood it 141 mm tall on 330 mm2, its supports trapped inside. With its band on the bed: 60 mm, 3 x the first layer, and under half the support landing on the part)
             best = dict(best, T=trimesh.transformations.rotation_matrix(np.radians(90), [0, 1, 0]) @ np.asarray(best['T'], float))
         tm.apply_transform(best['T'])

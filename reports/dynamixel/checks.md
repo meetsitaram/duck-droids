@@ -1,8 +1,8 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-11 15:25, 62 s
+spec: `spec/robot.json`, 2026-11-13 09:41, 59 s
 
-174 checks: 168 pass, 3 warn, **3 fail**
+176 checks: 170 pass, 3 warn, **3 fail**
 
 ## targets
 
@@ -23,13 +23,13 @@ spec: `spec/robot.json`, 2026-11-11 15:25, 62 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | total | 0.935 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
+| PASS | total | 0.940 kg bottom-up (budget 1.55 kg; microduck 0.8 kg) |
 
 ## printable
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 223 printed parts; largest head: 150 mm, on a 256 mm bed |
+| PASS | largest part | 226 printed parts; largest head: 150 mm, on a 256 mm bed |
 
 ## axis
 
@@ -176,6 +176,8 @@ spec: `spec/robot.json`, 2026-11-11 15:25, 62 s
 | PASS | head 5 V regulator | 0.00 % outside the skin |
 | PASS | head regulator wires | 0.00 % outside the skin |
 | PASS | Pi base tab | 0.00 % outside the skin |
+| PASS | beak cradle end foot | 0.00 % outside the skin |
+| PASS | beak cradle front foot | 0.00 % outside the skin |
 
 ## sweep
 
@@ -226,9 +228,9 @@ spec: `spec/robot.json`, 2026-11-11 15:25, 62 s
 | PASS | L_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 50 % used |
 | PASS | R_knee | 0.16 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 50 % used |
 | PASS | head_pitch | 0.15 N m in 'head forward and down, beak open' vs rated 0.31 N m (1 x XL330_M288): 49 % used |
-| PASS | L_hip_roll | 0.19 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 30 % used |
-| PASS | L_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used |
-| PASS | R_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 21 % used |
+| PASS | L_hip_roll | 0.20 N m x 1.5 in 'single-leg stance (walking)' vs peak 0.96 N m (1 x XL330_M288): 31 % used |
+| PASS | L_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 22 % used |
+| PASS | R_hip_pitch | 0.14 N m x 1.5 in 'floor pick' vs peak 0.96 N m (1 x XL330_M288): 22 % used |
 | PASS | R_hip_roll | 0.06 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 19 % used |
 | PASS | L_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 12 % used |
 | PASS | R_ankle_pitch | 0.04 N m in 'crouch' vs rated 0.31 N m (1 x XL330_M288): 12 % used |

@@ -815,6 +815,11 @@
 0.55
 ],
 [
+"head frame",
+"bus board standoff 2",
+0.45
+],
+[
 "chassis",
 "R hip yaw lid",
 0.36
@@ -1243,11 +1248,6 @@
 "Pi Zero 2 W mounting rings",
 "Pi Zero 2 W microSD socket",
 0.04
-],
-[
-"head frame",
-"mouth roof",
-0.03
 ],
 [
 "L hip yaw XL330 case middle",
