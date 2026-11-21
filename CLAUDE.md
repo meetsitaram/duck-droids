@@ -7,6 +7,7 @@ the hips, knees and ankles, and ROBOTIS XC330/XL330s at the neck and head. Forke
 the Figure 03 replica: use the `droid-from-spec` skill (github.com/tinkerdroids/design-and-build-skills, linked into `~/.claude/skills/droid-from-spec`; it works in phases, each with a gate) for the
 method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in its own section).
 
+- **Python:** one venv for everything, `pi/.venv`, from `bash setup.sh` at the repo root (pinned in `requirements-tools.txt`, `pi/requirements-sim.txt`, `pi/requirements-pc.txt`; the Pi has `pi/setup_pi.sh`). Run every command below with its Python (`pi/.venv/Scripts/python.exe` on Windows), never the system's. `tools/pipeline.sh` uses it.
 - **Frame and units:** metres; X forward, Y left, Z up, floor z = 0; zero pose standing with straight legs, head
   level, beak shut. The renders and compare stand milli with its knees bent, as microduck's model stands.
 - **Source of truth:** `spec/robot.py` (anchors in "proportions" set every height from the servo cases and their
@@ -20,7 +21,7 @@ method, step by step, and read `LESSONS.md` first (echo's lessons; milli's go in
 - **Branches:** `main` has STS3215 ankles. `fusion-model` adds the first Fusion build and what it found. `xc330-ankle` keeps the version with Dynamixel XC330 ankles. Robot changes go on a branch.
 - **Videos:** they belong to the last phase, publish. Read `references/assembly-videos.md` in the `droid-from-spec` skill before rendering any. Dynamixel's are `docs/images/assembly/dynamixel/reveal_30s.mp4` and `build_5min.mp4`.
 - **Fusion gone quiet:** look for a modal dialog before waiting: see "When Fusion stops answering" in that skill's `references/fusion-mcp.md`.
-- **Not proven yet:** nothing has been printed. LOAD in `tools/buildable.py` is a beam estimate, not FEA. Walking is untested;
+- **Not proven yet:** the all-Dynamixel duck is built and stands under scripted servo commands (`pi/stand_test.py`), steadied by hand; nothing balances or walks on its own yet. LOAD in `tools/buildable.py` is a beam estimate, not FEA. Walking is untested;
   the video's walk is kinematic.
 - **Servos:** `spec/actuators.json`: STS3215 C044 (1:191) and C046 (1:147), XC330/XL330-M288; the lower-ratio STS3215
   numbers are scaled from the C001, not measured: confirm before ordering.

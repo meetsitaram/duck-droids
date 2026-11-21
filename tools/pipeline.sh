@@ -13,7 +13,11 @@ RECIPE=${MILLI_RECIPE:?set MILLI_RECIPE}
 AGENT=${AGENT:-$RECIPE}
 cd "$(dirname "$0")/.."
 export PYTHONIOENCODING=utf-8 MILLI_RECIPE=$RECIPE
-PY=${PY:-/c/Users/meets/.venvs/duck/Scripts/python.exe}
+# the repo's venv, from `bash setup.sh` at the root: PY= picks another
+if [ -z "$PY" ]; then
+  if [ -x pi/.venv/Scripts/python.exe ]; then PY=pi/.venv/Scripts/python.exe; else PY=pi/.venv/bin/python; fi
+  [ -x "$PY" ] || { echo "no venv: run bash setup.sh at the repo root"; exit 1; }
+fi
 TEAM=${TEAM:-$HOME/.claude/skills/agentic-team/scripts/team.py}
 D=docs/images/assembly/$RECIPE
 WORK=${TEMP:-/tmp}/pipeline_$RECIPE

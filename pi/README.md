@@ -36,11 +36,13 @@ cd pi && python run.py --port socket://127.0.0.1:9000 --imu 127.0.0.1:9001 --pol
 
 ## Set up the Pi, or a PC
 
-One script for every machine, in `pi/.venv`. On the Pi (Raspberry Pi OS Lite, 64-bit, `pi/` copied to `/home/pi/duck`) it runs `setup_pi.sh`: the UART, I2C, Bluetooth, and every package. On a PC (Windows in Git Bash, Linux, macOS) it installs the servo tools from `requirements-pc.txt`, and `--sim` adds the simulator:
+One venv for every machine, `pi/.venv`, and nothing in the system Python. On the Pi (Raspberry Pi OS Lite, 64-bit, `pi/` copied to `/home/pi/duck`) `bash setup.sh` runs `setup_pi.sh`: the UART, I2C, Bluetooth, and every package. On a PC (Windows in Git Bash, Linux, macOS), everything, from the repo root:
 
 ```bash
 bash setup.sh
 ```
+
+or in `pi/`, only what you need: `bash setup.sh` the servo tools (`requirements-pc.txt`), `--sim` the simulator, the policy runtime and the digital twin (`requirements-sim.txt`), `--tools` the design tools (`../requirements-tools.txt`). MuJoCo is pinned to the version the sim model is built with.
 
 Then run the code with the venv's Python: `.venv/bin/python` on the Pi and Linux, `.venv/Scripts/python.exe` on Windows.
 
@@ -76,6 +78,34 @@ python run.py --policy wave --no-fall --seconds 20
 | 1-5 | right ankle, knee, hip pitch, hip roll, hip yaw |
 | 6-10 | left ankle, knee, hip pitch, hip roll, hip yaw |
 | 11-15 | neck pitch, head pitch, head yaw, head roll, beak |
+
+## The digital twin
+
+The real duck's pose on the MuJoCo model, live, in its true colours, standing on the floor. Read only: it never writes to a servo.
+
+```bash
+python twin.py
+```
+
+`--snapshot pose.png` saves front, side and three-quarter views. Calibrate first (`python -m duck.calibrate`, the duck at zero; `--joints neck_pitch,head_pitch` does a few), then move one joint at a time and check the model turns the same way: flip a joint's `direction` in the config where it doesn't.
+
+## Powered tests: standing up
+
+`stand_test.py` drives the real duck from where it is (sitting) to standing and back, the joints in current-limited position mode. It's scripted joint angles: no balance, no IMU, so someone steadies the duck. The run in the [main README](../README.md) was:
+
+```bash
+python stand_test.py --show --keep-head --face-forward --neck-offset -10 --gain 1500 --rise 12 --lower 12 --view
+```
+
+- `--show`: at standing, the head turns side to side, nods a little, slowly, and the beak opens and shuts. Big or fast moves front to back tip the duck.
+- `--keep-head`: the neck and head hold the pose they're set in by hand at the start; `--neck-offset` nudges the neck (negative is more upright, the weight forward). `--stand-pose poses/stand_balanced.json` stands in a whole pose found by hand (`python twin.py --save-pose`).
+- `--face-forward`: the head pitch follows the body through the rise and the lower, so the face stays straight ahead.
+- `--gain 1500`: at the factory 400, or 800, the knees trail 12 degrees under the duck's weight.
+- `--view`: a MuJoCo window shows the joint angles the servos measure, live; `--wait-for FILE` holds there, torque off, till the file appears, then counts down 5 s.
+- `--preview`: the same routine in the window, no servos.
+- Safety: each servo's current is capped (legs 800 mA, head 600, beak 300), and a stop (a servo error, the supply under 4.6 V, a joint 15 degrees behind) eases the duck back down to sitting before the torque goes off. Every tick is logged to `stand_test_log.csv`.
+
+`sim/server.py --view --start pose.json --kp 4 --peak-nm 0.28` runs the simulator with a window, from a saved pose, with the servo stiffness and torque of the test's settings (5 V, 800 mA). Unsupported, the simulated duck falls from a crouch, as the real one would.
 
 ## What the policy sees
 

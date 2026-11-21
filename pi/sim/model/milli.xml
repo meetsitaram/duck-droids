@@ -1,38 +1,66 @@
 <mujoco model="milli">
 <compiler meshdir="meshes" angle="radian" autolimits="true"/>
 <option timestep="0.005" integrator="implicitfast"/>
-<asset><mesh name="trunk_base" file="trunk_base.stl"/><mesh name="trunk_base_hull" file="trunk_base_hull.stl" maxhullvert="32"/><mesh name="yaw2roll" file="yaw2roll.stl"/><mesh name="yaw2roll_hull" file="yaw2roll_hull.stl" maxhullvert="32"/><mesh name="hip_l" file="hip_l.stl"/><mesh name="hip_l_hull" file="hip_l_hull.stl" maxhullvert="32"/><mesh name="upper_leg_left" file="upper_leg_left.stl"/><mesh name="upper_leg_left_hull" file="upper_leg_left_hull.stl" maxhullvert="32"/><mesh name="leg" file="leg.stl"/><mesh name="leg_hull" file="leg_hull.stl" maxhullvert="32"/><mesh name="ankle_left" file="ankle_left.stl"/><mesh name="ankle_left_hull" file="ankle_left_hull.stl" maxhullvert="32"/><mesh name="neck" file="neck.stl"/><mesh name="neck_hull" file="neck_hull.stl" maxhullvert="32"/><mesh name="neck_pitch" file="neck_pitch.stl"/><mesh name="neck_pitch_hull" file="neck_pitch_hull.stl" maxhullvert="32"/><mesh name="yaw_roll_motion" file="yaw_roll_motion.stl"/><mesh name="yaw_roll_motion_hull" file="yaw_roll_motion_hull.stl" maxhullvert="32"/><mesh name="jaw_soft" file="jaw_soft.stl"/><mesh name="jaw_soft_hull" file="jaw_soft_hull.stl" maxhullvert="32"/><mesh name="jaw" file="jaw.stl"/><mesh name="jaw_hull" file="jaw_hull.stl" maxhullvert="32"/><mesh name="bearing_roll" file="bearing_roll.stl"/><mesh name="bearing_roll_hull" file="bearing_roll_hull.stl" maxhullvert="32"/><mesh name="hip_l_2" file="hip_l_2.stl"/><mesh name="hip_l_2_hull" file="hip_l_2_hull.stl" maxhullvert="32"/><mesh name="upper_leg_right" file="upper_leg_right.stl"/><mesh name="upper_leg_right_hull" file="upper_leg_right_hull.stl" maxhullvert="32"/><mesh name="leg_2" file="leg_2.stl"/><mesh name="leg_2_hull" file="leg_2_hull.stl" maxhullvert="32"/><mesh name="ankle_right" file="ankle_right.stl"/><mesh name="ankle_right_hull" file="ankle_right_hull.stl" maxhullvert="32"/></asset>
+<asset><mesh name="trunk_base_1b1c1f" file="trunk_base_1b1c1f.stl"/><mesh name="trunk_base_1f5a36" file="trunk_base_1f5a36.stl"/><mesh name="trunk_base_2f7de1" file="trunk_base_2f7de1.stl"/><mesh name="trunk_base_3a3d42" file="trunk_base_3a3d42.stl"/><mesh name="trunk_base_a8acb0" file="trunk_base_a8acb0.stl"/><mesh name="trunk_base_c9cdd2" file="trunk_base_c9cdd2.stl"/><mesh name="trunk_base_d9d4c5" file="trunk_base_d9d4c5.stl"/><mesh name="trunk_base_e8e8e0" file="trunk_base_e8e8e0.stl"/><mesh name="trunk_base_ecebe6" file="trunk_base_ecebe6.stl"/><mesh name="trunk_base_f2c21a" file="trunk_base_f2c21a.stl"/><mesh name="trunk_base_hull" file="trunk_base_hull.stl" maxhullvert="32"/><mesh name="yaw2roll_1b1c1f" file="yaw2roll_1b1c1f.stl"/><mesh name="yaw2roll_3a3d42" file="yaw2roll_3a3d42.stl"/><mesh name="yaw2roll_a8acb0" file="yaw2roll_a8acb0.stl"/><mesh name="yaw2roll_c9cdd2" file="yaw2roll_c9cdd2.stl"/><mesh name="yaw2roll_d9d4c5" file="yaw2roll_d9d4c5.stl"/><mesh name="yaw2roll_hull" file="yaw2roll_hull.stl" maxhullvert="32"/><mesh name="hip_l_3a3d42" file="hip_l_3a3d42.stl"/><mesh name="hip_l_a8acb0" file="hip_l_a8acb0.stl"/><mesh name="hip_l_c9cdd2" file="hip_l_c9cdd2.stl"/><mesh name="hip_l_hull" file="hip_l_hull.stl" maxhullvert="32"/><mesh name="upper_leg_left_1b1c1f" file="upper_leg_left_1b1c1f.stl"/><mesh name="upper_leg_left_3a3d42" file="upper_leg_left_3a3d42.stl"/><mesh name="upper_leg_left_a8acb0" file="upper_leg_left_a8acb0.stl"/><mesh name="upper_leg_left_c9cdd2" file="upper_leg_left_c9cdd2.stl"/><mesh name="upper_leg_left_d9d4c5" file="upper_leg_left_d9d4c5.stl"/><mesh name="upper_leg_left_ecebe6" file="upper_leg_left_ecebe6.stl"/><mesh name="upper_leg_left_hull" file="upper_leg_left_hull.stl" maxhullvert="32"/><mesh name="leg_1b1c1f" file="leg_1b1c1f.stl"/><mesh name="leg_3a3d42" file="leg_3a3d42.stl"/><mesh name="leg_a8acb0" file="leg_a8acb0.stl"/><mesh name="leg_c9cdd2" file="leg_c9cdd2.stl"/><mesh name="leg_d9d4c5" file="leg_d9d4c5.stl"/><mesh name="leg_hull" file="leg_hull.stl" maxhullvert="32"/><mesh name="ankle_left_3a3d42" file="ankle_left_3a3d42.stl"/><mesh name="ankle_left_a8acb0" file="ankle_left_a8acb0.stl"/><mesh name="ankle_left_c9cdd2" file="ankle_left_c9cdd2.stl"/><mesh name="ankle_left_e8642a" file="ankle_left_e8642a.stl"/><mesh name="ankle_left_f2b233" file="ankle_left_f2b233.stl"/><mesh name="ankle_left_hull" file="ankle_left_hull.stl" maxhullvert="32"/><mesh name="neck_1b1c1f" file="neck_1b1c1f.stl"/><mesh name="neck_3a3d42" file="neck_3a3d42.stl"/><mesh name="neck_c9cdd2" file="neck_c9cdd2.stl"/><mesh name="neck_d9d4c5" file="neck_d9d4c5.stl"/><mesh name="neck_hull" file="neck_hull.stl" maxhullvert="32"/><mesh name="neck_pitch_1b1c1f" file="neck_pitch_1b1c1f.stl"/><mesh name="neck_pitch_3a3d42" file="neck_pitch_3a3d42.stl"/><mesh name="neck_pitch_a8acb0" file="neck_pitch_a8acb0.stl"/><mesh name="neck_pitch_c9cdd2" file="neck_pitch_c9cdd2.stl"/><mesh name="neck_pitch_d9d4c5" file="neck_pitch_d9d4c5.stl"/><mesh name="neck_pitch_hull" file="neck_pitch_hull.stl" maxhullvert="32"/><mesh name="yaw_roll_motion_1b1c1f" file="yaw_roll_motion_1b1c1f.stl"/><mesh name="yaw_roll_motion_3a3d42" file="yaw_roll_motion_3a3d42.stl"/><mesh name="yaw_roll_motion_a8acb0" file="yaw_roll_motion_a8acb0.stl"/><mesh name="yaw_roll_motion_c9cdd2" file="yaw_roll_motion_c9cdd2.stl"/><mesh name="yaw_roll_motion_d9d4c5" file="yaw_roll_motion_d9d4c5.stl"/><mesh name="yaw_roll_motion_hull" file="yaw_roll_motion_hull.stl" maxhullvert="32"/><mesh name="jaw_soft_0a1420" file="jaw_soft_0a1420.stl"/><mesh name="jaw_soft_1b1c1f" file="jaw_soft_1b1c1f.stl"/><mesh name="jaw_soft_1f5a36" file="jaw_soft_1f5a36.stl"/><mesh name="jaw_soft_3a3d42" file="jaw_soft_3a3d42.stl"/><mesh name="jaw_soft_9a9c98" file="jaw_soft_9a9c98.stl"/><mesh name="jaw_soft_a8acb0" file="jaw_soft_a8acb0.stl"/><mesh name="jaw_soft_c9a24a" file="jaw_soft_c9a24a.stl"/><mesh name="jaw_soft_c9cdd2" file="jaw_soft_c9cdd2.stl"/><mesh name="jaw_soft_d9d4c5" file="jaw_soft_d9d4c5.stl"/><mesh name="jaw_soft_e8642a" file="jaw_soft_e8642a.stl"/><mesh name="jaw_soft_ecebe6" file="jaw_soft_ecebe6.stl"/><mesh name="jaw_soft_f0a030" file="jaw_soft_f0a030.stl"/><mesh name="jaw_soft_f7ae55" file="jaw_soft_f7ae55.stl"/><mesh name="jaw_soft_hull" file="jaw_soft_hull.stl" maxhullvert="32"/><mesh name="jaw_a8acb0" file="jaw_a8acb0.stl"/><mesh name="jaw_c9cdd2" file="jaw_c9cdd2.stl"/><mesh name="jaw_e8642a" file="jaw_e8642a.stl"/><mesh name="jaw_f7ae55" file="jaw_f7ae55.stl"/><mesh name="jaw_hull" file="jaw_hull.stl" maxhullvert="32"/><mesh name="bearing_roll_1b1c1f" file="bearing_roll_1b1c1f.stl"/><mesh name="bearing_roll_3a3d42" file="bearing_roll_3a3d42.stl"/><mesh name="bearing_roll_a8acb0" file="bearing_roll_a8acb0.stl"/><mesh name="bearing_roll_c9cdd2" file="bearing_roll_c9cdd2.stl"/><mesh name="bearing_roll_d9d4c5" file="bearing_roll_d9d4c5.stl"/><mesh name="bearing_roll_hull" file="bearing_roll_hull.stl" maxhullvert="32"/><mesh name="hip_l_2_3a3d42" file="hip_l_2_3a3d42.stl"/><mesh name="hip_l_2_a8acb0" file="hip_l_2_a8acb0.stl"/><mesh name="hip_l_2_c9cdd2" file="hip_l_2_c9cdd2.stl"/><mesh name="hip_l_2_hull" file="hip_l_2_hull.stl" maxhullvert="32"/><mesh name="upper_leg_right_1b1c1f" file="upper_leg_right_1b1c1f.stl"/><mesh name="upper_leg_right_3a3d42" file="upper_leg_right_3a3d42.stl"/><mesh name="upper_leg_right_a8acb0" file="upper_leg_right_a8acb0.stl"/><mesh name="upper_leg_right_c9cdd2" file="upper_leg_right_c9cdd2.stl"/><mesh name="upper_leg_right_d9d4c5" file="upper_leg_right_d9d4c5.stl"/><mesh name="upper_leg_right_ecebe6" file="upper_leg_right_ecebe6.stl"/><mesh name="upper_leg_right_hull" file="upper_leg_right_hull.stl" maxhullvert="32"/><mesh name="leg_2_1b1c1f" file="leg_2_1b1c1f.stl"/><mesh name="leg_2_3a3d42" file="leg_2_3a3d42.stl"/><mesh name="leg_2_a8acb0" file="leg_2_a8acb0.stl"/><mesh name="leg_2_c9cdd2" file="leg_2_c9cdd2.stl"/><mesh name="leg_2_d9d4c5" file="leg_2_d9d4c5.stl"/><mesh name="leg_2_hull" file="leg_2_hull.stl" maxhullvert="32"/><mesh name="ankle_right_3a3d42" file="ankle_right_3a3d42.stl"/><mesh name="ankle_right_a8acb0" file="ankle_right_a8acb0.stl"/><mesh name="ankle_right_c9cdd2" file="ankle_right_c9cdd2.stl"/><mesh name="ankle_right_e8642a" file="ankle_right_e8642a.stl"/><mesh name="ankle_right_f2b233" file="ankle_right_f2b233.stl"/><mesh name="ankle_right_hull" file="ankle_right_hull.stl" maxhullvert="32"/></asset>
 <worldbody>
 <body name="trunk_base" pos="0.000000 0.000000 0.170000">
-<inertial pos="-0.011600 -0.000734 -0.030971" mass="0.15319" fullinertia="6.7019117e-05 9.6434967e-05 0.00013249651 -3.7420906e-07 4.0815225e-06 -2.9029983e-07"/>
+<inertial pos="-0.019217 -0.000766 -0.029999" mass="0.14551" fullinertia="7.3211526e-05 8.8728148e-05 0.0001302231 -2.9074265e-06 2.7213896e-07 -1.3867031e-07"/>
 <freejoint name="trunk_base_freejoint"/>
-<site name="imu" pos="-0.01920 0.00000 -0.01588"/>
-<geom type="mesh" mesh="trunk_base" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<site name="imu" pos="-0.02720 0.00000 -0.01588"/>
+<geom type="mesh" mesh="trunk_base_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_1f5a36" rgba="0.122 0.353 0.212 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_2f7de1" rgba="0.184 0.490 0.882 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_e8e8e0" rgba="0.910 0.910 0.878 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_ecebe6" rgba="0.925 0.922 0.902 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="trunk_base_f2c21a" rgba="0.949 0.761 0.102 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="trunk_base_collision" type="mesh" mesh="trunk_base_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="yaw2roll" pos="0.000000 0.013440 -0.051880">
-<inertial pos="-0.000131 0.002333 -0.020102" mass="0.03870" fullinertia="9.5142518e-06 1.0859531e-05 4.7086915e-06 2.72002e-08 7.3122859e-08 5.1358127e-07"/>
+<body name="yaw2roll" pos="0.000000 0.015940 -0.051880">
+<inertial pos="-0.000322 -0.000000 -0.016603" mass="0.03183" fullinertia="7.2939622e-06 7.7697644e-06 2.9390232e-06 -6.2497863e-16 -1.0552646e-07 2.7759035e-14"/>
 <joint name="left_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="yaw2roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw2roll_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw2roll_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw2roll_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw2roll_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw2roll_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="yaw2roll_collision" type="mesh" mesh="yaw2roll_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="hip_l" pos="0.017000 0.002500 -0.017900">
-<inertial pos="-0.007791 0.010795 0.000000" mass="0.01334" fullinertia="1.7576189e-06 1.4630534e-06 2.4987264e-06 8.5154013e-07 5.7769435e-14 9.9067734e-15"/>
+<body name="hip_l" pos="0.014500 0.000000 -0.017900">
+<inertial pos="-0.014859 0.011347 -0.000000" mass="0.01683" fullinertia="2.0490947e-06 3.2086099e-06 4.361976e-06 -4.2660847e-08 3.7864262e-15 5.7861048e-14"/>
 <joint name="left_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="hip_l" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="hip_l_collision" type="mesh" mesh="hip_l_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="upper_leg_left" pos="-0.017000 0.019100 0.000000">
-<inertial pos="-0.023797 0.019851 -0.006780" mass="0.08439" fullinertia="2.4953607e-05 4.4334787e-05 3.8972648e-05 -2.8946767e-08 -8.8441811e-06 1.0979465e-07"/>
-<joint name="left_hip_pitch" axis="0 1 0" range="-1.5700 0.4300" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="upper_leg_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<body name="upper_leg_left" pos="-0.014500 0.019100 0.000000">
+<inertial pos="-0.023690 0.019548 -0.006881" mass="0.08594" fullinertia="2.5781286e-05 4.5477206e-05 4.0150818e-05 1.4045298e-07 -9.1806959e-06 -4.3379528e-08"/>
+<joint name="left_hip_pitch" axis="0 1 0" range="-1.5700 0.9500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<geom type="mesh" mesh="upper_leg_left_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_left_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_left_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_left_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_left_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_left_ecebe6" rgba="0.925 0.922 0.902 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="upper_leg_left_collision" type="mesh" mesh="upper_leg_left_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="leg" pos="-0.038000 0.000000 -0.023340">
-<inertial pos="-0.000000 0.005632 -0.030618" mass="0.03727" fullinertia="1.4141716e-05 1.2701712e-05 4.0115347e-06 -3.3360159e-14 8.0239724e-15 1.5490851e-06"/>
+<inertial pos="-0.000000 0.007683 -0.027816" mass="0.03487" fullinertia="1.3274188e-05 1.2135362e-05 3.8147553e-06 -1.6018658e-14 -2.5867725e-14 2.3822661e-06"/>
 <joint name="left_knee" axis="0 -1 0" range="-1.5700 1.1000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="leg" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="leg_collision" type="mesh" mesh="leg_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="ankle_left" pos="0.000000 0.026500 -0.047880">
-<inertial pos="0.006246 -0.015391 -0.016399" mass="0.03854" fullinertia="9.2370005e-06 1.2282771e-05 1.6547016e-05 1.487939e-07 4.8031429e-07 -2.6382167e-07"/>
-<joint name="left_ankle" axis="0 1 0" range="-1.5350 1.5350" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="ankle_left" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<inertial pos="0.006179 -0.016140 -0.016101" mass="0.03688" fullinertia="8.6979503e-06 1.1714926e-05 1.5228419e-05 2.5187453e-08 5.5898002e-07 -1.015417e-07"/>
+<joint name="left_ankle" axis="0 1 0" range="-1.5000 1.5350" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<geom type="mesh" mesh="ankle_left_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_left_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_left_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_left_e8642a" rgba="0.910 0.392 0.165 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_left_f2b233" rgba="0.949 0.698 0.200 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="left_foot_hull_collision" type="mesh" mesh="ankle_left_hull" rgba="1 1 0 0" group="3" mass="0" contype="2" conaffinity="2"/>
 <geom name="left_foot_collision" type="box" pos="0.00672 -0.01625 -0.02700" size="0.01906 0.01680 0.00200" rgba="1 1 0 0" group="3" friction="1" contype="3" conaffinity="2"/>
 <site name="left_foot" pos="0.00672 -0.01625 -0.02900"/>
@@ -41,59 +69,104 @@
 </body>
 </body>
 </body>
-<body name="neck" pos="0.027400 0.013000 -0.022880">
-<inertial pos="0.000000 -0.014394 0.024535" mass="0.04963" fullinertia="1.8294745e-05 1.7885772e-05 5.3699183e-06 -2.4762233e-14 5.0276272e-14 -3.0691485e-07"/>
-<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 0.1500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="neck" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<body name="neck" pos="0.022400 0.013000 -0.013380">
+<inertial pos="-0.000000 -0.014500 0.024750" mass="0.04317" fullinertia="1.7688832e-05 1.6948623e-05 4.3167646e-06 -1.0362533e-20 2.1954478e-20 -3.2282778e-07"/>
+<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 1.0500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<geom type="mesh" mesh="neck_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="neck_collision" type="mesh" mesh="neck_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="neck_pitch" pos="0.000000 -0.029000 0.049500">
-<inertial pos="-0.000606 0.015845 0.024255" mass="0.04021" fullinertia="1.3297795e-05 1.2867969e-05 8.0364105e-06 3.7806134e-09 -2.9589714e-08 -1.6893474e-07"/>
+<inertial pos="-0.005881 0.015868 0.022558" mass="0.04109" fullinertia="1.2664446e-05 1.3060605e-05 8.9579286e-06 4.1180512e-08 1.3674869e-06 -1.4872556e-07"/>
 <joint name="head_pitch" axis="0 1 0" range="-1.6000 1.6000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="neck_pitch" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_pitch_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_pitch_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_pitch_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_pitch_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="neck_pitch_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="neck_pitch_collision" type="mesh" mesh="neck_pitch_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="yaw_roll_motion" pos="0.007500 0.016000 0.048600">
-<inertial pos="-0.000235 -0.007527 0.010427" mass="0.03827" fullinertia="6.8871394e-06 5.7706294e-06 7.4288575e-06 -1.3240493e-08 3.7949968e-08 4.7949463e-07"/>
+<body name="yaw_roll_motion" pos="0.000000 0.016000 0.046000">
+<inertial pos="0.001568 -0.008164 0.009299" mass="0.03119" fullinertia="5.5459494e-06 3.7693715e-06 5.0835408e-06 9.8770226e-08 -1.5309913e-07 5.4897532e-07"/>
 <joint name="head_yaw" axis="0 0 1" range="-2.5000 2.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="yaw_roll_motion" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw_roll_motion_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw_roll_motion_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw_roll_motion_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw_roll_motion_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="yaw_roll_motion_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="yaw_roll_motion_collision" type="mesh" mesh="yaw_roll_motion_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="jaw_soft" pos="0.017000 0.000000 0.013000">
-<inertial pos="0.006885 0.000275 0.000410" mass="0.23990" fullinertia="0.00023858632 0.00041340307 0.00052965498 2.3920411e-05 -2.8065788e-05 -3.4502531e-07"/>
+<inertial pos="0.006262 0.000212 -0.000515" mass="0.23327" fullinertia="0.00024006968 0.00041899052 0.00054066471 2.0199643e-05 -3.1391696e-05 -1.0065732e-06"/>
 <joint name="head_roll" axis="-1 0 0" range="-0.2400 0.2400" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="jaw_soft" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_0a1420" rgba="0.039 0.078 0.125 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_1f5a36" rgba="0.122 0.353 0.212 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_9a9c98" rgba="0.604 0.612 0.596 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_c9a24a" rgba="0.788 0.635 0.290 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_e8642a" rgba="0.910 0.392 0.165 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_ecebe6" rgba="0.925 0.922 0.902 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_f0a030" rgba="0.941 0.627 0.188 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_soft_f7ae55" rgba="0.969 0.682 0.333 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="jaw_soft_collision" type="mesh" mesh="jaw_soft_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="jaw" pos="-0.014000 0.043212 -0.003000">
-<inertial pos="0.038001 -0.040988 -0.019964" mass="0.03278" fullinertia="4.9998976e-05 2.9366476e-05 7.2912678e-05 2.7714851e-06 5.8218316e-06 -1.4559761e-06"/>
-<geom type="mesh" mesh="jaw" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<inertial pos="0.038255 -0.040669 -0.020097" mass="0.03257" fullinertia="4.9412675e-05 2.8961167e-05 7.2097514e-05 3.1681736e-06 5.6557691e-06 -1.6643711e-06"/>
+<geom type="mesh" mesh="jaw_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_e8642a" rgba="0.910 0.392 0.165 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="jaw_f7ae55" rgba="0.969 0.682 0.333 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="jaw_collision" type="mesh" mesh="jaw_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 </body>
 </body>
 </body>
 </body>
 </body>
-<body name="bearing_roll" pos="0.000000 -0.013440 -0.051880">
-<inertial pos="-0.000131 -0.002333 -0.020102" mass="0.03870" fullinertia="9.5142518e-06 1.0859531e-05 4.7086915e-06 -2.72002e-08 7.3122859e-08 -5.1358127e-07"/>
+<body name="bearing_roll" pos="0.000000 -0.015940 -0.051880">
+<inertial pos="-0.000322 0.000000 -0.016603" mass="0.03183" fullinertia="7.2939622e-06 7.7697644e-06 2.9390232e-06 6.323479e-16 -1.0552646e-07 -2.7759031e-14"/>
 <joint name="right_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="bearing_roll" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="bearing_roll_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="bearing_roll_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="bearing_roll_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="bearing_roll_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="bearing_roll_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="bearing_roll_collision" type="mesh" mesh="bearing_roll_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="hip_l_2" pos="0.017000 -0.002500 -0.017900">
-<inertial pos="-0.007791 -0.010795 0.000000" mass="0.01334" fullinertia="1.7576189e-06 1.4630534e-06 2.4987264e-06 -8.5154013e-07 5.776944e-14 -9.9067699e-15"/>
+<body name="hip_l_2" pos="0.014500 0.000000 -0.017900">
+<inertial pos="-0.014764 -0.011281 -0.000000" mass="0.01692" fullinertia="2.0622001e-06 3.2351309e-06 4.4010993e-06 2.4491583e-08 1.7052841e-15 -5.9304524e-14"/>
 <joint name="right_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="hip_l_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_2_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_2_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="hip_l_2_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="hip_l_2_collision" type="mesh" mesh="hip_l_2_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
-<body name="upper_leg_right" pos="-0.017000 -0.019100 0.000000">
-<inertial pos="-0.023797 -0.019851 -0.006780" mass="0.08439" fullinertia="2.4953607e-05 4.4334787e-05 3.8972648e-05 2.8946766e-08 -8.8441811e-06 -1.0979465e-07"/>
-<joint name="right_hip_pitch" axis="0 -1 0" range="-0.4300 1.5700" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="upper_leg_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<body name="upper_leg_right" pos="-0.014500 -0.019100 0.000000">
+<inertial pos="-0.023690 -0.019548 -0.006881" mass="0.08594" fullinertia="2.5781286e-05 4.5477206e-05 4.0150818e-05 -1.4045298e-07 -9.1806959e-06 4.3379538e-08"/>
+<joint name="right_hip_pitch" axis="0 -1 0" range="-0.9500 1.5700" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<geom type="mesh" mesh="upper_leg_right_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_right_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_right_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_right_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_right_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="upper_leg_right_ecebe6" rgba="0.925 0.922 0.902 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="upper_leg_right_collision" type="mesh" mesh="upper_leg_right_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="leg_2" pos="-0.038000 0.000000 -0.023340">
-<inertial pos="-0.000000 -0.005632 -0.030618" mass="0.03727" fullinertia="1.4141716e-05 1.2701712e-05 4.0115347e-06 3.3360154e-14 8.02398e-15 -1.5490851e-06"/>
+<inertial pos="-0.000000 -0.007683 -0.027816" mass="0.03487" fullinertia="1.3274188e-05 1.2135362e-05 3.8147553e-06 1.6018662e-14 -2.5867721e-14 -2.3822661e-06"/>
 <joint name="right_knee" axis="0 1 0" range="-1.1000 1.5700" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="leg_2" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_2_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_2_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_2_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_2_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="leg_2_d9d4c5" rgba="0.851 0.831 0.773 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="leg_2_collision" type="mesh" mesh="leg_2_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="ankle_right" pos="0.000000 -0.026500 -0.047880">
-<inertial pos="0.006246 0.015391 -0.016399" mass="0.03854" fullinertia="9.2370008e-06 1.228277e-05 1.6547016e-05 -1.4871864e-07 4.8031489e-07 2.6382166e-07"/>
-<joint name="right_ankle" axis="0 -1 0" range="-1.5350 1.5350" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
-<geom type="mesh" mesh="ankle_right" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<inertial pos="0.006179 0.016140 -0.016101" mass="0.03688" fullinertia="8.6979504e-06 1.1714927e-05 1.5228419e-05 -2.5116626e-08 5.5898008e-07 1.0154174e-07"/>
+<joint name="right_ankle" axis="0 -1 0" range="-1.5350 1.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<geom type="mesh" mesh="ankle_right_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_right_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_right_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_right_e8642a" rgba="0.910 0.392 0.165 1" contype="0" conaffinity="0" group="2" mass="0"/>
+<geom type="mesh" mesh="ankle_right_f2b233" rgba="0.949 0.698 0.200 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="right_foot_hull_collision" type="mesh" mesh="ankle_right_hull" rgba="1 1 0 0" group="3" mass="0" contype="2" conaffinity="2"/>
 <geom name="right_foot_collision" type="box" pos="0.00672 0.01625 -0.02700" size="0.01906 0.01680 0.00200" rgba="1 1 0 0" group="3" friction="1" contype="3" conaffinity="2"/>
 <site name="right_foot" pos="0.00672 0.01625 -0.02900"/>

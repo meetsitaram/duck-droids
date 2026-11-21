@@ -1,0 +1,17 @@
+{
+ "left_hip_yaw": -0.18101,
+ "left_hip_roll": -0.04909,
+ "left_hip_pitch": 0.01994,
+ "left_knee": 1.62142,
+ "left_ankle": 1.60301,
+ "neck_pitch": 0.69489,
+ "head_pitch": 0.68416,
+ "head_yaw": 0.06903,
+ "head_roll": -0.01687,
+ "right_hip_yaw": 0.09664,
+ "right_hip_roll": -0.31293,
+ "right_hip_pitch": 0.10431,
+ "right_knee": -1.43887,
+ "right_ankle": -1.49717,
+ "beak": 0.0675
+}

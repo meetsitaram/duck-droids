@@ -56,6 +56,30 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 
 **Fix:** calibrate with the duck posed at zero, legs straight, head level, beak shut: `python -m duck.calibrate` reads each servo and writes its centre, and moves nothing. Then check each joint's direction, on the stand or against the digital twin.
 
+## Standing up (pi/stand_test.py)
+
+### The knees trail 12 degrees and the supply sags under 4.6 V (2026-11-21)
+
+**Seen:** with a hand only steadying it, the knees took the duck's weight: about 450 mA each at gain 800, trailing 12 degrees, and the 5 V bench supply fell from 5.1 to 4.5 V at 1.2 A in all. At gain 1500 with a 12 s rise the knees stayed within about 3 degrees and the supply at 4.8 V, at 0.6 A; with more of the weight on them, 0.7 A a knee and 1.5 A in all, the supply fell to 4.3 V.
+
+**Fix:** a supply that holds 5-6 V at 5 A or more, on short thick leads, or the battery through a 6 V regulator, which the robot needs anyway. Meanwhile a slow rise and a hand under the body.
+
+### A stop dropped the duck from half standing (2026-11-21)
+
+**Seen:** the supply sagged under the stop's 4.6 V; the test held 15 s and then turned the torque off with the duck half up. It fell onto the table, undamaged.
+
+**Fix:** a stop now eases the duck back down to the pose it started in (sitting) over `--abort-lower` seconds, and only then turns the torque off. Lowering takes less current than holding, so a sagging supply can still do it.
+
+### It tips back, or forward, while rising (2026-11-21)
+
+**Seen:** the real duck's battery is under the head, in front of the neck, and its bus board on the back of the head, not as in the model (battery in the body). The model's balance therefore doesn't match: its "balanced" head pose tipped the real duck forward, and the hand-found head pose a little back. Nothing in the test can tell: it uses no IMU, and a falling duck doesn't load its servos, so the log looks normal.
+
+**Fix for now:** set the neck and head by hand where the duck balances (`--keep-head`), raise the neck a little (`--neck-offset -10`, the weight forward), keep the face straight ahead (`--face-forward`), and move the head only side to side or a little, slowly, front to back. Later: put the real layout into the model, and run the test from the Pi, where the IMU is.
+
+### The neck works hardest standing (2026-11-21)
+
+**Seen:** with the battery under the head and the neck raised, the neck held 200 mA standing, a third of its 600 mA cap, and the left knee about five times the right (118 against 24 mA): the weight sits a little left. Warm after long holds: watch its temperature.
+
 ## Power
 
 ### An XL330 on the 2S battery goes limp (found in the manual, 2026-11-20)
