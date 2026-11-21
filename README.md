@@ -27,7 +27,7 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 ### First powered test
 
-<img src="docs/images/real/dynamixel/first_stand.gif" width="270" alt="The real all-Dynamixel duck rising from sitting to standing, turning its head side to side, nodding, opening and shutting its beak, and sitting back down, with its MuJoCo twin on the screen behind it doing the same">
+<img src="docs/images/real/dynamixel/first_stand.jpg" width="270" alt="The first all-Dynamixel duck built, standing on its own servos: orange printed frame and feet, black XL330 servos, white thigh covers, its eye and face plate on the head"> <img src="docs/images/real/dynamixel/first_stand.gif" width="270" alt="The real all-Dynamixel duck rising from sitting to standing, turning its head side to side, nodding, opening and shutting its beak, and sitting back down, with its MuJoCo twin on the screen behind it doing the same">
 
 The first one built, standing up from sitting under its own servos, then turning its head, nodding and working its beak before it sits back down ([MP4, 38 s](docs/images/real/dynamixel/first_stand.mp4); the GIF runs at 2.5 times speed). Behind it, its digital twin in MuJoCo follows the servos' own readings. The motion is scripted joint angles, not a trained policy, and a hand steadies it: nothing balances it yet. Made with `pi/stand_test.py`: see the [Pi code](pi/README.md).
 
