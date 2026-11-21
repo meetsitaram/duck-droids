@@ -12,6 +12,7 @@
   MATE    two exported parts of a link never share space, nor a part and a bought part: what a printer makes has to go together. Horn seats excepted (drawn 0.5 mm into their plates)
   HEADS   no screw's head stands inside a servo or a board, once fitted
   SKIN    a cover has holes only for its own screws: nothing else drills through what shows
+  GLUE    a glued part has a seat, and on one printed part only (or on other glued parts): glue across 2 parts joins them for good
   NECK    no section under 12 mm2 is all that holds 150 mm3 or more to the rest of the part, holes and counterbores cut: it snaps there. Fit, not a load case
 
 A part's overhangs are found from its faces, not by slicing. ORIENT's area counts bridges too; SUPPORT leaves them out.
@@ -35,6 +36,7 @@ MIN_HOLE = 0.0015                                  # m
 OVERHANG = np.cos(np.radians(45))
 SUPPORT_WARN = 250.0                               # mm2
 NECK_AREA, NECK_CARRY = 12.0, 150.0                # mm2, mm3 (2026-11-13: the head yaw bracket's arm, 5.5 x 2.5 mm less a counterbore at its root, broke off printed)
+GLUE_GAP, GLUE_AREA = 0.2, 25.0                    # mm, mm2: closer than this over more than this is a glue joint
 SUPPORT_LIMIT = 300.0                              # mm2 of real support (bridges and the first 2 mm left out)
 NEAR_BED, BRIDGE_W = 2.0, 12.0                     # mm
 # printed with supports in the 2026-11-09 batch, before SUPPORT failed: redesign before they are printed again
@@ -153,7 +155,7 @@ def necks(tm, pitch=0.5, area_max=NECK_AREA, carry_min=NECK_CARRY, merge=1.5):
 
 
 def best_orientation(tm):
-    """The least real support (SUPPORT); a low print breaks a tie; a part that wouldn't stay down loses."""
+    """The least real support (SUPPORT); a low print breaks a tie, then the most on the bed; a part that wouldn't stay down loses."""
     opts = []
     for _, _, T in orientations():
         o = score(tm, T)
@@ -162,7 +164,7 @@ def best_orientation(tm):
         o['support'] = real_support(m)[0]
         opts.append(o)
     fine = [o for o in opts if o['contact'] >= MIN_CONTACT] or opts
-    return min(fine, key=lambda o: (round(o['support'] / 50), o['height']))
+    return min(fine, key=lambda o: (round(o['support'] / 50), round(o['height']), -o['contact']))   # (and the most on the bed: the face, 3.5 mm either way up, lay on its sensor pad, 81 mm2, 2026-11-13)
 
 
 def check(rep):
@@ -181,6 +183,36 @@ def check(rep):
         solids[part] = m
         check_part(B, part, m, E, rep)
     check_mate(B, solids, rep)
+    check_glue(B, solids, A, rep)
+
+
+def check_glue(B, solids, A, rep):
+    """A glued part sits on one printed part, or on other glued parts: glue across 2 parts joins them for good.
+    (2026-11-13: the face's rim lay on the head frame's floor and in the hood's arch, and the hood has to come off. Nothing looked: glued parts were exempt from HOLD.)"""
+    glued = [p for p in (A.GLUED | set(B.spec.get('glued', []))) if p in solids]
+    def mesh(part):
+        m = solids[part].to_mesh()
+        return trimesh.Trimesh(np.asarray(m.vert_properties[:, :3], float) * 1000, np.asarray(m.tri_verts, int))
+    links = {n: {B.idx[g][0] for g in p['geoms']} for n, p in B.parts.items()}
+    cache = {}
+    for part in sorted(glued):
+        tm = mesh(part)
+        pts, _ = trimesh.sample.sample_surface(tm, 6000, seed=1)
+        each = tm.area / len(pts)
+        on = {}
+        for other in solids:
+            if other == part or not links[part] & links[other]:
+                continue
+            o = cache.setdefault(other, mesh(other))
+            if (o.bounds[0] > tm.bounds[1] + 0.5).any() or (o.bounds[1] < tm.bounds[0] - 0.5).any():
+                continue
+            d = trimesh.proximity.closest_point(o, pts)[1]
+            area = float((d < GLUE_GAP).sum() * each)
+            if area >= GLUE_AREA:
+                on[other] = area
+        firm = [o for o in on if o not in glued]
+        what = ', '.join(f'{o} {a_:.0f} mm2' for o, a_ in sorted(on.items(), key=lambda kv: -kv[1]))
+        rep.add('GLUE', part, len(firm) <= 1 and bool(on), f'on {what}' if on else 'touches nothing within 0.2 mm: no seat for the glue')
 
 
 LIMIT_MATE = 0.003e-6                              # 3 mm3 in a part: rounding where two curved skins pass

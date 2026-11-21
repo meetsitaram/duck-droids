@@ -4957,18 +4957,6 @@
  },
  {
   "group": "PATH",
-  "item": "head: hood",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
-  "item": "head: mouth roof",
-  "status": "PASS",
-  "detail": ""
- },
- {
-  "group": "PATH",
   "item": "head: camera",
   "status": "PASS",
   "detail": ""
@@ -4988,6 +4976,66 @@
  {
   "group": "PATH",
   "item": "head: eye iris",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "HELD",
+  "item": "face tab screw R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "THREAD",
+  "item": "face tab screw R",
+  "status": "PASS",
+  "detail": "M2 x 6: bites 2.4 mm"
+ },
+ {
+  "group": "ACCESS",
+  "item": "face tab screw R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "DRIVER",
+  "item": "face tab screw R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: hood",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "PATH",
+  "item": "head: mouth roof",
   "status": "PASS",
   "detail": ""
  },
@@ -5235,7 +5283,7 @@
   "group": "HOLD",
   "item": "head frame",
   "status": "PASS",
-  "detail": "25 screws"
+  "detail": "27 screws"
  },
  {
   "group": "HOLD",
@@ -5271,7 +5319,7 @@
   "group": "HOLD",
   "item": "face",
   "status": "PASS",
-  "detail": "glued"
+  "detail": "2 screws"
  },
  {
   "group": "HOLD",
@@ -6979,6 +7027,18 @@
  },
  {
   "group": "EDGE",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
+  "item": "face tab screw R",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "EDGE",
   "item": "hood rear screw 0",
   "status": "PASS",
   "detail": ""
@@ -8174,6 +8234,18 @@
  {
   "group": "SPLIT",
   "item": "bus board rear screw 3",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
+  "item": "face tab screw L",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "group": "SPLIT",
+  "item": "face tab screw R",
   "status": "PASS",
   "detail": ""
  },

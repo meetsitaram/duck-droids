@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1498 checks: 1498 pass, 0 warn, **0 fail**
+1510 checks: 1510 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -82,12 +82,12 @@ From tools/assembly.py
 | PASS | head: Pi Zero 2 W |  |
 | PASS | head: head 5 V regulator |  |
 | PASS | head: @jawbench |  |
-| PASS | head: hood |  |
-| PASS | head: mouth roof |  |
 | PASS | head: camera |  |
 | PASS | head: face |  |
 | PASS | head: eye ring |  |
 | PASS | head: eye iris |  |
+| PASS | head: hood |  |
+| PASS | head: mouth roof |  |
 | PASS | head: hinge sleeve |  |
 
 ## HELD
@@ -282,6 +282,8 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
 | PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 
@@ -477,6 +479,8 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 | M2 x 6: bites 2.9 mm |
 | PASS | beak fork screw horn 2 | M2 x 6: bites 2.9 mm |
 | PASS | beak fork screw horn 3 | M2 x 6: bites 2.9 mm |
+| PASS | face tab screw L | M2 x 6: bites 2.4 mm |
+| PASS | face tab screw R | M2 x 6: bites 2.4 mm |
 | PASS | hood rear screw 0 | M2 x 8: bites 4.0 mm |
 | PASS | hood rear screw 1 | M2 x 8: bites 4.0 mm |
 | PASS | R hinge screw | M3 x 12: bites 5.4 mm |
@@ -673,6 +677,8 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
 | PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | R hinge screw |  |
@@ -869,6 +875,8 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
 | PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | R hinge screw |  |
@@ -905,13 +913,13 @@ From tools/assembly.py
 | PASS | head yaw bracket | 8 screws |
 | PASS | head yaw spacer | 4 screws |
 | PASS | head lower shell | 6 screws |
-| PASS | head frame | 25 screws |
+| PASS | head frame | 27 screws |
 | PASS | hood | 3 screws |
 | PASS | hinge sleeve | round on its screw |
 | PASS | jaw | turns on its screws |
 | PASS | jaw soft insert | glued |
 | PASS | mouth roof | glued |
-| PASS | face | glued |
+| PASS | face | 2 screws |
 | PASS | eye ring | glued |
 | PASS | eye iris | glued |
 
@@ -1221,6 +1229,8 @@ From tools/assembly.py
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
 | PASS | bus board rear screw 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | head roll fork screw horn 0 |  |
@@ -1436,6 +1446,8 @@ From tools/assembly.py
 | PASS | bus board rear screw 2 |  |
 | PASS | bus board top screw 3 |  |
 | PASS | bus board rear screw 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | head roll fork screw horn 0 |  |

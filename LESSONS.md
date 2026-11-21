@@ -429,3 +429,17 @@ Printed, one of the 2 arms that hold the head roll servo broke off at its root. 
 | `buildable.py` WALL voxelizes a part's shapes without its screw holes, and LOAD covers the leg's sections only | Judge the part as exported, with its holes. A sunk screw head takes most of a thin wall: widen the wall round it |
 | The arms stood free, joined only at the floor, and the upper one printed as a 20 mm cantilever over air | Walls that hold a servo join each other: 2 arms and an end wall, a cup, not 2 fingers |
 | The horn's seat boss stood 2 mm under the plate, so the plate could not lie on the bed | A boss under a flat plate is a loose spacer, as the head roll's: then the plate is the print's first layer |
+
+## The face that was glued to two parts (2026-11-13)
+
+The user asked whether the face was connected to anything. It was held by glue alone on its 2 mm rim: the bottom edge on the head frame's floor, the top 0.6 mm into the hood's wall, the sides 0.6 mm clear, nothing behind it. Glued, it would have joined the hood to the frame, and the hood comes off often, for the electronics. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| Glued parts were exempt from HOLD, and nothing else asked what they sat on | `printable.py` GLUE: a glued part has a seat, and on one printed part only, or on other glued parts |
+| The face is a decal, so its 0.6 mm overlap with the hood's wall never counted as a clash | A part that is printed is checked as a part, whatever role its shape has in the picture |
+| The same check then found the soft mouth roof, glued under the floor, with its edge on the hood's band | Run a new check on every part, not only the one that prompted it |
+| The fix (the user's): glue the face to the hood, on a ledge behind it, and let its bottom edge stand loose in a groove in the floor, as the hood comes straight down | Ask which part a cover belongs to before fixing it: what comes off together is glued together |
+| A loose sheet, 79 x 5 x 0.5 mm with no volume, hung across the hood's front in the spec's STL and showed in the slicer as a jagged strip. PIECES counts pieces by volume and passed it | `export_prints.py` drops pieces under 0.5 mm3. Look at the print file in a slicer, not only its numbers |
+| The glued-to-the-hood face lasted a day. The user then asked for 2 tabs on the face's back, screwed down into the floor, as far out as they go, clear of the Pi's pins: the camera and its ribbon then stay on the frame when the hood lifts off | A cover that carries a wired part belongs to the part the wires go to. Screws, not glue, for anything that may have to come off |
+| With tabs on its back the face had to print on its front, and all it lay on there was the sensor pad, 81 mm2 and 1.5 mm proud. ORIENT passed it: the overhang was low and flat | A raised decal on a part's only flat side decides how it prints. The pad is a 0.4 mm recess now |

@@ -10,7 +10,7 @@ See it whole first: [the 30-second reveal](../images/assembly/dynamixel/reveal_3
 ## 0. Before you start
 
 1. **Print one joint first** ([prints/dynamixel/README.md](../../prints/dynamixel/README.md)), then everything. None of it has been test printed yet.
-2. **Set each servo's ID on its own**, before any are chained: Dynamixel 1-15. Label each servo.
+2. **Set each servo's ID on its own**, before any are chained: Dynamixel 1-15, from the bottom up, as in the picture in [WIRING.md](WIRING.md): `python -m duck.set_id --all` in `pi/`, the board on 5 V. Label each servo.
 3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint's range will be off-centre.
 4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.
 
@@ -214,7 +214,7 @@ Then the same for the right side, mirrored.
 
 > 🔌 The bus board's 2 sockets feed the head chain and the legs. Plug in its leads, and solder the 3 UART wires to its header, before the board goes on. Solder the Pi's 5 wires before it goes on its plate.
 
-**Screws for this section:** 24 x M2 x 6 mm, 2 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 12 mm
+**Screws for this section:** 26 x M2 x 6 mm, 2 x M2 x 8 mm, 4 x M2.5 x 5 mm, 1 x M3 x 12 mm
 
 1. The head fork down onto the head pitch servo
 2. 4 screws on each horn *(8 x M2 x 6 mm, small Phillips)*
@@ -224,9 +224,9 @@ Then the same for the right side, mirrored.
 6. The Pi onto its plate from the front, its 5 wires soldered first: 5 V and ground on pins 2 and 6, GPIO 14 and 15 and ground on pins 8, 10 and 14. Its microSD card in, 4 screws, the camera ribbon out of its socket *(4 x M2 x 6 mm, small Phillips)*
 7. The 5 V USB converter on edge on the base beside the Pi, foam tape: its input to the green terminals, its USB socket's 5 V and ground pins soldered to the Pi's 2 wires from pins 2 and 6. Measure 5 V first
 8. The jaw, up from below, its tab sliding onto the horn, 4 screws *(4 x M2 x 6 mm, small Phillips)*
-9. The hood, down between the jaw's tabs
-10. Open the jaw and glue in the soft mouth roof through the gap
-11. The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris
+9. The face down into the groove in the floor, the camera taped to its back and its ribbon to the Pi: 2 screws down through its tabs into the floor. Then glue the eye ring and its iris onto the face *(2 x M2 x 6 mm, small Phillips)*
+10. The hood down over the face, between the jaw's tabs. It touches the face nowhere
+11. Open the jaw and glue in the soft mouth roof through the gap
 12. 2 screws up through the band into the hood's back *(2 x M2 x 8 mm, small Phillips)*
 13. The hinge sleeve in through the far tab and the hood, its flange over the tab, and the hinge screw through it into the frame: the tab turns on the sleeve *(1 x M3 x 12 mm, 2.5 mm hex)*
 

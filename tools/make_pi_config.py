@@ -2,7 +2,7 @@
 
   MILLI_RECIPE=dynamixel python tools/make_pi_config.py
 
-Writes pi/config/dynamixel.json, and pi/sim/model/ through tools/make_rl_model.py --contact: the whole body collides, as a real one does when it falls. Servo ids: left leg 1-5, right leg 6-10, neck to beak 11-15, hip to ankle in each leg.
+Writes pi/config/dynamixel.json, and pi/sim/model/ through tools/make_rl_model.py --contact: the whole body collides, as a real one does when it falls. Servo ids, in the order they're set: right leg 1-5, left leg 6-10, each from the ankle up, then neck to beak 11-15.
 Directions start at +1 and centres at mid-range: python -m duck.calibrate measures the centres, and a real robot may need a direction flipped.
 """
 import json
@@ -21,7 +21,7 @@ joints = re.findall(r'<joint name="(\w+)" axis="[^"]+" range="([-\d.]+) ([-\d.]+
 order = [j[0] for j in joints]
 assert len(order) == 14, order
 ids = {}
-for k, n in enumerate(('left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'beak')):
+for k, n in enumerate(('right_ankle', 'right_knee', 'right_hip_pitch', 'right_hip_roll', 'right_hip_yaw', 'left_ankle', 'left_knee', 'left_hip_pitch', 'left_hip_roll', 'left_hip_yaw', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'beak')):
     ids[n] = k + 1
 servo = next(iter(home['servos'].values()))
 cfg = {

@@ -69,7 +69,7 @@
   "group": "printable",
   "item": "largest part",
   "status": "PASS",
-  "detail": "226 printed parts; largest head: 150 mm, on a 256 mm bed"
+  "detail": "227 printed parts; largest head: 150 mm, on a 256 mm bed"
  },
  {
   "group": "axis",
@@ -740,6 +740,18 @@
  {
   "group": "skin",
   "item": "Waveshare bus board",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "face tab L",
+  "status": "PASS",
+  "detail": "0.00 % outside the skin"
+ },
+ {
+  "group": "skin",
+  "item": "face tab R",
   "status": "PASS",
   "detail": "0.00 % outside the skin"
  },

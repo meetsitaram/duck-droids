@@ -34,19 +34,29 @@ cd pi && python run.py --port socket://127.0.0.1:9000 --imu 127.0.0.1:9001 --pol
 
 **What this doesn't tell you:** the Pi Zero's own speed. On a PC a tick takes about 2 ms of the 20 ms budget, with a stand-in network that's far smaller than a real policy. Time a real policy on the Pi itself: `run.py` prints the ticks that ran late.
 
-## Set up the Pi
+## Set up the Pi, or a PC
 
-Raspberry Pi OS Lite, 64-bit. Copy `pi/` to `/home/pi/duck`, then:
+One script for every machine, in `pi/.venv`. On the Pi (Raspberry Pi OS Lite, 64-bit, `pi/` copied to `/home/pi/duck`) it runs `setup_pi.sh`: the UART, I2C, Bluetooth, and every package. On a PC (Windows in Git Bash, Linux, macOS) it installs the servo tools from `requirements-pc.txt`, and `--sim` adds the simulator:
 
 ```bash
-bash setup_pi.sh
+bash setup.sh
 ```
+
+Then run the code with the venv's Python: `.venv/bin/python` on the Pi and Linux, `.venv/Scripts/python.exe` on Windows.
 
 ## First run on the robot
 
 Lift the duck on a stand, away from its joint limits, before any of this. Nothing has been tried on real servos.
 
-1. **Set each servo's id and speed, one servo at a time:** with ROBOTIS's Dynamixel Wizard, ids as in the table below, baud rate 1 Mbps (a new XL330 comes at 57600), and the Waveshare board's jumpers at B.
+1. **Set each servo's id and speed, one servo at a time,** before any are chained: a new XL330 is id 1 at 57600, so two together answer over each other. From a PC, through the Waveshare board's USB-C with its jumpers at B and 5 V on its terminals (the port is found by itself), or from the Pi with them at A and `--port /dev/serial0`. After `bash setup.sh`:
+
+```bash
+python -m duck.set_id --all
+```
+
+It goes right leg, left leg, neck, head, each from the bottom up, asking for one servo at a time. It writes the id from the table below and 1 Mbps, then turns the horn a little each way: label the servo. It refuses past 6 V, the XL330's maximum. `--start left_ankle` carries on from a joint, `--find` shows the servo plugged in without changing it, and `--scan` lists every servo on a chain, with any missing. Each servo is reset to factory settings, keeping its new id and 1 Mbps (many arrive set up for another robot), and what it is and how it tested go into `config/servos.json`, by id: model, firmware, the settings it came with, its middle position as set by hand, the nudge, and any range or load test. `--nudge ID` repeats only the nudge, 10 degrees or less inside the joint's limits, and changes no setting. No big moves: a servo is never sent to mid-range. ROBOTIS's Dynamixel Wizard does the same by hand.
+
+All 15 were set and checked on one bus on 2026-11-21: see `config/servos.json` and [docs/dynamixel/TROUBLESHOOTING.md](../docs/dynamixel/TROUBLESHOOTING.md). The two hip yaws have their middles at the servo's 0/4095 wrap: refit their horns near 2048 before they're driven. Plug the board's USB in before its 5 V: problems so far are in [docs/dynamixel/TROUBLESHOOTING.md](../docs/dynamixel/TROUBLESHOOTING.md).
 2. **Measure the centres,** with the duck posed at zero by hand: legs straight, head level, beak shut:
 
 ```bash
@@ -63,8 +73,8 @@ python run.py --policy wave --no-fall --seconds 20
 
 | Servo ids | Joints |
 |---|---|
-| 1-5 | left hip yaw, hip roll, hip pitch, knee, ankle |
-| 6-10 | right hip yaw, hip roll, hip pitch, knee, ankle |
+| 1-5 | right ankle, knee, hip pitch, hip roll, hip yaw |
+| 6-10 | left ankle, knee, hip pitch, hip roll, hip yaw |
 | 11-15 | neck pitch, head pitch, head yaw, head roll, beak |
 
 ## What the policy sees

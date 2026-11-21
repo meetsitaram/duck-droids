@@ -171,7 +171,7 @@
   "group": "POINTS",
   "item": "head frame",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 89 offline, 87 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 89 offline, 88 in Fusion"
  },
  {
   "group": "POINTS",
@@ -201,13 +201,13 @@
   "group": "POINTS",
   "item": "mouth roof",
   "status": "PASS",
-  "detail": "0.2 % of 1500 points disagree; solid in 1445 offline, 1448 in Fusion"
+  "detail": "0.0 % of 1500 points disagree; solid in 1448 offline, 1448 in Fusion"
  },
  {
   "group": "POINTS",
   "item": "face",
   "status": "PASS",
-  "detail": "0.1 % of 1500 points disagree; solid in 697 offline, 698 in Fusion"
+  "detail": "0.1 % of 1500 points disagree; solid in 311 offline, 312 in Fusion"
  },
  {
   "group": "POINTS",

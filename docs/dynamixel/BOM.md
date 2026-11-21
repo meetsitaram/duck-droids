@@ -7,7 +7,7 @@
 | Product | All-Dynamixel duck, biped, 15 servos |
 | Height, mass | 0.295 m, 0.94 kg as modelled |
 | Build quantity | Quantities are for 1 robot |
-| Fabricated parts | 37 printed parts, 408 g PLA and 52 g TPU 95A |
+| Fabricated parts | 37 printed parts, 408 g PLA and 51 g TPU 95A |
 | Status | Prototype: no unit built, no part test printed |
 | Prices | USD, as listed 2026-11-02 to 2026-11-06, before tax and shipping. Confirm before ordering |
 | Related | [Print files](../../prints/dynamixel/README.md), [wiring](WIRING.md), [assembly](ASSEMBLY.md) |
@@ -51,7 +51,7 @@ Every line is required unless it starts with **OPTIONAL**. Optional lines show t
 
 | Item | Part | Maker / part number | Specification | Qty per robot | Order unit | Order qty | Unit price | Line price | Source |
 |---|---|---|---|---|---|---|---|---|---|
-| 5 | Screw, servo mounting | generic | M2 x 6 mm | 82 | in the servo box | - | - | - | 90 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+6mm+self+tapping+pan+head+screw) |
+| 5 | Screw, servo mounting | generic | M2 x 6 mm | 84 | in the servo box | - | - | - | 90 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+6mm+self+tapping+pan+head+screw) |
 | 6 | Screw, servo mounting | generic | M2 x 8 mm | 96 | in the servo box | - | - | - | 150 come with the servos<br>[Search Amazon](https://www.amazon.com/s?k=M2+x+8mm+self+tapping+pan+head+screw) |
 | 7 | Screw, bus board, machine thread | generic | M2.5 x 5 mm, pan head, Phillips, black oxide 18-8 stainless, DIN 7985 | 8 | pack of 100 | 1 | $5.59 | $5.59 | [Zoro G816462679](https://www.zoro.com/zoro-select-m25x045-x-5-mm-phillips-pan-machine-screw-black-oxide-stainless-steel-100-pk-31-bpm-25-5/i/G816462679/): $5.59 by a search result; the page refuses automated reading, so confirm it<br>[Search Amazon](https://www.amazon.com/s?k=M2.5+x+5mm+pan+head+machine+screw+black+oxide) |
 | 8 | **OPTIONAL:** Spare hex standoffs, bus board: 4 come with the Waveshare board | uxcell | brass, M2.5, female-female, 8 mm long, 5 mm across flats | - | pack of 50 | (1) | - | - | Amazon<br>[Search Amazon](https://www.amazon.com/s?k=uxcell+M2.5+x+8mm+female+female+hex+brass+standoff) |
@@ -120,13 +120,13 @@ All 3D printed. Files are in [prints/dynamixel/](../../prints/dynamixel/README.m
 | P16 | Head yaw bracket | `head_yaw_bracket.stl` | PLA | Dark grey | #3A3D42 | 6.7 g | 1 |
 | P17 | Head yaw spacer | `head_yaw_spacer.stl` | PLA | Dark grey | #3A3D42 | 0.4 g | 1 |
 | P18 | Head lower shell | `head_lower_shell.stl` | PLA | Orange | #E8642A | 24.1 g | 1 |
-| P19 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 46.2 g | 1 |
+| P19 | Head frame | `head_frame.stl` | PLA | Orange | #E8642A | 46.0 g | 1 |
 | P20 | Hood | `hood.stl` | PLA | White | #ECEBE6 | 60.2 g | 1 |
 | P21 | Hinge sleeve | `hinge_sleeve.stl` | PLA | Orange | #E8642A | 0.3 g | 1 |
 | P22 | Jaw | `jaw.stl` | PLA | Orange | #E8642A | 36.6 g | 1 |
 | P23 | Jaw soft insert | `jaw_soft_insert.stl` | TPU 95A | Pale orange | #F7AE55 | 8.9 g | 1 |
-| P24 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 8.4 g | 1 |
-| P25 | Face | `face.stl` | PLA | Mid grey | #9A9C98 | 10.4 g | 1 |
+| P24 | Mouth roof | `mouth_roof.stl` | TPU 95A | Pale orange | #F7AE55 | 8.1 g | 1 |
+| P25 | Face | `face.stl` | PLA | Mid grey | #9A9C98 | 10.5 g | 1 |
 | P26 | Eye ring | `eye_ring.stl` | PLA | Amber | #F0A030 | 9.2 g | 1 |
 | P27 | Eye iris | `eye_iris.stl` | PLA | Black | #0A1420 | 2.3 g | 1 |
 

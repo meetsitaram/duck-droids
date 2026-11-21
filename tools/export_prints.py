@@ -183,6 +183,14 @@ def with_holes(B, part):
         m = m - tool
     for p, d, r, a, b, _ in hole_list(B, part):
         m = m - cylinder(p, d, r, a, b)
+    # slivers under 0.5 mm3 that the booleans leave are not part of it: the hood carried a loose sheet, 79 x 5 x 0.5 mm and no volume, across its front
+    # lower edge, where the bill's band meets the leaning front plane. It showed in the slicer as a jagged strip (2026-11-13, the user: "hood has a glitch")
+    ps = m.decompose()
+    real = [q for q in ps if q.volume() > 5e-10]
+    if real and len(real) < len(ps):
+        m = real[0]
+        for q in real[1:]:
+            m = m + q
     return m
 
 

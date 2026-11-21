@@ -21,52 +21,52 @@
  ],
  "joints": {
   "left_hip_yaw": {
-   "id": 1,
+   "id": 10,
    "direction": 1,
    "centre": 2048
   },
   "left_hip_roll": {
-   "id": 2,
-   "direction": 1,
-   "centre": 2048
-  },
-  "left_hip_pitch": {
-   "id": 3,
-   "direction": 1,
-   "centre": 2048
-  },
-  "left_knee": {
-   "id": 4,
-   "direction": 1,
-   "centre": 2048
-  },
-  "left_ankle": {
-   "id": 5,
-   "direction": 1,
-   "centre": 2048
-  },
-  "right_hip_yaw": {
-   "id": 6,
-   "direction": 1,
-   "centre": 2048
-  },
-  "right_hip_roll": {
-   "id": 7,
-   "direction": 1,
-   "centre": 2048
-  },
-  "right_hip_pitch": {
-   "id": 8,
-   "direction": 1,
-   "centre": 2048
-  },
-  "right_knee": {
    "id": 9,
    "direction": 1,
    "centre": 2048
   },
+  "left_hip_pitch": {
+   "id": 8,
+   "direction": 1,
+   "centre": 2048
+  },
+  "left_knee": {
+   "id": 7,
+   "direction": 1,
+   "centre": 2048
+  },
+  "left_ankle": {
+   "id": 6,
+   "direction": 1,
+   "centre": 2048
+  },
+  "right_hip_yaw": {
+   "id": 5,
+   "direction": 1,
+   "centre": 2048
+  },
+  "right_hip_roll": {
+   "id": 4,
+   "direction": 1,
+   "centre": 2048
+  },
+  "right_hip_pitch": {
+   "id": 3,
+   "direction": 1,
+   "centre": 2048
+  },
+  "right_knee": {
+   "id": 2,
+   "direction": 1,
+   "centre": 2048
+  },
   "right_ankle": {
-   "id": 10,
+   "id": 1,
    "direction": 1,
    "centre": 2048
   },

@@ -36,12 +36,12 @@ From tools/verify_fusion.py: the Fusion bodies against the exported STL solids.
 | PASS | head yaw bracket | 0.3 % of 1500 points disagree; solid in 280 offline, 275 in Fusion |
 | PASS | head yaw spacer | 0.1 % of 1500 points disagree; solid in 901 offline, 900 in Fusion |
 | PASS | head lower shell | 0.5 % of 1500 points disagree; solid in 414 offline, 417 in Fusion |
-| PASS | head frame | 0.1 % of 1500 points disagree; solid in 89 offline, 87 in Fusion |
+| PASS | head frame | 0.1 % of 1500 points disagree; solid in 89 offline, 88 in Fusion |
 | PASS | hood | 0.4 % of 1500 points disagree; solid in 78 offline, 80 in Fusion |
 | PASS | hinge sleeve | 0.1 % of 1500 points disagree; solid in 597 offline, 598 in Fusion |
 | PASS | jaw | 0.0 % of 1500 points disagree; solid in 112 offline, 112 in Fusion |
 | PASS | jaw soft insert | 0.1 % of 1500 points disagree; solid in 1471 offline, 1473 in Fusion |
-| PASS | mouth roof | 0.2 % of 1500 points disagree; solid in 1445 offline, 1448 in Fusion |
-| PASS | face | 0.1 % of 1500 points disagree; solid in 697 offline, 698 in Fusion |
+| PASS | mouth roof | 0.0 % of 1500 points disagree; solid in 1448 offline, 1448 in Fusion |
+| PASS | face | 0.1 % of 1500 points disagree; solid in 311 offline, 312 in Fusion |
 | PASS | eye ring | 0.2 % of 1500 points disagree; solid in 880 offline, 883 in Fusion |
 | PASS | eye iris | 0.1 % of 1500 points disagree; solid in 817 offline, 815 in Fusion |

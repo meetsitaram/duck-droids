@@ -855,7 +855,7 @@
   "group": "VOLUME",
   "item": "head frame",
   "status": "PASS",
-  "detail": "36.9 cm3, designed 37.2: 1 % off"
+  "detail": "36.6 cm3, designed 37.0: 1 % off"
  },
  {
   "group": "BED",
@@ -1005,13 +1005,13 @@
   "group": "VOLUME",
   "item": "mouth roof",
   "status": "PASS",
-  "detail": "12.6 cm3, designed 12.6: 0 % off"
+  "detail": "12.2 cm3, designed 12.2: 0 % off"
  },
  {
   "group": "BED",
   "item": "mouth roof",
   "status": "PASS",
-  "detail": "101 x 40 x 3 mm"
+  "detail": "100 x 39 x 3 mm"
  },
  {
   "group": "THIN",
@@ -1035,19 +1035,19 @@
   "group": "VOLUME",
   "item": "face",
   "status": "PASS",
-  "detail": "8.3 cm3, designed 8.3: 0 % off"
+  "detail": "8.4 cm3, designed 8.4: 0 % off"
  },
  {
   "group": "BED",
   "item": "face",
   "status": "PASS",
-  "detail": "99 x 50 x 4 mm"
+  "detail": "100 x 49 x 9 mm"
  },
  {
   "group": "THIN",
   "item": "face",
   "status": "PASS",
-  "detail": "2 % of its surface is under 0.8 mm thick"
+  "detail": "0 % of its surface is under 0.8 mm thick"
  },
  {
   "group": "PIECES",

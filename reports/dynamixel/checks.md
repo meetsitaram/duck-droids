@@ -1,8 +1,8 @@
 # Physical checks
 
-spec: `spec/robot.json`, 2026-11-13 09:41, 59 s
+spec: `spec/robot.json`, 2026-11-13 15:02, 65 s
 
-176 checks: 170 pass, 3 warn, **3 fail**
+178 checks: 172 pass, 3 warn, **3 fail**
 
 ## targets
 
@@ -29,7 +29,7 @@ spec: `spec/robot.json`, 2026-11-13 09:41, 59 s
 
 | status | item | detail |
 |---|---|---|
-| PASS | largest part | 226 printed parts; largest head: 150 mm, on a 256 mm bed |
+| PASS | largest part | 227 printed parts; largest head: 150 mm, on a 256 mm bed |
 
 ## axis
 
@@ -172,6 +172,8 @@ spec: `spec/robot.json`, 2026-11-13 09:41, 59 s
 | PASS | bus board standoff 2 | 0.00 % outside the skin |
 | PASS | bus board standoff 3 | 0.00 % outside the skin |
 | PASS | Waveshare bus board | 0.00 % outside the skin |
+| PASS | face tab L | 0.00 % outside the skin |
+| PASS | face tab R | 0.00 % outside the skin |
 | PASS | L base riser top | 0.00 % outside the skin |
 | PASS | head 5 V regulator | 0.00 % outside the skin |
 | PASS | head regulator wires | 0.00 % outside the skin |

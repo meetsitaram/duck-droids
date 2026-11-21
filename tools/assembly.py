@@ -27,7 +27,7 @@ import checks as C  # noqa: E402
 import geom as G  # noqa: E402
 
 # Printed parts that are glued or that turn on their screws, on purpose
-GLUED = {'jaw soft insert', 'mouth roof', 'face', 'eye ring', 'eye iris'}
+GLUED = {'jaw soft insert', 'mouth roof', 'eye ring', 'eye iris'} | ({'face'} if G.RECIPE != 'dynamixel' else set())   # (the all-Dynamixel's face is screwed to the floor)
 PIVOTS = {'jaw'}
 ROUND = {'hinge sleeve'}                          # round on its one screw: turning about it changes nothing
 KEY_REACH, KEY_R = 0.015, 0.0012
@@ -193,7 +193,7 @@ PARTS = leg_parts('L') + leg_parts('R') + [
     ('jaw', 'P', ['beak horn seat boss', 'jaw', 'L hinge tab', 'R hinge tab', 'L tab foot', 'R tab foot', 'jaw lever', 'L tab hub', 'R tab hub']),
     ('jaw soft insert', 'P', ['jaw soft']),
     ('mouth roof', 'P', ['mouth roof']),
-    ('face', 'P', ['face', 'sensor']),
+    ('face', 'P', ['face', 'face tab L', 'face tab R'] if G.RECIPE == 'dynamixel' else ['face', 'sensor']),   # (the all-Dynamixel's sensor window is a recess: a cut, not a body)
     ('eye ring', 'P', ['eye ring']),
     ('eye iris', 'P', ['eye lens']),
 ]
@@ -318,9 +318,13 @@ def sections():
         ('The Feetech bus board on its rails, foam tape', [('servo bus board', NEG(Z))], []),
         ('The Feetech board onto the plate at the back of the head, jumpers at A, 4 screws. Its neck lead, UART wires and power pairs on first', [('leg bus board', X)], [r'^leg bus board screw']),
         ('The jaw, up from below, its tab sliding onto the horn, 4 screws', [('@jawbench', Z)], [r'^beak fork screw']),
+        # (the all-Dynamixel's face is screwed to the floor by 2 tabs on its back, and the hood goes down over it: the hood comes off often, for the electronics. 2026-11-13, the user)
+        *([("The face down into the groove in the floor, the camera taped to its back and its ribbon to the Pi: 2 screws down through its tabs into the floor. Then glue the eye ring and its iris onto the face", [('camera', NEG(X)), ('face', NEG(Z)), ('eye ring', NEG(X)), ('eye iris', NEG(X))], [r'^face tab screw']),
+           ("The hood down over the face, between the jaw's tabs. It touches the face nowhere", [('hood', NEG(Z))], []),
+           ('Open the jaw and glue in the soft mouth roof through the gap', [('mouth roof', Past(Z, ['jaw', 'jaw soft insert']))], [])] if G.RECIPE == 'dynamixel' else [
         ('The hood, down between the jaw\'s tabs', [('hood', NEG(Z))], []),
         ('Open the jaw and glue in the soft mouth roof through the gap', [('mouth roof', Past(Z, ['jaw', 'jaw soft insert']))], []),
-        ('The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris', [('camera', NEG(X)), ('face', NEG(X)), ('eye ring', NEG(X)), ('eye iris', NEG(X))], []),
+        ('The camera, its ribbon to the Pi, then glue in the face (the camera taped to its back), the eye ring and its iris', [('camera', NEG(X)), ('face', NEG(X)), ('eye ring', NEG(X)), ('eye iris', NEG(X))], [])]),
         ('2 screws up through the band into the hood\'s back', [], [r'^hood rear screw']),
         ("The hinge sleeve in through the far tab and the hood, its flange over the tab, and the hinge screw through it into the frame: the tab turns on the sleeve" if G.RECIPE == 'dynamixel' else 'A 0.5 mm washer, and the hinge screw on the far side holds the jaw and the hood', [('hinge sleeve', Y)] if G.RECIPE == 'dynamixel' else [], [r'^[LR] hinge screw']),
     ])]
@@ -584,7 +588,7 @@ def check_bought(B, rep):
 
 
 # printed parts allowed more than one colour, and why. Anything else is one filament.
-TWO_COLOURS = {'hood': 'its orange band is painted or split in the slicer: prints/README.md', 'face': 'the sensor window is a raised pad in the same colour, dark only if painted',
+TWO_COLOURS = {'hood': 'its orange band is painted or split in the slicer: prints/README.md', 'face': ('the sensor window is a 0.4 mm recess in its front, dark only if painted' if G.RECIPE == 'dynamixel' else 'the sensor window is a raised pad in the same colour, dark only if painted'),
                'L shoe': 'the seat boss is hidden under the horn', 'R shoe': 'the seat boss is hidden under the horn'}
 
 

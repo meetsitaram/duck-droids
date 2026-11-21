@@ -1,6 +1,7 @@
 #!/bin/bash
 # On a fresh Raspberry Pi OS Lite, 64-bit, in the folder holding this file. Not yet tried on a real Pi.
 set -e
+cd "$(dirname "$0")"
 sudo apt-get update
 sudo apt-get install -y python3-venv i2c-tools
 sudo raspi-config nonint do_i2c 0
@@ -17,4 +18,4 @@ for line in 'enable_uart=1' 'dtoverlay=miniuart-bt' 'core_freq=250'; do
   grep -q "^$line" /boot/firmware/config.txt || echo "$line" | sudo tee -a /boot/firmware/config.txt
 done
 sudo systemctl enable hciuart 2>/dev/null || true
-echo 'Done. Reboot, then: ls -l /dev/serial0 (it should point at ttyAMA0) and i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For a gamepad: bluetoothctl, then scan on, pair, trust and connect.'
+echo 'Done. Reboot, then: .venv/bin/python -m duck.set_id --scan --port /dev/serial0 (bus board jumpers at A). And ls -l /dev/serial0 (it should point at ttyAMA0) and i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For a gamepad: bluetoothctl, then scan on, pair, trust and connect.'

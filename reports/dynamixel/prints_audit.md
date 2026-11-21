@@ -120,13 +120,13 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | head yaw bracket | 5.3 cm3, designed 5.4: 1 % off |
 | PASS | head yaw spacer | 0.3 cm3, designed 0.3: 0 % off |
 | PASS | head lower shell | 19.5 cm3, designed 19.4: 1 % off |
-| PASS | head frame | 36.9 cm3, designed 37.2: 1 % off |
+| PASS | head frame | 36.6 cm3, designed 37.0: 1 % off |
 | PASS | hood | 48.1 cm3, designed 48.4: 1 % off |
 | PASS | hinge sleeve | 0.2 cm3, designed 0.2: 0 % off |
 | PASS | jaw | 29.3 cm3, designed 29.4: 0 % off |
 | PASS | jaw soft insert | 13.3 cm3, designed 13.3: 0 % off |
-| PASS | mouth roof | 12.6 cm3, designed 12.6: 0 % off |
-| PASS | face | 8.3 cm3, designed 8.3: 0 % off |
+| PASS | mouth roof | 12.2 cm3, designed 12.2: 0 % off |
+| PASS | face | 8.4 cm3, designed 8.4: 0 % off |
 | PASS | eye ring | 7.4 cm3, designed 7.4: 0 % off |
 | PASS | eye iris | 1.9 cm3, designed 1.9: 0 % off |
 
@@ -167,8 +167,8 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | hinge sleeve | 9 x 9 x 7 mm |
 | PASS | jaw | 106 x 88 x 43 mm |
 | PASS | jaw soft insert | 101 x 27 x 5 mm |
-| PASS | mouth roof | 101 x 40 x 3 mm |
-| PASS | face | 99 x 50 x 4 mm |
+| PASS | mouth roof | 100 x 39 x 3 mm |
+| PASS | face | 100 x 49 x 9 mm |
 | PASS | eye ring | 34 x 34 x 11 mm |
 | PASS | eye iris | 20 x 20 x 9 mm |
 
@@ -210,7 +210,7 @@ From tools/audit_prints.py: the STL files themselves.
 | PASS | jaw | 0 % of its surface is under 0.8 mm thick |
 | PASS | jaw soft insert | 0 % of its surface is under 0.8 mm thick |
 | PASS | mouth roof | 0 % of its surface is under 0.8 mm thick |
-| PASS | face | 2 % of its surface is under 0.8 mm thick |
+| PASS | face | 0 % of its surface is under 0.8 mm thick |
 | PASS | eye ring | 0 % of its surface is under 0.8 mm thick |
 | PASS | eye iris | 0 % of its surface is under 0.8 mm thick |
 

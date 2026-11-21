@@ -65,7 +65,7 @@ RECIPES = {
                       battery=dict(name='battery 2S 450 mAh', size=(0.0135, 0.0615, 0.0158), mass=0.031), strap=0.0024, batt_x=-0.0410, batt_y=-0.0035, body_wide=0.0035, body_back=0.016, horn_recess=True, ankle_v2=True, roll_fork=True, charge_at=dict(port=(-0.0730, -0.0570, 0.1290, 0.1505), xt30=(-0.0615, -0.0455, 0.1300, 0.1415), bal=(-0.0610, -0.0520, 0.1425, 0.1495)), charge_port=True, head_fixes=True, reg_head=True, foot_switch=False, pi_ports_up=True, reg_box=((0.0660, -0.0450, 0.2430), (0.1010, -0.0365, 0.2600)), reg_plug=((0.0520, -0.0430, 0.2445), (0.0660, -0.0370, 0.2585)),
                       beak_y=(0.0325, 0.0355), beak_crank=(0.014, 0.65), imu_x=-0.0400, neck_open=True, cover_r=0.35, jaw_drop=0.0180, pi_back=0.0258, switch_drop=0.0015, rail_z=0.009, wire_w=0.0116,
                       ranges=dict(hip=(-1.57, 0.95), knee=(-1.1, 1.57), ankle=(-1.50, 1.535), head_roll=(-0.24, 0.24), neck_pitch=(-1.05, 1.6)), short=0.003,
-                      neck_top=True, yaw_over_neck=True, neck_one_piece=True, yaw_foot=0.0175, head_roll_sleeve=True, plug_windows={'hip yaw': ('top plate',), 'head yaw': ('head pitch bridge',), 'beak': ('L head rail',)}, plug_one={'beak': -1}, beak_wall=True, hinge_hub=True, sink_screws={'head roll cradle screw': (0.0016, 0.006), 'L knee cradle screw horn face': (0.0016, 0.006), 'R knee cradle screw horn face': (0.0016, 0.006)}, roll_clear=True, beak_max=0.39, split_chin=True, driver_holes={'beak cradle screw rear': ('R head rail', 'R base riser'), 'hood rear screw': ('lower shell',)}, roll_bearing=(), roll_sink=(), xn_out=-0.005, zn_up=0.0095, slot_back=0.024, notch_z=0.003, body_screws=((-0.0382, -0.0155), (-0.0175, 0.0165)),   # (2026-11-10, the user: the neck nearer the hip servos, held by walls at their sides, the head yaw horn over the neck, and microduck's neck range: back 1.05, forward 1.6. Then (the user): no mount in front of the hip servos at all, the neck's fork plates slanting down onto the top plate over them. So the neck 9.5 mm up, as microduck's sits over its hip servos, a notch 24 mm back in the shell's top, 3 mm over the plate, the IMU 8 mm back and the shell's 2 screws to the sides, out from under the notch)
+                      neck_top=True, yaw_over_neck=True, neck_one_piece=True, yaw_foot=0.0175, head_roll_sleeve=True, plug_windows={'hip yaw': ('top plate',), 'head yaw': ('head pitch bridge',), 'beak': ('L head rail',)}, plug_one={'beak': -1}, beak_wall=True, hinge_hub=True, sink_screws={'head roll cradle screw': (0.0016, 0.006), 'L knee cradle screw horn face': (0.0016, 0.006), 'R knee cradle screw horn face': (0.0016, 0.006)}, roll_clear=True, beak_max=0.39, split_chin=True, face_screwed=True, driver_holes={'beak cradle screw rear': ('R head rail', 'R base riser'), 'hood rear screw': ('lower shell',)}, roll_bearing=(), roll_sink=(), xn_out=-0.005, zn_up=0.0095, slot_back=0.024, notch_z=0.003, body_screws=((-0.0382, -0.0155), (-0.0175, 0.0165)),   # (2026-11-10, the user: the neck nearer the hip servos, held by walls at their sides, the head yaw horn over the neck, and microduck's neck range: back 1.05, forward 1.6. Then (the user): no mount in front of the hip servos at all, the neck's fork plates slanting down onto the top plate over them. So the neck 9.5 mm up, as microduck's sits over its hip servos, a notch 24 mm back in the shell's top, 3 mm over the plate, the IMU 8 mm back and the shell's 2 screws to the sides, out from under the notch)
                       neck_rise=0.0495, za=0.029, collars=False, cap=0.0105, rib_up=0.004, boss_in=0.003, beak_x=0.0375, beak_z=0.018, plate_back=0.005,
                       # (2026-11-06, the user's BOM, PR 6: Amazon had no 16 x 22 x 4 mm bearings till the month's end. The uxcell 6703ZZ, 17 x 23 x 4 mm, 6.4 g (32 g for 5). Its bore is
                       # 1 mm over the 16 mm horn, so the inner race sits on the printed boss alone, on the top 2 mm, not half on the horn: test the fit on the first joint)
@@ -1374,6 +1374,25 @@ def band_secs(x0, x1):
     return [(x0, out[0][1], 0, out[0][3], bx(x0), 8.0)] + mid + [(x1, out[0][1], 0, out[0][3], bx(x1), 8.0)]
 
 
+def face_screwed():
+    """The face screwed down to the frame's floor by 2 tabs on its back, its bottom edge in a groove in the floor; the hood touches it nowhere and lifts off over it
+    (2026-11-13, the user: the hood comes off often, for the electronics, so nothing may glue it to the frame; then "add small holders to the face so I can screw
+    it down to the frame", "as outward to the edge as possible, so it won't block the wires coming out of the Pi"). It was glued by its 2 mm rim to both the floor
+    and the hood. It follows the hood's inner wall 0.4 mm in. The left tab is outboard of the Pi's pins (y 16 to 33.5 mm); the right one can't be: the 5 V
+    converter stands against the face's back from y -36.5 to -45, so it is just inboard of that."""
+    xb, xf = FACE_X - 0.0015, FACE_X + 0.0005          # the face's back and front
+    top = HEAD_Z + 0.0055                              # the floor's top
+    th = 0.0035                                        # the tab: an M2 x 6's tip ends level with the floor's underside, 2.5 mm of thread, clear of the mouth roof glued under it
+    out = [
+        loft('face', hood(grow=-0.0024), GREY, 'decal', open=(), along='x', clip=[((xb, 0, 0), (1, 0, 0)), ((xf, 0, 0), (-1, 0, 0)), ((0, 0, top - 0.0004), (0, 0, 1))]),
+        cut(box('face groove', (xb - 0.0004, -0.06, top - 0.0007), (xf + 0.0004, 0.06, top + 0.001), ORANGE), 'head base'),   # 0.4 mm either side of the face, 0.3 under it
+    ]
+    for n, y in (('L', 0.0435), ('R', -0.03275)):   # (L: 2.9 mm inside the hood's wall. R: 0.75 mm off the converter)
+        out += [dict(box(f'face tab {n}', (xb - 0.0070, y - 0.0030, top), (xb + 0.0003, y + 0.0030, top + th), GREY, 'struct', fillet=0.0005), exposed=False, on_cover=True),
+                fast(cyl(f'face tab screw {n}', (xb - 0.0040, y, top + th + 0.00075), 'z', 0.0019, 0.0015, DARK, 'decal'), 'M2', 0.006, (xb - 0.0040, y, top + th), (0, 0, -1))]
+    return out
+
+
 def hood_b(x):
     h = hood()
     return interp(x, [o[0] for o in h], [o[4] for o in h])
@@ -1412,10 +1431,10 @@ MOUTH_X = HEAD_FRONT - HK * 0.027                # the tray's back edge
 MOUTH_F = HEAD_FRONT - 0.0025
 
 
-def mouth_outline(x0):
+def mouth_outline(x0, inset=0.0):
     """The insert's outline from x0 to the lip, 1.6 mm inside the band (axis z: circles (x, y, r))."""
     r = 0.004
-    return [(x_ + (r if x_ == x0 else -r), sy * (hood_b(x_) - 0.0016 - r), r) for x_ in (x0, MOUTH_F) for sy in (1, -1)]
+    return [(x_ + (r if x_ == x0 else -r - inset), sy * (hood_b(x_) - 0.0016 - inset - r), r) for x_ in (x0, MOUTH_F) for sy in (1, -1)]
 
 
 HRX_ = HO((R.get('hood_rear_x', -0.0192), 0, 0))[0]               # the hood's 2 rear screws, in the band's solid back
@@ -1554,12 +1573,12 @@ link('head', 0.12, [
     # (pc_port, 2026-11-06, the user: "a small hole through which we can connect the pi0 to the pc, for loading models": straight over the Pi's micro USB data port,
     # 41.4 mm from its microSD end, which is free with the bus board on the UART. A plain micro USB cable goes down through it into the port. Wi-Fi does the same without a cable)
     *[cut(rbox('PC port hole', (PI_X + 0.0028 + 0.003, 0.0325 - 0.0414, PI_Z + 0.0385), (0.009, 0.013, 0.043), 0.0044, WHITE, 'struct'), 'head', 'upper bill') for _ in range(bool(R.get('pc_port')))],   # (a rounded slot: box() squares a printed part's corners)
-    dict(plate('mouth roof', HEAD_Z - 0.0002, 0.0032, mouth_outline(MOUTH_X - 0.012), SOFT, 'shell', axis='z'), material='tpu'),
+    dict(plate('mouth roof', HEAD_Z - 0.0002, 0.0032, mouth_outline(MOUTH_X - 0.012, 0.0008 if R.get('face_screwed') else 0.0), SOFT, 'shell', axis='z'), material='tpu'),   # (0.8 mm in from the hood, as 0.4 still touched it at the front corners: glued under the floor, its edge lay on the hood's band too, and the hood comes off. 2026-11-13)
     cut(loft('face recess', arch_front(FACE_X, HEAD_FRONT + 0.01, RIM), WHITE, open=(), along='x'), 'head'),
     loft('upper bill', hood(grow=0.0006), ORANGE, open=(), along='x', clip=FRONT),
     cut(ABOVE_BILL, 'upper bill'),
-    loft('face', arch_front(FACE_X - 0.0015, FACE_X + 0.0005, RIM + 0.0001), GREY, 'decal', open=(), along='x',
-         clip=((0, 0, HEAD_Z + BILL_H), (0, 0, 1))),
+    *([loft('face', arch_front(FACE_X - 0.0015, FACE_X + 0.0005, RIM + 0.0001), GREY, 'decal', open=(), along='x',
+            clip=((0, 0, HEAD_Z + BILL_H), (0, 0, 1)))] if not R.get('face_screwed') else face_screwed()),
     dict(loft('lower shell', band_secs(HEAD_BACK - 0.004, JAW_X0 - R.get('shell_gap', 0.011)), ORANGE, 'struct', open=(), along='x'),
          exposed=True),
     cut(box('lower shell opening', (HEAD_BACK + 0.010, -0.033 * Q, JAW_Z[0] - 0.01), (JAW_X0 - 0.010, 0.033 * Q, JAW_Z[1] + 0.01),
@@ -1609,8 +1628,10 @@ link('head', 0.12, [
       for k, sy_ in enumerate((1, -1))],
     *[fast(cyl(f'hood rear screw {k}', (HRX_, sy_ * 0.0258, HEAD_Z - 0.0026), 'z', 0.0019, 0.0012, DARK, 'decal'), 'M2', 0.008,
            (HRX_, sy_ * 0.0258, HEAD_Z - 0.0020), (0, 0, 1)) for k, sy_ in enumerate((1, -1))],
-    box('sensor', (FACE_X, 0.030, EYE['z'] - 0.003), (FACE_X + 0.002, 0.042, EYE['z'] + 0.004), LENS, 'decal',
-        fillet=0.0009),
+    # (face_screwed: the tabs are on the face's back, so it prints on its front, and a pad 1.5 mm proud of the front would be all it lay on: 81 mm2. So the sensor window is a recess, 0.4 mm deep, to paint dark. 2026-11-13)
+    *([cut(box('sensor', (FACE_X + 0.0001, 0.030, EYE['z'] - 0.003), (FACE_X + 0.002, 0.042, EYE['z'] + 0.004), LENS, 'decal', fillet=0.0009), 'face')] if R.get('face_screwed') else [
+        box('sensor', (FACE_X, 0.030, EYE['z'] - 0.003), (FACE_X + 0.002, 0.042, EYE['z'] + 0.004), LENS, 'decal',
+        fillet=0.0009)]),
 ])
 # the lower band (round 5, the 10 mm grid): microduck's band runs flush all round under the upper bill:
 # the jaw at the front (it opens), a fixed lower shell behind it; an orange tab on each side of the head carries the

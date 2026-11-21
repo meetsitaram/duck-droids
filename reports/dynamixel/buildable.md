@@ -92,6 +92,6 @@ From tools/buildable.py. LOAD is a beam estimate, not FEA: test prints decide.
 | PASS | hinge sleeve | 10 x 8 x 10 mm |
 | PASS | jaw | 89 x 107 x 44 mm |
 | PASS | jaw soft insert | 28 x 103 x 6 mm |
-| PASS | face | 5 x 100 x 52 mm |
+| PASS | face | 10 x 101 x 50 mm |
 | PASS | eye ring | 12 x 35 x 35 mm |
 | PASS | eye iris | 10 x 21 x 21 mm |

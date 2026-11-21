@@ -1,0 +1,3 @@
+# A PC talking to the servos through the bus board's USB: duck.set_id, duck.calibrate. Installed by setup.sh. The Pi gets requirements.txt, which has these too.
+numpy
+pyserial

@@ -1,0 +1,828 @@
+{
+ "about": "One entry per servo, by id: written by python -m duck.set_id. Positions are ticks, 4096 a turn; middle_position is where it was set by hand when its id was set; it is not moved there or from there.",
+ "servos": {
+  "1": {
+   "joint": "right_ankle",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 13,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": -1000,
+    "min_position_limit": 1035,
+    "max_position_limit": 2356,
+    "drive_mode": 0,
+    "operating_mode": 3,
+    "position_p": 400,
+    "current_limit": 1750,
+    "note": "offset and limits restored from the first run (see docs/dynamixel/TROUBLESHOOTING.md); the rest was not read before its reset"
+   },
+   "bench_test": {
+    "position_found": 2059,
+    "idle_mA": 14,
+    "moves": [
+     {
+      "target": 2259,
+      "reached": 2255,
+      "peak_mA": 22,
+      "s": 0.47
+     },
+     {
+      "target": 1859,
+      "reached": 1865,
+      "peak_mA": 23,
+      "s": 0.78
+     },
+     {
+      "target": 2048,
+      "reached": 2042,
+      "peak_mA": 22,
+      "s": 0.44
+     }
+    ],
+    "worst_error_ticks": 6,
+    "passed": true,
+    "hardware_error": 0,
+    "parked_at": 2042
+   },
+   "middle_position": 2042,
+   "middle_note": "where the first bench test parked it, mid-range"
+  },
+  "2": {
+   "joint": "right_knee",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.3,
+   "temperature_c": 12,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 5,
+    "position_p": 250,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2114,
+    "idle_mA": 0,
+    "moves": [
+     {
+      "target": 2314,
+      "reached": 2314,
+      "peak_mA": 15,
+      "s": 0.47
+     },
+     {
+      "target": 1914,
+      "reached": 1913,
+      "peak_mA": 17,
+      "s": 0.78
+     },
+     {
+      "target": 2048,
+      "reached": 2048,
+      "peak_mA": 15,
+      "s": 0.38
+     }
+    ],
+    "worst_error_ticks": 1,
+    "passed": true,
+    "hardware_error": 0,
+    "parked_at": 2048
+   },
+   "middle_position": 2048,
+   "middle_note": "where the first bench test parked it, mid-range"
+  },
+  "3": {
+   "joint": "right_hip_pitch",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.3,
+   "temperature_c": 15,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 1079,
+    "idle_mA": 17,
+    "moves": [
+     {
+      "target": 1279,
+      "reached": 1252,
+      "peak_mA": 31,
+      "s": 0.5
+     },
+     {
+      "target": 879,
+      "reached": 928,
+      "peak_mA": 75,
+      "s": 0.83
+     },
+     {
+      "target": 2048,
+      "reached": 2015,
+      "peak_mA": 66,
+      "s": 2.03
+     }
+    ],
+    "worst_error_ticks": 49,
+    "passed": false,
+    "hardware_error": 0,
+    "parked_at": 2015
+   },
+   "middle_position": 1050,
+   "middle_note": "set by hand, read by python -m duck.set_id --nudge 3"
+  },
+  "4": {
+   "joint": "right_hip_roll",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 12,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2039,
+    "middle_position": 2039,
+    "idle_mA": 8,
+    "moves": [
+     {
+      "target": 2089,
+      "reached": 2067,
+      "peak_mA": 17,
+      "s": 0.31
+     },
+     {
+      "target": 1989,
+      "reached": 2026,
+      "peak_mA": 22,
+      "s": 0.31
+     },
+     {
+      "target": 2039,
+      "reached": 2031,
+      "peak_mA": 16,
+      "s": 0.12
+     }
+    ],
+    "worst_error_ticks": 37,
+    "passed": false,
+    "hardware_error": 0
+   },
+   "middle_position": 2039,
+   "range_by_hand": {
+    "lowest": 1822,
+    "highest": 2314,
+    "ticks": 492,
+    "deg": 43.2,
+    "centre": 2068,
+    "measured_on": "2026-11-21",
+    "how": "torque off, turned by hand to each end, read by the PC"
+   },
+   "design_limits": {
+    "rad": [
+     -0.33,
+     0.33
+    ],
+    "deg": [
+     -18.9,
+     18.9
+    ],
+    "ticks": 430
+   },
+   "nudge_at_centre": {
+    "on": "2026-11-21",
+    "centre": 2068,
+    "step_deg": 10,
+    "mounted": true,
+    "p400": "up reached; down and back to centre 4.2-4.5 deg short: the leg pulls toward higher ticks",
+    "p1600": "every move within 1 deg",
+    "torque_off": "sags toward higher ticks, 2054 to 2250",
+    "verdict": "servo fine; the mounted joint needs more than the factory gain"
+   }
+  },
+  "5": {
+   "joint": "right_hip_yaw",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 12,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 3918,
+    "middle_position": 3918,
+    "idle_mA": 21,
+    "moves": [
+     {
+      "target": 4032,
+      "reached": 4034,
+      "peak_mA": 51,
+      "s": 0.75
+     },
+     {
+      "target": 3804,
+      "reached": 3804,
+      "peak_mA": 33,
+      "s": 1.92
+     },
+     {
+      "target": 3918,
+      "reached": 3920,
+      "peak_mA": 27,
+      "s": 0.39
+     }
+    ],
+    "worst_error_ticks": 2,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 8,
+   "middle_note": "set by hand with the horn on: raw 8-16, next to the 0/4095 wrap. Position mode (3) cannot command across it; refit the horn with the servo near 2048, or run this servo in extended position mode (4). A homing offset of 2032 was tried and did not change its reading, even after a reboot: taken off"
+  },
+  "6": {
+   "joint": "left_ankle",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2016,
+    "middle_position": 2016,
+    "idle_mA": 11,
+    "moves": [
+     {
+      "target": 2130,
+      "reached": 2118,
+      "peak_mA": 19,
+      "s": 0.62
+     },
+     {
+      "target": 1902,
+      "reached": 1911,
+      "peak_mA": 18,
+      "s": 0.86
+     },
+     {
+      "target": 2016,
+      "reached": 2000,
+      "peak_mA": 18,
+      "s": 0.62
+     }
+    ],
+    "worst_error_ticks": 16,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2016
+  },
+  "7": {
+   "joint": "left_knee",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2023,
+    "middle_position": 2023,
+    "idle_mA": 8,
+    "moves": [
+     {
+      "target": 2137,
+      "reached": 2134,
+      "peak_mA": 15,
+      "s": 0.62
+     },
+     {
+      "target": 1909,
+      "reached": 1915,
+      "peak_mA": 16,
+      "s": 0.8
+     },
+     {
+      "target": 2023,
+      "reached": 2020,
+      "peak_mA": 14,
+      "s": 0.62
+     }
+    ],
+    "worst_error_ticks": 6,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2023
+  },
+  "8": {
+   "joint": "left_hip_pitch",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 3070,
+    "middle_position": 3070,
+    "idle_mA": 11,
+    "moves": [
+     {
+      "target": 3184,
+      "reached": 3168,
+      "peak_mA": 25,
+      "s": 0.7
+     },
+     {
+      "target": 2956,
+      "reached": 2957,
+      "peak_mA": 12,
+      "s": 0.45
+     },
+     {
+      "target": 3070,
+      "reached": 3055,
+      "peak_mA": 22,
+      "s": 0.61
+     }
+    ],
+    "worst_error_ticks": 16,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 3070
+  },
+  "9": {
+   "joint": "left_hip_roll",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.3,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 3,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2023,
+    "middle_position": 2023,
+    "idle_mA": 13,
+    "moves": [
+     {
+      "target": 2137,
+      "reached": 2125,
+      "peak_mA": 27,
+      "s": 0.66
+     },
+     {
+      "target": 1909,
+      "reached": 1923,
+      "peak_mA": 21,
+      "s": 0.76
+     },
+     {
+      "target": 2023,
+      "reached": 2008,
+      "peak_mA": 24,
+      "s": 0.62
+     }
+    ],
+    "worst_error_ticks": 15,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2023
+  },
+  "10": {
+   "joint": "left_hip_yaw",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.3,
+   "temperature_c": 13,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 5,
+    "position_p": 250,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 126,
+    "middle_position": 126,
+    "idle_mA": 11,
+    "moves": [
+     {
+      "target": 240,
+      "reached": 215,
+      "peak_mA": 23,
+      "s": 0.62
+     },
+     {
+      "target": 12,
+      "reached": 31,
+      "peak_mA": 22,
+      "s": 0.8
+     },
+     {
+      "target": 126,
+      "reached": 121,
+      "peak_mA": 15,
+      "s": 0.64
+     }
+    ],
+    "worst_error_ticks": 25,
+    "passed": false,
+    "hardware_error": 0
+   },
+   "middle_position": 126
+  },
+  "11": {
+   "joint": "neck_pitch",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2061,
+    "middle_position": 2061,
+    "idle_mA": 14,
+    "moves": [
+     {
+      "target": 2175,
+      "reached": 2173,
+      "peak_mA": 28,
+      "s": 0.52
+     },
+     {
+      "target": 1947,
+      "reached": 1935,
+      "peak_mA": 53,
+      "s": 0.86
+     },
+     {
+      "target": 2061,
+      "reached": 2047,
+      "peak_mA": 59,
+      "s": 0.75
+     }
+    ],
+    "worst_error_ticks": 14,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2061,
+   "load_test": {
+    "on": "2026-11-21",
+    "how": "current-based position mode, 700 mA cap, steps 10-40 deg toward lower ticks and back, head on",
+    "steps": [
+     {
+      "deg": 10,
+      "out_off_deg": -0.7,
+      "hold_mA": 7,
+      "back_off_deg": 0.1,
+      "back_peak_mA": 49
+     },
+     {
+      "deg": 20,
+      "out_off_deg": -1.1,
+      "hold_mA": 12,
+      "back_off_deg": -0.2,
+      "back_peak_mA": 109
+     },
+     {
+      "deg": 30,
+      "out_off_deg": -1.9,
+      "hold_mA": 22,
+      "back_off_deg": -8.3,
+      "back_peak_mA": 158
+     },
+     {
+      "deg": 40,
+      "out_off_deg": -0.9,
+      "hold_mA": 10,
+      "back_off_deg": -0.2,
+      "back_peak_mA": 99
+     }
+    ],
+    "verdict": "lifting the head peaked at 158 mA, 11% of the 1.47 A stall at 5 V: plenty of capacity. One return (from 30 deg) stopped 8.3 deg short; the next was fine"
+   }
+  },
+  "12": {
+   "joint": "head_pitch",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2041,
+    "middle_position": 2041,
+    "idle_mA": 9,
+    "moves": [
+     {
+      "target": 2155,
+      "reached": 2164,
+      "peak_mA": 16,
+      "s": 0.62
+     },
+     {
+      "target": 1927,
+      "reached": 1943,
+      "peak_mA": 58,
+      "s": 0.81
+     },
+     {
+      "target": 2041,
+      "reached": 2039,
+      "peak_mA": 19,
+      "s": 0.3
+     }
+    ],
+    "worst_error_ticks": 16,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2041
+  },
+  "13": {
+   "joint": "head_yaw",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.3,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 1969,
+    "middle_position": 1969,
+    "idle_mA": 10,
+    "moves": [
+     {
+      "target": 2083,
+      "reached": 2079,
+      "peak_mA": 20,
+      "s": 0.64
+     },
+     {
+      "target": 1855,
+      "reached": 1857,
+      "peak_mA": 18,
+      "s": 0.72
+     },
+     {
+      "target": 1969,
+      "reached": 1966,
+      "peak_mA": 18,
+      "s": 0.61
+     }
+    ],
+    "worst_error_ticks": 4,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2007,
+   "middle_note": "re-centred by hand; 15 deg each way, slow, reached within 0.5 deg"
+  },
+  "14": {
+   "joint": "head_roll",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 13,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 2056,
+    "middle_position": 2056,
+    "idle_mA": 12,
+    "moves": [
+     {
+      "target": 2170,
+      "reached": 2150,
+      "peak_mA": 18,
+      "s": 0.89
+     },
+     {
+      "target": 1942,
+      "reached": 1960,
+      "peak_mA": 18,
+      "s": 1.38
+     },
+     {
+      "target": 2056,
+      "reached": 2046,
+      "peak_mA": 15,
+      "s": 0.91
+     }
+    ],
+    "worst_error_ticks": 20,
+    "passed": true,
+    "hardware_error": 0
+   },
+   "middle_position": 2056
+  },
+  "15": {
+   "joint": "beak",
+   "model": "XL330-M288",
+   "model_number": 1200,
+   "firmware": 51,
+   "baud": 1000000,
+   "id_set_on": "2026-11-21",
+   "volts": 5.2,
+   "temperature_c": 14,
+   "default_position": 2048,
+   "settings_before_reset": {
+    "homing_offset": 0,
+    "min_position_limit": 0,
+    "max_position_limit": 4095,
+    "drive_mode": 0,
+    "operating_mode": 4,
+    "position_p": 400,
+    "current_limit": 1750
+   },
+   "bench_test": {
+    "position_found": 1969,
+    "middle_position": 1969,
+    "idle_mA": 5,
+    "moves": [
+     {
+      "target": 2026,
+      "reached": 1972,
+      "peak_mA": 35,
+      "s": 0.62
+     },
+     {
+      "target": 1912,
+      "reached": 1967,
+      "peak_mA": 37,
+      "s": 0.67
+     },
+     {
+      "target": 1969,
+      "reached": 1967,
+      "peak_mA": 33,
+      "s": 0.27
+     }
+    ],
+    "worst_error_ticks": 55,
+    "passed": false,
+    "hardware_error": 0
+   },
+   "middle_position": 1974,
+   "middle_note": "beak fully shut, set by hand: its zero. It only moves toward higher ticks from here",
+   "shut_position": 1974,
+   "opens_toward": "higher ticks",
+   "nudge_half_open": {
+    "at": 2193,
+    "step_deg": 5,
+    "worst_error_deg": 1.3,
+    "peak_mA": 19,
+    "verdict": "OK; the first nudge, shut, could not close further against its stop"
+   },
+   "nudge_from_shut": {
+    "open_deg": 5,
+    "reached_open_deg_off": -0.2,
+    "back_to_shut_deg_off": 1.4,
+    "peak_mA": 19,
+    "note": "stops about 1.4 deg short of fully shut: it meets the closed beak"
+   }
+  }
+ }
+}
