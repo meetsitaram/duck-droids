@@ -100,11 +100,9 @@ class Bus:
         out = bytearray()
         end = time.monotonic() + self.timeout
         while len(out) < n:
-            b = self.s.read(n - len(out))
-            if b:
-                out += b
-            elif time.monotonic() > end:
+            if time.monotonic() > end:
                 raise DxlError(f'timeout: got {len(out)} of {n} bytes')
+            out += self.s.read(n - len(out))
         return bytes(out)
 
     def _status(self):
@@ -112,11 +110,9 @@ class Bus:
         win = bytearray()
         end = time.monotonic() + self.timeout
         while bytes(win[-4:]) != HEADER:
-            b = self.s.read(1)
-            if b:
-                win += b
-            elif time.monotonic() > end:
+            if time.monotonic() > end:          # also when junk keeps arriving: a noisy line can't hold the loop forever
                 raise DxlError('timeout waiting for a status packet')
+            win += self.s.read(1)
         rest = self._read_exact(3)
         ident, length = rest[0], struct.unpack('<H', rest[1:3])[0]
         body = self._read_exact(length)

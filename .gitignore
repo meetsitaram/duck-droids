@@ -19,3 +19,5 @@ sim/meshes/
 # tools/verify_fusion.py's working files: regenerate them
 spec/verify_points*.json
 reports/fusion_points*.json
+.venv/
+pi/stand_test_log.csv

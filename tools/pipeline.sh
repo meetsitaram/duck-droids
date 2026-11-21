@@ -13,7 +13,11 @@ RECIPE=${MILLI_RECIPE:?set MILLI_RECIPE}
 AGENT=${AGENT:-$RECIPE}
 cd "$(dirname "$0")/.."
 export PYTHONIOENCODING=utf-8 MILLI_RECIPE=$RECIPE
-PY=${PY:-/c/Users/meets/.venvs/duck/Scripts/python.exe}
+# the repo's venv, from `bash setup.sh` at the root: PY= picks another
+if [ -z "$PY" ]; then
+  if [ -x pi/.venv/Scripts/python.exe ]; then PY=pi/.venv/Scripts/python.exe; else PY=pi/.venv/bin/python; fi
+  [ -x "$PY" ] || { echo "no venv: run bash setup.sh at the repo root"; exit 1; }
+fi
 TEAM=${TEAM:-$HOME/.claude/skills/agentic-team/scripts/team.py}
 D=docs/images/assembly/$RECIPE
 WORK=${TEMP:-/tmp}/pipeline_$RECIPE
@@ -95,7 +99,7 @@ fusion_run() {   # script, lines to show. A Fusion script that fails stops the c
   out=$("$PY" -I tools/fusion_call.py "$1" --write --recipe "$RECIPE" 2>&1)
   kill $keeper 2>/dev/null
   echo "$out" | grep -v "bodies, " | tail -"$2" | cut -c1-240
-  if echo "$out" | grep -qE "Traceback|RPC error"; then
+  if echo "$out" | grep -qE "Traceback|RPC error|Cannot perform|dialog is open"; then   # (a dialog open in Fusion: it refused the script, and the chain went on with the last build's STLs and passed them, 2026-11-11)
     echo "STOPPED: the Fusion script failed"
     exit 1
   fi
@@ -137,6 +141,10 @@ case $1 in
     gates
     take fusion "${FUSION_MIN:-5}" "$RECIPE linked build"
     linked
+    ;;
+  build)                             # the Fusion build and its checks alone, after gates run separately (2026-11-11: the checks stage stopped on 3 known leg clearances)
+    take fusion 15 "$RECIPE one-document build"
+    build
     ;;
   final)
     gates

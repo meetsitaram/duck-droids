@@ -21,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 import sys  # noqa: E402
 sys.path.insert(0, os.path.dirname(HERE))
 from duck import dxl  # noqa: E402
+import twin  # noqa: E402
 
 
 class Servo:
@@ -39,12 +40,9 @@ class Servo:
 
 
 class Duck:
-    def __init__(self, cfg, pinned):
+    def __init__(self, cfg, pinned, start=None):
         spec = mujoco.MjSpec.from_file(os.path.join(HERE, 'model', 'milli.xml'))
-        w = spec.worldbody
-        floor = w.add_geom()
-        floor.type = mujoco.mjtGeom.mjGEOM_PLANE
-        floor.size = [5, 5, 0.1]
+        twin.decorate(spec, collide=True)              # a solid floor, with the twin's sky and checks
         self.m = spec.compile()
         self.d = mujoco.MjData(self.m)
         self.cfg, self.pinned = cfg, pinned
@@ -59,9 +57,15 @@ class Duck:
                 self.joints[j['id']] = (self.m.jnt_qposadr[jid], self.m.jnt_dofadr[jid], self.m.jnt_range[jid])
         self.d.qpos[:3] = [0, 0, cfg['root_z'] + (0.1 if pinned else 0.0)]
         self.d.qpos[3:7] = [1, 0, 0, 0]
-        for name, v in cfg['home'].items():
+        for name, v in (start or cfg['home']).items():
             jid = mujoco.mj_name2id(self.m, mujoco.mjtObj.mjOBJ_JOINT, name)
-            self.d.qpos[self.m.jnt_qposadr[jid]] = v
+            if jid >= 0:
+                if start and self.m.jnt_limited[jid]:
+                    v = float(np.clip(v, *self.m.jnt_range[jid]))     # the real knees fold past the model's limits: start at the limit
+                self.d.qpos[self.m.jnt_qposadr[jid]] = v
+        if start and not pinned:
+            mujoco.mj_forward(self.m, self.d)
+            twin.rest_on_floor(self.m, self.d)          # a start pose (the real duck's, sitting): feet flat on the floor
         self.base = self.d.qpos[:7].copy()
         self.lag = deque(maxlen=max(1, int(0.02 / self.m.opt.timestep)))    # about the trainer's 15-30 ms
         self.lock = threading.Lock()
@@ -187,8 +191,8 @@ def imu_server(duck, sock):
             break
 
 
-def serve(cfg, pinned=False, port=9000, imu_port=9001):
-    duck = Duck(cfg, pinned)
+def serve(cfg, pinned=False, port=9000, imu_port=9001, start=None):
+    duck = Duck(cfg, pinned, start)
     socks = []
     for p in (port, imu_port):
         s = socket.socket()
@@ -208,8 +212,28 @@ if __name__ == '__main__':
     ap.add_argument('--port', type=int, default=9000)
     ap.add_argument('--imu-port', type=int, default=9001)
     ap.add_argument('--config', default=os.path.join(os.path.dirname(HERE), 'config', 'dynamixel.json'))
+    ap.add_argument('--view', action='store_true', help='a MuJoCo window')
+    ap.add_argument('--start', help='a JSON of joint angles (rad) to start from, feet flat on the floor: twin.py --save-pose writes the real duck pose')
+    ap.add_argument('--kp', type=float, help='servo stiffness, N m/rad, in place of the config value (0.55 is position_p 200; it scales with P)')
+    ap.add_argument('--peak-nm', type=float, help='servo torque limit, N m, in place of the config value, 0.96 at 7.4 V. At 5 V an XL330 stalls at 0.52; capped at I mA it gives about 0.354 x I/1000')
     a = ap.parse_args()
-    d = serve(json.load(open(a.config, encoding='utf-8')), a.pinned, a.port, a.imu_port)
-    print('listening: bus', a.port, 'IMU', a.imu_port, '(Ctrl-C to stop)')
-    while not d.stop:
-        time.sleep(0.2)
+    cfg = json.load(open(a.config, encoding='utf-8'))
+    if a.kp is not None:
+        cfg['servo']['kp'] = a.kp
+    if a.peak_nm is not None:
+        cfg['servo']['peak_nm'] = a.peak_nm
+    start = json.load(open(a.start, encoding='utf-8')) if a.start else None
+    d = serve(cfg, a.pinned, a.port, a.imu_port, start)
+    print('listening: bus', a.port, 'IMU', a.imu_port, '(Ctrl-C to stop)', f"servo kp {cfg['servo']['kp']}, peak {cfg['servo']['peak_nm']} N m")
+    if a.view:
+        import mujoco.viewer
+        with mujoco.viewer.launch_passive(d.m, d.d, show_left_ui=False, show_right_ui=False) as v:
+            v.cam.distance, v.cam.azimuth, v.cam.elevation = 0.75, 150, -15
+            while v.is_running() and not d.stop:
+                with d.lock:
+                    v.cam.lookat[:] = d.d.subtree_com[1]
+                    v.sync()
+                time.sleep(1 / 60)
+    else:
+        while not d.stop:
+            time.sleep(0.2)

@@ -1,0 +1,6 @@
+# The simulator, the policy runtime and the digital twin on a PC: sim/server.py, run.py, twin.py. Installed by setup.sh --sim.
+# mujoco as the tools that build the sim model (requirements-tools.txt): one version for the model and its simulation.
+mujoco==3.15.0
+pillow==12.3.0
+onnx==1.23.2
+onnxruntime

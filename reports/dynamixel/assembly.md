@@ -2,7 +2,7 @@
 
 From tools/assembly.py
 
-1088 checks: 1088 pass, 0 warn, **0 fail**
+1510 checks: 1510 pass, 0 warn, **0 fail**
 
 ## PATH
 
@@ -57,9 +57,7 @@ From tools/assembly.py
 | PASS | legs: @leg_L |  |
 | PASS | legs: @leg_R |  |
 | PASS | column: neck servo |  |
-| PASS | column: neck lid |  |
 | PASS | column: head pitch servo |  |
-| PASS | column: head pitch lid |  |
 | PASS | torso: battery |  |
 | PASS | torso: IMU |  |
 | PASS | torso: @column |  |
@@ -69,15 +67,12 @@ From tools/assembly.py
 | PASS | headbench: head yaw sheet |  |
 | PASS | headbench: head yaw bearing |  |
 | PASS | headbench: head yaw horn |  |
+| PASS | headbench: head yaw spacer |  |
 | PASS | headbench: head yaw bracket |  |
 | PASS | headbench: head roll servo |  |
-| PASS | headbench: head roll rear bearing |  |
-| PASS | headbench: head roll rear horn |  |
-| PASS | headbench: head roll rear spacer |  |
-| PASS | headbench: head roll lid |  |
-| PASS | headbench: head roll bearing |  |
 | PASS | headbench: head roll horn |  |
-| PASS | headbench: head roll spacer |  |
+| PASS | headbench: head roll rear horn |  |
+| PASS | framebench: head lower shell |  |
 | PASS | framebench: bus board standoffs |  |
 | PASS | framebench: beak servo |  |
 | PASS | jawbench: jaw soft insert |  |
@@ -87,12 +82,13 @@ From tools/assembly.py
 | PASS | head: Pi Zero 2 W |  |
 | PASS | head: head 5 V regulator |  |
 | PASS | head: @jawbench |  |
-| PASS | head: hood |  |
-| PASS | head: mouth roof |  |
 | PASS | head: camera |  |
 | PASS | head: face |  |
 | PASS | head: eye ring |  |
 | PASS | head: eye iris |  |
+| PASS | head: hood |  |
+| PASS | head: mouth roof |  |
+| PASS | head: hinge sleeve |  |
 
 ## HELD
 
@@ -214,14 +210,14 @@ From tools/assembly.py
 | PASS | R hip roll fork screw rear 1 |  |
 | PASS | R hip roll fork screw rear 2 |  |
 | PASS | R hip roll fork screw rear 3 |  |
-| PASS | neck pitch cradle screw rear face 0 |  |
-| PASS | neck pitch cradle screw rear face 1 |  |
 | PASS | neck pitch cradle screw horn face 0 |  |
 | PASS | neck pitch cradle screw horn face 1 |  |
-| PASS | head pitch cradle screw rear face 0 |  |
-| PASS | head pitch cradle screw rear face 1 |  |
+| PASS | neck pitch cradle screw rear face 0 |  |
+| PASS | neck pitch cradle screw rear face 1 |  |
 | PASS | head pitch cradle screw horn face 0 |  |
 | PASS | head pitch cradle screw horn face 1 |  |
+| PASS | head pitch cradle screw rear face 0 |  |
+| PASS | head pitch cradle screw rear face 1 |  |
 | PASS | neck pitch fork screw horn 0 |  |
 | PASS | neck pitch fork screw horn 1 |  |
 | PASS | neck pitch fork screw horn 2 |  |
@@ -242,10 +238,14 @@ From tools/assembly.py
 | PASS | head yaw fork screw horn 1 |  |
 | PASS | head yaw fork screw horn 2 |  |
 | PASS | head yaw fork screw horn 3 |  |
-| PASS | head roll cradle screw rear face 0 |  |
-| PASS | head roll cradle screw rear face 1 |  |
 | PASS | head roll cradle screw horn face 0 |  |
 | PASS | head roll cradle screw horn face 1 |  |
+| PASS | head roll cradle screw rear face 0 |  |
+| PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | bus board rear screw 0 |  |
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
@@ -282,6 +282,8 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
 | PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 
@@ -299,8 +301,8 @@ From tools/assembly.py
 | PASS | L knee cradle screw rear near 1 | M2 x 8: bites 4.0 mm |
 | PASS | L hip pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | L hip pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | L knee cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
-| PASS | L knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | L knee cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
+| PASS | L knee cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
 | PASS | L thigh cover screw hip | M2 x 6: bites 3.0 mm |
 | PASS | L thigh cover screw knee | M2 x 6: bites 3.0 mm |
 | PASS | L shin arm screw 0 | M2 x 8: bites 4.0 mm |
@@ -335,8 +337,8 @@ From tools/assembly.py
 | PASS | R knee cradle screw rear near 1 | M2 x 8: bites 4.0 mm |
 | PASS | R hip pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | R hip pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | R knee cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
-| PASS | R knee cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | R knee cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
+| PASS | R knee cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
 | PASS | R thigh cover screw hip | M2 x 6: bites 3.0 mm |
 | PASS | R thigh cover screw knee | M2 x 6: bites 3.0 mm |
 | PASS | R shin arm screw 0 | M2 x 8: bites 4.0 mm |
@@ -405,14 +407,14 @@ From tools/assembly.py
 | PASS | R hip roll fork screw rear 1 | M2 x 6: bites 2.4 mm |
 | PASS | R hip roll fork screw rear 2 | M2 x 6: bites 2.4 mm |
 | PASS | R hip roll fork screw rear 3 | M2 x 6: bites 2.4 mm |
-| PASS | neck pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
-| PASS | neck pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | neck pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | neck pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | head pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
-| PASS | head pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
+| PASS | neck pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
+| PASS | neck pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | head pitch cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head pitch cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | head pitch cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
+| PASS | head pitch cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
 | PASS | neck pitch fork screw horn 0 | M2 x 6: bites 2.7 mm |
 | PASS | neck pitch fork screw horn 1 | M2 x 6: bites 2.7 mm |
 | PASS | neck pitch fork screw horn 2 | M2 x 6: bites 2.7 mm |
@@ -429,14 +431,18 @@ From tools/assembly.py
 | PASS | head yaw cradle screw rear near 1 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
 | PASS | head yaw cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
-| PASS | head yaw fork screw horn 0 | M2 x 6: bites 2.0 mm |
-| PASS | head yaw fork screw horn 1 | M2 x 6: bites 2.0 mm |
-| PASS | head yaw fork screw horn 2 | M2 x 6: bites 2.0 mm |
-| PASS | head yaw fork screw horn 3 | M2 x 6: bites 2.0 mm |
-| PASS | head roll cradle screw rear face 0 | M2 x 8: bites 4.0 mm |
-| PASS | head roll cradle screw rear face 1 | M2 x 8: bites 4.0 mm |
-| PASS | head roll cradle screw horn face 0 | M2 x 8: bites 4.0 mm |
-| PASS | head roll cradle screw horn face 1 | M2 x 8: bites 4.0 mm |
+| PASS | head yaw fork screw horn 0 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 1 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 2 | M2 x 6: bites 3.0 mm |
+| PASS | head yaw fork screw horn 3 | M2 x 6: bites 3.0 mm |
+| PASS | head roll cradle screw horn face 0 | M2 x 6: bites 3.0 mm |
+| PASS | head roll cradle screw horn face 1 | M2 x 6: bites 3.0 mm |
+| PASS | head roll cradle screw rear face 0 | M2 x 6: bites 3.0 mm |
+| PASS | head roll cradle screw rear face 1 | M2 x 6: bites 3.0 mm |
+| PASS | head chin screw 0 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 1 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 2 | M2 x 8: bites 4.0 mm |
+| PASS | head chin screw 3 | M2 x 8: bites 4.0 mm |
 | PASS | bus board rear screw 0 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board rear screw 1 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board rear screw 2 | M2.5 x 5: bites 2.5 mm |
@@ -453,14 +459,14 @@ From tools/assembly.py
 | PASS | head pitch fork screw rear 1 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw rear 2 | M2 x 6: bites 2.9 mm |
 | PASS | head pitch fork screw rear 3 | M2 x 6: bites 2.9 mm |
-| PASS | head roll fork screw horn 0 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw horn 1 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw horn 2 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw horn 3 | M2 x 8: bites 4.0 mm |
-| PASS | head roll fork screw rear 0 | M2 x 6: bites 3.0 mm |
-| PASS | head roll fork screw rear 1 | M2 x 6: bites 3.0 mm |
-| PASS | head roll fork screw rear 2 | M2 x 6: bites 3.0 mm |
-| PASS | head roll fork screw rear 3 | M2 x 6: bites 3.0 mm |
+| PASS | head roll fork screw horn 0 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw horn 1 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw horn 2 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw horn 3 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw rear 0 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw rear 1 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw rear 2 | M2 x 6: bites 2.9 mm |
+| PASS | head roll fork screw rear 3 | M2 x 6: bites 2.9 mm |
 | PASS | bus board top screw 0 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board top screw 1 | M2.5 x 5: bites 2.5 mm |
 | PASS | bus board top screw 2 | M2.5 x 5: bites 2.5 mm |
@@ -473,9 +479,11 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 | M2 x 6: bites 2.9 mm |
 | PASS | beak fork screw horn 2 | M2 x 6: bites 2.9 mm |
 | PASS | beak fork screw horn 3 | M2 x 6: bites 2.9 mm |
+| PASS | face tab screw L | M2 x 6: bites 2.4 mm |
+| PASS | face tab screw R | M2 x 6: bites 2.4 mm |
 | PASS | hood rear screw 0 | M2 x 8: bites 4.0 mm |
 | PASS | hood rear screw 1 | M2 x 8: bites 4.0 mm |
-| PASS | R hinge screw | M3 x 10: bites 4.3 mm |
+| PASS | R hinge screw | M3 x 12: bites 5.4 mm |
 
 ## ACCESS
 
@@ -597,14 +605,14 @@ From tools/assembly.py
 | PASS | R hip roll fork screw rear 1 |  |
 | PASS | R hip roll fork screw rear 2 |  |
 | PASS | R hip roll fork screw rear 3 |  |
-| PASS | neck pitch cradle screw rear face 0 |  |
-| PASS | neck pitch cradle screw rear face 1 |  |
 | PASS | neck pitch cradle screw horn face 0 |  |
 | PASS | neck pitch cradle screw horn face 1 |  |
-| PASS | head pitch cradle screw rear face 0 |  |
-| PASS | head pitch cradle screw rear face 1 |  |
+| PASS | neck pitch cradle screw rear face 0 |  |
+| PASS | neck pitch cradle screw rear face 1 |  |
 | PASS | head pitch cradle screw horn face 0 |  |
 | PASS | head pitch cradle screw horn face 1 |  |
+| PASS | head pitch cradle screw rear face 0 |  |
+| PASS | head pitch cradle screw rear face 1 |  |
 | PASS | neck pitch fork screw horn 0 |  |
 | PASS | neck pitch fork screw horn 1 |  |
 | PASS | neck pitch fork screw horn 2 |  |
@@ -625,10 +633,14 @@ From tools/assembly.py
 | PASS | head yaw fork screw horn 1 |  |
 | PASS | head yaw fork screw horn 2 |  |
 | PASS | head yaw fork screw horn 3 |  |
-| PASS | head roll cradle screw rear face 0 |  |
-| PASS | head roll cradle screw rear face 1 |  |
 | PASS | head roll cradle screw horn face 0 |  |
 | PASS | head roll cradle screw horn face 1 |  |
+| PASS | head roll cradle screw rear face 0 |  |
+| PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | bus board rear screw 0 |  |
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
@@ -665,6 +677,206 @@ From tools/assembly.py
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
 | PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
+| PASS | hood rear screw 0 |  |
+| PASS | hood rear screw 1 |  |
+| PASS | R hinge screw |  |
+
+## DRIVER
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip pitch cradle screw rear face 0 |  |
+| PASS | L hip pitch cradle screw rear face 1 |  |
+| PASS | L hip pitch cradle screw rear near 0 |  |
+| PASS | L hip pitch cradle screw rear near 1 |  |
+| PASS | L knee cradle screw rear face 0 |  |
+| PASS | L knee cradle screw rear face 1 |  |
+| PASS | L knee cradle screw rear near 0 |  |
+| PASS | L knee cradle screw rear near 1 |  |
+| PASS | L hip pitch cradle screw horn face 0 |  |
+| PASS | L hip pitch cradle screw horn face 1 |  |
+| PASS | L knee cradle screw horn face 0 |  |
+| PASS | L knee cradle screw horn face 1 |  |
+| PASS | L thigh cover screw hip |  |
+| PASS | L thigh cover screw knee |  |
+| PASS | L shin arm screw 0 |  |
+| PASS | L shin arm screw 1 |  |
+| PASS | L ankle pitch cradle screw rear face 0 |  |
+| PASS | L ankle pitch cradle screw rear face 1 |  |
+| PASS | L shoe bottom screw 0 |  |
+| PASS | L shoe bottom screw 1 |  |
+| PASS | L knee fork screw horn 0 |  |
+| PASS | L knee fork screw horn 1 |  |
+| PASS | L knee fork screw horn 2 |  |
+| PASS | L knee fork screw horn 3 |  |
+| PASS | L ankle pitch fork screw horn 0 |  |
+| PASS | L ankle pitch fork screw horn 1 |  |
+| PASS | L ankle pitch fork screw horn 2 |  |
+| PASS | L ankle pitch fork screw horn 3 |  |
+| PASS | L ankle ear screw 0 |  |
+| PASS | L ankle ear screw 1 |  |
+| PASS | L ankle ear screw 2 |  |
+| PASS | L ankle ear screw 3 |  |
+| PASS | L hip pitch fork screw horn 0 |  |
+| PASS | L hip pitch fork screw horn 1 |  |
+| PASS | L hip pitch fork screw horn 2 |  |
+| PASS | L hip pitch fork screw horn 3 |  |
+| PASS | R hip pitch cradle screw rear face 0 |  |
+| PASS | R hip pitch cradle screw rear face 1 |  |
+| PASS | R hip pitch cradle screw rear near 0 |  |
+| PASS | R hip pitch cradle screw rear near 1 |  |
+| PASS | R knee cradle screw rear face 0 |  |
+| PASS | R knee cradle screw rear face 1 |  |
+| PASS | R knee cradle screw rear near 0 |  |
+| PASS | R knee cradle screw rear near 1 |  |
+| PASS | R hip pitch cradle screw horn face 0 |  |
+| PASS | R hip pitch cradle screw horn face 1 |  |
+| PASS | R knee cradle screw horn face 0 |  |
+| PASS | R knee cradle screw horn face 1 |  |
+| PASS | R thigh cover screw hip |  |
+| PASS | R thigh cover screw knee |  |
+| PASS | R shin arm screw 0 |  |
+| PASS | R shin arm screw 1 |  |
+| PASS | R ankle pitch cradle screw rear face 0 |  |
+| PASS | R ankle pitch cradle screw rear face 1 |  |
+| PASS | R shoe bottom screw 0 |  |
+| PASS | R shoe bottom screw 1 |  |
+| PASS | R knee fork screw horn 0 |  |
+| PASS | R knee fork screw horn 1 |  |
+| PASS | R knee fork screw horn 2 |  |
+| PASS | R knee fork screw horn 3 |  |
+| PASS | R ankle pitch fork screw horn 0 |  |
+| PASS | R ankle pitch fork screw horn 1 |  |
+| PASS | R ankle pitch fork screw horn 2 |  |
+| PASS | R ankle pitch fork screw horn 3 |  |
+| PASS | R ankle ear screw 0 |  |
+| PASS | R ankle ear screw 1 |  |
+| PASS | R ankle ear screw 2 |  |
+| PASS | R ankle ear screw 3 |  |
+| PASS | R hip pitch fork screw horn 0 |  |
+| PASS | R hip pitch fork screw horn 1 |  |
+| PASS | R hip pitch fork screw horn 2 |  |
+| PASS | R hip pitch fork screw horn 3 |  |
+| PASS | L hip yaw cradle screw rear face 0 |  |
+| PASS | L hip yaw cradle screw rear face 1 |  |
+| PASS | L hip yaw cradle screw rear near 0 |  |
+| PASS | L hip yaw cradle screw rear near 1 |  |
+| PASS | R hip yaw cradle screw rear face 0 |  |
+| PASS | R hip yaw cradle screw rear face 1 |  |
+| PASS | R hip yaw cradle screw rear near 0 |  |
+| PASS | R hip yaw cradle screw rear near 1 |  |
+| PASS | L hip yaw cradle screw horn face 0 |  |
+| PASS | L hip yaw cradle screw horn face 1 |  |
+| PASS | R hip yaw cradle screw horn face 0 |  |
+| PASS | R hip yaw cradle screw horn face 1 |  |
+| PASS | L hip yaw fork screw horn 0 |  |
+| PASS | L hip yaw fork screw horn 1 |  |
+| PASS | L hip yaw fork screw horn 2 |  |
+| PASS | L hip yaw fork screw horn 3 |  |
+| PASS | R hip yaw fork screw horn 0 |  |
+| PASS | R hip yaw fork screw horn 1 |  |
+| PASS | R hip yaw fork screw horn 2 |  |
+| PASS | R hip yaw fork screw horn 3 |  |
+| PASS | L hip roll cradle screw near h0 |  |
+| PASS | L hip roll cradle screw near h1 |  |
+| PASS | L hip roll cradle screw near r0 |  |
+| PASS | L hip roll cradle screw near r1 |  |
+| PASS | R hip roll cradle screw near h0 |  |
+| PASS | R hip roll cradle screw near h1 |  |
+| PASS | R hip roll cradle screw near r0 |  |
+| PASS | R hip roll cradle screw near r1 |  |
+| PASS | L hip roll fork screw horn 0 |  |
+| PASS | L hip roll fork screw horn 1 |  |
+| PASS | L hip roll fork screw horn 2 |  |
+| PASS | L hip roll fork screw horn 3 |  |
+| PASS | L hip roll fork screw rear 0 |  |
+| PASS | L hip roll fork screw rear 1 |  |
+| PASS | L hip roll fork screw rear 2 |  |
+| PASS | L hip roll fork screw rear 3 |  |
+| PASS | R hip roll fork screw horn 0 |  |
+| PASS | R hip roll fork screw horn 1 |  |
+| PASS | R hip roll fork screw horn 2 |  |
+| PASS | R hip roll fork screw horn 3 |  |
+| PASS | R hip roll fork screw rear 0 |  |
+| PASS | R hip roll fork screw rear 1 |  |
+| PASS | R hip roll fork screw rear 2 |  |
+| PASS | R hip roll fork screw rear 3 |  |
+| PASS | neck pitch cradle screw horn face 0 |  |
+| PASS | neck pitch cradle screw horn face 1 |  |
+| PASS | neck pitch cradle screw rear face 0 |  |
+| PASS | neck pitch cradle screw rear face 1 |  |
+| PASS | head pitch cradle screw horn face 0 |  |
+| PASS | head pitch cradle screw horn face 1 |  |
+| PASS | head pitch cradle screw rear face 0 |  |
+| PASS | head pitch cradle screw rear face 1 |  |
+| PASS | neck pitch fork screw horn 0 |  |
+| PASS | neck pitch fork screw horn 1 |  |
+| PASS | neck pitch fork screw horn 2 |  |
+| PASS | neck pitch fork screw horn 3 |  |
+| PASS | neck pitch fork screw rear 0 |  |
+| PASS | neck pitch fork screw rear 1 |  |
+| PASS | neck pitch fork screw rear 2 |  |
+| PASS | neck pitch fork screw rear 3 |  |
+| PASS | body screw 0 |  |
+| PASS | body screw 1 |  |
+| PASS | head yaw cradle screw rear face 0 |  |
+| PASS | head yaw cradle screw rear face 1 |  |
+| PASS | head yaw cradle screw rear near 0 |  |
+| PASS | head yaw cradle screw rear near 1 |  |
+| PASS | head yaw cradle screw horn face 0 |  |
+| PASS | head yaw cradle screw horn face 1 |  |
+| PASS | head yaw fork screw horn 0 |  |
+| PASS | head yaw fork screw horn 1 |  |
+| PASS | head yaw fork screw horn 2 |  |
+| PASS | head yaw fork screw horn 3 |  |
+| PASS | head roll cradle screw horn face 0 |  |
+| PASS | head roll cradle screw horn face 1 |  |
+| PASS | head roll cradle screw rear face 0 |  |
+| PASS | head roll cradle screw rear face 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
+| PASS | bus board rear screw 0 |  |
+| PASS | bus board rear screw 1 |  |
+| PASS | bus board rear screw 2 |  |
+| PASS | bus board rear screw 3 |  |
+| PASS | beak cradle screw rear face 0 |  |
+| PASS | beak cradle screw rear face 1 |  |
+| PASS | beak cradle screw rear near 0 |  |
+| PASS | beak cradle screw rear near 1 |  |
+| PASS | head pitch fork screw horn 0 |  |
+| PASS | head pitch fork screw horn 1 |  |
+| PASS | head pitch fork screw horn 2 |  |
+| PASS | head pitch fork screw horn 3 |  |
+| PASS | head pitch fork screw rear 0 |  |
+| PASS | head pitch fork screw rear 1 |  |
+| PASS | head pitch fork screw rear 2 |  |
+| PASS | head pitch fork screw rear 3 |  |
+| PASS | head roll fork screw horn 0 |  |
+| PASS | head roll fork screw horn 1 |  |
+| PASS | head roll fork screw horn 2 |  |
+| PASS | head roll fork screw horn 3 |  |
+| PASS | head roll fork screw rear 0 |  |
+| PASS | head roll fork screw rear 1 |  |
+| PASS | head roll fork screw rear 2 |  |
+| PASS | head roll fork screw rear 3 |  |
+| PASS | bus board top screw 0 |  |
+| PASS | bus board top screw 1 |  |
+| PASS | bus board top screw 2 |  |
+| PASS | bus board top screw 3 | tilted 3 degrees |
+| PASS | Pi screw 0 |  |
+| PASS | Pi screw 1 |  |
+| PASS | Pi screw 2 |  |
+| PASS | Pi screw 3 |  |
+| PASS | beak fork screw horn 0 |  |
+| PASS | beak fork screw horn 1 |  |
+| PASS | beak fork screw horn 2 |  |
+| PASS | beak fork screw horn 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | R hinge screw |  |
@@ -696,20 +908,18 @@ From tools/assembly.py
 | PASS | chassis | 18 screws |
 | PASS | body shell | 2 screws |
 | PASS | neck column | 8 screws |
-| PASS | neck lid | 2 screws |
-| PASS | head pitch lid | 2 screws |
 | PASS | head fork | 12 screws |
 | PASS | head yaw sheet | 2 screws |
-| PASS | head yaw bracket | 6 screws |
-| PASS | head roll lid | 2 screws |
-| PASS | head roll spacer | 4 screws |
-| PASS | head roll rear spacer | 4 screws |
-| PASS | head frame | 23 screws |
+| PASS | head yaw bracket | 8 screws |
+| PASS | head yaw spacer | 4 screws |
+| PASS | head lower shell | 6 screws |
+| PASS | head frame | 27 screws |
 | PASS | hood | 3 screws |
+| PASS | hinge sleeve | round on its screw |
 | PASS | jaw | turns on its screws |
 | PASS | jaw soft insert | glued |
 | PASS | mouth roof | glued |
-| PASS | face | glued |
+| PASS | face | 2 screws |
 | PASS | eye ring | glued |
 | PASS | eye iris | glued |
 
@@ -749,7 +959,6 @@ From tools/assembly.py
 | PASS | bus board cable plugs servo |  |
 | PASS | bus board cable plugs power |  |
 | PASS | bus board cable plugs uart |  |
-| PASS | beak cable plugs + |  |
 | PASS | beak cable plugs - |  |
 
 ## ENDS
@@ -799,16 +1008,14 @@ From tools/assembly.py
 | PASS | chassis |  |
 | PASS | body shell |  |
 | PASS | neck column |  |
-| PASS | neck lid |  |
-| PASS | head pitch lid |  |
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
-| PASS | head roll lid |  |
-| PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
+| PASS | hinge sleeve |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
 | PASS | mouth roof |  |
@@ -843,16 +1050,14 @@ From tools/assembly.py
 | PASS | chassis |  |
 | PASS | body shell |  |
 | PASS | neck column |  |
-| PASS | neck lid |  |
-| PASS | head pitch lid |  |
 | PASS | head fork |  |
 | PASS | head yaw sheet |  |
 | PASS | head yaw bracket |  |
-| PASS | head roll lid |  |
-| PASS | head roll spacer |  |
-| PASS | head roll rear spacer |  |
+| PASS | head yaw spacer |  |
+| PASS | head lower shell |  |
 | PASS | head frame |  |
 | PASS | hood |  |
+| PASS | hinge sleeve |  |
 | PASS | jaw |  |
 | PASS | jaw soft insert |  |
 | PASS | mouth roof |  |
@@ -1024,6 +1229,8 @@ From tools/assembly.py
 | PASS | bus board rear screw 1 |  |
 | PASS | bus board rear screw 2 |  |
 | PASS | bus board rear screw 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
 | PASS | hood rear screw 0 |  |
 | PASS | hood rear screw 1 |  |
 | PASS | head roll fork screw horn 0 |  |
@@ -1038,6 +1245,10 @@ From tools/assembly.py
 | PASS | beak cradle screw rear face 1 |  |
 | PASS | beak cradle screw rear near 0 |  |
 | PASS | beak cradle screw rear near 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
 | PASS | beak fork screw horn 0 |  |
 | PASS | beak fork screw horn 1 |  |
 | PASS | beak fork screw horn 2 |  |
@@ -1062,7 +1273,237 @@ From tools/assembly.py
 | PASS | L ankle pitch |  |
 | PASS | R ankle pitch |  |
 | PASS | head yaw |  |
-| PASS | head roll |  |
+
+## SPLIT
+
+| status | item | detail |
+|---|---|---|
+| PASS | body screw 0 |  |
+| PASS | body screw 1 |  |
+| PASS | L hip yaw cradle screw horn face 0 |  |
+| PASS | L hip yaw cradle screw horn face 1 |  |
+| PASS | L hip yaw cradle screw rear face 0 |  |
+| PASS | L hip yaw cradle screw rear face 1 |  |
+| PASS | L hip yaw cradle screw rear near 0 |  |
+| PASS | L hip yaw cradle screw rear near 1 |  |
+| PASS | R hip yaw cradle screw horn face 0 |  |
+| PASS | R hip yaw cradle screw horn face 1 |  |
+| PASS | R hip yaw cradle screw rear face 0 |  |
+| PASS | R hip yaw cradle screw rear face 1 |  |
+| PASS | R hip yaw cradle screw rear near 0 |  |
+| PASS | R hip yaw cradle screw rear near 1 |  |
+| PASS | neck pitch fork screw horn 0 |  |
+| PASS | neck pitch fork screw horn 1 |  |
+| PASS | neck pitch fork screw horn 2 |  |
+| PASS | neck pitch fork screw horn 3 |  |
+| PASS | neck pitch fork screw rear 0 |  |
+| PASS | neck pitch fork screw rear 1 |  |
+| PASS | neck pitch fork screw rear 2 |  |
+| PASS | neck pitch fork screw rear 3 |  |
+| PASS | L hip roll cradle screw near h0 |  |
+| PASS | L hip roll cradle screw near h1 |  |
+| PASS | L hip roll cradle screw near r0 |  |
+| PASS | L hip roll cradle screw near r1 |  |
+| PASS | L hip yaw fork screw horn 0 |  |
+| PASS | L hip yaw fork screw horn 1 |  |
+| PASS | L hip yaw fork screw horn 2 |  |
+| PASS | L hip yaw fork screw horn 3 |  |
+| PASS | R hip roll cradle screw near h0 |  |
+| PASS | R hip roll cradle screw near h1 |  |
+| PASS | R hip roll cradle screw near r0 |  |
+| PASS | R hip roll cradle screw near r1 |  |
+| PASS | R hip yaw fork screw horn 0 |  |
+| PASS | R hip yaw fork screw horn 1 |  |
+| PASS | R hip yaw fork screw horn 2 |  |
+| PASS | R hip yaw fork screw horn 3 |  |
+| PASS | L hip roll fork screw horn 0 |  |
+| PASS | L hip roll fork screw horn 1 |  |
+| PASS | L hip roll fork screw horn 2 |  |
+| PASS | L hip roll fork screw horn 3 |  |
+| PASS | L hip roll fork screw rear 0 |  |
+| PASS | L hip roll fork screw rear 1 |  |
+| PASS | L hip roll fork screw rear 2 |  |
+| PASS | L hip roll fork screw rear 3 |  |
+| PASS | L hip pitch fork screw horn 0 |  |
+| PASS | L hip pitch fork screw horn 1 |  |
+| PASS | L hip pitch fork screw horn 2 |  |
+| PASS | L hip pitch fork screw horn 3 |  |
+| PASS | R hip roll fork screw horn 0 |  |
+| PASS | R hip roll fork screw horn 1 |  |
+| PASS | R hip roll fork screw horn 2 |  |
+| PASS | R hip roll fork screw horn 3 |  |
+| PASS | R hip roll fork screw rear 0 |  |
+| PASS | R hip roll fork screw rear 1 |  |
+| PASS | R hip roll fork screw rear 2 |  |
+| PASS | R hip roll fork screw rear 3 |  |
+| PASS | R hip pitch fork screw horn 0 |  |
+| PASS | R hip pitch fork screw horn 1 |  |
+| PASS | R hip pitch fork screw horn 2 |  |
+| PASS | R hip pitch fork screw horn 3 |  |
+| PASS | L thigh cover screw hip |  |
+| PASS | L thigh cover screw knee |  |
+| PASS | L hip pitch cradle screw horn face 0 |  |
+| PASS | L hip pitch cradle screw horn face 1 |  |
+| PASS | L hip pitch cradle screw rear face 0 |  |
+| PASS | L hip pitch cradle screw rear face 1 |  |
+| PASS | L hip pitch cradle screw rear near 0 |  |
+| PASS | L hip pitch cradle screw rear near 1 |  |
+| PASS | L knee cradle screw horn face 0 |  |
+| PASS | L knee cradle screw horn face 1 |  |
+| PASS | L knee cradle screw rear face 0 |  |
+| PASS | L knee cradle screw rear face 1 |  |
+| PASS | L knee cradle screw rear near 0 |  |
+| PASS | L knee cradle screw rear near 1 |  |
+| PASS | R thigh cover screw hip |  |
+| PASS | R thigh cover screw knee |  |
+| PASS | R hip pitch cradle screw horn face 0 |  |
+| PASS | R hip pitch cradle screw horn face 1 |  |
+| PASS | R hip pitch cradle screw rear face 0 |  |
+| PASS | R hip pitch cradle screw rear face 1 |  |
+| PASS | R hip pitch cradle screw rear near 0 |  |
+| PASS | R hip pitch cradle screw rear near 1 |  |
+| PASS | R knee cradle screw horn face 0 |  |
+| PASS | R knee cradle screw horn face 1 |  |
+| PASS | R knee cradle screw rear face 0 |  |
+| PASS | R knee cradle screw rear face 1 |  |
+| PASS | R knee cradle screw rear near 0 |  |
+| PASS | R knee cradle screw rear near 1 |  |
+| PASS | L shin arm screw 0 |  |
+| PASS | L shin arm screw 1 |  |
+| PASS | L knee fork screw horn 0 |  |
+| PASS | L knee fork screw horn 1 |  |
+| PASS | L knee fork screw horn 2 |  |
+| PASS | L knee fork screw horn 3 |  |
+| PASS | L ankle pitch cradle screw rear face 0 |  |
+| PASS | L ankle pitch cradle screw rear face 1 |  |
+| PASS | R shin arm screw 0 |  |
+| PASS | R shin arm screw 1 |  |
+| PASS | R knee fork screw horn 0 |  |
+| PASS | R knee fork screw horn 1 |  |
+| PASS | R knee fork screw horn 2 |  |
+| PASS | R knee fork screw horn 3 |  |
+| PASS | R ankle pitch cradle screw rear face 0 |  |
+| PASS | R ankle pitch cradle screw rear face 1 |  |
+| PASS | L ankle ear screw 0 |  |
+| PASS | L ankle ear screw 1 |  |
+| PASS | L ankle ear screw 2 |  |
+| PASS | L ankle ear screw 3 |  |
+| PASS | L shoe bottom screw 0 |  |
+| PASS | L shoe bottom screw 1 |  |
+| PASS | L ankle pitch fork screw horn 0 |  |
+| PASS | L ankle pitch fork screw horn 1 |  |
+| PASS | L ankle pitch fork screw horn 2 |  |
+| PASS | L ankle pitch fork screw horn 3 |  |
+| PASS | R ankle ear screw 0 |  |
+| PASS | R ankle ear screw 1 |  |
+| PASS | R ankle ear screw 2 |  |
+| PASS | R ankle ear screw 3 |  |
+| PASS | R shoe bottom screw 0 |  |
+| PASS | R shoe bottom screw 1 |  |
+| PASS | R ankle pitch fork screw horn 0 |  |
+| PASS | R ankle pitch fork screw horn 1 |  |
+| PASS | R ankle pitch fork screw horn 2 |  |
+| PASS | R ankle pitch fork screw horn 3 |  |
+| PASS | neck pitch cradle screw horn face 0 |  |
+| PASS | neck pitch cradle screw horn face 1 |  |
+| PASS | neck pitch cradle screw rear face 0 |  |
+| PASS | neck pitch cradle screw rear face 1 |  |
+| PASS | head pitch cradle screw horn face 0 |  |
+| PASS | head pitch cradle screw horn face 1 |  |
+| PASS | head pitch cradle screw rear face 0 |  |
+| PASS | head pitch cradle screw rear face 1 |  |
+| PASS | head pitch fork screw horn 0 |  |
+| PASS | head pitch fork screw horn 1 |  |
+| PASS | head pitch fork screw horn 2 |  |
+| PASS | head pitch fork screw horn 3 |  |
+| PASS | head pitch fork screw rear 0 |  |
+| PASS | head pitch fork screw rear 1 |  |
+| PASS | head pitch fork screw rear 2 |  |
+| PASS | head pitch fork screw rear 3 |  |
+| PASS | head yaw cradle screw horn face 0 |  |
+| PASS | head yaw cradle screw horn face 1 |  |
+| PASS | head yaw cradle screw rear face 0 |  |
+| PASS | head yaw cradle screw rear face 1 |  |
+| PASS | head yaw cradle screw rear near 0 |  |
+| PASS | head yaw cradle screw rear near 1 |  |
+| PASS | head yaw fork screw horn 0 |  |
+| PASS | head yaw fork screw horn 1 |  |
+| PASS | head yaw fork screw horn 2 |  |
+| PASS | head yaw fork screw horn 3 |  |
+| PASS | head roll cradle screw horn face 0 |  |
+| PASS | head roll cradle screw horn face 1 |  |
+| PASS | head roll cradle screw rear face 0 |  |
+| PASS | head roll cradle screw rear face 1 |  |
+| PASS | Pi screw 0 |  |
+| PASS | Pi screw 1 |  |
+| PASS | Pi screw 2 |  |
+| PASS | Pi screw 3 |  |
+| PASS | bus board top screw 0 |  |
+| PASS | bus board rear screw 0 |  |
+| PASS | bus board top screw 1 |  |
+| PASS | bus board rear screw 1 |  |
+| PASS | bus board top screw 2 |  |
+| PASS | bus board rear screw 2 |  |
+| PASS | bus board top screw 3 |  |
+| PASS | bus board rear screw 3 |  |
+| PASS | face tab screw L |  |
+| PASS | face tab screw R |  |
+| PASS | hood rear screw 0 |  |
+| PASS | hood rear screw 1 |  |
+| PASS | head roll fork screw horn 0 |  |
+| PASS | head roll fork screw horn 1 |  |
+| PASS | head roll fork screw horn 2 |  |
+| PASS | head roll fork screw horn 3 |  |
+| PASS | head roll fork screw rear 0 |  |
+| PASS | head roll fork screw rear 1 |  |
+| PASS | head roll fork screw rear 2 |  |
+| PASS | head roll fork screw rear 3 |  |
+| PASS | beak cradle screw rear face 0 |  |
+| PASS | beak cradle screw rear face 1 |  |
+| PASS | beak cradle screw rear near 0 |  |
+| PASS | beak cradle screw rear near 1 |  |
+| PASS | head chin screw 0 |  |
+| PASS | head chin screw 1 |  |
+| PASS | head chin screw 2 |  |
+| PASS | head chin screw 3 |  |
+| PASS | beak fork screw horn 0 |  |
+| PASS | beak fork screw horn 1 |  |
+| PASS | beak fork screw horn 2 |  |
+| PASS | beak fork screw horn 3 |  |
+
+## PLUG
+
+| status | item | detail |
+|---|---|---|
+| PASS | L hip yaw cable plugs + |  |
+| PASS | L hip yaw cable plugs - |  |
+| PASS | R hip yaw cable plugs + |  |
+| PASS | R hip yaw cable plugs - |  |
+| PASS | L hip roll cable plugs + |  |
+| PASS | L hip roll cable plugs - |  |
+| PASS | R hip roll cable plugs + |  |
+| PASS | R hip roll cable plugs - |  |
+| PASS | L hip pitch cable plugs + |  |
+| PASS | L hip pitch cable plugs - |  |
+| PASS | L knee cable plugs + |  |
+| PASS | L knee cable plugs - |  |
+| PASS | R hip pitch cable plugs + |  |
+| PASS | R hip pitch cable plugs - |  |
+| PASS | R knee cable plugs + |  |
+| PASS | R knee cable plugs - |  |
+| PASS | L ankle pitch cable plugs + |  |
+| PASS | L ankle pitch cable plugs - |  |
+| PASS | R ankle pitch cable plugs + |  |
+| PASS | R ankle pitch cable plugs - |  |
+| PASS | neck pitch cable plugs + |  |
+| PASS | neck pitch cable plugs - |  |
+| PASS | head pitch cable plugs + |  |
+| PASS | head pitch cable plugs - |  |
+| PASS | head yaw cable plugs + |  |
+| PASS | head yaw cable plugs - |  |
+| PASS | head roll cable plugs + |  |
+| PASS | head roll cable plugs - |  |
+| PASS | beak cable plugs - |  |
 
 ## ALL
 
@@ -1126,23 +1567,18 @@ From tools/assembly.py
 | PASS | part body shell |  |
 | PASS | part neck servo |  |
 | PASS | part neck column |  |
-| PASS | part neck lid |  |
 | PASS | part head pitch servo |  |
-| PASS | part head pitch lid |  |
 | PASS | part head fork |  |
 | PASS | part head yaw servo |  |
 | PASS | part head yaw sheet |  |
 | PASS | part head yaw bearing |  |
 | PASS | part head yaw horn |  |
 | PASS | part head yaw bracket |  |
+| PASS | part head yaw spacer |  |
 | PASS | part head roll servo |  |
-| PASS | part head roll rear bearing |  |
 | PASS | part head roll rear horn |  |
-| PASS | part head roll lid |  |
-| PASS | part head roll bearing |  |
 | PASS | part head roll horn |  |
-| PASS | part head roll spacer |  |
-| PASS | part head roll rear spacer |  |
+| PASS | part head lower shell |  |
 | PASS | part head frame |  |
 | PASS | part beak servo |  |
 | PASS | part Pi Zero 2 W |  |
@@ -1150,6 +1586,7 @@ From tools/assembly.py
 | PASS | part Waveshare bus board |  |
 | PASS | part bus board standoffs |  |
 | PASS | part hood |  |
+| PASS | part hinge sleeve |  |
 | PASS | part jaw |  |
 | PASS | part jaw soft insert |  |
 | PASS | part mouth roof |  |

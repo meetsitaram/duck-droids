@@ -118,9 +118,19 @@ def main():
             x.append(f'<joint name="{nm}" axis="{ax[0]} {ax[1]} {ax[2]}" range="{lo:.4f} {hi:.4f}" armature="{arm:.6g}" '
                      f'damping="{dmp:.5g}" frictionloss="{frc:.5g}"/>')
         mesh = S.all[ln].to_mesh()
-        RP.stl(os.path.join(out, 'meshes', name + '.stl'), np.asarray(mesh.vert_properties[:, :3], float) - o, np.asarray(mesh.tri_verts, int))
-        assets.append(f'<mesh name="{name}" file="{name}.stl"/>')
-        x.append(f'<geom type="mesh" mesh="{name}" rgba=".75 .75 .75 1" contype="0" conaffinity="0" group="2" mass="0"/>')
+        # the look: one mesh per colour, each part in its spec colour, as in Fusion. (One grey mesh per link lost every colour, 2026-11-21, the user)
+        by_colour = {}
+        for i, g in enumerate(spec['links'][ln]['geoms']):
+            if g['role'] == 'cut' or S.geom.get((ln, i)) is None or g.get('linkage'):
+                continue
+            by_colour.setdefault(g.get('color', '#BFBFBF'), []).append(S.geom[(ln, i)])
+        for k, (col, parts) in enumerate(sorted(by_colour.items())):
+            pm = C.union(parts).to_mesh()
+            vn = f'{name}_{col.lstrip("#").lower()}'
+            RP.stl(os.path.join(out, 'meshes', vn + '.stl'), np.asarray(pm.vert_properties[:, :3], float) - o, np.asarray(pm.tri_verts, int))
+            assets.append(f'<mesh name="{vn}" file="{vn}.stl"/>')
+            rgb = ' '.join(f'{int(col.lstrip("#")[j:j + 2], 16) / 255:.3f}' for j in (0, 2, 4))
+            x.append(f'<geom type="mesh" mesh="{vn}" rgba="{rgb} 1" contype="0" conaffinity="0" group="2" mass="0"/>')
         if '--contact' in sys.argv and ln not in ('L_foot', 'R_foot'):     # the shoes keep their sole boxes: nothing frictionless below them
             hv = np.asarray(mesh.vert_properties[:, :3], float) - o
             hull = ConvexHull(hv)

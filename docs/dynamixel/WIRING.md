@@ -41,6 +41,22 @@ The picture is drawn and checked from `spec/wiring_dynamixel.json` by `python -I
 
 Each servo has 2 sockets, wired through, and the 15 share one bus with IDs 1-15.
 
+![Servo IDs](servo_ids.svg)
+
+**Set the IDs before any servo is chained,** one servo at a time on the bus board, in the order above: right leg, left leg, neck, head, each from the bottom up. Every new XL330 is ID 1 at 57600, so two plugged in together answer over each other. Power the board from 5 V for this, not the battery: an XL330 shuts its torque off past 7.0 V. From a PC through the board's USB-C, jumpers at B, after `bash pi/setup.sh`, in `pi/`:
+
+```bash
+.venv/Scripts/python.exe -m duck.set_id --all
+```
+
+It asks for each servo in turn, sets its ID and 1 Mbps, then turns the horn a little each way: label the servo with its number and joint. `--scan` lists every servo on a chain, with any missing. **Plug the USB in before the 5 V,** and take the 5 V off first: see [TROUBLESHOOTING.md](TROUBLESHOOTING.md). The picture is drawn from `pi/config/dynamixel.json` by `python -I tools/servo_id_diagram.py`.
+
+| IDs | Joints |
+|---|---|
+| 1-5 | right ankle, knee, hip pitch, hip roll, hip yaw |
+| 6-10 | left ankle, knee, hip pitch, hip roll, hip yaw |
+| 11-15 | neck pitch, head pitch, head yaw, head roll, beak |
+
 - **Left leg:** body -> hip yaw -> hip roll -> hip pitch -> knee -> ankle.
 - **Right leg:** the same.
 - **Head:** body -> neck -> head pitch -> head yaw -> head roll -> beak.

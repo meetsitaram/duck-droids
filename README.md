@@ -25,7 +25,13 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 | Run it | [Pi code](pi/README.md) |
 | Teach it to walk | [Training](docs/TRAINING.md) |
 
-**Status:** designed and checked in software. Nothing has been printed or built yet. Before ordering everything, print one joint and bench-test the electronics: the list is in its [open questions](docs/OPEN_QUESTIONS.md). In simulation it walks on its IMU alone, without reading its servos' angles, nearly as well as with them; that walk isn't deployed yet.
+### First powered test
+
+<img src="docs/images/real/dynamixel/first_stand.jpg" width="270" alt="The first all-Dynamixel duck built, standing on its own servos: orange printed frame and feet, black XL330 servos, white thigh covers, its eye and face plate on the head"> <img src="docs/images/real/dynamixel/first_stand.gif" width="270" alt="The real all-Dynamixel duck rising from sitting to standing, turning its head side to side, nodding, opening and shutting its beak, and sitting back down, with its MuJoCo twin on the screen behind it doing the same">
+
+The first one built, standing up from sitting under its own servos, then turning its head, nodding and working its beak before it sits back down ([MP4, 38 s](docs/images/real/dynamixel/first_stand.mp4); the GIF runs at 2.5 times speed). Behind it, its digital twin in MuJoCo follows the servos' own readings. The motion is scripted joint angles, not a trained policy, and a hand steadies it: nothing balances it yet. Made with `pi/stand_test.py`: see the [Pi code](pi/README.md).
+
+**Status:** built, with its 15 servos set up and calibrated, and its first powered test done (above): it rises, holds a stand with every joint within about 3 degrees, and sits back down, on a 5 V bench supply. Still to do: a 6 V regulator off the battery (the XL330s shut down past 7 V, and the bench supply sags under 4.6 V once the legs carry the full weight), balance on its IMU, and a trained policy. The open list is in its [open questions](docs/OPEN_QUESTIONS.md) and [troubleshooting](docs/dynamixel/TROUBLESHOOTING.md). In simulation it walks on its IMU alone, without reading its servos' angles, nearly as well as with them; that walk isn't deployed yet.
 
 ## Other ducks
 

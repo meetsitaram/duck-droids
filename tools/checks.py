@@ -38,7 +38,7 @@ ROOT = G.ROOT
 G_ACC = 9.81
 # m^3: intersections below this count as touching, not colliding. echo's 0.3 cm^3 is a fifth of a bearing on a robot this
 # size, and hid real collisions: a shoe in the ankle's cradle, a fork's post in the thigh plate (2026-11-02)
-TOUCH = 0.02e-6
+TOUCH = 0.5e-9            # m3: 0.5 mm3, mesh noise. It was 0.02e-6, 20 mm3, read as "0.02 cm3": a whole M2 screw head (17 mm3) buried in a wall passed, and a bearing race 15 mm3 into the body (2026-11-11)
 SEATED = 0.3e-6           # a part modelled seated a little into a servo of its own link (they are one solid to the checks)
 ARM_KEYS, LEG_KEYS = ('shoulder', 'elbow', 'wrist', 'hand'), ('hip', 'knee', 'ankle', 'foot')
 
@@ -90,6 +90,22 @@ def union(ms):
 
 def posed(m, M):
     return m.transform(M[:3, :].astype(np.float64))
+
+
+CLEAR_MOVING = 0.0003    # parts that turn past each other across a joint: at least this apart (printed parts come out a little large)
+
+
+def gap_under(a, b, c):
+    """Are a and b nearer than c anywhere? b shifted c along each axis, both ways: a face flat on another, or a corner just short of it, overlaps then."""
+    (alo, ahi), (blo, bhi) = bbox(a), bbox(b)
+    if np.any(alo > bhi + c) or np.any(blo > ahi + c):
+        return False
+    for k in range(3):
+        for sg in (1, -1):
+            t = [0.0, 0.0, 0.0]; t[k] = sg * c
+            if overlap(a, b.translate(t)) > TOUCH:
+                return True
+    return False
 
 
 def overlap(a, b):
@@ -147,7 +163,9 @@ class Solids:
             self.all[ln] = union([self.geom[(ln, i)] for i in idx if not free(i)])
             self.shell[ln] = union([self.geom[(ln, i)] for i in idx if role(i) == 'shell'])
             self.rigid[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID and not free(i) and not l['geoms'][i].get('on_cover')])
-            self.hard[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID] +
+            # (a screw is steel, not a decal: its head stands proud of the plate it clamps. The head yaw bracket's 4 side screws stood in the head frame's walls,
+            # the head couldn't roll, and every check passed, 2026-11-11, the user)
+            self.hard[ln] = union([self.geom[(ln, i)] for i in idx if role(i) in G.RIGID or 'fast' in l['geoms'][i]] +
                                   [self.wall[(ln, i)] for i in idx if role(i) == 'shell'])
 
 
@@ -457,11 +475,13 @@ def check_sweep(spec, S, R, rep, steps=25):
         P, C = spec['links'][j['parent']]['geoms'], spec['links'][j['child']]['geoms']
         ii = interface(j) if j['act'] else set()
         hard = lambda ln, i: S.wall.get((ln, i)) if (ln, i) in S.wall else \
-            (S.geom[(ln, i)] if spec['links'][ln]['geoms'][i]['role'] in G.RIGID else None)
+            (S.geom[(ln, i)] if spec['links'][ln]['geoms'][i]['role'] in G.RIGID or 'fast' in spec['links'][ln]['geoms'][i] else None)
         rig = [(hard(j['parent'], x), hard(j['child'], y), P[x]['name'], C[y]['name'])
                for x in range(len(P)) for y in range(len(C))
                if hard(j['parent'], x) is not None and hard(j['child'], y) is not None
                and {P[x]['name'], C[y]['name']} != ii]
+        jp = ' '.join(j['name'].split('_')[:2])     # 'L_ankle_pitch' -> 'L ankle', 'head_roll' -> 'head roll'
+        idlers = {f"{j['name']} flange"} | {g['name'] for g in P + C if g['name'].startswith(jp) and g['name'].endswith((' rear horn', ' rear boss'))} | {g['name'] for g in P + C if 'hinge sleeve' in g['name']}   # (and a hinge's sleeve: what the tab turns on, 0.2 mm round it)
         def hits(qv):
             """[(volume, description, structural)] at angle qv, worst first."""
             M = R.fk({j['name']: qv})
@@ -472,9 +492,13 @@ def check_sweep(spec, S, R, rep, steps=25):
                     out.append((v, f'{a} / {b}: {culprit(spec, S, a, M[a], b, M[b])}',
                                 R.distance(a, b) <= NEAR))
             for ma, mb, na, nb in rig:
-                v = overlap(ma, posed(mb, M[j['child']]))
+                pb = posed(mb, M[j['child']])
+                v = overlap(ma, pb)
                 if v > TOUCH:
                     out.append((v, f'{na} / {nb} (across the joint)', True))
+                elif j['act'] and not ({na, nb} & idlers) and gap_under(ma, pb, CLEAR_MOVING):   # (the servo's own horn and idler ride on its case)
+                    # (faces flat on each other passed as "no overlap": the head yaw bracket's side lay on the head frame's front wall, 0 mm apart, 2026-11-11)
+                    out.append((TOUCH * 1.0001, f'{na} / {nb} (across the joint: under {CLEAR_MOVING * 1000:.1f} mm apart)', True))
             return sorted(out, key=lambda h: (not h[2], -h[0]))
         msgs, warns, ok = [], [], True
         for side, end in (('lower', j['lower']), ('upper', j['upper'])):
@@ -512,7 +536,7 @@ POSES = {
                     'beak': 0.25}, 'double', 'peak', 0),
     # microduck tucked in (Pollen's desk photo): the neck folded forward, the head pitched back level, low in front
     'head tucked in': ({'neck_pitch': 1.55, 'head_pitch': -1.45}, 'double', 'continuous', 0),
-    'head forward and down, beak open': (dict(BENT, neck_pitch=0.9, head_pitch=0.3, beak=0.4),
+    'head forward and down, beak open': (dict(BENT, neck_pitch=0.9, head_pitch=0.3, beak=0.39 if G.RECIPE == 'dynamixel' else 0.4),
                                          'double', 'continuous', 0),
 }
 PEAK_MARGIN = 1.5        # peak torque must exceed static torque x this (accelerations, impacts)

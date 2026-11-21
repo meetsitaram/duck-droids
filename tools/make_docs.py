@@ -256,7 +256,7 @@ def guide():
          '## 0. Before you start', '',
          '1. **Print one joint first** (' + f'[prints/{G.RECIPE}/README.md](../../prints/{G.RECIPE}/README.md)' + '), then everything. None of it has been test printed yet.',
          ('2. **No IDs: each servo has its own channel** on the PWM bonnet (the table in [WIRING.md](WIRING.md)). Label each servo with its channel, and plug it in alone to check it moves.' if G.RECIPE == 'hobby' else
-          '2. **Set each servo\'s ID on its own**, before any are chained: ' + ('Feetech 1-10, Dynamixel 1-5, on their separate buses' if G.RECIPE == 'hybrid' else 'Feetech 1-15. Every HD-1910 leaves the factory as ID 1, at 1 Mbps' if G.RECIPE == 'hd1910' else 'Feetech 1-15, one at a time on the Waveshare board' if G.RECIPE == 'feetech' else 'Dynamixel 1-15') + '. Label each servo.'),
+          '2. **Set each servo\'s ID on its own**, before any are chained: ' + ('Feetech 1-10, Dynamixel 1-5, on their separate buses' if G.RECIPE == 'hybrid' else 'Feetech 1-15. Every HD-1910 leaves the factory as ID 1, at 1 Mbps' if G.RECIPE == 'hd1910' else 'Feetech 1-15, one at a time on the Waveshare board' if G.RECIPE == 'feetech' else 'Dynamixel 1-15, from the bottom up, as in the picture in [WIRING.md](WIRING.md): `python -m duck.set_id --all` in `pi/`, the board on 5 V') + '. Label each servo.'),
          '3. **Move each servo to mid-range** and keep it there: horns go on at mid-range, or the joint\'s range will be off-centre.' + (' A one-way PWM servo can\'t say where it is: send it 1500 us and fit the horn there, the nearest spline tooth.' if G.RECIPE == 'hobby' else ''),
          '4. **The pockets are cut 0.3 mm over the servos and 0.1 mm over the bearings.** If yours print tight or loose, change that once in tools/export_prints.py.',
          *HD_FIRST(), '',
@@ -355,8 +355,7 @@ def bom_dynamixel(spec):
             *([('m2f', 'Screw, flat head, machine thread', 'generic', 'M2 x 5 mm, Phillips, black oxide 304 stainless', sc('M2 flat', 5), 'pack of 50', 1, None, amz('B0H5JXD9YQ'), 'Required')] if sc('M2 flat', 5) else []),
             ('m25', 'Screw, bus board, machine thread', 'generic', 'M2.5 x 5 mm, pan head, Phillips, black oxide 18-8 stainless, DIN 7985', sc('M2.5', 5), 'pack of 100', 1, 5.59, link('Zoro G816462679', 'https://www.zoro.com/zoro-select-m25x045-x-5-mm-phillips-pan-machine-screw-black-oxide-stainless-steel-100-pk-31-bpm-25-5/i/G816462679/') + ': $5.59 by a search result; the page refuses automated reading, so confirm it', 'Required'),
             ('so', 'Spare hex standoffs, bus board: 4 come with the Waveshare board', 'uxcell', 'brass, M2.5, female-female, 8 mm long, 5 mm across flats', 0, 'pack of 50', 1, None, 'Amazon', 'Optional'),
-            ('m3kit', 'Screws, socket cap: 1 x M3 x 10, 4 x M3 x 12', 'generic', 'kit of 610 with nuts and washers', sc('M3', 10) + sc('M3', 12), 'kit', 1, 19.99, amz('B09NR8X2LV'), 'Required'),
-            ('wash', 'Washer, far hinge tab to hood', 'uxcell', 'M3, 6 mm outside, 0.5 mm thick, stainless', 1, 'pack of 100', 1, None, amz('B015A39NCC'), 'Required'),
+            ('m3kit', 'Screws, socket cap: ' + ', '.join(f'{sc("M3", l)} x M3 x {l}' for l in (10, 12) if sc('M3', l)), 'generic', 'kit of 610 with nuts and washers', sc('M3', 10) + sc('M3', 12), 'kit', 1, 19.99, amz('B09NR8X2LV'), 'Required'),
             ('m2kit', 'Spare M2 screws', 'HELIFOUNER', 'M2 pan head Phillips machine screws, 304 stainless: 4, 6, 8, 10, 12, 16 and 20 mm, 20 of each, with nuts and washers (560 pieces). Machine thread, not self-tapping: the servo box screws go in the horns and cases', 0, 'kit', 1, None, amz('B0B6HVS3SJ'), 'Optional'),
         ]),
         ('Electronics', [
@@ -394,7 +393,7 @@ def bom_dynamixel(spec):
 
     SEARCH = {'servo': 'Dynamixel XL330-M288-T', 'm077': 'Dynamixel XL330-M077-T', 'mr2216': '6703ZZ bearing 17x23x4mm', 'b6700': '6700ZZ bearing 10x15x4mm', 'idler': 'Dynamixel FPX330-H101 idler',
               'm2x6': 'M2 x 6mm self tapping pan head screw', 'm2x8': 'M2 x 8mm self tapping pan head screw', 'm2f': 'M2 x 5mm flat head phillips machine screw', 'm25': 'M2.5 x 5mm pan head machine screw black oxide',
-              'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'uxcell M3 x 6mm x 0.5mm flat washer', 'm2kit': 'HELIFOUNER M2 pan head machine screw kit 560',
+              'so': 'uxcell M2.5 x 8mm female female hex brass standoff', 'm3kit': 'M3 socket cap screw kit', 'wash': 'M3 DIN 9021 large flat washer 9mm', 'm2kit': 'HELIFOUNER M2 pan head machine screw kit 560',
               'pi': 'Raspberry Pi Zero 2 W', 'sd': 'SanDisk 32GB Ultra microSDHC A1', 'board': 'Waveshare Serial Bus Servo Driver Board', 'reg': 'hiBCTR USB buck converter QC3.0', 'imu': 'BNO085 IMU module',
               'cam': 'Arducam 8MP IMX219 camera module', 'ribbon': 'Raspberry Pi Zero camera cable 22 pin to 15 pin 15cm', 'batt': 'OVONIC 2S 450mAh 100C XT30', 'xt30': 'XT30 pigtail 16 AWG 100mm', 'wire': '20 AWG silicone wire red black',
               'thin': '28 AWG silicone stranded wire', 'long': 'JST EH 2.5mm 3 pin cable double ended 300mm', 'usb': '20 AWG silicone wire red black', 'otg': 'female female dupont jumper wires 10cm', 'switch': 'KCD1 mini rocker switch SPST pre-wired 12V 20A',

@@ -23,12 +23,12 @@
   }
  },
  "joint_pos": {
-  "left_hip_pitch": -0.4589830953733815,
-  "left_knee": 0.3380472236211385,
-  "left_ankle": 0.7970303189955011,
-  "right_hip_pitch": 0.4589830953733815,
-  "right_knee": -0.3380472236211385,
-  "right_ankle": -0.7970303189955011,
+  "left_hip_pitch": -0.33558979628838326,
+  "left_knee": 0.36288724559040614,
+  "left_ankle": 0.6984770418821242,
+  "right_hip_pitch": 0.33558979628838326,
+  "right_knee": -0.36288724559040614,
+  "right_ankle": -0.6984770418821242,
   "left_hip_yaw": 0.0,
   "right_hip_yaw": 0.0,
   "left_hip_roll": 0.0,
@@ -39,6 +39,6 @@
   "head_roll": 0.0
  },
  "root_z": 0.171,
- "feet_forward_m": 0.04852097941159487,
- "mass_kg": 0.9784372627072525
+ "feet_forward_m": 0.040595473107964006,
+ "mass_kg": 0.9396147833743674
 }

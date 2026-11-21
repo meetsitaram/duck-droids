@@ -183,6 +183,14 @@ def with_holes(B, part):
         m = m - tool
     for p, d, r, a, b, _ in hole_list(B, part):
         m = m - cylinder(p, d, r, a, b)
+    # slivers under 0.5 mm3 that the booleans leave are not part of it: the hood carried a loose sheet, 79 x 5 x 0.5 mm and no volume, across its front
+    # lower edge, where the bill's band meets the leaning front plane. It showed in the slicer as a jagged strip (2026-11-13, the user: "hood has a glitch")
+    ps = m.decompose()
+    real = [q for q in ps if q.volume() > 5e-10]
+    if real and len(real) < len(ps):
+        m = real[0]
+        for q in real[1:]:
+            m = m + q
     return m
 
 
@@ -207,7 +215,10 @@ def main():
         if G.RECIPE == 'dynamixel' and part.endswith((' shoe', ' sole')):     # on their flat faces, the shoe's underside and the sole's top (2026-11-09, the user)
             ax = ('z', -1) if part.endswith(' shoe') else ('z', 1)
             best = PR.score(tm, next(T for x, sg, T in PR.orientations() if (x, sg) == ax))
-        if part == 'head frame':
+        if G.RECIPE == 'dynamixel' and part in ('head frame', 'head lower shell'):
+            # (on their flat undersides: the frame on its floor, the shell on its bottom. 2026-11-11: stood on the shell, the floor hung 14.5 mm up and the print failed)
+            best = PR.score(tm, next(T for x, sg, T in PR.orientations() if (x, sg) == ('z', -1)))
+        elif part == 'head frame':
             # (least overhang area stood it 141 mm tall on 330 mm2, its supports trapped inside. With its band on the bed: 60 mm, 3 x the first layer, and under half the support landing on the part)
             best = dict(best, T=trimesh.transformations.rotation_matrix(np.radians(90), [0, 1, 0]) @ np.asarray(best['T'], float))
         tm.apply_transform(best['T'])

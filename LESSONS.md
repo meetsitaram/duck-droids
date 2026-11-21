@@ -394,3 +394,52 @@ The user looked at the picture and asked what held a servo on one side. Each of 
 | A yaw horn screw's head sat 0.15 mm into the roll servo under it: only printable.py's HEADS saw it | Leave a screw head's height and a clearance under every hub |
 | A closed box shell exports as a sealed void; a 1.2 mm lip and 1.2 mm walls read as thin to buildable.py's 0.25 mm voxels | Hollow a block from one open side; 1.5 mm for anything that must pass WALL |
 | render_pose's segmentation pass read an id past the scene's geoms on the nano duck (330 geoms), and stopped compare.py | Fall back to the depth buffer for the background when segmentation fails |
+
+## The head frame that couldn't move (2026-11-11)
+
+The user found it in Fusion: the head yaw bracket's 4 side screws stood 1.5 mm into the head frame's walls, and its sleeve lay flat on the front wall. The head could not roll. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| The sweep's allowance, `TOUCH = 0.02e-6` m3, was 20 mm3, read as "0.02 cm3, nothing". A whole M2 screw head (17 mm3) in a wall passed; so did a knee bearing race 15 mm3 into the body, the jaw's far hinge 2 mm off the beak servo's axis, the head floor over the fork's cradle ends, and a beak servo corner 1 mm in the hood | An allowance is mesh noise: 0.5 mm3. Write volumes in mm3 |
+| Screw heads were role `decal`, so the sweep never saw them | A screw is steel: its head is a solid in every collision check |
+| Two faces flat on each other overlap by 0: "no collision" for parts that turn past each other | Across a joint, parts stay 0.3 mm apart (`gap_under`); only the servo's own horn and idler, and a hinge's sleeve, ride on it |
+| A full rear wall went in because the user asked for one and the checks passed; nobody asked what turns beside it | Before a wall goes next to a joint, list what moves there through the joint's range |
+| A Fusion dialog left open made it refuse the build; the chain went on with the last build's STLs and passed them, and compare matched them too | Stop when Fusion refuses (`fusion_run`); look at the renders, not only the reports |
+
+## The head frame that needed a forest of supports (2026-11-11)
+
+The one-piece head frame stood on its lower shell, with its floor 14.5 mm over the bed. The slicer grew tree supports under the whole floor; the print failed after 2 hours of supports (a filament swap jammed). The user: "that's what happens when we don't design printer friendly parts". Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| `printable.py` SUPPORT was a warning, never a failure | Real support fails the part: more than 300 mm2, leaving out bridges up to 12 mm wide and the first 2 mm off the bed |
+| SUPPORT and ORIENT judged the orientation `printable.py` liked best; `export_prints.py` turned the head frame 90 degrees after that, and the turned one was never checked | Check the print file as exported, in its `print_T` |
+| The overhang count added bridges and real overhangs together, so the area meant little, and a 6,000 mm2 floor over air looked like "a big part" | Count what a slicer holds up: flat ceilings between walls print as bridges, a floor over air doesn't |
+| One part carried both a floor on the bed and a shell under it at another height: no face of it could sit flat | Split a part where its flat faces are at different heights, and screw the pieces where a driver reaches. The frame now prints on its floor, the shell on its bottom: 5,900 mm2 of support down to 93 |
+| A holder built at its servo's height started 2.5 mm over the floor, on air | Anything printed over a floor reaches down to it, or bridges between two things that do |
+
+## The head yaw bracket that snapped (2026-11-13)
+
+Printed, one of the 2 arms that hold the head roll servo broke off at its root. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| Each arm was 5.5 x 2.5 mm, with a screw's counterbore (4.2 mm across, 1.6 deep) 2 mm above its root: about 5 mm2 of plastic held the arm | `printable.py` NECK: no section under 12 mm2 is all that holds 150 mm3 or more to the rest of a part, holes and counterbores cut |
+| `buildable.py` WALL voxelizes a part's shapes without its screw holes, and LOAD covers the leg's sections only | Judge the part as exported, with its holes. A sunk screw head takes most of a thin wall: widen the wall round it |
+| The arms stood free, joined only at the floor, and the upper one printed as a 20 mm cantilever over air | Walls that hold a servo join each other: 2 arms and an end wall, a cup, not 2 fingers |
+| The horn's seat boss stood 2 mm under the plate, so the plate could not lie on the bed | A boss under a flat plate is a loose spacer, as the head roll's: then the plate is the print's first layer |
+
+## The face that was glued to two parts (2026-11-13)
+
+The user asked whether the face was connected to anything. It was held by glue alone on its 2 mm rim: the bottom edge on the head frame's floor, the top 0.6 mm into the hood's wall, the sides 0.6 mm clear, nothing behind it. Glued, it would have joined the hood to the frame, and the hood comes off often, for the electronics. Every check passed. Why:
+
+| What happened | Rule |
+|---|---|
+| Glued parts were exempt from HOLD, and nothing else asked what they sat on | `printable.py` GLUE: a glued part has a seat, and on one printed part only, or on other glued parts |
+| The face is a decal, so its 0.6 mm overlap with the hood's wall never counted as a clash | A part that is printed is checked as a part, whatever role its shape has in the picture |
+| The same check then found the soft mouth roof, glued under the floor, with its edge on the hood's band | Run a new check on every part, not only the one that prompted it |
+| The fix (the user's): glue the face to the hood, on a ledge behind it, and let its bottom edge stand loose in a groove in the floor, as the hood comes straight down | Ask which part a cover belongs to before fixing it: what comes off together is glued together |
+| A loose sheet, 79 x 5 x 0.5 mm with no volume, hung across the hood's front in the spec's STL and showed in the slicer as a jagged strip. PIECES counts pieces by volume and passed it | `export_prints.py` drops pieces under 0.5 mm3. Look at the print file in a slicer, not only its numbers |
+| The glued-to-the-hood face lasted a day. The user then asked for 2 tabs on the face's back, screwed down into the floor, as far out as they go, clear of the Pi's pins: the camera and its ribbon then stay on the frame when the hood lifts off | A cover that carries a wired part belongs to the part the wires go to. Screws, not glue, for anything that may have to come off |
+| With tabs on its back the face had to print on its front, and all it lay on there was the sensor pad, 81 mm2 and 1.5 mm proud. ORIENT passed it: the overhang was low and flat | A raised decal on a part's only flat side decides how it prints. The pad is a 0.4 mm recess now |
