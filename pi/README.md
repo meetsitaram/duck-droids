@@ -107,6 +107,38 @@ python stand_test.py --show --keep-head --face-forward --neck-offset -10 --gain 
 
 `sim/server.py --view --start pose.json --kp 4 --peak-nm 0.28` runs the simulator with a window, from a saved pose, with the servo stiffness and torque of the test's settings (5 V, 800 mA). Unsupported, the simulated duck falls from a crouch, as the real one would.
 
+## Record a motion by hand, play it back
+
+`motion.py` records a motion while you move the duck by hand, every servo limp, and plays it back on the servos:
+
+```bash
+python motion.py record wave --countdown 5 --view
+```
+
+```bash
+python motion.py play wave --speed 0.5 --view
+```
+
+Recording reads all 15 joints 25 times a second after a 5 s countdown, with the twin window following, till Ctrl-C (in the terminal, not the window). It saves `motions/<name>.json` and says which joints moved, and how far the end is from the start.
+
+Playback eases from where the duck is into the first recorded pose, plays it, and eases back to where it started before the torque goes off. It refuses a recording that ends more than 20 degrees from where it began, on any joint (`--max-loop`), and won't start unless the duck is within 15 degrees of the first pose (`--max-start`): move those joints and try again. `--preview` plays it on the model only. The legs are stiff (gain 1500), the neck too (1200, it lifts the whole head), and the head and beak softer and damped (600, D 300: stiffer, the head yaw hunts). The safety is stand_test.py's: current caps, and a stop eases the duck back before letting go. Nothing balances it: if a hand steadied it while recording, steady it while it plays.
+
+**Try the sample:** `motions/head_look_around.json`, 20.6 s. The head starts folded down in front, swings up and over to lean back, looks to one side, and comes back down; the legs barely move.
+
+In the simulator, no duck needed (`bash setup.sh --sim` first):
+
+```bash
+python motion.py play head_look_around --preview
+```
+
+On the real duck: put it in the start pose the preview shows, steady it, and:
+
+```bash
+python motion.py play head_look_around --speed 0.5 --view --min-volts 4.2
+```
+
+At half speed the neck lifts the head at about 33 degrees a second, drawing about 475 mA, near its 600 mA cap; on a 5 V bench supply the voltage sags, hence `--min-volts 4.2` (the XL330 is rated to 3.7 V). With a 6 V UBEC it shouldn't need it.
+
 ## What the policy sees
 
 61 numbers at 50 Hz, in this order: angular velocity 3, gravity 3, joint positions minus home 14, joint velocities 14, last action 14, twist command 3, head command 4, body command 6. It returns 14 joint targets, as offsets from home. See `duck/policy.py`. A policy trained with foot switches has 63 inputs and is refused.

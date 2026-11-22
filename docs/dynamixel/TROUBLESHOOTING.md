@@ -80,6 +80,26 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 
 **Seen:** with the battery under the head and the neck raised, the neck held 200 mA standing, a third of its 600 mA cap, and the left knee about five times the right (118 against 24 mA): the weight sits a little left. Warm after long holds: watch its temperature.
 
+### The head shakes after turning side to side (2026-11-21)
+
+**Seen:** every servo at the legs' gain, 1500: after the side-to-side turn the head yaw hunted round its goal, up to 0.7 degrees about 17 times a second, and kept on until the duck sat. Its error changed sign 203 times in 914 ticks; every other joint, 0 to 6.
+
+**Cause:** a stiff servo with a heavy head on it and almost nothing resisting the motion overshoots, corrects and overshoots again, and nothing damps it.
+
+**Fix:** the head and beak at gain 600 with damping (D 300), the legs left at 1500, and the turn slower (1.2 s a swing).
+
+### The neck trails a fast lift and stops the run (2026-11-21)
+
+**Seen:** a recorded motion lifting the head over the top at about 65 degrees a second: with the neck soft and damped like the head, it fell 17.9 degrees behind at only 320 mA, and the lag stop ended it.
+
+**Fix:** the neck its own setting, stiff like the legs (gain 1200, D 100): it lifts the whole head. At half speed it then kept within 12 degrees, at 475 mA, and the supply sagged to 4.5 V, under the 4.6 V stop: with `--min-volts 4.2` it played through. The supply again: see the first entry.
+
+### The board that steps the battery down sags (2026-11-21)
+
+**Seen:** a buck board on hand, sold as 9-36 V in and 3.5-6 A out, fed from the 2S pack, 7.4 V nominal: under its 9 V minimum it can't regulate, and the servos' supply sagged under 1-1.5 A.
+
+**Fix:** a servo BEC that runs from 2S: about 6 V minimum in, 5-6 V out, 5 A or more continuous, switching, no USB port (a USB one can switch to 9 or 12 V for quick charging). The ZTW UBEC 8A G2 (7-34 V in, 8 A, 15 A peak, jumper on 6.0 V) or a 5 A Hobbywing UBEC. On the back of the torso, the legs fed from it there, thick leads up the neck to the bus board. Measure its output before connecting the servos.
+
 ## Power
 
 ### An XL330 on the 2S battery goes limp (found in the manual, 2026-11-20)
