@@ -6,7 +6,7 @@
 "L hip yaw cradle horn face",
 "L hip yaw horn seat floor"
 ],
-"volume_cm3": 1.463412826074622,
+"volume_cm3": 1.520436957046945,
 "print_T": [
 [
 -1.0,
@@ -103,25 +103,6 @@
 ],
 "pockets": [
 {
-"kind": "rbox",
-"name": "L_hip_yaw actuator (buy) XL330_M288",
-"c": [
--0.0075,
-0.01594,
-0.13511965370031986
-],
-"size": [
-0.034300000000000004,
-0.020300000000000002,
-0.0233
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
-},
-{
 "kind": "cyl",
 "name": "L hip yaw horn bearing outer race",
 "c": [
@@ -170,44 +151,6 @@
 0.0031999999999999993,
 0.0082,
 0.02920000000000001
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L hip yaw cradle side +",
-"c": [
--0.02225,
-0.02744,
-0.13511965370031986
-],
-"size": [
-0.004700000000000004,
-0.0032000000000000028,
-0.023200000000000005
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L hip yaw cradle side -",
-"c": [
--0.02225,
-0.004439999999999999,
-0.13511965370031986
-],
-"size": [
-0.004700000000000004,
-0.003200000000000001,
-0.023200000000000005
 ],
 "fillet": 0.0001,
 "color": "#3A3D42",
@@ -1358,7 +1301,7 @@
 "L hip pitch cradle horn face",
 "L hip pitch horn seat floor"
 ],
-"volume_cm3": 1.4634171239967588,
+"volume_cm3": 1.5204366110970866,
 "print_T": [
 [
 0.0,
@@ -1493,63 +1436,6 @@
 "material": "pla"
 },
 {
-"kind": "rbox",
-"name": "L hip pitch cradle side +",
-"c": [
--0.02225,
-0.05204,
-0.11171965370031986
-],
-"size": [
-0.004700000000000004,
-0.02319999999999999,
-0.0032000000000000028
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L hip pitch cradle side -",
-"c": [
--0.02225,
-0.05204,
-0.08871965370031987
-],
-"size": [
-0.004700000000000004,
-0.02319999999999999,
-0.0032000000000000028
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L_hip_pitch actuator (buy) XL330_M288",
-"c": [
--0.0075,
-0.05204,
-0.10021965370031986
-],
-"size": [
-0.034300000000000004,
-0.0233,
-0.020300000000000002
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
-},
-{
 "kind": "cyl",
 "name": "L hip pitch horn bearing outer race",
 "c": [
@@ -1576,7 +1462,7 @@
 "L knee cradle horn face",
 "L knee horn seat floor"
 ],
-"volume_cm3": 1.3693600345401509,
+"volume_cm3": 1.4263827478792317,
 "print_T": [
 [
 0.0,
@@ -1728,63 +1614,6 @@
 "role": "struct",
 "exposed": true,
 "material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L knee cradle side +",
-"c": [
--0.026500000000000003,
-0.05204,
-0.09913000000000001
-],
-"size": [
-0.0031999999999999993,
-0.02319999999999999,
-0.004700000000000004
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L knee cradle side -",
-"c": [
--0.0495,
-0.05204,
-0.09913000000000001
-],
-"size": [
-0.003199999999999996,
-0.02319999999999999,
-0.004700000000000004
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "L_knee actuator (buy) XL330_M288",
-"c": [
--0.038000000000000006,
-0.05204,
-0.08438000000000001
-],
-"size": [
-0.020300000000000002,
-0.0233,
-0.034300000000000004
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
 },
 {
 "kind": "cyl",
@@ -3155,7 +2984,7 @@
 "R hip yaw cradle horn face",
 "R hip yaw horn seat floor"
 ],
-"volume_cm3": 1.4634128260746218,
+"volume_cm3": 1.5204369570469454,
 "print_T": [
 [
 -1.0,
@@ -3252,25 +3081,6 @@
 ],
 "pockets": [
 {
-"kind": "rbox",
-"name": "R_hip_yaw actuator (buy) XL330_M288",
-"c": [
--0.0075,
--0.01594,
-0.13511965370031986
-],
-"size": [
-0.034300000000000004,
-0.020300000000000002,
-0.0233
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
-},
-{
 "kind": "cyl",
 "name": "R hip yaw horn bearing outer race",
 "c": [
@@ -3319,44 +3129,6 @@
 0.0031999999999999993,
 0.0082,
 0.02920000000000001
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R hip yaw cradle side +",
-"c": [
--0.02225,
--0.004439999999999999,
-0.13511965370031986
-],
-"size": [
-0.004700000000000004,
-0.003200000000000001,
-0.023200000000000005
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R hip yaw cradle side -",
-"c": [
--0.02225,
--0.02744,
-0.13511965370031986
-],
-"size": [
-0.004700000000000004,
-0.0032000000000000028,
-0.023200000000000005
 ],
 "fillet": 0.0001,
 "color": "#3A3D42",
@@ -4507,7 +4279,7 @@
 "R hip pitch cradle horn face",
 "R hip pitch horn seat floor"
 ],
-"volume_cm3": 1.4634171239967586,
+"volume_cm3": 1.5204366110970868,
 "print_T": [
 [
 0.0,
@@ -4642,63 +4414,6 @@
 "material": "pla"
 },
 {
-"kind": "rbox",
-"name": "R hip pitch cradle side +",
-"c": [
--0.02225,
--0.05204,
-0.11171965370031986
-],
-"size": [
-0.004700000000000004,
-0.02319999999999999,
-0.0032000000000000028
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R hip pitch cradle side -",
-"c": [
--0.02225,
--0.05204,
-0.08871965370031987
-],
-"size": [
-0.004700000000000004,
-0.02319999999999999,
-0.0032000000000000028
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R_hip_pitch actuator (buy) XL330_M288",
-"c": [
--0.0075,
--0.05204,
-0.10021965370031986
-],
-"size": [
-0.034300000000000004,
-0.0233,
-0.020300000000000002
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
-},
-{
 "kind": "cyl",
 "name": "R hip pitch horn bearing outer race",
 "c": [
@@ -4725,7 +4440,7 @@
 "R knee cradle horn face",
 "R knee horn seat floor"
 ],
-"volume_cm3": 1.3693600345401504,
+"volume_cm3": 1.426382747879232,
 "print_T": [
 [
 0.0,
@@ -4877,63 +4592,6 @@
 "role": "struct",
 "exposed": true,
 "material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R knee cradle side +",
-"c": [
--0.026500000000000003,
--0.05204,
-0.09913000000000001
-],
-"size": [
-0.0031999999999999993,
-0.02319999999999999,
-0.004700000000000004
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R knee cradle side -",
-"c": [
--0.0495,
--0.05204,
-0.09913000000000001
-],
-"size": [
-0.003199999999999996,
-0.02319999999999999,
-0.004700000000000004
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "R_knee actuator (buy) XL330_M288",
-"c": [
--0.038000000000000006,
--0.05204,
-0.08438000000000001
-],
-"size": [
-0.020300000000000002,
-0.0233,
-0.034300000000000004
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
 },
 {
 "kind": "cyl",
@@ -8263,7 +7921,7 @@
 "head yaw cradle horn face",
 "head yaw horn seat wall"
 ],
-"volume_cm3": 0.7377373106953018,
+"volume_cm3": 0.7944974209718687,
 "print_T": [
 [
 1.0,
@@ -8396,63 +8054,6 @@
 "role": "struct",
 "exposed": true,
 "material": "pla"
-},
-{
-"kind": "rbox",
-"name": "head yaw cradle side +",
-"c": [
-0.00015000000000000343,
-0.0115,
-0.23511965370031984
-],
-"size": [
-0.004700000000000002,
-0.003200000000000001,
-0.02320000000000002
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "head yaw cradle side -",
-"c": [
-0.00015000000000000343,
--0.0115,
-0.23511965370031984
-],
-"size": [
-0.004700000000000002,
-0.003200000000000001,
-0.02320000000000002
-],
-"fillet": 0.0001,
-"color": "#3A3D42",
-"role": "struct",
-"exposed": true,
-"material": "pla"
-},
-{
-"kind": "rbox",
-"name": "head_yaw actuator (buy) XL330_M288",
-"c": [
-0.014900000000000004,
-0,
-0.23511965370031984
-],
-"size": [
-0.034300000000000004,
-0.020300000000000002,
-0.0233
-],
-"fillet": 0.0003,
-"color": "#1B1C1F",
-"role": "actuator",
-"exposed": false,
-"material": "actuator"
 },
 {
 "kind": "cyl",

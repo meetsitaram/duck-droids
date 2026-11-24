@@ -42,6 +42,7 @@ MODE_CURRENT_POSITION = 5
 GOAL_CURRENT = (102, 2)
 HW_ERROR = (70, 1)
 LED = (65, 1)
+POSITION_D = (80, 2)
 
 
 def smooth(a):
@@ -121,8 +122,8 @@ def timeline(a, q0, stand):
         # side to side it can swing more, as that barely moves the weight forward or back
         hy = level['head_yaw']
         for _ in range(2):                     # side to side
-            frames += [(0.8, with_(head_yaw=hy + 0.26)), (0.8, with_(head_yaw=hy - 0.26))]
-        frames += [(0.8, level), (0.5, level)]
+            frames += [(1.2, with_(head_yaw=hy + 0.26)), (1.2, with_(head_yaw=hy - 0.26))]
+        frames += [(1.2, level), (0.5, level)]
         for _ in range(2):                     # a small, slow nod
             frames += [(0.8, with_(head_pitch=hp + 0.10)), (0.8, with_(head_pitch=hp - 0.10))]
         frames += [(0.8, level), (0.5, level)]
@@ -161,14 +162,24 @@ def face_track(frames, q0, offset=0.0):
             _, q = at(frames, q0, min(t, total - 1e-6))
             pts.append((t, face_forward_pitch(q) + offset))
 
+    start = q0['head_pitch']
+
     def pitch(t):
         if t_rise <= t < t_low0:
             return None
         seg = pts[:41] if t < t_rise else pts[41:]
+        f = seg[-1][1]
         for (ta, pa), (tb, pb) in zip(seg, seg[1:]):
             if ta <= t <= tb:
-                return pa + (pb - pa) * (t - ta) / max(tb - ta, 1e-9)
-        return seg[-1][1]
+                f = pa + (pb - pa) * (t - ta) / max(tb - ta, 1e-9)
+                break
+        # blend from where the head really is into face-forward over the first 30% of the rise, and back over the last 30% of
+        # the lower: no jump on the first tick (an 18 deg jump stopped a run at 0.0 s, 2026-11-21)
+        if t < t_rise:
+            w = smooth(min(1.0, t / (0.3 * t_rise)))
+        else:
+            w = smooth(min(1.0, (total - t) / (0.3 * (total - t_low0))))
+        return start + w * (f - start)
     return pitch
 
 
@@ -228,6 +239,10 @@ def main():
     ap.add_argument('--head-pitch', type=float, default=-0.40, help='rad, at standing: tipped back, nose up (0 is level, negative is nose up)')
     ap.add_argument('--cap', type=int, default=800, help='current cap per leg servo, mA (head 600, beak 300)')
     ap.add_argument('--gain', type=int, default=800, help='position P gain (factory 400: a loaded joint sags 4 deg at 400)')
+    ap.add_argument('--neck-gain', type=int, default=1200, help='position P gain for the neck, which lifts the whole head')
+    ap.add_argument('--neck-damping', type=int, default=100)
+    ap.add_argument('--head-gain', type=int, default=600, help='position P gain for the neck, head and beak: at the leg gain of 1500 the head yaw hunts, 17 times a second, after a turn')
+    ap.add_argument('--head-damping', type=int, default=300, help='position D gain for the neck, head and beak: damps an overshoot')
     ap.add_argument('--min-volts', type=float, default=4.6)
     ap.add_argument('--max-volts', type=float, default=6.0, help='the XL330 maximum; the simulator says 7.8 V, so give it 9 there')
     ap.add_argument('--max-lag', type=float, default=15.0, help='degrees a joint may trail its goal')
@@ -264,7 +279,9 @@ def main():
         bus.write(i, dxl.TORQUE_ENABLE, 0)
         bus.write(i, dxl.OPERATING_MODE, MODE_CURRENT_POSITION)
         bus.write(i, GOAL_CURRENT, cap[n])
-        bus.write(i, dxl.POSITION_P, a.gain)
+        head = (n in HEAD or n in BEAK) and n != 'neck_pitch'          # the neck carries the whole head: stiff, like the legs
+        bus.write(i, dxl.POSITION_P, a.neck_gain if n == 'neck_pitch' else a.head_gain if head else a.gain)
+        bus.write(i, POSITION_D, a.neck_damping if n == 'neck_pitch' else a.head_damping if head else 0)
         bus.write(i, dxl.PROFILE_VELOCITY, 0)
 
     def read_state():
@@ -444,6 +461,7 @@ def main():
                 bus.write(i, dxl.TORQUE_ENABLE, 0)
                 bus.write(i, LED, 0)
                 bus.write(i, dxl.OPERATING_MODE, dxl.MODE_POSITION)
+                bus.write(i, POSITION_D, 0)
             except dxl.DxlError:
                 pass
         log.close()

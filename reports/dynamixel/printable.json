@@ -3,7 +3,7 @@
   "group": "ORIENT",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 561 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 579 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -15,7 +15,7 @@
   "group": "BED",
   "item": "L hip yaw lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm, 561 mm2 on the bed"
+  "detail": "37 x 26 x 3 mm, 579 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -147,7 +147,7 @@
   "group": "ORIENT",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 561 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 579 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -159,7 +159,7 @@
   "group": "BED",
   "item": "L hip pitch lid",
   "status": "PASS",
-  "detail": "26 x 37 x 3 mm, 561 mm2 on the bed"
+  "detail": "26 x 37 x 3 mm, 579 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -183,7 +183,7 @@
   "group": "ORIENT",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 540 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 557 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -195,7 +195,7 @@
   "group": "BED",
   "item": "L knee lid",
   "status": "PASS",
-  "detail": "38 x 26 x 3 mm, 540 mm2 on the bed"
+  "detail": "38 x 26 x 3 mm, 557 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -369,7 +369,7 @@
   "group": "ORIENT",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 561 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 579 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -381,7 +381,7 @@
   "group": "BED",
   "item": "R hip yaw lid",
   "status": "PASS",
-  "detail": "37 x 26 x 3 mm, 561 mm2 on the bed"
+  "detail": "37 x 26 x 3 mm, 579 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -513,7 +513,7 @@
   "group": "ORIENT",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 561 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 579 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -525,7 +525,7 @@
   "group": "BED",
   "item": "R hip pitch lid",
   "status": "PASS",
-  "detail": "26 x 37 x 3 mm, 561 mm2 on the bed"
+  "detail": "26 x 37 x 3 mm, 579 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -549,7 +549,7 @@
   "group": "ORIENT",
   "item": "R knee lid",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 540 mm2 on the bed, 3 mm tall"
+  "detail": "0 mm2 overhang, 557 mm2 on the bed, 3 mm tall"
  },
  {
   "group": "PIECES",
@@ -561,7 +561,7 @@
   "group": "BED",
   "item": "R knee lid",
   "status": "PASS",
-  "detail": "38 x 26 x 3 mm, 540 mm2 on the bed"
+  "detail": "38 x 26 x 3 mm, 557 mm2 on the bed"
  },
  {
   "group": "HOLES",
@@ -885,7 +885,7 @@
   "group": "ORIENT",
   "item": "head yaw sheet",
   "status": "PASS",
-  "detail": "0 mm2 overhang, 539 mm2 on the bed, 4 mm tall"
+  "detail": "0 mm2 overhang, 556 mm2 on the bed, 4 mm tall"
  },
  {
   "group": "PIECES",
@@ -897,7 +897,7 @@
   "group": "BED",
   "item": "head yaw sheet",
   "status": "PASS",
-  "detail": "37 x 26 x 4 mm, 539 mm2 on the bed"
+  "detail": "37 x 26 x 4 mm, 556 mm2 on the bed"
  },
  {
   "group": "HOLES",

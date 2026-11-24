@@ -4,6 +4,8 @@ so nothing moves and torque stays as it is. Pose the duck by hand, torque off, a
   python twin.py                     a MuJoCo window, following the duck live, and a table of joint angles every 2 s
   python twin.py --snapshot pose.png  one picture from three sides, then exit
   python twin.py --port COM3          the bus board's port, if more than one is found
+  python twin.py --remote duck.local   the bus is on the duck's Pi: draw what it sends (pi/telemetry.py, or run_policy.py --telemetry);
+                                          the body leans as the IMU says (--feet-flat: as the feet say, the default without an IMU)
   python twin.py --no-soles           the soles aren't fitted yet: stand it on its bare feet
   python twin.py --body-level         body held level, feet as they fall (the duck in the air); by default its feet are flat on the floor
 
@@ -32,6 +34,7 @@ import mujoco  # noqa: E402
 
 K = 2 * math.pi / dxl.TICKS_PER_REV
 PTS = {}          # per model: sample points of each mesh, to rest the duck on the floor
+GRAV = [None]     # the IMU's gravity in the body frame, from the Pi's stream: when known, the body is turned to match it, not guessed from the feet
 FEET_FLAT = [True]   # turn the model so its feet are flat; --body-level holds the body level instead (the duck held in the air)
 
 
@@ -108,7 +111,26 @@ def pose(m, d, adr, q, root_z=None):
     d.qvel[:] = 0
     mujoco.mj_forward(m, d)
     if free:
-        rest_on_floor(m, d, FEET_FLAT[0])
+        if GRAV[0] is not None and FEET_FLAT[0]:
+            orient_to_gravity(m, d, GRAV[0])
+            rest_on_floor(m, d, False)
+        else:
+            rest_on_floor(m, d, FEET_FLAT[0])
+
+
+def orient_to_gravity(m, d, grav):
+    """Turn the whole model so the trunk feels the gravity the IMU measured (grav: unit vector, body frame, down). Yaw is kept."""
+    R = d.xmat[mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, 'trunk_base')].reshape(3, 3)
+    u = R @ (np.array(grav, float) / np.linalg.norm(grav))           # where the measured down points in the world, as posed now
+    v = np.array([0.0, 0.0, -1.0])
+    axis = np.cross(u, v)
+    s_, c_ = np.linalg.norm(axis), float(u @ v)
+    if s_ > 1e-6:
+        turn, out = np.zeros(4), np.zeros(4)
+        mujoco.mju_axisAngle2Quat(turn, axis / s_, math.atan2(s_, c_))
+        mujoco.mju_mulQuat(out, turn, d.qpos[3:7].copy())
+        d.qpos[3:7] = out
+        mujoco.mj_forward(m, d)
 
 
 def mesh_points(m):
@@ -177,6 +199,8 @@ def snapshot(m, d, path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--port', default='auto')
+    ap.add_argument('--feet-flat', action='store_true', help='with --remote: place the body by its feet, flat on the floor, even when the IMU is sent')
+    ap.add_argument('--remote', help="the Pi's address[:port]: take the servo readings it sends (duck/telemetry.py) instead of a bus here")
     ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
     ap.add_argument('--snapshot', help='save one picture and exit')
     ap.add_argument('--save-pose', help='save the joint angles (rad) to a JSON and exit: sim/server.py --start takes it')
@@ -186,21 +210,44 @@ def main():
     a = ap.parse_args()
     cfg = load_config(a.config)
     FEET_FLAT[0] = not a.body_level
-    port = find_port() if a.port == 'auto' else a.port
-    bus = dxl.Bus(port, timeout=0.05)
     names = cfg['policy_joints'] + cfg.get('extra_joints', [])
     ids = [cfg['joints'][n]['id'] for n in names]
+    extra = {}
+    if a.remote:
+        from duck.telemetry import Receiver
+        src = Receiver(a.remote)
+        print('waiting for', a.remote, flush=True)
+
+        class _Bus:
+            def close(self):
+                pass
+        bus = _Bus()
+
+        def remote_ticks(_bus, _ids):                     # the Pi's latest reading, in place of the bus
+            t1 = time.monotonic()
+            while src.latest is None:
+                if time.monotonic() - t1 > 5:
+                    raise dxl.DxlError('nothing from ' + a.remote)
+                time.sleep(0.05)
+            msg = src.latest
+            extra.update({k: v for k, v in msg.items() if k != 'ticks'})
+            GRAV[0] = msg.get('grav') if not a.feet_flat else None
+            return {int(k): v for k, v in msg['ticks'].items()}
+    else:
+        port = find_port() if a.port == 'auto' else a.port
+        bus = dxl.Bus(port, timeout=0.05)
+    read = remote_ticks if a.remote else read_ticks
     m, d, adr = load_model(cfg, soles=not a.no_soles)
     root_z = cfg['root_z'] + 0.05
 
     if a.save_pose:
-        q = angles(read_ticks(bus, ids), cfg, names)
+        q = angles(read(bus, ids), cfg, names)
         json.dump({n: round(v, 5) for n, v in q.items()}, open(a.save_pose, 'w'), indent=1)
         print(table(q, cfg)); print('saved', a.save_pose)
         return
 
     if a.snapshot:
-        q = angles(read_ticks(bus, ids), cfg, names)
+        q = angles(read(bus, ids), cfg, names)
         pose(m, d, adr, q, root_z)
         print(table(q, cfg))
         snapshot(m, d, a.snapshot)
@@ -208,14 +255,14 @@ def main():
 
     import mujoco.viewer
     last = 0
-    q = angles(read_ticks(bus, ids), cfg, names)
+    q = angles(read(bus, ids), cfg, names)
     pose(m, d, adr, q, root_z)
     with mujoco.viewer.launch_passive(m, d, show_left_ui=False, show_right_ui=False) as v:
         v.cam.lookat[:] = d.subtree_com[1]             # the whole duck, from its front-left
         v.cam.distance, v.cam.azimuth, v.cam.elevation = 0.75, 150, -15
         while v.is_running():
             try:
-                q = angles(read_ticks(bus, ids), cfg, names)
+                q = angles(read(bus, ids), cfg, names)
             except dxl.DxlError as e:
                 print('read failed:', e)
                 time.sleep(0.2)
@@ -226,7 +273,11 @@ def main():
             v.sync()
             if time.monotonic() - last > 2:
                 last = time.monotonic()
-                print(table(q, cfg), '\n')
+                print(table(q, cfg))
+                if 'grav' in extra:
+                    g = extra['grav']
+                    print(f"IMU gravity {g[0]:+.2f} {g[1]:+.2f} {g[2]:+.2f}  (tilt {math.degrees(math.acos(max(-1, min(1, -g[2])))):.1f} deg)")
+                print()
             time.sleep(1 / a.hz)
     bus.close()
 

@@ -4,6 +4,21 @@ Nothing here has been built. Connector positions are from ROBOTIS's own XL330 mo
 
 ![Wiring](wiring.png)
 
+Since 2026-11-23 the bus board connects to the Pi over USB (the green OTG cable), not the UART: see the next section. The soldered UART is kept below as the fallback.
+
+## The Pi's connections
+
+![The Pi's connections](pi_connections.svg)
+
+- **5 V in:** the buck converter's USB socket, its two outer pins, to the Pi's pin 2 (5 V) and pin 6 (ground). See Power below.
+- **IMU:** 4 wires to pins 1 (3.3 V), 3 (SDA), 5 (SCL) and 9 (ground). See Signals below.
+- **Bus board:** its USB-C to the Pi's micro USB data port (marked USB, not PWR IN), through a micro USB OTG to USB-C cable. **Both jumpers at B.** The Pi code finds the board by its USB chip's maker ID (WCH), as on a PC: `run_policy.py --port auto` picks it as `/dev/ttyACM0` or `/dev/ttyUSB0`. Pins 8, 10 and 14 stay free.
+- **PC:** over Wi-Fi (SSH). The data port is taken by the bus board, and the Pi's other micro USB port, PWR IN, carries power only: a PC plugged in there can't talk to the Pi.
+
+**Check before trusting it in the duck: power-up order.** The board's USB chip failed to start whenever its USB was plugged in with 5 V already on its terminals ([TROUBLESHOOTING.md](TROUBLESHOOTING.md), first entry). In the duck, the switch powers the terminals and the Pi together. Switch on 5 to 10 times and check that the board shows up every time (`ls /dev/ttyACM* /dev/ttyUSB*`, or `python -m duck.set_id --scan`). **If it ever doesn't, use the UART instead** (the Signals table below): 3 soldered wires, and the data port is then free for a PC cable.
+
+The OTG cable is stiffer than 3 wires: check it fits in the head beside the face, and tie it down so the Pi's port doesn't carry the strain. Right-angle micro USB leads are hard to find, which is why the UART was chosen at first (2026-11-06).
+
 ## Every part
 
 Everything you'll handle, drawn from the model. Its counts are checked against the [BOM](BOM.md). Printed parts are the real Fusion bodies; bought parts are the model's shapes, not the makers' CAD.
@@ -17,13 +32,13 @@ The picture is drawn and checked from `spec/wiring_dynamixel.json` by `python -I
 | Rail | From | Feeds | Worst case |
 |---|---|---|---|
 | Battery, 7.4 V nominal, **8.4 V full** | OVONIC 2S 450 mAh 100C, on its XT30 | the board's green terminals, through the neck, then all 15 XL330s through the board. **Past ROBOTIS's 6 V maximum** | All 15 stalling at 5 V would be 22 A (1.47 A each, per ROBOTIS), and more at 7.4 V: expect the pack's voltage to sag first. Walking current hasn't been measured |
-| Logic 5 V | hiBCTR USB buck converter in the head, 2 soldered input wires from the green terminals. Its output is 2 wires soldered to its USB socket's 5 V and ground pins, to the Pi's pin 2 (5 V) and pin 6 (ground): no USB cable, as right-angle ones are hard to find. **Measure 5 V at the wires before soldering them to the Pi**: the Pi's pins have no fuse or protection, unlike its PWR port | Pi Zero 2 W, IMU (through the Pi). The bus board's logic comes from its own regulator, off the battery | under 1.5 A |
+| Logic 5 V | hiBCTR USB buck converter in the head (a fast-charge board, DC 6-32 V in, 2 to a panel: snap them apart on the score line). Input: 2 wires soldered through its IN+ and IN- holes, from the green terminals. Output: its USB socket's 2 outer pins, pin 1 (5 V) and pin 4 (ground), to the Pi's pin 2 (5 V) and pin 6 (ground): no USB cable, as right-angle ones are hard to find. Find the 2 pins with a meter (about 5 V between them with the input powered), or plug in a cut USB cable and use its red (5 V) and black (ground) wires. **Never connect the middle pins (D- and D+):** left open, nothing can ask the board for 9 or 12 V. A USB-A to micro USB cable into the Pi's PWR IN port also works, and is better protected, if it fits beside the face. **Measure 5 V at the wires before soldering them to the Pi**: the Pi's pins have no fuse or protection, unlike its PWR port. A 2S pack under load sags toward the board's 6 V minimum: measure the Pi's 5 V again with the duck standing | Pi Zero 2 W, IMU (through the Pi). The bus board's logic comes from its own regulator, off the battery | under 1.5 A |
 
 **Power switch:** a standard KCD1 mini rocker, SPST, pre-wired (DaierTek's 10-pack): it snaps into a 19.2 x 13.2 mm hole in the back of the body, right of centre (the body's back is 13 mm longer for its 22 mm of depth). Its 2 leads are spliced into the battery's red lead, with a crimp or lever splice connector; the black lead runs past it. The XT30 stays plugged, inside the body. Listed at 20 A, 12 V DC (6 A 250 V AC on the part); walking current hasn't been measured, so feel it after a long walk.
 
 **Charging:** switch off, then plug the charger into the balance plug, which ends at the port at the back left with the XT30 beneath it. This needs a charger that charges through the balance lead alone: many hobby chargers want the main leads too, and refuse without them.
 
-**PC:** the Pi's micro USB data port is free, as the bus board is on the UART. A rounded hole in the top of the head sits over it, for a plain micro USB cable from the PC. Wi-Fi does the same without a cable.
+**PC:** over Wi-Fi, as the bus board now takes the Pi's micro USB data port (see The Pi's connections). The Pi's PWR IN port is power only. With the bus board on the UART instead, the data port is free again: the rounded hole in the top of the head sits over it, for a plain micro USB cable from the PC. With the duck switched on, use a data-only cable there, or Wi-Fi: that port's 5 V meets the buck's on the Pi.
 
 **One board first.** The user's Mini Duck ran its bigger Feetech servos from one Waveshare board, so start there: socket 1 through the 5 head servos and on from the neck servo to the left leg, socket 2 down the neck to the right leg. That needs no branch in the body, as each servo has only 2 sockets. Each JST EH lead is rated by ROBOTIS's 21 AWG crimp at about 3 A, and socket 1 carries 10 servos. **If the board or leads get warm, or servos reset, unplug and add leg power:** a lead from the battery to each leg's V wire, keeping D and G from socket 2.
 
@@ -31,10 +46,11 @@ The picture is drawn and checked from `spec/wiring_dynamixel.json` by `python -I
 
 | From | To | How |
 |---|---|---|
-| Pi's UART: GPIO 14 (TX, pin 8), GPIO 15 (RX, pin 10), ground (pin 14) | Waveshare Bus Servo Adapter (A), its TX, RX and GND header | 3 wires, about 10 cm, soldered at both ends: the header's pins snipped to 3 mm, the wires laid flat out past the board's edge. Pi TX to board RX, Pi RX to board TX. **Both jumpers at A.** Waveshare's wiki couldn't be read to confirm the header's labels: if no servo answers, swap TX and RX. Before connecting, measure the board's TX against GND with it powered: the Pi's pins take 3.3 V only. The Pi needs its full UART on these pins: `pi/setup_pi.sh` moves Bluetooth to the mini UART (`dtoverlay=miniuart-bt`, with `core_freq=250`), so a Bluetooth gamepad still works, turns the serial console off, and the code uses `/dev/serial0` at 1 Mbaud |
+| Pi's micro USB data port (marked USB) | Waveshare Bus Servo Adapter (A), its USB-C | A micro USB OTG to USB-C cable. **Both jumpers at B.** The code finds the board itself (`--port auto`). Check the power-up order first: see The Pi's connections |
+| *Instead, if the USB link doesn't start reliably:* Pi's UART, GPIO 14 (TX, pin 8), GPIO 15 (RX, pin 10), ground (pin 14) | Waveshare Bus Servo Adapter (A), its TX, RX and GND header | 3 wires, about 10 cm, soldered at both ends: the header's pins snipped to 3 mm, the wires laid flat out past the board's edge. Pi TX to board RX, Pi RX to board TX. **Both jumpers at A.** Waveshare's wiki couldn't be read to confirm the header's labels: if no servo answers, swap TX and RX. Before connecting, measure the board's TX against GND with it powered: the Pi's pins take 3.3 V only. The Pi needs its full UART on these pins: `pi/setup_pi.sh` moves Bluetooth to the mini UART (`dtoverlay=miniuart-bt`, with `core_freq=250`), so a Bluetooth gamepad still works, turns the serial console off, and the code uses `/dev/serial0` at 1 Mbaud |
 | Bus board's 2 sockets | the chains | D, V, G. V is only what its DC terminals are given. The sockets may need easing to take Dynamixel plugs: do it before fitting |
 | Battery lead, in the neck | bus board's DC+ and DC- terminals, with the regulator's input alongside | feeds everything. **Its silkscreen says DC 9-12.6 V, and the pack is 7.4-8.4 V. Bench test first** |
-| Pi I2C (pins 3, 5), 3V3 (pin 1), ground (pin 9) | IMU in the body, a GY-BNO08X board: its VCC, GND, SCL and SDA | 4 thin wires down the neck. Leave its PS0 and PS1 unconnected, for I2C. Its address is 0x4A or 0x4B depending on AD0: `i2cdetect -y 1` shows which, and the Pi code tries both. With the 5 power and UART wires, 9 wires are soldered to the Pi's header, all at its microSD end |
+| Pi I2C (pins 3, 5), 3V3 (pin 1), ground (pin 9) | IMU in the body, a GY-BNO08X board: its VCC, GND, SCL and SDA | 4 thin wires down the neck. Leave its PS0 and PS1 unconnected, for I2C. Its address is 0x4A or 0x4B depending on AD0: `i2cdetect -y 1` shows which, and the Pi code tries both. With the 2 power wires, 6 wires are soldered to the Pi's header (9 with the UART), all at its microSD end |
 | Pi camera port, at the end of the board by the regulator | camera | 15 cm ribbon. Leave slack: the camera is on the hood, the Pi on the frame |
 
 ## The chains

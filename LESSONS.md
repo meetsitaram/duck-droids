@@ -443,3 +443,30 @@ The user asked whether the face was connected to anything. It was held by glue a
 | A loose sheet, 79 x 5 x 0.5 mm with no volume, hung across the hood's front in the spec's STL and showed in the slicer as a jagged strip. PIECES counts pieces by volume and passed it | `export_prints.py` drops pieces under 0.5 mm3. Look at the print file in a slicer, not only its numbers |
 | The glued-to-the-hood face lasted a day. The user then asked for 2 tabs on the face's back, screwed down into the floor, as far out as they go, clear of the Pi's pins: the camera and its ribbon then stay on the frame when the hood lifts off | A cover that carries a wired part belongs to the part the wires go to. Screws, not glue, for anything that may have to come off |
 | With tabs on its back the face had to print on its front, and all it lay on there was the sensor pad, 81 mm2 and 1.5 mm proud. ORIENT passed it: the overhang was low and flat | A raised decal on a part's only flat side decides how it prints. The pad is a 0.4 mm recess now |
+
+## The Xbox controller that took an hour to pair (2026-11-23)
+
+The Pi Zero 2 W paired the Xbox Series controller at once, then looped: connected, dropped, connected, the logo flashing. The fixes were tried one at a time, each with a round trip through the user (sudo, the pair button, a reboot, a firmware update), and the one that worked was in the first troubleshooting guide found once the search began. Why:
+
+| What happened | Rule |
+|---|---|
+| The common fixes (privacy, ERTM, userspace HID, firmware) went in one by one from memory, about an hour | Search for the exact log line (`journalctl -b \| grep bluetoothd`) before the second try. The fix was the LE connection parameters in xpadneo's troubleshooting guide, written for the Pi's internal adapter |
+| Each try needed the user's sudo password, and the pair button held at the right moment | Put the whole fix in one script the user runs once (`pi/xbox_pair.sh`): config, re-pair, per-device settings, a check at the end |
+| `bluetoothctl` said "Connection successful" and Connected: yes while no button arrived | Connected is not working: read the input device (`/dev/input/event*`) and have someone press buttons before calling it done |
+| The setup script moved Bluetooth to the mini UART, for the bus on the Pi's UART, after the bus had moved to USB | When a design choice changes (the bus link), look for what else assumed the old one: `setup_pi.sh` now does the UART move only with `--uart` |
+
+## Bringing up the duck's Pi, and its first stands (2026-11-23)
+
+The Pi went from a blank card to running a policy from an Xbox controller in an evening, and the first stands found the power wasn't up to it. Why things took longer than they should have:
+
+| What happened | Rule |
+|---|---|
+| The Xbox controller's connect-drop loop took an hour of one-at-a-time fixes from memory | Search the exact log line first; put a sudo fix in one script the user runs once (`pi/xbox_pair.sh`) |
+| Commands run on the Pi lived only in the chat | Every change to the Pi goes into `setup_pi.sh`, a script, or `pi/README.md` "Set up a new Pi" the same turn |
+| `pkill -f` with a pattern that also matched its own command line killed the SSH session, twice | Match a file name (`"[t]elemetry.py"`), never text that appears in the command itself |
+| `\| head -40` on the twin ended its window after 40 lines | Don't pipe a long-running program into `head` |
+| The IMU's axes were assumed: the board was mounted turned 90 deg, and a forward lean would have read as sideways | Measure the axes with the joints held stiff (`imu_axis_check.py`) before any policy uses the IMU |
+| A monitor running `i2cdetect` every 5 s caused 0.5 s gaps in the IMU's readings | Never scan a bus a running program is using |
+| The IMU library reports every 50 ms by default, under the policy's 50 Hz | Set the report interval (10 ms) and measure the real update rate |
+| The walk policy marches on the spot at a zero command (legs 6-10 deg in the sim): on the duck, bursts of current the supply couldn't give | Check a policy's zero-command behaviour in the sim before deploying it; stand and sit/stand come before walking |
+| A Pi dying with the servos on leaves them holding their last goals | Keep a hand on the duck; recover by easing the legs to sitting from the PC, then torque off |

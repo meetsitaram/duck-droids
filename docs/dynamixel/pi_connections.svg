@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="500" viewBox="0 0 680 500" font-family="Helvetica, Arial, sans-serif" role="img">
+<title>Connections to the duck's Pi Zero 2 W, the bus board on USB</title>
+<desc>The Pi header pins 1 to 14: the IMU on pins 1, 3, 5 and 9, the 5 V buck on pins 2 and 6. The Waveshare bus board's USB-C goes to the Pi's micro USB data port through an OTG cable, jumpers at B, so pins 8, 10 and 14 are unused. The PC reaches the Pi over Wi-Fi.</desc>
+<rect width="680" height="500" fill="#ffffff"/>
+<g font-size="12" fill="#444441">
+<rect x="262" y="40" width="156" height="360" rx="12" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="340" y="64" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C2C2A">Pi Zero 2 W</text>
+<rect x="285" y="78" width="110" height="240" rx="6" fill="#F1EFE8" stroke="#B4B2A9"/>
+<text x="340" y="333" text-anchor="middle" font-size="11" fill="#5F5E5A">GPIO header, pins 1-14</text>
+<rect x="285" y="340" width="110" height="44" rx="6" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340" y="366" text-anchor="middle" fill="#085041">USB data port</text>
+<g stroke-width="2">
+<line x1="236" y1="96" x2="304" y2="96" stroke="#D85A30"/>
+<line x1="236" y1="130" x2="304" y2="130" stroke="#1D9E75"/>
+<line x1="236" y1="164" x2="304" y2="164" stroke="#1D9E75"/>
+<line x1="236" y1="232" x2="304" y2="232" stroke="#888780"/>
+<line x1="376" y1="96" x2="444" y2="96" stroke="#D85A30"/>
+<line x1="376" y1="164" x2="444" y2="164" stroke="#888780"/>
+<line x1="395" y1="362" x2="444" y2="362" stroke="#1D9E75" stroke-width="3"/>
+</g>
+<g text-anchor="middle" font-size="11">
+<circle cx="315" cy="96" r="11" fill="#FAECE7" stroke="#993C1D"/><text x="315" y="100" fill="#712B13">1</text>
+<circle cx="365" cy="96" r="11" fill="#FAECE7" stroke="#993C1D"/><text x="365" y="100" fill="#712B13">2</text>
+<circle cx="315" cy="130" r="11" fill="#E1F5EE" stroke="#0F6E56"/><text x="315" y="134" fill="#085041">3</text>
+<circle cx="365" cy="130" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="365" y="134" fill="#888780">4</text>
+<circle cx="315" cy="164" r="11" fill="#E1F5EE" stroke="#0F6E56"/><text x="315" y="168" fill="#085041">5</text>
+<circle cx="365" cy="164" r="11" fill="#D3D1C7" stroke="#5F5E5A"/><text x="365" y="168" fill="#2C2C2A">6</text>
+<circle cx="315" cy="198" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="315" y="202" fill="#888780">7</text>
+<circle cx="365" cy="198" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="365" y="202" fill="#888780">8</text>
+<circle cx="315" cy="232" r="11" fill="#D3D1C7" stroke="#5F5E5A"/><text x="315" y="236" fill="#2C2C2A">9</text>
+<circle cx="365" cy="232" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="365" y="236" fill="#888780">10</text>
+<circle cx="315" cy="266" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="315" y="270" fill="#888780">11</text>
+<circle cx="365" cy="266" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="365" y="270" fill="#888780">12</text>
+<circle cx="315" cy="300" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="315" y="304" fill="#888780">13</text>
+<circle cx="365" cy="300" r="11" fill="#ffffff" stroke="#B4B2A9"/><text x="365" y="304" fill="#888780">14</text>
+</g>
+<text x="138" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C2C2A">IMU in the body (GY-BNO08X)</text>
+<rect x="40" y="78" width="196" height="172" rx="8" fill="#F1EFE8" stroke="#B4B2A9"/>
+<text x="54" y="100">VCC to pin 1 (3.3 V)</text>
+<text x="54" y="134">SDA to pin 3</text>
+<text x="54" y="168">SCL to pin 5</text>
+<text x="54" y="202">PS0, PS1: not connected</text>
+<text x="54" y="236">GND to pin 9</text>
+<text x="542" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C2C2A">5 V buck (in the head)</text>
+<rect x="444" y="78" width="196" height="100" rx="8" fill="#F1EFE8" stroke="#B4B2A9"/>
+<text x="458" y="100">USB pin 1 (5 V) to pin 2</text>
+<text x="458" y="134">Measure 5.0 V first</text>
+<text x="458" y="168">USB pin 4 (GND) to pin 6</text>
+<rect x="444" y="330" width="196" height="112" rx="8" fill="#F1EFE8" stroke="#B4B2A9"/>
+<text x="458" y="352">USB-C, OTG cable</text>
+<text x="458" y="380">Both jumpers at B</text>
+<text x="542" y="424" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C2C2A">Waveshare bus board</text>
+<rect x="40" y="330" width="196" height="72" rx="8" fill="#F1EFE8" stroke="#B4B2A9"/>
+<text x="138" y="356" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C2C2A">PC</text>
+<text x="138" y="382" text-anchor="middle">Wi-Fi SSH only</text>
+<line x1="236" y1="366" x2="258" y2="366" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="52" cy="476" r="6" fill="#D85A30"/><text x="64" y="480">Power</text>
+<circle cx="132" cy="476" r="6" fill="#1D9E75"/><text x="144" y="480">Signal</text>
+<circle cx="212" cy="476" r="6" fill="#888780"/><text x="224" y="480">Ground</text>
+<circle cx="300" cy="476" r="6" fill="#ffffff" stroke="#B4B2A9"/><text x="312" y="480">Unused</text>
+</g>
+</svg>

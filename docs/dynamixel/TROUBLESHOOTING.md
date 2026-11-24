@@ -80,6 +80,26 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 
 **Seen:** with the battery under the head and the neck raised, the neck held 200 mA standing, a third of its 600 mA cap, and the left knee about five times the right (118 against 24 mA): the weight sits a little left. Warm after long holds: watch its temperature.
 
+### The head shakes after turning side to side (2026-11-21)
+
+**Seen:** every servo at the legs' gain, 1500: after the side-to-side turn the head yaw hunted round its goal, up to 0.7 degrees about 17 times a second, and kept on until the duck sat. Its error changed sign 203 times in 914 ticks; every other joint, 0 to 6.
+
+**Cause:** a stiff servo with a heavy head on it and almost nothing resisting the motion overshoots, corrects and overshoots again, and nothing damps it.
+
+**Fix:** the head and beak at gain 600 with damping (D 300), the legs left at 1500, and the turn slower (1.2 s a swing).
+
+### The neck trails a fast lift and stops the run (2026-11-21)
+
+**Seen:** a recorded motion lifting the head over the top at about 65 degrees a second: with the neck soft and damped like the head, it fell 17.9 degrees behind at only 320 mA, and the lag stop ended it.
+
+**Fix:** the neck its own setting, stiff like the legs (gain 1200, D 100): it lifts the whole head. At half speed it then kept within 12 degrees, at 475 mA, and the supply sagged to 4.5 V, under the 4.6 V stop: with `--min-volts 4.2` it played through. The supply again: see the first entry.
+
+### The board that steps the battery down sags (2026-11-21)
+
+**Seen:** a buck board on hand, sold as 9-36 V in and 3.5-6 A out, fed from the 2S pack, 7.4 V nominal: under its 9 V minimum it can't regulate, and the servos' supply sagged under 1-1.5 A.
+
+**Fix:** a servo BEC that runs from 2S: about 6 V minimum in, 5-6 V out, 5 A or more continuous, switching, no USB port (a USB one can switch to 9 or 12 V for quick charging). The ZTW UBEC 8A G2 (7-34 V in, 8 A, 15 A peak, jumper on 6.0 V) or a 5 A Hobbywing UBEC. On the back of the torso, the legs fed from it there, thick leads up the neck to the bus board. Measure its output before connecting the servos.
+
 ## Power
 
 ### An XL330 on the 2S battery goes limp (found in the manual, 2026-11-20)
@@ -87,3 +107,55 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 **Seen:** nothing yet: caught before powering a servo. ROBOTIS's XL330-M288 manual gives 3.7-6.0 V, 5.0 V recommended, and a Max Voltage Limit of 7.0 V that can't be set higher. Past it the servo flags an input voltage error and, by default, turns its torque off till it's rebooted. The 2S pack is 7.4 V nominal and 8.4 V full.
 
 **Fix:** set ids and test on 5 V. `set_id` refuses past 6.0 V. For the robot: a 6 V regulator between the battery and the bus board, not designed in yet.
+
+## The Pi and the gamepad
+
+### The Xbox controller pairs, then connects and drops in a loop, its logo flashing (2026-11-23)
+
+**Seen:** an Xbox Series X|S controller (Bluetooth LE, USB id 045e:0b12, 0b13 over Bluetooth) on the Pi Zero 2 W's built-in Bluetooth, Raspberry Pi OS Lite on Debian 13. `bluetoothctl` said "Pairing successful" and "Connection successful", but the logo kept flashing, and no button ever reached the Pi: `/dev/input/event2` came and went every second or two ("No such device" on reading it). `journalctl -b | grep bluetoothd` showed `report_map_read_cb() Report Map read failed: Request attribute has encountered an unlikely error` and `Unable to set wake_support without RPA resolution`. Earlier, `bluetoothctl power on` failed (`org.bluez.Error.Failed`): Raspberry Pi OS starts with Bluetooth soft-blocked (`/sys/class/rfkill/*/soft` was 1).
+
+**Cause:** a known clash between these controllers and the Pi's internal Bluetooth adapter (xpadneo's `docs/TROUBLESHOOTING.md`, "Controller keeps blinking"): the connection times the Pi asks for don't suit the controller, which gives up on the link before it has read the Pi's HID setup, and without LE privacy the Pi doesn't give the controller the identity it needs to reconnect.
+
+**Fix:** `sudo bash pi/xbox_pair.sh` (in `~/duck` on the Pi) does it all: in `/etc/bluetooth/main.conf`, `[General]` `Privacy = device`, `JustWorksRepairing = always`, `FastConnectable = true`, and `[LE]` `MinConnectionInterval = 7`, `MaxConnectionInterval = 9`, `ConnectionLatency = 0`, `ConnectionSupervisionTimeout = 200`; then it removes the old pairing, pairs and trusts the controller again (hold its pair button when asked), and writes the same per device in `/var/lib/bluetooth/<adapter>/<controller>/info`: `[ConnectionParameters]` `MinInterval=6`, `MaxInterval=6`, `Latency=0`, `Timeout=300`. After that the logo went steady and every button and stick reached the Pi. `setup_pi.sh` unblocks Bluetooth (`rfkill unblock bluetooth`).
+
+**Pairing again wipes the per-device part:** holding the controller's pair button (or pairing it to a PC) means running `xbox_pair.sh` again.
+
+**Not the fix, on its own:** `Privacy = device`, `JustWorksRepairing = always`, `UserspaceHID=true` and `disable_ertm=Y` (all still set), a reboot, removing and pairing again, and a controller firmware update through the Xbox Accessories app on Windows (cancel its sign-in prompt: the update doesn't need an Xbox account). Each still looped. What tipped it was the LE connection parameters.
+
+**Keep Bluetooth on the Pi's main UART.** `setup_pi.sh --uart` (the bus board on the UART, the fallback) moves it to the mini UART, which may make this worse. If the controller loops again, the next step is a USB Bluetooth adapter, which needs a micro USB hub as the bus board takes the Pi's only data port.
+
+### The controller was working, then nothing arrives (2026-11-23)
+
+**Seen:** paired and tested, then idle a while; `run_policy.py --pad-check` shows `LOST`, `bluetoothctl info` says Connected: no, and `bluetoothctl connect` says `InProgress`. Pressing A, B and the sticks does nothing.
+
+**Cause:** the Xbox controller switches itself off after about 15 minutes without use. Only the Xbox button wakes it.
+
+**Fix:** press the Xbox button: it reconnects to the Pi by itself in a few seconds (logo steady), no re-pairing. If the logo keeps flashing slowly instead, run `sudo bash xbox_pair.sh` again. While the duck stands, a dropped controller sits it down after `--pad-lost` seconds.
+
+### The Pi rebooted as the policy took over, then wouldn't start: a damaged regulator (2026-11-23)
+
+**Seen:** the first stand from the controller (`run_policy.py --pad`). The scripted rise went fine (the servos' supply 6.1 V sitting, 5.8 V by the end of the rise), then about 1 s after the policy took over the Pi rebooted. Nothing was logged: the journal isn't kept across boots, and the run's CSV was still in memory. The servos, on their own power, held the policy's last goals, a strange half-standing pose. After a battery swap the Pi's green LED stayed dark: no power at all.
+
+**Cause:** the voltage regulator feeding the Pi was damaged. Replaced, the Pi booted with no undervoltage (`vcgencmd get_throttled` 0x0). Whether it failed in the first stand, or was failing already and caused the reboot, isn't known.
+
+**Since then:** `run_policy.py` writes its log to disk every second and records the Pi's undervoltage flag every tick (column `pi_throttled`, a warning printed if the Pi's 5 V dips), so the next dropout leaves a record. Feed the Pi's 5 V converter from the battery side (7.4-8.4 V), not the servos' 6 V rail: it needs 6 V or more in, and the rail sags under load.
+
+**If the Pi dies with the servos on:** they keep holding their last goals. Hold the duck, then from the PC ease the legs back to sitting and turn the torque off (as done that day), or switch off with a hand on the duck.
+
+### The policy takes over and the servos' supply collapses to 4.3 V (2026-11-23)
+
+**Seen:** the third stand from the controller (`run_policy.py --pad`, log `stand3_log.csv` on the Pi). The rise was fine (5.8 V at under 0.7 A in all). About 1 s after the policy took over, the safety stop: supply 4.3 V. The Pi's own 5 V held (`pi_throttled` 0 throughout). The servos' supply against their total current: 5.8 V at 0.4-0.7 A, 5.1 V at 2.1 A, 5.0 V at 3-4 A, then 4.3 V past about 4.2 A.
+
+**Cause:** the servos' power path drops about 0.3 V per amp and gives out past about 4 A: the regulator (a USB-type or small buck can't hold 6 V at these currents), thin or long leads, or a connector. The policy's first second asks for 2-4 A and more in bursts (knees to 0.88 A each).
+
+**Fix (to do):** a supply good for 8 A at 6 V, such as the ZTW UBEC 8A in the entry above, with short, thick leads to the bus board; then measure the voltage at the bus board's terminals during a stand.
+
+**Also seen:** several joints' currents flip sign every reading under the policy, the head yaw at +-400 mA while told to hold still: the duck shaking, not holding. Low voltage makes the servos weaker and slower, which can cause it. Look again once the supply holds; if it stays, it's a mismatch of gains or delays between the sim and the duck.
+
+**Earlier in that session:** the IMU vanished from I2C and the servos showed red alarm LEDs after a wiring fault (fixed by the user); and `i2cdetect` run every 5 s by a monitor while the IMU was read caused 0.5 s gaps in its readings: don't scan the bus while a run uses the IMU.
+
+### The servo UBEC flashes red, with either battery (2026-11-24)
+
+**Seen:** after the stand attempts above, the ZTW UBEC 8A (jumper on 6.0 V) that feeds the servos flashes its LED red, with both 2S packs on hand. Not yet diagnosed; both packs are charging overnight.
+
+**To check, in order:** each pack's voltage at its plug, resting and fully charged (8.4 V full; a 2S pack is flat at 6.6-7.0 V); the UBEC's input under load (it needs 7 V or more in); what the red light means in the ZTW manual for this model (it may be its low-input or protection warning, not a fault); the UBEC's output at the bus board's terminals while the duck stands. If a fresh pack still makes it flash, suspect the UBEC or its input wiring. The supply's collapse past about 4 A in the entry above may be this same fault.

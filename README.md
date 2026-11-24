@@ -31,6 +31,18 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 The first one built, standing up from sitting under its own servos, then turning its head, nodding and working its beak before it sits back down ([MP4, 38 s](docs/images/real/dynamixel/first_stand.mp4); the GIF runs at 2.5 times speed). Behind it, its digital twin in MuJoCo follows the servos' own readings. The motion is scripted joint angles, not a trained policy, and a hand steadies it: nothing balances it yet. Made with `pi/stand_test.py`: see the [Pi code](pi/README.md).
 
+**Record a move by hand, play it back.** Move the duck by hand with its servos limp, and `pi/motion.py` records every joint; then the servos play it back, on the real duck or on the model in the simulator. A sample comes with it, the head swinging up over the top and looking around:
+
+```bash
+python motion.py play head_look_around --preview
+```
+
+```bash
+python motion.py play head_look_around --speed 0.5 --view
+```
+
+The first plays it on the model, no duck needed; the second on the real duck, steadied by hand, with its digital twin following. How to record your own and the safety checks: [Pi code](pi/README.md#record-a-motion-by-hand-play-it-back).
+
 **Status:** built, with its 15 servos set up and calibrated, and its first powered test done (above): it rises, holds a stand with every joint within about 3 degrees, and sits back down, on a 5 V bench supply. Still to do: a 6 V regulator off the battery (the XL330s shut down past 7 V, and the bench supply sags under 4.6 V once the legs carry the full weight), balance on its IMU, and a trained policy. The open list is in its [open questions](docs/OPEN_QUESTIONS.md) and [troubleshooting](docs/dynamixel/TROUBLESHOOTING.md). In simulation it walks on its IMU alone, without reading its servos' angles, nearly as well as with them; that walk isn't deployed yet.
 
 ## Other ducks

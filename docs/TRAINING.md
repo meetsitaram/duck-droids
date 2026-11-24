@@ -26,6 +26,52 @@ bash ../duck-droids/trainer/train_dynamixel.sh
 
 The script hasn't been run yet. The head roll may well not come out: no policy has done it so far.
 
+### A walk without the IMU, at the real gains, with the joints' slop
+
+`milli_slop_env_cfg.py` in the trainer trains the all-Dynamixel duck's walk in two stages, so it can later run without the IMU. Started 2026-11-22. A first run at microduck's 0.96 N m was stopped at iteration 846; a second at the datasheet's limits, from scratch, stalled at 1 s episodes (its policies fell before learning anything, on the weakest servo draws with pushes on). The third, running, starts from the first's iteration 750 (action noise reset to 0.5) and a curriculum: it starts every servo at 0.52 N m and kp x0.9-1.0 with no pushes, and widens to the full ranges and pushes in six stages, each when episodes average 600 steps (12 s). Nothing has finished training yet.
+
+It gives two policies, each exported to `pi/models/` as an ONNX with a JSON beside it that lists its input blocks in order (size, history, units, delays), the joint order, the standing pose and the servo numbers it was trained with:
+
+- `walk_imu`: the teacher's actor, IMU + joints + last action. For the duck with its Pi Zero and IMU on board.
+- `walk_blind`: the DAgger student, joints + last action, each with 0.2 s of history, and the commands. Every input comes from servo bus reads or the policy itself, so a PC driving the servos over USB can run it with no IMU.
+
+```bash
+bash ../duck-droids/trainer/train_slop.sh teacher-warm     # stage 1 from the 0.96 run's model_750 (or: teacher, from scratch), 3000 iterations, ~2.5 h on an RTX 5090
+bash ../duck-droids/trainer/train_slop.sh after-teacher    # then: export walk_imu, train and export walk_blind, evaluate both, the baseline
+```
+
+The evaluation runs both policies with pushes on and the same seed (`eval_slop_imu.txt`, `eval_slop_blind.txt` in the trainer's folder). The baseline is the student's inputs trained by PPO alone, with no teacher. The servo numbers can be changed without editing code, before the trainer loads the task: `MILLI_PEAK_NM` lowers the top of the torque range (never above 0.52), one number or `leg=..,neck=..,head=..`, and `MILLI_KP` sets the top of the stiffness range likewise, in N m/rad.
+
+What its robot has that the other tasks' doesn't:
+
+| | What | Measured? |
+|---|---|---|
+| Gains | Position P as `pi/stand_test.py` stood the duck: legs 800, neck 1200, head 600, so kp 2.2, 3.3, 1.65 N m/rad at most (the other tasks use 0.55, P 200, everywhere). Each joint's kp is drawn per episode between 1/2.2 of that and it: legs 1.0-2.2. The model is `robot/milli_dynamixel_realgain`, from `tools/make_rl_model.py` (`DEPLOYED_P`) | The P values are; kp per P is microduck's identification; the stand test suggests ~1.3 at the knee. D gains not modelled |
+| Torque | ROBOTIS's XL330-M288 datasheet at 5 V as a hard ceiling: 0.52 N m stall, 10.8 rad/s no-load (`spec/actuators.json`, which `tools/make_rl_model.py` now uses for the XL330 in place of the recipe's 7.4 V figures, 0.96 N m and 16 rad/s). Each servo's ceiling is drawn per episode in 0.30-0.52 N m, a penalty grows near it, and another for RMS torque over ~2 s above the rated 0.17 N m. The user's call: the walk may underperform, the motors mustn't burn | 0.30 (the 800 mA cap, a sagging supply) is unmeasured; rated is an estimate, a third of stall |
+| Backlash | ±1° about every servo axis, microduck-style; the encoder, and the servo's own position loop, read through it | No: microduck's figure |
+| Sag | A passive hinge across each hip pitch and knee servo, after it (`passive_<joint>_sag`), about the forward axis. Per episode: travel 0-3°, spring 2-60 N m/rad, damping 0.002-0.03 N m s/rad. The hip yaw and roll have the hinge too but locked (0.01°): with their bearings in, they no longer sag (the user, 2026-11-22) | No: all guesses, until the sag is measured |
+| Physics step | 2 ms (the other tasks 5 ms), still 50 Hz control | Needed for the ±1° stops to hold: at 5 ms they reached 2-3° |
+
+The slop is added to the loaded model in the trainer, so `pi/sim` keeps the nominal duck (its servos now follow each servo's `POSITION_P` register). Nothing observes the passive joints but the critic.
+
+Stage 1, the teacher, has the usual inputs: IMU, joint positions and speeds, its previous action, the commands. Stage 2, the student, sees only the joint positions and speeds and its previous action, each with 10 steps (0.2 s) of history, and the commands: no gyro, no gravity. It learns by DAgger (`DaggerFromTeacher` in the trainer's `distill.py`): it acts, the frozen teacher labels each state it visits from its own inputs, and it regresses onto those labels; for the first 100 iterations the teacher acts some of the time. An auxiliary head predicts the body's tilt and speed from the student's inputs, after Blind Dexterity (Bhatt et al., arXiv 2608.29487), who got 90 % survival under pushes without the IMU against 96 % with it.
+
+**Before running a policy trained here on the duck:** the Pi code writes position P 200 to every servo (`pi/config/dynamixel.json`), and these policies expect 800 / 1200 / 600. `pi/stand_test.py` caps the leg current at 800 mA, about half of stall: the low end of the torque range stands in for it. `pi/config/dynamixel.json` still says 0.96 N m and 16 rad/s; `pi/sim` now takes each joint's numbers from `pi/sim/model/home.json` instead.
+
+`scripts/milli_eval.py` now keeps the training's pushes on; `--no-push` gives the old behaviour, which the table above used. For these tasks pass `--task` and `--model milli_dynamixel_realgain`.
+
+### microduck's other skills
+
+`milli_skills_env_cfg.py` in the trainer ports four more of Pollen's microduck tasks, for the hybrid and the all-Dynamixel duck. Name them to train them: `bash ../duck-droids/trainer/train_dynamixel.sh sitstand groundpick kickright kickleft`.
+
+| Task | What it does | What changed for milli |
+|---|---|---|
+| `Mjlab-SitStand-Flat-Milli-Dynamixel` | Sits down and stands up on command, gently, head steerable in both | milli's sitting pose (its knee stops at 1.1 rad, microduck's at 1.35). Every height maps between milli's measured sitting (0.134 m) and standing (0.170 m) heights |
+| `Mjlab-GroundPick-Flat-Milli-Dynamixel` | Lowers the beak to just above the floor and comes back up, in 4 s | a `mouth_tip` site at the beak's front, from `tools/make_rl_model.py` |
+| `Mjlab-BallKick{Right,Left}-Flat-Milli-Dynamixel` | Kicks a 70 mm ball forward with one foot, then stands | the ball 84 mm ahead and 45 mm out: microduck's clearance past milli's toe |
+
+Each builds and steps without errors or NaNs (64 robots, 3 s of small random actions, 2026-11-22). None has trained, and there's no eval script for them yet. Not ported: VelStand, which starts from microduck's own trained policies, so it waits for milli's walk; spin and the roller tasks, which are for microduck on wheels.
+
 ## Set it up
 
 You need an NVIDIA GPU (the scripts ask for `cuda:0`), Python 3.12 and [uv](https://docs.astral.sh/uv/). The steps below were tested on Windows with an RTX 5090, apart from the fresh `uv sync`, which an earlier setup ran.
