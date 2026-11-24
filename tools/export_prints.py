@@ -94,8 +94,45 @@ def rank(B, part):
     return 5
 
 
+BED_SKIN = 0.0003                                  # a cut no deeper than this into the face a part prints on is no pocket: see bed_skin
+_ORIENT = {}
+
+
+def print_T(B, part, m):
+    """How the part prints: the last export's choice (main() picks it after the pockets are cut), else printable's best for the part without them."""
+    if part not in _ORIENT:
+        try:
+            _ORIENT.update({k: v['print_T'] for k, v in json.load(open(FUSION, encoding='utf-8'))['parts'].items()})
+        except (OSError, KeyError, ValueError):
+            pass
+    if part not in _ORIENT:
+        mesh = m.to_mesh()
+        tm = trimesh.Trimesh(np.asarray(mesh.vert_properties[:, :3], float) * 1000, np.asarray(mesh.tri_verts, int))
+        _ORIENT[part] = np.asarray(PR.best_orientation(tm)['T'], float).tolist()
+    return _ORIENT[part]
+
+
+def bed_skin(B, part, m, tool):
+    """Does this cut only skim the face the part prints on? A gap round a bought part, grown on every side, also skims a face it only rests on. Where that face
+    is on the bed, the slicer bridges the 0.1-0.15 mm recess in mid-air, under its first layer: the hip and knee lids printed with loose strands over the servo's
+    whole footprint, and the bearing bore's first loops drooping across it (2026-11-22, the user's photos). The face rests on the part anyway: no gap is needed there."""
+    T = print_T(B, part, m)
+    R = np.asarray(T)[:3, :3]
+    cut = (m ^ tool).to_mesh()
+    if not len(cut.vert_properties):
+        return False
+    z = lambda mm: np.asarray(mm.vert_properties[:, :3], float) @ R[2]
+    floor = z(m.to_mesh()).min()
+    return z(cut).max() - floor < BED_SKIN
+
+
 def pockets(B, part, m):
-    """The room this part must leave round its neighbours: the geom dicts of what to cut."""
+    """The room this part must leave round its neighbours: the geom dicts of what to cut. Not a cut that only skims the face it prints on (bed_skin)."""
+    # (only what touches the face and doesn't pass into it: the eye ring stands in the face, and dropping its cut left them 177 mm3 in the same place)
+    return [(t, tool) for t, tool, g in _pockets(B, part, m) if not (bed_skin(B, part, m, tool) and C.overlap(m, C.to_manifold(G.mesh_of(g))) < 1e-12)]
+
+
+def _pockets(B, part, m):
     links = {B.idx[n][0] for n in B.parts[part]['geoms']}
     out = []
     mine = rank(B, part)
@@ -113,7 +150,7 @@ def pockets(B, part, m):
                     t = shell_round(g, MATE_GAP)
                     tool = C.to_manifold(G.mesh_of(t))
                     if C.overlap(m, tool) > 1e-12:
-                        out.append((t, tool))
+                        out.append((t, tool, g))
                     continue
                 # a plain shape: with a gap. One with cuts, or a shell's wall: exactly that shape, or the cuts would be lost
                 if g['kind'] in ('rbox', 'cyl') and n not in B.cuts and (ln, i) not in B.S.wall:
@@ -121,7 +158,7 @@ def pockets(B, part, m):
                 else:
                     tool = B.S.wall.get((ln, i), B.S.geom[(ln, i)])
                     if C.overlap(m, tool) > 1e-12:
-                        out.append((dict(exact=n, name=n), tool))
+                        out.append((dict(exact=n, name=n), tool, g))
                     continue
             elif g['role'] == 'actuator' or n in ('Pi Zero 2 W', 'U2D2', 'Waveshare bus board', 'IMU', 'battery 2S 850 mAh', 'servo bus board', 'camera', 'PWM bonnet', 'Pi 5 V converter') or n.endswith(('5 V regulator', '6 V BEC')) or n.endswith('foot switch'):
                 t = grown(g, SERVO_GAP)
@@ -137,7 +174,7 @@ def pockets(B, part, m):
                 continue
             tool = C.to_manifold(G.mesh_of(t))
             if C.overlap(m, tool) > 1e-12:
-                out.append((t, tool))
+                out.append((t, tool, g))
     return out
 
 

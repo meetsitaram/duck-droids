@@ -7,7 +7,8 @@ observations apply: microduck's link, joint, site and sensor names, its joint di
 
 The standing pose is level (the trunk square to the floor, the feet moved forward at the same height until the centre of mass is
 over them), as microduck's HOME is. The servos go in home.json, each with its own numbers from spec/actuators.json, for that
-trainer's DC motor model (a torque-speed curve and a delay), not its measured BAM model, which fits only the XL330. Stiffness: 0.55 N m/rad for the XL330 (microduck's identification, kp 200); the XC330 scaled by stall torque; the
+trainer's DC motor model (a torque-speed curve and a delay), not its measured BAM model, which fits only the XL330. Stiffness: 0.55 N m/rad for the XL330 at position P 200 (microduck's identification),
+scaled to the P the real duck runs at each joint (DEPLOYED_P); the XC330 scaled by stall torque; the
 STS3215 from Open Duck Mini's 17.8 for the 1:345 version, scaled by gear ratio. Unmeasured: expect this to change with a real servo.
 Collision: the soles only, as that trainer's walking model. Plain python.
 """
@@ -39,6 +40,15 @@ ROOT_Z = G.load().get('rl', {}).get('root_z', 0.17)   # the root body's height: 
 KP = {'STS3215_C001': 17.8, 'STS3215_C044': 17.8 * 191 / 345, 'STS3215_C046': 17.8 * 147 / 345, 'XL330_M288': 0.55, 'XC330_M288': 0.55 * 0.93 / 0.52,
       # an estimate: the STS3215's gain by gear ratio, at the position gain XGO-Duck's runtime starts from (5 against a Feetech default of 32). Measure it
       'HD1910_C001': 17.8 * 320 / 345 * 5 / 32}
+# The Dynamixels' position P as the real duck runs them (pi/stand_test.py, which stood the all-Dynamixel duck on 2026-11-21): the legs 800, the neck 1200
+# (it lifts the whole head), the head 600 (at 1500 the head yaw hunts). KP above is P 200, microduck's identification, so kp = KP * P / 200, by joint.
+# The D gains (neck 100, head 300, legs 0) are not modelled: their scale against the joint damping here is unknown. The trainer randomizes kp around these.
+# The real duck runs its XL330s at 5 V (pi/stand_test.py stops above 6 V, ROBOTIS's maximum), so their peak torque, no-load speed and rated torque
+# come from spec/actuators.json, ROBOTIS's 5 V figures (0.52 N m, 10.8 rad/s, rated 0.17 N m, a third of stall), not from the dynamixel recipe's
+# xl330_2s override (0.96 N m at 7.4 V, microduck's trainer figure), which would train a policy to ask for torque the servos can't give. The user, 2026-11-22.
+AT_5V = ('XL330_M288',)
+DEPLOYED_P = {'XL330_M288': {'neck_pitch': 1200, 'head_pitch': 600, 'head_yaw': 600, 'head_roll': 600, 'beak': 600, 'leg': 800},
+              'XC330_M288': {'neck_pitch': 1200, 'head_pitch': 600, 'head_yaw': 600, 'head_roll': 600, 'leg': 800}}
 # An SO-101 pair has 7 C001, 2 C044 and 3 C046. The C046s stay at the hip yaws, and the 2 C044s go to the knees, the legs' fastest joints
 # in the C044 policy's walk (4.8 rad/s RMS). The same case throughout, so only the servo's numbers change.
 SALVAGE = {f'{s}_{j}': 'STS3215_C001' for s in 'LR' for j in ('hip_roll', 'hip_pitch', 'ankle_pitch')}
@@ -87,6 +97,8 @@ def main():
     if '--salvage' in sys.argv:
         for j in spec['joints']:
             j['act'] = SALVAGE.get(j['name'], j['act'])
+    if '--beak' in sys.argv:                       # the beak as a 15th servo, for the floor pick with a gripper (the user, 2026-11-23). Off by default: the walk's 14
+        JOINT['beak'] = ('beak', 1)                # (the spec's hinge about y, 0 shut to 0.39 open, as pi/twin.py adds it)
     S = C.Solids(spec)
     R = G.Robot(spec)
     inert = MM.link_inertials(spec, S)
@@ -118,6 +130,11 @@ def main():
             x.append(f'<joint name="{nm}" axis="{ax[0]} {ax[1]} {ax[2]}" range="{lo:.4f} {hi:.4f}" armature="{arm:.6g}" '
                      f'damping="{dmp:.5g}" frictionloss="{frc:.5g}"/>')
         mesh = S.all[ln].to_mesh()
+        if ln == 'beak_link':                      # microduck's mouth_tip site, for the floor pick: the front of the beak, its middle across and in height
+            v = np.asarray(mesh.vert_properties[:, :3], float)
+            front = v[v[:, 0] > v[:, 0].max() - 0.003]
+            tip = np.array([v[:, 0].max(), front[:, 1].mean(), front[:, 2].mean()]) - o
+            x.append(f'<site name="mouth_tip" pos="{tip[0]:.5f} {tip[1]:.5f} {tip[2]:.5f}"/>')
         # the look: one mesh per colour, each part in its spec colour, as in Fusion. (One grey mesh per link lost every colour, 2026-11-21, the user)
         by_colour = {}
         for i, g in enumerate(spec['links'][ln]['geoms']):
@@ -163,7 +180,7 @@ def main():
     tree = body(spec['root'], np.zeros(3))
     J = {j['name']: j for j in spec['joints']}
     seq = ['L_hip_yaw', 'L_hip_roll', 'L_hip_pitch', 'L_knee', 'L_ankle_pitch', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll',
-           'R_hip_yaw', 'R_hip_roll', 'R_hip_pitch', 'R_knee', 'R_ankle_pitch']
+           'R_hip_yaw', 'R_hip_roll', 'R_hip_pitch', 'R_knee', 'R_ankle_pitch'] + (['beak'] if 'beak' in JOINT else [])
     servos = {}
     for n in seq:
         peak, noload, _, _, _, rated = at_joint(spec, J[n])
@@ -171,6 +188,13 @@ def main():
             kind = JOINT[n][0].replace('left_', '').replace('right_', '')
             kp, kd = spec['rl']['gains'][kind]
             g = servos.setdefault(kind, dict(kp=kp, kd=kd, peak_nm=peak, rated_nm=rated, noload_rads=noload, joints=[]))
+        elif J[n]['act'] in DEPLOYED_P:            # by its deployed gain: one group per (servo, P)
+            a_, P = J[n]['act'], DEPLOYED_P[J[n]['act']]
+            p_ = P.get(JOINT[n][0], P['leg'])
+            if a_ in AT_5V:
+                d5 = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'spec', 'actuators.json')))[a_]
+                peak, noload, rated = d5['peak_nm'], d5['noload_rads'], d5['rated_nm']
+            g = servos.setdefault(f'{a_}_P{p_}', dict(kp=KP[a_] * p_ / 200, position_p=p_, peak_nm=peak, rated_nm=rated, noload_rads=noload, volts=5.0, joints=[]))
         else:
             g = servos.setdefault(J[n]['act'], dict(kp=KP[J[n]['act']], peak_nm=peak, noload_rads=noload, joints=[]))
         g['joints'].append(JOINT[n][0])
@@ -196,6 +220,8 @@ def main():
     home = {JOINT[n][0]: float(JOINT[n][1] * v) for n, v in q.items()}
     for n in ('left_hip_yaw', 'right_hip_yaw', 'left_hip_roll', 'right_hip_roll', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll'):
         home[n] = 0.0
+    if 'beak' in JOINT:
+        home['beak'] = 0.0
     json.dump(dict(servos=servos, joint_pos=home, root_z=ROOT_Z + 0.001, feet_forward_m=dx, mass_kg=sum(v[0] for v in inert.values())), open(os.path.join(out, 'home.json'), 'w'), indent=1)
     if '--contact' in sys.argv:
         import mujoco
