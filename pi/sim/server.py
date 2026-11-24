@@ -2,8 +2,8 @@
 
   python sim/server.py [--pinned] [--port 9000] [--imu-port 9001]
 
-run.py connects with --port socket://127.0.0.1:9000 --imu 127.0.0.1:9001, and nothing else changes. Servo model as the trainer's: position gain, a torque limit
-falling with speed, a 15-30 ms delay. --pinned holds the body in the air, for checking directions and the loop without a policy that balances.
+run.py connects with --port socket://127.0.0.1:9000 --imu 127.0.0.1:9001, and nothing else changes. Servo model as the trainer's: position gain (scaled by each servo's
+POSITION_P register once written), a torque limit falling with speed, a 15-30 ms delay. No backlash or sag: those are the trainer's randomization. --pinned holds the body in the air, for checking directions and the loop without a policy that balances.
 """
 import argparse
 import json
@@ -40,12 +40,15 @@ class Servo:
 
 
 class Duck:
-    def __init__(self, cfg, pinned, start=None):
+    def __init__(self, cfg, pinned, start=None, level=False):
         spec = mujoco.MjSpec.from_file(os.path.join(HERE, 'model', 'milli.xml'))
         twin.decorate(spec, collide=True)              # a solid floor, with the twin's sky and checks
         self.m = spec.compile()
         self.d = mujoco.MjData(self.m)
         self.cfg, self.pinned = cfg, pinned
+        # each joint's peak torque and no-load speed from the model's home.json (the trainer's numbers: the XL330 at 5 V, 0.52 N m, 10.8 rad/s), else the config's
+        home = json.load(open(os.path.join(HERE, 'model', 'home.json')))
+        self.limits = {} if cfg['servo'].get('peak_from_cli') else {j: (s['peak_nm'], s['noload_rads']) for s in home.get('servos', {}).values() for j in s['joints']}
         self.servos = {}
         k = 2 * np.pi / dxl.TICKS_PER_REV
         self.k = k
@@ -65,7 +68,11 @@ class Duck:
                 self.d.qpos[self.m.jnt_qposadr[jid]] = v
         if start and not pinned:
             mujoco.mj_forward(self.m, self.d)
-            twin.rest_on_floor(self.m, self.d)          # a start pose (the real duck's, sitting): feet flat on the floor
+            if level:                                   # the body level, resting on whatever touches first: the real duck sits on its heels, torso upright
+                twin.orient_to_gravity(self.m, self.d, [0.0, 0.0, -1.0])
+                twin.rest_on_floor(self.m, self.d, False)
+            else:
+                twin.rest_on_floor(self.m, self.d)      # a start pose: feet flat on the floor
         self.base = self.d.qpos[:7].copy()
         self.lag = deque(maxlen=max(1, int(0.02 / self.m.opt.timestep)))    # about the trainer's 15-30 ms
         self.lock = threading.Lock()
@@ -94,10 +101,15 @@ class Duck:
                 if not on[i]:
                     continue
                 v = self.d.qvel[da]
-                tau = c['kp'] * (goals[i] - self.d.qpos[qa])
+                # the stiffness follows the position P this servo was sent, as the trainer's does (kp 0.55 at P 200: tools/make_rl_model.py
+                # DEPLOYED_P); until one is written, the config's
+                p_gain = self.servos[i].get(dxl.POSITION_P)
+                kp = c['kp'] * p_gain / self.cfg.get('position_p', 200) if p_gain else c['kp']
+                tau = kp * (goals[i] - self.d.qpos[qa])
                 # the torque the motor can give, falling linearly to zero at no-load speed
-                lim_up = c['peak_nm'] * np.clip(1 - v / c['noload_rads'], 0, 1)
-                lim_dn = c['peak_nm'] * np.clip(1 + v / c['noload_rads'], 0, 1)
+                peak, noload = self.limits.get(self.servos[i].joint, (c['peak_nm'], c['noload_rads']))
+                lim_up = peak * np.clip(1 - v / noload, 0, 1)
+                lim_dn = peak * np.clip(1 + v / noload, 0, 1)
                 self.d.qfrc_applied[da] = np.clip(tau, -lim_dn, lim_up)
             mujoco.mj_step(self.m, self.d)
             if self.pinned or not any(on.values()):     # until the torque comes on, someone is holding it
@@ -191,8 +203,8 @@ def imu_server(duck, sock):
             break
 
 
-def serve(cfg, pinned=False, port=9000, imu_port=9001, start=None):
-    duck = Duck(cfg, pinned, start)
+def serve(cfg, pinned=False, port=9000, imu_port=9001, start=None, level=False):
+    duck = Duck(cfg, pinned, start, level)
     socks = []
     for p in (port, imu_port):
         s = socket.socket()
@@ -216,15 +228,17 @@ if __name__ == '__main__':
     ap.add_argument('--start', help='a JSON of joint angles (rad) to start from, feet flat on the floor: twin.py --save-pose writes the real duck pose')
     ap.add_argument('--kp', type=float, help='servo stiffness, N m/rad, in place of the config value (0.55 is position_p 200; it scales with P)')
     ap.add_argument('--peak-nm', type=float, help='servo torque limit, N m, in place of the config value, 0.96 at 7.4 V. At 5 V an XL330 stalls at 0.52; capped at I mA it gives about 0.354 x I/1000')
+    ap.add_argument('--start-level', action='store_true', help='with --start: the body level (as the real duck sits, on its heels), not the feet flat')
     a = ap.parse_args()
     cfg = json.load(open(a.config, encoding='utf-8'))
     if a.kp is not None:
         cfg['servo']['kp'] = a.kp
     if a.peak_nm is not None:
         cfg['servo']['peak_nm'] = a.peak_nm
+        cfg['servo']['peak_from_cli'] = True          # one number for every joint, in place of home.json's
     start = json.load(open(a.start, encoding='utf-8')) if a.start else None
-    d = serve(cfg, a.pinned, a.port, a.imu_port, start)
-    print('listening: bus', a.port, 'IMU', a.imu_port, '(Ctrl-C to stop)', f"servo kp {cfg['servo']['kp']}, peak {cfg['servo']['peak_nm']} N m")
+    d = serve(cfg, a.pinned, a.port, a.imu_port, start, a.start_level)
+    print('listening: bus', a.port, 'IMU', a.imu_port, '(Ctrl-C to stop)', f"servo kp {cfg['servo']['kp']} at P {cfg.get('position_p', 200)} (follows each servo's P), peak and speed by joint from sim/model/home.json")
     if a.view:
         import mujoco.viewer
         with mujoco.viewer.launch_passive(d.m, d.d, show_left_ui=False, show_right_ui=False) as v:

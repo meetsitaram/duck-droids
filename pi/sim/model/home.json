@@ -1,24 +1,47 @@
 {
  "servos": {
-  "XL330_M288": {
-   "kp": 0.55,
-   "peak_nm": 0.96,
-   "noload_rads": 16.0,
+  "XL330_M288_P800": {
+   "kp": 2.2,
+   "position_p": 800,
+   "peak_nm": 0.52,
+   "rated_nm": 0.17,
+   "noload_rads": 10.8,
+   "volts": 5.0,
    "joints": [
     "left_hip_yaw",
     "left_hip_roll",
     "left_hip_pitch",
     "left_knee",
     "left_ankle",
-    "neck_pitch",
-    "head_pitch",
-    "head_yaw",
-    "head_roll",
     "right_hip_yaw",
     "right_hip_roll",
     "right_hip_pitch",
     "right_knee",
     "right_ankle"
+   ]
+  },
+  "XL330_M288_P1200": {
+   "kp": 3.3,
+   "position_p": 1200,
+   "peak_nm": 0.52,
+   "rated_nm": 0.17,
+   "noload_rads": 10.8,
+   "volts": 5.0,
+   "joints": [
+    "neck_pitch"
+   ]
+  },
+  "XL330_M288_P600": {
+   "kp": 1.65,
+   "position_p": 600,
+   "peak_nm": 0.52,
+   "rated_nm": 0.17,
+   "noload_rads": 10.8,
+   "volts": 5.0,
+   "joints": [
+    "head_pitch",
+    "head_yaw",
+    "head_roll"
    ]
   }
  },

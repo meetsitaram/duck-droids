@@ -1,0 +1,272 @@
+{
+ "task": "Mjlab-Velocity-Flat-Milli-Dynamixel-Slop",
+ "checkpoint": "logs/rsl_rl/milli_dynamixel_slop_teacher/2026-11-23_00-28-14_milli_dynamixel_slop_teacher/model_2999.pt",
+ "inputs": 61,
+ "outputs": 14,
+ "rate_hz": 50,
+ "joint_order": [
+  "left_hip_yaw",
+  "left_hip_roll",
+  "left_hip_pitch",
+  "left_knee",
+  "left_ankle",
+  "neck_pitch",
+  "head_pitch",
+  "head_yaw",
+  "head_roll",
+  "right_hip_yaw",
+  "right_hip_roll",
+  "right_hip_pitch",
+  "right_knee",
+  "right_ankle"
+ ],
+ "standing_pose_rad": {
+  "left_hip_yaw": 0.0,
+  "left_hip_roll": 0.0,
+  "left_hip_pitch": -0.33558979630470276,
+  "left_knee": 0.3628872334957123,
+  "left_ankle": 0.698477029800415,
+  "neck_pitch": 0.0,
+  "head_pitch": 0.0,
+  "head_yaw": 0.0,
+  "head_roll": 0.0,
+  "right_hip_yaw": 0.0,
+  "right_hip_roll": 0.0,
+  "right_hip_pitch": 0.33558979630470276,
+  "right_knee": -0.3628872334957123,
+  "right_ankle": -0.698477029800415
+ },
+ "action": "goal position = standing pose + output, per joint in joint_order, rad, in the trainer's joint directions (the Pi code's config maps them to ticks)",
+ "blocks": [
+  {
+   "name": "base_ang_vel",
+   "offset": 0,
+   "size": 3,
+   "history": 1,
+   "per_step": 3,
+   "history_order": null,
+   "source": "IMU gyro, body frame (x forward, y left, z up)",
+   "unit": "rad/s",
+   "delay_steps": [
+    0,
+    1
+   ],
+   "noise": [
+    -0.03,
+    0.03
+   ]
+  },
+  {
+   "name": "projected_gravity",
+   "offset": 3,
+   "size": 3,
+   "history": 1,
+   "per_step": 3,
+   "history_order": null,
+   "source": "gravity's direction in the IMU frame, unit vector; (0, 0, -1) standing level",
+   "unit": "1",
+   "delay_steps": [
+    0,
+    1
+   ],
+   "noise": [
+    -0.01,
+    0.01
+   ]
+  },
+  {
+   "name": "joint_pos",
+   "offset": 6,
+   "size": 14,
+   "history": 1,
+   "per_step": 14,
+   "history_order": null,
+   "source": "present position minus the standing pose below, in the trainer's joint directions (encoder reading: it includes gear play)",
+   "unit": "rad",
+   "delay_steps": [
+    0,
+    0
+   ],
+   "noise": [
+    -0.001,
+    0.001
+   ]
+  },
+  {
+   "name": "joint_vel",
+   "offset": 20,
+   "size": 14,
+   "history": 1,
+   "per_step": 14,
+   "history_order": null,
+   "source": "present velocity, same directions; trained one control step (20 ms) late, as the Dynamixel's averaged reading is",
+   "unit": "rad/s",
+   "delay_steps": [
+    1,
+    1
+   ],
+   "noise": [
+    -0.25,
+    0.25
+   ]
+  },
+  {
+   "name": "actions",
+   "offset": 34,
+   "size": 14,
+   "history": 1,
+   "per_step": 14,
+   "history_order": null,
+   "source": "the policy's own output at the previous step(s), raw (before adding the standing pose)",
+   "unit": "rad",
+   "delay_steps": [
+    0,
+    0
+   ],
+   "noise": null
+  },
+  {
+   "name": "command",
+   "offset": 48,
+   "size": 3,
+   "history": 1,
+   "per_step": 3,
+   "history_order": null,
+   "source": "speed command: forward, left, turn",
+   "unit": "m/s, m/s, rad/s",
+   "delay_steps": [
+    0,
+    0
+   ],
+   "noise": null
+  },
+  {
+   "name": "head_command",
+   "offset": 51,
+   "size": 4,
+   "history": 1,
+   "per_step": 4,
+   "history_order": null,
+   "source": "head pose command, off the standing pose: neck_pitch, head_pitch, head_yaw, head_roll; zeros to hold it",
+   "unit": "rad",
+   "delay_steps": [
+    0,
+    0
+   ],
+   "noise": null
+  },
+  {
+   "name": "body_command",
+   "offset": 55,
+   "size": 6,
+   "history": 1,
+   "per_step": 6,
+   "history_order": null,
+   "source": "body pose command x, y, z, roll, pitch, yaw: unused by the walk, feed zeros",
+   "unit": "m, rad",
+   "delay_steps": [
+    0,
+    0
+   ],
+   "noise": null
+  }
+ ],
+ "trained_servos": {
+  "left_hip_yaw": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "left_hip_roll": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "left_hip_pitch": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "left_knee": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "left_ankle": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "right_hip_yaw": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "right_hip_roll": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "right_hip_pitch": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "right_knee": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "right_ankle": {
+   "kp_nm_per_rad_max": 2.2,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "neck_pitch": {
+   "kp_nm_per_rad_max": 3.3,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "head_pitch": {
+   "kp_nm_per_rad_max": 1.65,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "head_yaw": {
+   "kp_nm_per_rad_max": 1.65,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  },
+  "head_roll": {
+   "kp_nm_per_rad_max": 1.65,
+   "peak_nm_max": 0.52,
+   "noload_rads": 10.8
+  }
+ },
+ "trained_position_p": {
+  "legs": 800,
+  "neck_pitch": 1200,
+  "head": 600,
+  "note": "write these to the servos (the Pi code's default is 200); kp = P x 0.55/200"
+ },
+ "latency": "trained with 16-30 ms from command to servo, and the observation delays above",
+ "randomized": {
+  "gain_scale": [
+   0.45454545454545453,
+   1.0
+  ],
+  "peak_nm": [
+   0.3,
+   0.52
+  ],
+  "backlash_deg": 1.0,
+  "sag_travel_deg": [
+   0.0,
+   3.0
+  ],
+  "sag_stiffness": [
+   2.0,
+   60.0
+  ]
+ }
+}
