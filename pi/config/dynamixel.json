@@ -179,19 +179,22 @@
  },
  "imu_to_robot": [
   [
-   1,
-   0,
-   0
+   0.0674,
+   -0.9965,
+   -0.0485
   ],
   [
-   0,
-   1,
-   0
+   0.9944,
+   0.0711,
+   -0.0778
   ],
   [
-   0,
-   0,
-   1
+   0.081,
+   -0.043,
+   0.9958
   ]
- ]
+ ],
+ "notes": {
+  "imu_to_robot": "measured 2026-11-23 with imu_axis_check.py (joints held): the GY-BNO08X is mounted turned 90 deg, the duck forward = sensor -y, its left = sensor +x; level = sitting with the torso upright (5 deg off the sensor z); the left tip agreed with the forward tip within 19 deg"
+ }
 }

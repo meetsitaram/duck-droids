@@ -1,21 +1,47 @@
 #!/bin/bash
-# On a fresh Raspberry Pi OS Lite, 64-bit, in the folder holding this file. Not yet tried on a real Pi.
+# On a fresh Raspberry Pi OS Lite, 64-bit (Debian 13), in the folder holding this file. Tried on the duck's Pi Zero 2 W, 2026-11-23.
+#   bash setup_pi.sh            the bus board on USB (jumpers at B): the default since 2026-11-23
+#   bash setup_pi.sh --uart     the bus board on the Pi's UART instead (jumpers at A): the fallback in docs/dynamixel/WIRING.md
 set -e
 cd "$(dirname "$0")"
 sudo apt-get update
-sudo apt-get install -y python3-venv i2c-tools
+sudo apt-get install -y python3-venv i2c-tools rfkill
 sudo raspi-config nonint do_i2c 0
-sudo usermod -aG dialout,i2c "$USER"
+# The BNO085 IMU stretches the I2C clock, which the Pi handles badly: at the default 100 kHz the Adafruit library got garbled packets every
+# few seconds and the IMU stopped reporting (2026-11-23). 400 kHz is the usual setting for this chip on a Pi. Takes effect after a reboot.
+grep -q '^dtparam=i2c_arm_baudrate=' /boot/firmware/config.txt || echo 'dtparam=i2c_arm_baudrate=400000' | sudo tee -a /boot/firmware/config.txt
+sudo usermod -aG dialout,i2c,input,bluetooth "$USER"
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt adafruit-blinka adafruit-circuitpython-bno08x
-# The bus board is on the Pi's UART (GPIO 14 and 15, pins 8 and 10), not USB: the full UART (PL011) on those pins, and no login console on it.
-# Bluetooth stays on, for a gamepad, moved to the mini UART (miniuart-bt): a gamepad sends little, and the mini UART can't hold the servos' 1 Mbaud.
-# miniuart-bt needs a fixed core clock for the mini UART's baud: core_freq=250 (a little slower GPU and SDRAM, nothing the controller uses)
-sudo raspi-config nonint do_serial_cons 1
-sudo raspi-config nonint do_serial_hw 0
-sudo sed -i '/^dtoverlay=disable-bt/d' /boot/firmware/config.txt
-for line in 'enable_uart=1' 'dtoverlay=miniuart-bt' 'core_freq=250'; do
-  grep -q "^$line" /boot/firmware/config.txt || echo "$line" | sudo tee -a /boot/firmware/config.txt
+
+# Bluetooth, for an Xbox controller (Series X|S, over Bluetooth LE). Raspberry Pi OS starts with it soft-blocked.
+sudo rfkill unblock bluetooth
+# The settings that stop the Xbox controller's connect-drop-reconnect loop (logo flashing slowly while the Pi says Connected):
+# a fixed device address for LE privacy, re-pairing allowed without a prompt, fast reconnects, and HID handled in userspace.
+C=/etc/bluetooth/main.conf
+for kv in 'Privacy = device' 'JustWorksRepairing = always' 'FastConnectable = true'; do
+  k=${kv%% =*}
+  if grep -qE "^#?\s*$k\s*=" $C; then sudo sed -i -E "s/^#?\s*$k\s*=.*/$kv/" $C; else sudo sed -i "/^\[General\]/a $kv" $C; fi
 done
-sudo systemctl enable hciuart 2>/dev/null || true
-echo 'Done. Reboot, then: .venv/bin/python -m duck.set_id --scan --port /dev/serial0 (bus board jumpers at A). And ls -l /dev/serial0 (it should point at ttyAMA0) and i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For a gamepad: bluetoothctl, then scan on, pair, trust and connect.'
+I=/etc/bluetooth/input.conf
+if grep -qE '^#?\s*UserspaceHID\s*=' $I; then sudo sed -i -E 's/^#?\s*UserspaceHID\s*=.*/UserspaceHID=true/' $I; else echo 'UserspaceHID=true' | sudo tee -a $I; fi
+echo 'options bluetooth disable_ertm=Y' | sudo tee /etc/modprobe.d/bluetooth-xbox.conf
+sudo systemctl restart bluetooth
+
+if [ "$1" = "--uart" ]; then
+  # The bus board on the Pi's UART (GPIO 14 and 15, pins 8 and 10): the full UART (PL011) on those pins, and no login console on it.
+  # Bluetooth moves to the mini UART (miniuart-bt), which needs a fixed core clock (core_freq=250). A gamepad sends little, but expect it
+  # to be less steady there.
+  sudo raspi-config nonint do_serial_cons 1
+  sudo raspi-config nonint do_serial_hw 0
+  sudo sed -i '/^dtoverlay=disable-bt/d' /boot/firmware/config.txt
+  for line in 'enable_uart=1' 'dtoverlay=miniuart-bt' 'core_freq=250'; do
+    grep -q "^$line" /boot/firmware/config.txt || echo "$line" | sudo tee -a /boot/firmware/config.txt
+  done
+  echo 'Done (UART). Reboot, then: .venv/bin/python -m duck.set_id --scan --port /dev/serial0 (jumpers at A).'
+else
+  echo 'Done (USB). Reboot, then: .venv/bin/python -m duck.set_id --scan (jumpers at B; the port is found by itself).'
+fi
+# The controller launcher at boot (B: head mode on and off). Walking from the controller stays off until the power is proven: --allow-walk
+sudo bash install_launcher.sh
+echo 'And i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For the gamepad: bluetoothctl, then scan on, pair, trust and connect.'
