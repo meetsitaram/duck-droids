@@ -48,6 +48,7 @@ from duck import dxl  # noqa: E402
 from duck.hardware import load_config  # noqa: E402
 from duck.set_id import find_port  # noqa: E402
 from stand_test import BEAK, CAP, GOAL_CURRENT, HEAD, HW_ERROR, LED, LEGS, MODE_CURRENT_POSITION, POSITION_D, at  # noqa: E402
+POSITION_I = (82, 2)                                        # X-series control table: position I gain
 
 K = 2 * math.pi / dxl.TICKS_PER_REV
 RATE = 50.0
@@ -338,6 +339,8 @@ def main():
     ap.add_argument('--rise-model', help='a sit/stand policy (models/sitstand2.onnx) that stands it up from sitting for --rise-policy-s, then --model takes over; use with --rise 0 --blend 0')
     ap.add_argument('--rise-policy-s', type=float, default=6.0, help='seconds of --rise-model after A')
     ap.add_argument('--auto-stand', action='store_true', help='with --pad: stand up at once (the launcher has already had RT + A), and end when it sits down')
+    ap.add_argument('--bam-head-pitch-p', type=int, default=690, help='with --bam: the head pitch P (trained 600, randomized +-15 %%): higher holds the head up better')
+    ap.add_argument('--bam-head-pitch-i', type=int, default=200, help='with --bam: the head pitch I gain, against its steady droop (0 off)')
     ap.add_argument('--emotions', action='store_true', help="with --pad and a stand policy (models/stand_emote.onnx): LB / RB pick one of microduck's emotions, X plays it (head through the policy, beak, sound)")
     ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before an emotion's motion: the Bluetooth speaker's lag and the player's start")
     ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this (the policy trained on 0.7-1.0)')
@@ -408,8 +411,11 @@ def main():
             # a policy trained on Pollen's measured XL330 model (BAM m6, milli-rl's *-Bam tasks): plain position mode, PWM-driven, the P it trained
             # with (legs 800, neck 1200, head 600) and no D, as BAM models the firmware; the current cap of mode 5 doesn't apply there
             bus.write(i, dxl.OPERATING_MODE, dxl.MODE_POSITION)
-            bus.write(i, dxl.POSITION_P, 1200 if n == 'neck_pitch' else 600 if head else 800)
+            bus.write(i, dxl.POSITION_P, 1200 if n == 'neck_pitch' else a.bam_head_pitch_p if n == 'head_pitch' else 600 if head else 800)
             bus.write(i, POSITION_D, 0)
+            # the head pitch drooped under the head's weight at P 600 (RT + X, 2026-11-25): there's no current cap in this mode to raise, so the
+            # P to the top of the trained +-15 % (690) and a small I that takes out the steady droop over seconds
+            bus.write(i, POSITION_I, a.bam_head_pitch_i if n == 'head_pitch' else 0)
         else:
             bus.write(i, dxl.OPERATING_MODE, MODE_CURRENT_POSITION)
             bus.write(i, GOAL_CURRENT, cap[n])
