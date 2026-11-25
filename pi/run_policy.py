@@ -330,7 +330,7 @@ def main():
     ap.add_argument('--wz-max', type=float, default=0.8, help='rad/s turning at full stick')
     ap.add_argument('--head-max', type=float, default=0.3, help='rad of head pitch or turn from the d-pad')
     ap.add_argument('--accel', type=float, default=0.4, help='m/s per s (4x that in rad/s per s for turning): how fast the walk command may change')
-    ap.add_argument('--grav-bias', type=float, default=0.0, help='debugging, simulator: deg of pitch bias added to the IMU gravity the policy sees (a miscalibrated IMU)')
+    ap.add_argument('--grav-bias', type=float, default=None, help="deg of pitch added to the IMU gravity the policy sees (negative: the policy sees the body further forward); default the config's imu_pitch_bias_deg (the IMU's measured mounting offset), 0 for none")
     ap.add_argument('--risen-hold', type=float, default=3.0, help='seconds the scripted standing pose is held after the rise (steadied by hand) before the policy takes over; a tick buzz each second')
     ap.add_argument('--handover-tilt', type=float, default=30.0, help='deg: the policy takes over only with the body this upright. In the simulator, unheld, stand_nod recovered from 5 and 10 deg and fell from 15 (2026-11-24); 30 is for handing over while still held by hand until it is steady (the user\'s choice)')
     ap.add_argument('--imu-wait', type=float, default=10.0, help='seconds to hold the risen pose for the IMU to report and the body to be upright before the policy takes over; then it sits')
@@ -380,6 +380,10 @@ def main():
         print(f"rise: {os.path.basename(a.rise_model)} for {a.rise_policy_s:.0f} s, from {rlay['checkpoint']}")
 
     cfg = load_config(a.config)
+    if a.grav_bias is None:                       # the IMU's mounting offset, measured on the duck (config imu_pitch_bias_deg)
+        a.grav_bias = float(cfg.get('imu_pitch_bias_deg', 0.0))
+    if a.grav_bias:
+        print(f'IMU pitch corrected by {a.grav_bias:+.1f} deg', flush=True)
     imu = None
     if IMU or a.imu_check:
         from duck.hardware import Bno085, SimImu
@@ -624,7 +628,7 @@ def main():
                 hist_v = np.roll(hist_v, -1, 0); hist_v[-1] = v_prev          # one step late, as trained
                 hist_a = np.roll(hist_a, -1, 0); hist_a[-1] = last_act
                 if IMU:
-                    if a.grav_bias:                        # debugging: the IMU's pitch off by this many degrees (nose down +), as a miscalibrated IMU reads
+                    if a.grav_bias:                        # the IMU's pitch corrected by this many degrees (the config's measured mounting offset)
                         b = math.radians(a.grav_bias)
                         grav = np.array([grav[0] * math.cos(b) - grav[2] * math.sin(b), grav[1], grav[0] * math.sin(b) + grav[2] * math.cos(b)])
                     obs = np.concatenate([gyro, grav, q - stand, v_prev, last_act, np.array(cmd), np.zeros(6)]).astype(np.float32)
