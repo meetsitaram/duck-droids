@@ -191,9 +191,13 @@ def play(a, cfg):
         print(f'preview: {dur:.1f} s, then again. Close the window to stop.')
         with mujoco.viewer.launch_passive(m, d, show_left_ui=False, show_right_ui=False) as v:
             v.cam.distance, v.cam.azimuth, v.cam.elevation = 0.75, 150, -15
-            t0 = time.monotonic()
+            t0, lap = time.monotonic(), -1
             while v.is_running():
                 t = (time.monotonic() - t0) % (dur + 1.5)
+                if a.sound and int((time.monotonic() - t0) // (dur + 1.5)) != lap:
+                    from duck import sound
+                    lap = int((time.monotonic() - t0) // (dur + 1.5))
+                    sound.play(a.sound)
                 with v.lock():
                     twin.pose(m, d, adr, sample(track, t))
                     v.cam.lookat[:] = d.subtree_com[1]
@@ -322,7 +326,7 @@ def play(a, cfg):
 
     t0, stopped, peak, worst = time.monotonic(), None, {n: 0 for n in J}, 0.0
     total = ease_in + dur
-    hw, last_slow = {}, 0.0
+    hw, last_slow, started_sound = {}, 0.0, False
     try:
         while True:
             t = time.monotonic() - t0
@@ -331,6 +335,10 @@ def play(a, cfg):
             if t < ease_in:
                 _, q = st.at(plan, q0, t)
             else:
+                if a.sound and not started_sound:      # the sound starts with the motion, not with the ease in
+                    from duck import sound
+                    sound.play(a.sound)
+                    started_sound = True
                 q = sample(track, t - ease_in)
             g = goal(q, limit=t >= ease_in)
             bus.sync_write(ids, dxl.GOAL_POSITION, g)
@@ -419,6 +427,7 @@ def main():
     ap.add_argument('--max-seconds', type=float, default=60.0, help='record: the longest recording')
     ap.add_argument('--speed', type=float, default=1.0, help='play: 0.5 is half speed')
     ap.add_argument('--preview', action='store_true', help='play: on the model only, no servos')
+    ap.add_argument('--sound', help='play: a sound (pi/sounds/microduck name or a wav) started as the motion starts, after the ease in (emote.py uses it)')
     ap.add_argument('--telemetry', action='store_true', help='play: stream to the twin on the PC (twin.py --remote <pi>): the duck, the IMU, the goal pose')
     ap.add_argument('--log', help='play: a CSV of every tick: the goal, measured angle and current per joint, and the IMU')
     ap.add_argument('--ease-back', type=float, default=6.0, help='play: seconds to ease back to where it started, before the torque goes off')

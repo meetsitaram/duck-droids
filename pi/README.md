@@ -44,11 +44,13 @@ Every step, as done on 2026-11-23. Each command that needs the Pi's password is 
    ```powershell
    type $env:USERPROFILE\.ssh\duck_ed25519.pub | ssh USER@ADDRESS "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
    ```
-4. **Copy the code and set up**, from the repo root in Git Bash: `bash pi/deploy.sh USER@ADDRESS --setup`. It copies `pi/` to `~/duck`, then runs `setup_pi.sh` there (asks for the password once): I2C at 400 kHz, Bluetooth unblocked with the Xbox controller's settings, the venv with onnxruntime and the IMU library. Then `sudo reboot`. Later code changes: `bash pi/deploy.sh USER@ADDRESS` alone.
-5. **The Xbox controller:** `ssh -t -i ~/.ssh/duck_ed25519 USER@ADDRESS "sudo bash ~/duck/xbox_pair.sh"`, holding its pair button when asked ([TROUBLESHOOTING.md](../docs/dynamixel/TROUBLESHOOTING.md), The Pi and the gamepad).
-6. **Check, with the duck powered** (nothing moves): `ls /dev/ttyACM*` (the bus board), `.venv/bin/python -m duck.set_id --scan` (all 15 servos), `/usr/sbin/i2cdetect -y 1` (the IMU at 0x4a or 0x4b), `.venv/bin/python run_policy.py --imu-check` (its gravity while you tilt the duck: nose down +x, left side down +y), `.venv/bin/python run_policy.py --pad-check` (the controller).
+4. **Your Pi's details**, once: copy `.env.example` at the repo root to `.env` and fill in its user, address and key (`DUCK_USER`, `DUCK_HOST`, `DUCK_KEY`). `.env` is git-ignored, so the Pi's name and address never go into a commit; no password goes in it (the SSH key logs in, and sudo asks in your terminal). `deploy.sh`, `watch.py` and `twin.py --remote` read it.
+5. **Copy the code and set up**, from the repo root in Git Bash: `bash pi/deploy.sh --setup` (or `bash pi/deploy.sh USER@ADDRESS --setup` for another Pi). It copies `pi/` to `~/duck`, then runs `setup_pi.sh` there (asks for the password once): I2C at 400 kHz, Bluetooth unblocked with the Xbox controller's settings, the venv with onnxruntime and the IMU library. Then `sudo reboot`. Later code changes: `bash pi/deploy.sh` alone.
+6. **The Xbox controller:** `ssh -t -i ~/.ssh/duck_ed25519 USER@ADDRESS "sudo bash ~/duck/xbox_pair.sh"`, holding its pair button when asked ([TROUBLESHOOTING.md](../docs/dynamixel/TROUBLESHOOTING.md), The Pi and the gamepad).
+5b. **The Bluetooth speaker** (optional): `setup_pi.sh` already installed the service. Choose the speaker and pair it: [A Bluetooth speaker, and the duck's sounds](#a-bluetooth-speaker-and-the-ducks-sounds).
+7. **Check, with the duck powered** (nothing moves): `ls /dev/ttyACM*` (the bus board), `.venv/bin/python -m duck.set_id --scan` (all 15 servos), `/usr/sbin/i2cdetect -y 1` (the IMU at 0x4a or 0x4b), `.venv/bin/python run_policy.py --imu-check` (its gravity while you tilt the duck: nose down +x, left side down +y), `.venv/bin/python run_policy.py --pad-check` (the controller).
    **The IMU's axes:** `.venv/bin/python imu_axis_check.py --write`, the duck sitting with its torso upright. It holds every joint where it is (nothing moves, so the duck tips as one piece), and in 40 s you keep it still 3 s, tip it beak down about 20 deg and hold, back up, then onto its own left side and hold, back up. It writes `imu_to_robot` to the config (copy that back to the repo). On the first duck the board turned out mounted 90 deg round: forward is the sensor's -y.
-7. **Shutting down:** `sudo shutdown -h now`, and unplug when the green LED stops. Losing power without it is usually harmless (ext4's journal), but can corrupt the card over many cuts: once the setup is settled, the overlay filesystem (`sudo raspi-config nonint do_overlayfs 0`, a reboot) makes the card read-only, and power cuts can't harm it. Not done yet.
+8. **Shutting down:** `sudo shutdown -h now`, and unplug when the green LED stops. Losing power without it is usually harmless (ext4's journal), but can corrupt the card over many cuts: once the setup is settled, the overlay filesystem (`sudo raspi-config nonint do_overlayfs 0`, a reboot) makes the card read-only, and power cuts can't harm it. Not done yet.
 
 ## Set up the Pi, or a PC
 
@@ -105,7 +107,7 @@ The real duck's pose on the MuJoCo model, live, in its true colours, standing on
 python twin.py
 ```
 
-**With the bus on the duck's Pi**, the Pi sends its readings over Wi-Fi and the PC draws them. On the Pi, read only (nothing moves): `.venv/bin/python telemetry.py` (all 15 servos and the IMU, 30 times a second, on port 9100). While the Pi drives the duck, `run_policy.py --telemetry` sends the same instead: only one program can own the bus, so stop `telemetry.py` first (`pkill -f "[t]elemetry.py"`). On the PC: `python twin.py --remote duck.local` (the Pi's address), which also prints the IMU's gravity every 2 s. With the IMU in the stream, the twin leans the body as the IMU measures, not by assuming the soles are flat: sitting folded, the duck rests on its heels, and the feet-flat guess tipped the body 12 deg forward (`--feet-flat` brings it back).
+**With the bus on the duck's Pi**, the Pi sends its readings over Wi-Fi and the PC draws them. On the Pi, read only (nothing moves): `.venv/bin/python telemetry.py` (all 15 servos and the IMU, 30 times a second, on port 9100). While the Pi drives the duck, `run_policy.py --telemetry` sends the same instead: only one program can own the bus, so stop `telemetry.py` first (`pkill -f "[t]elemetry.py"`). On the PC: `python twin.py --remote ADDRESS` (the Pi's address), which also prints the IMU's gravity every 2 s. With the IMU in the stream, the twin leans the body as the IMU measures, not by assuming the soles are flat: sitting folded, the duck rests on its heels, and the feet-flat guess tipped the body 12 deg forward (`--feet-flat` brings it back).
 
 `--snapshot pose.png` saves front, side and three-quarter views. Calibrate first (`python -m duck.calibrate`, the duck at zero; `--joints neck_pitch,head_pitch` does a few), then move one joint at a time and check the model turns the same way: flip a joint's `direction` in the config where it doesn't.
 
@@ -182,6 +184,77 @@ If the controller drops for 1 s while standing, it sits down. A script run by ha
 ### The head alone, sitting
 
 `python head_pad.py` moves only the neck, head and beak from the controller, no policy. The legs hold the sitting pose they're in (torque on, goal where each is: nothing moves; `--legs-limp` leaves them off). Right stick: head pitch (up tips the face forward) and turn; d-pad: neck (up tips it back) and roll; X a nod, Y the beak, A back to the start, RB + B held 1 s back to the start then torque off. A held stick keeps the joint moving (`--speed`, 0.8 rad/s); let go and it stays. Each joint is kept inside its limits, widened to where it starts. Stop it with B, not by killing it: a killed run leaves every servo holding its last goal, torque on.
+
+## A Bluetooth speaker, and the duck's sounds
+
+The duck's sounds are microduck's 13 emotion sounds from Pollen Robotics (Apache-2.0), in `sounds/microduck/`: source, commit and licence in [sounds/README.md](sounds/README.md). Play one by name, on the Pi or the PC:
+
+```bash
+.venv/bin/python -m duck.sound --list       # angry curious defiant devastated excited impatient laugh mmh mock no sad yes yes_fast
+.venv/bin/python -m duck.sound laugh        # from code: from duck import sound; sound.play('laugh')
+```
+
+On the PC it plays through the computer's speakers (winsound on Windows). On the Pi it goes to the default audio output through `pw-play` (or `paplay`, then `aplay`): the Zero 2 W has no headphone jack, so that's a Bluetooth speaker, which `bt_speaker.sh` pairs and the user service `duck-bt-speaker` connects at every boot. BlueZ pairs it; PipeWire with WirePlumber plays to it over A2DP. `setup_pi.sh` runs `bash bt_speaker.sh install`: the packages, WirePlumber told to keep Bluetooth audio on with no one logged in (headless, it otherwise turns it off), and the service. Written 2026-11-24, not yet tried on the duck.
+
+**Choose the speaker**, once. Either fill in `SPEAKER_NAME` or `SPEAKER_MAC` in [config/bt_speaker.conf](config/bt_speaker.conf) on the PC and deploy, or on the Pi (a later deploy doesn't undo this one):
+
+```bash
+bash ~/duck/bt_speaker.sh scan                 # speaker in pairing mode: shows "Device <MAC> <name>" for 30 s
+bash ~/duck/bt_speaker.sh set "JBL Flip 5"     # part of its name (case ignored), or its MAC: 11:22:33:AA:BB:CC
+```
+
+**At the first boot with it** (or right after `set`):
+
+1. Switch the speaker on and put it in **pairing mode** (usually hold its Bluetooth button until it beeps or its light flashes fast). Keep it within a metre or two of the duck's head, and not connected to a phone: switch the phone's Bluetooth off, or the speaker may connect back to it.
+2. Power the duck. Within a minute of boot the service scans for up to 40 s, pairs, trusts and connects the speaker, makes it the default output at 70 % (`SPEAKER_VOLUME`) and plays `yes` (`HELLO_SOUND`). Not found? It tries again every 20 s until it is: just put the speaker back in pairing mode.
+3. Watch it from the PC: `ssh -i ~/.ssh/duck_ed25519 USER@ADDRESS tail -f ~/duck/bt_speaker.log`.
+
+**Every boot after that:** switch the speaker on (no pairing mode); the duck connects it by its saved MAC, and keeps trying every 20 s if the speaker comes on later. By hand: `bash ~/duck/bt_speaker.sh connect`. To pair again: `bash ~/duck/bt_speaker.sh forget`, pairing mode, `connect`. Off at boot: `systemctl --user disable --now duck-bt-speaker`.
+
+What bit the first speaker (INSMY Clip S, 2026-11-25), all handled by `bt_speaker.sh` now: the adapter wasn't pairable, so pairings weren't kept (`Bonded: no`, then the speaker dropped seconds after connecting); the desktop login screen (lightdm) ran its own PipeWire that took the speaker's audio first ("Multiple sound server instances" in `systemctl --user status wireplumber`), so the install turns Bluetooth off in it; and the user services needed a reboot (or a fresh login) to get the new `bluetooth` group.
+
+If it doesn't work: `bluetoothctl info <MAC>` (Paired, Bonded, Trusted, Connected), `pactl list short sinks` (a `bluez_output...` line once connected), `systemctl --user status wireplumber`. "Not authorized" from `bluetoothctl` means the user isn't in the `bluetooth` group yet: log out and in, or reboot, after `setup_pi.sh`. The Zero 2 W's one radio carries Wi-Fi, the Xbox controller and the speaker together: if the sound stutters while the controller is connected, that's the radio sharing, so expect it. On the bus board's UART fallback (`setup_pi.sh --uart`), Bluetooth runs on the slow mini UART, too slow for A2DP audio.
+
+### The emotions: each sound with its head, neck and beak motion (emote.py)
+
+Pollen made a motion for each sound (`sounds/microduck/<name>.json`: keyframes in time with the sound, offsets from the standing
+pose). milli has microduck's head joints with the same names and signs, so `emote.py` maps them straight across: neck, head pitch,
+yaw and roll onto the config's home pose, and the beak's 0 to 1 onto 0.02 to 0.35 rad (under the jaw's 0.39 stop). The config's
+limits hold: the head roll stops at ±0.24 rad (curious and mock ask up to 0.44). Pollen's body lean and height are left out, so only
+the neck, head and beak move. devastated sits first on microduck; standing, its full droop brings the head to the floor, so its neck
+and head pitch run at 0.6 (`--full` for all of it). All 13 in the sim, with the sound: [docs/images/emotions_sim.mp4](../docs/images/emotions_sim.mp4).
+
+```bash
+python emote.py --list                 # each emotion: length, what was clipped or left out
+python emote.py yes --preview          # the model in a window, with the sound, on a loop (PC)
+python emote.py --all --preview        # every emotion in turn
+python emote.py laugh --video l.mp4    # a video with the sound in it
+python emote.py yes                    # on the duck: motion.py's playback of the neck, head and beak only, the sound starting with the motion
+```
+
+On the duck it uses motion.py's playback and its safety (eases in, a joint lagging stops it, eases back, torque off) and doesn't
+command the legs. Big neck moves (sad, devastated) shift the weight forward: steady the duck, or `--scale 0.5`. Not yet tried on the duck.
+
+### The emotions while it balances (stand_emote.onnx, RT + X)
+
+`models/stand_emote.onnx` is a stand policy trained to keep its balance while the head performs all 13 emotions (milli-rl
+`Mjlab-StandEmote-Flat-Milli-Dynamixel-Bam`, run 4's model_500, on Pollen's XL330 servo model). Its inputs are the same 61 as
+`stand_bam.onnx`. The policy has no emotion input: each emotion is fed in frame by frame as the head command it already takes (neck, head pitch,
+yaw, roll off the standing pose), so it moves the head and balances with the legs. The beak isn't a policy joint: it goes straight to the
+beak servo from the emotion's `mouth` keyframes, and the sound starts on the speaker at the same moment. In the trainer's sim: all 13
+with no falls, and 3 % of robots lift a foot after a 0.15 m/s nudge (stand_bam: 30 %).
+
+From the controller (the launcher, `--allow-stand`):
+1. **RT + X, 1 s**: it stands up as with RT + A (the scripted rise, held by hand, then the long buzz: let go).
+2. **LB / RB**: pick an emotion (the name is printed in `launcher.log`; a short buzz). It starts on angry; the order is angry, curious,
+   defiant, devastated, excited, impatient, laugh, mmh, mock, no, sad, yes, yes_fast.
+3. **X**: play it. The d-pad and right stick don't steer the head while it plays; it ends at the standing pose.
+4. **RT + A, 1 s**: sit down and end. **LB + RB** together: stop at once, torque off.
+
+By hand: `python run_policy.py --pad --stand-only --auto-stand --model models/stand_emote.onnx --bam --rise 8 --blend 0 --emotions`,
+and `--emote-scale 0.7` for smaller moves (the policy trained on 0.7 to 1.0). Against the simulator (`sim/server.py`, `--port
+socket://127.0.0.1:9000 --imu 127.0.0.1:9001 --pad "15:X;21:RB;22:X"`) angry, curious, devastated and defiant played standing, at most 11.5° off upright.
+Not yet tried on the duck: keep a hand behind it, most of all for sad and devastated, the head-down ones.
 
 ## Record a motion by hand, play it back
 

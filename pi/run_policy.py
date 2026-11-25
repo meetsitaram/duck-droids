@@ -18,6 +18,9 @@ With --pad the duck waits, sitting with torque on, for the controller:
   left stick walk: up/down forward and back, left/right sideways      right stick, left/right: turn
   RT         held, walks faster, up to --vx-boost                    d-pad: the head, up/down pitch, left/right turn
   X          a nod                                                    Y: beak open / shut
+  with --emotions (a stand policy, models/stand_emote.onnx): LB / RB pick one of microduck's 13 emotions (printed, a short buzz),
+  X plays it: its head motion through the policy's head command (as it trained), its beak straight to the beak servo, its sound on the
+  speaker, all from the same start. The d-pad and stick don't steer the head while it plays; it ends back at the standing pose.
   B          sit down (the scripted lower), then waits for A again   Menu (while sitting): quit
   LB + RB    stop: eases down at once, torque off, quit. If the controller drops for --pad-lost seconds while standing, it sits down.
 
@@ -124,9 +127,24 @@ class PadDriver:
 
     NOD = [(0.5, 0.15), (0.6, -0.12), (0.5, 0.0)]          # (seconds, head pitch): one nod, eased between
 
-    def __init__(self, a):
+    # the emotion head commands are clipped as the stand_emote policy trained on them (milli-rl emotion_head.py LIMITS): neck, head pitch,
+    # yaw, roll off the standing pose; the roll 0.04 short of its +-0.24 stop
+    EMOTE_LIMITS = {'neck_pitch': (-1.6, 0.15), 'head_pitch': (-1.6, 1.6), 'head_yaw': (-2.5, 2.5), 'head_roll': (-0.20, 0.20)}
+
+    def __init__(self, a, cfg=None):
         from duck.gamepad import Holds, open_pad
         self.a = a
+        self.emotions, self.sel, self.emo, self.beak_goal = None, 0, None, None
+        self.standing = False                               # set by the main loop: emotions play only under the policy
+        if getattr(a, 'emotions', False):
+            import emote
+            from duck import sound
+            self.sound = sound
+            cfg = cfg or emote.load_config()
+            self.home = cfg['home']
+            self.emotions = [(n, emote.track(n, cfg, a.emote_scale)[0]) for n in emote.names()]
+            self.sample = emote.sample
+            print('emotions: LB / RB to pick, X to play: ' + ', '.join(n for n, _ in self.emotions), flush=True)
         self.pad = open_pad(a.pad, a.pad_name)
         self.holds = Holds({'STANDSIT': {'RT', 'A'}}, a.hold_s)     # RT + A held 1 s: stand up, or sit back down; the controller buzzes
         self.prev = set()
@@ -161,7 +179,17 @@ class PadDriver:
             want[:] = 0.0
         step = np.array([a.accel, a.accel, 4 * a.accel]) * dt
         self.walk += np.clip(want - self.walk, -step, step)
-        if 'X' in events and self.nod_t is None:
+        if self.emotions:
+            if events & {'LB', 'RB'} and 'STOP' not in events and self.emo is None:
+                self.sel = (self.sel + (1 if 'RB' in events else -1)) % len(self.emotions)
+                print(f'emotion: {self.emotions[self.sel][0]} (X to play)', flush=True)
+                self.pad.rumble(60, 0.3)
+            if 'X' in events and self.emo is None and self.standing:
+                name, tr = self.emotions[self.sel]
+                self.emo = (name, tr, now)
+                self.sound.play(name)
+                print(f'playing {name} ({tr[-1][0]:.1f} s)', flush=True)
+        elif 'X' in events and self.nod_t is None:
             self.nod_t = now
         if 'Y' in events:
             self.beak_open = not self.beak_open
@@ -176,7 +204,19 @@ class PadDriver:
                 self.nod_t = None
             else:
                 pitch += nod[4]
-        cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2]), 0.0, pitch, yaw, 0.0)
+        head = (0.0, pitch, yaw, 0.0)
+        self.beak_goal = None
+        if self.emo is not None:
+            name, tr, t0 = self.emo
+            if now - t0 > tr[-1][0] + 0.3 or not self.standing:
+                self.emo = None
+                if not self.standing:
+                    self.sound.stop()
+            else:
+                q = self.sample(tr, now - t0)
+                head = tuple(float(np.clip(q[j] - self.home.get(j, 0.0), *self.EMOTE_LIMITS[j])) for j in ('neck_pitch', 'head_pitch', 'head_yaw', 'head_roll'))
+                self.beak_goal = float(q['beak'])
+        cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2])) + head
         return cmd, events, (now - self.lost_since) if self.lost_since else 0.0
 
     def stop_walk(self):
@@ -257,6 +297,8 @@ def main():
     ap.add_argument('--rise-model', help='a sit/stand policy (models/sitstand2.onnx) that stands it up from sitting for --rise-policy-s, then --model takes over; use with --rise 0 --blend 0')
     ap.add_argument('--rise-policy-s', type=float, default=6.0, help='seconds of --rise-model after A')
     ap.add_argument('--auto-stand', action='store_true', help='with --pad: stand up at once (the launcher has already had RT + A), and end when it sits down')
+    ap.add_argument('--emotions', action='store_true', help="with --pad and a stand policy (models/stand_emote.onnx): LB / RB pick one of microduck's emotions, X plays it (head through the policy, beak, sound)")
+    ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this (the policy trained on 0.7-1.0)')
     ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a controller combo (RT + A) must be held')
     ap.add_argument('--stand-only', action='store_true', help='with --pad: never send a walk command (for the stand policies, stand_nod.onnx); the right stick and d-pad move the head')
     ap.add_argument('--pad-lost', type=float, default=1.0, help='seconds without the controller, standing, before it sits down')
@@ -379,7 +421,7 @@ def main():
     total = sum(k[0] for k in keys)
     print('from  ' + '  '.join(f'{n}:{math.degrees(q0[n]):+.0f}' for n in LEGS))
     print('stand ' + '  '.join(f'{n}:{math.degrees(standing[n]):+.0f}' for n in LEGS))
-    pad = PadDriver(a) if a.pad else None
+    pad = PadDriver(a, cfg) if a.pad else None
     pub = None
     if a.telemetry:
         from duck.telemetry import Publisher
@@ -443,6 +485,7 @@ def main():
             tilt = math.degrees(math.acos(max(-1.0, min(1.0, -float(grav[2])))))
             events, lost = set(), 0.0
             if pad:
+                pad.standing = phase == 'policy'
                 pcmd, events, lost = pad.tick()
             if phase == 'wait':
                 g = sitting
@@ -531,7 +574,8 @@ def main():
                     target = prev_t + np.clip(target - prev_t, -step, step)
                 last_act = act
                 g = {n: float(target[k]) for k, n in enumerate(names)}
-                g['beak'] = 0.3 if pad and pad.beak_open else standing['beak']
+                g['beak'] = (pad.beak_goal if pad and pad.beak_goal is not None else
+                             0.3 if pad and pad.beak_open else standing['beak'])
             v_prev = qd
             if pub and tick % 2 == 0:                          # 25 Hz to the PC's twin
                 pub.send({cfg['joints'][n]['id']: pos[n] for n in J}, grav, gyro, phase=phase)

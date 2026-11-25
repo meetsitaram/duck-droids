@@ -94,4 +94,4 @@ Across each joint, leave a loop for its whole range. Then move every joint by ha
 ## What is not designed
 
 - Wire clips and exact lengths: measure on the build.
-- Speaker and microphone.
+- A speaker in the duck, and a microphone. Sound goes to a Bluetooth speaker beside it for now (the Pi Zero 2 W has no audio jack): `pi/bt_speaker.sh` pairs and connects it at boot, and `pi/duck/sound.py` plays microduck's sounds (pi/README.md, A Bluetooth speaker, and the duck's sounds).

@@ -5,6 +5,9 @@ controller buzzes when it takes effect.
   RT + A, 1 s   stand: run_policy.py --pad --stand-only --auto-stand, stand_nod.onnx. It stands up at once (the policy itself, from
                 sitting); the right stick and d-pad move the head, X nods, Y the beak, never a walk command. RT + A, 1 s again: it sits down
                 and the mode ends. Only with --allow-stand (install_launcher_user.sh sets it)
+  RT + X, 1 s   emotions: the same stand on stand_emote.onnx (trained to keep its balance through microduck's 13 emotions) with
+                --emotions: LB / RB pick an emotion, X plays it (head, beak, sound). RT + A, 1 s: it sits down and the mode ends.
+                Only with --allow-stand
   RB + B, 1 s   head mode, sitting: head_pad.py (the legs hold where they are, the head on the controller). RB + B, 1 s again: off
   LT + A, 1 s   the walk policy: run_policy.py --pad. Only with --allow-walk: off until the power is proven under load
   LB + RB       inside any mode: stop at once, torque off
@@ -24,7 +27,7 @@ sys.path.insert(0, HERE)
 from duck.gamepad import EvdevPad, Holds  # noqa: E402
 
 PY = sys.executable
-COMBOS = {'stand': {'RT', 'A'}, 'head': {'RB', 'B'}, 'walk': {'LT', 'A'}}
+COMBOS = {'stand': {'RT', 'A'}, 'emote': {'RT', 'X'}, 'head': {'RB', 'B'}, 'walk': {'LT', 'A'}}
 
 
 class IdleStream:
@@ -66,10 +69,12 @@ def main():
     ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a combo must be held')
     ap.add_argument('--stand-args', default='--pad --stand-only --auto-stand --model models/stand_bam.onnx --bam --rise 8 --blend 0 --telemetry --max-volts 6.3 --min-volts 4.0',
                     help='for run_policy.py')
+    ap.add_argument('--emote-args', default='--pad --stand-only --auto-stand --model models/stand_emote.onnx --bam --rise 8 --blend 0 --telemetry --max-volts 6.3 --min-volts 4.0 --emotions',
+                    help='for run_policy.py')
     ap.add_argument('--walk-args', default='--pad --telemetry --max-volts 6.3', help='for run_policy.py')
     a = ap.parse_args()
     pad = EvdevPad()
-    combos = {k: v for k, v in COMBOS.items() if k == 'head' or (k == 'stand' and a.allow_stand) or (k == 'walk' and a.allow_walk)}
+    combos = {k: v for k, v in COMBOS.items() if k == 'head' or (k in ('stand', 'emote') and a.allow_stand) or (k == 'walk' and a.allow_walk)}
     print('launcher: ' + ', '.join(f"{' + '.join(sorted(v, reverse=True))} held {a.hold_s:g} s = {k}" for k, v in combos.items()), flush=True)
     holds, was_lost = Holds(combos, a.hold_s), True
     idle = IdleStream(not a.no_idle_telemetry)
@@ -85,6 +90,8 @@ def main():
             idle.stop()
             if mode == 'stand':
                 rc = run(['run_policy.py'] + a.stand_args.split() + ['--hold-s', str(a.hold_s)])
+            elif mode == 'emote':
+                rc = run(['run_policy.py'] + a.emote_args.split() + ['--hold-s', str(a.hold_s)])
             elif mode == 'head':
                 rc = run(['head_pad.py', '--hold-s', str(a.hold_s)])
             else:

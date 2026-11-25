@@ -1,8 +1,8 @@
 """Watch the duck from a PC on the same Wi-Fi: the live twin (MuJoCo, the real duck's joints and body angle, from the stream every run sends
 on port 9100) and the duck's launcher log (over SSH), together, until Ctrl-C.
 
-  python watch.py ADDRESS                          e.g. python watch.py duck.local
-  python watch.py ADDRESS --user pi --key ~/.ssh/duck_ed25519
+  python watch.py                                  the Pi in the repo root's .env (DUCK_USER, DUCK_HOST, DUCK_KEY; git-ignored)
+  python watch.py ADDRESS --user pi --key ~/.ssh/duck_ed25519   another Pi
   python watch.py ADDRESS --no-log                 the twin only (no SSH needed)
   python watch.py ADDRESS --no-twin                the log only
 
@@ -23,13 +23,17 @@ NOISE = ('DBG::', '\t\t', '*******', '[0x')
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('address', help="the duck's Pi on the network, e.g. 192.168.1.50 or duck.local")
+    from duck import env
+    env.load()
+    ap.add_argument('address', nargs='?', default=os.environ.get('DUCK_HOST'), help="the duck's Pi on the network, e.g. 192.168.1.50 or duck.local")
     ap.add_argument('--user', default=os.environ.get('DUCK_USER', 'pi'), help='SSH user on the Pi (or set DUCK_USER)')
     ap.add_argument('--key', default=os.environ.get('DUCK_KEY', os.path.expanduser('~/.ssh/duck_ed25519')), help='SSH key (or set DUCK_KEY)')
     ap.add_argument('--port', type=int, default=9100, help='telemetry port')
     ap.add_argument('--no-log', action='store_true')
     ap.add_argument('--no-twin', action='store_true')
     a = ap.parse_args()
+    if not a.address:
+        ap.error("no Pi address: copy .env.example to .env at the repo root (DUCK_HOST), or give it")
 
     procs = []
     if not a.no_twin:

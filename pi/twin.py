@@ -4,7 +4,7 @@ so nothing moves and torque stays as it is. Pose the duck by hand, torque off, a
   python twin.py                     a MuJoCo window, following the duck live, and a table of joint angles every 2 s
   python twin.py --snapshot pose.png  one picture from three sides, then exit
   python twin.py --port COM3          the bus board's port, if more than one is found
-  python twin.py --remote duck.local   the bus is on the duck's Pi: draw what it sends (pi/telemetry.py, or run_policy.py --telemetry);
+  python twin.py --remote                the bus is on the duck's Pi: draw what it sends (pi/telemetry.py, or run_policy.py --telemetry);
                                           the body leans as the IMU says (--feet-flat: as the feet say, the default without an IMU)
   python twin.py --no-soles           the soles aren't fitted yet: stand it on its bare feet
   python twin.py --body-level         body held level, feet as they fall (the duck in the air); by default its feet are flat on the floor
@@ -332,7 +332,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--port', default='auto')
     ap.add_argument('--feet-flat', action='store_true', help='with --remote: place the body by its feet, flat on the floor, even when the IMU is sent')
-    ap.add_argument('--remote', help="the Pi's address[:port]: take the servo readings it sends (duck/telemetry.py) instead of a bus here")
+    from duck import env
+    env.load()
+    ap.add_argument('--remote', nargs='?', const=os.environ.get('DUCK_HOST') or 'duck.local', help="the Pi's address[:port] (alone: DUCK_HOST from the repo root's .env): take the servo readings it sends (duck/telemetry.py) instead of a bus here")
     ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
     ap.add_argument('--snapshot', help='save one picture and exit')
     ap.add_argument('--save-pose', help='save the joint angles (rad) to a JSON and exit: sim/server.py --start takes it')

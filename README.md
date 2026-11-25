@@ -132,6 +132,6 @@ Python 3.12 with numpy, scipy, trimesh, manifold3d, shapely, Pillow, imageio and
 
 ## Credits
 
-Forked from [echo](https://github.com/meetsitaram/echo). Look and joint layout measured from [microduck's model](https://github.com/pollen-robotics/microduck_rl), whose meshes aren't in this repo. Servo mounting after the [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100), servo dynamics after [Open Duck Mini](https://github.com/apirrone/Open_Duck_Mini). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Forked from [echo](https://github.com/meetsitaram/echo). Look and joint layout measured from [microduck's model](https://github.com/pollen-robotics/microduck_rl), whose meshes aren't in this repo. Servo mounting after the [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100), servo dynamics after [Open Duck Mini](https://github.com/apirrone/Open_Duck_Mini). The duck's emotion sounds and their head motions, in `pi/sounds/microduck/`, are Pollen Robotics' from [microduck](https://github.com/pollen-robotics/microduck) and [microduck_emotions](https://github.com/pollen-robotics/microduck_emotions), Apache-2.0, included unchanged with their licence. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Apache-2.0: see [LICENSE](LICENSE).
