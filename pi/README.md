@@ -249,7 +249,28 @@ The neck runs at 1000 mA with an integral gain, so it holds the head instead of 
 neck starts near the crouch or the rest. Preview: `python emote.py --all --sit --preview`; the reel: `docs/images/emotions_sitting_sim.mp4`
 (kinematic: it can't show a fall).
 
-### The emotions while it balances (stand_emote.onnx, RT + X)
+### The policies, and getting them onto the duck
+
+Every policy in `models/` is also on Hugging Face, with a card saying which controller mode uses which:
+[huggingface.co/tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel). To fetch and sync them:
+
+```bash
+bash pi/fetch_models.sh            # on the PC, from the repo root: every .onnx and .json into pi/models/
+bash pi/deploy.sh                  # then copy pi/ (models included) to the duck's Pi
+bash fetch_models.sh               # or on the Pi itself, in ~/duck
+bash pi/fetch_models.sh stand_emote_calm    # one model only (its .onnx and .json)
+```
+
+Each file is downloaded under a temporary name and moved into place only once complete, so a dropped Wi-Fi link can't leave a
+truncated model. Needs curl and python only.
+
+### The emotions while it balances (stand_emote_calm.onnx, RT + X)
+
+**RT + X now runs `models/stand_emote_calm.onnx`** (run 7), trained with the head's big and fast moves off the command penalized: the
+earlier model below flicked the head nose-down 20-37 deg as a balance counterweight, standing still. It tracks the emotions best, but
+recovers from big shoves less well (in the sim 94 % stay up released at up to 20 deg, against 99 %); standing, the neck and head pitch
+moves play at 70 % and smoothed over 0.25 s (`--stand-head-amp`, `--stand-smooth`). RT + X held 1 s again sits it down and ends the
+mode, as RT + A does. `stand_emote.onnx` stays for a quick switch back (`--emote-args` in `launcher.py`).
 
 `models/stand_emote.onnx` is a stand policy trained to keep its balance while the head performs all 13 emotions (milli-rl
 `Mjlab-StandEmote-Flat-Milli-Dynamixel-Bam`, run 4's model_500, on Pollen's XL330 servo model). Its inputs are the same 61 as

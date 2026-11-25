@@ -149,7 +149,10 @@ class PadDriver:
             self.sample = emote.sample
             print('emotions: LB / RB to pick, X to play: ' + ', '.join(n for n, _ in self.emotions), flush=True)
         self.pad = open_pad(a.pad, a.pad_name)
-        self.holds = Holds({'STANDSIT': {'RT', 'A'}}, a.hold_s)     # RT + A held 1 s: stand up, or sit back down; the controller buzzes
+        combos = {'STANDSIT': {'RT', 'A'}}                  # RT + A held 1 s: stand up, or sit back down; the controller buzzes
+        if getattr(a, 'emotions', False):
+            combos['STANDSIT_X'] = {'RT', 'X'}              # emotion mode: RT + X, which started it, ends it too (as RT + A and RB + B toggle theirs)
+        self.holds = Holds(combos, a.hold_s)
         self.prev = set()
         self.walk = np.zeros(3)
         self.beak_open = False
@@ -172,6 +175,8 @@ class PadDriver:
         if 'RT' in s.held:                              # RT held: a combo (RT + A sits, RT + X is the launcher's): its X, Y, B, LB, RB aren't commands
             events -= {'X', 'Y', 'B', 'LB', 'RB'}       # (RT + X replayed an emotion inside a running stand, 2026-11-25)
         h = self.holds.check(s)
+        if h == 'STANDSIT_X':
+            h = 'STANDSIT'
         if h:
             events.add(h)
             self.pad.rumble(300)
