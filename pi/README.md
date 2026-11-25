@@ -253,7 +253,9 @@ neck starts near the crouch or the rest. Preview: `python emote.py --all --sit -
 
 **Active on the real duck now** (try these first): RT + A runs `stand_bam.onnx`, RT + X runs `stand_emote_calm.onnx`; RB + B (sitting
 emotions) and the walk use none. `models/active.json` says the same, with what each does and how it behaves, and `launcher.py` reads its
-models from it: to change the model a controller mode runs, change it there, `bash pi/deploy.sh`, and restart the launcher.
+models from it: to change the model a controller mode runs, change it there, `python pi/active_models.py --update` (records each active
+model's SHA-256), `bash pi/deploy.sh`, and restart the launcher. `python active_models.py` checks the files against those SHA-256s, and
+the launcher does at start: its log says `sha256 ... ok` for each mode, or a WARNING if the file on the Pi isn't the one recorded.
 
 Every policy in `models/` is also on Hugging Face, with a card saying which controller mode uses which:
 [huggingface.co/tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel). To fetch and sync them:
@@ -265,8 +267,8 @@ bash fetch_models.sh               # or on the Pi itself, in ~/duck
 bash pi/fetch_models.sh stand_emote_calm    # one model only (its .onnx and .json)
 ```
 
-Each file is downloaded under a temporary name and moved into place only once complete, so a dropped Wi-Fi link can't leave a
-truncated model. Needs curl and python only.
+Each file is downloaded under a temporary name, checked against Hugging Face's own hash for it (SHA-256 for the models), and only
+then moved into place, so a dropped Wi-Fi link or a corrupt download can't leave a broken model. Needs curl and python only.
 
 ### The emotions while it balances (stand_emote_calm.onnx, RT + X)
 

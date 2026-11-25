@@ -5,14 +5,16 @@
   "model": "stand_bam.onnx",
   "what": "the stable stand: X nods with mmh, Y says yes, B says no, the right stick and d-pad move the head",
   "status": "stands the real duck steadily, recovers from nudges (flat feet, no soft soles)",
-  "since": "2026-11-24"
+  "since": "2026-11-24",
+  "sha256": "504590d738694d19543eaae64b7f0e92cf615c3eacb8e4fb025347c3211b1fbd"
  },
  "emote": {
   "combo": "RT + X",
   "model": "stand_emote_calm.onnx",
   "what": "standing, plays microduck's 13 emotions: RB / LB the next / previous one, X again",
   "status": "stable on the real duck, takes recovery steps; head moves at 70 %, smoothed. Keep a hand near for sad and devastated",
-  "since": "2026-11-25"
+  "since": "2026-11-25",
+  "sha256": "d846e10fa3d5324c304ad9775bda7fed2f1a042590a5a759beca7f230ecd28c3"
  },
  "head": {
   "combo": "RB + B",

@@ -76,7 +76,13 @@ def active_model(args, mode):
         parts[parts.index('--model') + 1] = 'models/' + m
     else:
         parts += ['--model', 'models/' + m]
-    print(f'{mode}: models/{m} (models/active.json)', flush=True)
+    import active_models
+    _, st = active_models.check(mode)
+    sha = (json.load(open(os.path.join(HERE, 'models', 'active.json')))[mode].get('sha256') or '')[:12]
+    note = {'ok': f'sha256 {sha} ok', 'mismatch': f'WARNING: the file is not the one active.json records (sha256 {sha}): a cut-off copy or another '
+            'model under that name; bash fetch_models.sh brings the right one', 'missing': 'WARNING: the file is missing',
+            'unrecorded': 'no sha256 recorded (python active_models.py --update)'}.get(st, st)
+    print(f'{mode}: models/{m} (models/active.json), {note}', flush=True)
     return ' '.join(parts)
 
 
