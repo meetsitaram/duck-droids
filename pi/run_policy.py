@@ -17,11 +17,11 @@ With --pad the duck waits, sitting with torque on, for the controller:
   A          stand up (the scripted rise), then the policy runs
   left stick walk: up/down forward and back, left/right sideways      right stick, left/right: turn
   RT         held, walks faster, up to --vx-boost                    d-pad: the head, up/down pitch, left/right turn
-  X          a nod                                                    Y: beak open / shut
+  X          a nod                                                    Y: says yes, B: says no (stand mode: the beak moves with the sound)
   with --emotions (a stand policy, models/stand_emote.onnx): RB / LB play the next / previous of microduck's 13 emotions (printed, a
   short buzz; pressed during one, it plays when that ends), X the same one again. Each plays its head motion through the policy's head command (as it trained), its beak straight to the beak servo, its sound on the
   speaker, all from the same start. The d-pad and stick don't steer the head while it plays; it ends back at the standing pose.
-  B          sit down (the scripted lower), then waits for A again   Menu (while sitting): quit
+  B          sit down (the scripted lower; stand mode: says no), then waits for A again   Menu (while sitting): quit
   LB + RB    stop: eases down at once, torque off, quit. If the controller drops for --pad-lost seconds while standing, it sits down.
 
 The bus board over USB, jumpers at B, the port found by itself (on the Pi: its micro USB data port and an OTG cable, docs/dynamixel/WIRING.md;
@@ -135,6 +135,7 @@ class PadDriver:
         from duck.gamepad import Holds, open_pad
         self.a = a
         self.emotions, self.sel, self.emo, self.beak_goal, self.queued = None, 0, None, None, False
+        self.say, self._beak_tracks = None, {}
         self.standing = False                               # set by the main loop: emotions play only under the policy
         if getattr(a, 'emotions', False):
             import emote
@@ -197,7 +198,13 @@ class PadDriver:
                 print(f'playing {name} ({tr[-1][0]:.1f} s)', flush=True)
         elif 'X' in events and self.nod_t is None:
             self.nod_t = now
-        if 'Y' in events:
+        talk = {'Y': 'yes', 'B': 'no'} if a.stand_only and not self.emotions else {}
+        for b, word in talk.items():                        # stand mode: Y says yes, B no, the beak moving with the sound (the user, 2026-11-25)
+            if b in events and self.standing and self.say is None:
+                self.say = (word, self.beak_track(word), now + a.audio_lead)
+                self.sound_mod().play(word)
+                print(f'saying {word}', flush=True)
+        if 'Y' in events and not talk:
             self.beak_open = not self.beak_open
         pitch = ax['dy'] * a.head_max
         yaw = ax['dx'] * a.head_max
@@ -212,6 +219,12 @@ class PadDriver:
                 pitch += nod[4]
         head = (0.0, pitch, yaw, 0.0)
         self.beak_goal = None
+        if self.say is not None:
+            word, tr, t0 = self.say
+            if now - t0 > tr[-1][0] + 0.2 or not self.standing:
+                self.say = None
+            elif now >= t0:
+                self.beak_goal = float(self.sample_fn()(tr, now - t0)['beak'])
         if self.emo is not None:
             name, tr, t0 = self.emo
             if now - t0 > tr[-1][0] + 0.3 or not self.standing:
@@ -224,6 +237,21 @@ class PadDriver:
                 self.beak_goal = float(q['beak'])
         cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2])) + head
         return cmd, events, (now - self.lost_since) if self.lost_since else 0.0
+
+    def sound_mod(self):
+        from duck import sound
+        return sound
+
+    def sample_fn(self):
+        import emote
+        return emote.sample
+
+    def beak_track(self, word):
+        """The word's beak, from its emotion's mouth keyframes (emote.py's mapping), cached."""
+        if word not in self._beak_tracks:
+            import emote
+            self._beak_tracks[word] = emote.track(word, emote.load_config())[0]
+        return self._beak_tracks[word]
 
     def stop_walk(self):
         self.walk[:] = 0.0

@@ -3,7 +3,7 @@ mode, so nothing has to be typed. Idle, it holds no servo and leaves the bus fre
 controller buzzes when it takes effect.
 
   RT + A, 1 s   stand: run_policy.py --pad --stand-only --auto-stand, stand_nod.onnx. It stands up at once (the policy itself, from
-                sitting); the right stick and d-pad move the head, X nods, Y the beak, never a walk command. RT + A, 1 s again: it sits down
+                sitting); the right stick and d-pad move the head, X nods, Y says yes and B no (the beak moving with the sound), never a walk command. RT + A, 1 s again: it sits down
                 and the mode ends. Only with --allow-stand (install_launcher_user.sh sets it)
   RT + X, 1 s   emotions: the same stand on stand_emote.onnx (trained to keep its balance through microduck's 13 emotions) with
                 --emotions: LB / RB pick an emotion, X plays it (head, beak, sound). RT + A, 1 s: it sits down and the mode ends.
