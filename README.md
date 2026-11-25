@@ -25,6 +25,12 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 | Run it | [Pi code](pi/README.md) |
 | Teach it to walk | [Training](docs/TRAINING.md) |
 
+### First stand under a trained policy (2026-11-24)
+
+<img src="docs/images/real/dynamixel/first_policy_stand.gif" width="270" alt="The real all-Dynamixel duck, its head shell off, standing on its own under a trained policy on a table while a hand touches its head and body; near the end it tips over and the hand catches it">
+
+The all-Dynamixel duck standing on a trained policy for the first time, not scripted joint angles ([MP4, 16 s](docs/images/real/dynamixel/first_policy_stand.mp4)). A hand touches it, and it holds. Its log: body tilt 1-2.5 deg, 36-54 mA a servo, the 6 V supply steady. At the end it goes down, most likely when 13 of its 15 servos stopped answering at once: a bus or power connection, still being chased. The policy (`pi/models/stand_bam.onnx`) was trained on Pollen's measured XL330 model, with the IMU's delay randomized well past what the duck has: the earlier policies, trained on a plain motor model, shook until every servo hit its current cap. What went wrong over the two days, and what fixed it: [Troubleshooting](docs/dynamixel/TROUBLESHOOTING.md).
+
 ### First powered test
 
 <img src="docs/images/real/dynamixel/first_stand.jpg" width="270" alt="The first all-Dynamixel duck built, standing on its own servos: orange printed frame and feet, black XL330 servos, white thigh covers, its eye and face plate on the head"> <img src="docs/images/real/dynamixel/first_stand.gif" width="270" alt="The real all-Dynamixel duck rising from sitting to standing, turning its head side to side, nodding, opening and shutting its beak, and sitting back down, with its MuJoCo twin on the screen behind it doing the same">
