@@ -286,9 +286,6 @@ Recording reads all 15 joints 25 times a second after a 5 s countdown, with the 
 
 Playback eases from where the duck is into the first recorded pose, plays it, and eases back to where it started before the torque goes off. It refuses a recording that ends more than 20 degrees from where it began, on any joint (`--max-loop`), and won't start unless the duck is within 15 degrees of the first pose (`--max-start`): move those joints and try again. `--preview` plays it on the model only. The legs are stiff (gain 1500), the neck too (1200, it lifts the whole head), and the head and beak softer and damped (600, D 300: stiffer, the head yaw hunts). The safety is stand_test.py's: current caps, and a stop eases the duck back before letting go. Nothing balances it: if a hand steadied it while recording, steady it while it plays.
 
-**Retargeted clips:** `play` also takes a `.npz` from milli-motions (BONES-SEED retargeted to this duck: `joint_names`, `joint_pos`, `fps`; local only, its licence keeps it out of the repo; the beak is left out). `--telemetry` streams the duck, the IMU and the goal pose to the twin (`twin.py --remote <pi>`: the goal as a see-through blue duck, joints red past 1.5 deg with their mA), `--log play.csv` keeps every tick. Held in the air, at the policy's leg gain:
-`python motion.py play clips/dance_party_hips_003__A464.npz --hz 50 --gain 800 --speed 0.5 --max-start 180 --max-loop 360 --ease-back 4 --min-volts 4.0 --telemetry --log play_dance.csv`. In the pinned simulator the dance runs at half speed with 8 deg worst lag; the walk stops at 16 s there, as the pinned body pushes the feet into the floor.
-
 `replay_log.py LOG.csv --from -3 --speed 0.1` replays a run_policy.py log in a twin window: the measured duck solid, the goals as a see-through blue duck, slowed and looped.
 
 **Try the sample:** `motions/head_look_around.json`, 20.6 s.

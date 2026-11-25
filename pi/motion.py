@@ -149,20 +149,6 @@ def record(a, cfg):
 
 
 def load_motion(name):
-    if name.endswith('.npz'):                     # a retargeted clip (milli-motions: joint_names, joint_pos (T, n), fps, beak), in the model's order and signs
-        import numpy as np
-        z = np.load(name)
-        js = [str(x) for x in z['joint_names']]
-        q = z['joint_pos']
-        dt = 1.0 / float(z['fps']) if 'fps' in z.files else 0.02
-        beak = None                                # the clip's beak is left out: it trails its goal and stops the playback, and isn't what these test
-        frames = []
-        for k in range(len(q)):
-            f = {n: float(q[k, j]) for j, n in enumerate(js)}
-            if beak is not None:
-                f['beak'] = float(beak[k])
-            frames.append((k * dt, f))
-        return js + (['beak'] if beak is not None else []), frames
     m = json.load(open(motion_path(name)))
     js = m['joints']
     return js, [(f[0], dict(zip(js, f[1:]))) for f in m['frames']]
