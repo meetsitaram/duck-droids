@@ -1,4 +1,6 @@
 #!/bin/bash
+# OPT-IN, not installed by setup_pi.sh: started at every boot (2026-11-25) it took the Pi Zero 2 W's one radio from the home Wi-Fi, the Xbox
+# controller and the Bluetooth speaker; the audio broke up and the Pi went missing from the network. sudo bash hotspot.sh remove takes it off.
 # The duck's own Wi-Fi hotspot, a way in when it can't join the home network (2026-11-25: it booted, the controller paired over Bluetooth,
 # and it never came onto the Wi-Fi). Join it from a phone or the PC and reach the duck at 10.42.0.1 (ssh, deploy.sh, twin.py --remote).
 #   at every start   the hotspot is on for BOOT_WINDOW s (5 min); nobody joins: it goes off (saving power) and the Pi joins the home Wi-Fi.
@@ -99,6 +101,15 @@ check)                    # the timer: no home Wi-Fi -> the hotspot again, held 
   home_connected && exit 0
   nmcli connection up "$CON" >/dev/null && echo "no home Wi-Fi: hotspot up (10.42.0.1)"
   hold "$IDLE"
+  ;;
+remove)                   # off and gone: the services, the timer, the profile (the password file stays, for a later install)
+  [ "$(id -u)" = 0 ] || { echo 'run with sudo'; exit 1; }
+  systemctl disable --now duck-hotspot-boot.service duck-hotspot.timer 2>/dev/null || true
+  rm -f /etc/systemd/system/duck-hotspot-boot.service /etc/systemd/system/duck-hotspot.service /etc/systemd/system/duck-hotspot.timer
+  systemctl daemon-reload
+  nmcli connection down "$CON" >/dev/null 2>&1 || true
+  nmcli connection delete "$CON" >/dev/null 2>&1 || true
+  echo "hotspot removed"
   ;;
 on)  nmcli connection up "$CON" ;;
 off) nmcli connection down "$CON" ;;

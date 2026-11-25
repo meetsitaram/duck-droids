@@ -179,8 +179,8 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 **Again on 2026-11-25,** after a day of battery swaps and falls: the controller paired, and no Raspberry Pi address answered anywhere on
 the network. The same fix (the instance id `-wifi2` to `-wifi3` in both files, with `.bak` copies left on the card). Since then the duck
 has two backups: `pi/wifi_guard.sh` copies the Wi-Fi settings whenever it joins the Wi-Fi and puts them back at boot if they're gone (the
-fix above, done by the Pi itself), and `pi/hotspot.sh` starts a hotspot when it still can't join within 60 s of booting, the PC reaching
-it at 10.42.0.1 over that.
+fix above, done by the Pi itself). A hotspot (`pi/hotspot.sh`) was tried the same day and taken off: started at every boot, it took the Pi's
+one radio from the home Wi-Fi, the controller and the speaker, the audio broke up and the Pi went missing. It stays in the repo, opt-in.
 
 ### The IMU goes silent during a stand, and the policy never takes over (2026-11-24)
 
