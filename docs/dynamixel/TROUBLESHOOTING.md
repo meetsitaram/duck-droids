@@ -72,7 +72,7 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 
 ### It tips back, or forward, while rising (2026-11-21)
 
-**Seen:** the real duck's battery is under the head, in front of the neck, and its bus board on the back of the head, not as in the model (battery in the body). The model's balance therefore doesn't match: its "balanced" head pose tipped the real duck forward, and the hand-found head pose a little back. Nothing in the test can tell: it uses no IMU, and a falling duck doesn't load its servos, so the log looks normal.
+**Since then (2026-11-24):** the battery is on the back of the main body, as in the model; the notes below describe the layout of 2026-11-21. **Seen then:** the real duck's battery was under the head, in front of the neck, and its bus board on the back of the head, not as in the model (battery in the body). The model's balance therefore doesn't match: its "balanced" head pose tipped the real duck forward, and the hand-found head pose a little back. Nothing in the test can tell: it uses no IMU, and a falling duck doesn't load its servos, so the log looks normal.
 
 **Fix for now:** set the neck and head by hand where the duck balances (`--keep-head`), raise the neck a little (`--neck-offset -10`, the weight forward), keep the face straight ahead (`--face-forward`), and move the head only side to side or a little, slowly, front to back. Later: put the real layout into the model, and run the test from the Pi, where the IMU is.
 

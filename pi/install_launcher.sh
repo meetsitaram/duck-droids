@@ -1,6 +1,7 @@
 #!/bin/bash
 # Install launcher.py as a service that starts at boot and restarts if it stops: the controller then starts the modes, nothing typed.
 #   sudo bash install_launcher.sh             in the folder holding this file (~/duck), after setup_pi.sh
+#   sudo bash install_launcher.sh --allow-stand    Menu + X on the controller also starts the stand policy (stand_nod)
 #   sudo bash install_launcher.sh --allow-walk     Menu + A on the controller also starts the walk policy
 #   sudo systemctl disable --now duck-launcher     to remove it from boot
 set -e

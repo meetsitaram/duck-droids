@@ -20,7 +20,7 @@
 <geom name="trunk_base_collision" type="mesh" mesh="trunk_base_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="yaw2roll" pos="0.000000 0.015940 -0.051880">
 <inertial pos="-0.000322 -0.000000 -0.016603" mass="0.03183" fullinertia="7.2939622e-06 7.7697644e-06 2.9390232e-06 -6.2497863e-16 -1.0552646e-07 2.7759035e-14"/>
-<joint name="left_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="left_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="yaw2roll_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="yaw2roll_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="yaw2roll_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -29,14 +29,14 @@
 <geom name="yaw2roll_collision" type="mesh" mesh="yaw2roll_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="hip_l" pos="0.014500 0.000000 -0.017900">
 <inertial pos="-0.014859 0.011347 -0.000000" mass="0.01683" fullinertia="2.0490947e-06 3.2086099e-06 4.361976e-06 -4.2660847e-08 3.7864262e-15 5.7861048e-14"/>
-<joint name="left_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="left_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="hip_l_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="hip_l_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="hip_l_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="hip_l_collision" type="mesh" mesh="hip_l_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="upper_leg_left" pos="-0.014500 0.019100 0.000000">
 <inertial pos="-0.023690 0.019548 -0.006881" mass="0.08594" fullinertia="2.5781286e-05 4.5477206e-05 4.0150818e-05 1.4045298e-07 -9.1806959e-06 -4.3379528e-08"/>
-<joint name="left_hip_pitch" axis="0 1 0" range="-1.5700 0.9500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="left_hip_pitch" axis="0 1 0" range="-1.5700 0.9500" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="upper_leg_left_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="upper_leg_left_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="upper_leg_left_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -46,7 +46,7 @@
 <geom name="upper_leg_left_collision" type="mesh" mesh="upper_leg_left_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="leg" pos="-0.038000 0.000000 -0.023340">
 <inertial pos="-0.000000 0.007683 -0.027816" mass="0.03487" fullinertia="1.3274188e-05 1.2135362e-05 3.8147553e-06 -1.6018658e-14 -2.5867725e-14 2.3822661e-06"/>
-<joint name="left_knee" axis="0 -1 0" range="-1.5700 1.1000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="left_knee" axis="0 -1 0" range="-1.5700 1.1000" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="leg_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="leg_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="leg_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -55,7 +55,7 @@
 <geom name="leg_collision" type="mesh" mesh="leg_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="ankle_left" pos="0.000000 0.026500 -0.047880">
 <inertial pos="0.006179 -0.016140 -0.016101" mass="0.03688" fullinertia="8.6979503e-06 1.1714926e-05 1.5228419e-05 2.5187453e-08 5.5898002e-07 -1.015417e-07"/>
-<joint name="left_ankle" axis="0 1 0" range="-1.5000 1.5350" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="left_ankle" axis="0 1 0" range="-1.5000 1.5350" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="ankle_left_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="ankle_left_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="ankle_left_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -71,7 +71,7 @@
 </body>
 <body name="neck" pos="0.022400 0.013000 -0.013380">
 <inertial pos="-0.000000 -0.014500 0.024750" mass="0.04317" fullinertia="1.7688832e-05 1.6948623e-05 4.3167646e-06 -1.0362533e-20 2.1954478e-20 -3.2282778e-07"/>
-<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 1.0500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="neck_pitch" axis="0 -1 0" range="-1.6000 1.0500" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="neck_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="neck_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="neck_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -79,7 +79,7 @@
 <geom name="neck_collision" type="mesh" mesh="neck_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="neck_pitch" pos="0.000000 -0.029000 0.049500">
 <inertial pos="-0.005881 0.015868 0.022558" mass="0.04109" fullinertia="1.2664446e-05 1.3060605e-05 8.9579286e-06 4.1180512e-08 1.3674869e-06 -1.4872556e-07"/>
-<joint name="head_pitch" axis="0 1 0" range="-1.6000 1.6000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="head_pitch" axis="0 1 0" range="-1.6000 1.6000" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="neck_pitch_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="neck_pitch_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="neck_pitch_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -88,7 +88,7 @@
 <geom name="neck_pitch_collision" type="mesh" mesh="neck_pitch_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="yaw_roll_motion" pos="0.000000 0.016000 0.046000">
 <inertial pos="0.001568 -0.008164 0.009299" mass="0.03119" fullinertia="5.5459494e-06 3.7693715e-06 5.0835408e-06 9.8770226e-08 -1.5309913e-07 5.4897532e-07"/>
-<joint name="head_yaw" axis="0 0 1" range="-2.5000 2.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="head_yaw" axis="0 0 1" range="-2.5000 2.5000" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="yaw_roll_motion_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="yaw_roll_motion_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="yaw_roll_motion_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -97,7 +97,7 @@
 <geom name="yaw_roll_motion_collision" type="mesh" mesh="yaw_roll_motion_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="jaw_soft" pos="0.017000 0.000000 0.013000">
 <inertial pos="0.006262 0.000212 -0.000515" mass="0.23327" fullinertia="0.00024006968 0.00041899052 0.00054066471 2.0199643e-05 -3.1391696e-05 -1.0065732e-06"/>
-<joint name="head_roll" axis="-1 0 0" range="-0.2400 0.2400" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="head_roll" axis="-1 0 0" range="-0.2400 0.2400" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="jaw_soft_0a1420" rgba="0.039 0.078 0.125 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="jaw_soft_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="jaw_soft_1f5a36" rgba="0.122 0.353 0.212 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -126,7 +126,7 @@
 </body>
 <body name="bearing_roll" pos="0.000000 -0.015940 -0.051880">
 <inertial pos="-0.000322 0.000000 -0.016603" mass="0.03183" fullinertia="7.2939622e-06 7.7697644e-06 2.9390232e-06 6.323479e-16 -1.0552646e-07 -2.7759031e-14"/>
-<joint name="right_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="right_hip_yaw" axis="0 0 -1" range="-0.4500 0.4500" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="bearing_roll_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="bearing_roll_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="bearing_roll_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -135,14 +135,14 @@
 <geom name="bearing_roll_collision" type="mesh" mesh="bearing_roll_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="hip_l_2" pos="0.014500 0.000000 -0.017900">
 <inertial pos="-0.014764 -0.011281 -0.000000" mass="0.01692" fullinertia="2.0622001e-06 3.2351309e-06 4.4010993e-06 2.4491583e-08 1.7052841e-15 -5.9304524e-14"/>
-<joint name="right_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="right_hip_roll" axis="1 0 0" range="-0.3300 0.3300" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="hip_l_2_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="hip_l_2_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="hip_l_2_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom name="hip_l_2_collision" type="mesh" mesh="hip_l_2_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="upper_leg_right" pos="-0.014500 -0.019100 0.000000">
 <inertial pos="-0.023690 -0.019548 -0.006881" mass="0.08594" fullinertia="2.5781286e-05 4.5477206e-05 4.0150818e-05 -1.4045298e-07 -9.1806959e-06 4.3379538e-08"/>
-<joint name="right_hip_pitch" axis="0 -1 0" range="-0.9500 1.5700" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="right_hip_pitch" axis="0 -1 0" range="-0.9500 1.5700" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="upper_leg_right_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="upper_leg_right_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="upper_leg_right_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -152,7 +152,7 @@
 <geom name="upper_leg_right_collision" type="mesh" mesh="upper_leg_right_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="leg_2" pos="-0.038000 0.000000 -0.023340">
 <inertial pos="-0.000000 -0.007683 -0.027816" mass="0.03487" fullinertia="1.3274188e-05 1.2135362e-05 3.8147553e-06 1.6018662e-14 -2.5867721e-14 -2.3822661e-06"/>
-<joint name="right_knee" axis="0 1 0" range="-1.1000 1.5700" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="right_knee" axis="0 1 0" range="-1.1000 1.5700" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="leg_2_1b1c1f" rgba="0.106 0.110 0.122 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="leg_2_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="leg_2_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
@@ -161,7 +161,7 @@
 <geom name="leg_2_collision" type="mesh" mesh="leg_2_hull" rgba="1 1 0 0" group="3" mass="0" contype="3" conaffinity="2"/>
 <body name="ankle_right" pos="0.000000 -0.026500 -0.047880">
 <inertial pos="0.006179 0.016140 -0.016101" mass="0.03688" fullinertia="8.6979504e-06 1.1714927e-05 1.5228419e-05 -2.5116626e-08 5.5898008e-07 1.0154174e-07"/>
-<joint name="right_ankle" axis="0 -1 0" range="-1.5350 1.5000" armature="0.0018" damping="0.053" frictionloss="0.0048"/>
+<joint name="right_ankle" axis="0 -1 0" range="-1.5350 1.5000" armature="0.0018" damping="0.053" frictionloss="0.07" solimpfriction="0.999 0.9999 0.001 0.5 2"/>
 <geom type="mesh" mesh="ankle_right_3a3d42" rgba="0.227 0.239 0.259 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="ankle_right_a8acb0" rgba="0.659 0.675 0.690 1" contype="0" conaffinity="0" group="2" mass="0"/>
 <geom type="mesh" mesh="ankle_right_c9cdd2" rgba="0.788 0.804 0.824 1" contype="0" conaffinity="0" group="2" mass="0"/>

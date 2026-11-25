@@ -23,12 +23,12 @@
   "left_hip_yaw": {
    "id": 10,
    "direction": 1,
-   "centre": 17
+   "centre": 4055
   },
   "left_hip_roll": {
    "id": 9,
    "direction": 1,
-   "centre": 2048
+   "centre": 2015
   },
   "left_hip_pitch": {
    "id": 8,
@@ -48,7 +48,7 @@
   "right_hip_yaw": {
    "id": 5,
    "direction": 1,
-   "centre": 14
+   "centre": 4077
   },
   "right_hip_roll": {
    "id": 4,
@@ -58,12 +58,12 @@
   "right_hip_pitch": {
    "id": 3,
    "direction": 1,
-   "centre": 961
+   "centre": 1025
   },
   "right_knee": {
    "id": 2,
    "direction": 1,
-   "centre": 1926
+   "centre": 2065
   },
   "right_ankle": {
    "id": 1,
@@ -73,27 +73,27 @@
   "neck_pitch": {
    "id": 11,
    "direction": 1,
-   "centre": 2052
+   "centre": 2072
   },
   "head_pitch": {
    "id": 12,
    "direction": 1,
-   "centre": 1996
+   "centre": 1999
   },
   "head_yaw": {
    "id": 13,
    "direction": 1,
-   "centre": 1935
+   "centre": 2037
   },
   "head_roll": {
    "id": 14,
    "direction": 1,
-   "centre": 2031
+   "centre": 2065
   },
   "beak": {
    "id": 15,
    "direction": 1,
-   "centre": 1969
+   "centre": 1994
   }
  },
  "home": {
@@ -179,22 +179,22 @@
  },
  "imu_to_robot": [
   [
-   0.0674,
-   -0.9965,
-   -0.0485
+   0.08076,
+   -0.98945,
+   0.11995
   ],
   [
-   0.9944,
-   0.0711,
-   -0.0778
+   0.99395,
+   0.07106,
+   -0.08343
   ],
   [
-   0.081,
-   -0.043,
-   0.9958
+   0.07405,
+   0.12595,
+   0.98928
   ]
  ],
  "notes": {
-  "imu_to_robot": "measured 2026-11-23 with imu_axis_check.py (joints held): the GY-BNO08X is mounted turned 90 deg, the duck forward = sensor -y, its left = sensor +x; level = sitting with the torso upright (5 deg off the sensor z); the left tip agreed with the forward tip within 19 deg"
+  "imu_to_robot": "measured 2026-11-23 with imu_axis_check.py (joints held): the GY-BNO08X is mounted turned 90 deg, the duck forward = sensor -y, its left = sensor +x; level = sitting with the torso upright (5 deg off the sensor z); the left tip agreed with the forward tip within 19 deg; 2026-11-24: turned 9.7 deg in pitch to match the CAD: the duck resting on its knee shells and face, the IMU read 7.7 deg nose-down where the CAD rests it 2.0 deg nose-up"
  }
 }

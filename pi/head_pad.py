@@ -5,7 +5,7 @@ directions and range without standing the duck.
   right stick   up/down: head pitch (stick up tips the face down, forward), left/right: head turn       held: the joint keeps moving, let go: it stays
   d-pad         up/down: neck pitch (up tips the neck back), left/right: head roll
   X             a nod                      Y   beak open / shut
-  A             back to where it started   B or Menu   back to where it started, torque off, quit
+  A             back to where it started   RB + B held 1 s   back to where it started, torque off, quit (buzzes)
   LB + RB       stop at once: torque off, quit
 
 Safety as stand_test.py: current capped (head 600 mA, beak 300), each joint's speed limited (--speed), every goal inside the joint's
@@ -39,6 +39,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--port', default='auto')
     ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
+    ap.add_argument('--hold-s', type=float, default=1.0, help='seconds RB + B must be held to quit')
     ap.add_argument('--pad', default='evdev', help='evdev (the Xbox controller), or a test script (duck/gamepad.py ScriptPad)')
     ap.add_argument('--speed', type=float, default=0.8, help='rad/s at full stick')
     ap.add_argument('--min-volts', type=float, default=4.6)
@@ -100,8 +101,10 @@ def main():
         bus.write(i, dxl.TORQUE_ENABLE, 1)
         bus.write(i, LED, 1)
     print(f'legs {"holding where they are" if leg_ids else "limp"}. ' f'supply {volts:.1f} V. Head on the controller: right stick pitch and turn, d-pad neck and roll, X nod, Y beak, A recentre, '
-          f'B quit, LB+RB stop. Start: ' + '  '.join(f'{n} {math.degrees(q0[n]):+.0f}' for n in JOINTS), flush=True)
+          f'RB + B held 1 s quits, LB+RB stops. Start: ' + '  '.join(f'{n} {math.degrees(q0[n]):+.0f}' for n in JOINTS), flush=True)
     q = dict(q0)
+    from duck.gamepad import Holds
+    holds = Holds({'HEADMODE': {'RB', 'B'}}, a.hold_s)     # RB + B held 1 s: back to the start, torque off, quit (the launcher's toggle)
     beak_open, nod_t, prev, stopped, tick = False, None, set(), None, 0
     back_t = None
     nxt = time.monotonic()
@@ -113,7 +116,8 @@ def main():
             if {'LB', 'RB'} <= s.held:
                 stopped = 'LB+RB'
                 break
-            if ('B' in new or 'Menu' in new) and back_t is None:
+            if holds.check(s) == 'HEADMODE' and back_t is None:
+                pad.rumble(300)
                 back_t, q_back = time.monotonic(), dict(q)
             if back_t is not None:                          # back to the start over 2 s, then quit
                 u = min(1.0, (time.monotonic() - back_t) / 2.0)

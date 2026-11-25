@@ -84,7 +84,15 @@ class Bno085:
         self.restarts = 0
         self._stop = False
         self._lock = threading.Lock()
-        self._start()                                     # the first start in the caller's thread, so a missing IMU fails at once
+        for attempt in range(6):                          # the first start in the caller's thread; a missing IMU fails within ~5 s
+            try:                                          # (2026-11-24: one start failed with an I/O error, the IMU answering again seconds later)
+                self._start()
+                break
+            except (OSError, ValueError, RuntimeError) as e:
+                if attempt == 5:
+                    raise
+                print(f'IMU not answering ({e}), trying again', flush=True)
+                time.sleep(0.8)
         t1 = time.monotonic()
         while not self._read_once() and time.monotonic() - t1 < 2.0:
             time.sleep(0.01)
@@ -119,7 +127,15 @@ class Bno085:
         quat = tuple(self.imu.game_quaternion)
         raw = tuple(gyro) + quat
         if raw == getattr(self, '_raw', None):
+            # held still, the BNO085 reports gyro exactly 0 and the same quaternion for up to ~0.65 s (measured 2026-11-24): that is a
+            # still duck, not a frozen sensor. Taking it as frozen restarted a healthy IMU every few seconds, a 1 s blackout each time,
+            # which stopped the stand policy. Still and identical counts as fresh for up to 3 s; a frozen sensor shows nonzero gyro repeated.
+            if np.all(gyro == 0.0) and time.monotonic() - getattr(self, '_raw_t', 0.0) < 3.0:
+                with self._lock:
+                    self._t = time.monotonic()
+                return True
             return False
+        self._raw_t = time.monotonic()
         if quat in ((0.0, 0.0, 0.0, 1.0), (0.0, 0.0, 0.0, 0.0)):    # the library's value before any report (after every restart): not a measurement
             return False
         self._raw = raw

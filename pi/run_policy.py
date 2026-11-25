@@ -48,6 +48,7 @@ from stand_test import BEAK, CAP, GOAL_CURRENT, HEAD, HW_ERROR, LED, LEGS, MODE_
 
 K = 2 * math.pi / dxl.TICKS_PER_REV
 RATE = 50.0
+MAX_MISSES = 5     # bus reads missed in a row before the run stops (each stands in with the last reading)
 
 
 def head_script(a):
@@ -124,9 +125,10 @@ class PadDriver:
     NOD = [(0.5, 0.15), (0.6, -0.12), (0.5, 0.0)]          # (seconds, head pitch): one nod, eased between
 
     def __init__(self, a):
-        from duck.gamepad import open_pad
+        from duck.gamepad import Holds, open_pad
         self.a = a
         self.pad = open_pad(a.pad, a.pad_name)
+        self.holds = Holds({'STANDSIT': {'RT', 'A'}}, a.hold_s)     # RT + A held 1 s: stand up, or sit back down; the controller buzzes
         self.prev = set()
         self.walk = np.zeros(3)
         self.beak_open = False
@@ -146,11 +148,17 @@ class PadDriver:
         new = s.held - self.prev
         self.prev = s.held
         events = set(new)
+        h = self.holds.check(s)
+        if h:
+            events.add(h)
+            self.pad.rumble(300)
         if {'LB', 'RB'} <= s.held and new & {'LB', 'RB'}:
             events.add('STOP')
         ax = s.axes
         speed = a.vx_max + ax['rt'] * (a.vx_boost - a.vx_max)
         want = np.array([deadzone(ax['ly']) * speed, deadzone(ax['lx']) * a.vy_max, deadzone(ax['rx']) * a.wz_max])
+        if a.stand_only:                                    # a stand policy: no walk command ever; the right stick steers the head instead
+            want[:] = 0.0
         step = np.array([a.accel, a.accel, 4 * a.accel]) * dt
         self.walk += np.clip(want - self.walk, -step, step)
         if 'X' in events and self.nod_t is None:
@@ -158,13 +166,17 @@ class PadDriver:
         if 'Y' in events:
             self.beak_open = not self.beak_open
         pitch = ax['dy'] * a.head_max
+        yaw = ax['dx'] * a.head_max
+        if a.stand_only:
+            pitch = float(np.clip(pitch + deadzone(ax['ry']) * a.head_max, -a.head_max, a.head_max))
+            yaw = float(np.clip(yaw + deadzone(ax['rx']) * a.head_max, -a.head_max, a.head_max))
         if self.nod_t is not None:
             nod = head_at([(d, (0.0, 0.0, 0.0, 0.0, q, 0.0, 0.0)) for d, q in self.NOD], now - self.nod_t)
             if nod is None:
                 self.nod_t = None
             else:
                 pitch += nod[4]
-        cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2]), 0.0, pitch, ax['dx'] * a.head_max, 0.0)
+        cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2]), 0.0, pitch, yaw, 0.0)
         return cmd, events, (now - self.lost_since) if self.lost_since else 0.0
 
     def stop_walk(self):
@@ -218,7 +230,9 @@ def main():
     ap.add_argument('--head-damping', type=int, default=300, help='position D for the head and beak, as stand_test.py (the neck 100, legs 0)')
     ap.add_argument('--blend', type=float, default=1.5, help='seconds over which the policy output is eased in after the scripted rise')
     ap.add_argument('--leg-range', type=float, default=3.0, help='rad: stop if a leg goal goes further than this from the standing pose. Off by default: at these low gains a policy asks for torque with big goals (1.6 rad in the sim, standing), the joint limits clip every goal and the current cap limits the torque')
+    ap.add_argument('--bam', action='store_true', help="the servos as milli-rl's *-Bam tasks train them (Pollen's XL330 model): position mode 3, P 800 legs / 1200 neck / 600 head, D 0, no current cap")
     ap.add_argument('--min-volts', type=float, default=4.6)
+    ap.add_argument('--low-volts-reads', type=int, default=2, help='readings in a row (one each 0.5 s) under --min-volts before it stops: a brief dip is ridden out')
     ap.add_argument('--max-volts', type=float, default=6.0)
     ap.add_argument('--max-lag', type=float, default=20.0, help='degrees a joint may trail its goal in the scripted rise and lower (not under the policy, whose goals run well past where the joints get)')
     ap.add_argument('--abort-lower', type=float, default=8.0)
@@ -233,6 +247,18 @@ def main():
     ap.add_argument('--wz-max', type=float, default=0.8, help='rad/s turning at full stick')
     ap.add_argument('--head-max', type=float, default=0.3, help='rad of head pitch or turn from the d-pad')
     ap.add_argument('--accel', type=float, default=0.4, help='m/s per s (4x that in rad/s per s for turning): how fast the walk command may change')
+    ap.add_argument('--grav-bias', type=float, default=0.0, help='debugging, simulator: deg of pitch bias added to the IMU gravity the policy sees (a miscalibrated IMU)')
+    ap.add_argument('--risen-hold', type=float, default=3.0, help='seconds the scripted standing pose is held after the rise (steadied by hand) before the policy takes over; a tick buzz each second')
+    ap.add_argument('--handover-tilt', type=float, default=30.0, help='deg: the policy takes over only with the body this upright. In the simulator, unheld, stand_nod recovered from 5 and 10 deg and fell from 15 (2026-11-24); 30 is for handing over while still held by hand until it is steady (the user\'s choice)')
+    ap.add_argument('--imu-wait', type=float, default=10.0, help='seconds to hold the risen pose for the IMU to report and the body to be upright before the policy takes over; then it sits')
+    ap.add_argument('--rise-to', help="a pose JSON (poses/sit_trained.json): the scripted --rise goes to its legs instead of the standing pose, then the policy takes over. For the real duck's deep sit (knees 88 deg), past what the policy trained on (2026-11-24)")
+    ap.add_argument('--rise-slew', type=float, default=0.0, help='deg/s: for the first --rise-slew-s seconds of the policy, its leg goals change at most this fast (a slower rise); 0 off')
+    ap.add_argument('--rise-slew-s', type=float, default=4.0)
+    ap.add_argument('--rise-model', help='a sit/stand policy (models/sitstand2.onnx) that stands it up from sitting for --rise-policy-s, then --model takes over; use with --rise 0 --blend 0')
+    ap.add_argument('--rise-policy-s', type=float, default=6.0, help='seconds of --rise-model after A')
+    ap.add_argument('--auto-stand', action='store_true', help='with --pad: stand up at once (the launcher has already had RT + A), and end when it sits down')
+    ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a controller combo (RT + A) must be held')
+    ap.add_argument('--stand-only', action='store_true', help='with --pad: never send a walk command (for the stand policies, stand_nod.onnx); the right stick and d-pad move the head')
     ap.add_argument('--pad-lost', type=float, default=1.0, help='seconds without the controller, standing, before it sits down')
     a = ap.parse_args()
     if a.pad_check:
@@ -248,12 +274,20 @@ def main():
     IMU = 'projected_gravity' in blocks
     order = [b['name'] for b in lay['blocks']]
     want = ['base_ang_vel', 'projected_gravity', 'joint_pos', 'joint_vel', 'actions'] if IMU else ['joint_pos', 'joint_vel', 'actions']
-    assert blocks['joint_vel']['delay_steps'] == [1, 1] and order[:len(want)] == want, order
+    dv = blocks['joint_vel']['delay_steps']        # this loop gives the policy the speeds one tick old: inside what it trained on (the *-Bam stand: 1-2)
+    assert dv[0] <= 1 <= dv[1] and order[:len(want)] == want, (order, dv)
     print(f"{os.path.basename(a.model)}: {lay['inputs']} inputs, {'IMU' if IMU else 'blind'}, from {lay['checkpoint']}")
     opts = ort.SessionOptions()
     opts.intra_op_num_threads = 1
     sess = ort.InferenceSession(a.model, opts, providers=['CPUExecutionProvider'])
     inp = sess.get_inputs()[0].name
+    rise_sess = None
+    if a.rise_model:                                         # a second policy that stands it up from sitting (the sit/stand skill), then hands over
+        rlay = json.load(open(os.path.splitext(a.rise_model)[0] + '.json'))
+        assert rlay['joint_order'] == names and rlay['inputs'] == lay['inputs'] and rlay['standing_pose_rad'] == lay['standing_pose_rad'], \
+            "the rise model must share the main model's joints, inputs and standing pose"
+        rise_sess = ort.InferenceSession(a.rise_model, opts, providers=['CPUExecutionProvider'])
+        print(f"rise: {os.path.basename(a.rise_model)} for {a.rise_policy_s:.0f} s, from {rlay['checkpoint']}")
 
     cfg = load_config(a.config)
     imu = None
@@ -285,21 +319,49 @@ def main():
         raise SystemExit(f'{volts:.1f} V: needs {a.min_volts}-{a.max_volts} V')
     for n, i in zip(J, ids):
         bus.write(i, dxl.TORQUE_ENABLE, 0)
-        bus.write(i, dxl.OPERATING_MODE, MODE_CURRENT_POSITION)
-        bus.write(i, GOAL_CURRENT, cap[n])
         head = n in HEAD + BEAK and n != 'neck_pitch'
-        bus.write(i, dxl.POSITION_P, a.neck_gain if n == 'neck_pitch' else a.head_gain if head else a.leg_gain)
-        bus.write(i, POSITION_D, 100 if n == 'neck_pitch' else a.head_damping if head else 0)
+        if a.bam and n not in BEAK:
+            # a policy trained on Pollen's measured XL330 model (BAM m6, milli-rl's *-Bam tasks): plain position mode, PWM-driven, the P it trained
+            # with (legs 800, neck 1200, head 600) and no D, as BAM models the firmware; the current cap of mode 5 doesn't apply there
+            bus.write(i, dxl.OPERATING_MODE, dxl.MODE_POSITION)
+            bus.write(i, dxl.POSITION_P, 1200 if n == 'neck_pitch' else 600 if head else 800)
+            bus.write(i, POSITION_D, 0)
+        else:
+            bus.write(i, dxl.OPERATING_MODE, MODE_CURRENT_POSITION)
+            bus.write(i, GOAL_CURRENT, cap[n])
+            bus.write(i, dxl.POSITION_P, a.neck_gain if n == 'neck_pitch' else a.head_gain if head else a.leg_gain)
+            bus.write(i, POSITION_D, 100 if n == 'neck_pitch' else a.head_damping if head else 0)
         bus.write(i, dxl.PROFILE_VELOCITY, 0)
 
+    last_pos, last_state, misses = {}, [None], [0]
+
     def read_state():
-        raw = bus.sync_read(ids, 126, 10)                  # current 2, velocity 4, position 4
+        # a missed status packet (2026-11-24: one, at the hand-off to the policy, crashed the run and dropped the duck): the last reading stands
+        # in for it. MAX_MISSES in a row (100 ms at 50 Hz) raise, naming the servos that no longer answer, and the run eases down from there
+        try:
+            raw = bus.sync_read(ids, 126, 10)              # current 2, velocity 4, position 4
+            misses[0] = 0
+        except dxl.DxlError as e:
+            misses[0] += 1
+            print(f'bus read missed ({e}): using the last reading ({misses[0]} in a row)', flush=True)
+            if last_state[0] is not None and misses[0] < MAX_MISSES:
+                return last_state[0]
+            gone = []
+            for n, i in zip(J, ids):
+                try:
+                    if not bus.ping(i):
+                        gone.append(n)
+                except dxl.DxlError:
+                    gone.append(n)
+            raise dxl.DxlError(f'bus read failed {misses[0]} times in a row; not answering: {", ".join(gone) or "none (all answer a ping)"}')
         cur, vel, pos = {}, {}, {}
         for n, i in zip(J, ids):
             b = raw[i]
             cur[n] = int.from_bytes(b[0:2], 'little', signed=True)
             vel[n] = int.from_bytes(b[2:6], 'little', signed=True) * dxl.VELOCITY_UNIT * sign[n]
             pos[n] = int.from_bytes(b[6:10], 'little', signed=True)
+        last_pos.update(pos)
+        last_state[0] = (cur, vel, pos)
         return cur, vel, pos
 
     _, _, p0 = read_state()
@@ -323,7 +385,8 @@ def main():
         from duck.telemetry import Publisher
         pub = Publisher(a.telemetry)
     if pad:
-        print('gamepad: A stands up, B sits down, LB+RB stops, Menu (sitting) quits')
+        print('gamepad: ' + ('standing up now; RT + A held 1 s sits down and ends' if a.auto_stand else
+              'RT + A held 1 s stands up and sits down' + ('' if a.stand_only else ' (or A and B)') + ', Menu (sitting) quits') + ', LB+RB stops')
     else:
         print(f'rise {a.rise:.0f} s, policy {total:.0f} s (walk segments: {a.walk or None}; head: {a.nods} nods, {a.nods} neck rocks, {a.turns} turns), lower {a.lower:.0f} s')
 
@@ -337,12 +400,17 @@ def main():
     w.writerow(['t', 'phase', 'volts', 'pi_throttled'] + [f'{n}_{k}' for n in names for k in ('goal', 'q', 'qd', 'act', 'mA')] + ['cmd_vx', 'cmd_vy', 'cmd_wz', 'cmd_neck', 'cmd_head', 'cmd_yaw', 'cmd_roll', 'grav_x', 'grav_y', 'grav_z', 'gyro_x', 'gyro_y', 'gyro_z'])
     t0 = time.monotonic()
     hw, stopped, peak = {}, None, {n: 0 for n in names}
+    low_reads = 0
     hist_q, hist_v, hist_a = np.zeros((H, 14), np.float32), np.zeros((H, 14), np.float32), np.zeros((H, 14), np.float32)
     v_prev = np.zeros(14, np.float32)
     last_act = np.zeros(14, np.float32)
-    phase, here, tick, last_print, t_pol, g_prev = ('wait' if pad else 'rise'), None, 0, -1, None, None
+    phase, here, tick, last_print, t_pol, g_prev = ('wait' if pad and not a.auto_stand else 'rise'), None, 0, -1, None, None
     t_rise = 0.0
     sitting = {n: q0[n] for n in J}
+    rise_target = dict(standing)
+    imu_wait_t = imu_ok_since = t_risen = None
+    if a.rise_to:                                            # a crouch the policy trained from (the sit/stand reset), legs only: the policy stands from there
+        rise_target.update({n: v for n, v in json.load(open(a.rise_to)).items() if n in LEGS})
     nxt = time.monotonic()
 
     def lower_from(pos, secs, label):
@@ -367,6 +435,7 @@ def main():
             qd = np.array([vel[n] for n in names], np.float32)
             if tick % 25 == 0:
                 volts = bus.read(ids[0], dxl.PRESENT_VOLTAGE) / 10
+                low_reads = low_reads + 1 if volts < a.min_volts else 0      # read every 0.5 s: a stop needs --low-volts-reads in a row
                 raw = bus.sync_read(ids, HW_ERROR[0], 1)
                 hw = {n: raw[i][0] for n, i in zip(J, ids)}
             cmd = (0.0,) * 7
@@ -380,15 +449,44 @@ def main():
                 act = np.zeros(14, np.float32)
                 if 'Menu' in events or 'STOP' in events:
                     break
-                if 'A' in events and lost == 0.0:
+                if (('A' in events and not a.stand_only) or 'STANDSIT' in events) and lost == 0.0:
                     phase, t_rise, g_prev = 'rise', t, None
                     pad.stop_walk()
-                    print('A: standing up', flush=True)
+                    print('standing up', flush=True)
             if phase == 'rise':
-                _, g = at([(a.rise, standing)], q0, t - t_rise)
-                if g is None:
+                _, g = at([(a.rise, rise_target)], q0, t - t_rise)
+                if g is None and t_risen is None:
+                    t_risen = t
+                if g is None and t - t_risen < a.risen_hold:  # risen: hold the standing pose a few seconds, steadied by hand, before the hand-over
+                    g = rise_target
+                    if pad and int(t - t_risen) != int(t - t_risen - 1 / RATE):
+                        pad.pad.rumble(80, 0.5)
+                elif g is None and IMU and imu is not None and (getattr(imu, 'age', 0.0) > 0.05 or tilt > a.handover_tilt):
+                    # risen, but the IMU isn't reporting (it restarts itself after a dropout, about 1 s): hold the pose, still held by hand,
+                    # until it has been back for a moment; the policy can't balance blind (2026-11-24: it dropped at 7 s of an 8 s rise)
+                    g, imu_ok_since = rise_target, None
+                    if pad and imu_wait_t is not None and int(t - imu_wait_t) != int(t - imu_wait_t - 1 / RATE):
+                        pad.pad.rumble(80, 0.5)             # a tick each second: straighten it up; the long buzz is the hand-over
+                        print(f'  waiting: tilt {tilt:.0f} deg, IMU age {getattr(imu, "age", 0.0):.2f} s', flush=True)
+                    if imu_wait_t is None:
+                        imu_wait_t = t
+                        print(f'risen, waiting for the IMU and the body upright (under {a.handover_tilt:.0f} deg, now {tilt:.0f}) before handing over (keep holding)', flush=True)
+                    elif t - imu_wait_t > a.imu_wait:
+                        why_imu = f'IMU silent or body tilted {tilt:.0f} deg {a.imu_wait:.0f} s after the rise'
+                        print(why_imu + ': sitting down', flush=True)
+                        lower_from(pos, a.lower, 'lower')
+                        stopped = (round(t, 1), phase, why_imu)
+                        phase = 'wait'
+                        break
+                elif g is None and IMU and imu is not None and imu_wait_t is not None and (imu_ok_since is None or t - imu_ok_since < 0.5):
+                    imu_ok_since = imu_ok_since if imu_ok_since is not None else t      # back: 0.5 s of good readings first
+                    g = rise_target
+                elif g is None:
                     phase, t_pol = 'policy', t
                     g = standing
+                    if pad:                                   # the scripted rise is done: a long buzz, let go, the policy balances it now
+                        pad.pad.rumble(700, 1.0)
+                        print('risen: the policy takes over (let go)', flush=True)
                     hist_q[:] = q - stand                 # the history starts full of this moment, as an episode's first step does
                     hist_v[:] = 0.0
                     hist_a[:] = 0.0
@@ -396,10 +494,13 @@ def main():
             if phase == 'policy':
                 if pad:
                     cmd = pcmd
-                    if 'B' in events or lost > a.pad_lost:
-                        print('B: sitting down' if 'B' in events else f'controller lost for {lost:.1f} s: sitting down', flush=True)
+                    sit = ('B' in events and not a.stand_only) or 'STANDSIT' in events
+                    if sit or lost > a.pad_lost:
+                        print('sitting down' if sit else f'controller lost for {lost:.1f} s: sitting down', flush=True)
                         lower_from(pos, a.lower, 'lower')
                         phase, g_prev = 'wait', None
+                        if a.auto_stand:                    # started standing by the launcher: sat down, back to the launcher
+                            break
                         last_act, v_prev = np.zeros(14, np.float32), np.zeros(14, np.float32)
                         nxt = time.monotonic()
                         tick += 1
@@ -412,12 +513,22 @@ def main():
                 hist_v = np.roll(hist_v, -1, 0); hist_v[-1] = v_prev          # one step late, as trained
                 hist_a = np.roll(hist_a, -1, 0); hist_a[-1] = last_act
                 if IMU:
+                    if a.grav_bias:                        # debugging: the IMU's pitch off by this many degrees (nose down +), as a miscalibrated IMU reads
+                        b = math.radians(a.grav_bias)
+                        grav = np.array([grav[0] * math.cos(b) - grav[2] * math.sin(b), grav[1], grav[0] * math.sin(b) + grav[2] * math.cos(b)])
                     obs = np.concatenate([gyro, grav, q - stand, v_prev, last_act, np.array(cmd), np.zeros(6)]).astype(np.float32)
                 else:
                     obs = np.concatenate([hist_q.ravel(), hist_v.ravel(), hist_a.ravel(), np.array(cmd), np.zeros(6)]).astype(np.float32)
-                act = sess.run(None, {inp: obs[None]})[0][0].astype(np.float32)
+                rising = rise_sess is not None and t - t_pol < a.rise_policy_s
+                if rising:                                    # the sit/stand skill: its command 0 is stand; head held
+                    obs[-13:-6] = 0.0
+                act = (rise_sess if rising else sess).run(None, {inp: obs[None]})[0][0].astype(np.float32)
                 ramp = min(1.0, (t - t_pol) / a.blend) if a.blend > 0 else 1.0     # the policy's stance eased in over --blend s: its first
                 target = np.clip(stand + ramp * act, lim[:, 0], lim[:, 1])         # outputs bend the knees 30+ deg off the scripted stand
+                if a.rise_slew and t - t_pol < a.rise_slew_s:  # a slow rise: the goals may change only so fast, at first
+                    prev_t = np.array([g_prev[n] for n in names]) if g_prev else q.copy()
+                    step = math.radians(a.rise_slew) / RATE
+                    target = prev_t + np.clip(target - prev_t, -step, step)
                 last_act = act
                 g = {n: float(target[k]) for k, n in enumerate(names)}
                 g['beak'] = 0.3 if pad and pad.beak_open else standing['beak']
@@ -440,8 +551,8 @@ def main():
                 why = f'IMU silent for {imu.age * 1000:.0f} ms'
             elif imu is not None and phase == 'policy' and tilt > a.max_tilt:
                 why = f'body tipped {tilt:.0f} deg (past --max-tilt)'
-            elif volts < a.min_volts:
-                why = f'supply {volts:.1f} V'
+            elif low_reads >= a.low_volts_reads:       # a sag that lasts, not one dip (a single 0.5 s reading stopped runs, 2026-11-24)
+                why = f'supply {volts:.1f} V ({low_reads} readings in a row under {a.min_volts} V)'
             elif phase == 'wait':
                 pass
             else:
@@ -476,6 +587,14 @@ def main():
             _, _, pos = read_state()
             lower_from(pos, a.lower, 'lower')
             time.sleep(0.5)
+    except dxl.DxlError as e:
+        print(f'STOP: {e}. Easing back down over {a.abort_lower:.0f} s from the last position read, then torque off.', flush=True)
+        stopped = (round(time.monotonic() - t0, 1), phase, str(e))
+        try:
+            if last_pos:
+                lower_from(last_pos, a.abort_lower, 'stop')
+        except dxl.DxlError as e2:
+            print(e2)
     except KeyboardInterrupt:
         print('Ctrl-C: easing back down', flush=True)
         try:
