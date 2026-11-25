@@ -200,6 +200,8 @@ class PadDriver:
             if a.stand_only and self.standing:              # stand mode: the nod says mmh (the user, 2026-11-25); the head follows the sound's lead
                 self.nod_t = now + a.audio_lead
                 self.sound_mod().play('mmh')
+                if self.say is None:                        # and the beak opens with it, from mmh's mouth keyframes
+                    self.say = ('mmh', self.beak_track('mmh'), now + a.audio_lead)
                 print('nodding: mmh', flush=True)
             else:
                 self.nod_t = now

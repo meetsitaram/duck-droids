@@ -235,3 +235,14 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 **Fix:** the joint friction fitted to the real duck, 0.07 N m that holds (`solimpfriction 0.999`: MuJoCo's default lets a loaded joint creep, and even 0.3 N m only delayed the fall to 2.5 s), in `spec/actuators.json` and every Dynamixel model. The sim now stands with the right knee 3.8 deg past its goal and the body 6.0 deg nose-down (real: 3.4 and 6), and a 6 deg kick in the air matches (85 ms to 90 %, real 55-83 ms). And the stand trains on BAM itself (above). **For every new task on these servos, start from Pollen's actuator model, not a plain motor.** BAM was measured at 7.5 V in position mode: give it our voltage (`vin_range`) and gains (`kp_fw`), and deploy in position mode (`--bam`).
 
 **How to check a sim against the duck:** hold the stand pose with no policy (it must stand, as the real duck does); lift and set down while standing (sag); a kick test in the air (`motor_test.py`, against `motor_test_sim/real_air.json`); and replay the real run's inputs through the policy (`replay_log.py`, and the run CSV's grav and gyro columns).
+
+### The hand-off taps and the shaking on nudges were the soft soles (2026-11-25)
+
+**Seen:** under the stand policies the feet buzzed and tapped at the hand-off and after small nudges, more than the simulator showed.
+
+**Cause:** the soft soles added under the feet. Taken off, the feet sit firm on the floor and the duck is much steadier on nudges and at
+the hand-off (the user, 2026-11-25). An earlier check in the simulator ("springy soles", above) didn't show it: the real soles were
+softer, or damped differently, than anything the sim tried.
+
+**Fix:** run without the soft soles. The training models' feet are hard, which now matches the duck; if soles go back on, measure their
+stiffness and give the sim the same before trusting a policy on them.
