@@ -169,6 +169,8 @@ class PadDriver:
         new = s.held - self.prev
         self.prev = s.held
         events = set(new)
+        if 'RT' in s.held:                              # RT held: a combo (RT + A sits, RT + X is the launcher's): its X, Y, B, LB, RB aren't commands
+            events -= {'X', 'Y', 'B', 'LB', 'RB'}       # (RT + X replayed an emotion inside a running stand, 2026-11-25)
         h = self.holds.check(s)
         if h:
             events.add(h)
