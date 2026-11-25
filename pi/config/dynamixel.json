@@ -96,8 +96,8 @@
    "centre": 1994
   }
  },
- "imu_pitch_bias_deg": -3.8,
- "imu_pitch_bias_note": "the IMU reads the body 3.8 deg further back than the leg geometry says with both feet flat (RT + X stands, 2026-11-25): run_policy.py adds this to the gravity the policy sees; --grav-bias overrides",
+ "imu_pitch_bias_deg": 0.0,
+ "imu_pitch_bias_note": "off (0): with -3.8 the duck stood further back and tipped more, 2026-11-25. Measured: the IMU reads the body 3.8 deg further back than the leg geometry says with both feet flat (RT + X stands, 2026-11-25): run_policy.py adds this to the gravity the policy sees; --grav-bias overrides",
  "home": {
   "left_hip_pitch": -0.4589830953733815,
   "left_knee": 0.3380472236211385,

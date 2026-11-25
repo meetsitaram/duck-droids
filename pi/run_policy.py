@@ -145,7 +145,7 @@ class PadDriver:
             self.sound = sound
             cfg = cfg or emote.load_config()
             self.home = cfg['home']
-            self.emotions = [(n, emote.track(n, cfg, a.emote_scale)[0]) for n in emote.names()]
+            self.emotions = [(n, self.gentle(emote, emote.track(n, cfg, a.emote_scale)[0], a)) for n in emote.names()]
             self.sample = emote.sample
             print('emotions: LB / RB to pick, X to play: ' + ', '.join(n for n, _ in self.emotions), flush=True)
         self.pad = open_pad(a.pad, a.pad_name)
@@ -249,6 +249,28 @@ class PadDriver:
         cmd = (float(self.walk[0]), float(self.walk[1]), float(self.walk[2])) + head
         return cmd, events, (now - self.lost_since) if self.lost_since else 0.0
 
+    @staticmethod
+    def gentle(emote, tr, a):
+        """Standing: the neck and head pitch at a.stand_head_amp of each move (about the home pose) and smoothed over a.stand_smooth s centred,
+        the timing against the sound kept: a fast head-down swing rocked the duck back over (sad, 2026-11-25). Yaw, roll and the beak as they are."""
+        home = emote.load_config()['home']
+        out = []
+        for t, q in tr:
+            q = dict(q)
+            for j in ('neck_pitch', 'head_pitch'):
+                q[j] = home.get(j, 0.0) + a.stand_head_amp * (q[j] - home.get(j, 0.0))
+            out.append((t, q))
+        saved = emote.SIT_SMOOTH
+        try:
+            emote.SIT_SMOOTH = a.stand_smooth
+            soft = emote.soften(out, smooth=a.stand_smooth)
+        finally:
+            emote.SIT_SMOOTH = saved
+        for (t, q), (_, q0) in zip(soft, [(t, emote.sample(out, t)) for t, _ in soft]):
+            for j in ('head_yaw', 'head_roll'):
+                q[j] = q0[j]                              # only the pitch joints smoothed
+        return soft
+
     def sound_mod(self):
         from duck import sound
         return sound
@@ -348,6 +370,8 @@ def main():
     ap.add_argument('--neck-guard-s', type=float, default=2.0, help='... for this long (its overload alarm tripped at 1428 mA)')
     ap.add_argument('--emotions', action='store_true', help="with --pad and a stand policy (models/stand_emote.onnx): LB / RB pick one of microduck's emotions, X plays it (head through the policy, beak, sound)")
     ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before an emotion's motion: the Bluetooth speaker's lag and the player's start")
+    ap.add_argument('--stand-head-amp', type=float, default=0.7, help='standing emotions: the neck and head pitch moves at this size (the policy trained on 0.7-1.0)')
+    ap.add_argument('--stand-smooth', type=float, default=0.25, help='standing emotions: s over which the neck and head pitch are smoothed, centred')
     ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this (the policy trained on 0.7-1.0)')
     ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a controller combo (RT + A) must be held')
     ap.add_argument('--stand-only', action='store_true', help='with --pad: never send a walk command (for the stand policies, stand_nod.onnx); the right stick and d-pad move the head')
