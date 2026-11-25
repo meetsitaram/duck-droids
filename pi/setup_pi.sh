@@ -47,4 +47,7 @@ sudo -u "${SUDO_USER:-$USER}" bash install_launcher_user.sh
 # A Bluetooth speaker as the audio output (no headphone jack on the Zero 2 W): PipeWire, and the user service duck-bt-speaker that pairs and
 # connects it at each boot. Choose the speaker in config/bt_speaker.conf or with: bash bt_speaker.sh set "NAME or MAC" (pi/README.md).
 sudo -u "${SUDO_USER:-$USER}" bash bt_speaker.sh install
+# A backup way in when the duck can't join the home Wi-Fi: its own hotspot after 60 s without it (pi/hotspot.sh; the PC joins it, the duck
+# at 10.42.0.1). The name and a random password go in ~/.config/duck/hotspot.conf.
+bash hotspot.sh install
 echo 'And i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For the gamepad: bluetoothctl, then scan on, pair, trust and connect.'

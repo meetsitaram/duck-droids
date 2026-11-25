@@ -2,7 +2,8 @@
 # Pair an Xbox Series X|S controller (Bluetooth LE) with the Pi's built-in Bluetooth, past its connect-drop loop (logo flashing, the Pi
 # saying Connected then not, bluetoothd logging "Report Map read failed"). The fixes from xpadneo's docs/TROUBLESHOOTING.md for the
 # Raspberry Pi's internal adapter: LE privacy, short LE connection intervals and a longer supervision timeout, then the same per device.
-#   sudo bash xbox_pair.sh            hold the controller's pair button when asked
+#   sudo bash xbox_pair.sh            hold the controller's pair button when asked (every Xbox controller paired before is unpaired)
+#   sudo bash xbox_pair.sh --add      another controller beside the ones already paired: they stay, only the new one is paired and fixed
 # Pairing again (or holding the pair button for another device) drops the per-device part: run this again.
 set -e
 [ "$(id -u)" = 0 ] || { echo 'run with sudo'; exit 1; }
@@ -28,14 +29,20 @@ sleep 3
 bluetoothctl power on >/dev/null
 
 ADAPTER=$(bluetoothctl show | awk '/^Controller/{print $2; exit}')
-for old in $(bluetoothctl devices | awk '/Xbox/{print $2}'); do bluetoothctl remove "$old" >/dev/null; done
+KNOWN=''
+if [ "$1" = "--add" ]; then
+  KNOWN=$(bluetoothctl devices Paired | awk '/Xbox/{print $2}')
+  echo "keeping the paired controller(s): ${KNOWN:-none}"
+else
+  for old in $(bluetoothctl devices | awk '/Xbox/{print $2}'); do bluetoothctl remove "$old" >/dev/null; done
+fi
 echo
 echo '>>> Hold the pair button on the controller (top edge, by the USB-C port) until the logo flashes FAST. Scanning for 60 s...'
 M=''
 bluetoothctl --timeout 60 scan on > /tmp/xbox_scan.txt 2>&1 &
 for i in $(seq 1 60); do
   sleep 1
-  M=$(bluetoothctl devices | awk '/Xbox/{print $2; exit}')
+  M=$(bluetoothctl devices | awk -v k="$KNOWN" '/Xbox/ && index(k, $2) == 0 {print $2; exit}')
   [ -n "$M" ] && break
 done
 [ -n "$M" ] || { echo 'no controller found: run again, holding the pair button'; exit 1; }

@@ -176,6 +176,11 @@ What went wrong on the real hardware, and what fixed it. Newest at the bottom of
 
 **Fix:** the card's boot partition still had the original `network-config`. Give `meta-data`'s `instance-id` and the `ds=nocloud;i=...` in `cmdline.txt` the same new value: cloud-init treats the next boot as a first boot and writes the Wi-Fi profile again, keeping `~/duck` and the pairing, with new SSH host keys. Raspberry Pi Imager can't do this: it only writes whole new images. Ways in when the Wi-Fi is down: a 3.3 V USB-serial adapter on pins 8/10 (the serial console is already on, `console=serial0,115200`). USB gadget mode is out, as the bus board takes the Pi's only data port.
 
+**Again on 2026-11-25,** after a day of battery swaps and falls: the controller paired, and no Raspberry Pi address answered anywhere on
+the network. The same fix (the instance id `-wifi2` to `-wifi3` in both files, with `.bak` copies left on the card). Since then the duck
+has its own backup: `pi/hotspot.sh` starts a hotspot when it can't join the home Wi-Fi within 60 s of booting, and the PC reaches it at
+10.42.0.1 over that.
+
 ### The IMU goes silent during a stand, and the policy never takes over (2026-11-24)
 
 **Seen:** the BNO085 reset itself mid-run (its debug packet dump in `launcher.log`, 6 times that day), with the servos working. Once its reading froze 4 s into the rise; `run_policy.py`, which waits for a live IMU before handing over, held the scripted stand 10 s and sat down ("IMU silent"). The reader's own restarts (after 0.3 s of silence) didn't bring it back that time. Another time it came back on a different address and `telemetry.py` died on it.
