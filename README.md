@@ -111,7 +111,7 @@ All seven to scale ([MP4, 62 s](docs/images/family_lineup.mp4)): the camera goes
 | `spec/` | the Python spec every duck is generated from |
 | `tools/` | checks, exports, docs and renders |
 | `pi/` | the all-Dynamixel duck's Pi code and its simulator |
-| `pi/models/` | its trained policies (ONNX, each with a JSON of its inputs), also on Hugging Face: [tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel); `bash pi/fetch_models.sh` downloads them, `bash pi/deploy.sh` copies them to the Pi |
+| `pi/models/` | its trained policies (ONNX, each with a JSON of its inputs; `active.json` names the ones the real duck runs: RT + A `stand_bam`, RT + X `stand_emote_calm`), also on Hugging Face: [tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel); `bash pi/fetch_models.sh` downloads them, `bash pi/deploy.sh` copies them to the Pi |
 
 More in [the details](docs/DETAILS.md), [the open questions](docs/OPEN_QUESTIONS.md), and [what went wrong along the way](LESSONS.md).
 

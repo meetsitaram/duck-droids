@@ -251,6 +251,10 @@ neck starts near the crouch or the rest. Preview: `python emote.py --all --sit -
 
 ### The policies, and getting them onto the duck
 
+**Active on the real duck now** (try these first): RT + A runs `stand_bam.onnx`, RT + X runs `stand_emote_calm.onnx`; RB + B (sitting
+emotions) and the walk use none. `models/active.json` says the same, with what each does and how it behaves, and `launcher.py` reads its
+models from it: to change the model a controller mode runs, change it there, `bash pi/deploy.sh`, and restart the launcher.
+
 Every policy in `models/` is also on Hugging Face, with a card saying which controller mode uses which:
 [huggingface.co/tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel). To fetch and sync them:
 

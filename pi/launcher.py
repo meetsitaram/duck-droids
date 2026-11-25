@@ -61,6 +61,25 @@ def run(args):
     return r.returncode
 
 
+def active_model(args, mode):
+    """models/active.json's model for this controller mode in place of the --model in the run_policy.py arguments: that file says which
+    model the real duck runs, and so is what it runs (2026-11-25)."""
+    import json
+    try:
+        m = json.load(open(os.path.join(HERE, 'models', 'active.json')))[mode]['model']
+    except (OSError, KeyError, ValueError):
+        return args
+    if not m:
+        return args
+    parts = args.split()
+    if '--model' in parts:
+        parts[parts.index('--model') + 1] = 'models/' + m
+    else:
+        parts += ['--model', 'models/' + m]
+    print(f'{mode}: models/{m} (models/active.json)', flush=True)
+    return ' '.join(parts)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--allow-walk', action='store_true', help='LT + A starts the walk policy')
@@ -73,6 +92,7 @@ def main():
                     help='for run_policy.py')
     ap.add_argument('--walk-args', default='--pad --telemetry --max-volts 6.3', help='for run_policy.py')
     a = ap.parse_args()
+    a.stand_args, a.emote_args = active_model(a.stand_args, 'stand'), active_model(a.emote_args, 'emote')
     pad = EvdevPad()
     combos = {k: v for k, v in COMBOS.items() if k == 'head' or (k in ('stand', 'emote') and a.allow_stand) or (k == 'walk' and a.allow_walk)}
     print('launcher: ' + ', '.join(f"{' + '.join(sorted(v, reverse=True))} held {a.hold_s:g} s = {k}" for k, v in combos.items()), flush=True)
