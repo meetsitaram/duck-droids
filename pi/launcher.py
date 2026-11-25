@@ -69,7 +69,7 @@ def main():
     ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a combo must be held')
     ap.add_argument('--stand-args', default='--pad --stand-only --auto-stand --model models/stand_bam.onnx --bam --rise 8 --blend 0 --telemetry --max-volts 6.3 --min-volts 4.0',
                     help='for run_policy.py')
-    ap.add_argument('--emote-args', default='--pad --stand-only --auto-stand --model models/stand_emote.onnx --bam --rise 8 --blend 0 --telemetry --max-volts 6.3 --min-volts 4.0 --emotions',
+    ap.add_argument('--emote-args', default='--pad --stand-only --auto-stand --model models/stand_emote_calm.onnx --bam --rise 8 --blend 0 --telemetry --max-volts 6.3 --min-volts 4.0 --emotions',
                     help='for run_policy.py')
     ap.add_argument('--walk-args', default='--pad --telemetry --max-volts 6.3', help='for run_policy.py')
     a = ap.parse_args()

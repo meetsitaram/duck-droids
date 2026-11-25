@@ -32,6 +32,7 @@ ap.add_argument("--kick", type=float, default=0.15, help="m/s: the nudge at 4 s,
 ap.add_argument("--emote", action="store_true", help="from 7 s, the head plays every emotion in turn")
 ap.add_argument("--emote-scale", type=float, default=1.0)
 ap.add_argument("--out", help="a JSON of the numbers")
+ap.add_argument("--head-direct", action="store_true", help="the head joints driven straight from the head command, the policy's head outputs ignored (it balances with the legs alone)")
 ap.add_argument("--head-offset", default="0,0,0,0", help="rad, neck,head_pitch,yaw,roll: added to every head command, at rest too (the head's rest pose)")
 ap.add_argument("--pushes", action="store_true", help="keep the training's random pushes on throughout (they are off by default)")
 a = ap.parse_args()
@@ -65,6 +66,8 @@ base = env.unwrapped
 robot = base.scene["robot"]
 feet = base.scene["feet_ground_contact"]
 head_cmd = base.command_manager.get_term("head_pose")
+_tn = list(base.action_manager.get_term("joint_pos").target_names)
+HEAD_ACT = [_tn.index(n) for n in ("neck_pitch", "head_pitch", "head_yaw", "head_roll")]
 HEAD_OFF = torch.tensor([float(v) for v in a.head_offset.split(",")], device="cuda:0")
 dt = base.step_dt
 
@@ -101,6 +104,8 @@ per_emo = {}
 ank_j = [list(robot.joint_names).index(n) for n in robot.joint_names if n.endswith("_ankle")]
 ank_a = [act_names.index(n) for n in act_names if n.endswith("_ankle")]
 prev_goal = None
+hp_j, hp_a = list(robot.joint_names).index("head_pitch"), act_names.index("head_pitch")
+rest_dev = []
 lifts = []              # (t, env, foot)
 ups = {}
 for k in range(int(T_END / dt)):
@@ -117,7 +122,10 @@ for k in range(int(T_END / dt)):
         i = min(int(round((t - T_EMOTE) / dt)), len(seq) - 1)
         head_cmd._command[:] = seq[i] + HEAD_OFF
     with torch.no_grad():
-        obs, _, _, _ = env.step(policy(obs))
+        act = policy(obs)
+        if a.head_direct:
+            act[:, HEAD_ACT] = head_cmd.command[:, :4]
+        obs, _, _, _ = env.step(act)
     was_up = up.clone()
     up &= ~base.termination_manager.terminated
     heat += ((robot.data.actuator_force / RATED) ** 2 - heat) * min(dt / TAU, 1.0)
@@ -126,6 +134,9 @@ for k in range(int(T_END / dt)):
     jit = (goal - prev_goal).abs() if prev_goal is not None else torch.zeros_like(goal)
     prev_goal = goal.clone()
     ank_err = (goal - robot.data.joint_pos[:, ank_j]).abs()
+    if t >= 1.0 and (emo is None or t < T_EMOTE) and up.any():   # the head at rest, no emotion: its pitch goal off the command (the real duck's flicks)
+        hg = (tgt[:, hp_j] if tgt.shape[1] == len(robot.joint_names) else tgt[:, hp_a]) - robot.data.default_joint_pos[:, hp_j]
+        rest_dev.append((hg - head_cmd.command[:, 1]).abs()[up].cpu())
     if emo is not None and t >= T_EMOTE:
         n_ = owner[min(int(round((t - T_EMOTE) / dt)), len(owner) - 1)]
         d = per_emo.setdefault(n_, {"fell": 0, "heat": {g: 0.0 for g in groups}, "aerr": [], "ajit": []})
@@ -177,6 +188,10 @@ if per_emo:
 if head_err:
     E = np.array(head_err)
     res["head_tracking_err_rad"] = dict(zip(("neck", "head_pitch", "head_yaw", "head_roll"), map(float, E.mean(0))))
+    if rest_dev:
+        d_ = torch.cat(rest_dev).numpy()
+        print(f"  head at rest (no emotion): pitch goal off the command, 95th percentile {np.degrees(np.percentile(d_, 95)):.1f} deg, "
+              f"max {np.degrees(d_.max()):.0f} deg, {100 * (d_ > np.radians(10)).mean():.1f} % of robot-ticks past 10 deg")
     print("  head tracking during the emotions, mean |error| (rad): " + ", ".join(f"{k} {v:.3f}" for k, v in res["head_tracking_err_rad"].items()))
 if a.out:
     json.dump(res, open(a.out, "w"), indent=1)
