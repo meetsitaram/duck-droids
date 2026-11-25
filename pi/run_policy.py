@@ -17,7 +17,7 @@ With --pad the duck waits, sitting with torque on, for the controller:
   A          stand up (the scripted rise), then the policy runs
   left stick walk: up/down forward and back, left/right sideways      right stick, left/right: turn
   RT         held, walks faster, up to --vx-boost                    d-pad: the head, up/down pitch, left/right turn
-  X          a nod                                                    Y: says yes, B: says no (stand mode: the beak moves with the sound)
+  X          a nod (stand mode: with mmh)                             Y: says yes, B: says no (stand mode: the beak moves with the sound)
   with --emotions (a stand policy, models/stand_emote.onnx): RB / LB play the next / previous of microduck's 13 emotions (printed, a
   short buzz; pressed during one, it plays when that ends), X the same one again. Each plays its head motion through the policy's head command (as it trained), its beak straight to the beak servo, its sound on the
   speaker, all from the same start. The d-pad and stick don't steer the head while it plays; it ends back at the standing pose.
@@ -197,7 +197,12 @@ class PadDriver:
                 self.sound.play(name)
                 print(f'playing {name} ({tr[-1][0]:.1f} s)', flush=True)
         elif 'X' in events and self.nod_t is None:
-            self.nod_t = now
+            if a.stand_only and self.standing:              # stand mode: the nod says mmh (the user, 2026-11-25); the head follows the sound's lead
+                self.nod_t = now + a.audio_lead
+                self.sound_mod().play('mmh')
+                print('nodding: mmh', flush=True)
+            else:
+                self.nod_t = now
         talk = {'Y': 'yes', 'B': 'no'} if a.stand_only and not self.emotions else {}
         for b, word in talk.items():                        # stand mode: Y says yes, B no, the beak moving with the sound (the user, 2026-11-25)
             if b in events and self.standing and self.say is None:
@@ -212,7 +217,7 @@ class PadDriver:
             pitch = float(np.clip(pitch + deadzone(ax['ry']) * a.head_max, -a.head_max, a.head_max))
             yaw = float(np.clip(yaw + deadzone(ax['rx']) * a.head_max, -a.head_max, a.head_max))
         if self.nod_t is not None:
-            nod = head_at([(d, (0.0, 0.0, 0.0, 0.0, q, 0.0, 0.0)) for d, q in self.NOD], now - self.nod_t)
+            nod = head_at([(d, (0.0, 0.0, 0.0, 0.0, q, 0.0, 0.0)) for d, q in self.NOD], max(0.0, now - self.nod_t))
             if nod is None:
                 self.nod_t = None
             else:
