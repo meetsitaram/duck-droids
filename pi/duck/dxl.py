@@ -8,6 +8,7 @@ import time
 import serial
 
 PING, READ, WRITE, SYNC_READ, SYNC_WRITE, STATUS = 0x01, 0x02, 0x03, 0x82, 0x83, 0x55
+REBOOT = 0x08
 BROADCAST = 0xFE
 HEADER = bytes((0xFF, 0xFF, 0xFD, 0x00))
 
@@ -131,6 +132,25 @@ class Bus:
     def ping(self, ident):
         self._send(packet(ident, PING))
         return self._status()[0] == ident
+
+    def reboot(self, ident, wait=0.6):
+        """The servo restarts (RAM settings back to their defaults, torque off): the only way short of power to clear a latched hardware
+        error, such as the overload alarm."""
+        self._send(packet(ident, REBOOT))
+        self._status()
+        import time
+        time.sleep(wait)
+
+    def clear_overloads(self, ids, names=None):
+        """Reboot each servo whose hardware error is the overload alarm alone (0x20, latched from a run before); returns those cleared. Any
+        other alarm (overheating, voltage, electrical shock) is left for the caller to stop on."""
+        raw = self.sync_read(ids, 70, 1)
+        done = []
+        for k, i in enumerate(ids):
+            if raw[i][0] == 0x20:
+                self.reboot(i)
+                done.append(names[k] if names else i)
+        return done
 
     def write(self, ident, reg, value):
         addr, size = reg

@@ -128,9 +128,10 @@ class PadDriver:
 
     NOD = [(0.5, 0.15), (0.6, -0.12), (0.5, 0.0)]          # (seconds, head pitch): one nod, eased between
 
-    # the emotion head commands are clipped as the stand_emote policy trained on them (milli-rl emotion_head.py LIMITS): neck, head pitch,
+    # the emotion head commands are clipped as the stand_emote policy trained on them (milli-rl emotion_head.py LIMITS), the neck tighter (-0.6:
+    # devastated's -0.9 held 8.5 s tripped its overload alarm, 2026-11-25): neck, head pitch,
     # yaw, roll off the standing pose; the roll 0.04 short of its +-0.24 stop
-    EMOTE_LIMITS = {'neck_pitch': (-1.6, 0.15), 'head_pitch': (-1.6, 1.6), 'head_yaw': (-2.5, 2.5), 'head_roll': (-0.20, 0.20)}
+    EMOTE_LIMITS = {'neck_pitch': (-0.6, 0.15), 'head_pitch': (-1.6, 1.6), 'head_yaw': (-2.5, 2.5), 'head_roll': (-0.20, 0.20)}
 
     def __init__(self, a, cfg=None):
         from duck.gamepad import Holds, open_pad
@@ -341,6 +342,8 @@ def main():
     ap.add_argument('--auto-stand', action='store_true', help='with --pad: stand up at once (the launcher has already had RT + A), and end when it sits down')
     ap.add_argument('--bam-head-pitch-p', type=int, default=690, help='with --bam: the head pitch P (trained 600, randomized +-15 %%): higher holds the head up better')
     ap.add_argument('--bam-head-pitch-i', type=int, default=200, help='with --bam: the head pitch I gain, against its steady droop (0 off)')
+    ap.add_argument('--neck-guard-ma', type=int, default=1000, help='an emotion ends if the neck draws more than this ...')
+    ap.add_argument('--neck-guard-s', type=float, default=2.0, help='... for this long (its overload alarm tripped at 1428 mA)')
     ap.add_argument('--emotions', action='store_true', help="with --pad and a stand policy (models/stand_emote.onnx): LB / RB pick one of microduck's emotions, X plays it (head through the policy, beak, sound)")
     ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before an emotion's motion: the Bluetooth speaker's lag and the player's start")
     ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this (the policy trained on 0.7-1.0)')
@@ -404,6 +407,9 @@ def main():
     print(f'supply {volts:.1f} V')
     if volts > a.max_volts or volts < a.min_volts:
         raise SystemExit(f'{volts:.1f} V: needs {a.min_volts}-{a.max_volts} V')
+    cleared = bus.clear_overloads(ids, J)             # an overload alarm latched in a run before stops every start until cleared (2026-11-25)
+    if cleared:
+        print('cleared a latched overload alarm (rebooted): ' + ', '.join(cleared), flush=True)
     for n, i in zip(J, ids):
         bus.write(i, dxl.TORQUE_ENABLE, 0)
         head = n in HEAD + BEAK and n != 'neck_pitch'
@@ -523,10 +529,18 @@ def main():
                 print(f'during the {label}:', e)
             time.sleep(1 / RATE)
 
+    neck_hot = None                                   # since when the neck has strained in an emotion
     try:
         while True:
             t = time.monotonic() - t0
             cur, vel, pos = read_state()
+            if pad and pad.emo is not None and abs(cur.get('neck_pitch', 0)) > a.neck_guard_ma:   # the neck straining in an emotion: ease the head
+                neck_hot = neck_hot if neck_hot is not None else t                               # home before its overload alarm trips (devastated,
+                if t - neck_hot > a.neck_guard_s:                                                 # standing, 1428 mA, 2026-11-25)
+                    print(f'neck at {abs(cur["neck_pitch"])} mA for {a.neck_guard_s:.0f} s: ending the emotion', flush=True)
+                    pad.emo, neck_hot = None, None
+            else:
+                neck_hot = None
             q = np.array([angle(pos, n) for n in names], np.float32)
             qd = np.array([vel[n] for n in names], np.float32)
             if tick % 25 == 0:

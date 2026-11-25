@@ -75,6 +75,9 @@ def main():
     volts = bus.read(ids[0], dxl.PRESENT_VOLTAGE) / 10
     if not a.min_volts <= volts <= a.max_volts:
         raise SystemExit(f'supply {volts:.1f} V: needs {a.min_volts}-{a.max_volts} V')
+    cleared = bus.clear_overloads(all_ids)                  # an overload alarm latched in a run before (2026-11-25)
+    if cleared:
+        print(f'cleared a latched overload alarm (rebooted) on servo IDs {cleared}', flush=True)
     for i in all_ids:                                       # everything off first, whatever a run before left on
         bus.write(i, dxl.TORQUE_ENABLE, 0)
     legs = [] if a.legs_limp else [n for n in cfg['joints'] if n not in JOINTS]
