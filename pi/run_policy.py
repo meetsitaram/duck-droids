@@ -129,9 +129,10 @@ class PadDriver:
     NOD = [(0.5, 0.15), (0.6, -0.12), (0.5, 0.0)]          # (seconds, head pitch): one nod, eased between
 
     # the emotion head commands are clipped as the stand_emote policy trained on them (milli-rl emotion_head.py LIMITS), the neck tighter (-0.6:
-    # devastated's -0.9 held 8.5 s tripped its overload alarm, 2026-11-25): neck, head pitch,
+    # devastated's -0.9 held 8.5 s tripped its overload alarm; at -0.6 (-34 deg, the head out front for seconds) the calm policy fell
+    # forward, 2026-11-25; -0.26 is -15 deg): neck, head pitch,
     # yaw, roll off the standing pose; the roll 0.04 short of its +-0.24 stop
-    EMOTE_LIMITS = {'neck_pitch': (-0.6, 0.15), 'head_pitch': (-1.6, 1.6), 'head_yaw': (-2.5, 2.5), 'head_roll': (-0.20, 0.20)}
+    EMOTE_LIMITS = {'neck_pitch': (-0.26, 0.15), 'head_pitch': (-1.6, 1.6), 'head_yaw': (-2.5, 2.5), 'head_roll': (-0.20, 0.20)}
 
     def __init__(self, a, cfg=None):
         from duck.gamepad import Holds, open_pad
