@@ -33,6 +33,9 @@ KNOWN=''
 if [ "$1" = "--add" ]; then
   KNOWN=$(bluetoothctl devices Paired | awk '/Xbox/{print $2}')
   echo "keeping the paired controller(s): ${KNOWN:-none}"
+  for d in $(bluetoothctl devices | awk '/Xbox/{print $2}'); do                   # one seen but never bonded: start it afresh
+    echo "$KNOWN" | grep -q "$d" || bluetoothctl remove "$d" >/dev/null 2>&1 || true
+  done
 else
   for old in $(bluetoothctl devices | awk '/Xbox/{print $2}'); do bluetoothctl remove "$old" >/dev/null; done
 fi
@@ -47,10 +50,17 @@ for i in $(seq 1 60); do
 done
 [ -n "$M" ] || { echo 'no controller found: run again, holding the pair button'; exit 1; }
 echo "found $M, pairing"
-bluetoothctl pair "$M" || true
-bluetoothctl trust "$M"
-bluetoothctl connect "$M" || true
+# pairable on and an agent: without them the pairing isn't kept (Paired: no, Bonded: no) and the controller, unencrypted, refuses its HID
+# description ("Request attribute has encountered an unlikely error"), its logo flashing on (the second controller, 2026-11-25; the
+# speaker the same that morning)
+# one interactive session, its agent registered as the default before pairing: a one-shot 'bluetoothctl --agent ... pair' left none to
+# answer the controller ("No agent available for request type 2", auth failed 0x05; repair.sh's way, which bonded the first controller)
 kill %1 2>/dev/null || true
+{ echo "pairable on"; echo "agent NoInputNoOutput"; echo "default-agent"; sleep 1
+  echo "pair $M"; sleep 15; echo "trust $M"; sleep 2; echo "connect $M"; sleep 6; echo quit; } \
+  | bluetoothctl 2>&1 | tr -d '\033' | grep -E "Pairing|Paired|Bonded|trust succ|Connection|Failed|Error|Request"
+bluetoothctl info "$M" | grep -q "Bonded: yes" || { echo "not bonded: hold the pair button again and run this again"; exit 1; }
+echo "bonded"
 
 INFO=/var/lib/bluetooth/$ADAPTER/$M/info
 if [ -f "$INFO" ]; then
