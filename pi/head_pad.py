@@ -4,6 +4,8 @@ directions and range without standing the duck.
 
   right stick   up/down: head pitch (stick up tips the face down, forward), left/right: head turn       held: the joint keeps moving, let go: it stays
   d-pad         up/down: neck pitch (up tips the neck back), left/right: head roll
+  on start      the IMU read once: the neck's rest shifted by how much more upright (or reclined) the body sits than at the capture,
+                so the face looks the same way however the duck is seated (--imu none: off)
   on start      sitting, the head rises (with the mmh sound; RB + B lowers it with the sad sound) to its rest pose (poses/sit_emote.json: the neck raised as the user set it), at most 0.6 rad/s
   RB / LB       play the next / previous of microduck's 13 emotions at once (a short buzz; the name is printed; it cuts off one playing)
   X             play the same one again    Y   beak open / shut
@@ -41,10 +43,43 @@ RATE = 50.0
 JOINTS = ['neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'beak']
 SIT_NEAR = math.radians(25)                                 # emotions play only with the neck this near the sit pose; the head pitch
 # flops to a different angle each sit (-36 and -93 deg against the captured -77, 2026-11-25), so it eases in from wherever it is
+TILT_SHIFT_MAX = math.radians(40)                           # the body-tilt correction of the neck, at most
 RAISE_SPEED = 0.6                                           # rad/s at most, raising the head from the crouch to its rest when it starts
 EASE_SPEED = 1.0                                            # rad/s at most in the ease-in and back: a far head takes longer
 START_SOUND, END_SOUND = 'mmh', 'sad'                       # as the head rises at the start, and as it lowers at RB + B
 EASE0 = 0.8                                                  # s into an emotion's first pose from where the head is, and back after
+
+
+def body_tilt_shift(cfg, sit, imu_kind):
+    """The neck offset (rad) that points the head as it was when the sit pose was captured, with the body tilted as the IMU reads it now:
+    the captured body pitch minus today's (2026-11-25: the duck sat 35 deg more upright than at the capture, and the same head angles
+    left the face looking down; in the sim this offset brought the head back within 0.4 deg). 0 without an IMU or a captured tilt."""
+    g0 = sit.get('grav_imu') or sit.get('grav')
+    if not g0 or imu_kind == 'none':
+        print('the neck not corrected for the body tilt (no IMU, or no tilt in the sit pose)', flush=True)
+        return 0.0
+    try:
+        from duck.hardware import Bno085, SimImu
+        imu = Bno085(cfg) if imu_kind == 'bno085' else SimImu(imu_kind)
+        t0, gs = time.monotonic(), []
+        while time.monotonic() - t0 < 3.0 and len(gs) < 10:
+            if getattr(imu, 'age', 0.0) < 0.2:
+                gs.append(imu.read()[1])
+            time.sleep(0.05)
+        if hasattr(imu, 'close'):
+            imu.close()
+    except Exception as e:                                  # no IMU: carry on without the correction
+        print(f'IMU not read ({e}): the neck not corrected for the body tilt', flush=True)
+        return 0.0
+    if not gs:
+        print('IMU silent: the neck not corrected for the body tilt', flush=True)
+        return 0.0
+    g = [sum(v[i] for v in gs) / len(gs) for i in range(3)]
+    pitch = lambda v: math.atan2(-v[0], -v[2])
+    shift = max(-TILT_SHIFT_MAX, min(TILT_SHIFT_MAX, pitch(g0) - pitch(g)))
+    print(f'body pitch {math.degrees(pitch(g)):+.0f} deg (at the capture {math.degrees(pitch(g0)):+.0f}): the neck rest shifted '
+          f'{math.degrees(shift):+.0f} deg', flush=True)
+    return shift
 
 
 def main():
@@ -58,6 +93,7 @@ def main():
     ap.add_argument('--max-volts', type=float, default=6.5)
     ap.add_argument('--telemetry', type=int, default=9100)
     ap.add_argument('--legs-limp', action='store_true', help='leave the legs with torque off, instead of holding them where they are')
+    ap.add_argument('--imu', default='bno085', help="bno085, a simulator address (127.0.0.1:9001), or none: the body's tilt, for the neck's correction")
     ap.add_argument('--sit', default=None, help='the sit pose the emotions move around (default poses/sit_emote.json, captured from the duck)')
     ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before the motion: the Bluetooth speaker's lag (SBC ~0.15-0.2 s) and the player's start (~0.2 s on the Pi Zero)")
     ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this')
@@ -129,6 +165,9 @@ def main():
     import emote
     from duck import sound
     sit = emote.load_sit(a.sit)                             # the head moves around the captured sit pose, never forward of it
+    shift = body_tilt_shift(cfg, sit, a.imu)                # the duck sits differently each time: the neck takes the body's tilt difference
+    if shift:
+        sit = dict(sit, neck_pitch=sit['neck_pitch'] + shift)
     emotions = [(n, emote.track(n, cfg, a.emote_scale, sit=sit)[0]) for n in emote.names()]
     for j, (lo, hi) in emote.sit_limits(sit).items():       # the sit pose's neck is past the standing design limits: let the emotions reach it
         lim[j] = (min(lim[j][0], lo), max(lim[j][1], hi))
