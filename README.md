@@ -27,9 +27,9 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 
 ### First stand under a trained policy (2026-11-24)
 
-<img src="docs/images/real/dynamixel/first_policy_stand.gif" width="270" alt="The real all-Dynamixel duck, its head shell off, standing on its own under a trained policy on a table while a hand touches its head and body; near the end it tips over and the hand catches it">
+<img src="docs/images/real/dynamixel/first_policy_stand.gif" width="270" alt="The real all-Dynamixel duck, its head shell off, standing on its own under a trained policy on a table; a hand nudges it, it takes a step to catch its balance, and stands again">
 
-The all-Dynamixel duck standing on a trained policy for the first time, not scripted joint angles ([MP4, 16 s](docs/images/real/dynamixel/first_policy_stand.mp4)). A hand touches it, and it holds. Its log: body tilt 1-2.5 deg, 36-54 mA a servo, the 6 V supply steady. At the end it goes down, most likely when 13 of its 15 servos stopped answering at once: a bus or power connection, still being chased. The policy (`pi/models/stand_bam.onnx`) was trained on Pollen's measured XL330 model, with the IMU's delay randomized well past what the duck has: the earlier policies, trained on a plain motor model, shook until every servo hit its current cap. What went wrong over the two days, and what fixed it: [Troubleshooting](docs/dynamixel/TROUBLESHOOTING.md).
+The all-Dynamixel duck standing on a trained policy for the first time, not scripted joint angles ([MP4, 5 s](docs/images/real/dynamixel/first_policy_stand.mp4)). A hand nudges it, and it takes a step to catch its balance and stands again. Its log: body tilt 1-2.5 deg, 36-54 mA a servo, the 6 V supply steady. The policy (`pi/models/stand_bam.onnx`) was trained on Pollen's measured XL330 model, with the IMU's delay randomized well past what the duck has: the earlier policies, trained on a plain motor model, shook until every servo hit its current cap. What went wrong over the two days, and what fixed it: [Troubleshooting](docs/dynamixel/TROUBLESHOOTING.md).
 
 ### First powered test
 
