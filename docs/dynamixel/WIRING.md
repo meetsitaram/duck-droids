@@ -29,6 +29,8 @@ The picture is drawn and checked from `spec/wiring_dynamixel.json` by `python -I
 
 ## Power
 
+**As run since 2026-11-24 (what the duck first stood on):** the servos on a **6 V regulator** of their own (5 A or more, short thick leads to the bus board's terminals: 5.8-5.9 V idle, 5.3-5.5 V rising, steady at 5.9-6.0 V under the stand policy), and **the Pi on a separate supply**, so a servo sag can never reset it. On a shared supply the Pi browned out mid-run and the power cut lost its Wi-Fi profile; with about 0.6 ohm in the old leads a 10 A supply still fell to 3 V. The table below is the original design, the 2S pack straight onto the XL330s: past their 6 V rating, so don't, without a regulator. See `docs/dynamixel/TROUBLESHOOTING.md`, "The supply falls to 3-4 V".
+
 | Rail | From | Feeds | Worst case |
 |---|---|---|---|
 | Battery, 7.4 V nominal, **8.4 V full** | OVONIC 2S 450 mAh 100C, on its XT30 | the board's green terminals, through the neck, then all 15 XL330s through the board. **Past ROBOTIS's 6 V maximum** | All 15 stalling at 5 V would be 22 A (1.47 A each, per ROBOTIS), and more at 7.4 V: expect the pack's voltage to sag first. Walking current hasn't been measured |

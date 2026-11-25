@@ -470,3 +470,21 @@ The Pi went from a blank card to running a policy from an Xbox controller in an 
 | The IMU library reports every 50 ms by default, under the policy's 50 Hz | Set the report interval (10 ms) and measure the real update rate |
 | The walk policy marches on the spot at a zero command (legs 6-10 deg in the sim): on the duck, bursts of current the supply couldn't give | Check a policy's zero-command behaviour in the sim before deploying it; stand and sit/stand come before walking |
 | A Pi dying with the servos on leaves them holding their last goals | Keep a hand on the duck; recover by easing the legs to sitting from the PC, then torque off |
+
+## The stand that shook: calibration, power and the sim-to-real gap (2026-11-23/24)
+
+Two days from a duck that thrashed at every hand-over to one that stands calmly under a policy. The causes stacked: a joint zero 12 deg off, an IMU mounted 9.7 deg off, a supply path that fell to 3 V, and a simulator that modelled a different servo than the one fitted. Details in `docs/dynamixel/TROUBLESHOOTING.md`. Why it took two days:
+
+| What happened | Rule |
+|---|---|
+| milli-rl is Pollen's microduck_rl, microduck runs the same XL330s, and Pollen's measured model of them (BAM xl330 m6, with the gearbox's load-dependent friction) sat in the repo unused: the Dynamixel tasks kept the plain DC motor from milli's Feetech days, with only BAM's small fixed friction copied over | When a robot changes servos, check whether the upstream already models that servo, and start from its model. Read what a fork replaced, and why, before training on it |
+| The simulated duck couldn't hold its own stand pose with no policy (it fell in 0.6 s), and nobody tried it until a policy failed on the real duck | First test of any sim: hold the real duck's stand pose with no policy. It must do what the real one does |
+| MuJoCo's joint friction creeps under a steady load: 0.3 N m only delayed the fall to 2.5 s | A geared servo's friction holds: model it stiff (`solimpfriction 0.999`), or load-dependent (BAM) |
+| The policy had no margin on the IMU's delay: trained on 0-20 ms, the real duck at about 20 ms with stale repeats. Each sim factor alone settled; only 80 ms reproduced the shake | Randomize every delay well past what's measured (the IMU 0-60 ms now), and measure the real delays from a log: the gyro against the leg encoders |
+| A knee 12 deg off and an IMU 9.7 deg off each looked like a policy problem first | Before blaming a policy: zeros against a contact pose, the IMU against the CAD's rest, and a lift-and-set-down test (lifted, every joint should sit on its goal) |
+| Calibrating by eye moved good zeros, and a long list of joints at once confused the user | One joint at a time, everything else held, the twin showing which, a reference per joint, and a guard on big changes (`calibrate.py`) |
+| Blending the policy in made it fall in the sim; a speed cap barely helped | A balance policy is a feedback loop: scaling its output down makes it worse. Support the body by hand for the first seconds instead |
+| A 10 A supply still fell to 3 V: about 0.6 ohm in the leads and connectors | Measure the voltage at the servos under load, not the supply's rating |
+| The Pi on the servos' supply browned out mid-run, and the power cut lost its Wi-Fi profile | The Pi gets its own supply. The card's boot partition (cloud-init's `network-config`, a new instance ID) can rebuild the Wi-Fi without re-imaging |
+| One missed bus reading crashed a run and dropped the duck | Every read on the robot tolerates a miss: reuse the last value briefly, then stop by easing down, never by cutting the torque |
+| Many claims went to the user as fixed before they were checked ("the IMU is stuck" was the sitting tilt; "the twin is misaligned by 6 deg" had no face shell fitted) | Check the data before saying what happened |
