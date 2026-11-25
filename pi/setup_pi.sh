@@ -50,4 +50,6 @@ sudo -u "${SUDO_USER:-$USER}" bash bt_speaker.sh install
 # A backup way in when the duck can't join the home Wi-Fi: its own hotspot after 60 s without it (pi/hotspot.sh; the PC joins it, the duck
 # at 10.42.0.1). The name and a random password go in ~/.config/duck/hotspot.conf.
 bash hotspot.sh install
+# And first: keep a backup of the Wi-Fi settings, restored at boot if a power cut lost them (twice so far; pi/wifi_guard.sh)
+bash wifi_guard.sh install
 echo 'And i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For the gamepad: bluetoothctl, then scan on, pair, trust and connect.'
