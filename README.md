@@ -25,6 +25,12 @@ Open biped robot ducks you can build from servos you can buy, each generated fro
 | Run it | [Pi code](pi/README.md) |
 | Teach it to walk | [Training](docs/TRAINING.md) |
 
+### First stand under a trained policy (2026-11-24)
+
+<img src="docs/images/real/dynamixel/first_policy_stand.gif" width="270" alt="The real all-Dynamixel duck, its head shell off, standing on its own under a trained policy on a table; a hand nudges it, it takes a step to catch its balance, and stands again">
+
+The all-Dynamixel duck standing on a trained policy for the first time, not scripted joint angles ([MP4, 5 s](docs/images/real/dynamixel/first_policy_stand.mp4)). A hand nudges it, and it takes a step to catch its balance and stands again. Its log: body tilt 1-2.5 deg, 36-54 mA a servo, the 6 V supply steady. The policy (`pi/models/stand_bam.onnx`) was trained on Pollen's measured XL330 model, with the IMU's delay randomized well past what the duck has: the earlier policies, trained on a plain motor model, shook until every servo hit its current cap. What went wrong over the two days, and what fixed it: [Troubleshooting](docs/dynamixel/TROUBLESHOOTING.md).
+
 ### First powered test
 
 <img src="docs/images/real/dynamixel/first_stand.jpg" width="270" alt="The first all-Dynamixel duck built, standing on its own servos: orange printed frame and feet, black XL330 servos, white thigh covers, its eye and face plate on the head"> <img src="docs/images/real/dynamixel/first_stand.gif" width="270" alt="The real all-Dynamixel duck rising from sitting to standing, turning its head side to side, nodding, opening and shutting its beak, and sitting back down, with its MuJoCo twin on the screen behind it doing the same">
@@ -105,6 +111,7 @@ All seven to scale ([MP4, 62 s](docs/images/family_lineup.mp4)): the camera goes
 | `spec/` | the Python spec every duck is generated from |
 | `tools/` | checks, exports, docs and renders |
 | `pi/` | the all-Dynamixel duck's Pi code and its simulator |
+| `pi/models/` | its trained policies (ONNX, each with a JSON of its inputs; `active.json` names the ones the real duck runs: RT + A `stand_bam`, RT + X `stand_emote_calm`), also on Hugging Face: [tinkerbuggy/duck-droids-dynamixel](https://huggingface.co/tinkerbuggy/duck-droids-dynamixel); `bash pi/fetch_models.sh` downloads them, `bash pi/deploy.sh` copies them to the Pi |
 
 More in [the details](docs/DETAILS.md), [the open questions](docs/OPEN_QUESTIONS.md), and [what went wrong along the way](LESSONS.md).
 
@@ -126,6 +133,6 @@ Python 3.12 with numpy, scipy, trimesh, manifold3d, shapely, Pillow, imageio and
 
 ## Credits
 
-Forked from [echo](https://github.com/meetsitaram/echo). Look and joint layout measured from [microduck's model](https://github.com/pollen-robotics/microduck_rl), whose meshes aren't in this repo. Servo mounting after the [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100), servo dynamics after [Open Duck Mini](https://github.com/apirrone/Open_Duck_Mini). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Forked from [echo](https://github.com/meetsitaram/echo). Look and joint layout measured from [microduck's model](https://github.com/pollen-robotics/microduck_rl), whose meshes aren't in this repo. Servo mounting after the [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100), servo dynamics after [Open Duck Mini](https://github.com/apirrone/Open_Duck_Mini). The duck's emotion sounds and their head motions, in `pi/sounds/microduck/`, are Pollen Robotics' from [microduck](https://github.com/pollen-robotics/microduck) and [microduck_emotions](https://github.com/pollen-robotics/microduck_emotions), Apache-2.0, included unchanged with their licence. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Apache-2.0: see [LICENSE](LICENSE).

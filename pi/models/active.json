@@ -1,0 +1,33 @@
+{
+ "about": "The models the real duck runs now, by controller mode: try these first. pi/launcher.py reads its models from here (a --model in --stand-args / --emote-args is replaced by this one), so this file is what the duck actually runs. Change a model here, then bash pi/deploy.sh and restart the launcher (systemctl --user restart duck-launcher).",
+ "stand": {
+  "combo": "RT + A",
+  "model": "stand_bam.onnx",
+  "what": "the stable stand: X nods with mmh, Y says yes, B says no, the right stick and d-pad move the head",
+  "status": "stands the real duck steadily, recovers from nudges (flat feet, no soft soles)",
+  "since": "2026-11-24",
+  "sha256": "504590d738694d19543eaae64b7f0e92cf615c3eacb8e4fb025347c3211b1fbd"
+ },
+ "emote": {
+  "combo": "RT + X",
+  "model": "stand_emote_calm.onnx",
+  "what": "standing, plays microduck's 13 emotions: RB / LB the next / previous one, X again",
+  "status": "stable on the real duck, takes recovery steps; head moves at 70 %, smoothed. Keep a hand near for sad and devastated",
+  "since": "2026-11-25",
+  "sha256": "d846e10fa3d5324c304ad9775bda7fed2f1a042590a5a759beca7f230ecd28c3"
+ },
+ "head": {
+  "combo": "RB + B",
+  "model": null,
+  "what": "sitting: the 13 emotions on the head and beak, no policy (head_pad.py, poses/sit_emote.json)",
+  "status": "all 13 work on the real duck",
+  "since": "2026-11-25"
+ },
+ "walk": {
+  "combo": "LT + A (only with --allow-walk)",
+  "model": null,
+  "what": "no walk is active: the walk models here were trained on a plain motor model, not BAM",
+  "status": "a BAM walk is next",
+  "since": null
+ }
+}

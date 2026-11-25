@@ -10,6 +10,13 @@ milli is licensed under the Apache License 2.0 (`LICENSE`). It is forked from ec
 - SO-ARM100 (TheRobotStudio/SO-ARM100, Apache-2.0): the STS3215's size and mounting pattern.
 - Open Duck Mini and Open Duck Playground (apirrone, Apache-2.0): STS3215 dynamics, and the idea of the TPU sole and foot switches.
 
+## Included from microduck: its emotion sounds (Apache-2.0)
+
+`pi/sounds/microduck/`: microduck's 13 emotion sounds (`.wav`) and the head and body keyframes made with them (`.json`),
+unchanged, from github.com/pollen-robotics/microduck (`robotd/emotions/`, commit 93b26bb), which cut them from
+github.com/pollen-robotics/microduck_emotions. Both are Apache-2.0, by Pollen Robotics; the licence is in
+`pi/sounds/microduck/LICENSE`, and `pi/sounds/README.md` gives the details.
+
 ## Bought parts' CAD inside the Fusion models and their exports
 
 `cad/duck-droids-*.f3d` and `.step` contain the makers' models of the servos, so that the model shows the real part. The STEP files themselves are not in this repo: `tools/fetch_servo_cad.py` fetches them.

@@ -177,9 +177,13 @@ def play(a, cfg):
         print(f'preview: {dur:.1f} s, then again. Close the window to stop.')
         with mujoco.viewer.launch_passive(m, d, show_left_ui=False, show_right_ui=False) as v:
             v.cam.distance, v.cam.azimuth, v.cam.elevation = 0.75, 150, -15
-            t0 = time.monotonic()
+            t0, lap = time.monotonic(), -1
             while v.is_running():
                 t = (time.monotonic() - t0) % (dur + 1.5)
+                if a.sound and int((time.monotonic() - t0) // (dur + 1.5)) != lap:
+                    from duck import sound
+                    lap = int((time.monotonic() - t0) // (dur + 1.5))
+                    sound.play(a.sound)
                 with v.lock():
                     twin.pose(m, d, adr, sample(track, t))
                     v.cam.lookat[:] = d.subtree_com[1]
@@ -208,16 +212,49 @@ def play(a, cfg):
         head = (n in st.HEAD or n in st.BEAK) and n != 'neck_pitch'      # the neck carries the whole head: stiff, like the legs
         bus.write(i, dxl.TORQUE_ENABLE, 0)
         bus.write(i, dxl.OPERATING_MODE, st.MODE_CURRENT_POSITION)
-        bus.write(i, st.GOAL_CURRENT, st.CAP['head'] if n in st.HEAD else st.CAP['beak'] if n in st.BEAK else a.cap)
+        # the neck lifts the whole head: the leg cap (at the head's 600 mA it trailed 15 deg lifting the head back into a clip's
+        # leaned-back posture, 2026-11-24)
+        bus.write(i, st.GOAL_CURRENT, a.cap if n == 'neck_pitch' else st.CAP['head'] if n in st.HEAD else st.CAP['beak'] if n in st.BEAK else a.cap)
         bus.write(i, dxl.POSITION_P, a.neck_gain if n == 'neck_pitch' else a.head_gain if head else a.gain)
         bus.write(i, st.POSITION_D, a.neck_damping if n == 'neck_pitch' else a.head_damping if head else 0)
         bus.write(i, dxl.PROFILE_VELOCITY, 0)
+
+    pub, imu, logw, logf = None, None, None, None
+    if a.telemetry:                               # the twin on the PC (twin.py --remote <pi>): the duck, the IMU, and the goal as a see-through duck
+        from duck.telemetry import Publisher
+        pub = Publisher()
+        try:
+            from duck.hardware import Bno085
+            imu = Bno085(cfg)
+        except Exception as e:                    # noqa: BLE001  plays without it
+            print(f'IMU not answering ({e}): no IMU in the stream or the log', flush=True)
+    if a.log:
+        import csv
+        logf = open(a.log, 'w', newline='')
+        logw = csv.writer(logf)
+        logw.writerow(['t', 'phase', 'volts'] + [f'{n}_{k}' for n in J for k in ('goal', 'q', 'mA')] + ['grav_x', 'grav_y', 'grav_z', 'gyro_x', 'gyro_y', 'gyro_z'])
+    last = [None, None]
 
     def state():
         raw = bus.sync_read(ids, 126, 10)
         cur = {n: int.from_bytes(raw[i][0:2], 'little', signed=True) for n, i in zip(J, ids)}
         pos = {n: int.from_bytes(raw[i][6:10], 'little', signed=True) for n, i in zip(J, ids)}
+        last[:] = [cur, pos]
         return cur, pos
+
+    def record(t, phase, q):
+        """stream to the twin and log one row: the goal q, the measured angles, the currents, the IMU"""
+        if last[0] is None:
+            return
+        cur, pos = last
+        meas = {n: q0[n] + (pos[n] - p0[n]) * sign[n] * K for n in J}
+        gyro, grav = imu.read() if imu else (None, None)
+        if pub:
+            pub.send({cfg['joints'][n]['id']: pos[n] for n in J}, grav, gyro,
+                     target=dict(goal={n: round(q[n], 4) for n in J}, tilt=[0.0, 0.0], mA=cur), phase=phase)
+        if logw:
+            logw.writerow([round(t, 3), phase, volts] + [v for n in J for v in (round(q[n], 4), round(meas[n], 4), cur[n])] +
+                          [round(float(x), 4) for x in (*(grav if grav is not None else (0, 0, 0)), *(gyro if gyro is not None else (0, 0, 0)))])
 
     _, p0 = state()
     q0 = angles_of(p0, cfg, J)
@@ -240,10 +277,19 @@ def play(a, cfg):
                 print(f'starting in {k} s', flush=True)
                 time.sleep(1)
 
-    def goal(q):
-        return [p0[n] + int(round((q[n] - q0[n]) * sign[n] / K)) for n in J]
+    lim = cfg.get('limits', {})
 
-    first = track[0][1]
+    def clip(n, v):
+        # every goal inside the config's limits, as run_policy.py does: a retargeted clip leans the neck back to +42 deg, past the real
+        # duck's stop at +32 (2026-11-24, by hand) and the config's +8.6 (wires); it pressed into the stop at the full cap for 30 s
+        return min(max(v, lim[n][0]), lim[n][1]) if n in lim else v
+
+    def goal(q, limit=True):
+        # limit=False for the eases in and back, which run between the clipped first pose and wherever the duck is (a limp joint can
+        # hang outside its limits: clipping there made the first goal jump 27 deg, 2026-11-24)
+        return [p0[n] + int(round(((clip(n, q[n]) if limit else q[n]) - q0[n]) * sign[n] / K)) for n in J]
+
+    first = {n: clip(n, v) for n, v in track[0][1].items()}
     off = {n: math.degrees(abs(first[n] - q0[n])) for n in J}
     far = {n: g for n, g in off.items() if g > a.max_start}
     if far:
@@ -266,7 +312,7 @@ def play(a, cfg):
 
     t0, stopped, peak, worst = time.monotonic(), None, {n: 0 for n in J}, 0.0
     total = ease_in + dur
-    hw, last_slow = {}, 0.0
+    hw, last_slow, started_sound = {}, 0.0, False
     try:
         while True:
             t = time.monotonic() - t0
@@ -275,10 +321,15 @@ def play(a, cfg):
             if t < ease_in:
                 _, q = st.at(plan, q0, t)
             else:
+                if a.sound and not started_sound:      # the sound starts with the motion, not with the ease in
+                    from duck import sound
+                    sound.play(a.sound)
+                    started_sound = True
                 q = sample(track, t - ease_in)
-            g = goal(q)
+            g = goal(q, limit=t >= ease_in)
             bus.sync_write(ids, dxl.GOAL_POSITION, g)
             cur, pos = state()
+            record(t, 'ease in' if t < ease_in else 'play', q)
             if show:
                 show({n: q0[n] + (pos[n] - p0[n]) * sign[n] * K for n in J})
             if t - last_slow > 0.5:
@@ -315,7 +366,10 @@ def play(a, cfg):
             if qb is None:
                 break
             try:
-                bus.sync_write(ids, dxl.GOAL_POSITION, goal(qb))
+                bus.sync_write(ids, dxl.GOAL_POSITION, goal(qb, limit=False))
+                if pub or logw:
+                    state()
+                    record(time.monotonic() - t0, 'ease back', qb)
                 if show:
                     _, pos = state()
                     show({n: q0[n] + (pos[n] - p0[n]) * sign[n] * K for n in J})
@@ -335,6 +389,12 @@ def play(a, cfg):
         if view:
             time.sleep(1)
             view.close()
+        if pub:
+            pub.close()
+        if imu:
+            imu.close()
+        if logf:
+            logf.close()
     print('torque off. ' + (f'Stopped at {stopped[0]} s: {stopped[1]}' if stopped else 'Finished.') + f' Worst lag {worst:.1f} deg.')
     print('peak mA: ' + ', '.join(f'{n} {v}' for n, v in sorted(peak.items(), key=lambda kv: -kv[1])[:6]))
 
@@ -353,6 +413,9 @@ def main():
     ap.add_argument('--max-seconds', type=float, default=60.0, help='record: the longest recording')
     ap.add_argument('--speed', type=float, default=1.0, help='play: 0.5 is half speed')
     ap.add_argument('--preview', action='store_true', help='play: on the model only, no servos')
+    ap.add_argument('--sound', help='play: a sound (pi/sounds/microduck name or a wav) started as the motion starts, after the ease in (emote.py uses it)')
+    ap.add_argument('--telemetry', action='store_true', help='play: stream to the twin on the PC (twin.py --remote <pi>): the duck, the IMU, the goal pose')
+    ap.add_argument('--log', help='play: a CSV of every tick: the goal, measured angle and current per joint, and the IMU')
     ap.add_argument('--ease-back', type=float, default=6.0, help='play: seconds to ease back to where it started, before the torque goes off')
     ap.add_argument('--cap', type=int, default=800, help='play: current cap per leg servo, mA')
     ap.add_argument('--gain', type=int, default=1500, help='play: leg position gain')

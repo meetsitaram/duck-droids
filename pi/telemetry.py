@@ -33,7 +33,10 @@ def main():
     imu = None
     if not a.no_imu:
         from duck.hardware import Bno085
-        imu = Bno085(cfg)
+        try:
+            imu = Bno085(cfg)
+        except Exception as e:                             # noqa: BLE001  a loose IMU wire shouldn't stop the twin: the servos alone
+            print(f'IMU not answering ({e}): sending the servos only', flush=True)
     pub = Publisher(a.net_port)
     print(f'sending {len(ids)} servos{" and the IMU" if imu else ""} on port {a.net_port}; Ctrl-C to stop', flush=True)
     nxt = time.monotonic()

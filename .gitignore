@@ -21,3 +21,5 @@ spec/verify_points*.json
 reports/fusion_points*.json
 .venv/
 pi/stand_test_log.csv
+# the duck Pi's user, address and key: .env.example is the template
+.env

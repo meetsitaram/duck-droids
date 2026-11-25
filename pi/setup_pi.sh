@@ -42,6 +42,9 @@ if [ "$1" = "--uart" ]; then
 else
   echo 'Done (USB). Reboot, then: .venv/bin/python -m duck.set_id --scan (jumpers at B; the port is found by itself).'
 fi
-# The controller launcher at boot (B: head mode on and off). Walking from the controller stays off until the power is proven: --allow-walk
-sudo bash install_launcher.sh
+# The controller launcher at boot, as a user service (no sudo): B head mode, Menu + X stand. Walking stays off until the power is proven: --allow-walk
+sudo -u "${SUDO_USER:-$USER}" bash install_launcher_user.sh
+# A Bluetooth speaker as the audio output (no headphone jack on the Zero 2 W): PipeWire, and the user service duck-bt-speaker that pairs and
+# connects it at each boot. Choose the speaker in config/bt_speaker.conf or with: bash bt_speaker.sh set "NAME or MAC" (pi/README.md).
+sudo -u "${SUDO_USER:-$USER}" bash bt_speaker.sh install
 echo 'And i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For the gamepad: bluetoothctl, then scan on, pair, trust and connect.'

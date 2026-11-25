@@ -1,0 +1,32 @@
+{
+ "left_hip_yaw": 0.22703,
+ "left_hip_roll": 0.03682,
+ "left_hip_pitch": -0.00153,
+ "left_knee": -0.16567,
+ "left_ankle": 0.22856,
+ "neck_pitch": -1.98619,
+ "head_pitch": -0.36128,
+ "head_yaw": 0.0,
+ "head_roll": 0.0,
+ "right_hip_yaw": 0.01687,
+ "right_hip_roll": 0.03988,
+ "right_hip_pitch": -0.19942,
+ "right_knee": -0.29913,
+ "right_ankle": -0.59825,
+ "beak": 0.01381,
+ "grav": [
+  -0.9989,
+  -0.0463,
+  0.0009
+ ],
+ "about": "the duck sitting, captured from the real duck 2026-11-25 (twin.py --remote --save-pose; grav from its IMU). The head rest (neck, head pitch) is the raised pose the user set by hand; head mode raises the head to it when it starts, and the emotions move around it. crouch: the neck and head pitch as it first sat, the furthest forward the neck may go. grav: the IMU tilt (grav_imu) turned 8.5 deg forward until the feet touch the floor, as the duck sits (the user, 2026-11-25). 2026-11-25 later: raising the rest 10-20 deg higher tipped the duck over backwards; back to the pose the user first set; then the head pitch 20 deg further forward (the face sat tilted up, the user); then the neck 10 deg further forward, the face kept (angry tipped it over backwards); then back to the neck -114 deg, head pitch -21 deg the user set (the sitting moves are half size and smoothed now, angry smaller still)",
+ "crouch": {
+  "neck_pitch": -3.01581,
+  "head_pitch": -1.3453
+ },
+ "grav_imu": [
+  -0.988,
+  -0.0399,
+  0.1486
+ ]
+}

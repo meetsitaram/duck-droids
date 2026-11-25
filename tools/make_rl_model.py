@@ -127,8 +127,11 @@ def main():
             _, _, arm, dmp, frc, _ = at_joint(spec, j)
             ax = sg * AXIS[j['axis']]
             lo, hi = sorted((sg * j['lower'], sg * j['upper']))
+            # friction that holds a steady load, as a geared servo does: MuJoCo's default lets a joint creep under load (spec/actuators.json friction_note)
+            si = spec['actuators'][j['act']].get('friction_solimp')
+            sif = f' solimpfriction="{" ".join(f"{v:g}" for v in si)}"' if si else ''
             x.append(f'<joint name="{nm}" axis="{ax[0]} {ax[1]} {ax[2]}" range="{lo:.4f} {hi:.4f}" armature="{arm:.6g}" '
-                     f'damping="{dmp:.5g}" frictionloss="{frc:.5g}"/>')
+                     f'damping="{dmp:.5g}" frictionloss="{frc:.5g}"{sif}/>')
         mesh = S.all[ln].to_mesh()
         if ln == 'beak_link':                      # microduck's mouth_tip site, for the floor pick: the front of the beak, its middle across and in height
             v = np.asarray(mesh.vert_properties[:, :3], float)
