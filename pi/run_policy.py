@@ -18,8 +18,8 @@ With --pad the duck waits, sitting with torque on, for the controller:
   left stick walk: up/down forward and back, left/right sideways      right stick, left/right: turn
   RT         held, walks faster, up to --vx-boost                    d-pad: the head, up/down pitch, left/right turn
   X          a nod                                                    Y: beak open / shut
-  with --emotions (a stand policy, models/stand_emote.onnx): LB / RB pick one of microduck's 13 emotions (printed, a short buzz),
-  X plays it: its head motion through the policy's head command (as it trained), its beak straight to the beak servo, its sound on the
+  with --emotions (a stand policy, models/stand_emote.onnx): RB / LB play the next / previous of microduck's 13 emotions (printed, a
+  short buzz; pressed during one, it plays when that ends), X the same one again. Each plays its head motion through the policy's head command (as it trained), its beak straight to the beak servo, its sound on the
   speaker, all from the same start. The d-pad and stick don't steer the head while it plays; it ends back at the standing pose.
   B          sit down (the scripted lower), then waits for A again   Menu (while sitting): quit
   LB + RB    stop: eases down at once, torque off, quit. If the controller drops for --pad-lost seconds while standing, it sits down.
@@ -134,7 +134,7 @@ class PadDriver:
     def __init__(self, a, cfg=None):
         from duck.gamepad import Holds, open_pad
         self.a = a
-        self.emotions, self.sel, self.emo, self.beak_goal = None, 0, None, None
+        self.emotions, self.sel, self.emo, self.beak_goal, self.queued = None, 0, None, None, False
         self.standing = False                               # set by the main loop: emotions play only under the policy
         if getattr(a, 'emotions', False):
             import emote
@@ -180,13 +180,19 @@ class PadDriver:
         step = np.array([a.accel, a.accel, 4 * a.accel]) * dt
         self.walk += np.clip(want - self.walk, -step, step)
         if self.emotions:
-            if events & {'LB', 'RB'} and 'STOP' not in events and self.emo is None:
+            if events & {'LB', 'RB'} and 'STOP' not in events:      # RB / LB: the next / previous one; it plays now, or when one playing ends
                 self.sel = (self.sel + (1 if 'RB' in events else -1)) % len(self.emotions)
-                print(f'emotion: {self.emotions[self.sel][0]} (X to play)', flush=True)
+                print(f'emotion: {self.emotions[self.sel][0]}', flush=True)
                 self.pad.rumble(60, 0.3)
-            if 'X' in events and self.emo is None and self.standing:
+                self.queued = True
+            if 'X' in events:                                       # X: the same one again
+                self.queued = True
+            if not self.standing:                                   # presses before it stands (or while it sits) don't wait to play later
+                self.queued = False
+            if self.queued and self.emo is None and self.standing:
+                self.queued = False
                 name, tr = self.emotions[self.sel]
-                self.emo = (name, tr, now)
+                self.emo = (name, tr, now + self.a.audio_lead)     # the motion starts audio_lead after the sound: the speaker's lag
                 self.sound.play(name)
                 print(f'playing {name} ({tr[-1][0]:.1f} s)', flush=True)
         elif 'X' in events and self.nod_t is None:
@@ -212,7 +218,7 @@ class PadDriver:
                 self.emo = None
                 if not self.standing:
                     self.sound.stop()
-            else:
+            elif now >= t0:
                 q = self.sample(tr, now - t0)
                 head = tuple(float(np.clip(q[j] - self.home.get(j, 0.0), *self.EMOTE_LIMITS[j])) for j in ('neck_pitch', 'head_pitch', 'head_yaw', 'head_roll'))
                 self.beak_goal = float(q['beak'])
@@ -298,6 +304,7 @@ def main():
     ap.add_argument('--rise-policy-s', type=float, default=6.0, help='seconds of --rise-model after A')
     ap.add_argument('--auto-stand', action='store_true', help='with --pad: stand up at once (the launcher has already had RT + A), and end when it sits down')
     ap.add_argument('--emotions', action='store_true', help="with --pad and a stand policy (models/stand_emote.onnx): LB / RB pick one of microduck's emotions, X plays it (head through the policy, beak, sound)")
+    ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before an emotion's motion: the Bluetooth speaker's lag and the player's start")
     ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this (the policy trained on 0.7-1.0)')
     ap.add_argument('--hold-s', type=float, default=1.0, help='seconds a controller combo (RT + A) must be held')
     ap.add_argument('--stand-only', action='store_true', help='with --pad: never send a walk command (for the stand policies, stand_nod.onnx); the right stick and d-pad move the head')
@@ -436,6 +443,12 @@ def main():
     for i in ids:
         bus.write(i, dxl.TORQUE_ENABLE, 1)
         bus.write(i, LED, 1)
+    if os.path.exists(a.log):                     # keep the last runs: the one before is moved to logs/, named by when it ended (2026-11-25:
+        old = os.path.join(os.path.dirname(a.log), 'logs')     # a fall's log was overwritten by the next try)
+        os.makedirs(old, exist_ok=True)
+        os.replace(a.log, os.path.join(old, 'run_policy_' + time.strftime('%Y%m%d-%H%M%S', time.localtime(os.path.getmtime(a.log))) + '.csv'))
+        for f in sorted(os.listdir(old))[:-30]:   # the last 30
+            os.remove(os.path.join(old, f))
     log = open(a.log, 'w', newline='')
     w = csv.writer(log)
     pi_power = PiPower()

@@ -4,11 +4,17 @@ directions and range without standing the duck.
 
   right stick   up/down: head pitch (stick up tips the face down, forward), left/right: head turn       held: the joint keeps moving, let go: it stays
   d-pad         up/down: neck pitch (up tips the neck back), left/right: head roll
-  X             a nod                      Y   beak open / shut
-  A             back to where it started   RB + B held 1 s   back to where it started, torque off, quit (buzzes)
+  on start      sitting, the head rises (with the mmh sound; RB + B lowers it with the sad sound) to its rest pose (poses/sit_emote.json: the neck raised as the user set it), at most 0.6 rad/s
+  RB / LB       play the next / previous of microduck's 13 emotions at once (a short buzz; the name is printed; it cuts off one playing)
+  X             play the same one again    Y   beak open / shut
+                Sitting, the head and
+                beak follow Pollen's keyframes around the sit pose (poses/sit_emote.json, captured from the duck; emote.py's sitting mapping:
+                the neck and head pitch never forward of it, at most 0.5 / 0.6 rad back), the sound starts on the speaker, and the head eases
+                in from where it is and back to it afterwards. The stick and d-pad wait till it ends. Preview: python emote.py --all --sit --preview
+  A             back to the head's rest pose (sitting), eased   RB + B held 1 s   back to where it started, torque off, quit (buzzes)
   LB + RB       stop at once: torque off, quit
 
-Safety as stand_test.py: current capped (head 600 mA, beak 300), each joint's speed limited (--speed), every goal inside the joint's
+Safety as stand_test.py: current capped (neck 1000 mA, the rest of the head 600, beak 300), each joint's speed limited (--speed), every goal inside the joint's
 limits (widened to where it starts, if it starts past them: the limp neck sits past its +9 deg), a hardware error or a low supply stops it.
 Streams to the PC's twin (python twin.py --remote <pi>).
 
@@ -30,9 +36,15 @@ from duck.gamepad import deadzone, open_pad  # noqa: E402
 from stand_test import CAP, GOAL_CURRENT, HW_ERROR, LED, MODE_CURRENT_POSITION, POSITION_D  # noqa: E402
 
 K = 2 * math.pi / dxl.TICKS_PER_REV
+POSITION_I = (82, 2)                                        # XL330 / XC330 control table: position I gain
 RATE = 50.0
 JOINTS = ['neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'beak']
-NOD = [(0.5, 0.15), (0.6, -0.12), (0.5, 0.0)]               # (seconds, head pitch offset, + is nose down): one nod
+SIT_NEAR = math.radians(25)                                 # emotions play only with the neck this near the sit pose; the head pitch
+# flops to a different angle each sit (-36 and -93 deg against the captured -77, 2026-11-25), so it eases in from wherever it is
+RAISE_SPEED = 0.6                                           # rad/s at most, raising the head from the crouch to its rest when it starts
+EASE_SPEED = 1.0                                            # rad/s at most in the ease-in and back: a far head takes longer
+START_SOUND, END_SOUND = 'mmh', 'sad'                       # as the head rises at the start, and as it lowers at RB + B
+EASE0 = 0.8                                                  # s into an emotion's first pose from where the head is, and back after
 
 
 def main():
@@ -46,6 +58,11 @@ def main():
     ap.add_argument('--max-volts', type=float, default=6.5)
     ap.add_argument('--telemetry', type=int, default=9100)
     ap.add_argument('--legs-limp', action='store_true', help='leave the legs with torque off, instead of holding them where they are')
+    ap.add_argument('--sit', default=None, help='the sit pose the emotions move around (default poses/sit_emote.json, captured from the duck)')
+    ap.add_argument('--audio-lead', type=float, default=0.3, help="s the sound starts before the motion: the Bluetooth speaker's lag (SBC ~0.15-0.2 s) and the player's start (~0.2 s on the Pi Zero)")
+    ap.add_argument('--emote-scale', type=float, default=1.0, help='every emotion move scaled by this')
+    ap.add_argument('--neck-cap', type=int, default=1000, help="mA for the neck, which holds the whole head out on its arm: at 600 it sagged 36 deg sitting (2026-11-25)")
+    ap.add_argument('--hold-i', type=int, default=300, help='position I gain for the neck and head pitch, so a steady sag closes (0 off)')
     ap.add_argument('--leg-cap', type=int, default=800, help='mA, the legs holding')
     ap.add_argument('--leg-gain', type=int, default=800)
     a = ap.parse_args()
@@ -70,8 +87,9 @@ def main():
         bus.write(i, dxl.PROFILE_VELOCITY, 0)
     for n, i in zip(JOINTS, ids):
         bus.write(i, dxl.OPERATING_MODE, MODE_CURRENT_POSITION)
-        bus.write(i, GOAL_CURRENT, CAP['beak'] if n == 'beak' else CAP['head'])
+        bus.write(i, GOAL_CURRENT, CAP['beak'] if n == 'beak' else a.neck_cap if n == 'neck_pitch' else CAP['head'])
         bus.write(i, dxl.POSITION_P, 1200 if n == 'neck_pitch' else 600)
+        bus.write(i, POSITION_I, a.hold_i if n in ('neck_pitch', 'head_pitch') else 0)   # the steady sag under the head's weight closed
         bus.write(i, POSITION_D, 100 if n == 'neck_pitch' else 300)
         bus.write(i, dxl.PROFILE_VELOCITY, 0)
     raw = bus.sync_read(ids, dxl.PRESENT_POSITION[0], 4)
@@ -100,12 +118,33 @@ def main():
     for i in ids + leg_ids:
         bus.write(i, dxl.TORQUE_ENABLE, 1)
         bus.write(i, LED, 1)
-    print(f'legs {"holding where they are" if leg_ids else "limp"}. ' f'supply {volts:.1f} V. Head on the controller: right stick pitch and turn, d-pad neck and roll, X nod, Y beak, A recentre, '
+    print(f'legs {"holding where they are" if leg_ids else "limp"}. ' f'supply {volts:.1f} V. Head on the controller: right stick pitch and turn, d-pad neck and roll, LB/RB pick an emotion, X plays it, Y beak, A recentre, '
           f'RB + B held 1 s quits, LB+RB stops. Start: ' + '  '.join(f'{n} {math.degrees(q0[n]):+.0f}' for n in JOINTS), flush=True)
     q = dict(q0)
     from duck.gamepad import Holds
     holds = Holds({'HEADMODE': {'RB', 'B'}}, a.hold_s)     # RB + B held 1 s: back to the start, torque off, quit (the launcher's toggle)
-    beak_open, nod_t, prev, stopped, tick = False, None, set(), None, 0
+    import emote
+    from duck import sound
+    sit = emote.load_sit(a.sit)                             # the head moves around the captured sit pose, never forward of it
+    emotions = [(n, emote.track(n, cfg, a.emote_scale, sit=sit)[0]) for n in emote.names()]
+    for j, (lo, hi) in emote.sit_limits(sit).items():       # the sit pose's neck is past the standing design limits: let the emotions reach it
+        lim[j] = (min(lim[j][0], lo), max(lim[j][1], hi))
+    sel, emo = 0, None                                      # emo: (name, track, start time, the pose it started from)
+    print('emotions: LB / RB to pick, X to play: ' + ', '.join(n for n, _ in emotions), flush=True)
+    rest = dict(q0, **{j: sit[j] for j in ('neck_pitch', 'head_pitch', 'head_yaw', 'head_roll')}, beak=max(0.02, lim['beak'][0]))
+    crouch_neck = sit.get('crouch', {}).get('neck_pitch', sit['neck_pitch'])
+    sit_ok = min(abs(q0['neck_pitch'] - crouch_neck), abs(q0['neck_pitch'] - sit['neck_pitch'])) <= SIT_NEAR
+    rise = None
+    if sit_ok:                                              # raise the head to its rest pose (the user's, 2026-11-25), then the emotions
+        dur = max(0.5, max(abs(rest[j] - q0[j]) for j in JOINTS) / RAISE_SPEED)
+        rise = (time.monotonic(), dur, dict(q0))
+        print(f'raising the head to its rest pose over {dur:.1f} s', flush=True)
+        sound.play(START_SOUND)                             # waking up (the user, 2026-11-25)
+    else:
+        print(f'the neck ({math.degrees(q0["neck_pitch"]):+.0f} deg) is far from the sit pose: not raising the head, and no emotions '
+              f'(sit the duck, or recapture poses/sit_emote.json)', flush=True)
+    beak_open, prev, stopped, tick = False, set(), None, 0
+    last_goal = dict(q0)
     back_t = None
     nxt = time.monotonic()
     try:
@@ -118,6 +157,7 @@ def main():
                 break
             if holds.check(s) == 'HEADMODE' and back_t is None:
                 pad.rumble(300)
+                sound.play(END_SOUND)                       # going back down (the user, 2026-11-25)
                 back_t, q_back = time.monotonic(), dict(q)
             if back_t is not None:                          # back to the start over 2 s, then quit
                 u = min(1.0, (time.monotonic() - back_t) / 2.0)
@@ -127,16 +167,38 @@ def main():
                     bus.sync_write(ids, dxl.GOAL_POSITION, ticks(q))
                     time.sleep(0.3)
                     break
+            elif rise is not None:                          # raising the head first: the controller waits
+                u = min(1.0, (time.monotonic() - rise[0]) / rise[1])
+                u = u * u * (3 - 2 * u)
+                q = {n: rise[2][n] + u * (rest[n] - rise[2][n]) for n in JOINTS}
+                if u >= 1.0:
+                    rise = None
+                    print('head at rest: LB / RB pick an emotion, X plays it', flush=True)
             else:
-                if 'A' in new:
-                    q = dict(q0)
+                if 'A' in new and emo is None:              # back to the rest pose (sitting) or the start, eased
                     beak_open = False
+                    to = rest if sit_ok else q0
+                    rise = (time.monotonic(), max(0.5, max(abs(to[j] - q[j]) for j in JOINTS) / RAISE_SPEED), dict(q))
+                    rest = to
                 if 'Y' in new:
                     beak_open = not beak_open
-                if 'X' in new and nod_t is None:
-                    nod_t = time.monotonic()
+                play = 'X' in new                           # X: the picked one again
+                if new & {'LB', 'RB'} and not {'LB', 'RB'} <= s.held:   # RB / LB: the next / previous one, at once (cutting one off)
+                    sel = (sel + (1 if 'RB' in new else -1)) % len(emotions)
+                    print(f'emotion: {emotions[sel][0]}', flush=True)
+                    pad.rumble(60, 0.3)
+                    play = True
+                if play:
+                    off = abs(q['neck_pitch'] - sit['neck_pitch'])
+                    if not sit_ok or off > SIT_NEAR:                      # the neck far from the sit pose: the ease-in would swing the head a long way
+                        print(f'not playing: the neck is {math.degrees(off):.0f} deg from the sit pose (poses/sit_emote.json); '
+                              f'sit the duck as captured, or recapture the pose', flush=True)
+                        pad.rumble(150, 1.0)
+                    else:
+                        emo = (emotions[sel][0], emotions[sel][1], time.monotonic(), dict(last_goal))   # eased from where the head is
+                        print(f'playing {emo[0]} ({emo[1][-1][0]:.1f} s)', flush=True)
                 dt = 1 / RATE
-                if s.lost:
+                if s.lost or emo is not None:
                     rates = {}
                 else:
                     ax = s.axes
@@ -147,19 +209,27 @@ def main():
                 tgt_beak = 0.3 if beak_open else max(0.02, lim['beak'][0])
                 q['beak'] += max(-a.speed * dt, min(a.speed * dt, tgt_beak - q['beak']))
             goal = dict(q)
-            if nod_t is not None and back_t is None:
-                prev_v, t_n, v = 0.0, time.monotonic() - nod_t, None
-                for dur, val in NOD:
-                    if t_n < dur:
-                        f = t_n / dur
-                        v = prev_v + f * f * (3 - 2 * f) * (val - prev_v)
-                        break
-                    t_n -= dur
-                    prev_v = val
-                if v is None:
-                    nod_t = None
+            if emo is not None and back_t is None:          # ease in, the keyframes (the sound starts with them), ease back
+                name, tr, t_e, q_from = emo[:4]
+                t_n, dur = time.monotonic() - t_e, tr[-1][0]
+                EASE = max(EASE0, max(abs(q_from[j] - tr[0][1][j]) for j in JOINTS) / EASE_SPEED)
+                if t_n >= EASE - a.audio_lead and not emo[4:]:     # the sound ahead of the motion, for the speaker's lag
+                    sound.play(name)
+                    emo = emo + (True,)
+                if t_n < EASE:
+                    u = t_n / EASE
+                    u, k = u * u * (3 - 2 * u), tr[0][1]
+                    goal = {n: q_from[n] + u * (k[n] - q_from[n]) for n in JOINTS}
+                elif t_n < EASE + dur:
+                    goal = dict(emote.sample(tr, t_n - EASE))
+                elif t_n < 2 * EASE + dur:
+                    u = (t_n - EASE - dur) / EASE
+                    u, k = u * u * (3 - 2 * u), tr[-1][1]
+                    goal = {n: k[n] + u * (q_from[n] - k[n]) for n in JOINTS}
                 else:
-                    goal['head_pitch'] = min(lim['head_pitch'][1], max(lim['head_pitch'][0], q['head_pitch'] + v))
+                    emo = None
+                goal = {n: min(lim[n][1], max(lim[n][0], goal[n])) for n in JOINTS}
+            last_goal = dict(goal)
             bus.sync_write(ids, dxl.GOAL_POSITION, ticks(goal))
             if tick % 25 == 0:
                 volts = bus.read(ids[0], dxl.PRESENT_VOLTAGE) / 10

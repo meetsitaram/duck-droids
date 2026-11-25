@@ -235,6 +235,20 @@ python emote.py yes                    # on the duck: motion.py's playback of th
 On the duck it uses motion.py's playback and its safety (eases in, a joint lagging stops it, eases back, torque off) and doesn't
 command the legs. Big neck moves (sad, devastated) shift the weight forward: steady the duck, or `--scale 0.5`. Not yet tried on the duck.
 
+### The emotions sitting (head_pad.py, RB + B)
+
+The safest way to show them: the legs hold the sit, only the head and beak move. **RB + B** (1 s) starts it: the `mmh` sound plays as the
+head rises from the crouch to its rest pose (`poses/sit_emote.json`, set by hand on the duck). **RB / LB** play the next / previous
+emotion at once (no X needed; a press during one cuts it off, eased), **X** plays the same one again, **RB + B** lowers the head with the
+`sad` sound and quits, **LB + RB** stops at once. The sound starts 0.3 s ahead of the motion for the Bluetooth speaker's lag (`--audio-lead`).
+
+Sitting, every move is half size (head turns and rolls 60 %) and smoothed over 0.2 s, centred so the timing against the sound holds;
+angry, laugh, impatient and excited, which still rocked the duck back, smaller again and smoothed 0.3 s (`emote.py` SIT_AMP, SIT_GENTLER).
+The neck stays between 12 deg forward of its rest (the head clear of the feet) and 6 deg back of it; the head pitch 14 deg forward, 20 back.
+The neck runs at 1000 mA with an integral gain, so it holds the head instead of sagging (at 600 mA it sagged 36 deg). It rises only if the
+neck starts near the crouch or the rest. Preview: `python emote.py --all --sit --preview`; the reel: `docs/images/emotions_sitting_sim.mp4`
+(kinematic: it can't show a fall).
+
 ### The emotions while it balances (stand_emote.onnx, RT + X)
 
 `models/stand_emote.onnx` is a stand policy trained to keep its balance while the head performs all 13 emotions (milli-rl

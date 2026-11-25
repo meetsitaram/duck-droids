@@ -47,16 +47,51 @@ def load_config(path=None):
     return json.load(open(path or os.path.join(HERE, 'config', 'dynamixel.json')))
 
 
-def track(name, cfg, scale=1.0, full=False):
-    """The emotion as joint angles over time: [(t, {joint: rad})], and what had to be clipped or left out."""
+SIT_POSE = os.path.join(HERE, 'poses', 'sit_emote.json')   # the duck sitting, captured from it (legs, head, and its IMU's gravity)
+SIT_BACK = {'neck_pitch': 0.1, 'head_pitch': 0.35}    # rad: sitting, how much further back than the head's rest the neck and head may go
+# (the user, 2026-11-25: "dont go all the way back"). Forward: the neck no further than the pose's "crouch" (as the duck first sat: "not
+# go forward than that"), the head pitch SIT_NOD past its rest
+SIT_NOD = 0.25
+SIT_AMP = {'neck_pitch': 0.5, 'head_pitch': 0.5, 'head_yaw': 0.6, 'head_roll': 0.6}   # sitting, every move this size: the full ones rocked the
+SIT_GENTLER = {'angry': 0.6, 'laugh': 0.6, 'impatient': 0.6, 'excited': 0.7}   # sitting, these still rocked the duck (their wide fast nods
+# and angry's head shake, 2026-11-25): smaller still, and smoothed 1.5x as long; the other nine as they are
+SIT_SMOOTH = 0.2                                     # duck back onto its back (angry, 2026-11-25); s, the centred average that rounds off the jerks
+SAG_MARGIN = 0.087                                   # rad (5 deg): commands stop this far above the pose's "lowest", as the neck sags under the head
+SIT_FWD = 0.21                                       # rad (12 deg; 25 and 30 before the rest moved lower: the gap at full nod stays near 28 mm in the sim): the neck no further forward than this past the rest, nor past the crouch. At the
+# crouch (60 deg) with a 20 deg nod the head reached the feet (sad, on the duck, 2026-11-25); 30 deg and 14 deg leave 40+ mm in the sim
+
+
+def load_sit(path=None):
+    return json.load(open(path or SIT_POSE))
+
+
+def sit_limits(sit):
+    """{joint: (lo, hi)} for the neck and head pitch sitting: forward (neck -, head pitch + nose down) no further than the crouch (the neck)
+    and SIT_NOD (the head pitch), back SIT_BACK past the rest."""
+    crouch = sit.get('crouch', {})
+    fwd = max(crouch.get('neck_pitch', sit['neck_pitch']), sit['neck_pitch'] - (SIT_FWD if crouch else 0.0))
+    if 'lowest' in sit:                              # the lowest the neck may go, as the user set it on the duck, less the sag margin
+        fwd = max(fwd, sit['lowest']['neck_pitch'] + SAG_MARGIN)
+    return {'neck_pitch': (fwd, sit['neck_pitch'] + SIT_BACK['neck_pitch']),
+            'head_pitch': (sit['head_pitch'] - SIT_BACK['head_pitch'], sit['head_pitch'] + (SIT_NOD if crouch else 0.0))}
+
+
+def track(name, cfg, scale=1.0, full=False, sit=None):
+    """The emotion as joint angles over time: [(t, {joint: rad})], and what had to be clipped or left out. With sit (a pose from
+    load_sit), the head moves around the sit pose's head instead of the standing home, inside sit_limits."""
     keys = json.load(open(os.path.join(EMOTIONS, name + '.json')))['keyframes']
     sits = any(k.get('skill') == 'sit' for k in keys)
-    home, lim = cfg['home'], cfg.get('limits', {})
+    home, lim = cfg['home'], dict(cfg.get('limits', {}))
+    if sit:
+        home = dict(home, **{j: sit[j] for j in HEAD_MAP.values()})
+        lim.update(sit_limits(sit))
     out, clipped, dropped = [], {}, set()
     for k in keys:
         q = {}
         for src, j in HEAD_MAP.items():
             f = SIT_SCALE if sits and not full and j in ('neck_pitch', 'head_pitch') else 1.0
+            if sit:
+                f *= SIT_AMP[j] * SIT_GENTLER.get(name, 1.0)
             v = home.get(j, 0.0) + scale * f * float(k.get(src) or 0.0)
             if j in lim and not lim[j][0] <= v <= lim[j][1]:
                 c = min(max(v, lim[j][0]), lim[j][1])
@@ -72,7 +107,25 @@ def track(name, cfg, scale=1.0, full=False):
         if k.get('skill'):
             dropped.add(f"skill {k['skill']}" + ('' if full else f' (neck and head pitch x{SIT_SCALE}, standing)'))
         out.append((float(k['t']), q))
+    if sit:
+        out = soften(out, smooth=SIT_SMOOTH * (1.5 if name in SIT_GENTLER else 1.0))
     return out, clipped, dropped
+
+
+def soften(tr, fps=FPS, smooth=None):
+    """Sitting: the track resampled at fps and each head joint averaged over SIT_SMOOTH s centred on each moment (the beak left sharp): the
+    jerks rounded off, the timing against the sound unchanged."""
+    n = int(round(tr[-1][0] * fps)) + 1
+    rows = [sample(tr, k / fps) for k in range(n)]
+    w = max(1, int(round((smooth or SIT_SMOOTH) * fps / 2)))
+    out = []
+    for k in range(n):
+        lo, hi = max(0, k - w), min(n, k + w + 1)
+        q = dict(rows[k])
+        for j in HEAD_MAP.values():
+            q[j] = sum(r[j] for r in rows[lo:hi]) / (hi - lo)
+        out.append((k / fps, q))
+    return out
 
 
 def sample(tr, t):
@@ -85,15 +138,20 @@ def sample(tr, t):
     return tr[-1][1]
 
 
+SIT = [None]                                 # --sit: the sit pose, for --preview and --video
+
+
 def full_pose(cfg, q):
-    """The config's home pose for the legs, the emotion's for the head."""
+    """The config's home pose for the legs (the sit pose's with --sit), the emotion's for the head."""
     p = dict(cfg['home'])
+    if SIT[0]:
+        p.update({n: v for n, v in SIT[0].items() if isinstance(v, float)})
     p.update(q)
     return p
 
 
 def describe(name, cfg, scale=1.0):
-    tr, clipped, dropped = track(name, cfg, scale, FULL[0])
+    tr, clipped, dropped = track(name, cfg, scale, FULL[0], SIT[0])
     s = f'{name:11s} motion {tr[-1][0]:4.1f} s, sound {sound.duration(name):4.1f} s'
     if clipped:
         s += '; clipped to the limits: ' + ', '.join(f'{j} by {math.degrees(v):.0f} deg' for j, v in clipped.items())
@@ -106,7 +164,9 @@ def preview(todo, cfg, scale):
     import mujoco.viewer
     import twin
     m, d, adr = twin.load_model(cfg, soles=False)
-    tracks = [(n, track(n, cfg, scale, FULL[0])[0]) for n in todo]
+    if SIT[0] and SIT[0].get('grav'):                   # the body tilted as the duck's IMU read it sitting
+        twin.GRAV[0], twin.FEET_FLAT[0] = SIT[0]['grav'], True
+    tracks = [(n, track(n, cfg, scale, FULL[0], SIT[0])[0]) for n in todo]
     with mujoco.viewer.launch_passive(m, d, show_left_ui=False, show_right_ui=False) as v:
         v.cam.distance, v.cam.azimuth, v.cam.elevation = 0.55, 150, -10
         i = 0
@@ -137,6 +197,8 @@ def video(todo, cfg, scale, out, size=(640, 480)):
     import twin
     from PIL import Image, ImageDraw, ImageFont
     m, d, adr = twin.load_model(cfg, soles=False)
+    if SIT[0] and SIT[0].get('grav'):                   # the body tilted as the duck's IMU read it sitting
+        twin.GRAV[0], twin.FEET_FLAT[0] = SIT[0]['grav'], True
     m.vis.global_.offwidth, m.vis.global_.offheight = max(size[0], 640), max(size[1], 480)
     r = mujoco.Renderer(m, size[1], size[0])
     cam = mujoco.MjvCamera()
@@ -147,7 +209,7 @@ def video(todo, cfg, scale, out, size=(640, 480)):
         font = ImageFont.load_default()
     frames, audio, rate = [], [], 48000
     for n in todo:
-        tr = track(n, cfg, scale, FULL[0])[0]
+        tr = track(n, cfg, scale, FULL[0], SIT[0])[0]
         dur = max(tr[-1][0], sound.duration(n)) + TAIL
         with wave.open(sound.path(n)) as w:
             rate = w.getframerate()
@@ -199,7 +261,10 @@ def main():
     ap.add_argument('--scale', type=float, default=1.0, help='every move times this: 0.5 is half as big')
     ap.add_argument('--full', action='store_true', help="devastated's full droop (its head reaches the floor standing)")
     ap.add_argument('--config', default=None)
+    ap.add_argument('--sit', nargs='?', const=SIT_POSE, help='sitting (--preview, --video): the legs, body tilt and head rest from this pose (default poses/sit_emote.json), as head_pad.py plays them')
     a, extra = ap.parse_known_args()
+    if a.sit:
+        SIT[0] = load_sit(a.sit)
     cfg = load_config(a.config)
     FULL[0] = a.full
     if a.list:

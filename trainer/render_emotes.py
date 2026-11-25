@@ -41,6 +41,7 @@ ap.add_argument("--envs", type=int, default=64)
 ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--scale", type=float, default=1.0)
 ap.add_argument("--settle", type=float, default=2.0, help="s standing before the first emotion")
+ap.add_argument("--head-offset", default="0,0,0,0", help="rad, neck,head_pitch,yaw,roll: added to every head command, at rest too")
 ap.add_argument("--gap", type=float, default=1.0, help="s at home between emotions")
 a = ap.parse_args()
 
@@ -87,6 +88,7 @@ for n, q in emo.items():
     plan.append((None, torch.zeros(int(a.gap / dt), 4)))
 names_per_step = sum([[n] * len(q) for n, q in plan], [])
 seq = torch.cat([q for _, q in plan]).to("cuda:0")
+HEAD_OFF = torch.tensor([float(v) for v in a.head_offset.split(",")], device="cuda:0")
 beak = np.concatenate([beak_track(n, len(q)) if n else np.full(len(q), BEAK_SHUT) for n, q in plan])
 
 obs, _ = env.reset()
@@ -96,7 +98,7 @@ fell_at = torch.full((N,), len(seq), device="cuda:0")
 fell_in = {n: 0 for n in emo}
 qs = []
 for k in range(len(seq)):
-    head_cmd._command[:] = seq[k]
+    head_cmd._command[:] = seq[k] + HEAD_OFF
     with torch.no_grad():
         obs, _, _, _ = env.step(policy(obs))
     newly = up & base.termination_manager.terminated

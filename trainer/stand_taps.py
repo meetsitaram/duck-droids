@@ -32,6 +32,7 @@ ap.add_argument("--kick", type=float, default=0.15, help="m/s: the nudge at 4 s,
 ap.add_argument("--emote", action="store_true", help="from 7 s, the head plays every emotion in turn")
 ap.add_argument("--emote-scale", type=float, default=1.0)
 ap.add_argument("--out", help="a JSON of the numbers")
+ap.add_argument("--head-offset", default="0,0,0,0", help="rad, neck,head_pitch,yaw,roll: added to every head command, at rest too (the head's rest pose)")
 ap.add_argument("--pushes", action="store_true", help="keep the training's random pushes on throughout (they are off by default)")
 a = ap.parse_args()
 
@@ -64,6 +65,7 @@ base = env.unwrapped
 robot = base.scene["robot"]
 feet = base.scene["feet_ground_contact"]
 head_cmd = base.command_manager.get_term("head_pose")
+HEAD_OFF = torch.tensor([float(v) for v in a.head_offset.split(",")], device="cuda:0")
 dt = base.step_dt
 
 emo = None
@@ -110,9 +112,10 @@ for k in range(int(T_END / dt)):
         v[:, 0] += sgn * a.kick * torch.cos(yaw)
         v[:, 1] += sgn * a.kick * torch.sin(yaw)
         robot.write_root_link_velocity_to_sim(v)
+    head_cmd._command[:] = HEAD_OFF
     if emo is not None and t >= T_EMOTE:
         i = min(int(round((t - T_EMOTE) / dt)), len(seq) - 1)
-        head_cmd._command[:] = seq[i]
+        head_cmd._command[:] = seq[i] + HEAD_OFF
     with torch.no_grad():
         obs, _, _, _ = env.step(policy(obs))
     was_up = up.clone()
