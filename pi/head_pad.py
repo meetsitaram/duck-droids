@@ -6,14 +6,14 @@ directions and range without standing the duck.
   d-pad         up/down: neck pitch (up tips the neck back), left/right: head roll
   on start      the IMU read once: the neck's rest shifted by how much more upright (or reclined) the body sits than at the capture,
                 so the face looks the same way however the duck is seated (--imu none: off)
-  on start      sitting, the head rises (with the mmh sound; RB + B lowers it with the sad sound) to its rest pose (poses/sit_emote.json: the neck raised as the user set it), at most 0.6 rad/s
+  on start      sitting, the head rises (with the mmh sound; RT + B lowers it with the sad sound) to its rest pose (poses/sit_emote.json: the neck raised as the user set it), at most 0.6 rad/s
   RB / LB       play the next / previous of microduck's 13 emotions at once (a short buzz; the name is printed; it cuts off one playing)
   X             play the same one again    Y   beak open / shut
                 Sitting, the head and
                 beak follow Pollen's keyframes around the sit pose (poses/sit_emote.json, captured from the duck; emote.py's sitting mapping:
                 the neck and head pitch never forward of it, at most 0.5 / 0.6 rad back), the sound starts on the speaker, and the head eases
                 in from where it is and back to it afterwards. The stick and d-pad wait till it ends. Preview: python emote.py --all --sit --preview
-  A             back to the head's rest pose (sitting), eased   RB + B held 1 s   back to where it started, torque off, quit (buzzes)
+  A             back to the head's rest pose (sitting), eased   RT + B held 1 s   back to where it started, torque off, quit (buzzes)
   LB + RB       stop at once: torque off, quit
 
 Safety as stand_test.py: current capped (neck 1000 mA, the rest of the head 600, beak 300), each joint's speed limited (--speed), every goal inside the joint's
@@ -46,7 +46,7 @@ SIT_NEAR = math.radians(25)                                 # emotions play only
 TILT_SHIFT_MAX = math.radians(40)                           # the body-tilt correction of the neck, at most
 RAISE_SPEED = 0.6                                           # rad/s at most, raising the head from the crouch to its rest when it starts
 EASE_SPEED = 1.0                                            # rad/s at most in the ease-in and back: a far head takes longer
-START_SOUND, END_SOUND = 'mmh', 'sad'                       # as the head rises at the start, and as it lowers at RB + B
+START_SOUND, END_SOUND = 'mmh', 'sad'                       # as the head rises at the start, and as it lowers at RT + B
 EASE0 = 0.8                                                  # s into an emotion's first pose from where the head is, and back after
 
 
@@ -86,7 +86,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--port', default='auto')
     ap.add_argument('--config', default=os.path.join(HERE, 'config', 'dynamixel.json'))
-    ap.add_argument('--hold-s', type=float, default=1.0, help='seconds RB + B must be held to quit')
+    ap.add_argument('--hold-s', type=float, default=1.0, help='seconds RT + B must be held to quit')
     ap.add_argument('--pad', default='evdev', help='evdev (the Xbox controller), or a test script (duck/gamepad.py ScriptPad)')
     ap.add_argument('--speed', type=float, default=0.8, help='rad/s at full stick')
     ap.add_argument('--min-volts', type=float, default=4.6)
@@ -158,10 +158,10 @@ def main():
         bus.write(i, dxl.TORQUE_ENABLE, 1)
         bus.write(i, LED, 1)
     print(f'legs {"holding where they are" if leg_ids else "limp"}. ' f'supply {volts:.1f} V. Head on the controller: right stick pitch and turn, d-pad neck and roll, LB/RB pick an emotion, X plays it, Y beak, A recentre, '
-          f'RB + B held 1 s quits, LB+RB stops. Start: ' + '  '.join(f'{n} {math.degrees(q0[n]):+.0f}' for n in JOINTS), flush=True)
+          f'RT + B held 1 s quits, LB+RB stops. Start: ' + '  '.join(f'{n} {math.degrees(q0[n]):+.0f}' for n in JOINTS), flush=True)
     q = dict(q0)
     from duck.gamepad import Holds
-    holds = Holds({'HEADMODE': {'RB', 'B'}}, a.hold_s)     # RB + B held 1 s: back to the start, torque off, quit (the launcher's toggle)
+    holds = Holds({'HEADMODE': {'RT', 'B'}}, a.hold_s)     # RT + B held 1 s: back to the start, torque off, quit (the launcher's toggle)
     import emote
     from duck import sound
     sit = emote.load_sit(a.sit)                             # the head moves around the captured sit pose, never forward of it

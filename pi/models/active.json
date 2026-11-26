@@ -17,17 +17,26 @@
   "sha256": "d846e10fa3d5324c304ad9775bda7fed2f1a042590a5a759beca7f230ecd28c3"
  },
  "head": {
-  "combo": "RB + B",
+  "combo": "RT + B",
   "model": null,
   "what": "sitting: the 13 emotions on the head and beak, no policy (head_pad.py, poses/sit_emote.json)",
   "status": "all 13 work on the real duck",
   "since": "2026-11-25"
  },
+ "walk_bam": {
+  "combo": "RT + Y",
+  "model": "walk_bam.onnx",
+  "what": "the BAM walk: stands up, the left stick walks it (RT held: faster), the right stick turns it; RT + A sits it down",
+  "status": "tried on the real duck 2026-11-25: stays up and steps steadily, but keeps stepping at a zero command and barely travels (in simulation 0.08 m/s for a 0.2 m/s command; turning works). Not a walk yet: keep a hand near",
+  "since": "2026-11-25",
+  "checkpoint": "milli-rl logs/rsl_rl/milli_dynamixel_bam_walk/2026-11-25_14-58-20_milli_dynamixel_bam_walk/model_1499.pt (Mjlab-Velocity-Flat-Milli-Dynamixel-Bam, warm from walk_imu)",
+  "sha256": "601de15ef36e9475d1bfbbd35808d12a74888c986b08093eb54577deed934e74"
+ },
  "walk": {
   "combo": "LT + A (only with --allow-walk)",
   "model": null,
-  "what": "no walk is active: the walk models here were trained on a plain motor model, not BAM",
-  "status": "a BAM walk is next",
+  "what": "LT + A: no walk is active there; the BAM walk is on RT + Y (walk_bam above)",
+  "status": "the walk models on LT + A were trained on a plain motor model, not BAM",
   "since": null
  }
 }

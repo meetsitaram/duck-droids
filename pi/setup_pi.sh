@@ -47,4 +47,16 @@ sudo -u "${SUDO_USER:-$USER}" bash install_launcher_user.sh
 # A Bluetooth speaker as the audio output (no headphone jack on the Zero 2 W): PipeWire, and the user service duck-bt-speaker that pairs and
 # connects it at each boot. Choose the speaker in config/bt_speaker.conf or with: bash bt_speaker.sh set "NAME or MAC" (pi/README.md).
 sudo -u "${SUDO_USER:-$USER}" bash bt_speaker.sh install
+# The duck's own hotspot (pi/hotspot.sh) is NOT installed by default: on 2026-11-25, started at every boot, it took the Pi's one radio from the
+# home Wi-Fi, the controller and the speaker, and the audio broke up and the Pi dropped off the network. To have it anyway: sudo bash hotspot.sh install
+# And first: keep a backup of the Wi-Fi settings, restored at boot if a power cut lost them (twice so far; pi/wifi_guard.sh)
+bash wifi_guard.sh install
+# Wi-Fi power saving off (on, the Wi-Fi dropped every couple of minutes) and a network link over USB for when the Wi-Fi is gone (pi/net_setup.sh)
+sudo bash net_setup.sh
+# The launcher's combos that need the system, allowed for this user without a password and nothing more (pi/duck_polkit.sh):
+# RT + LT + RB + LB shuts the Pi down, LT + d-pad up / down turns the Wi-Fi on / off
+sudo bash duck_polkit.sh
+# Bluetooth's scan for a paired controller that is switched off, cut from half the radio's time to 3.5 %: at the default it broke up the
+# speaker's sound whenever a paired controller was off (pi/bt_scan.sh)
+sudo bash bt_scan.sh
 echo 'And i2cdetect -y 1 (the BNO085 is at 0x4a or 0x4b). For the gamepad: bluetoothctl, then scan on, pair, trust and connect.'

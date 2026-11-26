@@ -2,6 +2,9 @@
 
 Open biped robot ducks you can build from servos you can buy, each generated from one Python spec. They take their look from Pollen Robotics' microduck, and aren't made by or connected with Pollen.
 
+> **WORK IN PROGRESS: please don't buy parts yet expecting a walking robot.**
+> One duck is built so far, the all-Dynamixel one. It stands up, balances and plays its emotions under trained policies, from an Xbox controller. **It does not walk yet**, and its power, electronics and software are still changing as problems turn up ([troubleshooting](docs/dynamixel/TROUBLESHOOTING.md), [open questions](docs/OPEN_QUESTIONS.md)). The parts lists, printed parts and wiring here are what that one duck was built from, not a finished design: something you order or print today may be replaced tomorrow. It is the only duck built and powered so far: treat the others as designs.
+
 ![The all-Dynamixel duck assembling itself: motors, skeleton, electronics, covers](docs/images/assembly/dynamixel/reveal.gif)
 
 **Watch:** [30-second reveal](docs/images/assembly/dynamixel/reveal_30s.mp4) | [5-minute build](docs/images/assembly/dynamixel/build_5min.mp4)
@@ -49,7 +52,9 @@ python motion.py play head_look_around --speed 0.5 --view
 
 The first plays it on the model, no duck needed; the second on the real duck, steadied by hand, with its digital twin following. How to record your own and the safety checks: [Pi code](pi/README.md#record-a-motion-by-hand-play-it-back).
 
-**Status:** built, with its 15 servos set up and calibrated, and its first powered test done (above): it rises, holds a stand with every joint within about 3 degrees, and sits back down, on a 5 V bench supply. Still to do: a 6 V regulator off the battery (the XL330s shut down past 7 V, and the bench supply sags under 4.6 V once the legs carry the full weight), balance on its IMU, and a trained policy. The open list is in its [open questions](docs/OPEN_QUESTIONS.md) and [troubleshooting](docs/dynamixel/TROUBLESHOOTING.md). In simulation it walks on its IMU alone, without reading its servos' angles, nearly as well as with them; that walk isn't deployed yet.
+**Status (2026-11-25): work in progress.** Built, its 15 servos set up and calibrated, running from its battery. From an Xbox controller it stands up and balances under a policy trained on Pollen's measured XL330 model, plays microduck's 13 emotions standing or sitting (head, beak and sound on a Bluetooth speaker), and sits back down. **It does not walk yet:** the first walk trained on that servo model stays upright on the real duck but steps in place and barely travels, and the retraining tried so far has not fixed it. Still open besides the walk: the power under load, and the Pi Zero 2 W's one radio shared by Wi-Fi, controller and speaker. The lists are in its [open questions](docs/OPEN_QUESTIONS.md) and [troubleshooting](docs/dynamixel/TROUBLESHOOTING.md).
+
+![The controller shortcuts: RT + A stand, RT + X emotions, RT + B head mode, RT + Y walk, LT + d-pad Wi-Fi, LB + RB stop](docs/dynamixel/controller_shortcuts.png)
 
 ## Other ducks
 

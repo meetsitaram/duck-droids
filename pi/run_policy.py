@@ -152,7 +152,9 @@ class PadDriver:
         self.pad = open_pad(a.pad, a.pad_name)
         combos = {'STANDSIT': {'RT', 'A'}}                  # RT + A held 1 s: stand up, or sit back down; the controller buzzes
         if getattr(a, 'emotions', False):
-            combos['STANDSIT_X'] = {'RT', 'X'}              # emotion mode: RT + X, which started it, ends it too (as RT + A and RB + B toggle theirs)
+            combos['STANDSIT_X'] = {'RT', 'X'}              # emotion mode: RT + X, which started it, ends it too (as RT + A and RT + B toggle theirs)
+        if not a.stand_only:
+            combos['STANDSIT_Y'] = {'RT', 'Y'}              # the BAM walk: RT + Y, which started it, ends it too (the user held it to stop, 2026-11-25)
         self.holds = Holds(combos, a.hold_s)
         self.prev = set()
         self.walk = np.zeros(3)
@@ -176,7 +178,7 @@ class PadDriver:
         if 'RT' in s.held:                              # RT held: a combo (RT + A sits, RT + X is the launcher's): its X, Y, B, LB, RB aren't commands
             events -= {'X', 'Y', 'B', 'LB', 'RB'}       # (RT + X replayed an emotion inside a running stand, 2026-11-25)
         h = self.holds.check(s)
-        if h == 'STANDSIT_X':
+        if h in ('STANDSIT_X', 'STANDSIT_Y'):
             h = 'STANDSIT'
         if h:
             events.add(h)
@@ -186,6 +188,8 @@ class PadDriver:
         ax = s.axes
         speed = a.vx_max + ax['rt'] * (a.vx_boost - a.vx_max)
         want = np.array([deadzone(ax['ly']) * speed, deadzone(ax['lx']) * a.vy_max, deadzone(ax['rx']) * a.wz_max])
+        if a.turn_forward and abs(want[2]) > 0.05 and want[0] < a.turn_forward:
+            want[0] = a.turn_forward                        # a turn alone becomes forward + turn: for a walk that can't turn in place
         if a.stand_only:                                    # a stand policy: no walk command ever; the right stick steers the head instead
             want[:] = 0.0
         step = np.array([a.accel, a.accel, 4 * a.accel]) * dt
@@ -356,6 +360,7 @@ def main():
     ap.add_argument('--pad-check', action='store_true', help='no servos: print the commands the controller gives, for checking the mapping')
     ap.add_argument('--vx-max', type=float, default=0.12, help='m/s forward or back at full stick, RT released')
     ap.add_argument('--vx-boost', type=float, default=0.2, help='m/s at full stick with RT fully held')
+    ap.add_argument('--turn-forward', type=float, default=0.0, help='m/s: a turn command with less forward speed than this gets this much (0 off). For a walk that turns only while walking (walk_bam_still1.onnx, 2026-11-25)')
     ap.add_argument('--vy-max', type=float, default=0.08, help='m/s sideways at full stick')
     ap.add_argument('--wz-max', type=float, default=0.8, help='rad/s turning at full stick')
     ap.add_argument('--head-max', type=float, default=0.3, help='rad of head pitch or turn from the d-pad')
@@ -517,7 +522,7 @@ def main():
         from duck.telemetry import Publisher
         pub = Publisher(a.telemetry)
     if pad:
-        print('gamepad: ' + ('standing up now; RT + A held 1 s sits down and ends' if a.auto_stand else
+        print('gamepad: ' + ('standing up now; RT + A (or the combo that started it) held 1 s sits down and ends' if a.auto_stand else
               'RT + A held 1 s stands up and sits down' + ('' if a.stand_only else ' (or A and B)') + ', Menu (sitting) quits') + ', LB+RB stops')
     else:
         print(f'rise {a.rise:.0f} s, policy {total:.0f} s (walk segments: {a.walk or None}; head: {a.nods} nods, {a.nods} neck rocks, {a.turns} turns), lower {a.lower:.0f} s')
