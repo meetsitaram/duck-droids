@@ -6,17 +6,18 @@
 #             /etc/NetworkManager/system-connections/* copied to /etc/duck/wifi-backup/, written through to the card (sync)
 #   restore   at every boot, before NetworkManager: if no Wi-Fi settings are left (no wifis in netplan, no wifi profile), the backup is put
 #             back and netplan regenerates NetworkManager's profiles, so the Pi joins as usual
-#   lock      the netplan files holding the Wi-Fi made immutable (chattr +i): nothing, root included, can rewrite, replace or delete them, so a
-#             power cut can't catch one half-written. NetworkManager and cloud-init re-save them now and then for nothing the duck needs; their
-#             writes just fail. To change the Wi-Fi on purpose: sudo bash wifi_guard.sh unlock, change it, then lock.
-#   sudo bash wifi_guard.sh install    once (setup_pi.sh runs it): the boot check, the hook, a first backup, and the lock
+#   NO LOCK: making the netplan files immutable (chattr +i, tried 2026-11-25) stopped the Pi joining the Wi-Fi at the next boot, as
+#             NetworkManager writes them when it brings the Wi-Fi up (its last connection was the second the lock went on). unlock clears
+#             a lock left from then.
+#   sudo bash wifi_guard.sh install    once (setup_pi.sh runs it): the boot check, the hook, and a first backup
 #   sudo bash wifi_guard.sh status     what's backed up, and whether settings are present now
 # pi/hotspot.sh stays the last resort, for when even this fails.
 set -e
 B=/etc/duck/wifi-backup
 DIR=$(cd "$(dirname "$0")" && pwd)
 
-has_wifi() {              # any Wi-Fi settings present: netplan wifis, or a NetworkManager wifi profile (our hotspot aside)
+has_wifi() {              # any Wi-Fi settings present (and no empty netplan file, which breaks netplan for every profile): netplan wifis, or a profile
+  for f in /etc/netplan/*.yaml; do [ -e "$f" ] && [ ! -s "$f" ] && return 1; done
   grep -qs "wifis:" /etc/netplan/*.yaml && return 0
   grep -ls "type=wifi" /etc/NetworkManager/system-connections/*.nmconnection 2>/dev/null | grep -v duck-hotspot | grep -q . && return 0
   return 1
@@ -51,8 +52,9 @@ EOF
   chmod 755 /etc/NetworkManager/dispatcher.d/90-duck-wifi-backup
   systemctl daemon-reload
   systemctl enable duck-wifi-guard.service
-  if has_wifi; then /usr/local/sbin/duck-wifi-guard save; /usr/local/sbin/duck-wifi-guard lock; fi
-  echo "installed: backed up on every Wi-Fi join, restored at boot if lost, the Wi-Fi files locked"
+  for f in /etc/netplan/*.yaml; do chattr -i "$f" 2>/dev/null || true; done
+  if has_wifi; then /usr/local/sbin/duck-wifi-guard save; fi
+  echo "installed: backed up on every Wi-Fi join, restored at boot if lost"
   ;;
 save)
   has_wifi || exit 0
@@ -71,17 +73,11 @@ restore)
   cp -a "$B/nm/." /etc/NetworkManager/system-connections/ 2>/dev/null || true
   chmod 600 /etc/netplan/*.yaml /etc/NetworkManager/system-connections/* 2>/dev/null || true
   command -v netplan >/dev/null && netplan generate || true
-  for f in $(grep -ls "wifis:" /etc/netplan/*.yaml); do chattr +i "$f" 2>/dev/null || true; done
   sync
-  ;;
-lock)
-  [ "$(id -u)" = 0 ] || { echo 'run with sudo'; exit 1; }
-  for f in $(grep -ls "wifis:" /etc/netplan/*.yaml); do chattr +i "$f" && echo "locked $f"; done
   ;;
 unlock)
   [ "$(id -u)" = 0 ] || { echo 'run with sudo'; exit 1; }
   for f in /etc/netplan/*.yaml; do chattr -i "$f" 2>/dev/null && echo "unlocked $f"; done
-  echo "change the Wi-Fi now, then: sudo bash wifi_guard.sh lock"
   ;;
 status)
   echo "Wi-Fi settings present now: $(has_wifi && echo yes || echo NO)"
