@@ -29,19 +29,40 @@ def main():
     a = ap.parse_args()
     cfg = load_config(a.config)
     ids = sorted(j['id'] for j in cfg['joints'].values())
-    bus = dxl.Bus(find_port() if a.port == 'auto' else a.port, timeout=0.05)
-    imu = None
-    if not a.no_imu:
-        from duck.hardware import Bno085
-        try:
-            imu = Bno085(cfg)
-        except Exception as e:                             # noqa: BLE001  a loose IMU wire shouldn't stop the twin: the servos alone
-            print(f'IMU not answering ({e}): sending the servos only', flush=True)
     pub = Publisher(a.net_port)
-    print(f'sending {len(ids)} servos{" and the IMU" if imu else ""} on port {a.net_port}; Ctrl-C to stop', flush=True)
+    bus = imu = None
+    print(f'waiting for the twin on port {a.net_port}; Ctrl-C to stop', flush=True)
+
+    def close():
+        nonlocal bus, imu
+        if bus:
+            bus.close()
+        if imu:
+            imu.close()
+        bus = imu = None
+
+    # The servo bus and the IMU are read only while a twin is connected (2026-11-25): nothing goes over the Wi-Fi without one anyway, and
+    # reading them for nobody kept this at 25-90 % of the Pi Zero's CPU (the IMU's own 100 Hz thread), on a Pi already swapping
     nxt = time.monotonic()
     try:
         while True:
+            if not pub.clients:
+                if bus:
+                    print('twin gone: bus and IMU closed', flush=True)
+                    close()
+                time.sleep(0.5)
+                nxt = time.monotonic()
+                continue
+            if bus is None:
+                bus = dxl.Bus(find_port() if a.port == 'auto' else a.port, timeout=0.05)
+                if not a.no_imu:
+                    from duck.hardware import Bno085
+                    try:
+                        imu = Bno085(cfg)
+                    except Exception as e:                 # noqa: BLE001  a loose IMU wire shouldn't stop the twin: the servos alone
+                        print(f'IMU not answering ({e}): sending the servos only', flush=True)
+                print(f'twin connected: sending {len(ids)} servos{" and the IMU" if imu else ""}', flush=True)
+                nxt = time.monotonic()
             try:
                 raw = bus.sync_read(ids, dxl.PRESENT_POSITION[0], 4)
                 ticks = {i: int.from_bytes(raw[i], 'little', signed=True) for i in ids}
@@ -57,9 +78,7 @@ def main():
         pass
     finally:
         pub.close()
-        bus.close()
-        if imu:
-            imu.close()
+        close()
 
 
 if __name__ == '__main__':

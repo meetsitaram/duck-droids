@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2200 1040" width="2200" height="1040" font-family="Segoe UI, Noto Sans, Helvetica, Arial, sans-serif">
+<defs><marker id="a3FB950" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#3FB950"/></marker><marker id="aF85149" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#F85149"/></marker><marker id="a58A6FF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#58A6FF"/></marker><marker id="aE3B341" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E3B341"/></marker><marker id="aBC8CFF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#BC8CFF"/></marker><marker id="aF0F6FC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#F0F6FC"/></marker></defs>
+<rect width="2200" height="1040" fill="#0D1117"/>
+<text x="1100" y="78" text-anchor="middle" font-size="46" font-weight="700" fill="#E6EDF3">duck-droids: controller shortcuts</text>
+<text x="1100" y="124" text-anchor="middle" font-size="27" fill="#9BA7B4">Hold a combo for 1 second. The same combo again ends a mode.</text>
+<path d="M 740 360 C 860 315, 1340 315, 1460 360 C 1525 390, 1555 520, 1545 630 C 1538 705, 1485 725, 1435 712 C 1380 698, 1355 665, 1290 655 L 910 655 C 845 665, 820 698, 765 712 C 715 725, 662 705, 655 630 C 645 520, 675 390, 740 360 Z" fill="#1B222C" stroke="#5B6675" stroke-width="6"/>
+<rect x="790" y="244" width="135" height="54" rx="25" fill="#2A333F" stroke="#BC8CFF" stroke-width="4"/>
+<text x="857" y="280" text-anchor="middle" font-size="25" font-weight="700" fill="#BC8CFF">LT</text>
+<rect x="1275" y="244" width="135" height="54" rx="25" fill="#2A333F" stroke="#E6EDF3" stroke-width="4"/>
+<text x="1342" y="280" text-anchor="middle" font-size="25" font-weight="700" fill="#E6EDF3">RT</text>
+<rect x="775" y="308" width="165" height="40" rx="19" fill="#2A333F" stroke="#F0F6FC" stroke-width="4"/>
+<text x="857" y="337" text-anchor="middle" font-size="23" font-weight="700" fill="#F0F6FC">LB</text>
+<rect x="1260" y="308" width="165" height="40" rx="19" fill="#2A333F" stroke="#F0F6FC" stroke-width="4"/>
+<text x="1342" y="337" text-anchor="middle" font-size="23" font-weight="700" fill="#F0F6FC">RB</text>
+<circle cx="860" cy="450" r="62" fill="#2A333F" stroke="#5B6675" stroke-width="5"/><circle cx="860" cy="450" r="36" fill="#1B222C" stroke="#5B6675" stroke-width="4"/>
+<circle cx="1205" cy="565" r="62" fill="#2A333F" stroke="#5B6675" stroke-width="5"/><circle cx="1205" cy="565" r="36" fill="#1B222C" stroke="#5B6675" stroke-width="4"/>
+<rect x="958" y="507" width="44" height="116" rx="10" fill="#2A333F" stroke="#5B6675" stroke-width="4"/>
+<rect x="922" y="543" width="116" height="44" rx="10" fill="#2A333F" stroke="#5B6675" stroke-width="4"/>
+<rect x="960" y="545" width="40" height="40" fill="#2A333F"/>
+<circle cx="1340" cy="402" r="31" fill="#0D1117" stroke="#E3B341" stroke-width="4.5"/>
+<text x="1340" y="412" text-anchor="middle" font-size="28" font-weight="700" fill="#E3B341">Y</text>
+<circle cx="1272" cy="466" r="31" fill="#0D1117" stroke="#58A6FF" stroke-width="4.5"/>
+<text x="1272" y="476" text-anchor="middle" font-size="28" font-weight="700" fill="#58A6FF">X</text>
+<circle cx="1408" cy="466" r="31" fill="#0D1117" stroke="#F85149" stroke-width="4.5"/>
+<text x="1408" y="476" text-anchor="middle" font-size="28" font-weight="700" fill="#F85149">B</text>
+<circle cx="1340" cy="530" r="31" fill="#0D1117" stroke="#3FB950" stroke-width="4.5"/>
+<text x="1340" y="540" text-anchor="middle" font-size="28" font-weight="700" fill="#3FB950">A</text>
+<circle cx="1100" cy="405" r="24" fill="#0D1117" stroke="#5B6675" stroke-width="4"/>
+<circle cx="1040" cy="455" r="10" fill="#2A333F" stroke="#5B6675" stroke-width="3"/>
+<circle cx="1160" cy="455" r="10" fill="#2A333F" stroke="#5B6675" stroke-width="3"/>
+<text x="760" y="540" text-anchor="middle" font-size="20" fill="#9BA7B4">left stick</text>
+<text x="1168" y="492" text-anchor="middle" font-size="20" fill="#9BA7B4">right stick</text>
+<text x="1070" y="612" text-anchor="middle" font-size="20" fill="#9BA7B4">d-pad</text>
+<rect x="40" y="190" width="560" height="240" rx="22" fill="#2A2110" stroke="#E3B341" stroke-width="4"/>
+<text x="70" y="246" font-size="32" font-weight="700" fill="#E3B341">WALK  ·  RT + Y  (experimental)</text>
+<text x="70" y="300" font-size="28" fill="#E6EDF3">left stick  =  walk</text>
+<text x="70" y="342" font-size="28" fill="#E6EDF3">right stick  =  turn</text>
+<text x="70" y="384" font-size="28" fill="#E6EDF3">d-pad  =  head</text>
+<path d="M 600 374 L 1252 374 L 1312 391" fill="none" stroke="#E3B341" stroke-width="3.5" stroke-linejoin="round" marker-end="url(#aE3B341)"/>
+<rect x="40" y="470" width="560" height="200" rx="22" fill="#11231A" stroke="#3FB950" stroke-width="4"/>
+<text x="70" y="526" font-size="32" font-weight="700" fill="#3FB950">STAND  ·  RT + A</text>
+<text x="70" y="580" font-size="28" fill="#E6EDF3">right stick, d-pad  =  head</text>
+<text x="70" y="622" font-size="28" fill="#E6EDF3">X = nod  ·  Y = "yes"  ·  B = "no"</text>
+<path d="M 600 640 L 1340 640 L 1340 565" fill="none" stroke="#3FB950" stroke-width="3.5" stroke-linejoin="round" marker-end="url(#a3FB950)"/>
+<rect x="1600" y="190" width="560" height="280" rx="22" fill="#2A1416" stroke="#F85149" stroke-width="4"/>
+<text x="1630" y="246" font-size="32" font-weight="700" fill="#F85149">HEAD MODE  ·  RT + B  (sitting)</text>
+<text x="1630" y="300" font-size="28" fill="#E6EDF3">RB / LB  =  next / previous emotion</text>
+<text x="1630" y="342" font-size="28" fill="#E6EDF3">X  =  repeat</text>
+<text x="1630" y="384" font-size="28" fill="#E6EDF3">right stick, d-pad  =  head</text>
+<text x="1630" y="426" font-size="28" fill="#E6EDF3">Y = beak  ·  A = rest pose</text>
+<path d="M 1600 330 L 1442 456" fill="none" stroke="#F85149" stroke-width="3.5" stroke-linejoin="round" marker-end="url(#aF85149)"/>
+<rect x="1600" y="510" width="560" height="200" rx="22" fill="#101E33" stroke="#58A6FF" stroke-width="4"/>
+<text x="1630" y="566" font-size="32" font-weight="700" fill="#58A6FF">EMOTIONS  ·  RT + X  (standing)</text>
+<text x="1630" y="620" font-size="28" fill="#E6EDF3">RB / LB  =  next / previous emotion</text>
+<text x="1630" y="662" font-size="28" fill="#E6EDF3">X  =  repeat</text>
+<path d="M 1600 560 L 1304 479" fill="none" stroke="#58A6FF" stroke-width="3.5" stroke-linejoin="round" marker-end="url(#a58A6FF)"/>
+<rect x="500" y="800" width="560" height="200" rx="22" fill="#1D1730" stroke="#BC8CFF" stroke-width="4"/>
+<text x="530" y="856" font-size="32" font-weight="700" fill="#BC8CFF">WI-FI</text>
+<text x="530" y="910" font-size="28" fill="#E6EDF3">LT + d-pad up  =  on</text>
+<text x="530" y="952" font-size="28" fill="#E6EDF3">LT + d-pad down  =  off</text>
+<path d="M 980 800 L 980 627" fill="none" stroke="#BC8CFF" stroke-width="3.5" stroke-linejoin="round" marker-end="url(#aBC8CFF)"/>
+<rect x="1140" y="800" width="560" height="200" rx="22" fill="#1A212B" stroke="#F0F6FC" stroke-width="4"/>
+<text x="1170" y="856" font-size="32" font-weight="700" fill="#F0F6FC">STOP</text>
+<text x="1170" y="910" font-size="28" fill="#E6EDF3">LB + RB  =  stop now</text>
+<text x="1170" y="952" font-size="28" fill="#E6EDF3">RT + LT + RB + LB  =  shut down</text>
+</svg>

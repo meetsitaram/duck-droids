@@ -170,20 +170,30 @@ Checked in the simulator, from the real duck's sitting pose (`sim/server.py --st
 
 ### The controller launcher (nothing to type)
 
+![The controller shortcuts](../docs/dynamixel/controller_shortcuts.png)
+
+The shortcuts on one page, to hand to someone trying the duck (`docs/dynamixel/controller_shortcuts.svg`, drawn by `tools/make_controller_shortcuts.py`).
+
 `launcher.py` runs on the Pi from boot, as the user service `duck-launcher` (`bash install_launcher_user.sh`, no sudo: `loginctl enable-linger` starts a user's services at boot; `setup_pi.sh` runs it). Idle, it holds no servo. Every combo is **held 1 s** (`--hold-s`), and the controller buzzes when it takes effect; a brush or a quick tap does nothing:
 
 | Combo, held 1 s | Does |
 |---|---|
 | **RT + A** | stand: a scripted rise, then the stand policy trained on Pollen's XL330 model (`run_policy.py --pad --stand-only --auto-stand --bam`, `stand_bam.onnx`; before 2026-11-24 `stand_nod.onnx`). Right stick and d-pad: the head; X: a nod; Y: the beak; no walk command ever. **RT + A again:** it sits down and the mode ends |
-| **RB + B** | head mode, sitting (`head_pad.py`, below). **RB + B again:** the head goes back to its start, torque off |
+| **RT + B** | head mode, sitting (`head_pad.py`, below). **RT + B again:** the head goes back to its start, torque off |
 | **LT + A** | the walk policy, only with `--allow-walk` at install: off until the power holds under load |
 | **LB + RB** | inside any mode: stop at once, torque off |
+| **RT + X** | the standing emotions (`stand_emote_calm.onnx`, below) |
+| **RT + Y** | the BAM walk (`walk_bam.onnx`, 2026-11-25): it stands up, the left stick walks it (RT held: faster), the right stick turns it; **RT + A:** it sits down. Untried on the real duck when added: in simulation it stays up but follows the speed command poorly, so keep a hand near |
+| **LT + d-pad down / up** | idle: the Wi-Fi off / on, the speaker saying which. With the Wi-Fi on a little of the speaker's sound is still lost (the one radio); off while playing with the duck, and the USB cable to reach it (`net_setup.sh`) |
+| **RT + LT + RB + LB** | idle: shut the Pi down ("Shutting down", a long buzz). Wait for the green light to stop blinking, then unplug: pulling the plug on a running Pi lost the Wi-Fi settings twice |
+
+A combo counts only when no other combo's button is held with it, so the four-button shutdown can't start a stand on its way down. The Wi-Fi and shutdown combos need `duck_polkit.sh` (run by `setup_pi.sh`), which allows this user those two things without a password.
 
 If the controller drops for 1 s while standing, it sits down. A script run by hand that needs the bus (`stand_test.py`, `telemetry.py`) needs `systemctl --user stop duck-launcher` first, and `start` after. Log: `tail -f ~/duck/launcher.log` (the user journal isn't kept on this Pi); each run's own CSV is `~/duck/run_policy_log.csv`. `install_launcher.sh` is the same as a system service, with sudo: use one or the other. The buzz is force feedback through the kernel's `hid-microsoft` driver (`duck/gamepad.py` `rumble()`).
 
 ### The head alone, sitting
 
-`python head_pad.py` moves only the neck, head and beak from the controller, no policy. The legs hold the sitting pose they're in (torque on, goal where each is: nothing moves; `--legs-limp` leaves them off). Right stick: head pitch (up tips the face forward) and turn; d-pad: neck (up tips it back) and roll; X a nod, Y the beak, A back to the start, RB + B held 1 s back to the start then torque off. A held stick keeps the joint moving (`--speed`, 0.8 rad/s); let go and it stays. Each joint is kept inside its limits, widened to where it starts. Stop it with B, not by killing it: a killed run leaves every servo holding its last goal, torque on.
+`python head_pad.py` moves only the neck, head and beak from the controller, no policy. The legs hold the sitting pose they're in (torque on, goal where each is: nothing moves; `--legs-limp` leaves them off). Right stick: head pitch (up tips the face forward) and turn; d-pad: neck (up tips it back) and roll; X a nod, Y the beak, A back to the start, RT + B held 1 s back to the start then torque off. A held stick keeps the joint moving (`--speed`, 0.8 rad/s); let go and it stays. Each joint is kept inside its limits, widened to where it starts. Stop it with B, not by killing it: a killed run leaves every servo holding its last goal, torque on.
 
 ## A Bluetooth speaker, and the duck's sounds
 
@@ -213,7 +223,7 @@ bash ~/duck/bt_speaker.sh set "JBL Flip 5"     # part of its name (case ignored)
 
 What bit the first speaker (INSMY Clip S, 2026-11-25), all handled by `bt_speaker.sh` now: the adapter wasn't pairable, so pairings weren't kept (`Bonded: no`, then the speaker dropped seconds after connecting); the desktop login screen (lightdm) ran its own PipeWire that took the speaker's audio first ("Multiple sound server instances" in `systemctl --user status wireplumber`), so the install turns Bluetooth off in it; and the user services needed a reboot (or a fresh login) to get the new `bluetooth` group.
 
-If it doesn't work: `bluetoothctl info <MAC>` (Paired, Bonded, Trusted, Connected), `pactl list short sinks` (a `bluez_output...` line once connected), `systemctl --user status wireplumber`. "Not authorized" from `bluetoothctl` means the user isn't in the `bluetooth` group yet: log out and in, or reboot, after `setup_pi.sh`. The Zero 2 W's one radio carries Wi-Fi, the Xbox controller and the speaker together: if the sound stutters while the controller is connected, that's the radio sharing, so expect it. On the bus board's UART fallback (`setup_pi.sh --uart`), Bluetooth runs on the slow mini UART, too slow for A2DP audio.
+If it doesn't work: `bluetoothctl info <MAC>` (Paired, Bonded, Trusted, Connected), `pactl list short sinks` (a `bluez_output...` line once connected), `systemctl --user status wireplumber`. "Not authorized" from `bluetoothctl` means the user isn't in the `bluetooth` group yet: log out and in, or reboot, after `setup_pi.sh`. The Zero 2 W's one radio carries Wi-Fi, the Xbox controller and the speaker together: if the sound stutters while the controller is connected, that's the radio sharing, so expect it. Choppy, worse with a controller switched off: Bluetooth's scan for the absent controller, which `bt_scan.sh` (run by `setup_pi.sh`) cuts from half the radio's time to 3.5 % (2026-11-25, in docs/dynamixel/TROUBLESHOOTING.md; PipeWire showed 0 errors in `pw-top` throughout, and it was a little better with the speaker against the head). `sudo bash audio_ab.sh scan` is the test that found it. On the bus board's UART fallback (`setup_pi.sh --uart`), Bluetooth runs on the slow mini UART, too slow for A2DP audio.
 
 ### The emotions: each sound with its head, neck and beak motion (emote.py)
 
@@ -235,11 +245,11 @@ python emote.py yes                    # on the duck: motion.py's playback of th
 On the duck it uses motion.py's playback and its safety (eases in, a joint lagging stops it, eases back, torque off) and doesn't
 command the legs. Big neck moves (sad, devastated) shift the weight forward: steady the duck, or `--scale 0.5`. Not yet tried on the duck.
 
-### The emotions sitting (head_pad.py, RB + B)
+### The emotions sitting (head_pad.py, RT + B)
 
-The safest way to show them: the legs hold the sit, only the head and beak move. **RB + B** (1 s) starts it: the `mmh` sound plays as the
+The safest way to show them: the legs hold the sit, only the head and beak move. **RT + B** (1 s) starts it: the `mmh` sound plays as the
 head rises from the crouch to its rest pose (`poses/sit_emote.json`, set by hand on the duck). **RB / LB** play the next / previous
-emotion at once (no X needed; a press during one cuts it off, eased), **X** plays the same one again, **RB + B** lowers the head with the
+emotion at once (no X needed; a press during one cuts it off, eased), **X** plays the same one again, **RT + B** lowers the head with the
 `sad` sound and quits, **LB + RB** stops at once. The sound starts 0.3 s ahead of the motion for the Bluetooth speaker's lag (`--audio-lead`).
 
 Sitting, every move is half size (head turns and rolls 60 %) and smoothed over 0.2 s, centred so the timing against the sound holds;
@@ -251,7 +261,7 @@ neck starts near the crouch or the rest. Preview: `python emote.py --all --sit -
 
 ### The policies, and getting them onto the duck
 
-**Active on the real duck now** (try these first): RT + A runs `stand_bam.onnx`, RT + X runs `stand_emote_calm.onnx`; RB + B (sitting
+**Active on the real duck now** (try these first): RT + A runs `stand_bam.onnx`, RT + X runs `stand_emote_calm.onnx`; RT + Y runs `walk_bam.onnx` (2026-11-25: it stays up on the real duck but steps in place and barely travels, so not a walk yet); RT + B (sitting
 emotions) and the walk use none. `models/active.json` says the same, with what each does and how it behaves, and `launcher.py` reads its
 models from it: to change the model a controller mode runs, change it there, `python pi/active_models.py --update` (records each active
 model's SHA-256), `bash pi/deploy.sh`, and restart the launcher. `python active_models.py` checks the files against those SHA-256s, and
@@ -320,6 +330,8 @@ Playback eases from where the duck is into the first recorded pose, plays it, an
 **The simulator's servo friction, fitted to the real duck** (2026-11-24): with microduck's 0.0048 N m of joint friction the simulated duck, every servo holding the stand pose at P 800 and no policy, fell forward in 0.6 s; the real one stands there. Friction alone didn't fix it, as MuJoCo's lets a loaded joint creep (0.3 N m only delayed the fall to 2.5 s). 0.07 N m that holds (`solimpfriction="0.999 0.9999 0.001 0.5 2"`, as the 288:1 gearbox does) matches both measurements: standing, the right knee 3.8 deg past its goal and the body 6.0 deg nose down (real: 3.4 and 6); a 6 deg kick in the air at about 85 ms to 90 % and 0.3-1 deg short at the end (real: 55-83 ms, 0-1.3 deg). It's set in `spec/actuators.json` (XL330_M288 `friction_nm`, `friction_solimp`), written by `tools/make_rl_model.py`, and in the trainer's Dynamixel models and `sim/model/milli.xml`; `sim/server.py --friction` overrides it. In that simulator the stand_nod policy that shook the real duck jolts at the hand-off (legs 23 deg off the stand), then stands dead still; on the real duck the jolt was about 3 times as violent (joints at 5.9 rad/s against 2.7) and pulled the supply to 3.3 V in 0.5 s, which stopped it.
 
 **The stand policy's shake on the real duck, and Pollen's servo model** (2026-11-24): on the 6 V supply the policy took over, and within 1 s its wobble grew (6-7 Hz in the gyro) until every servo sat at its current cap and the supply fell to 2.9 V. In the simulator the same policy settled every time: with the measured gear friction, the 800 mA cap, +40 ms of servo delay, IMU and joint-speed delays as measured on the real duck (~20 ms each, the gyro repeating a stale reading on 6-25 % of ticks), springy soles, and in milli-rl on Pollen's measured XL330 model (BAM m6, which microduck uses on the same servos and milli's Dynamixel tasks had replaced with a plain DC motor). Only an 80 ms IMU delay made it shake and fall. The recipe had randomized the IMU delay over 0-20 ms and the joint speeds at 20 ms: the real duck sat at the edge. So milli-rl's `Mjlab-StandHand-Flat-Milli-Dynamixel-Bam` (milli_bam_env_cfg.py) trains the stand on BAM at the real gains and 5.4-6.0 V with the IMU 0-60 ms and the joint speeds 20-40 ms old (`train_stand_bam.sh`, exported as `models/stand_bam.onnx`). In it the old stand policy falls within ~1 s. Trained 1500 iterations from stand_nod (episodes 51 -> ~900 steps): on BAM from starts tilted up to 20 deg, 99.6 % of 256 stay up 10 s, 95.3 % with pushes; in `sim/server.py` it stands after the hand-off with the IMU 80 ms late, where the old policy fell (render: `docs/images/policies/dynamixel/stand_bam_handoff.mp4`). The launcher's RT + A now runs it (`--model models/stand_bam.onnx --bam`). **First real run, 2026-11-24 19:50: it stood under the policy, calm, about 16 s** (body tilt 1-2.5 deg, servo currents 36-54 mA where the old policy pinned every servo at 700-890 mA, the 6 V supply steady at 5.9-6.0 V), head commands too; then 13 of the 15 servos stopped answering at once (a bus or power connection, not the policy) and it eased down. BAM models position mode, so its policies run with `run_policy.py --bam` (mode 3, P 800/1200/600, D 0, no current cap). `sim/server.py` gained `--imu-lag-ms`, `--vel-lag-ms` and `--sole TIMECONST DAMPRATIO` for these tests.
+
+**A way in without the Wi-Fi** (`net_setup.sh`, which `setup_pi.sh` runs): a plain micro-USB cable from the PC to the Pi's data port (the middle one, marked USB, not PWR IN at the corner) and the Pi is a USB network adapter on the PC: `ssh USER@10.42.0.1`. The port runs as OTG, still host for the servo board when its cable is in; if the board stops showing up, `sudo bash net_setup.sh usb-off`. The same script turns Wi-Fi power saving off, which made the Pi drop its link every couple of minutes (docs/dynamixel/TROUBLESHOOTING.md). Reach the Pi by `<hostname>.local` rather than its address, which changes. The tests behind those two findings are kept: `wifi_diag.sh` (what the Wi-Fi is doing while the speaker plays, and its settings against the backup) and `audio_ab.sh` (the same sounds with the Wi-Fi, its power saving, the Bluetooth settings or Bluetooth's background scan switched off and on; `audio_ab.sh scan` is the one that found the choppy sound's cause). `netlog.sh install` would keep a few lines about the network at every start in `/var/log/duck-netlog.log`: written that day, not run by `setup_pi.sh`, and not yet tried on the duck.
 
 **If the Pi drops off the Wi-Fi for good** (2026-11-24): a power cut while NetworkManager rewrote the Wi-Fi profile left `/etc/netplan/` with only the eth0 file, so the Pi booted (Bluetooth fine) but never joined. The card's boot partition still has the original `network-config`. Changing the instance ID in both `meta-data` and `cmdline.txt` (`ds=nocloud;i=...`) to a new value makes cloud-init treat the next boot as a first boot: it writes the Wi-Fi again from `network-config`, keeps `~/duck` and the pairing, and makes new SSH host keys. The cause is the servos sharing the Pi's supply: give the Pi its own supply, so a servo sag can't reset it. The head starts folded down in front, swings up and over to lean back, looks to one side, and comes back down; the legs barely move.
 

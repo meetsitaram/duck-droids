@@ -140,6 +140,12 @@ class Duck:
                 lim_dn = peak * np.clip(1 + v / noload, 0, 1)
                 self.d.qfrc_applied[da] = np.clip(tau, -lim_dn, lim_up)
             mujoco.mj_step(self.m, self.d)
+            if TRACE[0] is not None and self.d.time - TRACE[1] >= 0.1:     # --trace: where the body is, ten times a second
+                TRACE[1] = self.d.time
+                w, x, y, z = self.d.qpos[3:7]
+                TRACE[0].write(f'{self.d.time:.2f},{self.d.qpos[0]:.4f},{self.d.qpos[1]:.4f},{self.d.qpos[2]:.4f},'
+                               f'{np.degrees(np.arctan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z))):.1f}\n')
+                TRACE[0].flush()
             if any(on.values()) and getattr(self, 't_on', None) is None:
                 self.t_on = self.d.time
             held = HELD[0] and (getattr(self, 't_on', None) is None or self.d.time - self.t_on < HELD[1])
@@ -242,6 +248,7 @@ def imu_server(duck, sock):
 
 EXTRA_LAG = [0.0]
 IMU_LAG = [0.0]
+TRACE = [None, -1.0]                            # --trace: the file, and the time of its last line
 SOLE = [None]                                           # (timeconst s, damping ratio), --sole                                         # s, --imu-lag-ms
 VEL_LAG = [0.0]                                         # s, --vel-lag-ms
 FRICTION = [None]                                       # N m, --friction
@@ -284,7 +291,11 @@ if __name__ == '__main__':
     ap.add_argument('--vel-lag-ms', type=float, default=0.0, help='ms: the servos report their speed that old (the real XL330 filters it)')
     ap.add_argument('--friction', type=float, help='N m of gear friction on every joint, in place of the model 0.0048: the real XL330s measure ~0.04')
     ap.add_argument('--start-level', action='store_true', help='with --start: the body level (as the real duck sits, on its heels), not the feet flat')
+    ap.add_argument('--trace', help='a CSV of the body, ten times a second: t, x, y, z (m), yaw (deg). For measuring how far a walk travels')
     a = ap.parse_args()
+    if a.trace:
+        TRACE[0] = open(a.trace, 'w', encoding='utf-8')
+        TRACE[0].write('t,x,y,z,yaw_deg\n')
     cfg = json.load(open(a.config, encoding='utf-8'))
     if a.kp is not None:
         cfg['servo']['kp'] = a.kp

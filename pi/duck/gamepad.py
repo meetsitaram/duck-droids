@@ -44,6 +44,11 @@ class State:
         for t, b in (('rt', 'RT'), ('lt', 'LT')):         # the triggers as buttons too, for combos like RT + A
             if s.axes[t] > TRIGGER_DOWN:
                 s.held.add(b)
+        for ax, pos, neg in (('dy', 'UP', 'DOWN'), ('dx', 'LEFT', 'RIGHT')):   # the d-pad as buttons too, for combos like LT + UP
+            if s.axes[ax] > 0.5:
+                s.held.add(pos)
+            elif s.axes[ax] < -0.5:
+                s.held.add(neg)
         return s
 
 
@@ -51,8 +56,11 @@ class Holds:
     """Button combos that act only when held together for `seconds` (1 s), so a brush or a mashed button does nothing. check(state) returns
     the combo's name once per hold, at the moment it completes; let go of it to arm it again."""
 
-    def __init__(self, combos, seconds=1.0):
+    def __init__(self, combos, seconds=1.0, exact=False):
         self.combos = {name: frozenset(bs) for name, bs in combos.items()}
+        # exact: a combo counts only with no other combo's buttons held besides its own, so RT + A doesn't fire while the shutdown's RT + LT + RB + LB is going down
+        # being held (the launcher, 2026-11-25)
+        self.exact = frozenset().union(*self.combos.values()) if exact else None
         self.seconds = seconds
         self.since = {}
         self.fired = set()
@@ -61,7 +69,7 @@ class Holds:
         now = time.monotonic()
         out = None
         for name, bs in self.combos.items():
-            if not state.lost and bs <= state.held:
+            if not state.lost and bs <= state.held and not (self.exact and (state.held & self.exact) - bs):
                 t0 = self.since.setdefault(name, now)
                 if now - t0 >= self.seconds and name not in self.fired:
                     self.fired.add(name)

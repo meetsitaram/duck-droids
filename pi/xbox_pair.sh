@@ -3,7 +3,9 @@
 # saying Connected then not, bluetoothd logging "Report Map read failed"). The fixes from xpadneo's docs/TROUBLESHOOTING.md for the
 # Raspberry Pi's internal adapter: LE privacy, short LE connection intervals and a longer supervision timeout, then the same per device.
 #   sudo bash xbox_pair.sh            hold the controller's pair button when asked (every Xbox controller paired before is unpaired)
-#   sudo bash xbox_pair.sh --add      another controller beside the ones already paired: they stay, only the new one is paired and fixed
+#   sudo bash xbox_pair.sh --add      another controller beside the ones already paired: they stay, only the new one is paired and fixed.
+#                                     Bluetooth scans for every paired controller that is off, on the radio the speaker uses: bt_scan.sh
+#                                     (run by setup_pi.sh) keeps that scan short; bluetoothctl remove <MAC> for one no longer used
 # Pairing again (or holding the pair button for another device) drops the per-device part: run this again.
 set -e
 [ "$(id -u)" = 0 ] || { echo 'run with sudo'; exit 1; }
